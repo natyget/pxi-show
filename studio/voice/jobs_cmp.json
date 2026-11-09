@@ -1,0 +1,6 @@
+[
+ {"who":"n_puck","text":"If you go to one thing a minute, which is easy, because a thing is just a room with people in it, I can get forty-seven before my dryer's done.","out":"design/pick_nio_a.wav","ex":0.8,"cfg":0.3,"seed":2},
+ {"who":"n_puck","text":"That's my building. It's a short one!","out":"design/pick_nio_b.wav","ex":0.85,"cfg":0.3,"seed":2},
+ {"who":"m_river","text":"Nio, that's a fish.","out":"design/pick_maya_a.wav","ex":0.6,"cfg":0.35,"seed":1},
+ {"who":"m_river","text":"Was that the whole pottery class?","out":"design/pick_maya_b.wav","ex":0.7,"cfg":0.3,"seed":1}
+]
