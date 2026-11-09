@@ -1,0 +1,12 @@
+[
+ {"who":"n_echo","text":"A picture of me? ...In an album?","out":"e1_t1.wav","ex":0.6,"cfg":0.35,"seed":3},
+ {"who":"n_echo","text":"What the heck is this even about.","out":"e1_t2.wav","ex":0.6,"cfg":0.35,"seed":3},
+ {"who":"n_echo","text":"That's me sneezing. That's me smelling a candle. Who is out here... documenting me?","out":"e1_t3.wav","ex":0.8,"cfg":0.3,"seed":3},
+ {"who":"n_echo","text":"Nah. I'm not playing this shit. I'm callin' the cops.","out":"e1_s1.wav","ex":0.85,"cfg":0.3,"seed":1},
+ {"who":"n_echo","text":"...When is this?","out":"e1_t4.wav","ex":0.6,"cfg":0.35,"seed":3},
+ {"who":"n_echo","text":"Maya. Ain't this the party you signed us up for?","out":"e1_s2.wav","ex":0.7,"cfg":0.3,"seed":2},
+ {"who":"m_sky","text":"Yeah! It's on Saturday! Why?","out":"e1_m1.wav","ex":0.9,"cfg":0.3,"seed":1},
+ {"who":"n_echo","text":"...It's Wednesday.","out":"e1_s3.wav","ex":0.5,"cfg":0.4,"seed":2},
+ {"who":"n_echo","text":"Aight. Bye.","out":"e1_s4.wav","ex":0.6,"cfg":0.35,"seed":4},
+ {"who":"w_onyx","text":"...It's clean.","out":"e1_w1.wav","ex":0.35,"cfg":0.5,"seed":1}
+]

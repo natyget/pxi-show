@@ -142,8 +142,12 @@ export function Stall({ x, z, face, kind, i }: { x: number; z: number; face: 1 |
       {kind === 'tees' && [-0.6, 0, 0.6].map((gx, k) => (
         <Solid key={k} geo={rbox(0.45, 0.5, 0.03, 0.02)} mat={toon(['#efe6d2', '#3f6f8f', '#c75a4a'][k])} position={[gx, 1.6, -0.38]} line={0.007} />
       ))}
-      {kind === 'lights' && Array.from({ length: 5 }).map((_, k) => (
-        <Solid key={k} geo={sph(0.12)} mat={toon(['#ffd98a', '#ff9e8a', '#a8d0ff'][k % 3], ['#ffd98a', '#ff9e8a', '#a8d0ff'][k % 3], 1)} position={[-0.8 + k * 0.4, 1.8, -0.2]} line={0.006} />
+      {kind === 'lights' && Array.from({ length: 6 }).map((_, k) => (
+        // candles: jars with a little flame
+        <group key={k} position={[-0.8 + k * 0.32, 0.96, -0.05 + (k % 2) * 0.12]}>
+          <Solid geo={cyl(0.07, 0.07, 0.14, 12)} mat={toon(['#efe6d2', '#f4b8a8', '#a8d8f4'][k % 3])} position={[0, 0.07, 0]} line={0.006} />
+          <mesh geometry={sph(0.025, 8, 6)} position={[0, 0.17, 0]} scale={[0.7, 1.3, 0.7]} material={toon('#ffd98a', '#ffb347', 2)} />
+        </group>
       ))}
     </group>
   );
@@ -207,6 +211,12 @@ export const Exterior: React.FC<{ curtain?: number; nioInWindow?: { look: Look; 
     {Array.from({ length: 7 }).map((_, i) => <mesh key={i} geometry={plane(0.4, 5.6)} rotation={[-Math.PI / 2, 0, 0]} position={[-4.6 + i * 0.6, 0.006, 0]} material={flat('#d9d0bb')} />)}
     <Building curtain={curtain} nio={nioInWindow?.look} nioPose={nioInWindow?.pose} />
     {[-8, -2, 4, 10].map((x) => <Streetlight key={x} x={x} z={-3.3} />)}
+    {/* bus-stop bench on the north sidewalk */}
+    <group position={[2.4, 0, -3.95]}>
+      <Solid geo={rbox(1.8, 0.07, 0.45, 0.02)} mat={toon('#4f7a6a')} position={[0, 0.46, 0]} />
+      <Solid geo={rbox(1.8, 0.4, 0.06, 0.02)} mat={toon('#4f7a6a')} position={[0, 0.72, -0.2]} />
+      {[-0.8, 0.8].map((x) => <Solid key={x} geo={rbox(0.06, 0.46, 0.4, 0.02)} mat={toon('#2e2b36')} position={[x, 0.23, 0]} line={0.007} />)}
+    </group>
     {[-6, 0, 6].map((x) => <Streetlight key={x} x={x} z={3.3} />)}
     {MARKET_STALLS.map((s, i) => <Stall key={i} {...s} i={i} />)}
     <StringLights x0={-7} x1={7} z={6.9} y={3.0} seed={0} />
@@ -226,13 +236,15 @@ export const Exterior: React.FC<{ curtain?: number; nioInWindow?: { look: Look; 
 );
 
 /** A crowd member: a look and a slow idle. */
+const ex = (skin: string, skinShade: string, hair: string, top: string, pants: string, shape: 'tri' | 'round' | 'long', hairStyle: 'crop' | 'puff' | 'bald', extra: Partial<Look> = {}): Look =>
+  ({ skin, skinShade, hair, hairDark: hair, iris: '#2a1a12', top, topDark: top, pants, shoes: '#efe6d2', shape, hairStyle, ...extra });
 export const EXTRAS: Look[] = [
-  { skin: '#c99a7a', hair: '#1f1a1a', top: '#5f8f5a', topDark: '#4a7046', pants: '#2b2a33', shoes: '#efe6d2', hairStyle: 'nio' },
-  { skin: '#8a5a44', hair: '#1a1414', top: '#d9a441', topDark: '#b8862f', pants: '#3b4258', shoes: '#2b2a33', hairStyle: 'bob' },
-  { skin: '#efd2bf', hair: '#c9a46a', top: '#3f6f8f', topDark: '#2f5570', pants: '#5d6273', shoes: '#fafafa', hairStyle: 'bob' },
-  { skin: '#a8765a', hair: '#2a1d10', top: '#c75a4a', topDark: '#a04537', pants: '#2b2a33', shoes: '#efe6d2', hairStyle: 'nio' },
-  { skin: '#e9c9b0', hair: '#6a3f24', top: '#8f4f7f', topDark: '#703d63', pants: '#3b4258', shoes: '#d9cdb3', hairStyle: 'bob' },
-  { skin: '#6e4634', hair: '#141010', top: '#efe6d2', topDark: '#d4c7ad', pants: '#5d6273', shoes: '#2b2a33', hairStyle: 'nio' },
+  ex('#c99a7a', '#a87b5d', '#1f1a1a', '#5f8f5a', '#2b2a33', 'long', 'crop'),
+  ex('#8a5a44', '#6c4434', '#1a1414', '#d9a441', '#3b4258', 'round', 'puff', { puff: true, lashes: true }),
+  ex('#efd2bf', '#d1ae98', '#c9a46a', '#3f6f8f', '#5d6273', 'round', 'crop'),
+  ex('#a8765a', '#875b43', '#2a1d10', '#c75a4a', '#2b2a33', 'tri', 'crop'),
+  ex('#e9c9b0', '#c9a790', '#6a3f24', '#8f4f7f', '#3b4258', 'long', 'bald', { mustache: true }),
+  ex('#6e4634', '#553426', '#141010', '#efe6d2', '#5d6273', 'round', 'crop'),
 ];
 
 export const vec = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);

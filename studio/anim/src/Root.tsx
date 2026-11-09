@@ -5,6 +5,7 @@ import { Demo, DEMO_LEN } from './Demo';
 import { VrmTest } from './VrmTest';
 import { CharSheet } from './CharSheet';
 import { Pilot, PILOT_LEN, PhotoStill } from './Pilot';
+import { Ep1, EP1_LEN, Ep1Photo } from './Ep1';
 
 export const Root: React.FC = () => (
   <>
@@ -14,5 +15,7 @@ export const Root: React.FC = () => (
     <Composition id="CharSheet" component={CharSheet} durationInFrames={1} fps={24} width={1080} height={1920} />
     <Composition id="Pilot" component={Pilot} durationInFrames={PILOT_LEN} fps={24} width={1080} height={1920} />
     <Composition id="PhotoStill" component={PhotoStill} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'window' }} />
+    <Composition id="Ep1" component={Ep1} durationInFrames={EP1_LEN} fps={24} width={1080} height={1920} />
+    <Composition id="Ep1Photo" component={Ep1Photo} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'behind' }} />
   </>
 );

@@ -6,7 +6,7 @@ import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeom
 export const INK = '#151216';
 
 const grad = (() => {
-  const d = new Uint8Array([120, 120, 120, 255, 195, 195, 195, 255, 255, 255, 255, 255]);
+  const d = new Uint8Array([170, 170, 170, 255, 218, 218, 218, 255, 255, 255, 255, 255]);
   const t = new THREE.DataTexture(d, 3, 1, THREE.RGBAFormat);
   t.minFilter = THREE.NearestFilter; t.magFilter = THREE.NearestFilter; t.needsUpdate = true;
   return t;

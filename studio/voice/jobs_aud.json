@@ -1,0 +1,9 @@
+[
+ {"who":"n_puck","text":"Nah. I'm not playing this shit. I'm callin' the cops.","out":"aud_n_puck.wav","ex":0.85,"cfg":0.3},
+ {"who":"n_echo","text":"Nah. I'm not playing this shit. I'm callin' the cops.","out":"aud_n_echo.wav","ex":0.85,"cfg":0.3},
+ {"who":"n_eric","text":"Nah. I'm not playing this shit. I'm callin' the cops.","out":"aud_n_eric.wav","ex":0.85,"cfg":0.3},
+ {"who":"n_liam","text":"Nah. I'm not playing this shit. I'm callin' the cops.","out":"aud_n_liam.wav","ex":0.85,"cfg":0.3},
+ {"who":"m_sky","text":"Yeah! It's on Saturday! Why?","out":"aud_m_sky.wav","ex":0.9,"cfg":0.3},
+ {"who":"m_bella","text":"Yeah! It's on Saturday! Why?","out":"aud_m_bella.wav","ex":0.9,"cfg":0.3},
+ {"who":"m_jessica","text":"Yeah! It's on Saturday! Why?","out":"aud_m_jessica.wav","ex":0.9,"cfg":0.3}
+]
