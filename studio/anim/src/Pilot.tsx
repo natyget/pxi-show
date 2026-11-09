@@ -140,12 +140,12 @@ const S5: React.FC = () => {
 const S6: React.FC = () => {
   const t = t12(useCurrentFrame());
   const lean = sp(t, 0.1, 'lazy');
-  const pose: Pose = { yaw: 0, lean: lean * 0.12, headPitch: 0.35, headTilt: 0.05, eyeY: -0.7, eyeOpen: 1.08, brow: -0.4, browUp: 0.7 * lean,
+  const pose: Pose = { yaw: 0, lean: lean * 0.08, headPitch: 0.18, headTilt: 0.05, eyeY: -0.7, eyeOpen: 1.08, brow: -0.4, browUp: 0.7 * lean,
     lid: blink(t, [1.9]), mouth: mouthAt(t, 'p_market', 0.35) * 0.8, armL: { sx: -0.6, sz: 0.2, el: 0.9 }, armR: { sx: -0.6, sz: 0.2, el: 0.9 } };
   return (
     <AbsoluteFill>
       <PixelShot>
-        <Cam pos={[NIO_WIN.x + 0.15, NIO_WIN.y - 0.25, -2.5]} at={[NIO_WIN.x, NIO_WIN.y + 0.15, -4.8]} fov={34} />
+        <Cam pos={[NIO_WIN.x + 0.35, NIO_WIN.y - 0.55, -1.3]} at={[NIO_WIN.x, NIO_WIN.y - 0.05, -4.9]} fov={26} />
         <Exterior curtain={0} nioInWindow={{ look: NIO, pose }} />
       </PixelShot>
       {saying(t, 'p_market', 0.35) && <Sub text="hold on. there's a whole market down there?" />}
@@ -209,10 +209,10 @@ const S9: React.FC = () => {
     headYaw: Math.sin(t * 1.6) * 0.5, eyeX: Math.sin(t * 1.6) * 0.4, lid: 0.15, hoodUp: 1 };
   return (
     <PixelShot>
-      <Cam pos={[x + 0.4, 1.45, 12.4]} at={[x + 0.2, 1.1, 8.5]} fov={40} />
+      <Cam pos={[x - 2.6, 1.6, 8.95]} at={[x + 1.2, 1.2, 8.5]} fov={42} />
       <Exterior curtain={0}>
         <Character look={NIO} p={p} />
-        <Crowd t={t} skip={[0, 6]} />
+        <Crowd t={t} skip={[0, 1, 6]} />
       </Exterior>
     </PixelShot>
   );
@@ -222,14 +222,14 @@ const S9: React.FC = () => {
 const S10: React.FC = () => {
   const t = t12(useCurrentFrame());
   const turn = sp(t, 0.2, 'snap');
-  const maya: Pose = { x: -2.25, z: 7.15, yaw: Math.PI - turn * 2.35, breathe: breathe(t), headYaw: turn * 0.25, eyeX: turn * 0.5,
+  const maya: Pose = { x: -2.42, z: 7.2, yaw: Math.PI - turn * 2.35, breathe: breathe(t), headYaw: turn * 0.25, eyeX: turn * 0.5,
     lid: 0.42, smirk: saying(t, 'p_maya1', 0.4) ? 0.0 : 0.5, brow: -0.1, browUp: 0.2, mouth: mouthAt(t, 'p_maya1', 0.4) * 0.8,
     armR: { sx: -0.6, sz: -0.15, el: 1.2 }, armL: { sx: 0.1, sz: 0.05, el: 0.4 } };
-  const nio: Pose = { x: -3.15, z: 7.75, yaw: 1.0, breathe: breathe(t + 1), headYaw: 0.1, eyeX: 0.3, lid: 0.3 + blink(t, [2.4]) * 0.7, brow: 0.2, hoodUp: 1 };
+  const nio: Pose = { x: -2.98, z: 7.55, yaw: 0.9, breathe: breathe(t + 1), headYaw: 0.1, eyeX: 0.3, lid: 0.3 + blink(t, [2.4]) * 0.7, brow: 0.2, hoodUp: 1 };
   return (
     <AbsoluteFill>
       <PixelShot>
-        <Cam pos={[-1.55, 1.42, 9.3]} at={[-2.65, 1.12, 7.3]} fov={36} />
+        <Cam pos={[-2.62, 1.45, 10.9]} at={[-2.68, 1.15, 7.45]} fov={34} />
         <Exterior curtain={0}>
           <Character look={MAYA} p={maya} handR={<group position={[0, -0.04, 0.03]} rotation={[0, 0, Math.PI]}><Phone on={1} /></group>} />
           <Character look={NIO} p={nio} />
@@ -245,12 +245,12 @@ const S10: React.FC = () => {
 const S11: React.FC = () => {
   const t = t12(useCurrentFrame());
   const look = sp(t, 0.7, 'sheet');
-  const nio: Pose = { x: -3.15, z: 7.75, yaw: 1.0, breathe: breathe(t), headYaw: 0.1 - look * 0.5, eyeX: 0.4 - look * 1.0, eyeY: -look * 0.3,
+  const nio: Pose = { x: -2.98, z: 7.55, yaw: 0.9, breathe: breathe(t), headYaw: 0.1 - look * 0.5, eyeX: 0.4 - look * 1.0, eyeY: -look * 0.3,
     lid: Math.max(0.25, blink(t, [0.35])), brow: 0.1, browR: look * 0.5, mouth: mouthAt(t, 'p_dumplings', 0.8) * 0.8, hoodUp: 1 };
   return (
     <AbsoluteFill>
       <PixelShot>
-        <Cam pos={[-2.3, 1.5, 8.9]} at={[-3.1, 1.36, 7.75]} fov={30} />
+        <Cam pos={[-2.1, 1.5, 8.75]} at={[-2.95, 1.36, 7.55]} fov={30} />
         <Exterior curtain={0}><Character look={NIO} p={nio} /><Crowd t={t} skip={[1]} /></Exterior>
       </PixelShot>
       {saying(t, 'p_dumplings', 0.8) && <Sub text="...are the dumplings here any good?" />}
@@ -283,7 +283,7 @@ const S12: React.FC = () => {
 // ---------------------------------------------------------------- 13. Maya: "yeah, weird. but he's cool."
 const S13: React.FC = () => {
   const t = t12(useCurrentFrame());
-  const maya: Pose = { x: -0.45, z: 9.25, yaw: -0.45, breathe: breathe(t), headYaw: -0.3, eyeX: -0.5, lid: 0.45, smirk: t > 2.6 ? 0.6 : 0.2,
+  const maya: Pose = { x: -0.45, z: 9.25, yaw: Math.PI + 0.62, breathe: breathe(t), headYaw: -0.15, eyeX: -0.5, lid: 0.45, smirk: t > 2.6 ? 0.6 : 0.2,
     brow: -0.05, mouth: mouthAt(t, 'p_maya2', 0.2) * 0.8, armR: { sx: -0.6, sz: -0.15, el: 1.2 }, lean: Math.sin(t * 2) * 0.01 };
   return (
     <AbsoluteFill>

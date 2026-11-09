@@ -68,7 +68,17 @@ function Building({ curtain, nio, nioPose }: { curtain: number; nio?: Look; nioP
         <mesh key={i} geometry={plane(x1 - x0, y1 - y0)} position={[(x0 + x1) / 2, (y0 + y1) / 2, -4.5]} material={toon(BRICK)} />
       ))}
       {/* brick courses */}
-      {Array.from({ length: 26 }).map((_, i) => <mesh key={i} geometry={plane(16, 0.02)} position={[0, 0.5 * i, -4.49]} material={flat(BRICK2)} />)}
+      {Array.from({ length: 26 }).map((_, i) => {
+        const yy = 0.5 * i;
+        // courses stop at Nio's window opening
+        if (yy > y - h / 2 - 0.08 && yy < y + h / 2 + 0.08) return (
+          <group key={i}>
+            <mesh geometry={plane(x - w / 2 - 0.1 - L, 0.02)} position={[(L + x - w / 2 - 0.1) / 2, yy, -4.49]} material={flat(BRICK2)} />
+            <mesh geometry={plane(R - (x + w / 2 + 0.1), 0.02)} position={[(R + x + w / 2 + 0.1) / 2, yy, -4.49]} material={flat(BRICK2)} />
+          </group>
+        );
+        return <mesh key={i} geometry={plane(16, 0.02)} position={[0, yy, -4.49]} material={flat(BRICK2)} />;
+      })}
       {wins.map(([wx, wy, l], i) => <FacadeWindow key={i} x={wx} y={wy} lit={l} />)}
       <NioWindow curtain={curtain} nio={nio} nioPose={nioPose} />
       {/* front door with a lamp over it */}

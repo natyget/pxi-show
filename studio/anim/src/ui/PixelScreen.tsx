@@ -50,9 +50,9 @@ export function useLockScreen(time: string, album: string) {
     k.fillStyle = 'rgba(78,78,104,0.96)'; rr(k, 0, 0, cw, ch, 34); k.fill();
     k.save(); rr(k, 20, 37, 76, 76, 17); k.clip(); k.drawImage(a.icon, 20, 37, 76, 76); k.restore();
     k.fillStyle = '#fff'; k.textAlign = 'left';
-    k.font = '700 34px PixelifyCanvas'; k.fillText('You might be', 114, 62); k.fillText('in a photo', 114, 98);
-    k.font = '500 25px PixelifyCanvas'; k.fillStyle = 'rgba(255,255,255,0.75)'; k.fillText(`Tap to review in ${album}`, 114, 132);
-    k.textAlign = 'right'; k.font = '500 24px PixelifyCanvas'; k.fillStyle = 'rgba(255,255,255,0.55)'; k.fillText('now', cw - 22, 44);
+    k.font = '700 32px PixelifyCanvas'; k.fillText('You might be', 114, 62); k.fillText('in a photo', 114, 96);
+    k.font = '500 22px PixelifyCanvas'; k.fillStyle = 'rgba(255,255,255,0.75)'; k.fillText(`Tap to review in ${album}`, 114, 132, cw - 130);
+    k.textAlign = 'right'; k.font = '500 22px PixelifyCanvas'; k.fillStyle = 'rgba(255,255,255,0.55)'; k.fillText('now', cw - 20, 30);
     setT({ screen: tex(cv), card: tex(cc), cardAspect: cw / ch });
   }, [a, time, album]);
   return t;
