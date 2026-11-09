@@ -7,8 +7,8 @@ def shift(st):
     r = 2 ** (st / 12)
     return f"asetrate={int(24000*r)},aresample=48000,atempo={1/r:.5f}," if st else "aresample=48000,"
 ROLES = {
-  "nio":     shift(3.5) + WALKIE + ",atempo=1.04" + ",loudnorm=I=-16:TP=-1.5:LRA=7",
-  "thought": shift(2.0) + WALKIE + ",aecho=0.8:0.6:45|90:0.25|0.15,volume=0.9,loudnorm=I=-18:TP=-1.5:LRA=7",
+  "nio":     shift(-1.0) + WALKIE + ",loudnorm=I=-16:TP=-1.5:LRA=7",
+  "thought": shift(-1.0) + WALKIE + ",aecho=0.8:0.6:45|90:0.25|0.15,volume=0.9,loudnorm=I=-18:TP=-1.5:LRA=7",
   "maya":    shift(2.0) + WALKIE + ",loudnorm=I=-16:TP=-1.5:LRA=7",
   "phone":   shift(2.0) + WALKIE + ",highpass=f=450,lowpass=f=3000,loudnorm=I=-17:TP=-1.5:LRA=7",
   "weird":   shift(-2.5) + WALKIE + ",loudnorm=I=-17:TP=-1.5:LRA=7",
