@@ -1,0 +1,9 @@
+[
+ {"who":"nio","text":"That's... my window.","out":"raw_p_window.wav","ex":0.6,"cfg":0.3},
+ {"who":"nio","text":"Hold on. There's a whole market down there?","out":"raw_p_market.wav","ex":0.75,"cfg":0.3},
+ {"who":"maya","text":"You're the guy in the window. You stand there a lot.","out":"raw_p_maya1.wav","ex":0.6,"cfg":0.35},
+ {"who":"nio","text":"Are the dumplings here any good?","out":"raw_p_dumplings.wav","ex":0.55,"cfg":0.35},
+ {"who":"nio","text":"Why does he only sell left shoes?","out":"raw_p_shoes.wav","ex":0.7,"cfg":0.3},
+ {"who":"maya","text":"Yeah, weird. But he's cool.","out":"raw_p_maya2.wav","ex":0.5,"cfg":0.35},
+ {"who":"nio","text":"Ight.","out":"raw_p_ight.wav","ex":0.5,"cfg":0.35}
+]

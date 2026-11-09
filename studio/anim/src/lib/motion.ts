@@ -32,3 +32,17 @@ export const blink = (t: number, at: number[]) => {
 export const breathe = (t: number, rate = 0.25) => Math.sin(t * Math.PI * 2 * rate);
 /** Seeded noise in -1..1 (stable per frame). */
 export const nz = (i: number, s = 0) => { const n = Math.sin(i * 12.9898 + s * 78.233) * 43758.5453; return (n - Math.floor(n)) * 2 - 1; };
+
+/** A walk cycle (on twos via t). Returns pose parts: legs, arms, body bob. speed in steps per second. */
+export const walk = (t: number, steps = 1.8, amt = 1) => {
+  const ph = t * Math.PI * steps;
+  const s = Math.sin(ph), c = Math.cos(ph);
+  return {
+    legL: { hip: 0.42 * s * amt, knee: Math.max(0, -Math.sin(ph - 0.9)) * 0.75 * amt },
+    legR: { hip: -0.42 * s * amt, knee: Math.max(0, Math.sin(ph - 0.9)) * 0.75 * amt },
+    armL: { sx: -0.32 * s * amt, sz: 0.1, el: 0.25 + 0.15 * amt },
+    armR: { sx: 0.32 * s * amt, sz: 0.1, el: 0.25 + 0.15 * amt },
+    bob: Math.abs(c) * 0.025 * amt,
+    twist: 0.06 * s * amt,
+  };
+};

@@ -67,3 +67,9 @@ export const useCanvasTex = (w: number, h: number, draw: (c: CanvasRenderingCont
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 export const cone = (r: number, h: number) => memo(`k${r},${h}`, () => new THREE.ConeGeometry(r, h, 10, 1));
+/** Toon material that takes its colour from vertex colours (sculpted hair with a fade). */
+export const toonVC = () => {
+  const k = 'vc';
+  if (!mats.has(k)) mats.set(k, new THREE.MeshToonMaterial({ vertexColors: true, gradientMap: grad }));
+  return mats.get(k)!;
+};

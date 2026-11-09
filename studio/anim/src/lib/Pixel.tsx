@@ -19,14 +19,14 @@ export const Cam: React.FC<{ pos: [number, number, number]; at: [number, number,
 };
 
 /** Renders the scene into a 270x480 target and draws it full-frame with nearest filtering: real pixels, whatever the canvas size. */
-const LowRes: React.FC = () => {
+const LowRes: React.FC<{ res: [number, number] }> = ({ res }) => {
   const { gl } = useThree();
   const [rt, quad, qcam] = useMemo(() => {
-    const t = new THREE.WebGLRenderTarget(LW, LH, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true });
+    const t = new THREE.WebGLRenderTarget(res[0], res[1], { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true });
     t.texture.colorSpace = THREE.SRGBColorSpace;
     const q = new THREE.Scene();
     q.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
-      uniforms: { tex: { value: t.texture }, res: { value: new THREE.Vector2(LW, LH) } },
+      uniforms: { tex: { value: t.texture }, res: { value: new THREE.Vector2(res[0], res[1]) } },
       vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }',
       // 4x4 Bayer dither, then 6 levels per channel: a deliberate limited palette, like hand-made pixel art.
       fragmentShader: `uniform sampler2D tex; uniform vec2 res; varying vec2 vUv;
@@ -42,7 +42,7 @@ const LowRes: React.FC = () => {
     })));
 
     return [t, q, new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)];
-  }, []);
+  }, [res[0], res[1]]); // eslint-disable-line react-hooks/exhaustive-deps
   useFrame(({ scene, camera }) => {
     gl.setRenderTarget(rt); gl.clear(); gl.render(scene, camera);
     gl.setRenderTarget(null); gl.render(quad, qcam);
@@ -69,7 +69,7 @@ export const Glitch: React.FC<{ amt: number; seed: number }> = ({ amt, seed }) =
 };
 
 /** A 3D shot in the pixel look. `glitch` 0..1 turns the glitch beat on for this frame. */
-export const PixelShot: React.FC<{ children: React.ReactNode; glitch?: number; bg?: string }> = ({ children, glitch = 0, bg = '#151216' }) => {
+export const PixelShot: React.FC<{ children: React.ReactNode; glitch?: number; bg?: string; res?: [number, number] }> = ({ children, glitch = 0, bg = '#151216', res = [LW, LH] }) => {
   const f = useCurrentFrame();
   const g = glitch > 0.01;
   return (
@@ -77,7 +77,7 @@ export const PixelShot: React.FC<{ children: React.ReactNode; glitch?: number; b
       {g && <Glitch amt={glitch} seed={f % 17} />}
       <div style={{ width: LW * SCALE, height: LH * SCALE, filter: g ? 'url(#glitch)' : undefined }}>
         <ThreeCanvas width={LW * SCALE} height={LH * SCALE} dpr={1} gl={{ antialias: false, preserveDrawingBuffer: true }} linear={false} flat>
-          <LowRes />
+          <LowRes res={res} />
           {children}
         </ThreeCanvas>
       </div>

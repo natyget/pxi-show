@@ -2,11 +2,23 @@
 // Units are metres-ish; the head is big (cartoon), the hairline always sits ABOVE the brows.
 import React, { useMemo } from 'react';
 import * as THREE from 'three';
-import { Solid, toon, flat, sph, cap, rbox, cone, INK } from '../lib/toon';
+import { Solid, toon, toonVC, flat, sph, cap, rbox, INK } from '../lib/toon';
+import { headGeometry, hairGeometry } from './sculpt';
+
+const HEAD_GEO = headGeometry();
+const hairCache = new Map<string, THREE.BufferGeometry>();
+const hairGeo = (look: Look) => {
+  const k = `${look.hairStyle}|${look.hair}`;
+  if (!hairCache.has(k)) hairCache.set(k, hairGeometry(look.hairStyle === 'nio' ? 'crop' : 'bob', look.hair, look.hairDark ?? '#2a1a12'));
+  return hairCache.get(k)!;
+};
 
 export type Look = {
   skin: string; hair: string; top: string; topDark: string; pants: string; shoes: string;
   hairStyle: 'nio' | 'bob';
+  hairDark?: string;
+  shades?: boolean;     // sunglasses (at night)
+  height?: number;      // overall scale
   hood?: boolean;
 };
 
@@ -63,18 +75,22 @@ function Head({ p, look }: { p: Pose; look: Look }) {
   const brow = p.brow ?? 0, up = (p.browUp ?? 0) * 0.016;
   const m = Math.max(0, Math.min(1, p.mouth ?? 0)), smile = p.smile ?? 0, smirk = p.smirk ?? 0;
   const lidDrop = (p.lid ?? 0) * 0.008;
-  const hair = toon(look.hair);
-  return (
+    return (
     <group rotation={[p.headPitch ?? 0, p.headYaw ?? 0, p.headTilt ?? 0]}>
       <group position={[0, HEAD_R * 1.05, 0]}>
         {/* skull + jaw */}
-        <Solid geo={sph(HEAD_R, 32, 24)} mat={toon(look.skin)} scale={[1, 1.04, 0.95]} line={L} />
-        <Solid geo={sph(0.13, 28, 18)} mat={toon(look.skin)} position={[0, -0.065, 0.025]} scale={[0.92, 0.78, 0.88]} line={L} />
+        <Solid geo={HEAD_GEO} mat={toon(look.skin)} line={L} />
         {/* ears */}
         <Solid geo={sph(0.038)} mat={toon(look.skin)} position={[HEAD_R * 0.98, -0.01, -0.01]} scale={[0.45, 1, 0.75]} line={L} />
         <Solid geo={sph(0.038)} mat={toon(look.skin)} position={[-HEAD_R * 0.98, -0.01, -0.01]} scale={[0.45, 1, 0.75]} line={L} />
         <Eye side={1} p={p} look={look} />
         <Eye side={-1} p={p} look={look} />
+        {look.shades && (
+          <group position={[0, 0.005, 0.155]}>
+            {[1, -1].map((s2) => <Solid key={s2} geo={rbox(0.075, 0.045, 0.02, 0.012)} mat={flat('#111014')} position={[s2 * 0.064, 0, 0]} rotation={[0, s2 * 0.3, 0]} line={L * 0.6} />)}
+            <mesh geometry={rbox(0.06, 0.01, 0.01, 0.004)} material={flat('#111014')} />
+          </group>
+        )}
         {/* nose: a small nub */}
         <Solid geo={sph(0.02, 12, 10)} mat={toon(look.skin)} position={[0, -0.045, 0.158]} scale={[0.85, 1, 0.75]} line={0} />
         {/* brows: thick, they carry the expression. brow>0 = inner ends down (annoyed), <0 = inner ends up (worried) */}
@@ -98,64 +114,8 @@ function Head({ p, look }: { p: Pose; look: Look }) {
           )}
         </group>
         {/* hair */}
-        {look.hairStyle === 'nio' ? <NioHair mat={hair} /> : <BobHair mat={hair} />}
+        <Solid geo={hairGeo(look)} mat={toonVC()} line={L} />
       </group>
-    </group>
-  );
-}
-
-// Nio: short spiky hair swept up and back, with a darker faded undercut on the sides. The hairline sits well above the brows.
-const SPIKES: { pos: [number, number, number]; q: [number, number, number, number]; r: number; h: number }[] = (() => {
-  const out: { pos: [number, number, number]; q: [number, number, number, number]; r: number; h: number }[] = [];
-  const up = new THREE.Vector3(0, 1, 0), back = new THREE.Vector3(0, 0.2, -0.6);
-  // rings from the front hairline over the crown; azimuth 0 = forehead
-  const rings = [
-    { pol: 0.9, n: 5, spread: 1.6, h: 0.075, r: 0.048, lift: 0.75 },   // front row, flicked up
-    { pol: 0.6, n: 7, spread: 2.6, h: 0.07, r: 0.05, lift: 0.45 },
-    { pol: 0.32, n: 6, spread: 3.6, h: 0.065, r: 0.05, lift: 0.25 },
-    { pol: 0.08, n: 2, spread: 1.0, h: 0.06, r: 0.05, lift: 0.1 },
-  ];
-  rings.forEach((g, gi) => {
-    for (let i = 0; i < g.n; i++) {
-      const az = g.n === 1 ? 0 : -g.spread / 2 + (g.spread * i) / (g.n - 1) + (gi % 2 ? 0.12 : -0.08);
-      const dir = new THREE.Vector3(Math.sin(g.pol) * Math.sin(az), Math.cos(g.pol), Math.sin(g.pol) * Math.cos(az));
-      const R = HEAD_R * 0.98;
-      const aim = dir.clone().multiplyScalar(1 - g.lift).add(up.clone().multiplyScalar(g.lift)).add(back.clone().multiplyScalar(0.6)).normalize();
-      const q = new THREE.Quaternion().setFromUnitVectors(up, aim);
-      const base = dir.clone().multiplyScalar(R);
-      const tip = aim.clone().multiplyScalar(g.h / 2);
-      out.push({ pos: [base.x + tip.x, base.y * 1.04 + tip.y, base.z * 0.97 + tip.z], q: [q.x, q.y, q.z, q.w], r: g.r * (0.9 + ((i * 7) % 3) * 0.08), h: g.h * (0.85 + ((i * 5) % 4) * 0.1) });
-    }
-  });
-  return out;
-})();
-
-function NioHair({ mat }: { mat: THREE.Material }) {
-  const fade = toon('#3b2617');
-  return (
-    <group>
-      {/* faded undercut: a tight dark cap over the sides and back */}
-      <Solid geo={sph(HEAD_R * 1.02, 32, 20, 0, Math.PI * 0.55)} mat={fade} rotation={[-1.05, 0, 0]} scale={[1.01, 1.05, 0.97]} line={L} />
-      {/* the top mass the spikes grow out of */}
-      <Solid geo={sph(HEAD_R * 0.97, 28, 16)} mat={mat} position={[0, 0.07, -0.015]} scale={[0.97, 0.7, 1.0]} line={L} />
-      {SPIKES.map((s, i) => (
-        <Solid key={i} geo={cone(s.r, s.h)} mat={mat} position={s.pos} quaternion={new THREE.Quaternion(...s.q)} line={L} />
-      ))}
-    </group>
-  );
-}
-
-// Maya: a jaw-length bob. Side curtains hang beside the face (|x| > 0.13), the fringe ends above the brows.
-function BobHair({ mat }: { mat: THREE.Material }) {
-  return (
-    <group>
-      <Solid geo={sph(HEAD_R * 1.1, 32, 20, 0, Math.PI * 0.44)} mat={mat} rotation={[-0.38, 0, 0]} scale={[1.04, 1.08, 1]} line={L} />
-      <Solid geo={sph(HEAD_R * 1.12, 28, 18, 0, Math.PI * 0.7)} mat={mat} rotation={[-1.35, 0, 0]} scale={[1.05, 1.1, 1]} line={L} />
-      {[1, -1].map((s) => (
-        <Solid key={s} geo={cap(0.06, 0.14)} mat={mat} position={[s * 0.165, -0.03, 0.0]} rotation={[0.1, 0, s * 0.08]} scale={[0.75, 1, 1.25]} line={L} />
-      ))}
-      {/* side-parted fringe, ends at the brow line top */}
-      <Solid geo={sph(0.08)} mat={mat} position={[0.04, 0.15, 0.09]} rotation={[0.6, 0, -0.35]} scale={[1.5, 0.5, 0.8]} line={L} />
     </group>
   );
 }
@@ -195,7 +155,7 @@ export const Character: React.FC<{ p: Pose; look: Look; handR?: React.ReactNode;
   const legL = p.legL ?? { hip: 0, knee: 0 }, legR = p.legR ?? { hip: 0, knee: 0 };
   const hood = p.hoodUp ?? 0;
   return (
-    <group position={[p.x ?? 0, p.y ?? 0, p.z ?? 0]} rotation={[0, p.yaw ?? 0, 0]}>
+    <group position={[p.x ?? 0, p.y ?? 0, p.z ?? 0]} rotation={[0, p.yaw ?? 0, 0]} scale={look.height ?? 1}>
       {/* hips at 0.62 */}
       <group position={[0, 0.62, 0]}>
         <LegG l={legL} look={look} side={-1} />
@@ -222,7 +182,7 @@ export const Character: React.FC<{ p: Pose; look: Look; handR?: React.ReactNode;
             <Solid geo={cap(0.05, 0.04)} mat={toon(look.skin)} position={[0, 0.02, 0]} line={L} />
             <Head p={p} look={look} />
             {look.hood && hood >= 0.5 && (
-              <Solid geo={sph(HEAD_R * 1.22, 28, 18, 0, Math.PI * 0.68)} mat={toon(look.top)} position={[0, HEAD_R * 1.08, -0.02]} rotation={[-0.5, 0, 0]} scale={[1, 1.08, 1]} line={L} />
+              <Solid geo={sph(HEAD_R * 1.2, 28, 18, 0, Math.PI * 0.62)} mat={toon(look.top)} position={[0, HEAD_R * 1.12, -0.05]} rotation={[-1.05, 0, 0]} scale={[1.02, 1.1, 1.05]} line={L} />
             )}
           </group>
         </group>

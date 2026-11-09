@@ -3,11 +3,16 @@ import { Composition } from 'remotion';
 import { Sheet } from './Sheet';
 import { Demo, DEMO_LEN } from './Demo';
 import { VrmTest } from './VrmTest';
+import { CharSheet } from './CharSheet';
+import { Pilot, PILOT_LEN, PhotoStill } from './Pilot';
 
 export const Root: React.FC = () => (
   <>
     <Composition id="Sheet" component={Sheet} durationInFrames={1} fps={24} width={1080} height={1920} />
     <Composition id="Demo" component={Demo} durationInFrames={DEMO_LEN} fps={24} width={1080} height={1920} />
     <Composition id="VrmTest" component={VrmTest} durationInFrames={48} fps={24} width={1080} height={1920} />
+    <Composition id="CharSheet" component={CharSheet} durationInFrames={1} fps={24} width={1080} height={1920} />
+    <Composition id="Pilot" component={Pilot} durationInFrames={PILOT_LEN} fps={24} width={1080} height={1920} />
+    <Composition id="PhotoStill" component={PhotoStill} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'window' }} />
   </>
 );
