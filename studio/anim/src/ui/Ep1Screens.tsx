@@ -53,8 +53,8 @@ async function build(): Promise<Ep1Tex> {
   const review = (key: string, photo: HTMLImageElement, ring: [number, number, number], stamp?: string) => {
     const [cv, c] = canvas(); c.fillStyle = '#0d0b14'; c.fillRect(0, 0, W, H); island(c);
     c.fillStyle = '#fff'; c.textAlign = 'center'; c.font = `700 40px ${FONT}`; c.fillText('IS THIS YOU?', W / 2, 115);
-    if (stamp) { c.font = `500 22px ${FONT}`; c.fillStyle = 'rgba(255,255,255,0.65)'; c.fillText(stamp, W / 2, 145); }
-    const px = 25, py = 160, pw = 340, ph = 460;
+    if (stamp) { c.fillStyle = '#ff5a52'; rr(c, 40, 128, 310, 46, 23); c.fill(); c.font = `700 30px ${FONT}`; c.fillStyle = '#fff'; c.fillText(stamp, W / 2, 161); }
+    const px = 25, py = stamp ? 186 : 160, pw = 340, ph = stamp ? 440 : 460;
     c.save(); rr(c, px, py, pw, ph, 26); c.clip(); cover(c, photo, px, py, pw, ph); c.restore();
     c.strokeStyle = '#a523ef'; c.lineWidth = 7; c.beginPath(); c.arc(px + ring[0] * pw, py + ring[1] * ph, ring[2] * pw, 0, 7); c.stroke();
     c.font = `500 22px ${FONT}`; c.fillStyle = 'rgba(255,255,255,0.6)'; c.fillText('TAP TO ZOOM FACE', W / 2, 660);
@@ -65,8 +65,8 @@ async function build(): Promise<Ep1Tex> {
     out[key] = tex(cv);
   };
   review('review_behind', behind, [0.5, 0.42, 0.14]);
-  review('review_future', future, [0.38, 0.4, 0.13], 'Sat, Nov 14 · 11:52 PM');
-  review('review_deleting', deleting, [0.5, 0.38, 0.14]);
+  review('review_future', future, [0.25, 0.67, 0.1], 'SAT NOV 14 · 11:52 PM');
+  review('review_deleting', deleting, [0.7, 0.49, 0.14]);
 
   // the album: base screen + thumbs (pop in one by one)
   { const [cv, c] = canvas(); c.fillStyle = '#0d0b14'; c.fillRect(0, 0, W, H); island(c);

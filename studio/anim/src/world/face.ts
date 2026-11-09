@@ -48,7 +48,7 @@ export function faceTexture(f: FaceParams) {
     almond(); c.fillStyle = '#f6f2ee'; c.fill();
     c.save(); almond(); c.clip();
     const ir = f.wide > 0.5 ? 4 : 10 * f.eyeScale;
-    const ix = cx + Math.max(-1, Math.min(1, f.eyeX)) * (w - ir - 2), iy = cy + f.eyeY * 4;
+    const ix = cx + Math.max(-1, Math.min(1, f.eyeX)) * (w - ir - 2) - s * 2.5, iy = cy + f.eyeY * 4;
     c.fillStyle = f.iris; c.beginPath(); c.arc(ix, iy, ir, 0, Math.PI * 2); c.fill();
     c.fillStyle = INK; c.beginPath(); c.arc(ix, iy, ir * 0.48, 0, Math.PI * 2); c.fill();
     c.fillStyle = '#fff'; c.beginPath(); c.arc(ix + ir * 0.35, iy - ir * 0.4, Math.max(1.4, ir * 0.24), 0, Math.PI * 2); c.fill();

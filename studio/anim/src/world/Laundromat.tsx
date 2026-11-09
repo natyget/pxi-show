@@ -3,12 +3,22 @@
 // dark street. Flyer board on the right wall (one flyer: the rooftop party on Saturday: planted for later).
 // Fluorescent light: neutral white, so skin reads true.
 import React from 'react';
-import { Solid, toon, flat, rbox, cyl, sph, plane, useCanvasTex } from '../lib/toon';
+import { Solid, toon, flat, rbox, cyl, sph, cap, plane, useCanvasTex } from '../lib/toon';
 import { SceneBg } from './Exterior';
 
 const WALL = '#cfd6cf', TILE1 = '#e7e2d6', TILE2 = '#b9c3c8', MACHINE = '#eef0ee', TRIM = '#8a949c';
 export const MACHINE_X = [-3.0, -1.8, -0.6, 0.6, 1.8, 3.0];
-export const SOCK_WASHER = 3; // index: the sock guy's machine (x = 0.6)
+export const SOCK_WASHER = 4; // index: the sock guy's machine (x = 1.8)
+
+/** The sock: red with white stripes, a heel and a cuff. Reads at pixel size. */
+export const Sock: React.FC<{ scale?: number }> = ({ scale = 1 }) => (
+  <group scale={scale}>
+    <Solid geo={cap(0.045, 0.16)} mat={toon('#d8443a')} position={[0, 0.06, 0]} line={0.008} />
+    <Solid geo={cap(0.042, 0.11)} mat={toon('#d8443a')} position={[0.06, -0.05, 0]} rotation={[0, 0, 1.2]} line={0.008} />
+    <Solid geo={cyl(0.05, 0.05, 0.04, 12)} mat={toon('#f2efe8')} position={[0, 0.17, 0]} line={0.008} />
+    {[0.06, 0.1].map((y) => <mesh key={y} geometry={cyl(0.047, 0.047, 0.016, 12)} position={[0, y, 0]} material={flat('#f2efe8')} />)}
+  </group>
+);
 
 function Machine({ x, y, t, i, sock }: { x: number; y: number; t: number; i: number; sock?: boolean }) {
   const spin = t * (i % 2 ? 5.5 : 4.2) + i;
@@ -24,9 +34,9 @@ function Machine({ x, y, t, i, sock }: { x: number; y: number; t: number; i: num
       <mesh geometry={cyl(0.3, 0.3, 0.02, 28)} rotation={[Math.PI / 2, 0, 0]} position={[0, -0.06, 0.372]} material={flat('#2b3440')} />
       {busy && (
         <group position={[0, -0.06, 0.385]} rotation={[0, 0, -spin]}>
-          {(sock ? [0] : [0, 1, 2, 3, 4]).map((k) => (
-            <mesh key={k} geometry={sock ? rbox(0.08, 0.2, 0.01, 0.03) : sph(0.07, 10, 8)} material={flat(sock ? '#f2efe8' : cols[(k + i) % 6])}
-              position={[Math.cos(k * 1.3) * 0.17, Math.sin(k * 1.3) * 0.17 - 0.03, 0]} scale={sock ? [1, 1, 1] : [1.4, 0.8, 0.4]} />
+          {sock ? <group position={[0.06, -0.1, -0.02]} rotation={[0, 0, 0.6]}><Sock scale={1.1} /></group> : [0, 1, 2, 3, 4].map((k) => (
+            <mesh key={k} geometry={sph(0.07, 10, 8)} material={flat(cols[(k + i) % 6])}
+              position={[Math.cos(k * 1.3) * 0.17, Math.sin(k * 1.3) * 0.17 - 0.03, 0]} scale={[1.4, 0.8, 0.4]} />
           ))}
         </group>
       )}
@@ -104,7 +114,12 @@ export const Laundromat: React.FC<{ t: number; children?: React.ReactNode; tvOn?
     ))}
     <mesh geometry={plane(4, 1.8)} position={[0, 1.6, 3.2]} rotation={[0, Math.PI, 0]} material={flat('#141a2a')} />
     {[-1.2, 0.4, 1.6].map((x, i) => <mesh key={i} geometry={plane(0.5, 0.7)} position={[x, 1.7 + (i % 2) * 0.2, 3.15]} rotation={[0, Math.PI, 0]} material={flat(i === 1 ? '#e8b86e' : '#2a3048')} />)}
-    <mesh geometry={plane(0.1, 1.8)} position={[-0.6, 1.6, 3.0]} rotation={[0, Math.PI, 0]} material={flat('#5c656c')} />
+    {[-1.33, 0, 1.33].map((x) => <mesh key={x} geometry={plane(0.08, 1.8)} position={[x, 1.6, 3.0]} rotation={[0, Math.PI, 0]} material={flat('#7d878e')} />)}
+    <mesh geometry={plane(4, 0.08)} position={[0, 2.5, 3.0]} rotation={[0, Math.PI, 0]} material={flat('#7d878e')} />
+    {/* outside: a streetlight pole and its glow, the kerb */}
+    <mesh geometry={plane(0.06, 1.6)} position={[-1.6, 1.4, 3.18]} rotation={[0, Math.PI, 0]} material={flat('#3a4050')} />
+    <mesh geometry={sph(0.14, 12, 8)} position={[-1.6, 2.25, 3.17]} material={flat('#ffe2a8')} />
+    <mesh geometry={plane(4, 0.25)} position={[0, 0.8, 3.18]} rotation={[0, Math.PI, 0]} material={flat('#2a3046')} />
     {/* machines: washers below, dryers on top */}
     {MACHINE_X.map((x, i) => <Machine key={`w${i}`} x={x} y={0.53} t={t} i={i} sock={i === SOCK_WASHER} />)}
     {MACHINE_X.map((x, i) => <Machine key={`d${i}`} x={x} y={1.6} t={t} i={i + 3} />)}

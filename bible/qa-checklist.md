@@ -33,6 +33,22 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 - [ ] Premise in one sentence; escalation ladder; a laugh/gasp at least every 5 s; glitch beat; weird character;
       mundane explanation planted; PXI shown not said; cliffhanger unless final part.
 
+## Added after the Ep 1 review (Nov 9)
+- [ ] Insert hands use the character's own skin; fingers wrap the phone; the thumb rests OFF the screen and only enters to tap.
+- [ ] No hand/thumb covers story-critical UI (buttons, timestamps, the slot where a new photo lands).
+- [ ] Subtitle glyphs render correctly (the pixel font has no ( ) * : those use the fallback font).
+- [ ] Story-critical screen text is big and high-contrast (e.g. the red date stamp).
+- [ ] No light source blows faces or hair out to white (phones have no point light).
+- [ ] Hero props read at phone size: real shape, contrasting colour (the red striped sock).
+- [ ] Wardrobe reads as written (a suit has a white shirt, tie and lapels).
+- [ ] Overlay labels sit on a dark pill and never on faces; hidden on the end card.
+- [ ] Hands have fingers; there is a neck between head and collar.
+- [ ] Pupils converge (no wall-eye on angled shots).
+- [ ] The face-match ring sits on the face in the in-app photo.
+- [ ] In-app photos depict the beat they're for (no repeating an earlier photo).
+- [ ] A reverse is from the character's eyeline, not the same axis again; the camera is never inside a character.
+- [ ] An establishing wide never holds > 2 s without motion.
+
 ## Log of defects found (date · episode · defect → fix)
 - Nov 9 · pilot · 3D eyeballs poked through on head turns → flat 2D faces.
 - Nov 9 · pilot · seam line on the side of heads → hair/face cut from the welded head mesh.

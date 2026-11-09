@@ -120,7 +120,7 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
   }, (d, t) => {
     const top = smooth(0.42, 0.5, d.y);
     // the fade: short dark sides, a crisp step up to the black top
-    c.copy(cs).lerp(cd, style === 'puff' ? 1 : 0.94).lerp(cb, style === 'puff' ? 1 : top);
+    c.copy(cb).lerp(cd, style === 'crop' ? 0.25 * (1 - top) : 0);
     if (style === 'crop' && t > 0) c.lerp(cd, Math.max(0, Math.sin(Math.atan2(d.x, d.z) * 30 + d.y * 25)) * 0.25 * top);
     return c.clone();
   });

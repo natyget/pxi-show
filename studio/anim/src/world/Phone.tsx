@@ -15,7 +15,6 @@ export const Phone: React.FC<{ on?: number; buzz?: number }> = ({ on = 1, buzz =
       <mesh geometry={plane(0.066, 0.142)} position={[0, 0, 0.0055]}>
         <meshBasicMaterial map={scr} color={on > 0.5 ? '#ffffff' : '#222'} toneMapped={false} />
       </mesh>
-      {on > 0.5 && <pointLight position={[0, 0, 0.12]} intensity={0.25 * on} distance={0.6} decay={2} color="#7aa2ff" />}
     </group>
   );
 };

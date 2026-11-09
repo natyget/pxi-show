@@ -13,7 +13,7 @@ export type Look = {
   shape: FaceShape; hairStyle: HairStyle;
   build?: number;          // shoulder width multiplier
   height?: number;         // overall scale
-  shades?: boolean; puff?: boolean; hoops?: boolean; mustache?: boolean; lashes?: boolean; blush?: number;
+  suit?: boolean; shades?: boolean; puff?: boolean; hoops?: boolean; mustache?: boolean; lashes?: boolean; blush?: number;
 };
 
 /** Nio: light skin, triangular face, short black textured crop with a fade, broad shoulders, oversized crewneck. */
@@ -97,8 +97,10 @@ function Limb({ a, look, side, sleeve, children }: { a: Arm; look: Look; side: 1
       <group position={[0, -0.24, 0]} rotation={[-a.el, 0, 0]}>
         <Solid geo={cap(0.046, 0.15)} mat={toon(sleeve)} position={[0, -0.1, 0]} line={L} />
         <group position={[0, -0.22, 0]}>
-          <Solid geo={sph(0.047)} mat={toon(look.skin)} scale={[0.85, 1, 0.75]} line={L} />
+          <Solid geo={sph(0.045)} mat={toon(look.skin)} scale={[0.85, 1, 0.75]} line={L} />
           <Solid geo={cap(0.016, 0.03)} mat={toon(look.skin)} position={[side * -0.035, 0.005, 0.02]} rotation={[0.4, 0, side * 0.6]} line={L} />
+          {/* fingers, curled */}
+          {[-1, 0, 1].map((k) => <Solid key={k} geo={cap(0.0125, 0.03)} mat={toon(look.skin)} position={[k * 0.018, -0.045, 0.012]} rotation={[0.35, 0, 0]} line={L * 0.8} />)}
           {children}
         </group>
       </group>
@@ -122,7 +124,7 @@ function LegG({ l, look, side }: { l: Leg; look: Look; side: 1 | -1 }) {
 /** Where the head centre is in world space for a pose (used to frame shots on faces). */
 export const headPos = (p: Pose, look: Look): [number, number, number] => {
   const s = look.height ?? 1;
-  return [(p.x ?? 0), (p.y ?? 0) + s * (0.62 + 0.42 + HEAD_R * 1.05), (p.z ?? 0)];
+  return [(p.x ?? 0), (p.y ?? 0) + s * (0.62 + 0.47 + HEAD_R * 1.05), (p.z ?? 0)];
 };
 
 /** The whole character. `handR`/`handL` render in the hands (e.g. the phone). */
@@ -143,12 +145,19 @@ export const Character: React.FC<{ p: Pose; look: Look; handR?: React.ReactNode;
             <Solid geo={cap(0.15, 0.18)} mat={toon(look.top)} position={[0, 0.2, 0]} scale={[1.08 * w, 1, 0.82]} line={L} />
             <Solid geo={sph(0.1)} mat={toon(look.top)} position={[0, 0.33, 0]} scale={[2.0 * w, 0.55, 1.05]} line={L} />
             {/* collar: a ring at the base of the neck, nothing above it */}
-            <mesh position={[0, 0.39, 0]} rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[0.058, 0.014, 8, 20]} /><meshToonMaterial color={look.topDark} /></mesh>
+            <mesh position={[0, 0.39, 0]} rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[0.058, 0.014, 8, 20]} /><meshToonMaterial color={look.suit ? '#f2efe8' : look.topDark} /></mesh>
+            {look.suit && (
+              <group position={[0, 0.27, 0.118]}>
+                <mesh geometry={rbox(0.1, 0.22, 0.01, 0.004)} material={flat('#f2efe8')} />
+                <mesh geometry={rbox(0.03, 0.18, 0.012, 0.006)} material={flat('#b8323a')} position={[0, -0.01, 0.006]} />
+                {[1, -1].map((s) => <mesh key={s} geometry={rbox(0.05, 0.22, 0.014, 0.006)} material={flat('#3a3946')} position={[s * 0.06, 0, 0.004]} rotation={[0, 0, s * -0.25]} />)}
+              </group>
+            )}
           </group>
           <group position={[sx, 0.35, 0]}><Limb a={aR} look={look} side={1} sleeve={look.sleeve ?? look.top}>{handR}</Limb></group>
           <group position={[-sx, 0.35, 0]}><Limb a={aL} look={look} side={-1} sleeve={look.sleeve ?? look.top}>{handL}</Limb></group>
-          <group position={[0, 0.42 + b * 2, 0]}>
-            <Solid geo={cap(0.05, 0.04)} mat={toon(look.skin)} position={[0, 0.01, 0]} line={L} />
+          <group position={[0, 0.47 + b * 2, 0]}>
+            <Solid geo={cap(0.05, 0.09)} mat={toon(look.skin)} position={[0, -0.02, 0]} line={L} />
             <Head p={p} look={look}>{onHead}</Head>
           </group>
         </group>

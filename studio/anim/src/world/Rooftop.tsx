@@ -37,8 +37,9 @@ export const Rooftop: React.FC<{ children?: React.ReactNode }> = ({ children }) 
     <Solid geo={rbox(1.5, 0.05, 0.5, 0.02)} mat={toon('#6ad5ff', '#6ad5ff', 0.8)} position={[0, 0.92, -3.6]} line={0} />
     <ambientLight intensity={1.0} color="#9a90c8" />
     <hemisphereLight args={['#c0a8ff', '#3a2a40', 0.8]} />
-    <pointLight position={[0, 2.6, 0]} intensity={5} distance={9} color="#ff9ae0" />
-    <pointLight position={[2, 2.6, -2]} intensity={4} distance={8} color="#8ad8ff" />
+    <pointLight position={[0, 2.6, 0]} intensity={2.2} distance={9} color="#ff9ae0" />
+    <pointLight position={[2, 2.6, -2]} intensity={2.2} distance={8} color="#8ad8ff" />
+    <directionalLight position={[0, 3, 4]} intensity={1.0} color="#fff2e6" />
     {children}
   </group>
 );
