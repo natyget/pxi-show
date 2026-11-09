@@ -12,6 +12,7 @@ import { frame } from './lib/frame';
 import { Laundromat, BenchProps, Sock } from './world/Laundromat';
 import { Exterior, SceneBg } from './world/Exterior';
 import { Rooftop, Headphones } from './world/Rooftop';
+import { Room } from './world/Room';
 import { Character, NIO, MAYA, Look, Pose, headPos } from './world/Character';
 import { Phone } from './world/Phone';
 import { useEp1Screens } from './ui/Ep1Screens';
@@ -105,30 +106,29 @@ const Card: React.FC<{ tex: any; k: number }> = ({ tex, k }) => {
   ) : null;
 };
 
-// Nio's sitting pose with the phone; head offsets are layered per shot.
-const nioSit = (t: number, extra: Pose): Pose => ({ ...NIO_SIT, breathe: breathe(t), armR: HOLD, armL: { sx: -0.3, sz: 0.2, el: 0.9 }, ...extra });
-const NIO_HEAD = headPos(NIO_SIT, NIO);
-
 // ---------------------------------------------------------------- shots
+// The way Gumball reacts (from the show's dialogue): no voice-over; he mutters out loud. A flat beat, a small dismissal,
+// a scared quip, then panic once it's undeniable. Short lines. The face does the rest. Maya (Darwin-like) is sweet and
+// literal, notices the obvious detail late, whispers when she's scared.
+const REST_L = { sx: -0.35, sz: 0.12, el: 0.6 };                // left hand resting on his thigh
+const nioSit = (t: number, extra: Pose): Pose => ({ ...NIO_SIT, breathe: breathe(t), armR: HOLD, armL: REST_L, ...extra });
+const NIO_HEAD = headPos(NIO_SIT, NIO);
+const say = (key: string, at: number, t: number) => mouthAt(t, key, at);
+
 const S1: React.FC = () => {      // HOOK: one sock, spinning
   const t = t12(useCurrentFrame());
-  return (
-    <PixelShot>
-      <Cam pos={[1.7, 0.62, -1.15]} at={[1.8, 0.5, -2.3]} fov={46} />
-      <Laundromat t={t + 3} />
-    </PixelShot>
-  );
+  return <PixelShot><Cam pos={[1.7, 0.62, -1.15]} at={[1.8, 0.5, -2.3]} fov={46} /><Laundromat t={t + 3} /></PixelShot>;
 };
 
-const S2: React.FC = () => {      // WIDE: the laundromat; Nio eats chips, watching the cooking show
+const S2: React.FC = () => {      // WIDE: Nio eats chips, half-watching the cooking show; phone in his other hand
   const t = t12(useCurrentFrame());
   const chip = (Math.sin(t * 3.2) + 1) / 2;
   const p = nioSit(t, { headYaw: -0.75, headPitch: -0.28, eyeX: -0.5, eyeY: 0.4, lid: Math.max(0.25, blink(t, [1.4])), smirk: 0.2,
-    armL: { sx: -0.9 - chip * 0.6, sz: 0.25, el: 1.4 + chip * 0.5 }, mouth: chip > 0.85 ? 0.4 : 0, armR: { sx: -0.1, sz: 0.1, el: 0.4 } });
+    armL: { sx: -0.5 - chip * 0.9, sz: 0.2, el: 0.9 + chip * 1.0 }, mouth: chip > 0.85 ? 0.35 : 0, armR: { sx: -0.35, sz: 0.1, el: 0.8 } });
   return (
     <PixelShot>
       <Cam pos={[3.15 + t * 0.01, 1.45, -1.9]} at={[0.3, 0.85, -0.4]} fov={66} />
-      <Laundromat t={t + 4}><BenchProps /><Character look={NIO} p={p} /><SockGuy t={t} /></Laundromat>
+      <Laundromat t={t + 4}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={0} />} /><SockGuy t={t} /></Laundromat>
     </PixelShot>
   );
 };
@@ -136,20 +136,17 @@ const S2: React.FC = () => {      // WIDE: the laundromat; Nio eats chips, watch
 const S3: React.FC = () => {      // INSERT: the push
   const f0 = useCurrentFrame(), t = t12(f0); const s = useEp1Screens();
   const buzz = t > 0.2 && t < 0.8 ? nz(f0, 2) : 0;
-  return <Insert screen={s?.lock} buzz={buzz} tap={[195, 365]} tapK={keys(t, [[0, 0], [1.5, 0.35, 'sheet']])}>{s && <Card tex={s.card} k={sp(t, 0.25, 'pop')} />}</Insert>;
+  return <Insert screen={s?.lock} buzz={buzz}>{s && <Card tex={s.card} k={sp(t, 0.25, 'pop')} />}</Insert>;
 };
 
-const S4: React.FC = () => {      // MCU: chip frozen halfway; "a picture of me? ...in an album?"
+const S4: React.FC = () => {      // MCU: he reads it out, flat. "...Might?"
   const t = t12(useCurrentFrame());
-  const look = sp(t, 0.15, 'snap');
-  const p = nioSit(t, { headPitch: 0.42 * look - 0.15 * (1 - look), headYaw: -0.6 * (1 - look), eyeY: -0.9 * look, eyeX: 0,
-    lid: Math.max(blink(t, [2.1]), 0.2), brow: 0.35 * sp(t, 0.6), browR: sp(t, 1.4) * 1.1, mouth: 0,
-    armL: { sx: -1.5, sz: 0.25, el: 1.9 } });   // the chip stays at mouth height, forgotten
+  const p = nioSit(t, { headPitch: 0.4, eyeY: -0.9, lid: Math.max(blink(t, [0.9]), 0.25), brow: 0.15, browR: sp(t, 1.25) * 1.2, mouth: say('b_n1', 0.2, t), smirk: t > 1.25 ? 0.4 : 0 });
   const f = frame(NIO_HEAD, 'mcu', Math.PI, { up: 0.04 });
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Laundromat t={t + 6}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>
-      {saying(t, 'e1_t1', 0.3) && <Sub text="(a picture of me? ...in an album?)" />}
+      {saying(t, 'b_n1', 0.2) && <Sub text="you might be in a photo. ...might?" />}
     </AbsoluteFill>
   );
 };
@@ -159,82 +156,67 @@ const S5: React.FC = () => {      // INSERT: IS THIS YOU? — the back of his ow
   return <Insert screen={t < 0.35 ? s?.lock : s?.review_behind} tap={[195, 365]} tapK={t < 0.35 ? 1 : Math.max(0, 1 - (t - 0.35) * 4)} press={t > 0.2 && t < 0.4 ? 1 : 0}>{s && t < 0.35 && <Card tex={s.card} k={1} />}</Insert>;
 };
 
-const S6: React.FC = () => {      // CU: eyes slide... the chip falls... WHIP round
-  const f0 = useCurrentFrame(), t = t12(f0);
-  const slide = keys(t, [[0, 0], [0.25, -0.9, 'lazy'], [0.85, 0.9, 'lazy']]);
-  const whip = sp(t, 1.35, 'snap');
-  const sq = t > 1.33 && t < 1.5 ? 0.12 : 0;
-  const p = nioSit(t, { headPitch: 0.35 * (1 - whip), eyeX: slide * (1 - whip) + whip * 0.9, eyeY: -0.5 * (1 - whip), lid: 0.15 * (1 - whip),
-    wide: whip * 0.4, browUp: whip * 0.8, brow: -0.3 * whip, twist: whip * 0.55, headYaw: whip * 1.0, squash: sq, armL: { sx: -1.5, sz: 0.25, el: 1.9 } });
-  const fr = frame(NIO_HEAD, 'cu', Math.PI, { up: 0.02 });
-  const chipY = t > 0.9 ? Math.max(0.46, 0.95 - (t - 0.9) * (t - 0.9) * 4.9) : 0.95;
-  return (
-    <PixelShot>
-      <Cam pos={fr.pos} at={fr.at} fov={fr.fov} />
-      <Laundromat t={t + 9}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} />
-        <mesh geometry={sph(0.02, 8, 6)} position={[-0.47, chipY, 0.2]} scale={[1.2, 0.4, 1]} material={toon('#e8c35a')} /></Laundromat>
-    </PixelShot>
-  );
-};
-
-const S7: React.FC = () => {      // REVERSE WIDE: behind him... the empty window. The sock guy, unbothered.
+const S6: React.FC = () => {      // CU: a flat beat. "...That's my back." beat. "That's my back. Right now." Eyes go. Whip round.
   const t = t12(useCurrentFrame());
-  const p = nioSit(t, { twist: 0.55, headYaw: 1.0, eyeX: 0.9, wide: 0.35, browUp: 0.8, brow: -0.3, armL: { sx: -1.5, sz: 0.25, el: 1.9 } });
+  const dawn = sp(t, 1.9, 'lazy');
+  const whip = sp(t, 3.55, 'snap');
+  const sq = t > 3.53 && t < 3.7 ? 0.1 : 0;
+  const p = nioSit(t, { headPitch: 0.35 * (1 - whip), eyeY: -0.6 * (1 - whip), eyeX: whip * 0.9 + (t > 2.9 && t < 3.55 ? (Math.floor(t * 4) % 2 ? 0.5 : -0.5) : 0),
+    lid: Math.max(0.3 * (1 - dawn), blink(t, [0.4])), wide: dawn * 0.35 + whip * 0.2, browUp: dawn * 0.8, brow: -0.2 * dawn,
+    mouth: Math.max(say('b_n2', 0.55, t), say('b_n3', 1.9, t)), twist: whip * 0.55, headYaw: whip * 1.0, squash: sq, sweat: sp(t, 2.8) });
+  const fr = frame(NIO_HEAD, 'cu', Math.PI, { up: 0.02 });
   return (
-    <PixelShot>
-      <Cam pos={[-0.45, 1.15, 0.78]} at={[-0.9, 1.4, 3.0]} fov={62} />
-      <Laundromat t={t + 11}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /><SockGuy t={t} /></Laundromat>
-    </PixelShot>
+    <AbsoluteFill>
+      <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 9}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>
+      {saying(t, 'b_n2', 0.55) && <Sub text="...that's my back." />}
+      {saying(t, 'b_n3', 1.9) && <Sub text="that's my back. right now." />}
+    </AbsoluteFill>
   );
 };
 
-const S8: React.FC = () => {      // INSERT: the album fills up. Shutter on each.
+const S7: React.FC = () => {      // POV: over his shoulder, the dark front window. Nobody. A streetlight.
+  const t = t12(useCurrentFrame());
+  return <PixelShot><Cam pos={[-0.45, 1.15, 0.78]} at={[-0.9, 1.4, 3.0]} fov={62} /><Laundromat t={t + 11} /></PixelShot>;
+};
+
+const S8: React.FC = () => {      // CU: talking himself down, too fast. "Okay. Okay okay. That's fine."
+  const t = t12(useCurrentFrame());
+  const nod = Math.sin(t * 14) * 0.06 * (t < 2.4 ? 1 : 0);
+  const p = nioSit(t, { headPitch: 0.25 + nod, eyeY: -0.5, eyeX: Math.sin(t * 5) * 0.3, wide: 0.25, brow: -0.45, browUp: 0.5, sweat: 1, smile: 0.3, mouth: say('b_n4', 0.1, t) });
+  const fr = frame(NIO_HEAD, 'cu', Math.PI - 0.15, { up: 0.02 });
+  return (
+    <AbsoluteFill>
+      <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 13}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>
+      {saying(t, 'b_n4', 0.1) && <Sub text="okay. okay okay. that's fine." />}
+    </AbsoluteFill>
+  );
+};
+
+const S9: React.FC = () => {      // INSERT: the album fills up. Shutter on each. Then, flat: "...This is a whole album."
   const t = t12(useCurrentFrame()); const s = useEp1Screens();
   const slots: [number, number][] = [[20, 190], [200, 190], [20, 425], [200, 425]];
   return (
     <AbsoluteFill>
       <Insert screen={s?.album}>
         {s && slots.map(([px, py], i) => {
-          const k = sp(t, 0.35 + i * 0.75, 'pop'); const [x, y, z] = toScreen(px, py, 170, 220);
+          const k = sp(t, 0.3 + i * 0.55, 'pop'); const [x, y, z] = toScreen(px, py, 170, 220);
           return k > 0.01 ? <mesh key={i} geometry={plane(0.0288, 0.037)} position={[x, y, z + 0.0003]} scale={0.6 + 0.4 * k}><meshBasicMaterial map={s[`thumb${i}`]} transparent opacity={Math.min(1, k * 1.4)} toneMapped={false} /></mesh> : null;
         })}
       </Insert>
-      {saying(t, 'e1_t2', 0.15) && <Sub text="(what the heck is this even about)" />}
-      {t > 2.4 && saying(t, 'e1_t3', 2.4) && <Sub text="(that's me sneezing. that's me smelling a candle...)" />}
+      {saying(t, 'b_n5', 2.6) && <Sub text="...this is a whole album." />}
     </AbsoluteFill>
   );
 };
 
-const S9: React.FC = () => {      // CU: who is out here documenting me? Sweat. Leaning into the phone.
+const S10: React.FC = () => {     // CU: he dials, narrating his own calm. "Okay. Calling the cops. Normal thing. Normal person thing."
   const t = t12(useCurrentFrame());
-  const lean = sp(t, 0.1, 'lazy');
-  const p = nioSit(t, { lean: lean * 0.15, headPitch: 0.3, eyeY: -0.7, eyeX: Math.sin(t * 7) * 0.25, wide: 0.15 + lean * 0.25, brow: -0.55, browUp: 0.5,
-    sweat: sp(t, 0.6), mouth: 0, armL: { sx: -0.6, sz: 0.2, el: 1.1 } });
-  const fr = frame(NIO_HEAD, 'cu', Math.PI, { up: 0.03 });
+  const tap = (Math.floor(t * 3) % 2) * 0.1;
+  const p = nioSit(t, { headPitch: 0.35, eyeY: -0.8, lid: 0.15, wide: 0.2, brow: 0.35, smile: 0.2, sweat: 1, mouth: say('b_n6', 0.2, t), armR: { ...HOLD, el: HOLD.el + tap } });
+  const fr = frame(NIO_HEAD, 'cu', Math.PI + 0.2, { up: 0.03 });
   return (
     <AbsoluteFill>
-      <PixelShot><Cam pos={fr.pos} at={[fr.at[0], fr.at[1] - lean * 0.03, fr.at[2]]} fov={fr.fov} />
-        <Laundromat t={t + 16}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>
-      {saying(t, 'e1_t3', -1.8) && <Sub text="(who is out here... documenting me?)" />}
-    </AbsoluteFill>
-  );
-};
-
-const S10: React.FC = () => {     // MS: he stands. "Nah. I'm not playing this shit. I'm callin' the cops."
-  const t = t12(useCurrentFrame());
-  const dip = sp(t, 0.05, 'snap') - sp(t, 0.2, 'snap');     // anticipation: a little sink before the rise
-  const up = sp(t, 0.2, 'snap');
-  const p: Pose = { ...NIO_SIT, y: -0.15 * (1 - up) - dip * 0.04, z: 0.42 - up * 0.42, breathe: breathe(t),
-    legL: { hip: 1.28 * (1 - up), knee: 1.22 * (1 - up), spread: 0.05 }, legR: { hip: 1.28 * (1 - up), knee: 1.22 * (1 - up), spread: -0.03 },
-    lean: 0.35 * (1 - up) - 0.05 * sp(t, 0.9), armR: { ...HOLD, el: 1.1 }, armL: { sx: -0.3 + sp(t, 1.6) * -0.6, sz: 0.3, el: 0.8 },
-    headPitch: 0.05, brow: 0.7, lid: 0.25, mouth: mouthAt(t, 'e1_s1', 0.55), smile: -0.3 };
-  const standHead = headPos({ ...NIO_SIT, y: 0, z: 0.0 }, NIO);
-  const fr = frame(standHead, 'ms', Math.PI - 0.35, { up: -0.1, fov: 52, eyeAt: 0.4 });
-  return (
-    <AbsoluteFill>
-      <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} />
-        <Laundromat t={t + 19}><BenchProps chips={false} /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /><SockGuy t={t} /></Laundromat></PixelShot>
-      {saying(t, 'e1_s1', 0.55) && <Sub text="nah. i'm not playing this sh*t. i'm callin' the cops." />}
+      <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 16}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>
+      {saying(t, 'b_n6', 0.2) && <Sub text="okay. calling the cops. normal thing. normal person thing." />}
     </AbsoluteFill>
   );
 };
@@ -245,138 +227,172 @@ const S11: React.FC = () => {     // INSERT: 9... 1... and a new photo drops in
   return <Insert screen={s?.dial} tap={t < 0.45 ? [295, 510] : [95, 300]} tapK={t < 0.85 ? 1 : Math.max(0, 1 - (t - 0.85) * 5)} press={tap} buzz={t > 1.0 && t < 1.5 ? nz(f0, 4) : 0}>{s && <Card tex={s.card} k={sp(t, 1.0, 'pop')} />}</Insert>;
 };
 
-const S12: React.FC = () => {     // INSERT: the photo from Saturday
-  const t = t12(useCurrentFrame()); const s = useEp1Screens();
-  return (
-    <AbsoluteFill>
-      <Insert screen={s?.review_future} />
-      {saying(t, 'e1_t4', 1.0) && <Sub text="(...when is this?)" y={1640} />}
-    </AbsoluteFill>
-  );
+const S12: React.FC = () => {     // INSERT: the photo — him and Maya on a roof. SAT NOV 14.
+  const s = useEp1Screens();
+  return <Insert screen={s?.review_future} />;
 };
 
-const STAND: Pose = { ...NIO_SIT, y: 0, z: 0.0, legL: { hip: 0, knee: 0, spread: 0.04 }, legR: { hip: 0, knee: 0, spread: -0.03 } };
-const STAND_HEAD = headPos(STAND, NIO);
-
-const S13: React.FC = () => {     // CU: phone to his mouth. "Maya. Ain't this the party you signed us up for?"
-  const t = t12(useCurrentFrame());
-  const raise = sp(t, 0.1, 'snap');
-  const p: Pose = { ...STAND, breathe: breathe(t), armR: { sx: -0.65 - raise * 0.55, sz: -0.25 - raise * 0.35, el: 1.38 + raise * 0.35 },
-    headPitch: 0.05, lid: 0.45, brow: 0.6, browR: 0.6, mouth: mouthAt(t, 'e1_s2', 0.3), eyeX: 0.2 };
-  const fr = frame(STAND_HEAD, 'cu', Math.PI + 0.2, { up: 0.02 });
-  return (
-    <AbsoluteFill>
-      <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 25}><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>
-      {saying(t, 'e1_s2', 0.3) && <Sub text="maya. ain't this the party you signed us up for?" />}
-    </AbsoluteFill>
-  );
-};
-
-const S14: React.FC = () => {     // INSERT: Maya's voice note back
-  const t = t12(useCurrentFrame()); const s = useEp1Screens();
-  return (
-    <AbsoluteFill>
-      <Insert screen={t < 0.25 ? s?.thread1 : s?.thread2} />
-      {saying(t, 'e1_m1', 0.3) && <Sub text="maya: yeah! it's on saturday! why?" />}
-    </AbsoluteFill>
-  );
-};
-
-const S15: React.FC = () => {     // ECU: "...it's wednesday." Then it clicks. The world tilts.
+const S13: React.FC = () => {     // ECU: his face drops as he reads the date. "...It's Wednesday." Then the world tilts.
   const f0 = useCurrentFrame(), t = t12(f0);
-  // Maya's voice note is still playing as we cut here: he listens, one slow blink, then the dry line, then it clicks.
-  const C = 3.15, click = sp(t, C, 'pop');
-  const p: Pose = { ...STAND, breathe: breathe(t), armR: { sx: -1.0, sz: -0.55, el: 1.88 }, headPitch: 0.02,
-    lid: Math.max(0.45 * (1 - click), t > 1.0 && t < 1.35 ? 1 : 0), wide: click, browUp: click * 1.2, brow: -0.6 * click,
-    mouth: t > C ? 0.3 + Math.abs(Math.sin(t * 30)) * 0.2 : mouthAt(t, 'e1_s3', 2.0),
-    sweat: click, squash: t > C && t < C + 0.2 ? 0.1 : 0, headTilt: click * 0.04 };
-  const fr = frame(STAND_HEAD, 'cu', Math.PI + 0.15, { up: 0.0 });
-  const glitch = t > C && t < C + 0.45 ? 0.5 + nz(f0, 3) * 0.5 : 0;
+  const drop = sp(t, 0.15, 'lazy'), C = 2.25, click = sp(t, C, 'pop');
+  const p = nioSit(t, { headPitch: 0.32 - drop * 0.12, eyeY: -0.8 + drop * 0.5, lid: 0, wide: drop * 0.55 + click * 0.45, browUp: drop * 0.9 + click * 0.3, brow: -0.5 * drop,
+    mouth: t > C ? 0.35 + Math.abs(Math.sin(t * 28)) * 0.15 : Math.max(drop * 0.15, say('b_n7', 1.0, t)), sweat: 1, squash: t > C && t < C + 0.2 ? 0.08 : 0 });
+  const fr = frame(NIO_HEAD, 'cu', Math.PI, { up: 0.0, eyeAt: 0.42 });
+  const glitch = t > C && t < C + 0.7 ? 0.7 + nz(f0, 3) * 0.3 : 0;
   return (
     <AbsoluteFill>
-      <PixelShot glitch={glitch}><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 29}><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>
-      {t < 1.75 && <Sub text="maya: yeah! it's on saturday! why?" />}
-      {saying(t, 'e1_s3', 2.0) && t < C && <Sub text="...it's wednesday." />}
+      <PixelShot glitch={glitch}><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 22}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>
+      {saying(t, 'b_n7', 1.0) && <Sub text="...it's wednesday." />}
     </AbsoluteFill>
   );
 };
 
-const S16: React.FC = () => {     // INSERT: delete the app. "Aight. Bye."
+const S14: React.FC = () => {     // INSERT: he sends Maya the photo, then calls her
   const t = t12(useCurrentFrame()); const s = useEp1Screens();
-  const scr = t < 0.35 ? s?.home : t < 1.6 ? s?.home_alert : s?.home_gone;
+  return <Insert screen={t < 1.1 ? s?.sent : s?.calling} tap={t < 1.1 ? [285, 570] : [195, 730]} tapK={t > 0.75 && t < 1.05 ? 1 : 0} />;
+};
+
+// ---- the call: split screen. Nio on top (laundromat), Maya below (her room). Each is framed from their phone.
+const MAYA_SIT: Pose = { x: -0.5, y: -0.12, z: 0.42, yaw: 0.35, legL: { hip: 1.35, knee: 1.3, spread: 0.08 }, legR: { hip: 1.35, knee: 1.3, spread: -0.04 } };
+const MAYA_HEAD = headPos(MAYA_SIT, MAYA);
+const Half: React.FC<{ top: boolean; children: React.ReactNode }> = ({ top, children }) => (
+  <div style={{ position: 'absolute', left: 0, right: 0, top: top ? 0 : 960, height: 960, overflow: 'hidden' }}>
+    <div style={{ position: 'absolute', left: 0, top: -480, width: 1080, height: 1920 }}>{children}</div>
+  </div>
+);
+const Call: React.FC<{ nio: Pose; maya: Pose; t: number; subs?: React.ReactNode }> = ({ nio, maya, t, subs }) => {
+  const fn = frame(NIO_HEAD, 'ms', Math.PI, { up: -0.05, eyeAt: 0.42 });
+  const fm = frame(MAYA_HEAD, 'ms', 0.35, { up: -0.05, eyeAt: 0.5 });
   return (
-    <AbsoluteFill>
-      <Insert screen={scr} tap={t < 0.4 ? [100, 125] : [268, 515]} tapK={t < 0.4 ? 1 : keys(t, [[0.4, 0], [1.2, 1, 'snap'], [1.75, 0, 'sheet']])} press={t > 1.45 && t < 1.65 ? 1 : 0} />
-      {saying(t, 'e1_s4', 0.55) && <Sub text="aight. bye." />}
+    <AbsoluteFill style={{ background: '#0b0a0d' }}>
+      <Half top><PixelShot><Cam pos={fn.pos} at={fn.at} fov={fn.fov} /><Laundromat t={t + 30}><BenchProps /><Character look={NIO} p={{ ...NIO_SIT, ...nio, armR: REST_L, armL: REST_L }} /></Laundromat></PixelShot></Half>
+      <Half top={false}><PixelShot><Cam pos={fm.pos} at={fm.at} fov={fm.fov} /><Room><Character look={MAYA} p={{ ...MAYA_SIT, ...maya, armR: REST_L, armL: REST_L }} /></Room></PixelShot></Half>
+      <div style={{ position: 'absolute', left: 0, right: 0, top: 954, height: 12, background: '#0b0a0d' }} />
+      {subs}
     </AbsoluteFill>
   );
 };
 
-const S17: React.FC = () => {     // MCU: relief. Shoulders drop. Then the buzz.
+const S15: React.FC = () => {     // CALL: Maya picks up, delighted, then not. "Ooh, is that us? ...Wait. When did we go to a roof?"
+  const t = t12(useCurrentFrame());
+  const turn = sp(t, 1.6, 'sheet');
+  const nio: Pose = { breathe: breathe(t), armR: HOLD, armL: REST_L, headPitch: 0.1, lid: 0.1, wide: 0.5, browUp: 0.8, brow: -0.4, sweat: 1, eyeY: -0.3 };
+  const maya: Pose = { breathe: breathe(t + 1), armR: HOLD, armL: REST_L, headPitch: 0.15, headTilt: 0.1 * (1 - turn), eyeY: -0.6, lid: 0.15,
+    smile: 1 - turn * 1.3, browUp: 0.4 + turn * 0.6, brow: -0.5 * turn, mouth: say('b_m1', 0.3, t) };
+  return <Call t={t} nio={nio} maya={maya} subs={saying(t, 'b_m1', 0.3) && <Sub text="maya: ooh, is that us? ...wait. when did we go to a roof?" y={1640} size={62} />} />;
+};
+
+const S16: React.FC = () => {     // CALL: "We didn't. That's Saturday." / "...But it's Wednesday." / "I KNOW it's Wednesday!"
+  const t = t12(useCurrentFrame());
+  const yell = sp(t, 3.15, 'pop');
+  const nio: Pose = { breathe: breathe(t), armR: HOLD, armL: REST_L, headPitch: 0.1 - yell * 0.1, lid: 0.05, wide: 0.5 + yell * 0.4, browUp: 0.8 + yell * 0.4, brow: -0.4 - yell * 0.3, sweat: 1,
+    mouth: Math.max(say('b_n8', 0.1, t), say('b_n9', 3.15, t)), squash: t > 3.15 && t < 3.35 ? 0.1 : 0 };
+  const maya: Pose = { breathe: breathe(t + 1), armR: HOLD, armL: REST_L, headPitch: 0.15, eyeY: -0.5, lid: 0.05, wide: 0.3, browUp: 1.0, brow: -0.7, mouth: say('b_m2', 1.6, t),
+    squash: t > 3.2 && t < 3.4 ? -0.06 : 0 };
+  return <Call t={t} nio={nio} maya={maya} subs={<>
+    {saying(t, 'b_n8', 0.1) && <Sub text="we didn't. that's saturday." y={780} size={62} />}
+    {saying(t, 'b_m2', 1.6) && <Sub text="maya: ...but it's wednesday." y={1700} size={62} />}
+    {saying(t, 'b_n9', 3.15) && <Sub text="i KNOW it's wednesday!" y={780} size={62} />}
+  </>} />;
+};
+
+const S17: React.FC = () => {     // CALL: Maya, small: "Nio... who took it?" He goes very still.
+  const t = t12(useCurrentFrame());
+  const still = sp(t, 1.5, 'lazy');
+  const nio: Pose = { armR: HOLD, armL: REST_L, headPitch: 0.1, lid: 0, wide: 0.6 + still * 0.3, browUp: 1, brow: -0.6, sweat: 1, eyeX: still * 0.6 };
+  const maya: Pose = { breathe: breathe(t + 1) * 0.3, armR: HOLD, armL: REST_L, headPitch: 0.2, eyeY: -0.6, lid: 0, wide: 0.5, browUp: 0.8, brow: -0.8, mouth: say('b_m3', 0.4, t) * 0.7, lean: 0.06 };
+  return <Call t={t} nio={nio} maya={maya} subs={saying(t, 'b_m3', 0.4) && <Sub text="maya: nio... who took it?" y={1700} size={62} />} />;
+};
+
+const S18: React.FC = () => {     // CU: "Nope." Thumb already moving.
+  const t = t12(useCurrentFrame());
+  const p = nioSit(t, { headPitch: 0.35, eyeY: -0.8, lid: 0.2, brow: 0.8, smile: -0.4, mouth: say('b_n10', 0.25, t), sweat: 1 });
+  const fr = frame(NIO_HEAD, 'cu', Math.PI, { up: 0.02 });
+  return (
+    <AbsoluteFill>
+      <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 36}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>
+      {saying(t, 'b_n10', 0.25) && <Sub text="nope." />}
+    </AbsoluteFill>
+  );
+};
+
+const S19: React.FC = () => {     // INSERT: delete the app
+  const t = t12(useCurrentFrame()); const s = useEp1Screens();
+  const scr = t < 0.3 ? s?.home : t < 1.35 ? s?.home_alert : s?.home_gone;
+  return <Insert screen={scr} tap={t < 0.3 ? [100, 125] : [268, 515]} tapK={t < 0.3 ? 1 : keys(t, [[0.3, 0], [0.95, 1, 'snap'], [1.5, 0, 'sheet']])} press={t > 1.15 && t < 1.35 ? 1 : 0} />;
+};
+
+const S20: React.FC = () => {     // MCU: relief. "...Okay." Shoulders drop. Then the buzz. He freezes.
   const t = t12(useCurrentFrame());
   const relief = sp(t, 0.1, 'lazy'), freeze = sp(t, 1.35, 'snap');
-  const p: Pose = { ...STAND, breathe: breathe(t) * (1 - freeze), armR: { sx: -0.65, sz: -0.25, el: 1.38 }, armL: { sx: 0.05, sz: 0.1 + relief * 0.05, el: 0.2 },
-    headPitch: 0.25 - relief * 0.2, lid: freeze ? 0.0 : 0.55 * relief, smile: relief * 0.6 * (1 - freeze), wide: freeze * 0.6, browUp: freeze, eyeY: -freeze * 0.6, lean: -relief * 0.03 };
-  const fr = frame(STAND_HEAD, 'mcu', Math.PI - 0.1, { up: 0.02 });
+  const p = nioSit(t, { breathe: breathe(t) * (1 - freeze), headPitch: 0.3 - relief * 0.25 + freeze * 0.2, lid: freeze > 0.5 ? 0 : 0.55 * relief, smile: relief * 0.6 * (1 - freeze),
+    wide: freeze * 0.6, browUp: freeze, eyeY: -freeze * 0.8, lean: -relief * 0.04, mouth: say('b_n11', 0.2, t) });
+  const fr = frame(NIO_HEAD, 'mcu', Math.PI - 0.1, { up: 0.02 });
   return (
-    <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 33}><Character look={NIO} p={p} handR={<PhoneInHand on={1} buzz={t > 1.35 && t < 1.9 ? 1 : 0} />} /></Laundromat></PixelShot>
+    <AbsoluteFill>
+      <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 38}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} buzz={t > 1.35 && t < 1.9 ? 1 : 0} />} /></Laundromat></PixelShot>
+      {saying(t, 'b_n11', 0.2) && <Sub text="...okay." />}
+    </AbsoluteFill>
   );
 };
 
-const S18: React.FC = () => {     // INSERT: the app is gone. The push comes anyway.
+const S21: React.FC = () => {     // INSERT: the app is gone. The push comes anyway.
   const f0 = useCurrentFrame(), t = t12(f0); const s = useEp1Screens();
   return <Insert screen={s?.home_gone} buzz={t < 0.5 ? nz(f0, 6) : 0}>{s && <Card tex={s.card} k={sp(t, 0.1, 'pop')} />}</Insert>;
 };
 
-const S19: React.FC = () => {     // INSERT: IS THIS YOU? — him, from behind, deleting the app
-  const t = t12(useCurrentFrame()); const s = useEp1Screens();
+const S22: React.FC = () => {     // INSERT: IS THIS YOU? — him, from behind, deleting the app
+  const s = useEp1Screens();
   return <Insert screen={s?.review_deleting} />;
 };
 
-const S20: React.FC = () => {     // CU: a slow, slow turn
+const S23: React.FC = () => {     // CU: a slow, slow look back over his left shoulder
   const t = t12(useCurrentFrame());
   const turn = sp(t, 0.2, 'lazy');
-  const p: Pose = { ...STAND, armR: { sx: -0.65, sz: -0.25, el: 1.38 }, twist: turn * 0.5, headYaw: turn * 1.05, eyeX: turn * 0.9, wide: 0.5, lid: 0, browUp: 0.8, brow: -0.4, sweat: 1, mouth: 0.15 };
-  const fr = frame(STAND_HEAD, 'cu', -1.25, { up: 0.02 });   // he looks back over his left shoulder: we're there
-  return <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 36}><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>;
+  const p = nioSit(t, { twist: turn * 0.5, headYaw: turn * 1.05, eyeX: turn * 0.9, wide: 0.5, lid: 0, browUp: 0.8, brow: -0.4, sweat: 1, mouth: 0.15 });
+  const fr = frame(NIO_HEAD, 'cu', -1.25, { up: 0.02 });
+  return <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} /><Laundromat t={t + 41}><BenchProps /><Character look={NIO} p={p} handR={<PhoneInHand on={1} />} /></Laundromat></PixelShot>;
 };
 
-const S21: React.FC = () => {     // REVERSE: the sock guy, standing right there, holding up the sock. "...it's clean."
+// The sock guy, standing just behind the bench on Nio's left, holds the sock out to him.
+const SOCK_STAND: Pose = { x: -1.25, z: 1.05, yaw: 2.2 };
+const S24: React.FC = () => {     // MS: he holds the sock out. "...It's clean."
   const t = t12(useCurrentFrame());
-  const sock: Pose = { x: -1.35, z: 0.95, yaw: 2.3, breathe: breathe(t * 0.3), armR: { sx: -0.35, sz: 1.25, el: 0.7 }, headPitch: -0.05,
-    mouth: mouthAt(t, 'e1_w1', 0.7), smile: 0 };
-  const sockHead = headPos(sock, SOCK);
-  const fr = frame(sockHead, 'ms', 2.3, { up: -0.15, fov: 50, eyeAt: 0.36 });
+  const offer = sp(t, 0.15, 'sheet');
+  const sock: Pose = { ...SOCK_STAND, breathe: breathe(t * 0.3), armR: { sx: -0.35 - offer * 0.45, sz: -0.25, el: 0.6 + offer * 0.9 }, headPitch: 0.12, mouth: mouthAt(t, 'e1_w1', 0.75) };
+  const fr = frame(headPos(sock, SOCK), 'ms', 2.2, { up: -0.15, fov: 50, eyeAt: 0.36 });
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={fr.pos} at={fr.at} fov={fr.fov} />
-        <Laundromat t={t + 38}><Character look={SOCK} p={sock} />
-          <group position={[-0.92, 1.18, 0.9]} rotation={[0, 2.3, Math.sin(t * 2) * 0.05]}><Sock scale={1.2} /></group></Laundromat></PixelShot>
-      {saying(t, 'e1_w1', 0.7) && <Sub text="...it's clean." />}
+        <Laundromat t={t + 43}><Character look={SOCK} p={sock} handR={<group position={[0, -0.02, 0.02]} rotation={[Math.PI / 2 + 0.6, 0, 0]}><Sock scale={0.85} /></group>} /></Laundromat></PixelShot>
+      {saying(t, 'e1_w1', 0.75) && <Sub text="...it's clean." />}
     </AbsoluteFill>
   );
 };
 
-const S22: React.FC = () => <AbsoluteFill style={{ background: '#0b0a0d' }} />;
+const S25: React.FC = () => <AbsoluteFill style={{ background: '#0b0a0d' }} />;
 
 // ---------------------------------------------------------------- the cut
 const SHOTS: [React.FC, number][] = [
-  [S1, 22], [S2, 40], [S3, 40], [S4, 62], [S5, 53], [S6, 48], [S7, 30], [S8, 101], [S9, 67], [S10, 82], [S11, 48],
-  [S12, 56], [S13, 80], [S14, 40], [S15, 100], [S16, 58], [S17, 53], [S18, 38], [S19, 43], [S20, 48], [S21, 53], [S22, 28],
+  [S1, 22], [S2, 40], [S3, 40], [S4, 53], [S5, 46], [S6, 92], [S7, 28], [S8, 60], [S9, 100], [S10, 94], [S11, 46],
+  [S12, 36], [S13, 66], [S14, 50], [S15, 92], [S16, 142], [S17, 54], [S18, 26], [S19, 44], [S20, 52], [S21, 32],
+  [S22, 38], [S23, 46], [S24, 54], [S25, 30],
 ];
 const START = SHOTS.reduce<number[]>((a, [, d], i) => (a.push(i ? a[i - 1] + SHOTS[i - 1][1] : 0), a), []);
 export const EP1_LEN = START[START.length - 1] + SHOTS[SHOTS.length - 1][1];
 export const EP1_STARTS = START;
+const END = SHOTS.length - 1;
 const at = (shot: number, s: number) => START[shot] + Math.round(s * 24);
 
 const VO: [string, number, number, number?][] = [
-  ['e1_tv', 0, 0.05, 0.55], ['e1_t1', 3, 0.3], ['e1_t2', 7, 0.15], ['e1_t3', 7, 2.4], ['e1_s1', 9, 0.55], ['e1_t4', 11, 1.0],
-  ['e1_s2', 12, 0.3], ['e1_m1', 13, 0.3], ['e1_s3', 14, 2.0], ['e1_s4', 15, 0.55], ['e1_w1', 20, 0.7],
+  ['e1_tv', 0, 0.05, 0.55], ['b_n1', 3, 0.2], ['b_n2', 5, 0.55], ['b_n3', 5, 1.9], ['b_n4', 7, 0.1], ['b_n5', 8, 2.6], ['b_n6', 9, 0.2],
+  ['b_n7', 12, 1.0], ['b_m1', 14, 0.3], ['b_n8', 15, 0.1], ['b_m2', 15, 1.6], ['b_n9', 15, 3.15], ['b_m3', 16, 0.4], ['b_n10', 17, 0.25],
+  ['b_n11', 19, 0.2], ['e1_w1', 23, 0.75],
 ];
 const SFX: [string, number, number, number][] = [
-  ['buzz', 2, 0.2, 0.9], ['sting', 4, 0.4, 0.6], ['shutter', 7, 0.35, 0.8], ['shutter', 7, 1.1, 0.8], ['shutter', 7, 1.85, 0.8], ['shutter', 7, 2.6, 0.8],
-  ['buzz', 10, 1.0, 0.9], ['glitch', 14, 3.15, 0.8], ['drop', 14, 3.15, 0.7], ['poof', 15, 1.6, 0.8], ['buzz', 16, 1.35, 1], ['buzz', 17, 0.1, 0.8],
-  ['sting', 18, 0.2, 0.8], ['sting', 21, 0.0, 1],
+  ['buzz', 2, 0.2, 0.9], ['sting', 4, 0.4, 0.6], ['shutter', 8, 0.3, 0.8], ['shutter', 8, 0.85, 0.8], ['shutter', 8, 1.4, 0.8], ['shutter', 8, 1.95, 0.8],
+  ['buzz', 10, 1.0, 0.9], ['sting', 11, 0.05, 0.7], ['glitch', 12, 2.25, 0.8], ['drop', 12, 2.25, 0.7], ['poof', 18, 1.3, 0.8],
+  ['buzz', 19, 1.35, 1], ['buzz', 20, 0.1, 0.8], ['sting', 21, 0.2, 0.8], ['sting', 24, 0.0, 1],
 ];
 
 export const Ep1: React.FC = () => (
@@ -384,15 +400,15 @@ export const Ep1: React.FC = () => (
     <Fonts />
     {SHOTS.map(([C, d], i) => <Sequence key={i} from={START[i]} durationInFrames={d}><C /></Sequence>)}
     {/* the laundromat hums the whole time, and drops away for the black at the end */}
-    <Sequence from={0} durationInFrames={START[21]}><Audio src={staticFile(A.sfx.laundromat)} volume={0.55} /></Sequence>
+    <Sequence from={0} durationInFrames={START[END]}><Audio src={staticFile(A.sfx.laundromat)} volume={0.55} /></Sequence>
     {VO.map(([k, s, o, v], i) => <Sequence key={i} from={at(s, o)}><Audio src={staticFile(A.lines[k].file)} volume={v ?? 1} /></Sequence>)}
     {SFX.map(([k, s, o, v], i) => <Sequence key={`s${i}`} from={at(s, o)}><Audio src={staticFile(A.sfx[k])} volume={v} /></Sequence>)}
-    <Sequence from={0} durationInFrames={START[21]}>
+    {[[0, START[14]], [START[17], START[END]]].map(([a, b]) => <Sequence key={a} from={a} durationInFrames={b - a}>
       <div style={{ position: 'absolute', top: 96, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
         <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 52, color: '#efe6d2', background: 'rgba(21,18,22,0.78)', padding: '6px 26px 10px', borderRadius: 40 }}>PART 1</div>
       </div>
-    </Sequence>
-    <Sequence from={START[21]}>
+    </Sequence>)}
+    <Sequence from={START[END]}>
       <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center' }}><div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 96, color: '#efe6d2' }}>PART 2 SOON</div></AbsoluteFill>
     </Sequence>
   </AbsoluteFill>
@@ -403,9 +419,9 @@ const AlertPhone: React.FC = () => {
   const tx = useCanvasTex(40, 86, (c) => {
     c.fillStyle = '#26285a'; c.fillRect(0, 0, 40, 86);
     c.fillStyle = 'rgba(0,0,0,0.5)'; c.fillRect(0, 0, 40, 86);
-    c.fillStyle = '#3a3a44'; c.fillRect(4, 30, 32, 24);
-    c.fillStyle = '#ffffff'; c.fillRect(8, 34, 24, 3); c.fillRect(10, 40, 20, 2);
-    c.fillStyle = '#7ab8ff'; c.fillRect(7, 47, 10, 3); c.fillStyle = '#ff5a52'; c.fillRect(23, 47, 10, 3);
+    c.fillStyle = '#4a4a56'; c.fillRect(2, 22, 36, 40);
+    c.fillStyle = '#ffffff'; c.fillRect(6, 27, 28, 5); c.fillRect(8, 36, 24, 3);
+    c.fillStyle = '#7ab8ff'; c.fillRect(4, 48, 14, 9); c.fillStyle = '#ff3b30'; c.fillRect(22, 48, 14, 9);
   });
   return (
     <group position={[0, -0.04, 0.03]} rotation={[0, 0, Math.PI]}>
@@ -419,16 +435,16 @@ const AlertPhone: React.FC = () => {
 export const Ep1Photo: React.FC<{ which: string }> = ({ which }) => {
   const phoneUp = { sx: -1.0, sz: -0.4, el: 1.7 };
   if (which === 'behind') return (
-    <PixelShot res={[216, 384]}><Cam pos={[-0.05, 1.3, 2.4]} at={[-0.3, 0.85, 0.0]} fov={44} />
-      <Laundromat t={2}><BenchProps /><Character look={NIO} p={nioSit(0, { headPitch: 0.35, armL: { sx: -1.5, sz: 0.25, el: 1.9 } })} handR={<PhoneInHand on={1} />} /><SockGuy t={0} /></Laundromat></PixelShot>);
+    <PixelShot res={[216, 384]}><Cam pos={[-0.1, 1.95, 2.5]} at={[-0.3, 0.7, 0.1]} fov={44} />
+      <Laundromat t={2}><BenchProps /><Character look={NIO} p={nioSit(0, { headPitch: 0.3 })} handR={<PhoneInHand on={1} />} /><SockGuy t={0} /></Laundromat></PixelShot>);
   if (which === 'deleting') return (
-    <PixelShot res={[216, 384]}><Cam pos={[-0.85, 1.7, 0.7]} at={[-0.2, 1.05, -0.5]} fov={54} />
-      <Laundromat t={5}><BenchProps chips={false} /><Character look={NIO} p={{ ...STAND, armR: { sx: -1.3, sz: -0.1, el: 1.05 }, headPitch: 0.3, headYaw: 0.1 }} handR={<group scale={1.7}><AlertPhone /></group>} /></Laundromat></PixelShot>);
+    <PixelShot res={[216, 384]}><Cam pos={[-0.5, 1.72, 0.95]} at={[-0.28, 0.82, 0.05]} fov={46} />
+      <Laundromat t={5}><BenchProps /><Character look={NIO} p={nioSit(0, { headPitch: 0.45, armR: { sx: -0.85, sz: -0.3, el: 1.55 } })} handR={<group scale={1.5}><AlertPhone /></group>} /></Laundromat></PixelShot>);
   if (which === 'sneeze') { const p: Pose = { x: 4.2, z: -3.4, yaw: 0.2, sneeze: 1, headPitch: 0.35, squash: -0.05, lean: 0.12, armL: { sx: -1.4, sz: 0.3, el: 1.9 } };
     const f = frame(headPos(p, NIO), 'ms', 0.3); return <PixelShot res={[216, 384]}><Cam pos={f.pos} at={f.at} fov={f.fov} /><Exterior curtain={1}><Character look={NIO} p={p} /></Exterior></PixelShot>; }
   if (which === 'candle') { const p: Pose = { x: 3.5, z: 7.0, yaw: Math.PI, lean: 0.45, lid: 1, smile: 0.7, headPitch: 0.3, armR: { sx: -1.2, sz: -0.3, el: 1.2 } };
     return <PixelShot res={[216, 384]}><Cam pos={[3.3, 1.25, 5.75]} at={[3.5, 1.15, 7.0]} fov={44} /><Exterior curtain={1}><Character look={NIO} p={p} /></Exterior></PixelShot>; }
-  if (which === 'asleep') { const p: Pose = { x: 2.2, y: -0.17, z: -3.85, yaw: 0, headPitch: -0.5, headTilt: 0.2, lid: 1, mouth: 0.6, legL: { hip: 1.4, knee: 1.4 }, legR: { hip: 1.4, knee: 1.4 }, armL: { sx: 0, sz: 0.4, el: 0.3 }, armR: { sx: 0, sz: 0.4, el: 0.3 } };
+  if (which === 'asleep') { const p: Pose = { x: 2.2, y: -0.09, z: -3.9, yaw: 0, headPitch: -0.45, headTilt: 0.2, lid: 1, mouth: 0.6, legL: { hip: 1.3, knee: 1.25 }, legR: { hip: 1.3, knee: 1.25 }, armL: { sx: 0, sz: 0.4, el: 0.3 }, armR: { sx: 0, sz: 0.4, el: 0.3 } };
     return <PixelShot res={[216, 384]}><Cam pos={[2.6, 1.3, -1.6]} at={[2.3, 0.8, -3.8]} fov={44} /><Exterior curtain={1}><Character look={NIO} p={p} /></Exterior></PixelShot>; }
   if (which === 'wave') { const nio: Pose = { x: -0.5, z: -3.4, yaw: 0.1, smile: 0.9, lid: 0.2, armR: { sx: -0.2, sz: 2.5, el: 0.4 }, headTilt: 0.1 };
     const other: Pose = { x: -0.2, z: -1.6, yaw: Math.PI, smile: 0.8, armL: { sx: -0.2, sz: 2.4, el: 0.4 } };

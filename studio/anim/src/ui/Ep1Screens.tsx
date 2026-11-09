@@ -57,7 +57,7 @@ async function build(): Promise<Ep1Tex> {
     const px = 25, py = stamp ? 186 : 160, pw = 340, ph = stamp ? 440 : 460;
     c.save(); rr(c, px, py, pw, ph, 26); c.clip(); cover(c, photo, px, py, pw, ph); c.restore();
     c.strokeStyle = '#a523ef'; c.lineWidth = 7; c.beginPath(); c.arc(px + ring[0] * pw, py + ring[1] * ph, ring[2] * pw, 0, 7); c.stroke();
-    c.font = `500 22px ${FONT}`; c.fillStyle = 'rgba(255,255,255,0.6)'; c.fillText('TAP TO ZOOM FACE', W / 2, 660);
+    
     c.fillStyle = '#2a2638'; rr(c, 25, 700, 160, 74, 37); c.fill();
     const g = c.createLinearGradient(205, 700, 365, 774); g.addColorStop(0, '#a523ef'); g.addColorStop(1, '#552bce');
     c.fillStyle = g; rr(c, 205, 700, 160, 74, 37); c.fill();
@@ -87,6 +87,21 @@ async function build(): Promise<Ep1Tex> {
     c.fillStyle = '#34c759'; c.beginPath(); c.arc(W / 2, 735, 40, 0, 7); c.fill();
     out.dial = tex(cv); }
 
+  // Threads with Maya: he sends her the photo; then the call screen
+  { const [cv, c] = canvas(); c.fillStyle = '#0d0b14'; c.fillRect(0, 0, W, H); island(c);
+    c.fillStyle = '#3f6b4f'; c.beginPath(); c.arc(W / 2, 92, 26, 0, 7); c.fill(); c.fillStyle = '#fff'; c.textAlign = 'center'; c.font = `700 26px ${FONT}`; c.fillText('M', W / 2, 101);
+    c.font = `700 24px ${FONT}`; c.fillText('Maya', W / 2, 146);
+    c.save(); rr(c, 130, 200, 240, 330, 22); c.clip(); cover(c, future, 130, 200, 240, 330); c.restore();
+    c.fillStyle = '#ff5a52'; rr(c, 140, 210, 170, 32, 16); c.fill(); c.fillStyle = '#fff'; c.font = `700 18px ${FONT}`; c.fillText('SAT NOV 14', 225, 233);
+    c.fillStyle = '#6b3fd0'; rr(c, 200, 545, 170, 52, 26); c.fill(); c.fillStyle = '#fff'; c.font = `700 24px ${FONT}`; c.fillText('???', 285, 580);
+    c.fillStyle = 'rgba(255,255,255,0.5)'; c.font = `500 18px ${FONT}`; c.textAlign = 'right'; c.fillText('Delivered', 366, 622);
+    out.sent = tex(cv); }
+  { const [cv, c] = canvas(); const g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#2a3a30'); g.addColorStop(1, '#0d0b14');
+    c.fillStyle = g; c.fillRect(0, 0, W, H); island(c);
+    c.fillStyle = '#3f6b4f'; c.beginPath(); c.arc(W / 2, 250, 70, 0, 7); c.fill(); c.fillStyle = '#fff'; c.textAlign = 'center'; c.font = `700 70px ${FONT}`; c.fillText('M', W / 2, 275);
+    c.font = `700 44px ${FONT}`; c.fillText('Maya', W / 2, 380); c.font = `500 24px ${FONT}`; c.fillStyle = 'rgba(255,255,255,0.7)'; c.fillText('calling…', W / 2, 420);
+    c.fillStyle = '#ff3b30'; c.beginPath(); c.arc(W / 2, 730, 42, 0, 7); c.fill();
+    out.calling = tex(cv); }
   // Threads with Maya: his voice note, her voice note back
   { const [cv, c] = canvas(); c.fillStyle = '#0d0b14'; c.fillRect(0, 0, W, H); island(c);
     c.fillStyle = '#3f6b4f'; c.beginPath(); c.arc(W / 2, 92, 26, 0, 7); c.fill(); c.fillStyle = '#fff'; c.textAlign = 'center'; c.font = `700 26px ${FONT}`; c.fillText('M', W / 2, 101);

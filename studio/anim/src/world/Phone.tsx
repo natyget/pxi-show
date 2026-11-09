@@ -11,7 +11,8 @@ export const Phone: React.FC<{ on?: number; buzz?: number }> = ({ on = 1, buzz =
   });
   return (
     <group position={[buzz * 0.006, 0, 0]}>
-      <Solid geo={rbox(0.075, 0.155, 0.01, 0.008)} mat={toon('#1b1a20')} line={0.008} />
+      <Solid geo={rbox(0.075, 0.155, 0.01, 0.008)} mat={toon('#d9d2c5')} line={0.008} />
+      <mesh geometry={rbox(0.022, 0.03, 0.004, 0.004)} position={[-0.018, 0.05, -0.006]} material={toon('#2b2a33')} />
       <mesh geometry={plane(0.066, 0.142)} position={[0, 0, 0.0055]}>
         <meshBasicMaterial map={scr} color={on > 0.5 ? '#ffffff' : '#222'} toneMapped={false} />
       </mesh>

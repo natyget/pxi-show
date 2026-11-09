@@ -28,20 +28,22 @@ export function head(shape: FaceShape): HeadData {
   const p = g.attributes.position as THREE.BufferAttribute;
   const dirs = new Float32Array(p.count * 3);
   const v = new THREE.Vector3();
-  const taper = shape === 'tri' ? 0.56 : shape === 'round' ? 0.14 : 0.26;
+  const taper = shape === 'tri' ? 0.2 : shape === 'round' ? 0.14 : 0.22;
   for (let i = 0; i < p.count; i++) {
     v.fromBufferAttribute(p, i);
     const d = v.clone().normalize();
     dirs[i * 3] = d.x; dirs[i * 3 + 1] = d.y; dirs[i * 3 + 2] = d.z;
     let { x, y, z } = v;
     if (d.y < 0.08) {
-      const k = Math.pow(Math.max(0, 0.08 - d.y) / 1.08, 1.05);
+      const k = Math.pow(Math.max(0, 0.08 - d.y) / 1.08, 1.6);   // softer: the jaw curves in, the chin stays round
       x *= 1 - taper * k;                                   // jaw narrows toward the chin
       z *= 1 - 0.1 * k;
-      if (d.z > 0) z += (shape === 'tri' ? 0.03 : 0.012) * k * d.z * d.z; // chin forward
+      if (d.z > 0) z += (shape === 'tri' ? 0.012 : 0.008) * k * d.z * d.z; // a little chin
       y *= 1 + (shape === 'long' ? 0.14 : 0.08) * k;        // face length
-    } else if (shape === 'tri') {
-      x *= 1 + 0.035 * Math.exp(-Math.pow((d.y - 0.15) / 0.3, 2)); // a little wider at the cheekbones/temples
+    } else {
+      // smaller cranium: no balloon top
+      y *= 1 - 0.1 * d.y; x *= 1 - 0.05 * d.y; z *= 1 - 0.04 * d.y;
+      if (shape === 'tri') x *= 1 + 0.03 * Math.exp(-Math.pow((d.y - 0.12) / 0.25, 2)); // cheekbones
     }
     if (d.z < 0) { z *= 1.05; y *= 1.02; }                  // fuller back of the head
     p.setXYZ(i, x, y * 1.06, z * 0.94);
@@ -103,8 +105,8 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
   const line = (d: THREE.Vector3) => {
     const az = Math.atan2(d.x, d.z), a = Math.abs(az) / Math.PI;
     // front: straight shaped-up line; temples step down; sides above the ears; nape low
-    if (a < 0.2) return 0.6;
-    if (a < 0.3) return 0.6 - (a - 0.2) * 3.2;
+    if (a < 0.2) return 0.7;
+    if (a < 0.3) return 0.7 - (a - 0.2) * 4.2;
     if (a < 0.62) return 0.28 - (a - 0.3) * 0.9;
     return -0.02 - (a - 0.62) * 1.0;
   };
@@ -116,7 +118,7 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
     if (style === 'puff') return 0.004 + 0.004 * inside;     // pulled back flat
     const top = smooth(0.35, 0.75, d.y);
     const curl = (vnoise(az * 14, d.y * 16) - 0.5) * 0.009 * top;  // tight curl texture on top
-    return 0.0025 + (0.016 * top + 0.004 + curl) * inside;
+    return 0.002 + (0.011 * top + 0.003 + curl) * inside;
   }, (d, t) => {
     const top = smooth(0.42, 0.5, d.y);
     // the fade: short dark sides, a crisp step up to the black top

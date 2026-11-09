@@ -1,0 +1,10 @@
+[
+ {"who":"n_puck","text":"Okay. Calling the cops. Normal thing. Normal person thing.","out":"a2_n1.wav","ex":0.9,"cfg":0.25,"seed":2},
+ {"who":"n_puck","text":"I KNOW it's Wednesday!","out":"a2_n2.wav","ex":1.0,"cfg":0.25,"seed":2},
+ {"who":"m_nova","text":"Ooh, is that us? ...Wait. When did we go to a roof?","out":"a2_m_nova.wav","ex":0.85,"cfg":0.3,"seed":1},
+ {"who":"m_heart","text":"Ooh, is that us? ...Wait. When did we go to a roof?","out":"a2_m_heart.wav","ex":0.85,"cfg":0.3,"seed":1},
+ {"who":"m_aoede","text":"Ooh, is that us? ...Wait. When did we go to a roof?","out":"a2_m_aoede.wav","ex":0.85,"cfg":0.3,"seed":1},
+ {"who":"m_kore","text":"Ooh, is that us? ...Wait. When did we go to a roof?","out":"a2_m_kore.wav","ex":0.85,"cfg":0.3,"seed":1},
+ {"who":"m_river","text":"Ooh, is that us? ...Wait. When did we go to a roof?","out":"a2_m_river.wav","ex":0.85,"cfg":0.3,"seed":1},
+ {"who":"m_lily","text":"Ooh, is that us? ...Wait. When did we go to a roof?","out":"a2_m_lily.wav","ex":0.85,"cfg":0.3,"seed":1}
+]

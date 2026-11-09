@@ -1,7 +1,7 @@
 // Shot framing from the character's actual head position, so faces are never cut by guesswork.
 // Vertical 9:16. Eye-line sits at ~40% from the top (the top band holds "PART N", the bottom third holds subtitles).
 export type ShotSize = 'ecu' | 'cu' | 'mcu' | 'ms' | 'mws' | 'ws';
-const VIS_H: Record<ShotSize, number> = { ecu: 0.42, cu: 0.7, mcu: 0.95, ms: 1.45, mws: 2.2, ws: 3.6 };
+const VIS_H: Record<ShotSize, number> = { ecu: 0.5, cu: 0.88, mcu: 0.95, ms: 1.45, mws: 2.2, ws: 3.6 };
 
 /**
  * head: world position of the head centre (from headPos). from: angle around the head where the camera stands

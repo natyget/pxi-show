@@ -49,6 +49,15 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 - [ ] A reverse is from the character's eyeline, not the same axis again; the camera is never inside a character.
 - [ ] An establishing wide never holds > 2 s without motion.
 
+## Added after the founder's Ep 1 notes (Nov 9, round 2)
+- [ ] No limb raised without a reason (no hand hanging in the air); props are HELD, never floating; a handed object is in the hand.
+- [ ] Nothing inside furniture (legs through a bench); sitting is ON the seat from every angle.
+- [ ] Heads read as heads: no balloon cranium, no pointy chin; close-ups keep the whole head with breathing room.
+- [ ] Dialogue reads as a reaction, not a script: short lines, no lists, no narrating the obvious, no words copied from notes.
+- [ ] Reactions land on the beat they happen (his face drops AS he sees the date, not after).
+- [ ] Front-camera calls don't show the caller's own phone/hand.
+- [ ] Subtitle font has no broken ligatures ("fi"); max 2 lines in split screen; never on a face.
+
 ## Log of defects found (date · episode · defect → fix)
 - Nov 9 · pilot · 3D eyeballs poked through on head turns → flat 2D faces.
 - Nov 9 · pilot · seam line on the side of heads → hair/face cut from the welded head mesh.

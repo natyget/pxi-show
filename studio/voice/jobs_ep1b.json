@@ -1,0 +1,16 @@
+[
+ {"who":"n_puck","text":"You might be in a photo. ...Might?","out":"b_n1.wav","ex":0.7,"cfg":0.3,"seed":3},
+ {"who":"n_puck","text":"...That's my back.","out":"b_n2.wav","ex":0.55,"cfg":0.35,"seed":3},
+ {"who":"n_puck","text":"That's my back. Right now.","out":"b_n3.wav","ex":0.8,"cfg":0.3,"seed":3},
+ {"who":"n_puck","text":"Okay. Okay okay. That's fine.","out":"b_n4.wav","ex":0.85,"cfg":0.25,"seed":2},
+ {"who":"n_puck","text":"...This is a whole album.","out":"b_n5.wav","ex":0.6,"cfg":0.35,"seed":3},
+ {"who":"n_puck","text":"Okay. Calling the cops. Normal thing. Normal person thing.","out":"b_n6.wav","ex":0.9,"cfg":0.25,"seed":2},
+ {"who":"n_puck","text":"...It's Wednesday.","out":"b_n7.wav","ex":0.5,"cfg":0.4,"seed":3},
+ {"who":"m_lily","text":"Ooh, is that us? ...Wait. When did we go to a roof?","out":"b_m1.wav","ex":0.85,"cfg":0.3,"seed":1},
+ {"who":"n_puck","text":"We didn't. That's Saturday.","out":"b_n8.wav","ex":0.7,"cfg":0.3,"seed":3},
+ {"who":"m_lily","text":"...But it's Wednesday.","out":"b_m2.wav","ex":0.6,"cfg":0.35,"seed":1},
+ {"who":"n_puck","text":"I KNOW it's Wednesday!","out":"b_n9.wav","ex":1.0,"cfg":0.25,"seed":2},
+ {"who":"m_lily","text":"Nio... who took it?","out":"b_m3.wav","ex":0.45,"cfg":0.4,"seed":1},
+ {"who":"n_puck","text":"Nope.","out":"b_n10.wav","ex":0.7,"cfg":0.3,"seed":3},
+ {"who":"n_puck","text":"...Okay.","out":"b_n11.wav","ex":0.5,"cfg":0.4,"seed":3}
+]
