@@ -1,0 +1,7 @@
+[
+ {"who":"nio","text":"Hold up... somebody got pics of me?","out":"raw_l1.wav","ex":0.8,"cfg":0.3},
+ {"who":"nio","text":"Nah. I'm good. I'm staying in.","out":"raw_l2.wav","ex":0.7,"cfg":0.3},
+ {"who":"nio","text":"Okay so the fridge has one lemon in it. That's my roommate now.","out":"raw_nio_s.wav","ex":0.75,"cfg":0.3},
+ {"who":"maya","text":"I signed us up for something. I didn't read what it was. Get your shoes.","out":"raw_maya_s.wav","ex":0.8,"cfg":0.3},
+ {"who":"friend","text":"Dude. Why are you whispering? It's your apartment.","out":"raw_friend_s.wav","ex":0.75,"cfg":0.3}
+]
