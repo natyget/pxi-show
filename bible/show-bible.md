@@ -1,7 +1,8 @@
 # PXI LABS — Show Bible (single source of truth)
 
-Every run of the show engine reads this file, `director.md`, `characters.md`, `qa-checklist.md`, `timeline.md` and
-`callbacks.md` before writing anything. Founder notes win over everything else and are dated.
+How the show is run is in `engine/DIRECTIVE.md`, and each stage card in `engine/stages/` lists what to read.
+Founder notes win over everything else and are dated. Where an older line here disagrees with `bible/humor.md`,
+`bible/anti-slop.md` or `engine/formats.md`, those win, because they carry the newer notes.
 
 ## What the show is
 - An animated short-form series (9:16, Shorts/Reels/TikTok). Entertaining first. PXI is subliminal: it shows up when
@@ -53,12 +54,14 @@ Every run of the show engine reads this file, `director.md`, `characters.md`, `q
 - **Dreams track**: uncanny, no PXI or punchline needed. **Time travel: LOCKED.**
 - Tone over a week (a guide, not a fixed order): ~50% funny, 20% wholesome, 15% eerie, 15% sad. Never three sad in a
   row; a devastating one is followed by a funny or wholesome one. Trends can override.
-- Humor ranking: absurd > deadpan-awkward > relatable > melancholic > meta/lore > satire > slapstick.
+- Humor: deadpan and grounded first (`bible/humor.md`). Absurd only when it is caused or declared. Then
+  relatable, melancholic, meta/lore, satire, slapstick.
 - Freedom: 1 in 5 episodes can be a wild card.
 
 ## Series format
-- Numbered parts: "PART 1 … FINAL PART" in the top band; every part but the last ends on a real cliffhanger.
-  Bottom band stays clear for the CTA.
+- No "PART 1" labels (founder, Nov 10). Each release is whole. "Stay tuned" only when a story really ends on a
+  cliffhanger. No intro or outro unless the piece calls for one. Formats and cuts are in `engine/formats.md`.
+  The bottom band stays clear for the call to action.
 - Trial reels first on Instagram (non-followers only); a multi-part series only goes to the grid once Part 1 wins.
 
 ## Founder notes
@@ -73,3 +76,34 @@ Every run of the show engine reads this file, `director.md`, `characters.md`, `q
   - Faces framed from the real head position, centred, never chopped.
   - Clothes and hair obey physics (no hood under hair).
   - Absurdism and Gumball-level comedy beats in every episode, not just a premise.
+- **Nov 9 (after the Ep 1 rewrite and the Ep 2 draft), word for word:**
+  - "new design for nio is nice, also maya design is nice too. i realy like what you did"
+  - On the line "It's a short one!": "its nonesense that isnt funy at all. its just trying to be absurdism and
+    funny but instead corny and lame."
+  - "now you gotta study humor and how to be funny in the nathan fielder gumball sense."
+  - "i also do not recognize nio as the character i described to you ... i basically described gumball to you.
+    and you made a goofy on."
+  - "gumball clarance and uncle granpa like cartoon network humor is what im going for ... the plots should be
+    like regular show gubmal and clarence like to."
+  - "you telling me a script isnt the same as doing it because i have still yet to see you make a genuine decent
+    sequence."
+  - "make the face of neo no longer this werid pointy look. keep the phone you universe like i like it and make
+    sure the app ui is replicated 1 to 1 but in that universe pixels"
+  - "this is the pilot and you will remake it till i like it and then we follow that style we liked"
+  - On the Nio head: "he should look a little bit more attractive and hair should not be head shape give it
+    volume, lower jaw seems receeding"; "blank stare a little too wide eyes"; "now he look like he has food in
+    his mouth".
+- **Nov 10 (the brief for the production house), summarised from the founder's message:**
+  - The account is @pxi.app (was @pxilabs). A real series feel; not chopped into parts; no intro or outro unless
+    it calls for one; "stay tuned" only on a real cliffhanger.
+  - Holiday episodes released on the holiday, showing PXI used for that holiday so viewers do the same: inviting,
+    sharing, chatting in the thread, reacting, commenting, sharing to Instagram.
+  - The discovery map is the simplest sell. Nio can break the fourth wall and ask viewers to get the app so they
+    can find his events and join, "fun and cute". A call to action for PXI on everything.
+  - A long cut on YouTube, shorter cuts everywhere. Standalone episodes, dreams, fillers, plain posts, GIFs.
+    Try different looks, hooks and formats, and learn from Metricool.
+  - Funny, not corny. It can be eerie and weird in the Gumball and Adventure Time way, on purpose: "not weird
+    because he has a hat starting from the middle of his face when its supposed to be a regular shot."
+  - The founder sees every episode by app notification before it is scheduled. The pilot has to impress the
+    founder first, and then the house has to repeat it without the founder stepping in.
+  - The top model writes the blueprint and the bible. Engineering and production are done by cheaper models.
