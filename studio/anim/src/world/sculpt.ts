@@ -28,7 +28,7 @@ export function head(shape: FaceShape): HeadData {
   const p = g.attributes.position as THREE.BufferAttribute;
   const dirs = new Float32Array(p.count * 3);
   const v = new THREE.Vector3();
-  const taper = shape === 'tri' ? 0.2 : shape === 'round' ? 0.14 : shape === 'oval' ? 0.1 : shape === 'hero' ? 0.24 : 0.22;
+  const taper = shape === 'tri' ? 0.2 : shape === 'round' ? 0.14 : shape === 'oval' ? 0.1 : shape === 'hero' ? 0.12 : 0.22;
   for (let i = 0; i < p.count; i++) {
     v.fromBufferAttribute(p, i);
     const d = v.clone().normalize();
@@ -37,27 +37,20 @@ export function head(shape: FaceShape): HeadData {
     if (d.y < 0.08) {
       const k = Math.pow(Math.max(0, 0.08 - d.y) / 1.08, 1.6);   // softer: the jaw curves in, the chin stays round
       x *= 1 - taper * k;                                   // jaw narrows toward the chin
-      if (shape === 'hero') {                               // a defined, slightly square jaw and a chin that comes forward
-        const jaw = Math.exp(-Math.pow((d.y + 0.74) / 0.14, 2));   // the jaw corner, low, not the cheeks
-        x *= 1 + 0.06 * jaw;
-        if (d.z > 0) z += 0.012 * jaw * d.z;
-        // the chin: a broad, forward chin (no receding lower jaw), with a flatter underside back to the neck
-        const front = smooth(0.25, 0.85, d.z);
-        const chin = Math.exp(-Math.pow((d.y + 0.86) / 0.13, 2)) * front;
-        z += 0.05 * chin;
-        x *= 1 + 0.03 * chin;
-        if (d.y < -0.8 && d.z > -0.3) y *= 1 - 0.1 * smooth(-0.75, -1, d.y) * smooth(-0.5, 0.3, d.z);
+      if (shape === 'hero') {                               // simple and gentle: a soft oval, the chin rounds off and sits forward a touch
+        const front = smooth(0.2, 0.9, d.z);
+        z += 0.012 * k * front;
       }
       z *= 1 - 0.1 * k;
-      if (d.z > 0) z += (shape === 'tri' ? 0.012 : shape === 'oval' ? 0.004 : shape === 'hero' ? 0.022 : 0.008) * k * d.z * d.z; // chin
-      y *= 1 + (shape === 'long' ? 0.14 : shape === 'oval' ? 0.05 : 0.08) * k;        // face length
+      if (d.z > 0) z += (shape === 'tri' ? 0.012 : shape === 'oval' ? 0.004 : shape === 'hero' ? 0.01 : 0.008) * k * d.z * d.z; // chin
+      y *= 1 + (shape === 'long' ? 0.14 : shape === 'oval' || shape === 'hero' ? 0.05 : 0.08) * k;        // face length
     } else {
       // smaller cranium: no balloon top
       y *= 1 - 0.1 * d.y; x *= 1 - 0.05 * d.y; z *= 1 - 0.04 * d.y;
       if (shape === 'tri') x *= 1 + 0.03 * Math.exp(-Math.pow((d.y - 0.12) / 0.25, 2)); // cheekbones
     }
     if (d.z < 0) { z *= 1.05; y *= 1.02; }                  // fuller back of the head
-    if (shape === 'hero') x *= 0.94;                       // a narrower face: less moon, more jaw
+    if (shape === 'hero') x *= 0.95;                       // a slightly narrower oval
     p.setXYZ(i, x, y * 1.06, z * 0.94);
   }
   g.computeVertexNormals();
