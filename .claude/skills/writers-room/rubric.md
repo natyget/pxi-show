@@ -14,3 +14,4 @@
 **Veto**: "actually funny" below 3/5 from the Nine-Year-Old or the Skeptic.
 
 **Veto**: any beat that fails the swap, why or laundromat test in `bible/humor.md`, or any line that makes Nio a goof.
+**Veto**: the cold read in `bible/story.md` section 4 cannot state the point, or states a different one.

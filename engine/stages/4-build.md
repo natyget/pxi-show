@@ -13,10 +13,13 @@ subagent. The run itself renders, runs the checks and updates the state.
 3. Render the short cut: `engine/tools/render.sh final <Id> episodes/<id>/<id>-short.mp4`. Then the long cut
    when its shots are done.
 4. `engine/tools/render.sh sheet` for the contact sheets, saved in `episodes/<id>/`.
-5. The reviewer, as in stage 3, over the whole cut: PASS or FAIL for each shot with the exact fix.
+5. `engine/tools/render.sh check` on each cut. A cut with no audio, or a silent one, is not finished.
+   The reviewer, as in stage 3, over the whole cut: PASS or FAIL for each shot with the exact fix. It also
+   retells the plot from the contact sheet and subtitles alone (the sound-off test in `bible/story.md`). If its
+   retelling does not match the Retell line in the script, the cut fails.
 6. Fix what failed, re-render those frames, and run the reviewer once more on the fixed shots only.
 
-**Gate:** `bible/qa-checklist.md` and the accident check pass with no hit, and nothing strange is outside the
+**Gate:** the cut has sound, it reads with the sound off, `bible/qa-checklist.md` and the accident check pass with no hit, and nothing strange is outside the
 ledger. A new kind of defect is added to the checklist and its log in the same run. Two failed reviews: write
 `BLOCKED` with the failing shots, and stop.
 

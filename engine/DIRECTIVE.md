@@ -10,13 +10,17 @@ form a run needs.
 
 ## 1. What we make
 
-PXI LABS is an animated series about Nio and Maya in a city at night, released on @pxi.app on every platform. It
-is a real show first. People should watch it because it is funny and because they like these two, and send it to
+PXI LABS is an animated series, released on @pxi.app on every platform. Nio moved to a city where he knew nobody,
+kept finding out about everything after it happened, and was not in a single photo. So he built PXI, the thing
+he is sure would have fixed all of it. The series is him using it to build a life, one night at a time, with
+Maya, and asking us to come. It is a real show first. People should watch it because it is funny and because they like these two, and send it to
 a friend for the same reason. It should feel like a series you follow, not like clips cut into parts.
 
 The bar is festival and network quality, judged the way a jury or a Cartoon Network development exec would. In
-practice that means six things, and a release that misses one does not ship:
+practice that means seven things, and a release that misses one does not ship:
 
+0. **It has a point.** Five seconds in, a stranger knows who this is and what he wants. At the end they can say
+   what it was about in one sentence, and it sounds worth watching (`bible/story.md`).
 1. **It is funny to a stranger**, and not corny. Someone who has never heard of PXI laughs out loud.
 2. **It is about something.** Under the joke there is one true feeling a 21-year-old new to a city really has.
 3. **It is acted.** Characters think before they move. The face changes before the line. Silence is on purpose.
@@ -33,6 +37,8 @@ video, never a description of how good something will be.
 PXI is a free app: everything to do in your city on one map, and every photo you are in, from everyone's phones,
 in one shared album.
 
+- **PXI is Nio's own answer to his own problems.** He built it, he is proud of it, and in every story the
+  feature is his plan, not a notification that happens to him.
 - **Each story runs on one real PXI feature**, used exactly the way a real person would use it. Take PXI out and
   the story should fall apart. If it still works without PXI, the premise is rejected.
 - **The viewer should want to do what they just watched.** A Thanksgiving episode shows people making the event,
@@ -50,7 +56,7 @@ in one shared album.
 
 ## 3. The people
 
-- **Nio** is the Gumball type, and he is not a goof. He is sharp, quick, vain and sure of himself. His plans are
+- **Nio** made PXI. He is the Gumball type, and he is not a goof. He is sharp, quick, vain and sure of himself. His plans are
   clever and wrong. The comedy is his pride and his certainty, never stupidity. He is good-looking and knows it.
   He is 21, new in the city, keeps his apartment spotless, misses social signals, and never admits anything
   sensitive: he pivots to something sweeter or bigger. **He is the one character who can talk to the viewer.**
@@ -63,9 +69,23 @@ in one shared album.
 Looks and voices are in `bible/characters.md`, and how they talk is in `bible/voice-and-dialogue.md`. The founder
 likes the current Nio and Maya designs. Designs and voices change only on a founder note.
 
-## 4. Humor and writing
+## 4. Story, then humor
 
-The full doctrine is `bible/humor.md`. The short version, which overrides anything older in the bible:
+**Story comes first** (`bible/story.md`). The first pilot build was funny on paper and the founder could not
+tell what it was for. So every episode has the same legible shape: a hook in three seconds; the problem and
+what Nio wants by five, said plainly, usually by Nio to the camera; his plan by ten, which is a PXI feature;
+three steps that get worse; a turn; a payoff where he gets what he needed at a cost; and something new in his
+world at the end. A premise has to pass nine tests before it is written (a problem the viewer has had, a want
+the camera can see, stakes and a clock, PXI as his answer, an engine, a turn, a point, a one-sentence retell,
+and someone to send it to). A script has to pass a cold read by a reader who knows nothing, and a cut has to
+read with the sound off.
+
+**The journey.** The series moves in chapters with a goal a viewer can hold, and his world visibly fills up:
+people, places, albums, stamps. They go up slowly and never reset. That is what people follow for.
+
+**Two pinned reels** open the account: the pilot, and "What this is", where Nio tells us what he built and why.
+
+**Then humor** (`bible/humor.md`). The short version, which overrides anything older in the bible:
 
 - **Deadpan and grounded.** The method is Nathan Fielder's: a small social problem, a plan that sounds
   reasonable, and total sincere commitment to it long after a normal person would stop. Nobody in the scene knows
@@ -138,10 +158,10 @@ to do, what to leave behind and the gate that ends it. A run does one stage and 
 | Stage | Output | Gate |
 |---|---|---|
 | P PLAN (weekly) | The next two weeks of releases in `STATE.md`, from the calendar, the bank and the playbook | Every holiday in range has an owner and dates |
-| 1 WRITE | `script.md`: the true thing, beats, dialogue, the tag, the short-cut path | Lint passes, rubric 38/50, no critic veto |
+| 1 WRITE | `script.md`: the retell, the point, beats, dialogue, the tag, the short-cut path | Cold read matches, lint passes, rubric 38/50, no critic veto |
 | 2 BOARD | `shots.md` with the intent ledger, phone screens, voice lines | One purpose per shot; every screen cites its app source |
 | 3 PROOF | The hardest 8 to 10 seconds at full quality | Accident check clean, and the reviewer names the second a viewer laughs |
-| 4 BUILD | Short cut first, then the long cut; contact sheets | `bible/qa-checklist.md` and the accident check pass |
+| 4 BUILD | Short cut first, then the long cut; contact sheets | Has sound, reads with sound off, `bible/qa-checklist.md` and the accident check pass |
 | 5 PACKAGE | Cuts, covers, captions per platform, canon updated | The founder approves from the notification |
 | 6 SCHEDULE | Posts scheduled in Metricool as the founder approved them | Scheduled and confirmed, nothing else touched |
 | L LEARN (weekly) | `engine/learning.md` updated, `engine/playbook.md` rewritten | Every change traces to numbers |
@@ -220,5 +240,7 @@ A proposal until the founder confirms it, and the learning loop adjusts it after
 
 ## 13. Change log
 
+- 2026-11-10 (later): story doctrine added after the founder rejected the first pilot build as pointless and
+  silent. Nio is now PXI's maker. Cold read, sound-off and has-sound gates added.
 - 2026-11-10: first draft, from the Nov 9 session, the bible as it stood, and the founder's notes of Nov 9 and
   Nov 10 on the pilot, the Nio head, the humor, holidays, formats, approval, learning and cost.

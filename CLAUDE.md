@@ -22,6 +22,10 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 ## Rules that never bend
 
 - **A rendered sequence is the only proof.** Never describe how good something will be. Show it.
+- **Story first** (`bible/story.md`). Nio built PXI to fix his own problems and is building a life with it. By
+  five seconds the viewer knows what he wants; by the end they can say the point in one sentence. A script that
+  fails the cold read does not go forward, however funny it is.
+- **Every file sent to the founder has sound, is loud enough, and reads with the sound off.** Run `engine/tools/render.sh check`.
 - **Humor is deadpan and grounded** (`bible/humor.md`): sincere commitment to a reasonable-sounding plan, polite
   people going along, held silences. No random objects, no non sequiturs, no wacky tone, no winking.
 - **Nio is sharp, vain and certain. He is never a goof and never stupid.** He is good-looking.
@@ -49,7 +53,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - Use the tools, not your head, for mechanical work:
   - `python3 engine/tools/script_lint.py episodes/<id>/script.md` checks word count, runtime, line rhythm and
     banned phrases.
-  - `engine/tools/render.sh still|draft|final|sheet ...` holds every render command.
+  - `engine/tools/render.sh still|draft|final|sheet|check ...` holds every render command and the has-sound check.
 - Subagents are only the ones a stage card names, on the model it names, each given only what the card lists.
   This file is the instruction to use them. Never use the top model in a scheduled run.
 - Look at contact sheets, not folders of stills. At most four images a QA pass.
@@ -67,7 +71,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 | `engine/formats.md`, `engine/calendar.md` | The format menu and the holiday calendar |
 | `engine/learning.md`, `engine/playbook.md` | The results ledger, and the one page of what is working now |
 | `engine/BACKLOG.md`, `engine/ROUTINES.md` | Tools still to build, and the scheduled tasks' exact text |
-| `bible/` | Humor, characters, dialogue, product truth, look, director's playbook, QA checklist, canon |
+| `bible/` | Story, humor, characters, dialogue, product truth, look, director's playbook, QA checklist, canon |
 | `.claude/skills/writers-room/` | The staged writing method, rubric and tells |
 | `episodes/<id>/` | Script, shots, final render and contact sheet for each episode |
 | `studio/anim/` | Remotion and three.js project: `src/world` sets and rigs, `src/ui` phone screens, `src/lib` helpers |

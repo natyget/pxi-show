@@ -13,7 +13,7 @@ Release on the day, or the evening before when the day itself is spent offline.
 | Holiday | Date | PXI behaviour to model | Story seed (a starting point, not a script) |
 |---|---|---|---|
 | Friendsgiving | the weekend before Thanksgiving | Make the event, invite by link, the thread decides who brings what | Nio assigns himself the easiest dish and defends it in the thread |
-| Thanksgiving | Thu 26 Nov 2026 | Shared album from everyone's phones, face match finds you in an aunt's photos, thread reactions, share to Instagram | Nio is in forty photos and looks the same in all of them |
+| Thanksgiving | Thu 26 Nov 2026 | Shared album from everyone's phones, face match finds you in an aunt's photos, thread reactions, share to Instagram | Nio cannot fly home, so he puts a dinner on the map for everyone else who can't (see the premise bank) |
 | Holiday party season | 1 to 20 Dec | Discover map for what is on, tickets in the wallet, stamps | Nio says yes to everything on the map |
 | Christmas | Fri 25 Dec 2026 | Family album, Look-back from a year ago, scrapbook | The best friend's photos arrive from across the country |
 | New Year's Eve | Thu 31 Dec 2026 | Map to choose a party, shared album at midnight, Night Wrap on the 1st | Nio plans midnight to the second |

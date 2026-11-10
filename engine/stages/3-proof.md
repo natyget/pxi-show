@@ -16,7 +16,9 @@ style lock names as the template. Open files in `studio/anim/src/world/` only wh
 3. `engine/tools/render.sh sheet`, then the reviewer, given only: the contact sheet, the lines for those shots,
    the Intent ledger, sections 1 and 2 of `bible/anti-slop.md`, and the golden frames. It answers three
    questions: which accident-check items fail, what is strange that is not in the ledger, and at which second a
-   viewer laughs.
+   viewer laughs. The PROOF shots must include the first ten seconds, so the reviewer also says, from the
+   pictures and subtitles alone, who this is and what he wants. If it cannot, that is a fail.
+4. `engine/tools/render.sh check` on the clip. It must have sound.
 
 **Gate:** the accident check is clean, nothing strange is outside the ledger, the frames match the golden
 frames, and the reviewer names a second where a viewer laughs. Clean but not funny is a script failure: set the

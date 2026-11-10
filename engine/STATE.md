@@ -13,7 +13,10 @@ gate_failures: 0
 ## Open founder decisions
 
 - Approve `engine/DIRECTIVE.md` (draft).
-- Approve the pilot rewrite ("Not Me"). Owned by the pilot thread, not by scheduled runs.
+- Approve the pilot (two pinned reels: the pilot episode and "What this is"). "Not Me" was rejected on Nov 10.
+  Owned by the pilot thread, not by scheduled runs.
+- Confirm the series line in `bible/story.md` section 1 (Nio built PXI to fix his own problems) and name the
+  chapters in section 6.
 - Approve the Nio head. Owned by the Nio head thread, not by scheduled runs.
 - Pick the final voices: the Nov 9 picks in `bible/characters.md`, or the designed voices from audition 3
   (`episodes/ep2/voice-audition-3.mp4`).
@@ -30,7 +33,7 @@ gate_failures: 0
 
 - Ep 2 "Forty-Seven" (`episodes/ep2/room/`): the founder rejected its humor as forced. Do not build it. Its
   premise may come back through the bank only if rewritten to pass `bible/humor.md`.
-- Ep 1 Part 2: the payoffs are logged in `bible/callbacks.md`. It waits for the style lock.
+- Ep 1 and its Part 2: from before Nio was PXI's maker. Not canon unless the founder brings them back.
 
 ## Queue (two weeks of releases, written by PLAN once the pilot is approved)
 

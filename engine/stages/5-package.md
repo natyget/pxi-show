@@ -14,7 +14,9 @@ playbook.
 2. Cut the cheap releases this episode pays for: one or two LOOPs from takes and one STILL or carousel. List
    them in `post.md` with their captions.
 3. Append to `bible/timeline.md` what is now canon. Add new plants to `bible/callbacks.md`, mark paid-off ones.
-4. **Ask the founder.** Post the short cut (and the long cut if ready) in the thread with a push notification,
+4. Run `engine/tools/render.sh check` on every file you are about to send. Never send the founder a file that
+   fails it. Put the Retell line from the script at the top of the message, so the point is clear before play.
+5. **Ask the founder.** Post the short cut (and the long cut if ready) in the thread with a push notification,
    and one question: "Approve to schedule?" List the dates. Then stop.
 
 **Gate:** the founder's answer. Record it word for word in `STATE.md`. "Approve" moves to stage 6. Notes are

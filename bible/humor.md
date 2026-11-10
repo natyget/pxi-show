@@ -15,7 +15,8 @@ any of it is funny.
 
 1. **Small social problem.** The stakes are dignity: being seen mid-bite, not knowing someone's name, having waved
    at the wrong person. Never danger.
-2. **A plan with logic.** Nio explains it in plain, businesslike words, and each step follows. The plan avoids the
+2. **A plan with logic, said out loud.** Nio tells us the problem and the plan at the top, in plain, businesslike
+   words, and each step follows. The plan avoids the
    one easy thing a normal person would do, which is to just ask.
 3. **Procedure.** He does the plan properly: exact numbers, a rehearsal, a form, a second attempt. The effort is
    wildly out of scale with the problem, and he never notices the scale.
@@ -87,10 +88,8 @@ A strange thing is allowed only when it is **caused**. Run these three tests on 
 - A punchline on every line. Most lines are plain. The situation is the joke.
 - A lesson, a hug, or a tidy fix at the end.
 
-## Example of the shape (the pilot rewrite, "Not Me")
+## A method is not a story
 
-Nio is mid-bite in a stranger family's photo. The easy thing is to ask the dad to delete it. He walks over
-holding out his phone, the dad thinks he is offering to take their picture, and Nio takes it. Now he is holding
-the dad's phone with the bad photo one swipe away and a child watching him. He says "You have a beautiful
-family." They love him. By the end he is their local guide on Sunday and the photo is the album cover. Every step
-is caused by him not saying one plain sentence, everyone is kind, and nobody thinks it is funny.
+Everything on this page makes a scene funny. None of it makes an episode worth watching. The first pilot built
+on this page alone ("Not Me") was rejected because nobody could tell what it was for. `bible/story.md` comes
+first: who Nio is, what he wants, what is at stake, and the point. Then this page.

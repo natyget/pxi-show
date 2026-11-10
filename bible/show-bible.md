@@ -107,3 +107,11 @@ Founder notes win over everything else and are dated. Where an older line here d
   - The founder sees every episode by app notification before it is scheduled. The pilot has to impress the
     founder first, and then the house has to repeat it without the founder stepping in.
   - The top model writes the blueprint and the bible. Engineering and production are done by cheaper models.
+- **Nov 10 (on the first pilot build, "Not Me"), word for word:**
+  - "the video genrated had no audio so i had no way of tracking what happened or understanding the plot. it did
+    not look likeanything interesting to be honest."
+  - "can you make a actual pilot that can be pinned that will have people hooked and follow for the journey maybe
+    it could be two reels one if the firest pilot the other one is nio telling us what the series is about nio
+    making a platform he thinks would have solved his problems and will in future and inviting us to use it"
+  - "i dont even know what the point of this new plot you made is i need you to have the engine produce genuinly
+    interesting stories"
