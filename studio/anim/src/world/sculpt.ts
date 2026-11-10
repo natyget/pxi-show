@@ -57,6 +57,7 @@ export function head(shape: FaceShape): HeadData {
       if (shape === 'tri') x *= 1 + 0.03 * Math.exp(-Math.pow((d.y - 0.12) / 0.25, 2)); // cheekbones
     }
     if (d.z < 0) { z *= 1.05; y *= 1.02; }                  // fuller back of the head
+    if (shape === 'hero') x *= 0.94;                       // a narrower face: less moon, more jaw
     p.setXYZ(i, x, y * 1.06, z * 0.94);
   }
   g.computeVertexNormals();
@@ -103,6 +104,23 @@ export function faceGeometry(shape: FaceShape) {
   return faces.get(shape)!;
 }
 
+/**
+ * Straight-back cornrows: rows are great circles through the front-back axis (constant atan2(x, y)), so they start
+ * at the hairline and run over the crown to the nape, fanning slightly. Each row is a rounded braid with thin parts
+ * between rows and plait bumps along its length.
+ */
+const ROWS = 11;                       // across the full top half (ear to ear)
+function braid(d: THREE.Vector3) {
+  const phi = Math.atan2(d.x, d.y), u = (phi / Math.PI) * ROWS + 0.5;   // a row is centred on the top line
+  const row = Math.floor(u), fu = u - row - 0.5;
+  const ridge = Math.sqrt(Math.max(0, 1 - Math.pow(Math.abs(fu) / 0.44, 2)));
+  const along = Math.atan2(Math.hypot(d.x, d.y), d.z);              // 0 at the forehead pole, PI at the back
+  const w = along * 26 + (row % 2) * 1.6 + fu * 4 * Math.sign(row % 2 - 0.5);
+  const plait = 0.72 + 0.28 * Math.abs(Math.sin(w));
+  const stripe = smooth(0.6, 0.9, Math.abs(Math.sin(w + fu * 5)));
+  return { ridge, plait, stripe };
+}
+
 /** Outer surface of the crop's top, as a distance from the head centre along d: a rounded-square block. */
 const HAIR = { a: 0.166, up: 0.24, down: 0.2, front: 0.19, back: 0.185, n: 2.8, cy: -0.005, cz: 0.004 };
 function hairOuter(d: THREE.Vector3) {
@@ -112,7 +130,7 @@ function hairOuter(d: THREE.Vector3) {
   return Math.pow(f, -1 / HAIR.n) + HAIR.cy * d.y + HAIR.cz * d.z;
 }
 
-export type HairStyle = 'crop' | 'puff' | 'bald';
+export type HairStyle = 'crop' | 'puff' | 'bald' | 'cornrows';
 const hairs = new Map<string, THREE.BufferGeometry>();
 /**
  * crop: a short textured crop. Tight faded sides, short curly texture on top, a clean shaped-up hairline above the brows.
@@ -125,6 +143,11 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
   const line = (d: THREE.Vector3) => {
     const az = Math.atan2(d.x, d.z), a = Math.abs(az) / Math.PI;
     // front: straight shaped-up line; temples step down; sides above the ears; nape low
+    if (style === 'cornrows') {                              // one smooth rounded hairline, no corners
+      if (a < 0.32) return 0.66 - 0.34 * smooth(0.06, 0.32, a);
+      if (a < 0.62) return 0.32 - (a - 0.32);
+      return 0.02 - (a - 0.62);
+    }
     if (a < 0.2) return 0.7;
     if (a < 0.3) return 0.7 - (a - 0.2) * 3.4;
     if (a < 0.62) return 0.36 - (a - 0.3) * 0.9;
@@ -137,6 +160,7 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
     if (inside <= 0) return -1;
     const az = Math.atan2(d.x, d.z);
     if (style === 'puff') return 0.004 + 0.004 * inside;     // pulled back flat
+    if (style === 'cornrows') { const b = braid(d); return 0.003 + (0.0035 + 0.012 * b.ridge * b.plait) * inside; }
     // Volume: the top fills out to a rounded-square block (superellipsoid), taller than the skull and set slightly
     // forward, so the silhouette reads as a haircut. The sides stay a tight fade.
     const r = hairOuter(d);
@@ -146,6 +170,12 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
     const curl = (vnoise(az * 11, d.y * 11) - 0.5) * 0.008 * lift;
     return 0.004 + 0.003 * inside + vol * lift + curl;
   }, (d, t) => {
+    if (style === 'cornrows') {                              // braids dark, plaits catch a little light, scalp shows in the parts
+      const b = braid(d);
+      c.copy(cs).lerp(cd, 0.6).lerp(cb, smooth(0.1, 0.35, b.ridge));
+      c.lerp(cd, 0.5 * b.stripe * smooth(0.3, 0.6, b.ridge));
+      return c.clone();
+    }
     const top = smooth(0.42, 0.5, d.y);
     // the fade: short dark sides, a crisp step up to the black top
     c.copy(cb).lerp(cd, style === 'crop' ? 0.25 * (1 - top) : 0);

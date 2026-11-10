@@ -20,7 +20,7 @@ export type Look = {
 /** Nio: light skin, triangular face, short black textured crop with a fade, broad shoulders, oversized crewneck. */
 export const NIO: Look = {
   skin: '#d8a27c', skinShade: '#b9805c', hair: '#141011', hairDark: '#2a1f1c', iris: '#3b2416',
-  top: '#c4683a', topDark: '#a2532c', pants: '#34333d', shoes: '#f4f2ee', shape: 'hero', hairStyle: 'crop', build: 1.16, eyeScale: 0.86, restLid: 0.22,
+  top: '#c4683a', topDark: '#a2532c', pants: '#34333d', shoes: '#f4f2ee', shape: 'hero', hairStyle: 'cornrows', build: 1.16, eyeScale: 0.86, restLid: 0.22,
 };
 /** Maya: deep brown skin, round face, curly puff, gold hoops, oversized varsity jacket. */
 export const MAYA: Look = {
@@ -72,7 +72,7 @@ function Head({ p, look, children }: { p: Pose; look: Look; children?: React.Rea
         <mesh geometry={faceGeometry(look.shape)} material={faceMat(tex)} renderOrder={2} />
         {/* ears */}
         {[1, -1].map((s) => (
-          <group key={s} position={[s * HEAD_R * (look.shape === 'tri' ? 1.0 : look.shape === 'hero' ? 1.02 : 0.97), -0.005, -0.012]}>
+          <group key={s} position={[s * HEAD_R * (look.shape === 'tri' ? 1.0 : look.shape === 'hero' ? 0.99 : 0.97), -0.005, -0.012]}>
             <Solid geo={sph(0.036)} mat={toon(look.skin)} scale={[0.42, 1, 0.72]} line={L} />
             {look.hoops && <mesh position={[s * 0.01, -0.05, 0.01]} rotation={[0, Math.PI / 2, 0]}><torusGeometry args={[0.022, 0.004, 6, 16]} /><meshToonMaterial color="#e8c35a" /></mesh>}
           </group>
