@@ -12,6 +12,8 @@ ROLES = {
   "maya":    shift(2.0) + WALKIE + ",loudnorm=I=-16:TP=-1.5:LRA=7",
   "phone":   shift(2.0) + WALKIE + ",highpass=f=450,lowpass=f=3000,loudnorm=I=-17:TP=-1.5:LRA=7",
   "weird":   shift(-2.5) + WALKIE + ",loudnorm=I=-17:TP=-1.5:LRA=7",
+  "dnio":    shift(0) + WALKIE + ",loudnorm=I=-16:TP=-1.5:LRA=7",     # designed (Qwen) voices: no pitch move
+  "dmaya":   shift(0) + WALKIE + ",loudnorm=I=-16:TP=-1.5:LRA=7",
   "tv":      "aresample=48000,highpass=f=500,lowpass=f=3200,acrusher=bits=7:mode=log:samples=3:mix=0.4,volume=0.5",
 }
 def treat(src, dst, role):

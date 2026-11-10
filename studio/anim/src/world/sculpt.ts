@@ -12,7 +12,7 @@ const vnoise = (x: number, y: number) => {
   return (n2(xi, yi) * (1 - u) + n2(xi + 1, yi) * u) * (1 - v) + (n2(xi, yi + 1) * (1 - u) + n2(xi + 1, yi + 1) * u) * v;
 };
 
-export type FaceShape = 'tri' | 'round' | 'long';
+export type FaceShape = 'tri' | 'round' | 'long' | 'oval' | 'hero';
 type HeadData = { geo: THREE.BufferGeometry; dirs: Float32Array };
 
 const heads = new Map<FaceShape, HeadData>();
@@ -28,7 +28,7 @@ export function head(shape: FaceShape): HeadData {
   const p = g.attributes.position as THREE.BufferAttribute;
   const dirs = new Float32Array(p.count * 3);
   const v = new THREE.Vector3();
-  const taper = shape === 'tri' ? 0.2 : shape === 'round' ? 0.14 : 0.22;
+  const taper = shape === 'tri' ? 0.2 : shape === 'round' ? 0.14 : shape === 'oval' ? 0.1 : shape === 'hero' ? 0.16 : 0.22;
   for (let i = 0; i < p.count; i++) {
     v.fromBufferAttribute(p, i);
     const d = v.clone().normalize();
@@ -37,9 +37,14 @@ export function head(shape: FaceShape): HeadData {
     if (d.y < 0.08) {
       const k = Math.pow(Math.max(0, 0.08 - d.y) / 1.08, 1.6);   // softer: the jaw curves in, the chin stays round
       x *= 1 - taper * k;                                   // jaw narrows toward the chin
+      if (shape === 'hero') {                               // a defined, slightly square jaw and a chin that comes forward
+        const jaw = Math.exp(-Math.pow((d.y + 0.74) / 0.14, 2));   // the jaw corner, low, not the cheeks
+        x *= 1 + 0.06 * jaw;
+        if (d.z > 0) z += 0.012 * jaw * d.z;
+      }
       z *= 1 - 0.1 * k;
-      if (d.z > 0) z += (shape === 'tri' ? 0.012 : 0.008) * k * d.z * d.z; // a little chin
-      y *= 1 + (shape === 'long' ? 0.14 : 0.08) * k;        // face length
+      if (d.z > 0) z += (shape === 'tri' ? 0.012 : shape === 'oval' ? 0.004 : shape === 'hero' ? 0.022 : 0.008) * k * d.z * d.z; // chin
+      y *= 1 + (shape === 'long' ? 0.14 : shape === 'oval' ? 0.05 : 0.08) * k;        // face length
     } else {
       // smaller cranium: no balloon top
       y *= 1 - 0.1 * d.y; x *= 1 - 0.05 * d.y; z *= 1 - 0.04 * d.y;
@@ -106,8 +111,8 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
     const az = Math.atan2(d.x, d.z), a = Math.abs(az) / Math.PI;
     // front: straight shaped-up line; temples step down; sides above the ears; nape low
     if (a < 0.2) return 0.7;
-    if (a < 0.3) return 0.7 - (a - 0.2) * 4.2;
-    if (a < 0.62) return 0.28 - (a - 0.3) * 0.9;
+    if (a < 0.3) return 0.7 - (a - 0.2) * 3.4;
+    if (a < 0.62) return 0.36 - (a - 0.3) * 0.9;
     return -0.02 - (a - 0.62) * 1.0;
   };
   const geo = shell(head(shape), (d) => {
@@ -116,9 +121,10 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
     if (inside <= 0) return -1;
     const az = Math.atan2(d.x, d.z);
     if (style === 'puff') return 0.004 + 0.004 * inside;     // pulled back flat
-    const top = smooth(0.35, 0.75, d.y);
-    const curl = (vnoise(az * 14, d.y * 16) - 0.5) * 0.009 * top;  // tight curl texture on top
-    return 0.002 + (0.011 * top + 0.003 + curl) * inside;
+    const top = smooth(0.3, 0.65, d.y);
+    const front = smooth(0.35, 0.05, Math.abs(az) / Math.PI) * smooth(0.55, 0.8, d.y);  // a little lift at the front
+    const curl = (vnoise(az * 9, d.y * 10) - 0.5) * 0.016 * top + (vnoise(az * 22, d.y * 24) - 0.5) * 0.007 * top;
+    return 0.003 + (0.034 * top + 0.012 * front + 0.003 + curl) * inside;
   }, (d, t) => {
     const top = smooth(0.42, 0.5, d.y);
     // the fade: short dark sides, a crisp step up to the black top
