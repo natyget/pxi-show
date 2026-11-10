@@ -106,7 +106,9 @@ function Streetlight({ x, z }: { x: number; z: number }) {
 
 const CANOPY = [['#c75a4a', '#efe6d2'], ['#3f6f8f', '#efe6d2'], ['#d9a441', '#3b2e36'], ['#5f8f5a', '#efe6d2'], ['#8f4f7f', '#efe6d2']];
 
-export function Stall({ x, z, face, kind, i }: { x: number; z: number; face: 1 | -1; kind: 'dumplings' | 'shoes' | 'fruit' | 'lights' | 'tees'; i: number }) {
+export function Stall({ x, z, face, kind, i, collapse = 0 }: { x: number; z: number; face: 1 | -1; kind: 'dumplings' | 'shoes' | 'fruit' | 'lights' | 'tees'; i: number; collapse?: number }) {
+  // collapse 0..1: the poles splay out and the canopy folds down onto the table
+  const cl = Math.min(1, Math.max(0, collapse));
   const [c1, c2] = CANOPY[i % CANOPY.length];
   return (
     <group position={[x, 0, z]} rotation={[0, face === 1 ? 0 : Math.PI, 0]}>
@@ -114,11 +116,13 @@ export function Stall({ x, z, face, kind, i }: { x: number; z: number; face: 1 |
       <Solid geo={rbox(2.2, 0.9, 0.8, 0.03)} mat={toon('#7a5a46')} position={[0, 0.45, 0]} />
       <Solid geo={rbox(2.3, 0.06, 0.9, 0.02)} mat={toon('#e8dcc4')} position={[0, 0.92, 0]} line={0.008} />
       {/* poles + striped canopy */}
-      {[-1.05, 1.05].map((px) => <Solid key={px} geo={cyl(0.04, 0.04, 2.5, 8)} mat={toon('#3a3040')} position={[px, 1.25, -0.4]} line={0.007} />)}
+      {[-1.05, 1.05].map((px) => <Solid key={px} geo={cyl(0.04, 0.04, 2.5, 8)} mat={toon('#3a3040')} position={[px + Math.sign(px) * cl * 0.6, 1.25 - cl * 0.35, -0.4]} rotation={[0, 0, -Math.sign(px) * cl * 0.9]} line={0.007} />)}
       {Array.from({ length: 6 }).map((_, k) => (
-        <Solid key={k} geo={rbox(0.4, 0.05, 1.3, 0.02)} mat={toon(k % 2 ? c1 : c2)} position={[-1.0 + k * 0.4, 2.45, 0.05]} rotation={[0.22, 0, 0]} line={0.007} />
+        <Solid key={k} geo={rbox(0.4, 0.05, 1.3, 0.02)} mat={toon(k % 2 ? c1 : c2)}
+          position={[-1.0 + k * 0.4 + (k - 2.5) * cl * 0.08, 2.45 - cl * 1.42 + (k % 2) * cl * 0.06, 0.05 + cl * 0.25]}
+          rotation={[0.22 + cl * (k % 2 ? 0.5 : -0.3), cl * (k - 2.5) * 0.12, cl * (k % 3 - 1) * 0.25]} line={0.007} />
       ))}
-      <Solid geo={rbox(2.42, 0.22, 0.04, 0.02)} mat={toon(c1)} position={[0, 2.28, 0.68]} line={0.007} />
+      <Solid geo={rbox(2.42, 0.22, 0.04, 0.02)} mat={toon(c1)} position={[0, 2.28 - cl * 1.75, 0.68 + cl * 0.2]} rotation={[cl * 1.2, 0, cl * 0.15]} line={0.007} />
       {/* goods */}
       {kind === 'dumplings' && [-0.6, 0, 0.6].map((gx) => (
         <group key={gx} position={[gx, 0.95, 0.05]}>
@@ -197,7 +201,7 @@ export const MARKET_STALLS: { x: number; z: number; face: 1 | -1; kind: 'dumplin
   { x: 2, z: 10.8, face: -1, kind: 'fruit' }, { x: 5, z: 10.8, face: -1, kind: 'dumplings' },
 ];
 
-export const Exterior: React.FC<{ curtain?: number; nioInWindow?: { look: Look; pose: Pose }; children?: React.ReactNode }> = ({ curtain = 1, nioInWindow, children }) => (
+export const Exterior: React.FC<{ curtain?: number; nioInWindow?: { look: Look; pose: Pose }; children?: React.ReactNode; collapse?: number }> = ({ curtain = 1, nioInWindow, children, collapse = 0 }) => (
   <group>
     <SceneBg color="#191629" />
     <FarSide />
@@ -218,7 +222,7 @@ export const Exterior: React.FC<{ curtain?: number; nioInWindow?: { look: Look; 
       {[-0.8, 0.8].map((x) => <Solid key={x} geo={rbox(0.06, 0.46, 0.4, 0.02)} mat={toon('#2e2b36')} position={[x, 0.23, 0]} line={0.007} />)}
     </group>
     {[-6, 0, 6].map((x) => <Streetlight key={x} x={x} z={3.3} />)}
-    {MARKET_STALLS.map((s, i) => <Stall key={i} {...s} i={i} />)}
+    {MARKET_STALLS.map((s, i) => <Stall key={i} {...s} i={i} collapse={s.kind === 'lights' ? collapse : 0} />)}
     <StringLights x0={-7} x1={7} z={6.9} y={3.0} seed={0} />
     <StringLights x0={-7} x1={7} z={10.1} y={3.0} seed={1} />
     {[-6, -2, 2, 6].map((x, i) => <StringLights key={x} x0={x} x1={x + 0.01} z={8.5} y={3.0} n={2} seed={i} />)}
