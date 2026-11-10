@@ -6,6 +6,7 @@ import { VrmTest } from './VrmTest';
 import { CharSheet } from './CharSheet';
 import { Pilot, PILOT_LEN, PhotoStill } from './Pilot';
 import { Ep1, EP1_LEN, Ep1Photo } from './Ep1';
+import { PilotNotMe, NOTME_LEN, NotMePhoto } from './PilotNotMe';
 
 export const Root: React.FC = () => (
   <>
@@ -17,5 +18,7 @@ export const Root: React.FC = () => (
     <Composition id="PhotoStill" component={PhotoStill} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'window' }} />
     <Composition id="Ep1" component={Ep1} durationInFrames={EP1_LEN} fps={24} width={1080} height={1920} />
     <Composition id="Ep1Photo" component={Ep1Photo} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'behind' }} />
+    <Composition id="PilotNotMe" component={PilotNotMe} durationInFrames={NOTME_LEN} fps={24} width={1080} height={1920} />
+    <Composition id="NotMePhoto" component={NotMePhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'bite' }} />
   </>
 );
