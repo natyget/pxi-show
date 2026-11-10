@@ -12,7 +12,7 @@ const vnoise = (x: number, y: number) => {
   return (n2(xi, yi) * (1 - u) + n2(xi + 1, yi) * u) * (1 - v) + (n2(xi, yi + 1) * (1 - u) + n2(xi + 1, yi + 1) * u) * v;
 };
 
-export type FaceShape = 'tri' | 'round' | 'long';
+export type FaceShape = 'tri' | 'round' | 'long' | 'oval' | 'hero';
 type HeadData = { geo: THREE.BufferGeometry; dirs: Float32Array };
 
 const heads = new Map<FaceShape, HeadData>();
@@ -28,7 +28,7 @@ export function head(shape: FaceShape): HeadData {
   const p = g.attributes.position as THREE.BufferAttribute;
   const dirs = new Float32Array(p.count * 3);
   const v = new THREE.Vector3();
-  const taper = shape === 'tri' ? 0.2 : shape === 'round' ? 0.14 : 0.22;
+  const taper = shape === 'tri' ? 0.2 : shape === 'round' ? 0.14 : shape === 'oval' ? 0.1 : shape === 'hero' ? 0.16 : 0.22;
   for (let i = 0; i < p.count; i++) {
     v.fromBufferAttribute(p, i);
     const d = v.clone().normalize();
@@ -37,9 +37,20 @@ export function head(shape: FaceShape): HeadData {
     if (d.y < 0.08) {
       const k = Math.pow(Math.max(0, 0.08 - d.y) / 1.08, 1.6);   // softer: the jaw curves in, the chin stays round
       x *= 1 - taper * k;                                   // jaw narrows toward the chin
+      if (shape === 'hero') {                               // a defined, slightly square jaw and a chin that comes forward
+        const jaw = Math.exp(-Math.pow((d.y + 0.74) / 0.14, 2));   // the jaw corner, low, not the cheeks
+        x *= 1 + 0.06 * jaw;
+        if (d.z > 0) z += 0.012 * jaw * d.z;
+        // the chin: a broad, forward chin (no receding lower jaw), with a flatter underside back to the neck
+        const front = smooth(0.25, 0.85, d.z);
+        const chin = Math.exp(-Math.pow((d.y + 0.86) / 0.13, 2)) * front;
+        z += 0.034 * chin;
+        x *= 1 + 0.1 * chin;
+        if (d.y < -0.8 && d.z > -0.3) y *= 1 - 0.1 * smooth(-0.8, -1, d.y) * smooth(-0.3, 0.3, d.z);
+      }
       z *= 1 - 0.1 * k;
-      if (d.z > 0) z += (shape === 'tri' ? 0.012 : 0.008) * k * d.z * d.z; // a little chin
-      y *= 1 + (shape === 'long' ? 0.14 : 0.08) * k;        // face length
+      if (d.z > 0) z += (shape === 'tri' ? 0.012 : shape === 'oval' ? 0.004 : shape === 'hero' ? 0.022 : 0.008) * k * d.z * d.z; // chin
+      y *= 1 + (shape === 'long' ? 0.14 : shape === 'oval' ? 0.05 : 0.08) * k;        // face length
     } else {
       // smaller cranium: no balloon top
       y *= 1 - 0.1 * d.y; x *= 1 - 0.05 * d.y; z *= 1 - 0.04 * d.y;
@@ -92,6 +103,15 @@ export function faceGeometry(shape: FaceShape) {
   return faces.get(shape)!;
 }
 
+/** Outer surface of the crop's top, as a distance from the head centre along d: a rounded-square block. */
+const HAIR = { a: 0.19, up: 0.255, down: 0.2, front: 0.2, back: 0.2, n: 3.2, cy: -0.005, cz: 0.004 };
+function hairOuter(d: THREE.Vector3) {
+  const b = d.y > 0 ? HAIR.up : HAIR.down, c = d.z > 0 ? HAIR.front : HAIR.back;
+  // ray from the head centre; ignore the small centre offset in the denominator (it only shifts the block)
+  const f = Math.pow(Math.abs(d.x / HAIR.a), HAIR.n) + Math.pow(Math.abs(d.y / b), HAIR.n) + Math.pow(Math.abs(d.z / c), HAIR.n);
+  return Math.pow(f, -1 / HAIR.n) + HAIR.cy * d.y + HAIR.cz * d.z;
+}
+
 export type HairStyle = 'crop' | 'puff' | 'bald';
 const hairs = new Map<string, THREE.BufferGeometry>();
 /**
@@ -106,24 +126,31 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
     const az = Math.atan2(d.x, d.z), a = Math.abs(az) / Math.PI;
     // front: straight shaped-up line; temples step down; sides above the ears; nape low
     if (a < 0.2) return 0.7;
-    if (a < 0.3) return 0.7 - (a - 0.2) * 4.2;
-    if (a < 0.62) return 0.28 - (a - 0.3) * 0.9;
+    if (a < 0.3) return 0.7 - (a - 0.2) * 3.4;
+    if (a < 0.62) return 0.36 - (a - 0.3) * 0.9;
     return -0.02 - (a - 0.62) * 1.0;
   };
-  const geo = shell(head(shape), (d) => {
+  const hp = head(shape).geo.attributes.position as THREE.BufferAttribute, v3 = new THREE.Vector3();
+  const geo = shell(head(shape), (d, i) => {
     if (style === 'bald') return -1;
     const l = line(d), inside = smooth(l - 0.005, l + 0.035, d.y);
     if (inside <= 0) return -1;
     const az = Math.atan2(d.x, d.z);
     if (style === 'puff') return 0.004 + 0.004 * inside;     // pulled back flat
-    const top = smooth(0.35, 0.75, d.y);
-    const curl = (vnoise(az * 14, d.y * 16) - 0.5) * 0.009 * top;  // tight curl texture on top
-    return 0.002 + (0.011 * top + 0.003 + curl) * inside;
+    // Volume: the top fills out to a rounded-square block (superellipsoid), taller than the skull and set slightly
+    // forward, so the silhouette reads as a haircut. The sides stay a tight fade.
+    const r = hairOuter(d);
+    const q = v3.fromBufferAttribute(hp, i).length();
+    const vol = Math.max(0, r - q);
+    const lift = smooth(l + 0.02, l + 0.16, d.y) * smooth(0.12, 0.42, d.y);     // grows in above the fade and the hairline
+    const curl = (vnoise(az * 11, d.y * 11) - 0.5) * 0.008 * lift;
+    return 0.004 + 0.003 * inside + vol * lift + curl;
   }, (d, t) => {
     const top = smooth(0.42, 0.5, d.y);
     // the fade: short dark sides, a crisp step up to the black top
     c.copy(cb).lerp(cd, style === 'crop' ? 0.25 * (1 - top) : 0);
-    if (style === 'crop' && t > 0) c.lerp(cd, Math.max(0, Math.sin(Math.atan2(d.x, d.z) * 30 + d.y * 25)) * 0.25 * top);
+    if (style === 'crop' && t > 0.012) { const az = Math.atan2(d.x, d.z);
+      c.lerp(cd, smooth(0.55, 0.85, vnoise(az * 26, d.y * 30)) * 0.7 * top); }
     return c.clone();
   });
   hairs.set(k, geo);
