@@ -62,8 +62,8 @@ const Balloon: React.FC<{ x: number; z: number; t: number }> = ({ x, z, t }) => 
   const sway = Math.sin(t * 1.3) * 0.04;
   return (
     <group>
-      <mesh geometry={cyl(0.003, 0.003, 0.95, 4)} position={[x + sway / 2, 0.92, z]} rotation={[0, 0, -sway]} material={flat('#efe6d2')} />
-      <Solid geo={sph(0.15)} mat={toon('#ff6a8a', '#ff6a8a', 0.15)} position={[x + sway, 1.5, z]} scale={[1, 1.15, 1]} line={0.01} />
+      <mesh geometry={cyl(0.003, 0.003, 1.45, 4)} position={[x + sway / 2, 1.12, z]} rotation={[0, 0, -sway]} material={flat('#efe6d2')} />
+      <Solid geo={sph(0.15)} mat={toon('#ff6a8a', '#ff6a8a', 0.15)} position={[x + sway, 1.98, z]} scale={[1, 1.15, 1]} line={0.01} />
     </group>
   );
 };
@@ -82,16 +82,16 @@ const OFFER = { sx: -1.25, sz: -0.15, el: 0.35 };     // arm out, phone offered 
 const SHOOT = { sx: -1.35, sz: -0.12, el: 0.8 };      // phone up, taking a photo
 const KID_STRING = { sx: -0.25, sz: -0.25, el: 0.6 };
 
-const Family: React.FC<{ t: number; dev?: Partial<Pose>; priya?: Partial<Pose>; kid?: Partial<Pose>; devPhone?: boolean; still?: boolean }> = ({ t, dev = {}, priya = {}, kid = {}, devPhone = true, still }) => (
+const Family: React.FC<{ t: number; dev?: Partial<Pose>; priya?: Partial<Pose>; kid?: Partial<Pose>; devPhone?: boolean; still?: boolean; bx?: number }> = ({ t, dev = {}, priya = {}, kid = {}, devPhone = true, still, bx = -0.2 }) => (
   <>
     <Character look={DEV} p={{ ...DEV_P, breathe: breathe(t), lid: blink(t, [1.1, 3.4]), smile: 0.5, ...dev }} handR={devPhone ? <PhoneInHand on={1} /> : undefined} />
     <Character look={PRIYA} p={{ ...PRIYA_P, breathe: breathe(t + 1), lid: blink(t, [0.6, 2.7]), smile: 0.5, ...priya }} />
     <Character look={KID} p={{ ...KID_P, breathe: still ? 0 : breathe(t + 2), armR: KID_STRING, ...kid }} />
-    <Balloon x={(kid.x ?? KID_P.x!) - 0.17} z={(kid.z ?? KID_P.z!) - 0.05} t={t} />
+    <Balloon x={(kid.x ?? KID_P.x!) + bx} z={(kid.z ?? KID_P.z!) + 0.05} t={t} />
   </>
 );
 /** A few shoppers so the market is never empty. */
-const SHOPPERS: [number, number, number][] = [[-5.2, 7.2, 0.2], [0.4, 7.5, -0.4], [4.4, 7.6, 0.6], [-4.0, 9.8, 2.9], [-0.6, 10.0, 3.3], [5.4, 9.6, 2.8]];
+const SHOPPERS: [number, number, number][] = [[-5.2, 7.2, 0.2], [0.4, 7.5, -0.4], [5.9, 7.4, 0.6], [-4.0, 9.8, 2.9], [-0.6, 10.0, 3.3], [5.4, 9.6, 2.8]];
 const Shoppers: React.FC<{ t: number }> = ({ t }) => <>{SHOPPERS.map(([x, z, yaw], i) =>
   <Character key={i} look={EXTRAS[i % EXTRAS.length]} p={{ x, z, yaw, breathe: breathe(t + i * 0.7), lid: blink(t, [0.8 + i * 0.6]), headYaw: Math.sin(t * 0.4 + i) * 0.2 }} />)}</>;
 
@@ -154,17 +154,23 @@ const S = (C: React.FC<{ t: number; f: number }>) => () => { const f = useCurren
 const NIO_HEAD_A = headPos(NIO_A, NIO);
 const BITE = { sx: -2.25, sz: -0.3, el: 1.9 };   // skewer at his mouth
 
-const SH1 = S(({ t, f }) => {   // HOOK, WS: market noise, Nio takes an enormous bite. Buzz. He looks down at his phone.
-  const bite = keys(t, [[0, 0.3], [0.2, 1, 'pop'], [0.9, 0.55, 'sheet']]);
+const SH1 = S(({ t, f }) => {   // HOOK, CU: market noise, Nio takes an enormous bite off a skewer. Chews. Buzz. He looks down.
+  const pull = sp(t, 0.55, 'snap');          // skewer pulled away from his mouth, one chunk lighter
   const look = sp(t, 1.45, 'snap');
   const chew = t > 0.5 ? Math.abs(Math.sin(t * 9)) * 0.35 : 0;
-  const nio: Pose = { ...NIO_A, breathe: breathe(t), armR: { sx: -0.6 + (BITE.sx + 0.6) * bite, sz: -0.3, el: 0.8 + (BITE.el - 0.8) * bite }, armL: { sx: -0.5 - look * 0.25, sz: 0.15, el: 1.1 + look * 0.3 },
-    mouth: t < 0.35 ? 0.9 : chew, lid: t < 0.4 ? 0.7 : 0.15, headPitch: look * 0.35, eyeY: -look, smile: 0.1 };
-  const maya: Pose = { ...MAYA_A, breathe: breathe(t + 1), armL: { sx: -0.7, sz: 0.1, el: 1.2 }, armR: { sx: -1.0, sz: -0.1, el: 1.7 }, mouth: Math.abs(Math.sin(t * 7)) * 0.3, headPitch: 0.2, eyeY: -0.6, lid: blink(t, [1.0]) };
+  const nio: Pose = { ...NIO_A, breathe: breathe(t), armR: { sx: -1.5 + pull * 0.5, sz: 0.5, el: 1.6 }, armL: { sx: -0.5 - look * 0.25, sz: 0.15, el: 1.1 + look * 0.3 },
+    mouth: t < 0.55 ? 0.75 : chew, lid: t < 0.6 ? 0.75 : 0.15, headPitch: look * 0.35 - (1 - pull) * 0.05, eyeY: -look, smile: 0.1, squash: t < 0.55 ? 0.02 : 0 };
+  const hp = NIO_HEAD_A, c = Math.cos(NIO_A.yaw!), s2 = Math.sin(NIO_A.yaw!);
+  const mx = hp[0] + 0.16 * s2, mz = hp[2] + 0.16 * c, my = hp[1] - 0.075;
+  const f2 = frame(NIO_HEAD_A, 'cu', 0.15, { up: 0.02 });
   return (
-    <PixelShot><Cam pos={[-1.85, 1.35, 10.1 - t * 0.02]} at={[-2.3, 1.15, 7.2]} fov={44} />
-      <Market t={t}><Character look={NIO} p={nio} handR={<Skewer bitten={t > 0.35 ? 1 : 0} />} handL={<PhoneInHand on={1} buzz={t > 1.1 && t < 1.6 ? nz(f, 2) : 0} />} onHead={<Sauce />} />
-        <Character look={MAYA} p={maya} handL={<Dumplings />} /></Market></PixelShot>
+    <PixelShot><Cam pos={f2.pos} at={f2.at} fov={f2.fov} />
+      <Market t={t}><Character look={NIO} p={nio} handL={<PhoneInHand on={1} buzz={t > 1.1 && t < 1.6 ? nz(f, 2) : 0} />} onHead={<Sauce />} />
+        {/* the skewer, across his mouth, then pulled away to his right (out of frame) */}
+        <group position={[mx - 0.04 - pull * 0.45, my - pull * 0.3, mz + 0.02]} rotation={[0, NIO_A.yaw!, Math.PI / 2 + 0.12 + pull * 0.25]}>
+          <mesh geometry={cyl(0.005, 0.005, 0.5, 6)} position={[0, 0.2, 0]} material={flat('#d8c39a')} />
+          {[0, 1, 2].map((k) => (k > 0 || t < 0.55) ? <Solid key={k} geo={sph(0.032)} mat={toon(k % 2 ? '#9c4a26' : '#b8602e')} position={[0, 0.02 + k * 0.065, 0]} scale={[1, 0.85, 1]} line={0.006} /> : null)}
+        </group></Market></PixelShot>
   );
 });
 
@@ -194,8 +200,8 @@ const SH4 = S(({ t }) => {   // CU Nio: chewing, slower and slower. He looks up.
 });
 
 const SH5 = S(({ t }) => {   // HIS POV across the aisle: the same family. Dev is swiping through his photos, smiling.
-  const dev: Partial<Pose> = { armR: HOLD, headPitch: 0.3, eyeY: -0.8, smile: 0.8, yaw: Math.PI - 0.5 };
-  return <PixelShot><Cam pos={[-1.6, 1.62, 7.6]} at={[1.9, 1.0, 9.7]} fov={30} /><Market t={t}><Family t={t} dev={dev} priya={{ yaw: Math.PI - 0.6, headYaw: 0.3 }} kid={{ yaw: Math.PI - 0.7 }} /></Market></PixelShot>;
+  const dev: Partial<Pose> = { armR: HOLD, headPitch: 0.3, eyeY: -0.8, smile: 0.8, yaw: Math.PI + 0.6 };
+  return <PixelShot><Cam pos={[-1.6, 1.62, 7.6]} at={[1.9, 1.0, 9.7]} fov={30} /><Market t={t}><Family t={t} dev={dev} priya={{ yaw: Math.PI + 0.5, headYaw: -0.3 }} kid={{ yaw: Math.PI + 0.5 }} /></Market></PixelShot>;
 });
 
 const SH6 = S(({ t }) => {   // MS Nio + Maya. "Just ask him to delete it." He hands her the skewer without looking and goes.
@@ -205,9 +211,9 @@ const SH6 = S(({ t }) => {   // MS Nio + Maya. "Just ask him to delete it." He h
   const w = walk(go, 1.9, Math.min(1, go * 4));
   const nio: Pose = { ...NIO_A, x: NIO_A.x! + go * 1.2, yaw: go > 0 ? Math.PI / 2 - 0.2 : NIO_A.yaw, breathe: breathe(t), eyeX: 1, eyeY: 0.1, lid: 0.2, brow: 0.35,
     armL: go > 0 ? { sx: -0.9, sz: 0.1, el: 1.2 } : HOLD, armR: go > 0 ? w.armR : { sx: -0.3 - hand * 0.9, sz: 0.2 + hand * 0.5, el: 0.3 }, legL: go > 0 ? w.legL : undefined, legR: go > 0 ? w.legR : undefined, y: go > 0 ? w.bob : 0 };
-  const maya: Pose = { ...MAYA_A, breathe: breathe(t + 1), armL: { sx: -0.7, sz: 0.1, el: 1.2 }, armR: { sx: -1.0 + hand * 0.3, sz: -0.1 - hand * 0.3, el: 1.7 - hand }, headPitch: 0.2, eyeY: -0.6,
+  const maya: Pose = { ...MAYA_A, breathe: breathe(t + 1), armL: { sx: -0.7, sz: 0.1, el: 1.2 }, armR: { sx: -0.35 - hand * 0.6, sz: 0.1, el: 0.5 + hand * 0.3 }, headPitch: 0.2, eyeY: -0.6,
     mouth: talk(t, L1, D1), lid: blink(t, [2.6]) };
-  const f = frame(headPos({ x: -2.45, z: 7.32 }, NIO), 'ms', 0.2, { up: 0.05, fov: 40 });
+  const f = frame(headPos({ x: -2.45, z: 7.32 }, NIO), 'mws', 0.2, { up: 0.05, fov: 40 });
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Market t={t}>
@@ -223,12 +229,12 @@ const SH7 = S(({ t }) => {   // TWO-SHOT at the family's stall. He arrives, phon
   const w = walk(t, 1.9, 1 - arrive);
   const L1 = 0.9, D1 = 0.6, L2 = 1.55, D2 = 1.0;
   const offer = sp(t, 0.85, 'snap'), devOffer = sp(t, 1.75, 'snap');
-  const nio: Pose = { ...NIO_B, x: NIO_B.x! - (1 - arrive) * 1.2, yaw: 0.05, breathe: breathe(t), legL: w.legL, legR: w.legR, armR: { sx: -0.3 - offer * 0.95, sz: -0.15, el: 0.6 - offer * 0.25 },
+  const nio: Pose = { ...NIO_B, x: NIO_B.x! - (1 - arrive) * 1.2, yaw: arrive < 1 ? 1.3 * (1 - arrive) + 0.05 : 0.05, breathe: breathe(t), legL: w.legL, legR: w.legR, armR: { sx: -0.3 - offer * 0.95, sz: -0.15, el: 0.6 - offer * 0.25 },
     armL: { sx: -0.1, sz: 0.1, el: 0.3 }, mouth: talk(t, L1, D1), smile: 0.35, brow: 0.15, lid: 0.15 };
   const dev: Partial<Pose> = { yaw: Math.PI, armR: { sx: -0.7 - devOffer * 0.6, sz: -0.2, el: 1.35 - devOffer * 1.0 }, headPitch: 0.05, smile: 0.9, browUp: 0.6, mouth: talk(t, L2, D2), wide: 0.15 };
   return (
     <AbsoluteFill>
-      <PixelShot><Cam pos={[4.4, 1.45, 8.0]} at={[1.85, 1.15, 9.1]} fov={42} /><Market t={t}>
+      <PixelShot><Cam pos={[1.05, 1.85, 10.7]} at={[1.85, 1.3, 8.45]} fov={40} /><Market t={t}>
         <Family t={t} dev={dev} priya={{ smile: 0.7, headYaw: -0.2 }} kid={{ headPitch: -0.2 }} />
         <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} onHead={<Sauce />} /></Market></PixelShot>
       {on(t, L1, D1) && <Sub text="hey, sorry—" />}
@@ -248,7 +254,7 @@ const SH8 = S(({ t }) => {   // CU Nio: the take. Dev's phone held out, in the f
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Market t={t}>
         <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} onHead={<Sauce />} />
         {/* Dev's hand and phone, held out into the frame, perfectly still */}
-        <group position={[NIO_B.x! - 0.14, NIO_HEAD_B[1] - 0.42, NIO_B.z! + 0.42]} rotation={[0.1, 0.4, 0]}>
+        <group position={[NIO_B.x! - 0.1, NIO_HEAD_B[1] - 0.27, NIO_B.z! + 0.36]} rotation={[0.15, Math.PI + 0.3, 0]}>
           <Phone on={1} />
           <Solid geo={sph(0.05)} mat={toon(DEV.skin)} position={[0.0, -0.07, -0.01]} scale={[1.1, 0.9, 0.7]} line={0.01} />
           <Solid geo={cap(0.045, 0.3)} mat={toon(DEV.top)} position={[0.08, -0.2, 0.08]} rotation={[0.9, 0, -0.6]} line={0.01} />
@@ -264,7 +270,7 @@ const SH9 = S(({ t }) => {   // WS from behind Nio: he holds Dev's phone up. The
   const pose = { smile: 1, lid: 0.1 };
   return (
     <AbsoluteFill>
-      <PixelShot><Cam pos={[1.6, 1.75, 6.9]} at={[2.0, 1.15, 9.5]} fov={40} /><Market t={t}>
+      <PixelShot><Cam pos={[2.75, 1.95, 6.9]} at={[1.95, 1.1, 9.6]} fov={40} /><Market t={t}>
         <Family t={t} devPhone={false} dev={{ ...pose, yaw: Math.PI, armL: { sx: -0.3, sz: 0.9, el: 0.6 } }} priya={{ ...pose, yaw: Math.PI, headTilt: 0.15, armR: { sx: -0.3, sz: 0.9, el: 0.6 } }} kid={{ yaw: Math.PI, lid: 0, smile: 0 }} still />
         <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<PhoneInHand on={1} />} /></Market></PixelShot>
       {flash > 0 && <AbsoluteFill style={{ background: '#fff', opacity: 0.8 }} />}
@@ -308,10 +314,10 @@ const SH12 = S(({ t }) => {   // CU Nio. Thumb stops. "Get a good one?" (off) A 
 });
 
 const DEV_HEAD = headPos(DEV_P, DEV);
-const SH13 = S(({ t }) => {   // MCU Dev: a hand on his chest. "Man."
+const SH13 = S(({ t }) => {   // MCU Dev, moved, eyes a little wet. "Man."
   const L1 = 0.6, D1 = 0.45;
   const hand = sp(t, 0.15, 'sheet');
-  const dev: Pose = { ...DEV_P, yaw: Math.PI, breathe: breathe(t), armL: { sx: -0.4 - hand * 0.9, sz: -0.5 * hand, el: 0.3 + hand * 1.6 }, smile: 0.6, browUp: 0.9, lid: 0.35, headTilt: 0.12, mouth: talk(t, L1, D1) };
+  const dev: Pose = { ...DEV_P, yaw: Math.PI, breathe: breathe(t), smile: 0.6, browUp: 0.9, lid: 0.35 + hand * 0.15, headTilt: 0.12 * hand, headPitch: -0.05 * hand, mouth: talk(t, L1, D1) };
   const f = frame(DEV_HEAD, 'mcu', Math.PI, { up: 0.02 });
   return (
     <AbsoluteFill>
@@ -329,15 +335,15 @@ const SH14 = S(({ t }) => {   // WIDE: Priya pulls him in. Maya wanders over wit
   const nio: Pose = { ...G_NIO, x: 1.95, z: 8.45 + pull * 1.17, yaw: pull * Math.PI, breathe: breathe(t), lid: 0.2, smile: 0.3, mouth: talk(t, L2, D2), armL: { sx: 0, sz: 0.1, el: 0.2 }, armR: { sx: 0, sz: 0.1, el: 0.2 } };
   const mayaIn = Math.min(1, t / 1.2);
   const wm = walk(t, 1.8, 1 - mayaIn);
-  const maya: Pose = { x: 0.9 + mayaIn * 1.05, z: 7.6 + mayaIn * 0.5, yaw: 0.4 * (1 - mayaIn), breathe: breathe(t + 1), legL: wm.legL, legR: wm.legR, armL: { sx: -0.8, sz: 0.1, el: 1.3 },
+  const maya: Pose = { x: 0.2 + mayaIn * 0.9, z: 7.4 + mayaIn * 0.6, yaw: Math.PI / 2 * (1 - mayaIn) + 0.25 * mayaIn, breathe: breathe(t + 1), legL: wm.legL, legR: wm.legR, armL: { sx: -0.8, sz: 0.1, el: 1.3 },
     armR: t > 1.4 ? SHOOT : { sx: -0.5, sz: -0.1, el: 1.4 }, mouth: Math.abs(Math.sin(t * 6)) * 0.25, eyeY: 0.2 };
   return (
     <AbsoluteFill>
-      <PixelShot><Cam pos={[4.6, 1.6, 7.3]} at={[1.8, 1.05, 9.0]} fov={46} /><Market t={t}>
+      <PixelShot><Cam pos={[2.15, 1.6, 6.3]} at={[1.85, 1.1, 9.3]} fov={46} /><Market t={t}>
         <Family t={t} devPhone={t < 1.3} dev={{ x: 1.3, yaw: Math.PI - 0.4, mouth: talk(t, L1, D1), smile: 0.8, armL: { sx: -0.3, sz: 0.6, el: 0.4 } }}
-          priya={{ x: 2.6, yaw: Math.PI + 0.3, armL: { sx: -0.5 - pull * 0.3, sz: -0.9, el: 0.5 }, smile: 0.9 }} kid={{ x: 1.95, z: 9.25, yaw: Math.PI, lid: 0, headYaw: 0.3 }} />
+          priya={{ x: 2.6, yaw: Math.PI + 0.3, armL: { sx: -0.5 - pull * 0.3, sz: -0.9, el: 0.5 }, smile: 0.9 }} kid={{ x: 2.3, z: 9.38, yaw: Math.PI, lid: 0, headYaw: 0.3 }} bx={0.25} />
         <Character look={NIO} p={nio} onHead={<Sauce />} />
-        <Character look={MAYA} p={maya} handL={<Skewer bitten={1} />} handR={t > 1.4 ? <PhoneInHand on={1} /> : <Skewer />} /></Market></PixelShot>
+        <Character look={MAYA} p={maya} handR={t > 1.4 ? <PhoneInHand on={1} /> : undefined} /></Market></PixelShot>
       {on(t, L1, D1) && <Sub text="where you from?" />}
       {on(t, L2, D2) && <Sub text="here." />}
     </AbsoluteFill>
@@ -377,7 +383,7 @@ const SH17 = S(({ t }) => {   // the group photo, from Maya's side: flash. Nio i
   const flash = t > 0.25 && t < 0.38 ? 1 : 0;
   return (
     <AbsoluteFill>
-      <PixelShot><Cam pos={[1.95, 1.3, 7.7]} at={[1.95, 1.05, 9.6]} fov={34} /><Market t={t}>
+      <PixelShot><Cam pos={[1.95, 1.45, 7.1]} at={[1.95, 1.15, 9.6]} fov={52} /><Market t={t}>
         <Family t={t} devPhone={false} dev={{ x: 1.3, yaw: Math.PI, smile: 1, lid: 0.1, armR: { sx: -0.2, sz: -1.0, el: 0.3 } }} priya={{ x: 2.6, yaw: Math.PI, smile: 1, headTilt: -0.15, armL: { sx: -0.2, sz: -1.0, el: 0.3 } }} kid={{ x: 1.75, z: 9.25, yaw: Math.PI, lid: 0 }} still />
         <Character look={NIO} p={{ ...G_NIO, smile: 0.45, lid: 0.25, brow: 0.2 }} onHead={<Sauce />} /></Market></PixelShot>
       {flash > 0 && <AbsoluteFill style={{ background: '#fff', opacity: 0.8 }} />}
@@ -385,14 +391,14 @@ const SH17 = S(({ t }) => {   // the group photo, from Maya's side: flash. Nio i
   );
 });
 
-const SH18 = S(({ t, f }) => {   // MS: Nio and Maya walking back through the market. Buzz.
+const SH18 = S(({ t, f }) => {   // MS: Nio and Maya walk back up the aisle toward us. Buzz. He looks down.
   const w = walk(t, 1.8), wm = walk(t + 0.3, 1.8);
-  const x0 = 0.2 - t * 0.75;
-  const nio: Pose = { x: x0, y: w.bob, z: 8.3, yaw: -Math.PI / 2 + 0.25, ...w, armR: { sx: -0.7, sz: -0.2, el: 1.35 }, lid: 0.25, eyeY: -0.3, headPitch: t > 0.9 ? 0.3 : 0 };
-  const maya: Pose = { x: x0 - 0.15, y: wm.bob, z: 8.9, yaw: -Math.PI / 2 + 0.25, ...wm, armL: { sx: -0.8, sz: 0.1, el: 1.3 }, armR: { sx: -1.0, sz: -0.1, el: 1.8 }, mouth: Math.abs(Math.sin(t * 7)) * 0.3 };
-  return <PixelShot><Cam pos={[-1.8, 1.4, 12.2]} at={[-0.6, 1.1, 8.5]} fov={40} /><Market t={t}>
+  const x0 = 0.7 - t * 0.75;
+  const nio: Pose = { x: x0, y: w.bob, z: 8.35, yaw: -Math.PI / 2, legL: w.legL, legR: w.legR, armL: w.armL, armR: { sx: -0.7, sz: -0.2, el: 1.35 }, lid: 0.25, eyeY: t > 0.9 ? -0.8 : 0, headPitch: t > 0.9 ? 0.3 : 0 };
+  const maya: Pose = { x: x0 - 0.1, y: wm.bob, z: 8.9, yaw: -Math.PI / 2, legL: wm.legL, legR: wm.legR, armL: wm.armL, armR: { sx: -0.6, sz: 0.1, el: 1.4 }, mouth: Math.abs(Math.sin(t * 7)) * 0.3, eyeY: -0.3 };
+  return <PixelShot><Cam pos={[-3.4, 1.45, 8.6]} at={[-0.5, 1.15, 8.6]} fov={40} /><Market t={t}>
     <Character look={NIO} p={nio} handR={<PhoneInHand on={1} buzz={t > 0.85 && t < 1.3 ? nz(f, 4) : 0} />} onHead={<Sauce />} />
-    <Character look={MAYA} p={maya} handL={<Skewer bitten={1} />} handR={<Skewer bitten={2} />} /></Market></PixelShot>;
+    <Character look={MAYA} p={maya} handR={<Skewer bitten={1} />} /></Market></PixelShot>;
 });
 
 const SH19 = S(({ t }) => {   // FULL-SCREEN INSERT: the invite. Sunday brunch with our local. WHO'S GOING: Dev, Priya, Maya.
@@ -400,15 +406,13 @@ const SH19 = S(({ t }) => {   // FULL-SCREEN INSERT: the invite. Sunday brunch w
   return <Insert screen={s?.invite} tapK={0} />;
 });
 
-const SH20 = S(({ t }) => {   // MS: Nio stops. Turns his head to Maya. Maya keeps eating his skewer.
+const SH20 = S(({ t }) => {   // MS: Nio stops. Turns his head to Maya. Maya, chewing, keeps looking at his skewer.
   const turn = sp(t, 0.35, 'lazy');
-  const nio: Pose = { x: -1.6, z: 8.3, yaw: -Math.PI / 2 + 0.6, armR: HOLD, headYaw: -turn * 0.9, eyeX: -turn, lid: 0.35, brow: 0.2, smile: 0 };
-  const chomp = t > 0.9 && t < 1.3;
-  const maya: Pose = { x: -2.3, z: 8.9, yaw: -0.2, armL: { sx: -0.8, sz: 0.1, el: 1.3 }, armR: chomp ? BITE : { sx: -1.0, sz: -0.1, el: 1.8 }, mouth: chomp ? 0.8 : Math.abs(Math.sin(t * 8)) * 0.3,
-    eyeY: -0.4, headPitch: 0.15, lid: blink(t, [1.7]) };
-  return <PixelShot><Cam pos={[-0.4, 1.45, 11.6]} at={[-2.0, 1.15, 8.6]} fov={36} /><Market t={t}>
+  const nio: Pose = { x: -0.45, z: 8.35, yaw: -Math.PI / 2, armR: HOLD, headYaw: -turn * 0.8, eyeX: -turn * 0.6, lid: 0.35, brow: 0.2, smile: 0 };
+  const maya: Pose = { x: -0.6, z: 8.9, yaw: -Math.PI / 2 + 0.15, armR: { sx: -0.6, sz: 0.1, el: 1.4 }, mouth: Math.abs(Math.sin(t * 8)) * 0.3, eyeY: -0.7, headPitch: 0.15, lid: blink(t, [1.7]) };
+  return <PixelShot><Cam pos={[-3.0, 1.5, 8.62]} at={[-0.5, 1.2, 8.62]} fov={44} /><Market t={t}>
     <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} onHead={<Sauce />} />
-    <Character look={MAYA} p={maya} handL={<Skewer bitten={1} />} handR={<Skewer bitten={chomp || t > 1.3 ? 3 : 2} />} /></Market></PixelShot>;
+    <Character look={MAYA} p={maya} handR={<Skewer bitten={2} />} /></Market></PixelShot>;
 });
 
 const SH21 = S(({ t }) => {   // INSERT: the album. The cover flips to the bite. The title retypes itself: "first friend".
@@ -461,17 +465,17 @@ export const NotMePhoto: React.FC<{ which: string }> = ({ which }) => {
   // the selfie: the family in front of the candle stall, Dev's arm out; behind them, Nio at the dumpling stall, mid-bite
   if (which === 'bite') {
     const fam = { smile: 1, lid: 0.1 };
-    return <PixelShot res={[216, 384]}><Cam pos={[-0.55, 1.5, 9.6]} at={[-1.55, 1.2, 7.4]} fov={52} /><Market t={0.4}>
-      <Character look={DEV} p={{ x: -0.55, z: 8.7, yaw: 0.35, ...fam, armR: { sx: -1.5, sz: 0.2, el: 0.2 } }} />
-      <Character look={PRIYA} p={{ x: -1.1, z: 8.75, yaw: 0.25, ...fam, headTilt: 0.2 }} />
-      <Character look={KID} p={{ x: -0.85, z: 8.95, yaw: 0.3, ...fam, armR: KID_STRING }} /><Balloon x={-1.0} z={8.9} t={0} />
+    return <PixelShot res={[216, 384]}><Cam pos={[-0.95, 1.7, 10.75]} at={[-1.3, 1.4, 8.0]} fov={58} /><Market t={0.4}>
+      <Character look={DEV} p={{ x: -0.72, z: 9.2, yaw: 0.05, ...fam, headTilt: -0.1, armR: { sx: -1.5, sz: 0.2, el: 0.2 } }} />
+      <Character look={PRIYA} p={{ x: -1.12, z: 9.1, yaw: 0.1, ...fam, headTilt: 0.2 }} />
+      <Character look={KID} p={{ x: -0.92, z: 9.5, yaw: 0.1, ...fam, armR: KID_STRING }} /><Balloon x={-0.62} z={9.55} t={0} />
       <Character look={NIO} p={{ ...NIO_A, armR: BITE, mouth: 0.9, lid: 0.75, headPitch: -0.05, armL: HOLD }} handR={<Skewer />} onHead={<Sauce />} /></Market></PixelShot>;
   }
   // the photo Nio took of them
-  if (which === 'family') return <PixelShot res={[216, 384]}><Cam pos={[1.95, 1.55, 8.3]} at={[1.95, 1.0, 9.7]} fov={50} /><Market t={0.4}>
+  if (which === 'family') return <PixelShot res={[216, 384]}><Cam pos={[1.95, 1.45, 7.0]} at={[1.95, 1.05, 9.7]} fov={46} /><Market t={0.4}>
     <Family t={0} devPhone={false} dev={{ smile: 1, lid: 0.1, yaw: Math.PI, armL: { sx: -0.3, sz: 0.9, el: 0.6 } }} priya={{ smile: 1, lid: 0.1, yaw: Math.PI, headTilt: 0.15 }} kid={{ yaw: Math.PI, lid: 0 }} still /></Market></PixelShot>;
   // the group photo: Nio in the middle, polite, sauce
-  if (which === 'group') return <PixelShot res={[216, 384]}><Cam pos={[1.95, 1.5, 8.2]} at={[1.95, 1.2, 9.6]} fov={44} /><Market t={0.4}>
+  if (which === 'group') return <PixelShot res={[216, 384]}><Cam pos={[1.95, 1.45, 7.1]} at={[1.95, 1.15, 9.6]} fov={52} /><Market t={0.4}>
     <Family t={0} devPhone={false} dev={{ x: 1.3, yaw: Math.PI, smile: 1, lid: 0.1, armR: { sx: -0.2, sz: -1.0, el: 0.3 } }} priya={{ x: 2.6, yaw: Math.PI, smile: 1, armL: { sx: -0.2, sz: -1.0, el: 0.3 } }} kid={{ x: 1.75, z: 9.25, yaw: Math.PI, lid: 0 }} still />
     <Character look={NIO} p={{ ...G_NIO, smile: 0.45, lid: 0.25, brow: 0.2 }} onHead={<Sauce />} /></Market></PixelShot>;
   return null;

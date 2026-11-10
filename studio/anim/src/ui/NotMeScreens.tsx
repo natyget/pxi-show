@@ -59,15 +59,17 @@ async function build(): Promise<NMTex> {
   card('card', ['You might be', 'in a photo'], `Tap to review in ${ALBUM}`);
 
   // face review: the same burst, closer each time. Ring on his face (he's behind the family, top right of the frame).
-  const FACE: [number, number] = [0.66, 0.36];
+  // his face in the photo (fraction of the image); each review crops tighter around it
+  const FACE: [number, number] = [0.2, 0.555];
   const review = (key: string, zoom: number) => {
     const [cv, c] = canvas(); c.fillStyle = '#0d0b14'; c.fillRect(0, 0, W, H); island(c);
     c.fillStyle = '#fff'; c.textAlign = 'center'; c.font = `700 44px ${FONT}`; c.fillText('IS THIS YOU?', W / 2, 118);
     const px = 25, py = 150, pw = 340, ph = 470;
-    c.save(); rr(c, px, py, pw, ph, 26); c.clip(); cover(c, bite, px, py, pw, ph, zoom, 0.5 + (FACE[0] - 0.5) * (1 - 1 / zoom) * 1.6, 0.5 + (FACE[1] - 0.5) * (1 - 1 / zoom) * 1.6); c.restore();
-    // ring: where his face lands at this zoom
-    const fx = 0.5 + (FACE[0] - 0.5) * (zoom > 1 ? 1 - (zoom - 1) * 0.35 : 1), fy = 0.5 + (FACE[1] - 0.5) * (zoom > 1 ? 1 - (zoom - 1) * 0.35 : 1);
-    c.strokeStyle = PURPLE; c.lineWidth = 7; c.beginPath(); c.arc(px + fx * pw, py + fy * ph, 0.08 * pw * zoom, 0, 7); c.stroke();
+    const s0 = Math.max(pw / bite.width, ph / bite.height) * zoom, sw = pw / s0, sh = ph / s0;
+    const sx = Math.min(bite.width - sw, Math.max(0, bite.width * FACE[0] - sw / 2)), sy = Math.min(bite.height - sh, Math.max(0, bite.height * FACE[1] - sh / 2));
+    c.save(); rr(c, px, py, pw, ph, 26); c.clip(); c.drawImage(bite, sx, sy, sw, sh, px, py, pw, ph); c.restore();
+    const rx = px + (bite.width * FACE[0] - sx) * s0, ry = py + (bite.height * FACE[1] - sy) * s0;
+    c.strokeStyle = PURPLE; c.lineWidth = 7; c.beginPath(); c.arc(rx, ry, 0.075 * pw * zoom, 0, 7); c.stroke();
     c.fillStyle = 'rgba(255,255,255,0.7)'; c.font = `500 21px ${FONT}`; c.fillText(`in ${ALBUM}`, W / 2 - 14, 660); emoji(c, W / 2 + 152, 653, 11);
     c.fillStyle = '#2a2638'; rr(c, 25, 700, 160, 74, 37); c.fill();
     const g = c.createLinearGradient(205, 700, 365, 774); g.addColorStop(0, PURPLE); g.addColorStop(1, '#552bce');
@@ -112,7 +114,7 @@ async function build(): Promise<NMTex> {
   // the album: header (cover photo + title), then the gallery grid. Title and cover change; drawn per state.
   const album = (key: string, coverIm: HTMLImageElement, title: string, typed = 1) => {
     const [cv, c] = canvas(); c.fillStyle = '#000'; c.fillRect(0, 0, W, H); island(c);
-    c.save(); rr(c, 16, 70, W - 32, 330, 28); c.clip(); cover(c, coverIm, 16, 70, W - 32, 330, coverIm === bite ? 1.25 : 1, 0.6, 0.4);
+    c.save(); rr(c, 16, 70, W - 32, 330, 28); c.clip(); cover(c, coverIm, 16, 70, W - 32, 330, coverIm === bite ? 2.2 : 1, coverIm === bite ? 0.2 : 0.5, coverIm === bite ? 0.5 : 0.5);
     const g = c.createLinearGradient(0, 250, 0, 400); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,0.85)'); c.fillStyle = g; c.fillRect(16, 250, W - 32, 150); c.restore();
     const shown = title.slice(0, Math.round(title.length * typed));
     c.fillStyle = '#fff'; c.textAlign = 'left'; c.font = `700 34px ${FONT}`;
