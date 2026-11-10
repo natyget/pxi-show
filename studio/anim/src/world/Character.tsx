@@ -72,7 +72,7 @@ function Head({ p, look, children }: { p: Pose; look: Look; children?: React.Rea
         <mesh geometry={faceGeometry(look.shape)} material={faceMat(tex)} renderOrder={2} />
         {/* ears */}
         {[1, -1].map((s) => (
-          <group key={s} position={[s * HEAD_R * (look.shape === 'tri' ? 1.0 : 0.97), -0.005, -0.012]}>
+          <group key={s} position={[s * HEAD_R * (look.shape === 'tri' ? 1.0 : look.shape === 'hero' ? 1.02 : 0.97), -0.005, -0.012]}>
             <Solid geo={sph(0.036)} mat={toon(look.skin)} scale={[0.42, 1, 0.72]} line={L} />
             {look.hoops && <mesh position={[s * 0.01, -0.05, 0.01]} rotation={[0, Math.PI / 2, 0]}><torusGeometry args={[0.022, 0.004, 6, 16]} /><meshToonMaterial color="#e8c35a" /></mesh>}
           </group>

@@ -22,13 +22,13 @@ const heads = new Map<FaceShape, HeadData>();
  */
 export function head(shape: FaceShape): HeadData {
   if (heads.has(shape)) return heads.get(shape)!;
-  const s = new THREE.SphereGeometry(HEAD_R, 64, 44);
+  const s = new THREE.SphereGeometry(HEAD_R, 128, 88);
   s.deleteAttribute('normal'); s.deleteAttribute('uv');
   const g = mergeVertices(s, 1e-6);
   const p = g.attributes.position as THREE.BufferAttribute;
   const dirs = new Float32Array(p.count * 3);
   const v = new THREE.Vector3();
-  const taper = shape === 'tri' ? 0.2 : shape === 'round' ? 0.14 : shape === 'oval' ? 0.1 : shape === 'hero' ? 0.16 : 0.22;
+  const taper = shape === 'tri' ? 0.2 : shape === 'round' ? 0.14 : shape === 'oval' ? 0.1 : shape === 'hero' ? 0.24 : 0.22;
   for (let i = 0; i < p.count; i++) {
     v.fromBufferAttribute(p, i);
     const d = v.clone().normalize();
@@ -44,9 +44,9 @@ export function head(shape: FaceShape): HeadData {
         // the chin: a broad, forward chin (no receding lower jaw), with a flatter underside back to the neck
         const front = smooth(0.25, 0.85, d.z);
         const chin = Math.exp(-Math.pow((d.y + 0.86) / 0.13, 2)) * front;
-        z += 0.034 * chin;
-        x *= 1 + 0.1 * chin;
-        if (d.y < -0.8 && d.z > -0.3) y *= 1 - 0.1 * smooth(-0.8, -1, d.y) * smooth(-0.3, 0.3, d.z);
+        z += 0.05 * chin;
+        x *= 1 + 0.03 * chin;
+        if (d.y < -0.8 && d.z > -0.3) y *= 1 - 0.1 * smooth(-0.75, -1, d.y) * smooth(-0.5, 0.3, d.z);
       }
       z *= 1 - 0.1 * k;
       if (d.z > 0) z += (shape === 'tri' ? 0.012 : shape === 'oval' ? 0.004 : shape === 'hero' ? 0.022 : 0.008) * k * d.z * d.z; // chin
@@ -104,7 +104,7 @@ export function faceGeometry(shape: FaceShape) {
 }
 
 /** Outer surface of the crop's top, as a distance from the head centre along d: a rounded-square block. */
-const HAIR = { a: 0.19, up: 0.255, down: 0.2, front: 0.2, back: 0.2, n: 3.2, cy: -0.005, cz: 0.004 };
+const HAIR = { a: 0.166, up: 0.24, down: 0.2, front: 0.19, back: 0.185, n: 2.8, cy: -0.005, cz: 0.004 };
 function hairOuter(d: THREE.Vector3) {
   const b = d.y > 0 ? HAIR.up : HAIR.down, c = d.z > 0 ? HAIR.front : HAIR.back;
   // ray from the head centre; ignore the small centre offset in the denominator (it only shifts the block)
@@ -142,13 +142,14 @@ export function hairGeometry(shape: FaceShape, style: HairStyle, base: string, d
     const r = hairOuter(d);
     const q = v3.fromBufferAttribute(hp, i).length();
     const vol = Math.max(0, r - q);
-    const lift = smooth(l + 0.02, l + 0.16, d.y) * smooth(0.12, 0.42, d.y);     // grows in above the fade and the hairline
+    const lift = smooth(l + 0.02, l + 0.16, d.y) * smooth(0.28, 0.55, d.y);     // grows in above the fade and the hairline
     const curl = (vnoise(az * 11, d.y * 11) - 0.5) * 0.008 * lift;
     return 0.004 + 0.003 * inside + vol * lift + curl;
   }, (d, t) => {
     const top = smooth(0.42, 0.5, d.y);
     // the fade: short dark sides, a crisp step up to the black top
     c.copy(cb).lerp(cd, style === 'crop' ? 0.25 * (1 - top) : 0);
+    if (style === 'crop' && t < 0.012) c.lerp(cs, 0.42 * (1 - smooth(0.3, 0.5, d.y)));   // the faded sides: short, skin shows through
     if (style === 'crop' && t > 0.012) { const az = Math.atan2(d.x, d.z);
       c.lerp(cd, smooth(0.55, 0.85, vnoise(az * 26, d.y * 30)) * 0.7 * top); }
     return c.clone();
