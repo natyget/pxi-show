@@ -5,9 +5,9 @@ description: Write a PXI LABS episode (45–60 s animated short) through a stage
 
 # PXI LABS writers' room
 
-Read first: `bible/show-bible.md`, `bible/gumball-reference.md`, `bible/voice-and-dialogue.md`, `bible/characters.md`,
-`bible/timeline.md`, `bible/callbacks.md`, `bible/director.md`. Then run the stages in order. Write each stage's output
-to `episodes/<id>/room/<stage>.md`. Nothing is rendered until stage 7 is done and the script has passed the rubric.
+Read first: the files listed on the stage card you were given (`engine/stages/1-write.md`). `bible/humor.md` is the
+humor doctrine and wins over anything below that disagrees with it. Run the stages in order. In a scheduled run the
+only file left behind is `episodes/<id>/script.md`; the shot list (stage 7) is made in the BOARD stage.
 
 Sources this is built from (re-implemented in our own words; see CREDITS.md): sb-dev/narrative-production-skills,
 jtydhr88/screenwriting-skills (sitcom-comedy, dialogue), eternityspring/shuohao-skills, 0xhughs/director-skills,
@@ -15,7 +15,7 @@ danjdewhurst/story-skills (reader-panel), ccf/humanize, shir-danishyar/humanize,
 ameenmo/humanize-skill, and the idea of isolated audience critics from talsraviv/comedy-writers-room (unlicensed: idea only).
 
 ## Stage 1: Pitch
-- Write 6 loglines: one sentence each, a mundane situation that turns absurd. They must differ in *comic logic*
+- Write 6 loglines: one sentence each, a small social problem and a reasonable-sounding plan that makes it worse. They must differ in *comic logic*
   (what's funny and why), not wording. Throw away the first two you thought of.
 - Each must use a real PXI feature the way a person would (product-fit test), and the feature must be the engine of
   the plot, not decoration.
@@ -42,7 +42,8 @@ ameenmo/humanize-skill, and the idea of isolated audience critics from talsraviv
   the lens. Never narrate what the picture shows.
 
 ## Stage 4: Independent critique (separate subagents, each sees only the script and its own brief)
-Spawn four critics in parallel. They score and quote lines; they never rewrite.
+Spawn the critics in parallel on the cheapest model. They score and quote lines; they never rewrite. In a scheduled
+run the Tells Auditor is replaced by `engine/tools/script_lint.py` plus one read of `tells.md` by the writer.
 1. **The Skeptic**: what's heard-before or predictable? Which beat did you see coming and when?
 2. **The Literal Viewer**: what confuses a literal-minded viewer ("wait, how did…")? Where does logic break?
 3. **The Nine-Year-Old**: at which second do I get bored? What made me actually laugh (circle it)?

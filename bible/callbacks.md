@@ -9,3 +9,6 @@
 | Rooftop party flyer on the laundromat board | Ep 1 (background) | Shows up again in Part 2 when he notices it was there all along. |
 | The cooking show on the laundromat TV ("like it owes us money") | Ep 1 | Recurring background show; the chef appears in a later episode as a weird character. |
 | The night market across from his window | Pilot (retired) | Becomes its own Discover-led episode: "there's nothing to do" while it's a block away. |
+
+Note, Nov 10: everything above is from before Nio became PXI's maker (`bible/story.md`, section 8). It is parked, not
+canon, unless the founder brings it back.

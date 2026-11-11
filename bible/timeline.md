@@ -7,3 +7,6 @@
   party is Saturday. It is Wednesday. He deletes PXI. A push arrives anyway: a photo of him deleting PXI. The sock guy
   is standing right there, holding up his sock. "...it's clean."
 - **Sat Nov 14** · the rooftop silent disco Maya signed them up for (not yet shown outside the photo).
+
+Note, Nov 10: everything above is from before Nio became PXI's maker (`bible/story.md`, section 8). It is parked, not
+canon, unless the founder brings it back.
