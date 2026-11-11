@@ -3,13 +3,16 @@
 # Flashback lines get the craft-library memory treatment: light reverb, high end rolled off.
 # Output: studio/anim/public/vo/<key>.wav + src/vo_pilot.json {key: {file, text, dur, env}} (env = 12 fps mouth envelope).
 import subprocess, sys, json, re, numpy as np, soundfile as sf
-PITCH = {"nio": -1.0, "maya": 2.0, "n_liam": 0.0, "m_kore": 0.0}
+PITCH = {"nio": -1.0, "maya": 2.0, "n_liam": 0.0, "m_kore": 0.0, "dnio": 0.0, "dmaya": 0.0}   # dnio/dmaya: the approved Qwen designed voices
+# Walkie-talkie colour from the approved recipe (fx2.py). Off unless the founder confirms it (it was called bubbly on Nov 11).
+WALKIE = "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8"
+USE_WALKIE = False
 MEMORY = {"raw_ne_p4.wav", "raw_ne_p4m.wav", "raw_ne_p7.wav"}
 TRIM = "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.03,areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.08,areverse"
 def chain(who, mem, sr):
     st = PITCH[who]; r = 2 ** (st / 12)
     c = f"asetrate={int(sr*r)},aresample=48000,atempo={1/r:.5f}," if st else "aresample=48000,"
-    c += "highpass=f=70," + TRIM
+    c += "highpass=f=70," + TRIM + ("," + WALKIE if USE_WALKIE else "")
     if mem: c += ",lowpass=f=4500,aecho=0.85:0.5:60|110:0.18|0.10"
     return c + ",apad=pad_dur=0.06,loudnorm=I=-16:TP=-1.5:LRA=7,aresample=48000"
 def envelope(a, sr, fps=12):
@@ -28,7 +31,7 @@ if __name__ == "__main__":
     for j in jobs:
         src = f"raw/{j['out']}"; key = j["out"][4:-4]; dst = f"../anim/public/vo/{key}.wav"
         sr = sf.info(src).samplerate
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-af", chain(j["who"], j["out"] in MEMORY, sr), "-ac", "1", "-ar", "48000", dst], check=True)
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-af", chain(j.get("role", j["who"]), j["out"] in MEMORY, sr), "-ac", "1", "-ar", "48000", dst], check=True)
         a, r = sf.read(dst)
         out[key] = {"file": f"vo/{key}.wav", "text": norm(j["text"]), "dur": round(len(a) / r, 3), "env": envelope(a, r)}
         print(key, out[key]["dur"], j["text"], flush=True)
