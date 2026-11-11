@@ -32,7 +32,7 @@ export function faceTexture(f: FaceParams) {
   // ---- eyes
   const sneeze = f.sneeze > 0.5;
   [-1, 1].forEach((s) => {
-    const cx = X(s * 0.06), cy = Y(0.0);
+    const cx = X(s * 0.056), cy = Y(0.0);
     const w = 23 * (1 + f.wide * 0.3) * f.eyeScale, h = 13.5 * f.open * (1 + f.wide * 0.8) * f.eyeScale;
     if (sneeze) {                                            // squeezed shut: > <
       c.strokeStyle = INK; c.lineWidth = 4.5; c.beginPath();

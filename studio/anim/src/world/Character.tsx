@@ -13,13 +13,14 @@ export type Look = {
   shape: FaceShape; hairStyle: HairStyle;
   build?: number;          // shoulder width multiplier
   height?: number;         // overall scale
+  eyeScale?: number; restLid?: number;   // per-character eye size and resting lid (confidence)
   suit?: boolean; shades?: boolean; puff?: boolean; hoops?: boolean; mustache?: boolean; lashes?: boolean; blush?: number;
 };
 
 /** Nio: light skin, triangular face, short black textured crop with a fade, broad shoulders, oversized crewneck. */
 export const NIO: Look = {
   skin: '#d8a27c', skinShade: '#b9805c', hair: '#141011', hairDark: '#2a1f1c', iris: '#3b2416',
-  top: '#c4683a', topDark: '#a2532c', pants: '#34333d', shoes: '#f4f2ee', shape: 'tri', hairStyle: 'crop', build: 1.16,
+  top: '#c4683a', topDark: '#a2532c', pants: '#34333d', shoes: '#f4f2ee', shape: 'hero', hairStyle: 'crop', build: 1.16, eyeScale: 0.86, restLid: 0.22,
 };
 /** Maya: deep brown skin, round face, curly puff, gold hoops, oversized varsity jacket. */
 export const MAYA: Look = {
@@ -31,7 +32,7 @@ export const MAYA: Look = {
 export type Arm = { sx: number; sy: number; sz: number; el: number };   // shoulder euler + elbow bend
 export type Leg = { hip: number; knee: number; spread?: number };
 export type Pose = {
-  x?: number; y?: number; z?: number; yaw?: number;
+  x?: number; y?: number; z?: number; yaw?: number; pitch?: number; roll?: number;   // pitch/roll tip the whole body (lying down, falling)
   lean?: number; twist?: number; breathe?: number; squash?: number;
   headYaw?: number; headPitch?: number; headTilt?: number;
   eyeX?: number; eyeY?: number; lid?: number; eyeOpen?: number; wide?: number;
@@ -56,10 +57,10 @@ const faceMat = (t: THREE.Texture) => {
 function Head({ p, look, children }: { p: Pose; look: Look; children?: React.ReactNode }) {
   const h = head(look.shape);
   const tex = faceTexture({
-    eyeX: p.eyeX ?? 0, eyeY: p.eyeY ?? 0, lid: p.lid ?? 0, open: p.eyeOpen ?? 1, wide: p.wide ?? 0,
+    eyeX: p.eyeX ?? 0, eyeY: p.eyeY ?? 0, lid: Math.max(p.lid ?? 0, (look.restLid ?? 0) * (1 - (p.wide ?? 0) * 1.5)), open: p.eyeOpen ?? 1, wide: p.wide ?? 0,
     brow: p.brow ?? 0, browUp: p.browUp ?? 0, browR: p.browR ?? 0,
     mouth: p.mouth ?? 0, smile: p.smile ?? 0, smirk: p.smirk ?? 0, sneeze: p.sneeze ?? 0, sweat: p.sweat ?? 0,
-    iris: look.iris, eyeScale: look.lashes ? 1.12 : 1, brows: look.hairStyle === 'bald' ? '#2a1d18' : look.hair, lips: look.skinShade, shade: look.skinShade,
+    iris: look.iris, eyeScale: look.eyeScale ?? (look.lashes ? 1.12 : 1), brows: look.hairStyle === 'bald' ? '#2a1d18' : look.hair, lips: look.skinShade, shade: look.skinShade,
     blush: look.blush ?? 0, mustache: !!look.mustache, lashes: !!look.lashes,
   });
   const sq = p.squash ?? 0;
@@ -135,7 +136,7 @@ export const Character: React.FC<{ p: Pose; look: Look; handR?: React.ReactNode;
   const legL = p.legL ?? { hip: 0, knee: 0 }, legR = p.legR ?? { hip: 0, knee: 0 };
   const w = look.build ?? 1, sx = 0.19 * w;
   return (
-    <group position={[p.x ?? 0, p.y ?? 0, p.z ?? 0]} rotation={[0, p.yaw ?? 0, 0]} scale={look.height ?? 1}>
+    <group position={[p.x ?? 0, p.y ?? 0, p.z ?? 0]} rotation={[0, p.yaw ?? 0, 0]} scale={look.height ?? 1}><group position={[0, 0.62, 0]} rotation={[p.pitch ?? 0, 0, p.roll ?? 0]}><group position={[0, -0.62, 0]}>
       <group position={[0, 0.62, 0]}>
         <LegG l={legL} look={look} side={-1} />
         <LegG l={legR} look={look} side={1} />
@@ -163,7 +164,7 @@ export const Character: React.FC<{ p: Pose; look: Look; handR?: React.ReactNode;
           </group>
         </group>
       </group>
-    </group>
+    </group></group></group>
   );
 };
 

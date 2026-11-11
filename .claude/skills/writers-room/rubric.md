@@ -7,8 +7,11 @@
 5. **Voice**: cover the names; can you tell Nio from Maya from anyone else?
 6. **Setup hygiene**: no hints at the punch, punch word last, nothing after the joke.
 7. **Visual comedy**: takes, background gags, physical comedy used where they beat a line.
-8. **Ending**: costs Nio something or ends on an absurd/dark button; no lesson, no epilogue.
+8. **Ending**: costs Nio something and ends on the smallest, driest button; no lesson, no epilogue.
 9. **Runtime fit**: within ±15% of target; lines fit their shots.
 10. **Tells**: AI tells found (5 = none).
 
 **Veto**: "actually funny" below 3/5 from the Nine-Year-Old or the Skeptic.
+
+**Veto**: any beat that fails the swap, why or laundromat test in `bible/humor.md`, or any line that makes Nio a goof.
+**Veto**: the cold read in `bible/story.md` section 4 cannot state the point, or states a different one.
