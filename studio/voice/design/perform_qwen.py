@@ -11,6 +11,11 @@ VOICES = {
           "the lead of a cartoon comedy; confident, cocky, playful; big swings between deadpan and excited; casual Gen Z delivery."),
   "maya": ("A young woman around 20, bright, sweet and earnest voice, soft and clear, slightly higher pitch, gentle and kind, "
            "a little breathless when excited; sincere and literal, like the kind sidekick in a cartoon."),
+  # Original designs for the pilot "No Pics" (Nov 11), written from the script's character notes.
+  "dev": ("A 21-year-old guy on a video call from another city, relaxed low-mid voice, dry and unimpressed, talks while "
+          "chewing, unhurried; sounds like a real best friend on the phone at midnight, not a performer."),
+  "beanie": ("A tall, pale man in his thirties, very flat and quiet voice, almost no inflection, soft and slightly too close "
+             "to the microphone; polite, unsettling, eerie calm."),
 }
 if __name__ == "__main__":
     torch.set_num_threads(4)

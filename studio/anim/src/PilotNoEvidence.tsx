@@ -17,6 +17,7 @@ import { useNoEvidenceScreens } from './ui/NoEvidenceScreens';
 import { t12, sp, keys, blink, breathe, nz, walk } from './lib/motion';
 import { Solid, toon, flat, sph, cyl, rbox, plane } from './lib/toon';
 import vo from './vo_pilot.json';
+import voNb from './vo_nb.json';
 import { talk, on, PhoneInHand, Insert, Card, Slide } from './PilotNotMe';
 
 // ---------------------------------------------------------------- cast
@@ -41,7 +42,7 @@ const CHAIR = { y: -0.08, legL: { hip: 1.5, knee: 1.5 }, legR: { hip: 1.5, knee:
 // ---------------------------------------------------------------- speech: the approved voices + burned-in subtitles
 type Who = 'nio' | 'maya' | 'hi' | 'lo';
 type VoLine = { file: string; text: string; dur: number; env: number[] };
-const VO = vo as Record<string, VoLine>;
+const VO = { ...vo, ...voNb } as Record<string, VoLine>;   // every voiced line, looked up by its subtitle text
 const NUMS: Record<string, string> = { '212': 'two hundred and twelve' };
 const norm = (s: string) => Object.entries(NUMS).reduce((a, [k, v]) => a.split(k).join(v), s.toLowerCase().replace(/\u2019/g, "'").replace(/\bpxi\b/g, 'pixie')).replace(/[^a-z' ]/g, '').trim();
 /** The performed line for a subtitle (studio/voice/clean.py writes vo_pilot.json). Every Say line must have one. */
