@@ -1,0 +1,158 @@
+[
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "...and the whole room's going \"Nee-oh! Nee-oh!\" Dev. I was ON the fridge.",
+  "note": "Shouting with joy, the loudest he ever gets, acting out the whole party for his best friend, arms out, huge energy, stressing ON.",
+  "out": "raw_nb2_01.wav",
+  "sub": "...and the whole room's going \"NI-O! NI-O!\" Dev. I was ON the fridge."
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "On it.",
+  "note": "Flat, mouth full of cereal, barely impressed.",
+  "out": "raw_nb2_02.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "For an hour. A girl cried.",
+  "note": "Still big and proud, bragging, savoring it.",
+  "out": "raw_nb2_03.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "Okay. Send pics.",
+  "note": "Flat, chewing, unimpressed.",
+  "out": "raw_nb2_04.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Which ones? There's gonna be like...",
+  "note": "Cocky, pulling out his phone, trailing off as he looks at the screen.",
+  "out": "raw_nb2_05.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "Is that pasta?",
+  "note": "Flat, squinting at the screen.",
+  "out": "raw_nb2_06.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "It's good pasta.",
+  "note": "The smile dying, a beat late, quietly defensive.",
+  "out": "raw_nb2_07.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Forty-one people, bro. I saw the flashes. I posed.",
+  "note": "Quiet and small now, deflated, almost to himself.",
+  "out": "raw_nb2_08.wav"
+ },
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "Mornin'! Okay so everybody has pictures and nobody will send them. Somebody said they're \"saving it.\" For what? Also you were so happy up there. Also you have my shoe!",
+  "note": "A voice note, bright and breathless, sincere and warm, talking fast. The first word is a cheerful hello.",
+  "out": "raw_nb2_09.wav",
+  "sub": "Morning! Okay so everybody has pictures and nobody will send them. Somebody said they're \"saving it.\" For what? Also you were so happy up there. Also you have my shoe!"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "I was too busy dancing to take one.",
+  "note": "Small, hurt, quiet.",
+  "out": "raw_nb2_10.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "You crying?",
+  "note": "Flat but noticing, gentle.",
+  "out": "raw_nb2_11.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "I'm just tired.",
+  "note": "Covering, a little too quick. Say only the words, no sigh or sound before them.",
+  "out": "raw_nb2_12.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "Who's that?",
+  "note": "Casual, curious, mouth full.",
+  "out": "raw_nb2_13.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Don't know. He's been here.",
+  "note": "Calm, low, not turning his head, like it is normal.",
+  "out": "raw_nb2_14.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "Oh. Okay.",
+  "note": "Accepting it instantly, flat.",
+  "out": "raw_nb2_15.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Dev. DEV. Look at me.",
+  "note": "Coming back to life, cocky, on his feet, building from calm to loud on the second DEV.",
+  "out": "raw_nb2_16.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "Okay, that's actually crazy. Who sent those?",
+  "note": "Impressed despite himself, finally interested.",
+  "out": "raw_nb2_17.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Nobody. It just finds me.",
+  "note": "Cocky and easy, leaning on the counter, like he was never worried.",
+  "out": "raw_nb2_18.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "What does?",
+  "note": "Flat, confused.",
+  "out": "raw_nb2_19.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "This my app, yo.",
+  "note": "Casual Gen Z, proud, cool.",
+  "out": "raw_nb2_20.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "You made an app so you could look at yourself.",
+  "note": "Dry, deadpan, roasting him.",
+  "out": "raw_nb2_21.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Thirty-eight times.",
+  "note": "Proud and unbothered, a grin in the voice.",
+  "out": "raw_nb2_22.wav"
+ }
+]

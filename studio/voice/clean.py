@@ -29,12 +29,13 @@ def norm(s):
     for k, v in NUM.items(): s = s.replace(k, v)
     return re.sub(r"[^a-z' ]", "", s).strip()
 if __name__ == "__main__":
+    # A job may carry "sub": the subtitle text, when the voice reads a respelling (e.g. "Nee-oh" for NI-O).
     jobs = json.load(open(sys.argv[1])); out = {}
     for j in jobs:
         src = f"raw/{j['out']}"; key = j["out"][4:-4]; dst = f"../anim/public/vo/{key}.wav"
         sr = sf.info(src).samplerate
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-af", chain(j.get("role", j["who"]), j["out"] in MEMORY, sr), "-ac", "1", "-ar", "48000", dst], check=True)
         a, r = sf.read(dst)
-        out[key] = {"file": f"vo/{key}.wav", "text": norm(j["text"]), "dur": round(len(a) / r, 3), "env": envelope(a, r)}
+        out[key] = {"file": f"vo/{key}.wav", "text": norm(j.get("sub", j["text"])), "dur": round(len(a) / r, 3), "env": envelope(a, r)}
         print(key, out[key]["dur"], j["text"], flush=True)
     json.dump(out, open(sys.argv[2] if len(sys.argv) > 2 else "../anim/src/vo_pilot.json", "w"), indent=0)
