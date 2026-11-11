@@ -1,41 +1,84 @@
-# Script v3: No Pics (target 50 s)
+# Script v4: No Pics (character thread's pass in Nio's voice, adopted; the last line keeps "you're")
 
-[INT. NIO'S APARTMENT - MORNING. Spotless; he has already cleaned. NIO flat on the rug in last night's clothes, glow stick still lit on his wrist, one woman's high heel held to his chest like a trophy. In the back corner, out of focus, a GUY IN A BEANIE stands perfectly still, like a coat rack. He is in every wide shot from here on. Nobody looks at him.]
-NIO: i was the life of it.
-[Video call, split screen: DEV, his best friend, eating cereal in another city.]
-DEV: pics or it didn't happen.
-[Nio opens his camera roll. Newest photo: a plate of pasta. Three weeks ago. Take.]
-[INSERT: group chat "nio's place 🔥 (41)". He types "yo send pics". Seen by 41. One reply: "who is this"]
-[Voice note from MAYA, fast:]
-MAYA: you danced on the fridge for an hour. nobody's posting that. also you have my shoe.
-[Nio looks at the heel in his hand.]
-DEV: you get anybody's number?
-NIO: bro. the fridge has a light inside.
-DEV: like when you open it?
-NIO: every time.
-[Dev gets up, opens his own fridge, stares into the light. Forgets the call. It drops.]
-[Quiet. Nio on the couch. The glow stick dies.]
-NIO: i was busy dancing.
-[He wipes his eye fast.]
-NIO: i'm just tired.
-BEANIE (from the corner, flat): same.
-[Nio does not move his head. Hold.]
+[INT. NIO'S APARTMENT, MORNING. Clean. Music up: it is in his earbuds and we hear it too. NIO, last night's
+clothes, a dead glow stick on his wrist, is standing on the arm of the couch acting out the whole party for
+his phone, which is propped on the counter. On it: DEV, his best friend, another city, eating cereal. In the
+back corner, soft focus, a GUY IN A BEANIE stands still as a coat rack. He is in every wide shot. Nobody
+looks at him.]
+
+NIO (arms out, glowing): ...and the whole room's going "NI-O! NI-O!" Dev. I was ON the fridge.
+DEV: On it.
+NIO: For an hour. A girl cried.
+DEV: Okay. Send pics.
+NIO (already pulling his phone out, cocky): Which ones? There's gonna be like...
+
+[His camera roll. Newest photo: a plate of pasta. Three weeks ago. The smile stays on his face a second
+after it has died.]
+
+DEV: Is that pasta?
+NIO: ...It's good pasta.
+
+[INSERT: group chat "nio's place 🔥 (41)". He types "yo send the pics". Seen by 41. One reply: "who is this"]
+
+[He steps down off the couch. Smaller.]
+
+NIO (quiet): Forty-one people, bro. I saw the flashes. I posed.
+
+[Voice note, MAYA, bright and breathless:]
+MAYA: Morning! Okay so everybody has pictures and nobody will send them. Somebody said they're "saving it."
+For what? Also you were so happy up there. Also you have my shoe!
+
+[Nio looks down. He is holding a high heel. He has been holding it the whole time.]
+
+[He sits. One earbud out. The music cuts.]
+
+NIO: I was too busy dancing to take one.
+
+[He wipes his eye, fast, like it is nothing.]
+
+DEV: You crying?
+NIO: I'm just tired.
+BEANIE (from the corner, flat): Same.
+
+[Nio does not turn his head. Hold on his face.]
+
+DEV: Who's that?
+NIO: Don't know. He's been here.
+DEV: Oh. Okay.
+
 [Buzz. PXI notification: "You're in 38 photos from last night."]
-[The album fills: him on the fridge, the crowd chanting; him crowd-surfing; him on this couch wiping his eye, "just now". In every photo, the beanie guy is behind him, looking into the lens.]
-[Nio, still not turning:]
-NIO: who are you?
-BEANIE: i'm "who is this."
-[Nio turns to the lens.]
-NIO: anyway. this my app, yo.
-BEANIE: it's free.
-NIO: saturday. my place.
-[Beat.]
-NIO: i'll know if you're there.
-[The beanie guy, right behind him now, raises a phone at the lens. Flash.]
-[GLITCH: horizontal slice, pixel dissolve. Black.]
 
-PXI moment: the "you're in 38 photos" notification and album (it finds what nobody posted).
+[His face comes back from the dead. He is on his feet.]
+
+NIO: Dev. DEV. Look at me.
+
+[He holds the phone up to the phone. The album fills: Nio on the fridge, the room chanting. Nio carried over
+the crowd. Nio and a lampshade.]
+
+DEV: ...Okay, that's actually crazy. Who sent those?
+NIO (all the way back, leaning on the counter like a man who was never worried): Nobody. It just finds me.
+DEV: What does?
+NIO: This my app, yo.
+DEV: You made an app so you could look at yourself.
+NIO: Thirty-eight times.
+
+[He scrolls. In every photo, behind him, the guy in the beanie is looking straight into the lens. The newest
+photo: Nio on this couch, wiping his eye. "Just now."]
+
+[Nio stops. Still does not turn.]
+
+NIO: Who are you?
+BEANIE: I'm "who is this."
+
+[A long look at nothing. Then Nio turns to us, and the grin is back.]
+
+NIO: Saturday. My place.
+[Beat.]
+NIO: I'll know if you're there.
+
+[Right behind him now, the beanie guy raises a phone at the lens. Flash.]
+[GLITCH on the flash: horizontal slice, pixel dissolve. Black.]
+
+PXI moment: the notification and album, shown to Dev; "this my app, yo" said to Dev, not the lens.
 Glitch: flash into horizontal slice and pixel dissolve.
-Callbacks inside the episode: "who is this" (chat reply, then the guy's name); the shoe; the guy visible from shot 1 (rewatch reward, comment bait).
 Caption: "he was there the whole time. did you see him? 👀"
-Spoken words: about 85. Estimate ≈ 37 s speech + takes ≈ 50 s.
