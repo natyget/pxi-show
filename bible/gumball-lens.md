@@ -25,7 +25,7 @@ the shape of a story. We never take a character, a line, a name, a design or a s
 
 | # | Machine | How it runs | In Nio World |
 |---|---|---|---|
-| 1 | **The tiny debt** [The DVD] | A small thing he owes or broke. He dodges the easy fix, and the dodge becomes the disaster. | He owes someone twelve dollars and has none. He avoids one hallway for a week. |
+| 1 | **The tiny debt** [The DVD] | A small thing he owes or broke. He dodges the easy fix, and the dodge becomes the disaster. | He owes someone twelve dollars and keeps forgetting. He avoids one hallway for a week. |
 | 2 | **The epic errand** [The Routine] | A trip for one ordinary item, shot like the greatest quest ever filmed. | Going out for contact lens solution without his contacts in. |
 | 3 | **The dodge** [The Procrastinators] | One chore. They do everything on earth except it. | One email to a professor. One bag of trash. |
 | 4 | **Nothing to do** [The Boredom] | They hunt for something to do while incredible things happen just behind them. | "There's nothing on tonight," with the Discover map open and a parade passing the window. The most natural PXI plot there is. |

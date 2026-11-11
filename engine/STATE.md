@@ -16,8 +16,8 @@ gate_failures: 0
 - Approve a pilot. "Not Me" (Nov 10) and "No Evidence" (Nov 11) were both rejected. Owned by the pilot thread,
   which now writes from `bible/writers-room.md`. Not for scheduled runs.
 - Pick a look. Owned by the look thread; the first three options were rejected on Nov 11 ("ai slop").
-- Who Nio is, how he talks and the writer's role are owned by the thread "Write Nio's character and stories".
-  `bible/characters.md` holds the founder's answers of Nov 11 until that thread's output replaces it.
+- Does "nio dont got a penny" mean no money, or no girl he pines for? Asked in the character thread. No money
+  jokes until answered.
 - How often an episode may have no PXI in the picture. Working answer: at most one in four, never a holiday.
 - The best friend has no approved voice. Until one is picked he appears as text on Nio's phone.
 - Make `main` the default branch of this repo, so scheduled runs can save state (BACKLOG item 8).

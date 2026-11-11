@@ -10,7 +10,7 @@ form a run needs.
 
 ## 1. What we make
 
-The show is **Nio World**, an animated series released on @pxi.app on every platform. Nio is 21, broke, and new
+The show is **Nio World**, an animated series released on @pxi.app on every platform. Nio is 21 and new
 to a city where he came for college. He kept missing everything and was in nobody's photos, so he built an app,
 PXI. The series is his life there, with Maya, his friends, his neighbours and the girl who becomes his ex, in a
 world that is stranger than he is. It is written through a Gumball lens. It is a real show first: people watch
@@ -269,7 +269,7 @@ A proposal until the founder confirms it, and the learning loop adjusts it after
 ## 13. Change log
 
 - 2026-11-11 (night): rewritten around the founder's head writer brief and pilot review. The writer's role
-  (`bible/writers-room.md`), Nio as a live, trolling, broke college student, the six-beat sheet, the Kevin and
+  (`bible/writers-room.md`), Nio as a live, trolling college student, the six-beat sheet, the Kevin and
   the glitch button, PXI never forced, dialogue and acting rules, the Gumball plot machines, the story intake,
   the designed voices locked, and the standing constraints from the first handoff.
 

@@ -18,6 +18,7 @@ holiday, its row in `engine/calendar.md`.
 Type: <Lore | Standalone | Experiment | Dream> · Tone: <Funny | Wholesome | Eerie | Sad>
 Engine: <the plot engine from bible/story.md section 3, or the machine from bible/gumball-lens.md>
 Logline: Nio wants <X>, but <Y weird thing> happens, and he responds by <Z>.
+Nio's game: <who he is playing with, what the game is, and the moment it stops being a game>
 Retell: <the episode in one sentence a viewer would say to a friend>
 Want: <a goal the camera can see> · Why tonight: <the clock>
 The Kevin: <who or what was there the whole time, or the insane thing everyone treats as normal>
@@ -62,8 +63,8 @@ Then:
    header.
 4. Three critics in parallel, each given only the Script section and its brief from the skill (Skeptic, Literal
    Viewer, Nine-Year-Old). They quote lines and score. They do not rewrite.
-5. Punch-up by the writer, in role: fix only what was flagged, then the five checks at the end of
-   `bible/writers-room.md`. Score with `rubric.md`. Run the lint again.
+5. Punch-up by the writer, in role: fix only what was flagged, then the Nio pass (the eight checks at
+   the bottom of `bible/voice-and-dialogue.md`) and the ten questions at the end of `bible/writers-room.md`. Score with `rubric.md`. Run the lint again.
 
 **Gate:** the cold read matches the header and quotes a laugh; lint has no FAIL; rubric 40/55 or more with no
 veto; the short cut stands alone. One more round with fresh critics is allowed. If it fails again, write

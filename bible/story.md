@@ -6,7 +6,7 @@ renetion is kept and so pxi is discovered." A story here is clear, funny, and wo
 
 ## 1. The series in one breath
 
-**Nio is 21, broke, and new to a city where he came for college. He kept missing everything and was in nobody's
+**Nio is 21 and new to a city where he came for college. He kept missing everything and was in nobody's
 photos, so he built an app, PXI. The series is his life there: his friends, his neighbours, the girl who
 becomes his ex, the nights out and the walks home, with a world around him that is stranger than he is.**
 
@@ -128,5 +128,5 @@ change, and nobody real can be recognised.
 
 ## 11. Canon
 
-Nio as PXI's maker dates from Nov 10. Nio as a broke college student with a girl who becomes his ex dates from
+Nio as PXI's maker dates from Nov 10. Nio as a college student with a girl who becomes his ex dates from
 Nov 11. Ep 1 and the earlier pilots are parked (`bible/callbacks.md`) unless the founder brings them back.

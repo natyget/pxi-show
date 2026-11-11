@@ -1,41 +1,115 @@
 # Dialogue (how they talk, and how two people talk to each other)
 
-Owned by the thread "Write Nio's character and stories"; its output replaces this page.
+Written by the thread "Write Nio's character and stories". Read `bible/characters.md` first: who Nio is decides
+every line here.
 
 The founder, Nov 11: "my character talks like an npc rather than nio being gubmall soul ... dialogue needs to be
-done well and talk between people needs to be good. i dont think enough time is being put into that. lets have
-characters talk interact etc." Most of the writing time goes here.
+done well and talk between people needs to be good." And: "i hate the 3-7 word flat". Most of the writing time
+goes here.
 
-We borrow speech patterns from the shows we admire. Never lines, catchphrases or voices.
+We borrow craft from the shows we admire. Never lines, catchphrases or voices.
 
 ## Nio
 
-- **He talks like a person, not in a fixed length.** The founder, Nov 11: "i hate the 3-7 word flat i dont know
-  who gave the hand off ai that idea." Lines are as long as a quick, funny 21-year-old would make them. No
-  monologues and no plan explained aloud.
-- **Animated, not loud.** He does not raise his voice past what it takes to be heard. In public his face does
-  the work. Alone at home he is at full volume. Every line carries a note for the face and the voice: hyped,
-  smug, wounded, bored, trolling, sincere for one second.
-- **He swings.** An example of the range the founder asked for, in one scene: he comes home from a party
-  glowing, sure he was the life of it. Then it drops: he was dancing, everyone took photos, nobody sent him
-  one. Then the turn, casual: "this my app, yo."
-- **He trolls with questions.** "Who?" "Which one?" "So who did it end up being?" He asks, waits, and lets the
-  other person dig. We see the corner of his mouth before they do.
-- **He pivots.** A sensitive question gets a new, better subject in the same breath, and it works.
-- **He sounds his age.** Casual Gen Z: "bro", "yo", "this my app", dropped words, "nah" said short. Light
-  swearing is fine. Never "ight" or "aight" (the voice tool cannot say it), never a long drawn-out "nah", never
-  "hold up", and never slang stacked up to sound young.
-- **He mixes languages.** A word or two of French or Arabic, wrong, said with total confidence, to someone who
-  speaks it properly and answers in English.
-- **To us:** rarely, one look or one short line. "This can't be real." Never a speech. The tag is the one
-  place he talks to the viewer for more than a line.
-- **Key lines, sparingly:** "This can't be real." "Yeah, what's up." "I'm just tired." "They left."
+- **Length follows the fun.** The more he is enjoying himself, the more he says: a riff, a character voice,
+  a run of questions. The more real it is, the less he says. There is no word limit. There is a rule: a long
+  line must be him *playing*, never him explaining.
+- **He asks more than he tells.** Questions are his main tool. A Nio scene with no question in it is suspect.
+- **He never announces.** Not his plan, not his feelings, not what is on screen, not what the app does.
+- **He reacts first.** His face changes before he speaks, and often the face is the whole reply.
+- **He sounds 21, right now.** Easy, current, dropped words: "bro", "yo", "this my app". Slang the way a
+  person uses it, a little, never stacked to sound young. Never "aight" or "ight", never a long
+  drawn-out "nah".
+- **Normal volume with other people.** Size comes from speed, the face and the body. Capitals are for home,
+  alone, or the rare moment he has to be heard across a room.
+- **No lectures, in or out.** He does not give advice either. If he helps, he does the thing.
+- **Lines he owns, rarely:** "This can't be real." (delighted, usually about a friend) "Yeah, what's up."
+  "I'm just tired." "They left."
+- **He mixes languages.** A word or two of French or Arabic, wrong, said with total confidence, to someone
+  who speaks it properly and answers in English.
+- **Every line carries a note for the face and the voice:** hyped, smug, leaking a laugh, wounded, honestly
+  asking, quiet. A line with no note comes out flat, and flat is a defect.
+- **He does not pitch to the lens.** Inside the story he talks to people. The tag after the glitch is the
+  one place he talks to the viewer.
 
 ## Maya
 
-- Sweet, bright, earnest. Funny, but not a troll. She believes in things he shrugs at, love most of all.
-- She answers the words, not the meaning. She notices the one concrete detail he missed.
-- She says the true thing plainly, and it lands harder because she means it kindly.
+- Warm, bright, quick when she is excited, a little breathless. Her long lines are enthusiasm, never a
+  telling-off.
+- She answers the plain question sincerely, and the sincere answer is better than his joke.
+- She says the true thing kindly and does not notice it landed like a brick.
+- She notices the one concrete detail he missed, and anything to do with who likes whom.
+
+## Six exchanges (for the sound of them; never reuse a line)
+
+**1. The plain question.**
+```
+FRIEND: I don't even care what she thinks.
+NIO: What does she think?
+FRIEND: That I text too much, which is crazy, because she's the one who...
+[The corner of Nio's mouth.]
+FRIEND: ...I hate you.
+```
+
+**2. The wrong take.** (He knows the number. He always knows the number.)
+```
+NIO: I think the moon's closer than they say.
+FRIEND: Than who says?
+NIO: The moon guys.
+FRIEND: NASA? Bro, it's like... [both hands out, measuring the solar system]
+[Nio watches the hands, delighted, for a long time.]
+NIO: Three hundred eighty-four thousand kilometres. I just like when you do the hands.
+```
+
+**3. The yes.**
+```
+MAYA (answering her phone, posh): Maya's office.
+NIO (instantly, a tired lawyer): Yes, I'm calling about a grey hoodie she's been holding since March.
+MAYA: She's in a meeting.
+NIO: I'll hold.
+[He holds. He does not blink. She breaks first.]
+```
+
+**4. The blind spot.**
+```
+MAYA: They're on a break.
+NIO: From what?
+MAYA: From each other.
+NIO: So they broke up.
+MAYA: No. A break.
+NIO: Who's timing it?
+MAYA: Stop.
+NIO: I'm asking.
+[She checks his face. He is asking.]
+MAYA: Oh my god. You're asking.
+```
+
+**5. The dial, and the earbud.**
+```
+[Both earbuds in. He is cooking. He drops to one knee and serenades the pepper grinder, mouthing every
+word, and screams the big note into a spatula. Doorbell. One earbud out. Music gone. A calm face.]
+NIO (opening the door): Hey. What's up.
+```
+
+**6. Light mouth, heavy hands.**
+```
+[A friend, grey in the face, on a bathroom floor. Nio was doing an impression of him four seconds ago.
+Now his sleeves are up and he is cleaning, fast, saying nothing.]
+FRIEND: You're a good...
+NIO: Don't. You owe me shoes.
+```
+
+## The Nio checks (run on every script he is in)
+
+1. **The game.** In each scene, who is he playing with, and what is the game? If there is none, he is
+   furniture. Give him one or cut the scene.
+2. **The question.** Does he ask at least one?
+3. **The leak.** Is there a moment we see he is enjoying it before the others do?
+4. **The dial.** Is his size right for who is watching? Capitals in public are a defect.
+5. **Mouth and hands.** Did he say something caring? Move it to an action.
+6. **The announcement.** Does he state a plan, a feeling or a feature? Cut it.
+7. **Cover the names.** Could anyone else have said this line? Then it is not his yet.
+8. **Maya.** Is she sincere, and is she funnier for it? If she is trolling, it is the wrong character.
 
 ## The best friend (phone)
 

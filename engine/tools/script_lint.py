@@ -127,6 +127,9 @@ def main():
     if "[" in body and faces < 3:
         warns.append(f"only {faces} bracketed cues mention Nio; write his face changes (at least three)")
 
+    if "Logline:" in raw and not re.search(r"^Nio's game:\s*\S", raw, re.M):
+        fails.append("the header has no \"Nio's game:\" line (who he is playing with, the game, and when it stops)")
+
     pxi_said = 0
     for who, said in lines:
         low = said.lower()
