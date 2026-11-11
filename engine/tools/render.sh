@@ -10,6 +10,11 @@
 #   engine/tools/render.sh cover <Comp> <frame> [outbase]       <outbase>.png 1080x1920, <outbase>_wide.png 1920x1080 (blurred fill), <outbase>_grid.png 1080x1440 centre crop (IG grid check)
 #                                                                 default outbase studio/anim/out/<Comp>_cover; PXI_SCALE=0.5 renders loop/cover at half size (tests only)
 #   engine/tools/render.sh check <video.mp4>                  has an audio track, is not silent or too quiet, does not open on black
+# Other checks and tools (each prints RESULT PASS/FAIL):
+#   engine/tools/av_check.sh <video>                 black, frozen, silent start, clipping, loudness
+#   engine/tools/dead_check.sh <video> [--holds t,..] [--lines lines.json]   static stretches > 1.2 s, gaps between lines > 1 s
+#   python3 engine/tools/text_check.py <Comp> [--props json]   glyphs the font lacks, stray characters after numbers, reading time
+#   engine/tools/voice.sh <jobs.json>               the only way to make a voice line (setup: bash engine/setup.sh voice)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 ANIM="$ROOT/studio/anim"
@@ -40,6 +45,8 @@ if [ "$mode" = check ]; then
     if [ "$(echo "$b < 1" | bc)" = 1 ]; then echo "FAIL opens on black"; fail=1
     else echo "WARN black from ${b}s (fine if it is the end or on purpose)"; fi
   done
+  # every voice line must come from engine/tools/voice.sh with the locked settings (BACKLOG 11)
+  python3 "$ROOT/engine/tools/voice_check.py" "$v" || fail=1
   [ "$fail" = 0 ] && echo "RESULT PASS" || echo "RESULT FAIL"; exit "$fail"
 fi
 [ -d "$ANIM/node_modules" ] || (cd "$ANIM" && npm ci --no-audit --no-fund >/dev/null)

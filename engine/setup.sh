@@ -5,6 +5,7 @@
 #   voice:  the pinned Qwen3-TTS VoiceDesign stack (bible/characters.md "How a voice line is made")
 # Never installs or upgrades qwen-tts with -U; it is the pinned wheel with --no-deps.
 set -euo pipefail
+export PIP_DISABLE_PIP_VERSION_CHECK=1
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PXI_VOICE_VENV="${PXI_VOICE_VENV:-$HOME/.pxi-voice}"            # venv (persists with the home dir)
 export HF_HOME="${HF_HOME:-$HOME/.cache/pxi-hf}"                # model cache, outside the repo
@@ -28,6 +29,7 @@ setup_render() {
 
 setup_voice() {
   command -v ffmpeg >/dev/null || setup_render
+  command -v sox >/dev/null || { log "installing sox"; $SUDO apt-get install -y -qq sox >/dev/null || true; }
   if [ ! -x "$PXI_VOICE_VENV/bin/python" ]; then
     log "creating venv $PXI_VOICE_VENV"; python3 -m venv "$PXI_VOICE_VENV"
   fi

@@ -26,3 +26,16 @@ it is done. Do these in a normal thread, one item at a time. None of it needs th
 
 Note, Nov 11: the look is being redesigned and no rig is chosen. Items 1, 3, 12, 13, 15, 16 and 17 depend on the
 rig and wait for that choice. The others can start now.
+
+Built Nov 11 (proof in each tool's test; nothing here changes how an episode looks):
+- 2 `engine/tools/av_check.sh`: fails a clip with 1 s of black. 18 `engine/tools/dead_check.sh`: flags a 2 s static wall.
+- 4 `src/lib/cut.ts` and `render.sh draft|final --cut short|long`: PilotOnePhoto renders a 35 s short cut and a
+  44 s long cut from one shot list. A shot marked `'long'` or `'short'` is in that cut only.
+- 5, 9, 11 `engine/setup.sh all|render|voice`, `engine/tools/voice.sh <jobs.json>` (locked settings in
+  `voice_lock.json`, a sidecar per line), and `voice_check.py` inside `render.sh check`. A test Nio line came out at
+  -16.0 LUFS. Every line made before the wrapper has no sidecar, so older cuts now fail `check` until re-voiced.
+- 6, 14 `render.sh loop` (crossfaded, last-to-first step as small as a normal frame step) and `render.sh cover`
+  (vertical, wide, and the Instagram grid crop).
+- 7 "Pulling the numbers (Metricool)" in `engine/stages/L-learn.md`, tested on real posts.
+- 10 `engine/tools/text_check.py <Comp>`: reads the text the render actually draws. Open question: spoken
+  subtitles held only while the line plays fail the reading-time floor; the pilot fails it on all 11 lines.
