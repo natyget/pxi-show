@@ -39,6 +39,29 @@ the profile.
 - `engine/playbook.md`, rewritten in full, 40 lines at most.
 - At most one proposal for the founder, in the report, with the numbers that support it.
 
+## Promotion (paid)
+
+- A release is proposed for paid promotion on Instagram and TikTok only after it has won without it: watch time
+  above the account's average, and sends and follows from people who did not follow. Never boost a release to
+  rescue it.
+- The proposal names the post, the numbers, the audience, a daily budget and an end date. The founder approves
+  each one. A run never spends, raises a budget or starts a campaign without that approval.
+- A boosted post is tagged in the ledger, and its paid and unpaid numbers are kept apart. Judge it on follows,
+  profile visits and app store clicks for each dollar, not on views.
+- Stop a promotion when its cost for each follow or click is worse than the last one's for three days.
+
+## Comments and search
+
+- Each week, read the comments on the releases in the ledger. Reply as the brand, short and human, and flag
+  anything sensitive for the founder.
+- Collect what people keep asking or saying in their own words: what the app is, whether it is in their city,
+  how the map or the photo matching works, what they searched for. Put the recurring ones in
+  `engine/audience-notes.md` with a count.
+- Once a month, turn those into at most five proposals for the website (pages, headings, questions to answer,
+  the words people actually use) and hand them to the website's own thread. The show's runs do not edit the
+  website.
+- The same notes feed the premise bank: a problem viewers keep describing is a premise.
+
 ## Experiments
 
 | Id | Variable | Arms | Releases so far | State | Result |

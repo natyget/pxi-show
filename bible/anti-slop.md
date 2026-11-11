@@ -52,6 +52,13 @@ Run by a reviewer with no context, on the contact sheets and the audio, shot by 
 - Mouths close on b, p and m, and the mouth moves only while the line is heard.
 - No clipping, no dead air, room tone from the first frame.
 
+**Craft** (`bible/craft-library.md`)
+- Each device reads as what it is: picture, sound and the way in and out all change together.
+- Nothing the viewer must understand is faster than the pacing floors. The stopwatch test passes.
+- No standing label, no unneeded text, no stray characters after numbers or anywhere else.
+- The voices are the approved ones, with no bubbly, metallic or underwater sound.
+- Curves are smooth under the pixels. Hands are shaped, not cylinders. The file is not soft or blocky.
+
 **Writing**
 - The dialogue passes `engine/tools/script_lint.py` and `.claude/skills/writers-room/tells.md`.
 - Captions are written by a person's rules: the joke first, plain words, no hashtag wall, nothing that sounds

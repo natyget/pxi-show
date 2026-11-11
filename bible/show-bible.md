@@ -115,3 +115,23 @@ Founder notes win over everything else and are dated. Where an older line here d
     making a platform he thinks would have solved his problems and will in future and inviting us to use it"
   - "i dont even know what the point of this new plot you made is i need you to have the engine produce genuinly
     interesting stories"
+- **Nov 10, evening (on the second pilot build, two reels), word for word:**
+  - "for some number every number has this SS character after it please remove it."
+  - "the characters are speaking in some weird robo like buble voice its not the voices i approved i think
+    something failed at some point."
+  - "i also like the story but its too fast and somethign hard to follow. and the flash back and all that are not
+    obvious enough. the second video ha sthe same audio issue. i like the production tho."
+  - "i dont want a pill on top saying what im builidng etc just have it text whenver its needed not anywhere and
+    everywhere for no reason."
+  - "i think thumbnails would be nice for videos thats something i forgot to mention."
+  - "at some point in the first video there was a checklist and its hard to understand what it is without
+    narration."
+  - "the flash back and be more obvious to sound and look like flash back look up on best practice cinematic
+    effects techniques on each thing it tries to tell and do and lets slowly build up our library"
+  - "overal this is a real jump towards that direction the video seem low quality but were not going for low
+    quality but heihg quality pixilated look and smooth curve looks when it comes to the curvature but still
+    pixel effect and not cylynder for fingers"
+  - "please redo the video little imporved with proper voice and lets start scheduling our first post as soon as
+    i approve the next video."
+  - "lets ensure we still are looking out to promote as paid ads on tiktok insta and seo if things are going well
+    learning and keep refining our website for seo looking for what comments say and all"

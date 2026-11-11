@@ -25,6 +25,11 @@ gate_failures: 0
   format and the first holiday episode is New Year's Eve.
 - Make `main` the default branch of this repo, so scheduled runs can save state (BACKLOG item 8).
 
+## Ready to schedule
+
+- Stage 6 is written. The first post is scheduled in the run after the founder approves the next cut, provided
+  the Metricool connector is on for that run.
+
 ## Founder approvals (word for word, dated)
 
 - (none yet)

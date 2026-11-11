@@ -101,6 +101,14 @@ people, places, albums, stamps. They go up slowly and never reset. That is what 
 - **The series remembers.** Plants and payoffs live in `bible/callbacks.md`, dates in `bible/timeline.md`.
   Relationships move slowly and nothing resets.
 
+**Craft** (`bible/craft-library.md`). Each storytelling device has one treatment, used the same way every time:
+a flashback changes its picture, its sound and its way in and out together, so nobody has to wonder. The library
+also holds the pacing floors (one new thing a shot, enough time to read every text and screen), the rule that
+text appears only where the picture cannot say it and never as a standing label, the look (smooth curves under
+the pixels, shaped hands, a sharp file), the voices (the approved ones only, never a stand-in), and how a cover
+is made. It grows: a device is written into the library before its first use, and corrected when a release
+shows it did not read.
+
 ## 5. What we release
 
 `engine/formats.md` is the menu. The spine is the **episode**: one story, built once as a long cut of up to three
@@ -112,6 +120,7 @@ made from frames and phone screens.
 - **No "Part 1, Part 2" labels and no chopped episodes.** Each release is whole. "Stay tuned" is said only when
   a story really ends on a cliffhanger, and early on it is worth asking viewers to follow for the next one.
 - **No intro and no outro** unless a story calls for one.
+- **Every video ships with a cover made on purpose.**
 - **Looks, hooks and formats are tested** (section 9). The locked style holds for episodes. Dreams and fillers
   are where a different look is allowed, on purpose.
 
@@ -192,6 +201,11 @@ The house learns from its own numbers every week (`engine/learning.md`).
 - The mix follows the results: most of the output goes to what is working, a fifth to variations, a tenth to
   something new.
 - What is learned is written into `engine/playbook.md`, a single page the writing and packaging stages read.
+- **Paid promotion follows winners.** A release that has already won without it is proposed for promotion on
+  Instagram and TikTok with its numbers, a budget and an end date. The founder approves each one, and no run
+  ever spends without that.
+- **Comments feed the website and the stories.** What viewers keep asking, in their words, is collected every
+  week, turned into website proposals for search once a month, and into premises at any time.
 - Learning changes hooks, cuts, covers, captions, calls to action, timing and the format mix. It never changes
   the characters, the humor doctrine or the locked style. Those are the founder's.
 
@@ -240,6 +254,8 @@ A proposal until the founder confirms it, and the learning loop adjusts it after
 
 ## 13. Change log
 
+- 2026-11-11: craft library added after the founder's review of the second pilot build (devices, pacing, text,
+  look, voices, covers). Paid promotion of winners and comment-led website proposals added to the learning loop.
 - 2026-11-10 (later): story doctrine added after the founder rejected the first pilot build as pointless and
   silent. Nio is now PXI's maker. Cold read, sound-off and has-sound gates added.
 - 2026-11-10: first draft, from the Nov 9 session, the bible as it stood, and the founder's notes of Nov 9 and

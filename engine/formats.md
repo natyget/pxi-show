@@ -24,6 +24,8 @@ in the slot named here, and every format goes through the accident check before 
   generic way. Asking viewers to follow for the next episode is allowed when there is a next episode.
 - **The call to action is Nio's**, in his voice, and it changes every time. The standing idea: get PXI so you can
   see what is on near you and come to his things. The current best versions are in `engine/playbook.md`.
+- **Every video has a made cover** (`bible/craft-library.md`, Thumbnails). Never a random frame.
+- **No standing label on screen.** Text appears only where the picture cannot say it.
 - **Sound off works.** The story reads from the picture and the subtitles.
 
 ## The cuts of an episode

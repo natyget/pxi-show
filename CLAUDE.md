@@ -26,6 +26,9 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
   five seconds the viewer knows what he wants; by the end they can say the point in one sentence. A script that
   fails the cold read does not go forward, however funny it is.
 - **Every file sent to the founder has sound, is loud enough, and reads with the sound off.** Run `engine/tools/render.sh check`.
+- **Devices, pacing, text, look, voices and covers follow `bible/craft-library.md`.** A flashback looks and
+  sounds like a flashback. Nothing the viewer must understand goes by faster than the floors there. No standing
+  label on screen. Approved voices only, never a stand-in. Smooth curves under the pixels, shaped hands.
 - **Humor is deadpan and grounded** (`bible/humor.md`): sincere commitment to a reasonable-sounding plan, polite
   people going along, held silences. No random objects, no non sequiturs, no wacky tone, no winking.
 - **Nio is sharp, vain and certain. He is never a goof and never stupid.** He is good-looking.
@@ -49,7 +52,8 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - Read only what the stage card lists. Never open `.wav`, `.mp4`, `package-lock.json`, `node_modules`,
   `studio/anim/src/audio.json`, `studio/voice/`, `studio/style-test/`, `bible/gumball-reference.md`, or the drafts
   in another episode's `room/` folder.
-- No web research. No studying references. The craft is already in the bible. Only PLAN may look up a date.
+- No web research. No studying references. The craft is already in the bible. Only PLAN may look up a date, and BOARD
+  may look up a storytelling device that is not yet in `bible/craft-library.md`.
 - Use the tools, not your head, for mechanical work:
   - `python3 engine/tools/script_lint.py episodes/<id>/script.md` checks word count, runtime, line rhythm and
     banned phrases.
@@ -71,7 +75,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 | `engine/formats.md`, `engine/calendar.md` | The format menu and the holiday calendar |
 | `engine/learning.md`, `engine/playbook.md` | The results ledger, and the one page of what is working now |
 | `engine/BACKLOG.md`, `engine/ROUTINES.md` | Tools still to build, and the scheduled tasks' exact text |
-| `bible/` | Story, humor, characters, dialogue, product truth, look, director's playbook, QA checklist, canon |
+| `bible/` | Story, humor, the craft library, characters, dialogue, product truth, look, director's playbook, QA checklist, canon |
 | `.claude/skills/writers-room/` | The staged writing method, rubric and tells |
 | `episodes/<id>/` | Script, shots, final render and contact sheet for each episode |
 | `studio/anim/` | Remotion and three.js project: `src/world` sets and rigs, `src/ui` phone screens, `src/lib` helpers |

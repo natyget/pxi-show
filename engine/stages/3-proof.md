@@ -6,7 +6,7 @@
 Build only the shots marked PROOF in `shots.md`, at full quality. This is the test of whether the piece plays
 before the rest is built.
 
-**Read:** `episodes/<id>/shots.md`, `bible/style-lock.md`, `bible/director.md` (Acting), and the composition the
+**Read:** `episodes/<id>/shots.md`, `bible/craft-library.md`, `bible/style-lock.md`, `bible/director.md` (Acting), and the composition the
 style lock names as the template. Open files in `studio/anim/src/world/` only when you call them.
 
 **Do:**
@@ -18,7 +18,8 @@ style lock names as the template. Open files in `studio/anim/src/world/` only wh
    questions: which accident-check items fail, what is strange that is not in the ledger, and at which second a
    viewer laughs. The PROOF shots must include the first ten seconds, so the reviewer also says, from the
    pictures and subtitles alone, who this is and what he wants. If it cannot, that is a fail.
-4. `engine/tools/render.sh check` on the clip. It must have sound.
+4. `engine/tools/render.sh check` on the clip. It must have sound, in the approved voices only. If the approved
+   voice cannot be made in this session, stop as `BLOCKED`. Never use a stand-in voice.
 
 **Gate:** the accident check is clean, nothing strange is outside the ledger, the frames match the golden
 frames, and the reviewer names a second where a viewer laughs. Clean but not funny is a script failure: set the
