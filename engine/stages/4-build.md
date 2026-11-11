@@ -10,7 +10,7 @@ subagent. The run itself renders, runs the checks and updates the state.
 1. Build the remaining S shots first, a scene at a time, drafting only the frames that changed. Then the L shots.
 2. Sound: room tone from frame 1, voices on their shots, music and effects synthesised in code as in
    `studio/anim/tools/`. No dead air, no clipping. A flat read of a line is re-performed, not kept.
-   Only the designed voices in `bible/characters.md`, made the way it says, clean. No stand-in voice, ever.
+   Only the designed voices in `bible/characters.md`, made and treated the way it says. No stand-in voice, ever.
 3. Render the short cut: `engine/tools/render.sh final <Id> episodes/<id>/<id>-short.mp4`. Then the long cut
    when its shots are done.
 4. `engine/tools/render.sh sheet` for the contact sheets, saved in `episodes/<id>/`.

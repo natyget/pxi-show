@@ -18,7 +18,6 @@ gate_failures: 0
 - Pick a look. Owned by the look thread; the first three options were rejected on Nov 11 ("ai slop").
 - Who Nio is, how he talks and the writer's role are owned by the thread "Write Nio's character and stories".
   `bible/characters.md` holds the founder's answers of Nov 11 until that thread's output replaces it.
-- Voices are clean, without the walkie-talkie colour, until the founder has heard both and picks.
 - How often an episode may have no PXI in the picture. Working answer: at most one in four, never a holiday.
 - The best friend has no approved voice. Until one is picked he appears as text on Nio's phone.
 - Make `main` the default branch of this repo, so scheduled runs can save state (BACKLOG item 8).
@@ -29,7 +28,8 @@ gate_failures: 0
 ## Decided
 
 
-- Voices (founder, restated Nov 11): the designed Qwen3-TTS voices for Nio and Maya, in `bible/characters.md`.
+- Voices (founder, restated Nov 11): the designed Qwen3-TTS voices for Nio and Maya, in `bible/characters.md`,
+  with the walkie-talkie colour (picked by ear on a decision card, Nov 11).
 - Backlog tools (founder, Nov 11: "yes i say yes to that too"): to be built in their own thread on a cheaper
   model.
 - Push notifications are on and Metricool is connected (founder, Nov 11).

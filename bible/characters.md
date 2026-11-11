@@ -114,11 +114,10 @@ only as text on Nio's screen.
   performance comes from: "Hyped, bragging, can't stop smiling." "Devastated, quiet, like it is the worst thing
   that has happened to anyone." A line without an acting note comes out flat, and flat is a defect.
 - **In the text sent to the tool, PXI is written `pixie`.** Nothing with "aight", "ight" or a drawn-out "nah".
-- **Treatment:** clean. The file is trimmed and levelled to −16 LUFS and nothing else. The handoff the
-  founder approved also had a walkie-talkie colour (`studio/voice/fx2.py`, roles `dnio` and `dmaya`: band-pass,
-  bit-crush, vibrato, no pitch shift). The founder then called a pilot's voices "weird robo like buble voice"
-  (Nov 10), and `bible/craft-library.md` treats any bubbly or metallic voice as a defect. So the colour stays
-  off until the founder has heard both and picks (open decision in `engine/STATE.md`).
+- **Treatment:** the walkie-talkie colour. The founder heard clean and walkie samples side by side and picked
+  walkie (decision card, Nov 11). Chain: approved per-character pitch 0, trim, the walkie colour (band-pass
+  280-3500 Hz, light bit-crush, vibrato, soft clip; `WALKIE` in `studio/voice/clean.py`), loudnorm -16 LUFS.
+  Dev (always on a video call) adds a light phone band on top. Flashback lines add light reverb.
 - **Output:** `public/vo/<key>.wav`, 48 kHz mono, with the 12 fps mouth envelope merged into `src/audio.json`.
 - **Never:** the earlier Chatterbox and Kokoro picks (`am_puck`, `af_river` and the rest), any other tool, or
   any stand-in. If this voice cannot be made in the session, the stage is `BLOCKED`.

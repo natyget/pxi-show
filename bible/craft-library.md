@@ -187,7 +187,8 @@ The founder, Nov 11: "the facial expression are gone and gumball is expressive t
   recorded in `bible/characters.md`, with an acting note on every line. There is no fallback voice. If the approved voice cannot be produced in this session,
   the stage stops as `BLOCKED`. A placeholder or robotic voice never goes into a cut that anyone sees.
 - The only effect on a voice is the one written down for that character. Reverb is for flashbacks. Anything
-  that makes a voice sound bubbly, metallic or underwater is a defect.
+  that makes a voice sound bubbly, metallic or underwater is a defect. The one exception is the show's
+  walkie-talkie colour, which the founder picked by ear on Nov 11 (see `bible/characters.md`, Treatment).
 - Every new batch of lines is compared by ear with the approved reference before it is used.
 
 ## Thumbnails
