@@ -3,7 +3,7 @@
 **Model:** the run itself (Sonnet). Captions may be drafted by one **Haiku** subagent given the script and the
 playbook.
 
-**Read:** `episodes/<id>/script.md`, `bible/craft-library.md` (Thumbnails), `engine/playbook.md`, `engine/formats.md`, `bible/callbacks.md`,
+**Read:** `engine/reviewer.md`, `episodes/<id>/script.md`, `bible/craft-library.md` (Thumbnails), `engine/playbook.md`, `engine/formats.md`, `bible/callbacks.md`,
 `bible/timeline.md`.
 
 **Do:**
@@ -17,7 +17,9 @@ playbook.
 3. Cut the cheap releases this episode pays for: one or two LOOPs from takes and one STILL or carousel. List
    them in `post.md` with their captions.
 4. Append to `bible/timeline.md` what is now canon. Add new plants to `bible/callbacks.md`, mark paid-off ones.
-5. Run `engine/tools/render.sh check` on every file you are about to send. Never send the founder a file that
+5. **The stranger.** Run `engine/reviewer.md` on each video with its cover. A FAIL is fixed and re-run once;
+   a second FAIL is `BLOCKED`. Put the stranger's one-sentence answer at the top of the message to the founder.
+   Run `engine/tools/render.sh check` on every file you are about to send. Never send the founder a file that
    fails it. Put the Retell line from the script at the top of the message, so the point is clear before play.
 6. **Ask the founder.** Post the short cut (and the long cut if ready) with its cover in the thread with a push notification,
    and one question: "Approve to schedule?" List the dates. Then stop.

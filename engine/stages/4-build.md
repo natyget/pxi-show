@@ -22,6 +22,8 @@ subagent. The run itself renders, runs the checks and updates the state.
    lists any on-screen text that is unneeded, unreadable or has stray characters.
 6. Fix what failed, re-render those frames, and run the reviewer once more on the fixed shots only.
 
+7. Compare the faces with the golden frames. Character colours come only from `Character.tsx`.
+
 **Gate:** the cut has sound, it reads with the sound off, `bible/qa-checklist.md` and the accident check pass with no hit, and nothing strange is outside the
 ledger. A new kind of defect is added to the checklist and its log in the same run. Two failed reviews: write
 `BLOCKED` with the failing shots, and stop.

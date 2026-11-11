@@ -181,6 +181,11 @@ goes back to WRITE before any more is spent animating it.
 **A gate that fails twice stops the line.** The run writes `BLOCKED` and the exact reason in `STATE.md` and
 reports it. It does not try a third time and it does not lower the gate.
 
+**The stranger.** Before the founder is asked, the finished video and its cover are shown to a reviewer who
+knows nothing and is given only what a viewer would get (`engine/reviewer.md`). It says what it thinks it
+watched, where it got lost, what is over-explained, which words a person would not write, and whether each
+character is the same person as in the last video. If it fails, the piece is fixed, not sent.
+
 **Approval.** When a release is packaged, the founder gets a notification in the Claude app with the video
 attached and one question. Nothing is scheduled, posted or sent anywhere until the founder answers. The answer is
 recorded word for word. After three episodes in a row approved without notes, the founder can choose to let the cheap formats
@@ -242,10 +247,12 @@ stage card with the date.
 A proposal until the founder confirms it, and the learning loop adjusts it after that.
 
 - **Until the pilot is approved:** one planning run a week. Nothing is published.
-- **Replication trial:** one line run a day, one episode at a time, no deadline pressure.
-- **Production:** one episode a week and three or four cheap releases between episodes, so the account posts
-  most days. Holidays take the episode slot for their week. Raise it to two episodes a week only after three in
-  a row pass review on the first build.
+- **Replication trial:** the line runs twice a day, one episode at a time, until three in a row pass.
+- **Production:** a post every day and at least one long video a week. Each week is one episode (the long cut on
+  YouTube, the short cut everywhere) and six cheaper releases, five of them cut from material the episode
+  already made (`engine/formats.md`). The line runs twice a day to finish an episode a week, and a separate
+  cheap run makes each day's post. Holidays take the episode slot for their week.
+- A day is left empty before a weak piece is posted. Volume never lowers a gate.
 - **Platforms:** the short cut on Instagram, TikTok, YouTube Shorts and Facebook; the long cut on YouTube.
   Captions are written for each platform, not copied.
 - The show is separate from the daily meme posts and from the city creator accounts. Those have their own
@@ -254,6 +261,8 @@ A proposal until the founder confirms it, and the learning loop adjusts it after
 
 ## 13. Change log
 
+- 2026-11-11 (later): the stranger review of the finished video and cover, rules for words on screen, one set
+  of character colours for every video, and a daily cadence with one long video a week.
 - 2026-11-11: craft library added after the founder's review of the second pilot build (devices, pacing, text,
   look, voices, covers). Paid promotion of winners and comment-led website proposals added to the learning loop.
 - 2026-11-10 (later): story doctrine added after the founder rejected the first pilot build as pointless and

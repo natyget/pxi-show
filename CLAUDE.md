@@ -29,6 +29,9 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - **Devices, pacing, text, look, voices and covers follow `bible/craft-library.md`.** A flashback looks and
   sounds like a flashback. Nothing the viewer must understand goes by faster than the floors there. No standing
   label on screen. Approved voices only, never a stand-in. Smooth curves under the pixels, shaped hands.
+- **The stranger reviews every finished video and cover** (`engine/reviewer.md`): a reviewer who knows nothing,
+  given only what a viewer gets. If it is lost, finds text a person would not write, or sees a character look
+  different from the golden frames, the piece does not go to the founder.
 - **Humor is deadpan and grounded** (`bible/humor.md`): sincere commitment to a reasonable-sounding plan, polite
   people going along, held silences. No random objects, no non sequiturs, no wacky tone, no winking.
 - **Nio is sharp, vain and certain. He is never a goof and never stupid.** He is good-looking.
@@ -74,6 +77,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 | `engine/premise-bank.md` | Approved and candidate premises |
 | `engine/formats.md`, `engine/calendar.md` | The format menu and the holiday calendar |
 | `engine/learning.md`, `engine/playbook.md` | The results ledger, and the one page of what is working now |
+| `engine/reviewer.md` | The stranger: the last review of the finished video and cover |
 | `engine/BACKLOG.md`, `engine/ROUTINES.md` | Tools still to build, and the scheduled tasks' exact text |
 | `bible/` | Story, humor, the craft library, characters, dialogue, product truth, look, director's playbook, QA checklist, canon |
 | `.claude/skills/writers-room/` | The staged writing method, rubric and tells |

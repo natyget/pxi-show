@@ -135,3 +135,10 @@ Founder notes win over everything else and are dated. Where an older line here d
     i approve the next video."
   - "lets ensure we still are looking out to promote as paid ads on tiktok insta and seo if things are going well
     learning and keep refining our website for seo looking for what comments say and all"
+- **Nov 11 (on the pilot covers and the two reels), word for word:**
+  - "the text pilot dot no eveidence then 40 phones 0 photos is slop and ai sounding we should have tings that
+    make sense as text pleaase and why is rio skin tone different on one and two."
+  - "again i need you to have a reviewer seeing what is produced and think like a hman you know. as if he dont
+    know nothing and think does this amke sense, is this over explanied is this slop etc."
+  - "are we actually building our agent tho? because i need this to produce content on the daily for social and
+    one long format a week at least for social medai so we can get discovered as a platform and company"

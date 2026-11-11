@@ -6,7 +6,8 @@ usage: python3 engine/tools/script_lint.py episodes/<id>/script.md [--target 55]
 Reads dialogue lines of the form `NAME: text` or `NAME (note): text` or `NAME *(note)*: text`.
 Only the part of the file under a "## Script" heading is checked, if there is one. The "## Tag" section is
 not checked, because the tag is the one place where Nio may name PXI and ask the viewer to get it.
-Exit code 1 if anything FAILs. WARN lines are for judgment and do not fail the gate.
+Text the show itself puts on screen or on a cover is listed under "## Screen text" and checked for labels,
+number drama and capitals. Exit code 1 if anything FAILs. WARN lines are for judgment and do not fail the gate.
 """
 import re
 import statistics
@@ -63,6 +64,13 @@ def main():
     body = raw.split("## Script", 1)[1] if "## Script" in raw else raw
     body = re.split(r"\n---\s*\n|\n## ", body)[0]  # stops before "## Tag": the tag is where PXI is asked for
 
+    screen = []
+    if "## Screen text" in raw:
+        for row in raw.split("## Screen text", 1)[1].split("\n## ")[0].splitlines():
+            t = row.strip().lstrip("-* ").strip()
+            if t and not t.startswith("<"):
+                screen.append(t)
+
     lines, actions = [], 0
     for row in body.splitlines():
         s = re.sub(r"^\[LONG\]\s*", "", row.strip())
@@ -113,6 +121,17 @@ def main():
         fails.append(f"PXI is named aloud {pxi_said} times (at most once)")
     if sum(said.count("...") + said.count("…") for _, said in lines) > 2:
         warns.append("more than two ellipses in the dialogue")
+
+    for t in screen:
+        letters = [c for c in t if c.isalpha()]
+        if re.search(r"[\u00b7\u2022|]", t):
+            fails.append(f'screen text "{t}" (labels joined by a dot or bar; write what a person would say)')
+        if len(re.findall(r"\d+\s+[A-Za-z]+", t)) >= 2 and len(t.split()) <= 6:
+            fails.append(f'screen text "{t}" (number contrast as drama)')
+        if len(letters) >= 6 and sum(c.isupper() for c in letters) / len(letters) > 0.6:
+            fails.append(f'screen text "{t}" (capitals for effect)')
+        if re.search(r"\b(pilot|episode|part|ep)\b\s*\d*", t.lower()) and len(t.split()) <= 5:
+            fails.append(f'screen text "{t}" (an episode or series label)')
 
     speakers = {}
     for (who, _), n in zip(lines, counts):

@@ -8,7 +8,8 @@ is in the repo, so the task only has to point at it. Set them up in this project
 
 - **Model:** `claude-sonnet-5-5`
 - **Schedule:** Mondays 10:00 America/Chicago while the pilot is not approved. Change to every day at 10:00
-  once `engine/STATE.md` says `phase: REPLICATION` or `PRODUCTION`.
+  and 22:00 once `engine/STATE.md` says `phase: REPLICATION` or `PRODUCTION`. Two stages a day is what finishes
+  an episode a week.
 - **Notifications:** push on.
 - **Prompt:**
 
@@ -46,7 +47,27 @@ You plan and learn for the PXI LABS show. The repo natyget/pxi-show is attached.
 Change nothing in bible/. Schedule and post nothing.
 ```
 
-## 3. Project instructions
+## 3. Add "Daily post" once the pilot is approved
+
+- **Model:** `claude-sonnet-5-5`
+- **Schedule:** every day at 14:00 America/Chicago.
+- **Notifications:** push on.
+- **Prompt:**
+
+```
+You make today's cheap release for the PXI LABS show. The repo natyget/pxi-show is attached.
+
+1. Read CLAUDE.md and engine/STATE.md. If the phase is PILOT_LOCK, or the Queue has nothing for tomorrow other
+   than an episode, stop and say so in one line.
+2. Read engine/stages/D-daily.md and only the files it lists. Make the one release the Queue names for tomorrow.
+3. Commit and push engine/ and episodes/ changes to the repository's default branch. Push nothing else.
+4. Send the founder the piece with its cover and one question: "Approve to schedule for tomorrow?"
+
+Never schedule or post without the founder's approval of that exact piece, unless STATE.md records that the
+founder has allowed cheap formats to schedule without asking. Never use the top model.
+```
+
+## 4. Project instructions
 
 Replace the project's instructions with:
 

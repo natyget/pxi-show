@@ -98,6 +98,33 @@ The second pilot build was "too fast and something hard to follow". These are fl
   have is replaced or drawn in the fallback font. Stray characters after numbers are a font or formatting bug,
   and they fail the cut.
 
+## Words on screen and on covers
+
+The founder called "PILOT · NO EVIDENCE" and "40 phones 0 photos" slop and AI-sounding. Any text the show
+itself writes (stamps, covers, captions, titles, the tag) has to sound like a person.
+
+- **The friend test.** Would Nio, or a person texting a friend, actually write this? If it reads like a label,
+  a poster or a headline, rewrite it or remove it.
+- Write a plain, whole thought in lower case: "three months here and i'm not in one photo". Not "3 MONTHS. 0
+  PHOTOS."
+- **Never:** labels joined by dots or bars ("PILOT · NO EVIDENCE"); number contrasts as drama ("40 phones 0
+  photos"); clipped fragments; words in capitals for effect; episode or series labels on a cover; any phrase
+  that explains what the viewer is about to see.
+- A cover usually needs no words. If it has them, three at most, and they are something a character would say.
+- The app's own wording inside phone screens is copied exactly and is not rewritten by these rules.
+- Every string the show writes is listed in the script under `## Screen text` and checked by the lint.
+
+## The same people in every video
+
+Nio's skin tone differed between the two pilot reels. A character is one person everywhere.
+
+- Skin, hair, eye and clothing colours come only from the constants in `studio/anim/src/world/Character.tsx`.
+  No episode, shot or cover overrides them or passes its own colours.
+- Light and grade change the scene, not the person. After grading, a face in a normal scene must still match
+  the golden frame for that character. Only a declared device (a flashback, a dream) may shift it, and then
+  the whole frame shifts with it.
+- Every release is compared with the golden frames and with the previous release before it goes to the founder.
+
 ## Look
 
 The founder wants a high-quality pixel look, not a low-quality one: "smooth curve looks when it comes to the

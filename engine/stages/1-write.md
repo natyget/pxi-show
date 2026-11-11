@@ -34,6 +34,9 @@ INSERT: what the phone shows, in the app's exact words
 
 ## Tag
 <Nio to the viewer, after the button, 5 seconds at most. The PXI ask, in his voice.>
+
+## Screen text
+<every piece of text the show itself puts on screen or on the cover, one a line. Not the app's own wording.>
 ```
 
 Then:

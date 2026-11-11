@@ -36,7 +36,20 @@ in the slot named here, and every format goes through the accident check before 
 - Long cut: YouTube, and other platforms when the short cut has already won.
 - Each platform gets its own caption and cover. Nothing is cross-posted with another app's watermark.
 
-## A week in production (starting point, LEARN changes it)
+## A week in production
 
-One EPISODE or HOLIDAY, one FOURTH WALL, one FILLER or DREAM, and two or three LOOP or STILL posts cut from the
-episode. The cheap formats come from material the episode already made.
+The founder needs a post every day and at least one long video a week. A week is:
+
+| Day | Release |
+|---|---|
+| 1 | EPISODE: the long cut on YouTube, the short cut everywhere |
+| 2 | LOOP or STILL from the episode |
+| 3 | FOURTH WALL: Nio to the viewer, usually the map |
+| 4 | STILL or carousel: a phone screen or an album from his world |
+| 5 | FILLER or DREAM |
+| 6 | LOOP or STILL from the episode |
+| 7 | A second short cut of the episode with a different hook, or a FOURTH WALL for the next one |
+
+Five of the seven come from material the episode already made, which is what makes a daily post affordable.
+A holiday takes the episode slot for its week. LEARN changes the order and the mix. A day is left empty before
+a weak piece is posted.
