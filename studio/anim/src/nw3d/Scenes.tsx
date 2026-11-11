@@ -1,121 +1,163 @@
-// Nio's room and the test shots for the look.
+// Nio's room and the test stills for the look.
 import React from 'react';
-import { useCurrentFrame } from 'remotion';
 import { V, add, sub, mul, norm, cross, lerp } from './vec';
-import { Skel, NIO, NIO_OUTFIT, Outfit, sampleClip, mixMocap, solve, place, reach, lookAt, buildBody, Mocap } from './rig';
-import { Face, FACES } from './face';
-import { SdfShot, Scene3, Box, Obb, Cam3 } from './SdfShot';
+import { Skel, Prim, sampleClip, solve, place, reach, lookAt, buildBody, G } from './rig';
+import { Face, FACES, gaze } from './face';
+import { SdfShot, Scene3, Box, Obb, Cam3, Soft, Light, PW, PH } from './SdfShot';
+import { Character, NIO_CHAR } from './characters';
 
-// ---- the room (metres): x 0..3.8, y up, z 0..4.4. The window wall is z = 4.4. ----
+// ---- the room (metres): 3.8 wide, 2.6 high, 4.4 deep. The window wall is z = 4.4. ----
+// Positions are written as (s, y, z): s is the distance from the wall on the LEFT of the picture when you face
+// the window. (World x runs the other way, so X(s) converts.)
 export const ROOM: V = [3.8, 2.6, 4.4];
-export const LAMP: V = [3.25, 1.5, 3.85];
-const B = (c: V, h: V, col: string, obj: number, x: Partial<Box> = {}): Box => ({ c, h, col, obj, ...x });
-const legs = (cx: number, cz: number, hx: number, hz: number, top: number, col: string, obj: number): Box[] =>
-  [[-1, -1], [1, -1], [-1, 1], [1, 1]].map(([a, b]) => B([cx + a * hx, top / 2, cz + b * hz], [0.02, top / 2, 0.02], col, obj));
+const X = (s: number) => ROOM[0] - s;
+const P3 = (s: number, y: number, z: number): V => [X(s), y, z];
+const B = (s: number, y: number, z: number, hx: number, hy: number, hz: number, col: string, obj: number, x: Partial<Box> = {}): Box => ({ c: P3(s, y, z), h: [hx, hy, hz], col, obj, ...x });
+const WOOD = '#7a4638', WOOD_D = '#5e342c', WOOD_L = '#8f5540';
+const LAMP_AT = P3(0.3, 0.6, 2.8);
 export const ROOM_BOXES: Box[] = [
-  // couch under the window
-  B([1.5, 0.2, 3.85], [0.95, 0.2, 0.45], '#3d6b69', 1), B([1.5, 0.62, 4.24], [0.95, 0.3, 0.12], '#3d6b69', 1),
-  B([0.47, 0.33, 3.87], [0.11, 0.33, 0.47], '#35605f', 1), B([2.53, 0.33, 3.87], [0.11, 0.33, 0.47], '#35605f', 1),
-  B([1.07, 0.44, 3.8], [0.44, 0.05, 0.36], '#4a7c78', 2), B([1.93, 0.44, 3.8], [0.44, 0.05, 0.36], '#4a7c78', 2),
-  B([2.18, 0.62, 3.98], [0.17, 0.14, 0.06], '#a523ef', 3, { yaw: -14 }),
-  // coffee table
-  B([1.6, 0.36, 2.85], [0.46, 0.02, 0.27], '#6a5048', 4), ...legs(1.6, 2.85, 0.4, 0.21, 0.34, '#4f3b38', 4),
-  B([1.45, 0.405, 2.82], [0.035, 0.035, 0.035], '#e0a030', 5, { yaw: 25 }), B([1.86, 0.42, 2.93], [0.04, 0.045, 0.04], '#ece5db', 6),
-  // floor lamp
-  B([LAMP[0], 0.012, LAMP[2]], [0.13, 0.012, 0.13], '#2c2535', 7), B([LAMP[0], 0.72, LAMP[2]], [0.014, 0.7, 0.014], '#2c2535', 7, { noShadow: true }),
-  B([LAMP[0], 1.56, LAMP[2]], [0.17, 0.15, 0.17], '#f3dcae', 8, { glow: true }),
-  // shelf on the right wall, with the sneakers
-  ...[0.45, 0.9, 1.35].map((y) => B([3.64, y, 2.2], [0.16, 0.015, 0.62], '#4f3b38', 9)),
-  B([3.64, 0.7, 1.57], [0.16, 0.7, 0.015], '#3d2e2e', 9), B([3.64, 0.7, 2.83], [0.16, 0.7, 0.015], '#3d2e2e', 9),
-  ...([[0.45, 1.85, '#ece5db'], [0.45, 2.45, '#a523ef'], [0.9, 2.0, '#c56a3c'], [0.9, 2.5, '#ece5db'], [1.35, 1.9, '#3b3542'], [1.35, 2.35, '#e0a030']] as [number, number, string][]).flatMap(([y, z, c], i) => [
-    B([3.63, y + 0.05, z], [0.13, 0.035, 0.05], c, 20 + i), B([3.6, y + 0.1, z], [0.07, 0.03, 0.045], c, 20 + i)]),
-  // desk on the left wall, laptop open
-  B([0.36, 0.72, 2.0], [0.34, 0.02, 0.62], '#6a5048', 10), ...legs(0.36, 2.0, 0.3, 0.57, 0.7, '#4f3b38', 10),
-  B([0.4, 0.75, 2.0], [0.11, 0.008, 0.16], '#3a3144', 11), B([0.27, 0.86, 2.0], [0.008, 0.11, 0.16], '#2c2535', 11, { yaw: 0 }),
-  B([0.279, 0.86, 2.0], [0.002, 0.095, 0.145], '#c58cff', 12, { glow: true }),
-  B([0.42, 0.79, 2.42], [0.035, 0.05, 0.035], '#c56a3c', 13),
-  B([0.8, 0.25, 2.05], [0.2, 0.25, 0.2], '#3a3144', 14, { yaw: 20 }),
+  // bed along the window wall, headboard on the left
+  B(0.07, 0.56, 3.72, 0.05, 0.56, 0.64, WOOD, 3, { mat: 4 }),
+  B(1.12, 0.13, 3.72, 1.0, 0.13, 0.6, WOOD_D, 1, { mat: 1 }),
+  B(1.12, 0.33, 3.72, 0.98, 0.08, 0.58, '#cbb698', 2, { mat: 2 }),
+  // nightstand with two drawers
+  B(0.38, 0.29, 2.78, 0.3, 0.29, 0.24, WOOD, 4, { mat: 1 }), B(0.38, 0.575, 2.78, 0.32, 0.012, 0.26, WOOD_L, 4, { mat: 1 }),
+  B(0.38, 0.42, 2.535, 0.25, 0.1, 0.006, WOOD_L, 5, { mat: 1 }), B(0.38, 0.17, 2.535, 0.25, 0.1, 0.006, WOOD_L, 6, { mat: 1 }),
+  B(0.38, 0.42, 2.52, 0.025, 0.02, 0.012, '#3a221e', 7), B(0.38, 0.17, 2.52, 0.025, 0.02, 0.012, '#3a221e', 7),
+  // books on the nightstand
+  B(0.55, 0.605, 2.7, 0.1, 0.017, 0.07, '#8a3f3a', 8, { yaw: 8 }), B(0.55, 0.638, 2.7, 0.095, 0.015, 0.068, '#3f5f5c', 9, { yaw: -5 }), B(0.55, 0.668, 2.7, 0.09, 0.014, 0.065, '#b08a5c', 10, { yaw: 12 }),
+  // window sill, curtains, rod
+  B(1.95, 0.955, 4.34, 1.04, 0.022, 0.06, WOOD_L, 11, { mat: 1 }),
+  B(0.8, 1.52, 4.35, 0.18, 0.76, 0.028, '#8a5a68', 12, { mat: 3 }), B(3.1, 1.52, 4.35, 0.18, 0.76, 0.028, '#8a5a68', 13, { mat: 3 }),
+  B(1.95, 2.3, 4.36, 1.42, 0.014, 0.014, '#3a221e', 25),
+  // dresser on the right, two drawers
+  B(3.4, 0.4, 3.3, 0.32, 0.4, 0.5, WOOD, 14, { mat: 1 }), B(3.4, 0.81, 3.3, 0.34, 0.012, 0.52, WOOD_L, 14, { mat: 1 }),
+  B(3.4, 0.58, 2.795, 0.27, 0.14, 0.006, WOOD_L, 15, { mat: 1 }), B(3.4, 0.22, 2.795, 0.27, 0.14, 0.006, WOOD_L, 16, { mat: 1 }),
+  B(3.4, 0.58, 2.78, 0.025, 0.02, 0.012, '#3a221e', 17), B(3.4, 0.22, 2.78, 0.025, 0.02, 0.012, '#3a221e', 17),
+  // a small screen on the dresser, a shelf with a clock and a frame
+  B(3.52, 1.02, 3.55, 0.03, 0.17, 0.2, '#2c2126', 24), B(3.487, 1.02, 3.55, 0.004, 0.145, 0.175, '#3d4a66', 23, { glow: true }),
+  B(3.3, 1.62, 4.31, 0.32, 0.014, 0.085, WOOD_L, 18, { mat: 1 }),
+  B(3.18, 1.72, 4.32, 0.085, 0.085, 0.03, '#d9c7a4', 19), B(3.45, 1.71, 4.33, 0.06, 0.075, 0.02, WOOD_D, 20),
+  // the desk near the front, laptop open
+  B(3.42, 0.72, 1.3, 0.34, 0.02, 0.5, WOOD, 21, { mat: 1 }),
+  ...[[-0.3, -0.45], [0.3, -0.45], [-0.3, 0.45], [0.3, 0.45]].map(([a, b]) => B(3.42 + a, 0.35, 1.3 + b, 0.02, 0.35, 0.02, WOOD_D, 21)),
+  B(3.4, 0.748, 1.3, 0.11, 0.008, 0.16, '#2c2126', 22), B(3.53, 0.86, 1.3, 0.008, 0.11, 0.16, '#2c2126', 22), B(3.521, 0.86, 1.3, 0.002, 0.095, 0.145, '#7f62a8', 26, { glow: true }),
 ];
+const cp = (a: V, ra: number, b: V, rb: number, g: number, c: string, k: number, x: Partial<Prim> = {}): Prim => ({ a, ra, b, rb, g, k, c, ...x });
+const plant = (at: V, n: number, seed: number, pot: string): Soft => {
+  const prims: Prim[] = [cp(at, 0.05, add(at, [0, 0.1, 0]), 0.04, 0, pot, 0.01, { cutA: true, cutB: true, tex: 1 })];
+  for (let i = 0; i < n; i++) { const a = (i / n) * 6.283 + seed, r = 0.11 + 0.05 * ((i * 7 + seed * 3) % 3), up = 0.13 + 0.05 * ((i * 5) % 3);
+    prims.push(cp(add(at, [0, 0.1, 0]), 0.012, add(at, [Math.cos(a) * r, 0.1 + up, Math.sin(a) * r]), 0.036, 1, i % 2 ? '#56693c' : '#687848', 0.012, { tex: 1 })); }
+  return { prims, origin: at };
+};
+const candle = (at: V): Soft => ({ origin: at, prims: [
+  cp(at, 0.028, add(at, [0, 0.1, 0]), 0.028, 0, '#e6d5b2', 0.004, { cutA: true, cutB: true, em: 0.35 }),
+  cp(add(at, [0, 0.112, 0]), 0.014, add(at, [0, 0.14, 0]), 0.005, 1, '#ffd27a', 0.004, { em: 1 }) ] });
+export const ROOM_SOFTS: Soft[] = [
+  // pillows
+  { origin: P3(0.4, 0.5, 3.7), prims: [
+    cp(P3(0.44, 0.49, 3.32), 0.14, P3(0.44, 0.49, 4.1), 0.14, 0, '#d8c6a6', 0.05, { sq: 1.7, tex: 1 }),
+    cp(P3(0.3, 0.62, 3.42), 0.12, P3(0.3, 0.62, 4.0), 0.12, 1, '#e4d5b8', 0.05, { sq: 1.5, tex: 1 }) ] },
+  // the duvet: fat soft ridges, one edge hanging over the front of the bed, the top folded back
+  { origin: P3(1.5, 0.45, 3.7), prims: [
+    ...[0.98, 1.32, 1.66, 2.0].map((s, i) => cp(P3(s, 0.44 + (i % 2) * 0.012, 3.24), 0.17, P3(s, 0.44, 4.18), 0.17, 0, '#6f5169', 0.09, { sq: 1.6, tex: 2 })),
+    cp(P3(0.9, 0.3, 3.13), 0.15, P3(2.08, 0.3, 3.13), 0.15, 0, '#6f5169', 0.09, { tex: 2 }),
+    cp(P3(0.8, 0.5, 3.24), 0.07, P3(0.8, 0.5, 4.18), 0.07, 1, '#8c6c84', 0.03, { tex: 2 }) ] },
+  // bedside lamp
+  { origin: LAMP_AT, prims: [
+    cp(LAMP_AT, 0.07, add(LAMP_AT, [0, 0.02, 0]), 0.07, 0, '#3a221e', 0.004, { cutA: true, cutB: true }),
+    cp(LAMP_AT, 0.013, add(LAMP_AT, [0, 0.22, 0]), 0.013, 0, '#3a221e', 0.004),
+    cp(add(LAMP_AT, [0, 0.19, 0]), 0.145, add(LAMP_AT, [0, 0.41, 0]), 0.09, 1, '#f2b25c', 0.004, { cutA: true, cutB: true, em: 1 }) ] },
+  plant(P3(2.3, 0.98, 4.33), 6, 1, '#7c3f35'), candle(P3(2.68, 0.98, 4.33)),
+  plant(P3(3.48, 0.822, 3.2), 8, 2, '#7c3f35'), candle(P3(3.25, 0.822, 2.95)),
+];
+export const ROOM_LIGHTS: Light[] = [
+  { p: add(LAMP_AT, [0, 0.32, 0]), r: 1.15, col: [1.35, 1.02, 0.5], halo: 0.2 }, // the bedside lamp is always light 0
+  { p: P3(3.25, 0.99, 2.95), r: 0.5, col: [0.85, 0.5, 0.2], halo: 0.085 },
+  { p: P3(2.68, 1.15, 4.3), r: 0.42, col: [0.8, 0.48, 0.2], halo: 0.085 },
+  { p: P3(1.0, 2.3, 4.2), r: 0.75, col: [0.5, 0.33, 0.15] }, { p: P3(2.8, 2.3, 4.2), r: 0.75, col: [0.5, 0.33, 0.15] },
+  { p: P3(1.95, 1.6, 4.15), r: 1.5, col: [0.14, 0.17, 0.3] },
+];
+export const AMB: V = [0.35, 0.36, 0.45], AMB_CHAR: V = [0.88, 0.82, 0.86];
 
-// ---- posing helpers ----
-export type Act = { clip: string; t: number; clip2?: string; mixAmt?: number; stance?: number; arms?: number; upright?: number; at: [number, number]; yaw: number;
-  phone?: number; look?: V; lookAmt?: number; outfit?: Outfit; face: Face };
-export const pose = (a: Act): { skel: Skel; props: Obb[]; glow?: { p: V; c: V } } => {
-  let m: Mocap = sampleClip(a.clip, a.t);
-  if (a.clip2 && a.mixAmt) m = mixMocap(m, sampleClip(a.clip2, a.t), a.mixAmt);
-  let s = place(solve(m, NIO, { stance: a.stance ?? 1, arms: a.arms ?? 1, upright: a.upright ?? 0 }), a.at, a.yaw);
-  const props: Obb[] = []; let glow;
-  if (a.look) s = lookAt(s, a.look, a.lookAmt ?? 1);
+// ---- posing ----
+export type Act = { who?: Character; clip: string; t: number; at: [number, number]; yaw: number; face: Face;
+  stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string };
+export const pose = (a: Act) => {
+  const ch = a.who ?? NIO_CHAR, P = ch.body;
+  let s: Skel = place(solve(sampleClip(a.clip, a.t), P, { stance: a.stance ?? 1, arms: a.arms ?? 1, upright: a.upright ?? 0, seat: a.seat }), [X(a.at[0]), a.at[1]], a.yaw);
+  const props: Obb[] = []; const lights: Light[] = [];
+  if (a.look) s = lookAt(s, a.look, a.lookAmt ?? 1, P);
+  const fwd = norm(cross(s.side, s.chestDir));
+  if (a.crossed) {
+    // arms folded: each wrist goes to the far side of the chest, the hands lie flat along the opposite arm
+    const c = add(sub(s.neckBase, mul(s.chestDir, 0.19)), mul(fwd, 0.1));
+    s = reach(s, 0, add(c, add(mul(s.side, -0.03), mul(fwd, 0.012))), add(mul(s.side, 0.6), [0, -1, 0]), P, add(mul(s.side, -1), mul(fwd, -0.5)), s.chestDir);
+    s = reach(s, 1, add(c, add(mul(s.side, 0.035), add(mul(fwd, 0.04), [0, -0.04, 0]))), add(mul(s.side, -0.6), [0, -1, 0]), P, add(s.side, mul(fwd, -0.5)), s.chestDir);
+  }
   const ph = a.phone ?? 0;
   if (ph > 0.01) {
     // the phone floats where his eyes can read it; the hand is placed BEHIND it and the thumb comes round the front
     const body = norm([s.headFw[0], 0, s.headFw[2]]), rt = norm(cross([0, 1, 0], body));
-    const pc = add(s.neckBase, add(mul(body, 0.27), add(mul(rt, -0.07), [0, -0.1, 0])));
-    s = lookAt(s, pc, 0.4 * ph);
+    const pc = add(s.neckBase, add(mul(body, 0.25), add(mul(rt, -0.06), [0, -0.09, 0])));
+    s = lookAt(s, pc, 0.35 * ph, P);
     const z = norm(sub(add(s.headC, mul(s.headFw, 0.1)), pc)), x = norm(cross([0, 1, 0], z)), y = cross(z, x);
-    const wr = add(pc, add(mul(y, -0.095), mul(z, -0.03)));
-    const held = reach(s, 1, wr, add(mul(rt, -1), [0, -0.6, 0]), NIO, add(y, mul(z, 0.12)), add(mul(x, -0.5), mul(z, 0.55)));
-    // blend from the mocap arm into the hold
+    const wr = add(pc, add(mul(y, -0.1), mul(z, -0.03)));
+    const held = reach(s, 1, wr, add(mul(rt, -1), [0, -0.6, 0]), P, add(y, mul(z, 0.12)), add(mul(x, -0.5), mul(z, 0.55)));
     const mixS: any = { ...s };
     (['el', 'wr', 'tip', 'thumb'] as const).forEach((k) => { mixS[k] = [s[k][0], lerp(s[k][1], held[k][1], ph)]; });
     s = mixS;
     if (ph > 0.6) {
-      props.push({ c: pc, x, y, z, h: [0.037, 0.078, 0.005], col: '#221c2a', screen: '#c58cff' });
-      glow = { p: add(pc, mul(z, 0.03)), c: [0.24, 0.1, 0.4] as V };
+      props.push({ c: pc, x, y, z, h: [0.04, 0.082, 0.006], col: '#241a1e', screen: '#a523ef' });
+      lights.push({ p: add(pc, mul(z, 0.05)), r: 0.2, col: [0.3, 0.12, 0.5] });
     }
   }
-  return { skel: s, props, glow };
+  const o = ch.wardrobe[a.outfit ?? ch.outfit];
+  const soft: Soft = { character: true, origin: s.hips, prims: buildBody(s, P, ch.skin, o),
+    head: { c: s.headC, rt: s.headRt, up: s.headUp, fw: s.headFw, face: a.face, skin: ch.skin, hairA: ch.hairA, hairB: ch.hairB, blobs: ch.hair } };
+  const mid = lerp(s.an[0], s.an[1], 0.5);
+  const shadows = a.seat === undefined ? [[mid[0], mid[2], 0.2, 0.3]] : [];
+  return { soft, props, lights, shadows };
 };
-export const shot = (cam: Cam3, a: Act | null, lampOn = 1): Scene3 => {
-  if (!a) return { cam, room: ROOM, boxes: ROOM_BOXES, lamp: LAMP, lampOn, body: [], skel: null, skin: NIO_OUTFIT.skin, face: FACES.deadpan };
-  const p = pose(a); const o = a.outfit ?? NIO_OUTFIT;
-  return { cam, room: ROOM, boxes: ROOM_BOXES, lamp: LAMP, lampOn, body: buildBody(p.skel, NIO, o), skel: p.skel, skin: o.skin, face: a.face, props: p.props, glow: p.glow };
+// The studio: a plain mauve backdrop with flat light, for model sheets.
+export const studioShot = (cam: Cam3, acts: Act[]): Scene3 => {
+  const ps = acts.map(pose);
+  return { cam, room: ROOM, amb: [0.94, 0.94, 0.94], ambChar: [0.97, 0.94, 0.95], boxes: [], studio: true,
+    softs: ps.map((p) => p.soft), lights: [{ p: P3(1.2, 2.3, 0.6), r: 3, col: [0.08, 0.07, 0.06] }, ...ps.flatMap((p) => p.lights)],
+    props: ps.flatMap((p) => p.props), shadows: ps.flatMap((p) => p.shadows) };
+};
+export const shot = (cam: Cam3, acts: Act[], time = 0): Scene3 => {
+  const ps = acts.map(pose);
+  return { cam, room: ROOM, amb: AMB, ambChar: AMB_CHAR, boxes: ROOM_BOXES, time,
+    softs: [...ps.map((p) => p.soft), ...ROOM_SOFTS], lights: [...ROOM_LIGHTS, ...ps.flatMap((p) => p.lights)],
+    props: ps.flatMap((p) => p.props), shadows: ps.flatMap((p) => p.shadows) };
 };
 
-// ---- test stills: any clip, any angle, any face, with or without the shirt ----
+// ---- cameras, written in the same (s, y, z) as the room ----
+const C = (ps: V, at: V, fov: number): Cam3 => ({ pos: P3(...ps), at: P3(...at), fov });
 export const CAMS: Record<string, Cam3> = {
-  full: { pos: [1.9, 0.95, 0.15], at: [1.9, 0.68, 2.2], fov: 50 },
-  three: { pos: [0.9, 1.15, 0.6], at: [1.95, 0.8, 2.2], fov: 44 },
-  low: { pos: [2.5, 0.35, 1.0], at: [1.85, 0.95, 2.2], fov: 50 },
-  tight: { pos: [1.7, 1.25, 1.1], at: [1.9, 1.2, 2.2], fov: 40 },
-  side: { pos: [3.5, 1.1, 1.9], at: [1.9, 0.8, 2.2], fov: 42 },
-  back: { pos: [2.3, 1.3, 4.0], at: [1.9, 0.8, 2.2], fov: 46 },
-  couch: { pos: [2.7, 1.05, 1.9], at: [1.2, 0.62, 3.6], fov: 44 },
-  high: { pos: [0.5, 2.35, 0.4], at: [1.9, 0.4, 2.6], fov: 52 },
+  land: C([1.75, 1.15, 0.08], [1.75, 0.8, 4.4], 39),
+  wide: C([2.75, 1.4, 0.3], [1.6, 0.9, 3.6], 54),
+  full: C([2.0, 0.9, 0.12], [2.0, 0.8, 2.5], 46),
+  mid: C([2.3, 1.25, 0.9], [2.0, 1.1, 2.5], 36),
+  close: C([2.3, 1.38, 1.3], [2.0, 1.33, 2.5], 30),
+  low: C([1.4, 0.35, 1.35], [2.0, 1.0, 2.5], 50),
+  side: C([0.6, 1.1, 2.0], [2.0, 0.85, 2.5], 44),
+  high: C([3.3, 2.35, 0.5], [1.9, 0.4, 2.9], 52),
+  bed: C([2.0, 0.95, 0.35], [1.6, 0.7, 3.1], 44),
+  head: C([2.3, 1.44, 1.25], [2.0, 1.43, 2.5], 33),
+  face: C([2.3, 1.43, 1.25], [2.0, 1.41, 2.5], 27),
 };
-export const N3Still: React.FC<{ cam: string; clip: string; t: number; yaw: number; face: string; phone: number; top: boolean; stance: number; arms: number; upright: number; at?: number[] }> = (p) => (
-  <SdfShot scene={shot(CAMS[p.cam], { clip: p.clip, t: p.t, at: (p.at ?? [1.9, 2.2]) as [number, number], yaw: p.yaw, face: FACES[p.face], phone: p.phone, stance: p.stance, arms: p.arms, upright: p.upright,
-    outfit: p.top ? NIO_OUTFIT : { ...NIO_OUTFIT, top: null } })} />
-);
-export const N3_DEFAULT = { cam: 'full', clip: 'Idle_Loop', t: 0, yaw: 180, face: 'deadpan', phone: 0, top: true, stance: 0.3, arms: 0.4, upright: 0.8 };
-
-// ---- the proof clip: 192 frames at 24 fps, cut to tools/nw_clip_sfx.py ----
-export const N3_LEN = 192;
-const PURPLE_TEE: Outfit = { ...NIO_OUTFIT, top: { color: '#8a2fd0', rib: '#6a1fa8', loose: 0.016 } };
-const push = (c: Cam3, k: number): Cam3 => ({ ...c, pos: lerp(c.pos, c.at, k) });
-export const N3Clip: React.FC = () => {
-  const f = useCurrentFrame();
-  const t = Math.floor(f / 2) * 2; // the body moves on twos, like drawn animation
-  const base = { at: [1.9, 2.2] as [number, number], stance: 0.3, arms: 0.4, upright: 0.8 };
-  let sc: Scene3;
-  if (f < 52) { // low angle: reading the phone, it buzzes
-    const face = f < 30 ? gazeDown(FACES.deadpan) : f < 34 ? FACES.shock : gazeDown(FACES.shock, -0.4);
-    sc = shot(push(CAMS.low, f * 0.0012), { ...base, clip: 'Idle_Loop', t, yaw: 200, phone: 1, face });
-  } else if (f < 78) { // tight: he does not trust it
-    const face = f < 66 ? gazeDown(FACES.suspicious, -0.7) : FACES.suspicious;
-    sc = shot(push({ pos: [1.62, 0.98, 1.15], at: [1.9, 1.22, 2.2], fov: 40 }, (f - 52) * 0.002), { ...base, clip: 'Idle_Loop', t, yaw: 165, phone: 1, face });
-  } else if (f < 106) { // side: alone at home, he dances
-    sc = shot(CAMS.side, { ...base, clip: 'Dance_Loop', t: t - 78, yaw: 120, stance: 1, arms: 1, upright: 0, face: (f - 78) % 12 < 6 ? FACES.hyped : FACES.laughing });
-  } else if (f < 138) { // caught. Then the same body in a different shirt, and no shirt: garments are separate pieces
-    const o = f < 114 ? NIO_OUTFIT : f < 122 ? { ...NIO_OUTFIT, top: null } : PURPLE_TEE;
-    const face = f < 114 ? FACES.sheepish : f < 122 ? FACES.real : f < 126 ? FACES.deadpan : FACES.smug;
-    sc = shot(CAMS.full, { ...base, clip: 'Dance_Loop', t: 26, yaw: 180, stance: f < 122 ? 1 : 0.3, arms: f < 122 ? 1 : 0.4, upright: f < 122 ? 0 : 0.8, outfit: o, face,
-      ...(f >= 122 ? { clip: 'Idle_Loop', t } : {}) });
-  } else { // high and wide: he walks off across the room
-    const k = (f - 138) / 54; const a: V = [1.45, 0, 3.05], b: V = [2.25, 0, 1.55]; const p = lerp(a, b, Math.floor(k * 27) / 27);
-    const yaw = (Math.atan2(b[0] - a[0], b[2] - a[2]) * 180) / Math.PI;
-    sc = shot(CAMS.high, { ...base, clip: 'Walk_Loop', t: t - 138, at: [p[0], p[2]], yaw, stance: 1, arms: 1, upright: 0.3, outfit: PURPLE_TEE, face: FACES.smug });
-  }
-  return <SdfShot scene={sc} />;
+export type StillProps = { w: number; h: number; cam: string; actor: boolean; clip: string; t: number; yaw: number; at: number[]; face: string; gaze?: number[];
+  phone: number; outfit: string; stance: number; arms: number; upright: number; seat?: number; crossed: boolean; time: number; studio?: boolean; lookCam?: number; camAt?: number[]; camPos?: number[]; fov?: number };
+export const N3_DEFAULT: StillProps = { w: PW, h: PH, cam: 'full', actor: true, clip: 'Idle_Loop', t: 0, yaw: 180, at: [2.0, 2.5], face: 'deadpan',
+  phone: 0, outfit: 'home', stance: 0.5, arms: 0.35, upright: 0.85, crossed: false, time: 0, lookCam: 0.7 };
+export const N3Still: React.FC<StillProps> = (p) => {
+  let cam = CAMS[p.cam];
+  if (p.camPos && p.camAt) cam = C(p.camPos as V, p.camAt as V, p.fov ?? cam.fov);
+  let face = FACES[p.face]; if (p.gaze) face = gaze(face, p.gaze[0], p.gaze[1]);
+  const acts: Act[] = p.actor ? [{ clip: p.clip, t: p.t, at: [p.at[0], p.at[1]], yaw: p.yaw, face, phone: p.phone, outfit: p.outfit, stance: p.stance, arms: p.arms,
+    upright: p.upright, seat: p.seat, crossed: p.crossed, look: p.lookCam ? cam.pos : undefined, lookAmt: p.lookCam }] : [];
+  return <SdfShot scene={p.studio ? studioShot(cam, acts) : shot(cam, acts, p.time)} w={p.w} h={p.h} />;
 };
-function gazeDown(fc: Face, py = -0.8): Face { return { ...fc, eyeL: { ...fc.eyeL, py }, eyeR: { ...fc.eyeR, py } }; }
+export { G };

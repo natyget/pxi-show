@@ -40,9 +40,9 @@ export type Props = {
   armR: number; legR: number; torsoR: number;
 };
 export const NIO: Props = {
-  ankle: 0.06, shin: 0.33, thigh: 0.33, hipHalf: 0.07, torso: 0.36, neck: 0.1, headR: 0.2,
-  shoulderHalf: 0.125, upperArm: 0.23, foreArm: 0.21, hand: 0.075, foot: 0.13,
-  armR: 0.024, legR: 0.032, torsoR: 0.095,
+  ankle: 0.06, shin: 0.32, thigh: 0.34, hipHalf: 0.072, torso: 0.4, neck: 0.1, headR: 0.2,
+  shoulderHalf: 0.115, upperArm: 0.25, foreArm: 0.23, hand: 0.07, foot: 0.14,
+  armR: 0.02, legR: 0.03, torsoR: 0.088,
 };
 
 export type Skel = {
@@ -56,6 +56,7 @@ const L = 0, R = 1;
 export type SolveOpts = {
   stance?: number; // 1 keeps the clip's leg spread, lower pulls the legs under the body (a relaxed stand)
   ground?: boolean; // keep the lower foot on the floor
+  seat?: number; // sit on something this high (metres): the hips rest on it and the feet are left alone
   upright?: number; // 0 keeps the clip's lean, 1 stands the spine and head straight (game clips crouch a little)
   arms?: number; // 1 keeps the clip's arm spread, lower lets the arms hang closer to the body
 };
@@ -90,7 +91,8 @@ export const solve = (m: Mocap, P: Props = NIO, o: SolveOpts = {}): Skel => {
     const td = norm(sub(m[`toe.${sd}`], m[`foot.${sd}`]));
     s.hip[i] = hip; s.kn[i] = knee; s.an[i] = ankle; s.toe[i] = add(ankle, mul(norm([td[0], Math.min(td[1], -0.25), td[2]]), P.foot));
   });
-  if (o.ground ?? true) {
+  if (o.seat !== undefined) shift(s, [0, o.seat + 0.085 - s.hips[1], 0]);
+  else if (o.ground ?? true) {
     const dy = P.ankle - Math.min(s.an[0][1], s.an[1][1]);
     shift(s, [0, dy, 0]);
   }
@@ -141,72 +143,61 @@ export const lookAt = (s: Skel, target: V, amount = 1, P: Props = NIO): Skel => 
 };
 
 // ---------------------------------------------------------------------------------------------------------
-// Body and garments. The body is a chain of soft capsules that the renderer blends into ONE surface.
-// A garment is a layer over named body parts: the same shapes, a little larger, in its own material. So a
-// shirt always fits, always follows the body, and comes off by leaving it out of the outfit.
+// Body and garments. The body is a chain of soft capsules that the renderer blends into ONE surface, complete
+// under the clothes. A garment is its own single piece in its own material: the same joints, a little larger.
+// So a tee always fits, always follows the body, and comes off by leaving it out of the outfit.
 // ---------------------------------------------------------------------------------------------------------
-export const G = { skin: 0, knit: 1, pants: 2, shoe: 3, hair: 4, phone: 5 };
-export type Prim = { a: V; ra: number; b: V; rb: number; g: number; k: number; c: string; cutA?: boolean; cutB?: boolean };
+export const G = { skin: 0, top: 1, bottom: 2, shoe: 3, hair: 4 };
+// tex: 0 flat, 1 soft blocky texture, 2 strong flecks. em: 0..1 how much it glows. sq: >1 flattens it vertically.
+export type Prim = { a: V; ra: number; b: V; rb: number; g: number; k: number; c: string; cutA?: boolean; cutB?: boolean; sq?: number; tex?: number; em?: number };
 export type Outfit = {
-  skin: string; top?: { color: string; rib: string; loose: number } | null; bottom?: { color: string; loose: number } | null;
+  top?: { color: string; loose: number; sleeve: number } | null; // sleeve: how far down the upper arm it reaches, 0..1
+  bottom?: { color: string; cuff: string; width: number } | null; // width: 0 slim .. 0.06 very wide
   shoes?: { color: string } | null;
 };
-export const NIO_OUTFIT: Outfit = {
-  skin: '#e2b08c',
-  top: { color: '#c56a3c', rib: '#a4502f', loose: 0.016 },
-  bottom: { color: '#3b3542', loose: 0.014 },
-  shoes: { color: '#ece5db' },
-};
-export const buildBody = (s: Skel, P: Props = NIO, o: Outfit = NIO_OUTFIT): Prim[] => {
+export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit): Prim[] => {
   const out: Prim[] = [];
-  const cap = (a: V, ra: number, b: V, rb: number, g: number, c: string, k = 0.03, cutA = false, cutB = false) => out.push({ a, ra, b, rb, g, k, c, cutA, cutB });
+  const cap = (a: V, ra: number, b: V, rb: number, g: number, c: string, k = 0.03, x: Partial<Prim> = {}) => out.push({ a, ra, b, rb, g, k, c, ...x });
   const top = o.top, bot = o.bottom;
   const chest = sub(s.neckBase, mul(s.chestDir, 0.1));
   const belly = add(s.hips, mul(s.chestDir, 0.06));
-  // THE BODY: one skin surface, complete under the clothes
-  cap(belly, P.torsoR - 0.02, chest, P.torsoR, G.skin, o.skin, 0.06);
-  cap(s.sh[0], 0.045, s.sh[1], 0.045, G.skin, o.skin, 0.06);
-  cap(s.hip[0], P.legR + 0.02, s.hip[1], P.legR + 0.02, G.skin, o.skin, 0.05);
-  cap(sub(s.neckBase, mul(s.chestDir, 0.03)), 0.03, add(s.neckBase, mul(s.headUp, P.neck + 0.03)), 0.028, G.skin, o.skin, 0.03);
+  // THE BODY
+  cap(belly, P.torsoR - 0.02, chest, P.torsoR, G.skin, skin, 0.06);
+  cap(s.sh[0], 0.042, s.sh[1], 0.042, G.skin, skin, 0.06);
+  cap(s.hip[0], P.legR + 0.022, s.hip[1], P.legR + 0.022, G.skin, skin, 0.05);
+  cap(sub(s.neckBase, mul(s.chestDir, 0.03)), 0.03, add(s.neckBase, mul(s.headUp, P.neck + 0.03)), 0.027, G.skin, skin, 0.03);
   for (let i = 0; i < 2; i++) {
-    cap(s.sh[i], P.armR + 0.004, s.el[i], P.armR, G.skin, o.skin, 0.03);
-    cap(s.el[i], P.armR, s.wr[i], P.armR - 0.003, G.skin, o.skin, 0.03);
-    cap(s.wr[i], 0.03, s.tip[i], 0.027, G.skin, o.skin, 0.02); // the hand: one mitten and a thumb, one surface with the arm
-    cap(lerp(s.wr[i], s.tip[i], 0.2), 0.016, s.thumb[i], 0.013, G.skin, o.skin, 0.012);
-    cap(s.hip[i], P.legR + 0.008, s.kn[i], P.legR, G.skin, o.skin, 0.04);
-    cap(s.kn[i], P.legR, s.an[i], P.legR - 0.006, G.skin, o.skin, 0.04);
-    if (!o.shoes) cap(add(s.an[i], [0, -P.ankle + 0.035, 0]), 0.032, [s.toe[i][0], Math.max(0.03, s.toe[i][1]), s.toe[i][2]], 0.028, G.skin, o.skin, 0.03);
+    cap(s.sh[i], P.armR + 0.004, s.el[i], P.armR, G.skin, skin, 0.03);
+    cap(s.el[i], P.armR, s.wr[i], P.armR - 0.002, G.skin, skin, 0.03);
+    cap(s.wr[i], 0.027, s.tip[i], 0.024, G.skin, skin, 0.02); // the hand: one mitten and a thumb, one surface with the arm
+    cap(lerp(s.wr[i], s.tip[i], 0.2), 0.014, s.thumb[i], 0.012, G.skin, skin, 0.012);
+    cap(s.hip[i], P.legR + 0.008, s.kn[i], P.legR, G.skin, skin, 0.04);
+    cap(s.kn[i], P.legR, s.an[i], P.legR - 0.006, G.skin, skin, 0.04);
+    if (!o.shoes) cap(add(s.an[i], [0, -P.ankle + 0.035, 0]), 0.032, [s.toe[i][0], Math.max(0.03, s.toe[i][1]), s.toe[i][2]], 0.028, G.skin, skin, 0.03);
   }
-  // THE TEE: one garment. A loose tube over the torso with an open hem, and two short sleeves the arms come out of.
+  // THE TEE: a loose tube over the torso with an open hem, and two wide short sleeves the arms come out of
   if (top) {
-    const l = top.loose, hem = add(s.hips, mul(s.chestDir, -0.05));
-    cap(hem, P.torsoR + l + 0.016, chest, P.torsoR + l, G.knit, top.color, 0.05, true);
-    cap(s.sh[0], 0.05 + l, s.sh[1], 0.05 + l, G.knit, top.color, 0.05);
-    for (let i = 0; i < 2; i++) {
-      const end = lerp(s.sh[i], s.el[i], 0.62);
-      cap(s.sh[i], P.armR + 0.02 + l, end, P.armR + 0.026 + l, G.knit, top.color, 0.04, false, true);
-    }
+    const l = top.loose, hem = add(s.hips, mul(s.chestDir, -0.075));
+    cap(hem, P.torsoR + l + 0.04, chest, P.torsoR + l + 0.008, G.top, top.color, 0.05, { cutA: true, tex: 1 });
+    cap(s.sh[0], 0.046 + l, s.sh[1], 0.046 + l, G.top, top.color, 0.05, { tex: 1 });
+    for (let i = 0; i < 2; i++) cap(s.sh[i], P.armR + 0.024 + l * 0.5, lerp(s.sh[i], s.el[i], top.sleeve), P.armR + 0.03 + l * 0.5, G.top, top.color, 0.04, { cutB: true, tex: 1 });
   }
-  // THE TROUSERS: one garment, hips to ankle
+  // THE TROUSERS: one garment, wide in the leg, with a turned cuff
   if (bot) {
-    const l = bot.loose;
-    cap(s.hip[0], P.legR + 0.024 + l, s.hip[1], P.legR + 0.024 + l, G.pants, bot.color, 0.05);
+    const w = bot.width;
+    cap(s.hip[0], 0.05 + w * 0.1, s.hip[1], 0.05 + w * 0.1, G.bottom, bot.color, 0.05, { tex: 1 });
+    cap(add(s.hips, mul(s.chestDir, -0.03)), 0.098, add(s.hips, mul(s.chestDir, 0.045)), 0.094, G.bottom, bot.color, 0.03, { cutA: true, cutB: true, tex: 1 }); // the waistband
     for (let i = 0; i < 2; i++) {
-      cap(s.hip[i], P.legR + 0.012 + l, s.kn[i], P.legR + 0.006 + l, G.pants, bot.color, 0.04);
-      cap(s.kn[i], P.legR + 0.006 + l, add(s.an[i], [0, 0.025, 0]), P.legR + 0.008 + l, G.pants, bot.color, 0.04, false, true);
+      const r0 = P.legR + 0.018 + w * 0.1, r1 = P.legR + 0.03 + w * 0.5, r2 = P.legR + 0.036 + w * 0.7;
+      cap(s.hip[i], r0, s.kn[i], r1, G.bottom, bot.color, 0.04, { tex: 1 });
+      cap(s.kn[i], r1, s.an[i], r2, G.bottom, bot.color, 0.04, { cutB: true, tex: 1 });
+      cap(lerp(s.kn[i], s.an[i], 0.86), r2 + 0.004, s.an[i], r2 + 0.006, G.bottom, bot.cuff, 0.002, { cutA: true, cutB: true, tex: 1 });
     }
   }
   if (o.shoes) for (let i = 0; i < 2; i++) {
-    const heel = add(s.an[i], [0, -P.ankle + 0.042, 0]);
-    const toe: V = [s.toe[i][0], Math.max(0.036, s.toe[i][1]), s.toe[i][2]];
-    cap(heel, 0.044, toe, 0.036, G.shoe, o.shoes.color, 0.03); cap(s.an[i], 0.04, heel, 0.044, G.shoe, o.shoes.color, 0.03);
+    const heel = add(s.an[i], [0, -P.ankle + 0.05, 0]);
+    const toe: V = [s.toe[i][0], Math.max(0.044, s.toe[i][1]), s.toe[i][2]];
+    cap(heel, 0.052, toe, 0.044, G.shoe, o.shoes.color, 0.03); cap(s.an[i], 0.04, heel, 0.052, G.shoe, o.shoes.color, 0.03);
   }
-  // braid ends at the nape, each closed with a PXI-purple bead
-  [-0.06, 0, 0.06].forEach((x, i) => {
-    const root = add(add(s.headC, mul(s.headUp, -0.1)), add(mul(s.headFw, -0.17), mul(s.headRt, x)));
-    const end = add(root, add([0, -0.11 - (i === 1 ? 0.02 : 0), 0], mul(s.headFw, -0.02)));
-    cap(root, 0.02, end, 0.016, G.hair, '#2b1f1f', 0.01);
-    cap(end, 0.021, add(end, [0, -0.008, 0]), 0.021, G.hair, '#a523ef', 0.001);
-  });
   return out;
 };
