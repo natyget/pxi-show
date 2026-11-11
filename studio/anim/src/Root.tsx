@@ -8,7 +8,7 @@ import { Pilot, PILOT_LEN, PhotoStill } from './Pilot';
 import { Ep1, EP1_LEN, Ep1Photo } from './Ep1';
 import { PilotOnePhoto, PILOT1_LEN, PilotPhoto } from './PilotOnePhoto';
 
-import { NWHead, NWBody, NWHero, NWWide, NWSheet, NWClip, CLIP_LEN } from './nw/Look';
+import { NWHead, NWBody, NWHero, NWWide, NWSheet, NWClip, CLIP_LEN, NWShot, NWClip2, CLIP2_LEN } from './nw/Look';
 
 export const Root: React.FC = () => (
   <>
@@ -28,5 +28,7 @@ export const Root: React.FC = () => (
     <Composition id="NWWide" component={NWWide} durationInFrames={1} fps={24} width={270} height={480} />
     <Composition id="NWSheet" component={NWSheet} durationInFrames={1} fps={24} width={270} height={480} />
     <Composition id="NWClip" component={NWClip} durationInFrames={CLIP_LEN} fps={24} width={270} height={480} />
+    <Composition id="NWShot" component={NWShot} durationInFrames={1} fps={24} width={270} height={480} defaultProps={{ shot: 'corner' }} />
+    <Composition id="NWClip2" component={NWClip2} durationInFrames={CLIP2_LEN} fps={24} width={270} height={480} />
   </>
 );

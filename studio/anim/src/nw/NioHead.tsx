@@ -139,8 +139,8 @@ const HAIRLINE: P[][] = [
 ];
 const SKULL: P[][] = [
   [[154, 78], [152, 48], [131, 26], [102, 26]],
-  [[102, 26], [68, 26], [42, 54], [40, 90]],
-  [[40, 90], [38, 114], [42, 138], [50, 152]],
+  [[102, 26], [70, 26], [47, 54], [45, 90]],
+  [[45, 90], [43, 114], [46, 138], [52, 152]],
 ];
 const along = (segs: P[][], t: number): P => {
   const x = Math.min(segs.length - 1e-6, Math.max(0, t * segs.length));
@@ -168,9 +168,9 @@ export const NioHead: React.FC<{ s: number; face?: Face; uid?: string; lod?: 0 |
   const eL = face.eyeL ?? {}, eR = face.eyeR ?? {};
   const out = { fill: 'none', stroke: INK, strokeWidth: 2 * px, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   const thin = { ...out, strokeWidth: 1 * px };
-  const FACE = 'C 155 92 155 102 153 113 C 152 121 157 128 157 140 C 157 160 151 177 140 189 C 132 197 118 199 106 196 C 88 190 72 176 66 158';
-  const headD = `M 102 29 C 130 28 150 48 152 78 ${FACE} L 52 151 C 44 136 40 112 43 90 C 46 56 72 30 102 29 Z`;
-  const capD = `${d4(HAIRLINE)} L 62 146 L 50 152 C 42 138 38 114 40 90 C 42 54 68 26 102 26 C 131 26 152 48 154 78 Z`;
+  const FACE = 'C 155 94 156 108 155 120 C 155 134 157 146 155 158 C 153 172 145 182 133 187 C 123 190 110 190 100 187 C 86 182 74 172 68 158';
+  const headD = `M 102 29 C 130 28 150 48 152 78 ${FACE} L 54 151 C 48 136 45 112 47 90 C 50 56 74 30 102 29 Z`;
+  const capD = `${d4(HAIRLINE)} L 62 146 L 52 152 C 46 138 43 114 45 90 C 47 54 70 26 102 26 C 131 26 152 48 154 78 Z`;
   const tails: number[][] = [[45, 142, 40, 156, 41, 168], [50, 148, 46, 162, 48, 176], [56, 151, 54, 164, 56, 174]];
   const st = face.stretch ?? 1;
   return (
@@ -187,15 +187,16 @@ export const NioHead: React.FC<{ s: number; face?: Face; uid?: string; lod?: 0 |
       })}
       {/* neck */}
       <path d="M 50 136 C 52 178 50 206 44 232 L 104 232 C 99 218 98 204 100 180 Z" fill={SKIN.base} />
-      <path d="M 60 156 C 72 182 90 194 106 197 C 99 206 97 216 99 226 C 80 216 63 192 57 166 Z" fill={SKIN.shade} />
-      <path d="M 51 153 C 52 178 50 206 44 232 M 101 196 C 98 208 100 222 104 232" {...out} />
+      <path d="M 60 154 C 70 174 86 184 104 188 C 99 200 97 214 99 226 C 80 216 63 192 57 166 Z" fill={SKIN.shade} />
+      <path d="M 51 153 C 52 178 50 206 44 232 M 100 188 C 98 204 100 222 104 232" {...out} />
       {/* head */}
       <path d={headD} fill={SKIN.base} />
       <clipPath id={`${uid}hc`}><path d={headD} /></clipPath>
       <g clipPath={`url(#${uid}hc)`}>
-        <path d="M 60 96 C 66 118 70 146 80 166 C 90 182 104 194 120 198 L 60 204 L 30 150 Z" fill={SKIN.shade} />
+        <path d="M 62 96 C 67 118 70 142 79 160 C 87 174 98 184 112 189 L 60 200 L 30 150 Z" fill={SKIN.shade} />
+        <path d="M 123 150 C 127 151 131 150 133 147 L 134 154 C 130 156 126 155 123 154 Z" fill={SKIN.shade} />
         <path d={`${d4(HAIRLINE)} L 72 121 C 69 106 72 92 88 80 C 104 69 130 68 151 87 Z`} fill={SKIN.shade} />
-        {face.rim && <path d="M 153 100 C 155 106 154 110 153 113 C 152 121 157 128 157 140 C 157 160 151 177 140 189 C 135 194 128 197 120 198" fill="none" stroke={face.rim} strokeWidth={6} />}
+        {face.rim && <path d="M 154 100 C 156 108 155 114 155 120 C 155 134 157 146 155 158 C 153 172 145 182 133 187 C 128 189 122 190 116 190" fill="none" stroke={face.rim} strokeWidth={6} />}
         {face.gloom && <rect x={60} y={50} width={100} height={84} fill={SKIN.deep} opacity={0.85} />}
         {face.blush && <><ellipse cx={88} cy={150} rx={10} ry={5} fill="#e88a7a" /><ellipse cx={146} cy={148} rx={7} ry={4.5} fill="#e88a7a" /></>}
       </g>
@@ -217,7 +218,7 @@ export const NioHead: React.FC<{ s: number; face?: Face; uid?: string; lod?: 0 |
       <rect x={56} y={144} width={2 * px} height={2 * px} fill="#f4f0ff" />
       {face.bud && <><rect x={54} y={127} width={7} height={8} rx={2.5} fill="#f6f2ff" stroke={INK} strokeWidth={1 * px} /><rect x={56} y={134} width={3} height={9} fill="#f6f2ff" stroke={INK} strokeWidth={1 * px} /></>}
       {/* nose */}
-      <path d="M 122 130 C 125 138 131 143 132 148 C 132 152 127 153 122 152" {...thin} strokeWidth={1.4 * px} />
+      <path d="M 122 128 C 125 136 131 141 132 146 C 132 150 127 151 122 150" {...thin} strokeWidth={1.4 * px} />
       {/* eyes */}
       <Eye id={`${uid}eL`} cx={96} cy={123} rx={17} ry={16} p={eL} s={s} />
       <Eye id={`${uid}eR`} cx={138} cy={122} rx={12} ry={15} p={eR} s={s} far />
@@ -225,7 +226,7 @@ export const NioHead: React.FC<{ s: number; face?: Face; uid?: string; lod?: 0 |
       <Brow x1={113} y1={101} x2={75} y2={103} p={face.browL ?? {}} slit s={s} />
       <Brow x1={128} y1={100} x2={152} y2={103} p={face.browR ?? {}} s={s} far />
       {/* mouth */}
-      <Mouth name={face.mouth ?? 'flat'} cx={121} cy={172} k={face.mouthS ?? 1} s={s} />
+      <Mouth name={face.mouth ?? 'flat'} cx={120} cy={167} k={face.mouthS ?? 1} s={s} />
       {face.tear && <><path d="M 84 138 q -4 9 0 12 q 5 -3 0 -12 Z" fill="#bfe6ff" stroke={INK} strokeWidth={1 * px} /><rect x={80} y={136} width={30} height={2.5} fill="#bfe6ff" /><rect x={130} y={135} width={18} height={2.5} fill="#bfe6ff" /></>}
       {face.sweat && <path d="M 160 60 q 6 10 0 14 q -6 -4 0 -14 Z" fill="#bfe6ff" stroke={INK} strokeWidth={1 * px} />}
     </g>

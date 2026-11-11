@@ -7,4 +7,4 @@ export const SKIN = { base: '#dba783', shade: '#b97a6c', deep: '#96586a', light:
 export const HAIR = { base: '#221819', light: '#5a4238', part: '#8a5a4e' };
 export const EYE = { white: '#f6efe6', shade: '#cfc3cf', iris: '#4a2a1c', pupil: '#120c10' };
 export const MOUTH = { dark: '#3a1420', tongue: '#d9646a', teeth: '#f6efe6' };
-export const KNIT = { base: '#d9632a', shade: '#a8402c', light: '#f08a3c', rib: '#8a3226' };
+export const KNIT = { base: '#c9683a', shade: '#9a4632', light: '#de8a52', rib: '#7c382c' };

@@ -8,6 +8,7 @@ import { FACES, track, mix } from './faces';
 import { Face } from './NioHead';
 import { Pose } from './NioBody';
 import { Dither } from './Apartment';
+import { Room, Camera, C3 } from './Room3D';
 import { Apartment, ApartmentFG, Cam, ROOM } from './Apartment';
 
 export const Stage: React.FC<{ children: React.ReactNode; bg?: string }> = ({ children, bg = '#6b5a6e' }) => (
@@ -124,6 +125,56 @@ export const NWClip: React.FC = () => {
         </g>
         <ApartmentFG z={cam.z} />
       </Cam>
+    </Stage>
+  );
+};
+
+// ---- round 2: the room has depth, the camera stands in it ----
+export const SHOTS: Record<string, Camera> = {
+  low: { pos: [330, 62, 95], yaw: -33, pitch: 15, f: 330 }, // low and close, looking up at him
+  tight: { pos: [296, 112, 150], yaw: -38, pitch: 8, f: 400 }, // face close-up
+  side: { pos: [92, 70, 70], yaw: 30, pitch: 9, f: 300 }, // from the shelf side, the window behind him
+  high: { pos: [478, 250, 30], yaw: -40, pitch: -30, f: 250 }, // from the ceiling corner
+};
+const P_DOWN: Pose = { ...P_PHONE, handNRot: 100, handNFlip: true };
+const nioActor = (at: [number, number], pose: Pose, face: Face, glow: string = C3.pxiSoft, halo = 0) => ({
+  at, render: (s: number) => (
+    <>
+      {halo > 0 && <><ellipse cx={222} cy={262} rx={95 * halo} ry={110 * halo} fill="#7e5ab0" /><ellipse cx={222} cy={262} rx={55 * halo} ry={64 * halo} fill={C3.pxiSoft} /></>}
+      <Nio s={s} lod={s < 0.5 ? 1 : 0} pose={pose} face={face} glow={glow} />
+    </>
+  ),
+});
+export const NWShot: React.FC<{ shot: string }> = ({ shot }) => {
+  const smug = { ...look(FACES.smug, 0.75, 0.5), bud: true, rim: '#e9c2ff' };
+  return (
+    <Stage bg="#000">
+      <Room cam={SHOTS[shot]} actors={[nioActor([215, 235], P_DOWN, smug)]} />
+    </Stage>
+  );
+};
+
+export const CLIP2_LEN = 192;
+export const NWClip2: React.FC = () => {
+  const raw = useCurrentFrame();
+  const f = Math.floor(raw / 2) * 2;
+  const base = { bud: true, rim: '#e9c2ff' };
+  let face = track<Face>(f, [
+    [0, { ...look(FACES.deadpan, 0.75, 0.5), ...base }],
+    [30, { ...look(FACES.shock, 0.6, 0.45), ...base, rim: '#ffffff' }],
+    [52, { ...look(FACES.suspicious, 0.85, 0.5), ...base }],
+    [78, { ...look(FACES.hyped, 0.5, 0.3), ...base }],
+    [106, { ...look(FACES.sheepish, -0.75, 0.1), ...base, sweat: true }],
+    [122, { ...look(FACES.smug, 0.75, 0.5), ...base }],
+  ]);
+  if ((f >= 14 && f < 18) || (f >= 156 && f < 160)) face = { ...face, eyeL: { ...face.eyeL, arc: 'shut' }, eyeR: { ...face.eyeR, arc: 'shut' } };
+  const pose = track<Pose>(f, [[0, P_DOWN], [30, { ...P_DOWN, headDy: -5 }], [52, { ...P_NEAR, handNRot: 100, handNFlip: true }], [78, P_YES], [106, P_CAUGHT], [122, P_DOWN]]);
+  // each beat gets its own angle: we move around him, he does not stand in front of a wall
+  const cam: Camera = raw < 52 ? { ...SHOTS.low, f: raw >= 30 ? 356 : 330 } : raw < 78 ? SHOTS.tight : raw < 106 ? SHOTS.side : raw < 138 ? SHOTS.low : SHOTS.high;
+  const buzz = f >= 30 && f < 46;
+  return (
+    <Stage bg="#000">
+      <Room cam={cam} actors={[nioActor([215, 235], pose, face, buzz ? '#ffffff' : C3.pxiSoft, buzz ? (f < 36 ? 1 : 0.7) : 0)]} />
     </Stage>
   );
 };

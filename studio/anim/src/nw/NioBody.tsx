@@ -78,10 +78,9 @@ export const Hand: React.FC<{ name: HandName; s: number; at: P; rot?: number; fl
       </Inked>
       <clipPath id={id}><path d={h.palm} />{all.map((f, i) => fd(f).map((d, j) => <path key={`${i}${j}`} d={d} />))}</clipPath>
       <g clipPath={`url(#${id})`}>
-        {name !== 'phone' && <path d="M -3 5 C 5 9 12 10 20 8 L 20 14 L -3 12 Z" fill={SKIN.shade} />}
         {h.fingers.slice(0, -1).map((f, i) => {
           const g = h.fingers[i + 1];
-          const a = mid(f[0], g[0]), b = mid(f[1], g[1]), c = mid(f[2], g[2]);
+          const a = mid(mid(f[0], g[0]), mid(f[1], g[1])), b = mid(f[1], g[1]), c = mid(f[2], g[2]);
           return <path key={i} d={`M ${a[0]} ${a[1]} L ${b[0]} ${b[1]} L ${c[0]} ${c[1]}`} fill="none" stroke={INK} strokeWidth={1 * px} strokeLinejoin="round" />;
         })}
         {(() => { const f = h.thumb; const e = fd(f); return <>{e.map((d, i) => <path key={i} d={d} fill={SKIN.base} stroke={INK} strokeWidth={2 * px} />)}{e.map((d, i) => <path key={`b${i}`} d={d} fill={SKIN.base} />)}</>; })()}
@@ -99,8 +98,8 @@ export type Pose = {
   nearArmBehind?: boolean;
 };
 export const POSE_STAND: Pose = {
-  elN: [2, 356], wrN: [10, 432], handN: 'relaxed', handNRot: 80,
-  elF: [152, 352], wrF: [146, 428], handF: 'relaxed', handFRot: 96,
+  elN: [2, 356], wrN: [10, 432], handN: 'relaxed', handNRot: 100, handNFlip: true,
+  elF: [150, 352], wrF: [138, 426], handF: 'fist', handFRot: 100, handFFlip: true,
 };
 
 const PANTS = { base: '#3a3442', shade: '#28232f', light: '#4d4658' };

@@ -39,8 +39,10 @@ def glitch(a, p, seed):
     out[gone] = np.array([14, 10, 18], np.float32)
     return out
 
-def finish(arr, i=0, glitch_p=None):
+def finish(arr, i=0, glitch_p=None, sat=0.9):
     a = arr.astype(np.float32)
+    g = a @ np.array([0.3, 0.59, 0.11], np.float32)
+    a = g[..., None] + (a - g[..., None]) * sat  # the show sits a little under full colour
     if glitch_p is not None:
         a = glitch(a, glitch_p, i)
     return grain(a, i // 3).astype(np.uint8)
