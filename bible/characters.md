@@ -4,7 +4,7 @@
 - Light skin `#d8a27c`, triangular face ('tri' head), short black textured crop with a tight fade and a shaped-up
   hairline, brown eyes, broad shoulders (build 1.16), oversized burnt-orange crewneck, charcoal pants, spotless
   white sneakers. No hoodie, no hood.
-- Voice (founder pick, final): Qwen3-TTS VoiceDesign, designed from text (studio/voice/design/perform_qwen.py, `VOICES['nio']`, verbatim), a short acting note per line, seed 7, pitch 0 (role `dnio`). NOT Chatterbox. Treated by studio/voice/clean.py.
+- Voice (founder pick, final): Qwen3-TTS VoiceDesign, designed from text (studio/voice/design/perform_qwen.py, `VOICES['nio']`, verbatim), a short acting note per line, seed 7, pitch 0 (role `dnio`). NOT Chatterbox. Treated by studio/voice/clean.py with the walkie-talkie colour (founder pick, Nov 11).
 
 ## Maya
 - Deep brown skin `#8d5a3d`, round face, curly puff high on the back of the head, gold hoops, lashes, blush,
