@@ -43,7 +43,7 @@ type Who = 'nio' | 'maya' | 'hi' | 'lo';
 type VoLine = { file: string; text: string; dur: number; env: number[] };
 const VO = vo as Record<string, VoLine>;
 const NUMS: Record<string, string> = { '212': 'two hundred and twelve' };
-const norm = (s: string) => Object.entries(NUMS).reduce((a, [k, v]) => a.split(k).join(v), s.toLowerCase().replace(/\u2019/g, "'")).replace(/[^a-z' ]/g, '').trim();
+const norm = (s: string) => Object.entries(NUMS).reduce((a, [k, v]) => a.split(k).join(v), s.toLowerCase().replace(/\u2019/g, "'").replace(/\bpxi\b/g, 'pixie')).replace(/[^a-z' ]/g, '').trim();
 /** The performed line for a subtitle (studio/voice/clean.py writes vo_pilot.json). Every Say line must have one. */
 export const voFor = (text: string): VoLine => {
   const l = Object.values(VO).find((x) => x.text === norm(text));

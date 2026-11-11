@@ -118,10 +118,11 @@
  },
  {
   "who": "nio",
-  "text": "So I'm building PXI.",
+  "text": "So I'm building pixie.",
   "out": "raw_wib_r4.wav",
   "ex": 0.55,
-  "cfg": 0.35
+  "cfg": 0.35,
+  "seed": 2
  },
  {
   "who": "nio",

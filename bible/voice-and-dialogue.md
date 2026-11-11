@@ -26,3 +26,6 @@ Built from the show's own dialogue (Wikiquote seasons 1–2 excerpts, Wikipedia 
 - Call-and-response, one beat each. She notices the detail; he notices the consequence; the realisation lands on the
   second beat, late.
 - Calls are video calls in split screen (Nio top, Maya bottom), both faces visible; subtitles never on a face.
+
+## Pronunciation
+- PXI is said "pixie" (founder, Nov 11). Feed the voice model "pixie"; subtitles and on-screen text keep "PXI".

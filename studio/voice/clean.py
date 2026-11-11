@@ -18,8 +18,9 @@ def envelope(a, sr, fps=12):
     e = np.clip(e / (np.percentile(e, 90) + 1e-9), 0, 1); e[e < 0.15] = 0
     return [round(float(x), 3) for x in e]
 NUM = {"212": "two hundred and twelve"}
+# PXI is said "pixie" (founder, Nov 11): feed the TTS "pixie"; subtitles keep "PXI".
 def norm(s):
-    s = s.lower().replace("’", "'")
+    s = s.lower().replace("’", "'"); s = re.sub(r"\bpxi\b", "pixie", s)
     for k, v in NUM.items(): s = s.replace(k, v)
     return re.sub(r"[^a-z' ]", "", s).strip()
 if __name__ == "__main__":
