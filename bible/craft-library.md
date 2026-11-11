@@ -140,6 +140,10 @@ curvature but still pixel effect and not cylynder for fingers."
 
 ## Voices
 
+- **PXI is said "pixie".** Founder, Nov 11: "pxi is pronounced pixie". In every spoken line the voice says
+  "pixie", so the text sent to the voice tool is written `pixie`. Everywhere it is read (subtitles, screens,
+  covers, captions) it stays `PXI`. It is never spelled out as letters aloud.
+
 - Only the voices the founder approved, made with the approved tools and settings recorded in
   `bible/characters.md`. There is no fallback voice. If the approved voice cannot be produced in this session,
   the stage stops as `BLOCKED`. A placeholder or robotic voice never goes into a cut that anyone sees.

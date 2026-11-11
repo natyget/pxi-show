@@ -28,7 +28,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - **Every file sent to the founder has sound, is loud enough, and reads with the sound off.** Run `engine/tools/render.sh check`.
 - **Devices, pacing, text, look, voices and covers follow `bible/craft-library.md`.** A flashback looks and
   sounds like a flashback. Nothing the viewer must understand goes by faster than the floors there. No standing
-  label on screen. Approved voices only, never a stand-in. Smooth curves under the pixels, shaped hands.
+  label on screen. Approved voices only, never a stand-in. PXI is spoken "pixie" and written PXI. Smooth curves under the pixels, shaped hands.
 - **The stranger reviews every finished video and cover** (`engine/reviewer.md`): a reviewer who knows nothing,
   given only what a viewer gets. If it is lost, finds text a person would not write, or sees a character look
   different from the golden frames, the piece does not go to the founder.

@@ -17,7 +17,7 @@ files in `studio/anim/src/ui/`.
    extend a screen in `studio/anim/src/ui/` that matches it 1:1, with the source path in a comment at the top.
    Render each once with `engine/tools/render.sh still` and look at it.
 4. Voice: write `studio/voice/jobs_<id>.json` in the format of the existing jobs files, with an acting note for
-   each line. Generate the lines only if the voice tools are installed. If not, say so in the report.
+   each line. In the text sent to the voice tool, PXI is written `pixie`; subtitles keep `PXI`. Generate the lines only if the voice tools are installed. If not, say so in the report.
 
 5. Check the board against the pacing floors and the text rules in `bible/craft-library.md`: one new thing a
    shot, reading time for every text and screen, no standing label. A device that is not in the library gets its
