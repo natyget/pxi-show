@@ -10,6 +10,7 @@ import { PilotOnePhoto, PILOT1_LEN, PilotPhoto } from './PilotOnePhoto';
 import { LookScene, LookSheet, LookClip, CLIP_LEN } from './look/LookTest';
 import { LOOKS } from './look/Rig2D';
 import { NioNight } from './look/Nio34';
+import { SoulStill, SoulClip, SOUL_LEN } from './look/Soul';
 
 export const Root: React.FC = () => (
   <>
@@ -33,5 +34,7 @@ export const Root: React.FC = () => (
     <Composition id="LookCSheet" component={LookSheet} durationInFrames={1} fps={24} width={LOOKS.C.w} height={LOOKS.C.h} defaultProps={{ look: 'C' as const }} />
     <Composition id="LookCClip" component={LookClip} durationInFrames={CLIP_LEN} fps={24} width={LOOKS.C.w} height={LOOKS.C.h} defaultProps={{ look: 'C' as const }} />
     <Composition id="NioNight" component={NioNight} durationInFrames={1} fps={24} width={1080} height={1920} />
+    <Composition id="SoulStill" component={SoulStill} durationInFrames={1} fps={24} width={1080} height={1920} />
+    <Composition id="SoulClip" component={SoulClip} durationInFrames={SOUL_LEN} fps={24} width={1080} height={1920} />
   </>
 );
