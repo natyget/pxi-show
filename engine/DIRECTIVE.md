@@ -10,20 +10,22 @@ form a run needs.
 
 ## 1. What we make
 
-PXI LABS is an animated series, released on @pxi.app on every platform. Nio moved to a city where he knew nobody,
-kept finding out about everything after it happened, and was not in a single photo. So he built PXI, the thing
-he is sure would have fixed all of it. The series is him using it to build a life, one night at a time, with
-Maya, and asking us to come. It is a real show first. People should watch it because it is funny and because they like these two, and send it to
-a friend for the same reason. It should feel like a series you follow, not like clips cut into parts.
+The show is **Nio World**, an animated series released on @pxi.app on every platform. Nio is 21, broke, and new
+to a city where he came for college. He kept missing everything and was in nobody's photos, so he built an app,
+PXI. The series is his life there, with Maya, his friends, his neighbours and the girl who becomes his ex, in a
+world that is stranger than he is. It is written through a Gumball lens. It is a real show first: people watch
+it because it is funny and because they like these people, and they send it to a friend for the same reason.
+That is how PXI gets discovered. It should feel like a series you follow, not like clips cut into parts.
 
 The bar is festival and network quality, judged the way a jury or a Cartoon Network development exec would. In
 practice that means seven things, and a release that misses one does not ship:
 
-0. **It has a point.** Five seconds in, a stranger knows who this is and what he wants. At the end they can say
-   what it was about in one sentence, and it sounds worth watching (`bible/story.md`).
+0. **It is clear.** A stranger can say who this is, what he wanted and what happened, and it sounds worth
+   retelling (`bible/story.md`).
 1. **It is funny to a stranger**, and not corny. Someone who has never heard of PXI laughs out loud.
 2. **It is about something.** Under the joke there is one true feeling a 21-year-old new to a city really has.
-3. **It is acted.** Characters think before they move. The face changes before the line. Silence is on purpose.
+3. **It is acted.** Faces are big and alive and change before the line. People talk to each other. Nothing
+   bobs, nothing waits, and no shot is dead (`bible/director.md`).
 4. **Every frame is composed.** Any frame could be pulled as a still and look intended.
 5. **It sounds finished.** Room tone, performance, timing and music are mixed, with no dead air and no clipping.
 6. **Nothing in it is an accident.** The show can be eerie and weird the way Gumball and Adventure Time are, on
@@ -37,10 +39,11 @@ video, never a description of how good something will be.
 PXI is a free app: everything to do in your city on one map, and every photo you are in, from everyone's phones,
 in one shared album.
 
-- **PXI is Nio's own answer to his own problems.** He built it, he is proud of it, and in every story the
-  feature is his plan, not a notification that happens to him.
-- **Each story runs on one real PXI feature**, used exactly the way a real person would use it. Take PXI out and
-  the story should fall apart. If it still works without PXI, the premise is rejected.
+- **PXI is Nio's.** He built it and he is casual about it: "this my app, yo."
+- **The episode is funny even if PXI did not exist** (founder, Nov 11), and PXI is never forced into it. It
+  turns up when he is stuck, used exactly the way a real person would use it. Most episodes have PXI as the way
+  out of the problem or as one natural moment. Holiday episodes always do. Dreams, fillers and at most one
+  episode in four may have none (`bible/story.md`, section 4).
 - **The viewer should want to do what they just watched.** A Thanksgiving episode shows people making the event,
   inviting each other, chatting in the album thread, reacting, and sharing to Instagram, so that the viewer does
   the same at their own Thanksgiving. The episode is the demonstration, played as comedy.
@@ -56,50 +59,50 @@ in one shared album.
 
 ## 3. The people
 
-- **Nio** made PXI. He is the Gumball type, and he is not a goof. He is sharp, quick, vain and sure of himself. His plans are
-  clever and wrong. The comedy is his pride and his certainty, never stupidity. He is good-looking and knows it.
-  He is 21, new in the city, keeps his apartment spotless, misses social signals, and never admits anything
-  sensitive: he pivots to something sweeter or bigger. **He is the one character who can talk to the viewer.**
-- **Maya** is laid back, outspoken and unbothered, which scares Nio. She answers the words, not the meaning. She
-  notices the one concrete detail he missed. She gives one sensible suggestion, and when he ignores it she helps
-  with the worse plan.
-- **The world** treats strange things as normal. Only Nio reacts. There is a weird character in almost every
-  episode and nobody else questions them.
+- **Nio** is Gumball's kind of lead: alive, quick, expressive, laid back, and a troll on purpose. He asks the
+  obvious question to wind people up, he hates on things, he carries his friend home, and he cannot say no. He
+  is chill about the weird and big about himself. He never explains himself: he pivots. He is never a goof,
+  never stupid and never a narrator. He is good-looking. He is the one character who can talk to the viewer.
+- **Maya** is Nio as a girl, except that she does not care, which scares him. She says the quiet part out loud
+  in a sweet voice and moves on.
+- **The best friend** is across the country and on the phone. Telling him what happened is how the show
+  explains anything, because there is no narrator.
+- **The world** treats strange things as normal. One thing in every episode was there the whole time and is
+  never explained (the Kevin). Friends and neighbours are plots, and many come from the founder's real stories.
 
-Looks and voices are in `bible/characters.md`, and how they talk is in `bible/voice-and-dialogue.md`. The founder
-likes the current Nio and Maya designs. Designs and voices change only on a founder note.
+Who they are, their looks and the locked voices are in `bible/characters.md`, and how they talk is in
+`bible/voice-and-dialogue.md`. The voices are the designed Qwen3-TTS voices the founder approved. The look of
+the show is being redesigned on the founder's note of Nov 11.
 
-## 4. Story, then humor
+## 4. Writing
 
-**Story comes first** (`bible/story.md`). The first pilot build was funny on paper and the founder could not
-tell what it was for. So every episode has the same legible shape: a hook in three seconds; the problem and
-what Nio wants by five, said plainly, usually by Nio to the camera; his plan by ten, which is a PXI feature;
-three steps that get worse; a turn; a payoff where he gets what he needed at a cost; and something new in his
-world at the end. A premise has to pass nine tests before it is written (a problem the viewer has had, a want
-the camera can see, stakes and a clock, PXI as his answer, an engine, a turn, a point, a one-sentence retell,
-and someone to send it to). A script has to pass a cold read by a reader who knows nothing, and a cut has to
-read with the sound off.
+**The writer takes on a role** (`bible/writers-room.md`): the writers' room of a Cartoon Network show at its
+best, hired to make Nio World. Cheaper models write well when they are told who to be, how that room behaves
+and what it hands over. The role, the characters, the humor engine, the dialogue rules, the story shape and
+the plot machines are each one short file, and the WRITE stage gives the writer all six.
 
-**The journey.** The series moves in chapters with a goal a viewer can hold, and his world visibly fills up:
-people, places, albums, stamps. They go up slowly and never reset. That is what people follow for.
+**The shape** (`bible/story.md`). Every episode, even fifteen seconds: a hook that is off; a tiny real problem
+that starts at home; an absurd turn; an escalation where everyone stays calm; one real feeling for two
+seconds; and a glitch button that ends it before it explains itself. No lesson. What Nio wants comes out of
+people talking, never from a speech to the camera.
+
+**The humor** (`bible/humor.md`). Everyone has a different logic and nobody questions it. The absurd is treated
+as normal and the normal as absurd. Calm lines against loud pictures, never both loud. A picture is a joke.
+The pause is a beat on an acting face, never dead air. Nothing random: one declared strange thing an episode.
+
+**The plots** come from the founder's real stories (`engine/real-stories.md`, taken in by
+`engine/story-intake.md`) and from the machines Gumball builds its episodes on (`bible/gumball-lens.md`), each
+restated for Nio's world. Shapes are borrowed. Characters, lines, names and designs never are.
+
+**The tests.** A premise is one sentence, is funny without PXI, and has a want the camera can see. A script
+passes a cold read by someone who knows nothing, who must be able to say what happened and quote a laugh. A cut
+reads with the sound off.
+
+**The journey.** His world visibly fills up: people, places, albums, stamps. The girl is there at the start and
+is his ex within a few episodes. One episode in three pays off a joke from five or more episodes back
+(`bible/callbacks.md`). That is the lore people follow for.
 
 **Two pinned reels** open the account: the pilot, and "What this is", where Nio tells us what he built and why.
-
-**Then humor** (`bible/humor.md`). The short version, which overrides anything older in the bible:
-
-- **Deadpan and grounded.** The method is Nathan Fielder's: a small social problem, a plan that sounds
-  reasonable, and total sincere commitment to it long after a normal person would stop. Nobody in the scene knows
-  it is funny.
-- **The plots are Cartoon Network plots**: Regular Show, Gumball, Clarence. A mundane errand, a shortcut, an
-  escalation where each step is caused by the last, and a return to normal with a cost.
-- **No forced absurdism.** Random objects, random lines and "quirky" turns are what the founder called corny and
-  lame. Anything strange is the logical result of somebody's decision, or it is declared on purpose (section 7).
-- **The laugh is in the take**: a held face, a silence that goes on too long, a polite person going along.
-- **Depth.** Every story has one true thing written at the top of the script and never said aloud. Nio wants
-  something small, his flaw makes it worse, and it costs him. Nobody says what they feel. Detail is specific.
-  There is no lesson, and the ending leaves one image that is a little sad or a little sweet.
-- **The series remembers.** Plants and payoffs live in `bible/callbacks.md`, dates in `bible/timeline.md`.
-  Relationships move slowly and nothing resets.
 
 **Craft** (`bible/craft-library.md`). Each storytelling device has one treatment, used the same way every time:
 a flashback changes its picture, its sound and its way in and out together, so nobody has to wonder. The library
@@ -167,8 +170,8 @@ to do, what to leave behind and the gate that ends it. A run does one stage and 
 | Stage | Output | Gate |
 |---|---|---|
 | P PLAN (weekly) | The next two weeks of releases in `STATE.md`, from the calendar, the bank and the playbook | Every holiday in range has an owner and dates |
-| 1 WRITE | `script.md`: the retell, the point, beats, dialogue, the tag, the short-cut path | Cold read matches, lint passes, rubric 38/50, no critic veto |
-| 2 BOARD | `shots.md` with the intent ledger, phone screens, voice lines | One purpose per shot; every screen cites its app source |
+| 1 WRITE | `script.md`: logline, six beats, dialogue with faces, PXI moment, glitch, callback, tag, caption | Cold read matches and quotes a laugh, lint passes, rubric 40/55, no veto |
+| 2 BOARD | `shots.md` with a named expression per face, the intent ledger, phone screens, voice lines | One purpose per shot, no dead shot; every screen cites its app source |
 | 3 PROOF | The hardest 8 to 10 seconds at full quality | Accident check clean, and the reviewer names the second a viewer laughs |
 | 4 BUILD | Short cut first, then the long cut; contact sheets | Has sound, reads with sound off, `bible/qa-checklist.md` and the accident check pass |
 | 5 PACKAGE | Cuts, covers, captions per platform, canon updated | The founder approves from the notification |
@@ -185,6 +188,9 @@ reports it. It does not try a third time and it does not lower the gate.
 knows nothing and is given only what a viewer would get (`engine/reviewer.md`). It says what it thinks it
 watched, where it got lost, what is over-explained, which words a person would not write, and whether each
 character is the same person as in the last video. If it fails, the piece is fixed, not sent.
+
+**Stories in.** When the founder tells a story from real life in any chat, it is banked and turned into
+premises the same day (`engine/story-intake.md`).
 
 **Approval.** When a release is packaged, the founder gets a notification in the Claude app with the video
 attached and one question. Nothing is scheduled, posted or sent anywhere until the founder answers. The answer is
@@ -241,6 +247,7 @@ stage card with the date.
 - **Renders are staged.** Drafts are half size and only the shots that changed. The full render runs once a cut.
 - **Images are rationed.** Reviews look at contact sheets, at most four images a pass.
 - **Reports are six lines or fewer**, with the frame or the video attached.
+- **Budget:** the show may use up to half of the week's usage. The line stops for the week before it goes over.
 
 ## 12. Cadence
 
@@ -260,6 +267,11 @@ A proposal until the founder confirms it, and the learning loop adjusts it after
   variable tested at a time, and no volume at the cost of quality.
 
 ## 13. Change log
+
+- 2026-11-11 (night): rewritten around the founder's head writer brief and pilot review. The writer's role
+  (`bible/writers-room.md`), Nio as a live, trolling, broke college student, the six-beat sheet, the Kevin and
+  the glitch button, PXI never forced, dialogue and acting rules, the Gumball plot machines, the story intake,
+  the designed voices locked, and the standing constraints from the first handoff.
 
 - 2026-11-11 (later): the stranger review of the finished video and cover, rules for words on screen, one set
   of character colours for every video, and a daily cadence with one long video a week.

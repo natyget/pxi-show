@@ -33,6 +33,15 @@ actually do it: make or join an event, invite friends by link, shoot into the sh
 the thread, find yourself in other people's photos, share to Instagram, and get the night back as a wrap.
 A holiday episode shows that whole chain, or the part of it that fits the day (`engine/calendar.md`).
 
+## Where PXI fits comfortably (founder, Nov 11)
+
+Taking pictures: Camera and the shared album. Planning a trip or a night: the event, the invite, group plans.
+Finding something to do: the Discover map. A sweet or sad moment: a notification, a look-back, a memory.
+Something blowing up: the Thread and the Wall. If none fits without being forced, PXI is not in the picture,
+and the call to action still goes in the tag or the caption (`bible/story.md`, section 4).
+
+Never compare PXI's fees with anyone's, and never say "cheaper than other apps".
+
 ## Rules for putting PXI on screen
 
 - Open the one source file for the screen you need, copy its layout, wording, sizes and colours, and say which

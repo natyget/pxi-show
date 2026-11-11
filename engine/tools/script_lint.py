@@ -4,6 +4,7 @@
 usage: python3 engine/tools/script_lint.py episodes/<id>/script.md [--target 55]
 
 Reads dialogue lines of the form `NAME: text` or `NAME (note): text` or `NAME *(note)*: text`.
+What we see is written in [square brackets] on its own line (older scripts use parentheses).
 Only the part of the file under a "## Script" heading is checked, if there is one. The "## Tag" section is
 not checked, because the tag is the one place where Nio may name PXI and ask the viewer to get it.
 Text the show itself puts on screen or on a cover is listed under "## Screen text" and checked for labels,
@@ -17,12 +18,20 @@ WORDS_PER_SECOND = 2.3
 SECONDS_PER_ACTION = 2.5
 MAX_WORDS = 130
 MAX_MEDIAN_LINE = 8
+MAX_LINE = 10          # founder brief, Nov 11: cut every line over ten words unless it is Maya
+LONG_LINES_ALLOWED = 1  # the one run-on Nio is allowed
+KEY_LINES = ["this can't be real", "yeah, what's up", "i'm just tired", "they left"]
 TOLERANCE = 0.15
 
 # Phrases the founder banned, plus the tells in .claude/skills/writers-room/tells.md that can be matched by text.
 BANNED = [
     (r"\bhold up\b", "founder: avoid 'hold up' out loud"),
-    (r"\bight\b", "founder: never 'ight'"),
+    (r"\ba?ight\b", "founder: never 'ight' or 'aight'"),
+    (r"\bna+h{2,}\b|\bnaa+h\b", "founder: no drawn-out 'nah'"),
+    (r"\bnot a relationship guy\b", "Nio never explains himself; he pivots"),
+    (r"\bdon'?t want to talk about it\b", "Nio never explains himself; he pivots"),
+    (r"\bso (random|crazy|weird)\b", "someone acknowledges the joke"),
+    (r"\bcheaper than\b", "never compare fees"),
     (r"\bit'?s a short one\b", "founder's example of a forced non sequitur"),
     (r"\bliterally\b", "filler"),
     (r"\bvibes?\b", "filler"),
@@ -43,7 +52,9 @@ BANNED = [
 NOT_X_BUT_Y = re.compile(r"\b(it'?s|that'?s|this is) not\b[^.?!]*,\s*(it'?s|that'?s|this is)\b", re.I)
 LIST_OF_THREE = re.compile(r"\b[\w']+(?: [\w']+)?, [\w']+(?: [\w']+)?,? (?:and|or) [\w']+", re.I)
 LINE = re.compile(r"^\s*(?:[-*]\s+)?\**([A-Z][A-Z .'-]{1,24}?)\**\s*(?:\*?\([^)]*\)\*?)?\s*:\s*(.+)$")
-NOT_SPEAKERS = {"INSERT", "COLD OPEN", "BUTTON", "MONTAGE", "CUT", "STAMP", "TRUE THING", "PXI ENGINE", "SETS"}
+NOT_SPEAKERS = {"INSERT", "COLD OPEN", "BUTTON", "MONTAGE", "CUT", "STAMP", "TRUE THING", "PXI ENGINE", "SETS",
+                "HOOK", "SETUP", "ABSURD TURN", "ESCALATION", "EMOTIONAL HIT", "GLITCH BUTTON", "INT", "EXT"}
+NARRATORS = {"NARRATOR", "VO", "V.O.", "VOICEOVER", "VOICE OVER"}
 
 
 def spoken(text):
@@ -82,7 +93,7 @@ def main():
             if said:
                 lines.append((m.group(1).strip(), said))
             continue
-        if s.startswith(("(", "*(", "-", "INSERT", "**")):
+        if s.startswith(("[", "(", "*(", "-", "INSERT", "**")):
             actions += 1
 
     fails, warns = [], []
@@ -104,6 +115,25 @@ def main():
     if not target * (1 - TOLERANCE) <= est <= target * (1 + TOLERANCE):
         warns.append(f"runtime estimate {est:.0f} s is outside {target:.0f} s ±15% (rough: words and action lines)")
 
+    long_lines = [(w, s) for (w, s), n in zip(lines, counts) if n > MAX_LINE and not w.upper().startswith("MAYA")]
+    for w, s in long_lines:
+        warns.append(f'{w}: "{s}" (over {MAX_LINE} words)')
+    if len(long_lines) > LONG_LINES_ALLOWED:
+        fails.append(f"{len(long_lines)} lines over {MAX_LINE} words that are not Maya's (at most {LONG_LINES_ALLOWED})")
+    if len(lines) >= 6 and len({w.upper() for w, _ in lines}) < 2:
+        fails.append("only one person speaks; an episode needs people talking to each other")
+    for w, _ in lines:
+        if w.upper() in NARRATORS:
+            fails.append(f"{w} speaks (no narrator, ever)")
+            break
+    joined = " ".join(s.lower().replace("\u2019", "'") for _, s in lines)
+    for k in KEY_LINES:
+        if joined.count(k) > 1:
+            fails.append(f'key line "{k}" used {joined.count(k)} times (at most once an episode)')
+    faces = len(re.findall(r"\[[^\]]*\b(Nio|NIO)\b[^\]]*\]", body))
+    if "[" in body and faces < 3:
+        warns.append(f"only {faces} bracketed cues mention Nio; write his face changes (at least three)")
+
     pxi_said = 0
     for who, said in lines:
         low = said.lower()
@@ -116,7 +146,7 @@ def main():
             warns.append(f'{who}: "{said}" (looks like a list of three)')
         if "—" in said or said.count("...") + said.count("…") > 1:
             warns.append(f'{who}: "{said}" (dash or ellipsis used for timing; use a take)')
-        pxi_said += len(re.findall(r"\bpxi\b", low))
+        pxi_said += len(re.findall(r"\b(pxi|pixie)\b", low))
     if pxi_said > 1:
         fails.append(f"PXI is named aloud {pxi_said} times (at most once)")
     if sum(said.count("...") + said.count("…") for _, said in lines) > 2:

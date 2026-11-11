@@ -1,39 +1,52 @@
 # Stage 1: WRITE
 
-**Model:** delegate the writing to one **Opus** subagent, given this card and the files below. Critics are three
+**Model:** delegate the writing to one **Opus** subagent. Its brief is `bible/writers-room.md`, word for word,
+followed by this card and the premise. It takes on that role and stays in it. Critics and the cold reader are
 **Haiku** subagents. The run itself only runs the lint, checks the gate and updates the state.
 
-**Read:** `bible/story.md`, `bible/humor.md`, `bible/voice-and-dialogue.md`, `bible/pxi-product.md`, `bible/callbacks.md`,
-`bible/timeline.md`, `bible/style-lock.md` (the numbers), `engine/playbook.md`, `engine/formats.md` (the row for
-this format), `.claude/skills/writers-room/SKILL.md` with its `rubric.md` and `tells.md`, and the premise named
-in `STATE.md`. For a holiday, also its row in `engine/calendar.md`.
+**Read (the writer):** `bible/writers-room.md` first, then `bible/characters.md` (who they are; skip the voice
+recipe), `bible/humor.md`, `bible/voice-and-dialogue.md`, `bible/story.md`, `bible/gumball-lens.md`,
+`bible/pxi-product.md`, `bible/callbacks.md`, `bible/timeline.md`, `engine/playbook.md`, `engine/formats.md`
+(the row for this format), `.claude/skills/writers-room/SKILL.md` with its `rubric.md` and `tells.md`, and the
+premise named in `STATE.md`. If the premise says `From: R<n>`, that story in `engine/real-stories.md`. For a
+holiday, its row in `engine/calendar.md`.
 
-**Do:** run the writers' room skill, stages 2 to 6, on that premise. Write one file, `episodes/<id>/script.md`:
+**Do:** run the writers' room skill on that premise. Write one file, `episodes/<id>/script.md`:
 
 ```
 # <id> "<Title>"
+Type: <Lore | Standalone | Experiment | Dream> · Tone: <Funny | Wholesome | Eerie | Sad>
+Engine: <the plot engine from bible/story.md section 3, or the machine from bible/gumball-lens.md>
+Logline: Nio wants <X>, but <Y weird thing> happens, and he responds by <Z>.
 Retell: <the episode in one sentence a viewer would say to a friend>
-Problem: <one the viewer has had this month> · Want: <a goal the camera can see> · Stakes and clock: …
-PXI answer: <the feature that is his plan> · Turn: … · Flaw: … · Cost: …
-Point: <what the viewer feels at the end, and what is different in Nio's world>
-True thing: <one sentence, never spoken>
-Hook: <the picture in the first three seconds>
-After watching, a viewer would: <the PXI behaviour this models, in one line>
-Moves the journey: <the person, place, album or stamp that is new after this episode>
+Want: <a goal the camera can see> · Why tonight: <the clock>
+The Kevin: <who or what was there the whole time, or the insane thing everyone treats as normal>
+Feeling: <the one real feeling, hit once, never spoken>
+PXI moment: <ENGINE | MOMENT | NONE> <the feature and exactly what he does with it>
+Glitch beat: <what breaks in the last three seconds, and on what image>
+Callback: <the old joke this pays off, with its episode> or NONE · Plants: <what this leaves for later> or NONE
+Laughs: <the three pictures or lines where a stranger laughs, in order>
+After watching, a viewer would: <the PXI behaviour this models> (leave out if PXI moment is NONE)
+Moves the journey: <the person, place, album or plant that is new after this episode>
+From: <R<n> in engine/real-stories.md> or original
 Sets: <existing sets> · New: <at most one set, three props>
 
 ## Beats
-<5 to 7 beats for the short cut in the shape of `bible/story.md` section 2: hook, problem and want by 5 s,
-plan by 10 s, three steps, turn, payoff. Each caused by the one before. Extra beats for the long cut marked LONG>
+Hook: … / Setup: … / Absurd turn: … / Escalation: … / Emotional hit: … / Glitch button: …
+<six lines for the short cut. Extra beats that are only in the long cut are marked LONG>
 
 ## Script
+[what we see, in square brackets, including every change of face: [Nio, lit up]]
 NAME: spoken line
-(action, take or hold, on its own line)
+NAME (over her): a line that cuts in
 INSERT: what the phone shows, in the app's exact words
 [LONG] in front of anything that is only in the long cut
 
 ## Tag
-<Nio to the viewer, after the button, 5 seconds at most. The PXI ask, in his voice.>
+<Nio to the viewer, after the glitch, 5 seconds at most. The PXI ask, in his voice, fun and cute.>
+
+## Caption
+<one plain line, then a lore question for the comments>
 
 ## Screen text
 <every piece of text the show itself puts on screen or on the cover, one a line. Not the app's own wording.>
@@ -41,18 +54,20 @@ INSERT: what the phone shows, in the app's exact words
 
 Then:
 1. `python3 engine/tools/script_lint.py episodes/<id>/script.md` and fix every FAIL.
-2. Read the script with every `[LONG]` line removed. It must be a complete joke with its own opening and button.
-3. **The cold read.** One Haiku subagent given only the short-cut script, with the header removed. It answers
-   in a line each: who is this, what does he want, why does it matter, what is the plan, what happened, what
-   was the point, would you send it and to whom. Compare with the header. Any mismatch or "not sure" is a fail:
-   fix the script, not the header.
+2. Read the script with every `[LONG]` line removed. It must be complete, with its own hook and glitch button.
+3. **The cold read.** One Haiku subagent given only the short-cut Script section. It answers in a line each:
+   who is this, what did he want, what happened, what was the strange thing and did anyone mind, what did he
+   feel at the end, where did you laugh (quote it), would you send it and to whom. Compare with the header.
+   "Not sure" on what he wanted or what happened is a fail. No laugh quoted is a fail. Fix the script, not the
+   header.
 4. Three critics in parallel, each given only the Script section and its brief from the skill (Skeptic, Literal
    Viewer, Nine-Year-Old). They quote lines and score. They do not rewrite.
-5. Punch-up: fix only what was flagged. Score with `rubric.md`. Run the lint again.
+5. Punch-up by the writer, in role: fix only what was flagged, then the five checks at the end of
+   `bible/writers-room.md`. Score with `rubric.md`. Run the lint again.
 
-**Gate:** the cold read matches the header, lint has no FAIL, rubric 38/50 or more, no critic scored "actually
-funny" under 3, and the short cut stands alone. One more round with fresh critics is allowed. If it fails again, write `BLOCKED` in `STATE.md`
-with the critics' three weakest lines quoted, and stop.
+**Gate:** the cold read matches the header and quotes a laugh; lint has no FAIL; rubric 40/55 or more with no
+veto; the short cut stands alone. One more round with fresh critics is allowed. If it fails again, write
+`BLOCKED` in `STATE.md` with the critics' three weakest lines quoted, and stop.
 
 **Leave behind:** `script.md` only. Cut jokes go in `episodes/<id>/candy-bag.md`. No drafts.
 **Next:** stage 2.

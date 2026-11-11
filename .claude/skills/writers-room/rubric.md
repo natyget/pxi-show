@@ -1,17 +1,18 @@
-# Rubric (score 1–5 each; ship at 38/50 with no veto)
+# Rubric (score 1–5 each; ship at 40/55 with no veto)
 
-1. **Premise machine**: does the premise itself keep producing jokes?
-2. **Causal escalation**: is each beat caused by the last, and bigger?
+1. **Funny without PXI**: retold with the app taken out, would someone still laugh?
+2. **Causal escalation**: is each beat caused by the last, and bigger, with everyone calm?
 3. **Surprise**: could a viewer predict the next beat? (5 = never)
-4. **Real laughs**: circled laughs in 60 s (6+ = 5).
+4. **Real laughs**: laughs a stranger would circle in the short cut (6+ = 5).
 5. **Voice**: cover the names; can you tell Nio from Maya from anyone else?
-6. **Setup hygiene**: no hints at the punch, punch word last, nothing after the joke.
-7. **Visual comedy**: takes, background gags, physical comedy used where they beat a line.
-8. **Ending**: costs Nio something and ends on the smallest, driest button; no lesson, no epilogue.
-9. **Runtime fit**: within ±15% of target; lines fit their shots.
-10. **Tells**: AI tells found (5 = none).
+6. **Conversation**: is there a real exchange where two people want different things and the status moves?
+7. **Faces and pictures**: do faces change on the page, and is at least one joke only a picture?
+8. **The Kevin**: one strange thing, there the whole time, never explained, taken calmly.
+9. **Ending**: one real feeling for two seconds, then the glitch on the weirdest image. No lesson.
+10. **Runtime fit**: within ±15% of target; lines fit their shots.
+11. **Tells**: AI tells found (5 = none).
 
 **Veto**: "actually funny" below 3/5 from the Nine-Year-Old or the Skeptic.
-
-**Veto**: any beat that fails the swap, why or laundromat test in `bible/humor.md`, or any line that makes Nio a goof.
-**Veto**: the cold read in `bible/story.md` section 4 cannot state the point, or states a different one.
+**Veto**: anything on the Never list in `bible/humor.md`; any line that makes Nio a goof, an NPC or a narrator.
+**Veto**: the cold read cannot say what he wanted or what happened, or cannot quote a laugh.
+**Veto**: PXI forced in where it does not fit (`bible/story.md`, section 4).

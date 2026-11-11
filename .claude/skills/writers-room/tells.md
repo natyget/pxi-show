@@ -10,7 +10,8 @@ One hit isn't slop; a pile of them is. Quote the line for each hit.
 - Broad general statements where a specific concrete detail would do.
 
 **Shape**
-- Tidy symmetry, mirrored lines, rule-of-three lists, synonym cycling, saying one thing three ways.
+- Tidy symmetry, mirrored lines, spoken lists of three, synonym cycling, saying one thing three ways. (Three
+  *events* where the third is the odd one is a device in `bible/humor.md`, not a tell.)
 - "It's not X, it's Y." Staccato drama fragments ("One phone. Three photos.").
 - One-line kicker closers on every scene. Every line having a punchline.
 - Uniform line length. (Vary it: a one-word line, a run-on, a silence.)
@@ -24,4 +25,6 @@ One hit isn't slop; a pile of them is. Quote the line for each hit.
 - Filler: "I mean", "you know", "literally", "absolutely", "vibe", "chaos".
 - Ellipses and dashes as a crutch for timing (use a take instead).
 - Only joy and surprise. Let them be petty, scared, grossed out, jealous.
-- The lead being right, calm, articulate in a crisis, or vindicated.
+- The lead being right, articulate in a crisis, or vindicated. The lead explaining his plan or his feelings.
+- Flat lines with no face written for them. A whole scene with no change of expression.
+- Slang stacked up to sound young.

@@ -1,6 +1,6 @@
 # Production state
 
-Every run reads this file first and updates it last. Keep it under 60 lines.
+Every run reads this file first and updates it last. Keep it under 70 lines.
 
 phase: PILOT_LOCK
 episode: pilot
@@ -12,18 +12,32 @@ gate_failures: 0
 
 ## Open founder decisions
 
-- Approve `engine/DIRECTIVE.md` (draft).
-- Approve the pilot (two pinned reels: the pilot episode and "What this is"). "Not Me" was rejected on Nov 10.
-  Owned by the pilot thread, not by scheduled runs.
-- Confirm the series line in `bible/story.md` section 1 (Nio built PXI to fix his own problems) and name the
-  chapters in section 6.
-- Approve the Nio head. Owned by the Nio head thread, not by scheduled runs.
-- Pick the final voices: the Nov 9 picks in `bible/characters.md`, or the designed voices from audition 3
-  (`episodes/ep2/voice-audition-3.mp4`).
-- Confirm the cadence in section 12 of the directive.
+- Approve `engine/DIRECTIVE.md` (draft, rewritten Nov 11 around the head writer brief).
+- Approve a pilot. "Not Me" (Nov 10) and "No Evidence" (Nov 11) were both rejected. Owned by the pilot thread,
+  which now writes from `bible/writers-room.md`. Not for scheduled runs.
+- Approve the new look. Owned by the look thread. Not for scheduled runs.
+- Who Nio is: answer the questions in the Nio thread. Until then `bible/characters.md` holds the working answer.
+- Calls made on Nov 11 where two notes pulled apart; say if any is wrong:
+  1. Nio is a broke college student **and** PXI is his app ("this my app yo").
+  2. PXI is never forced: at most one episode in four has no PXI in the picture, holiday episodes always have
+     it, and every release still carries the call to action in the tag or caption.
+  3. "Never overreact" means he stays calm about the weird. About himself he is big: hyped, devastated, petty.
+  4. The pause is one beat on an acting face. Shots where nothing happens are cut.
+  5. Voices are clean, without the walkie-talkie colour, until the founder has heard both.
+  6. The girl who becomes his ex replaces the old "no ex arcs" rule. His apartment stays spotless, so the
+     friend's "messy" remark is about something else. What?
+- The best friend has no approved voice. Until one is picked he appears as text on Nio's phone.
+- Make `main` the default branch of this repo, so scheduled runs can save state (BACKLOG item 8).
+- Confirm the cadence in section 12 of the directive, then switch on the scheduled tasks in `engine/ROUTINES.md`.
 - Thanksgiving (26 Nov): a full episode needs the pilot approved by about 16 Nov. Otherwise it gets a cheaper
   format and the first holiday episode is New Year's Eve.
-- Make `main` the default branch of this repo, so scheduled runs can save state (BACKLOG item 8).
+
+## Decided
+
+- Voices (founder, restated Nov 11): the designed Qwen3-TTS voices for Nio and Maya, in `bible/characters.md`.
+- Backlog tools (founder, Nov 11: "yes i say yes to that too"): to be built in their own thread on a cheaper
+  model.
+- Push notifications are on and Metricool is connected (founder, Nov 11).
 
 ## Ready to schedule
 
@@ -37,7 +51,7 @@ gate_failures: 0
 ## Parked
 
 - Ep 2 "Forty-Seven" (`episodes/ep2/room/`): the founder rejected its humor as forced. Do not build it. Its
-  premise may come back through the bank only if rewritten to pass `bible/humor.md`.
+  premise may come back through the bank only if rewritten through `bible/writers-room.md`.
 - Ep 1 and its Part 2: from before Nio was PXI's maker. Not canon unless the founder brings them back.
 
 ## Queue (two weeks of releases, written by PLAN once the pilot is approved)
@@ -46,4 +60,6 @@ gate_failures: 0
 
 ## Run log (newest first, keep five)
 
+- 2026-11-11 · bible · rewritten around the head writer brief: the room, Nio, six beats, the Kevin, dialogue,
+  acting, the Gumball lens, story intake, voices locked. Pilot, look and Nio threads still open.
 - 2026-11-10 · setup · directive, stage cards and tools written; waiting for founder approval.

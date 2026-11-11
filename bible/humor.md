@@ -1,95 +1,105 @@
-# Humor doctrine (read before writing anything; overrides older humor notes in the bible)
+# Humor engine (what makes this show funny; newest founder notes, Nov 11, win over anything older)
 
-Founder, Nov 9, on the Ep 2 draft: "its just trying to be absurdism and funny but instead corny and lame." The founder asked
-for humor "in the nathan fielder gumball sense", "gumball clarence and uncle grandpa like cartoon network humor",
-and plots "like regular show gumball and clarence". This page is how to do that. We copy methods, never bits,
-lines, characters or designs.
+Use The Amazing World of Gumball as the model and never as a copy. We take the method. We never take a
+character, a line, a name, a design or a voice.
 
-## The one idea
+What the founder has thrown out, so it is never written again:
 
-**Somebody commits, completely and sincerely, to a plan that sounds reasonable and is not.** Everything funny in
-the show comes from that commitment meeting ordinary polite people in an ordinary place. Nobody on screen thinks
-any of it is funny.
+- "It's a short one!": "nonesense that isnt funy at all ... corny and lame" (Nov 9). A random line is not a joke.
+- A lead who is "a goofy one" (Nov 9).
+- A lead who "talks like an npc", a cut that is "robotic", and a plot that is "weird and corny ... never done
+  on gumball" (Nov 11, on the pilot where Nio explained his plan to the camera and a stranger turned out to be
+  "the actual guy").
 
-## The Fielder method (how a scene is funny)
+## The six rules
 
-1. **Small social problem.** The stakes are dignity: being seen mid-bite, not knowing someone's name, having waved
-   at the wrong person. Never danger.
-2. **A plan with logic, said out loud.** Nio tells us the problem and the plan at the top, in plain, businesslike
-   words, and each step follows. The plan avoids the
-   one easy thing a normal person would do, which is to just ask.
-3. **Procedure.** He does the plan properly: exact numbers, a rehearsal, a form, a second attempt. The effort is
-   wildly out of scale with the problem, and he never notices the scale.
-4. **Polite people go along.** Strangers help because saying no is harder. Their patience is the pressure.
-5. **The hold.** After the worst moment, nobody speaks. Hold the two-shot 8 to 12 frames longer than is
-   comfortable. Then someone says the smallest possible thing.
-6. **No wink.** No one comments on how strange this is. No look that says "isn't this crazy".
-7. **The lonely thing underneath.** He wants to be liked. Once an episode that shows for a second, plainly, and
-   nothing undercuts it.
+1. **Everyone has a different logic, and nobody questions it.** Nio, Maya, the best friend on the phone and
+   the man in the corner each run on their own rules. Nobody asks why.
+2. **Mundane, then absurd, then one real feeling, then mundane again.** Start with a tiny real problem. Push
+   it until it is insane. Hit one true feeling for two seconds. End as if nothing happened. No lesson.
+3. **Treat the absurd as normal and the normal as absurd.** A man under the bean bag after a party is normal.
+   Nio saying "good morning" is suspicious.
+4. **Meta one scene, oblivious the next.** Nio can look at us and say "this can't be real", then fail to
+   notice that a girl is flirting with him. That switch is who he is.
+5. **A picture is a joke.** A face, a background detail, a man in the corner, a drink left on the couch. The
+   punchline is very often not a line.
+6. **Dark and cute live in the same episode.** Sweet, then devastating for ten seconds, then funny again.
 
-## The Cartoon Network shape (how a plot is funny)
+## The Kevin (the mechanic the founder asked us to copy)
 
-- **Regular Show:** an errand or a shortcut. Skipping the boring right way sets off consequences far bigger than
-  the errand, each caused by the last, and it ends back at the errand with a cost.
-- **Gumball:** the lead's ego is the engine. Vanity first, fear second. The plan gets sold in one line of
-  confident logic, and the explanations get thinner as things get worse.
-- **Clarence:** small, warm, true. A real place, real awkwardness, kindness that is funny because it is sincere.
-  This is where the depth comes from.
-- **Uncle Grandpa:** one purely visual surprise is allowed, as garnish, for a second or two. It is never the plot
-  and never a line of dialogue.
+A normal room and a normal, slightly boring problem. Somebody is sitting in the corner chair. He was there the
+whole time and nobody explained him. Asked, he says something like "I'm just here to watch." The scene carries
+on as if he were furniture. He gets involved. Then the picture glitches and it ends.
 
-## Nio is not a goof
+Why it works, and what every Kevin must keep:
 
-The founder: "i basically described gumball to you, and you made a goofy one." Nio is smart, fast, sarcastic and
-certain. He is wrong because of pride, never because he is slow. He is never confused about what is happening,
-only about how it reflects on him. If a line makes him sound dim, random or cute, cut it.
+1. The setup is normal. The intruder is insane and is **never explained**.
+2. Everyone treats it as normal. Only the audience, and sometimes Nio, does not.
+3. The lines are deadpan. Nobody overreacts.
+4. One visual rule breaks at the end: the glitch.
+5. It ends before it explains itself.
 
-## Nio and the viewer
+A Kevin can be a person, an object or an event. There is **one** per episode, it is written in the script
+header and in the intent ledger (`bible/anti-slop.md`), and it is staged on purpose. That is the difference
+between a Kevin and the random nonsense the founder rejected: a Kevin is one calm, committed, deliberate wrong
+thing that the whole episode leans on. A pile of odd props and a line from nowhere is still slop.
 
-Founder, Nov 10: Nio can break the fourth wall and talk to the viewer, and that is where he asks them to get
-the app, "fun and cute". Only Nio does this. He talks to the camera the way a man explains a plan he is proud
-of: flat, businesslike, specific, a little too much detail. He never says the situation is funny, never
-apologises for it, and nobody else in the scene notices him doing it. In a story it happens once or twice at
-most. In the tag it is the whole point: he asks the viewer to get PXI so they can find his things on the map and
-come, and he asks as if it were a reasonable favour.
+## Where the comedy comes from, most to least
 
-## Eerie and weird, on purpose
+1. **Faces.** The take, the collapse, the slow smile of a man who is trolling. Gumball is expressive and so is
+   Nio. If the faces were removed and the episode were still as funny, it was not written for this show.
+2. **Two people talking.** Trolling, baiting, talking past each other, one of them enjoying it more.
+3. **Calm against loud.** Calm lines while the picture goes insane, or a calm picture while the lines go
+   insane. **Never both loud at once.**
+4. **The thing that was there the whole time.**
+5. **The exact detail.** The pattern on the pants. The time on the email.
+6. **A line that is funny by itself.** Last. Two or three an episode is plenty.
 
-The show can be uncanny the way Gumball and Adventure Time are: a thing that is wrong, held calmly, that the
-world accepts. That is a choice, staged and declared (`bible/anti-slop.md`). Dreams are where it goes furthest.
-It is never an accident and never decoration.
+## Devices
 
-## What strange things are allowed
+- **Three beats.** Two normal things and the third is insane, or two insane things and the third is completely
+  normal. This is a pattern of events or pictures. It is never a spoken list of three, which is a tell.
+- **Callback.** One episode in three pays off a joke from at least five episodes earlier. That is how lore is
+  built (`bible/callbacks.md`).
+- **Misdirection.** Set up a normal expectation and pay it off with a picture, not a line.
+- **Repetition with a twist.** The same line or the same shot again in a new situation. It is funnier the
+  second time because we know it.
+- **The troll.** Nio asks the obvious question with a straight face and makes someone explain themselves.
+  We see him enjoying it before they catch on. He trolls people who can take it, and he trolls up or sideways,
+  never down.
+- **The dismissal.** A sensitive question, and Nio is already talking about something better. Never mark it
+  in the script and never let anyone notice it.
+- **The medium breaks.** When reality cracks, the picture does: the glitch, a change of style in a dream.
 
-A strange thing is allowed only when it is **caused**. Run these three tests on every odd beat:
+## The pause
 
-- **The swap test.** Could you swap the object for another random one and keep the joke (a goldfish for a medal)?
-  Then it is random. Cut it.
-- **The why test.** Can you say whose decision made this happen? If not, cut it.
-- **The laundromat test.** Would it still be funny played completely straight, in a real laundromat, with nobody
-  reacting? If it needs a wacky tone to work, cut it.
+The founder, Nov 11: "weird long pauses and shots of just the people or just the wall ... shots that will kill
+retention, we need to keep them entertained unless its not called for." And the brief: "The pause IS the joke."
+Both are true, and this is the line between them:
 
-## Where the laughs live, in order
+- A pause is on a **face that is doing something** (deciding, enjoying it, dying inside), straight after a
+  joke, one beat longer than is comfortable. That is 8 to 12 frames, not seconds.
+- One or two an episode. Everything else moves.
+- A shot of a wall, a room or a person waiting is not a pause. It is dead air, and it is cut.
 
-1. The take: a face, a silence, a hold.
-2. Commitment: doing the wrong thing properly.
-3. Politeness under pressure: someone going along with it.
-4. Specific detail: the exact number, the name of the album, the wrong side of the chin.
-5. Understatement: the smallest possible line after the biggest moment.
-6. A line that is funny by itself. This is last, and most scripts need only two or three.
+## Tone over a week
+
+About half funny or absurd, a fifth wholesome, and the rest split between eerie and sad. Never three sad in a
+row. A devastating one is followed by a funny or a sweet one. Melancholy lives in the walks home and the
+minutes alone after a long night.
 
 ## Never
 
-- A non sequitur as a punchline. The founder's example of what not to do is the line "It's a short one!".
-- Random props piling up for their own sake. Montages of unrelated gags.
-- Jokes that depend on a character being stupid.
-- Anyone acknowledging that the situation is funny, weird or awkward.
-- Puns, wordplay, catchphrases, pop culture references, trend bits.
-- A punchline on every line. Most lines are plain. The situation is the joke.
-- A lesson, a hug, or a tidy fix at the end.
-
-## A method is not a story
-
-Everything on this page makes a scene funny. None of it makes an episode worth watching. The first pilot built
-on this page alone ("Not Me") was rejected because nobody could tell what it was for. `bible/story.md` comes
-first: who Nio is, what he wants, what is at stake, and the point. Then this page.
+- Explain the joke. Have anyone say it was random, crazy, weird or awkward.
+- A moral, a lesson, a hug that fixes it.
+- A narrator, or Nio explaining his plan to the camera.
+- Nio explaining himself: "I'm not a relationship guy", "I don't want to talk about it".
+- Nio screaming at the strange thing. (He may be loud about himself: a win, a bad photo, a parking ticket.)
+- Maya doing a trend bit.
+- A random line as a punchline. Odd props piling up. Jokes that need a character to be stupid.
+- Gross shock. Blunt and confusing is good. The reference video's sexual joke is not ours.
+- A joke at the expense of someone's illness, body, accent, religion or where they are from. When Nio's bad
+  Arabic is funny, Nio is the joke.
+- Anything from Nio's "fake advert" trolling. The founder: "not something to put in any episode."
+- PXI forced into a scene (`bible/story.md`, section 4).
+- Teleporting. Show him leave home and show how he gets there.
