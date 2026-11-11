@@ -81,7 +81,7 @@ const NIO_CHAIR: Pose = { x: -1.38, z: 0.75, yaw: -Math.PI / 2, ...CHAIR };
 
 // ---------------------------------------------------------------- shots
 const S = (C: React.FC<{ t: number; f: number }>) => () => { const f = useCurrentFrame(); return <C t={t12(f)} f={f} />; };
-const PhoneLight: React.FC<{ at: [number, number, number] }> = ({ at }) => <pointLight position={at} intensity={0.7} distance={1.2} decay={1.6} color="#bcd4ff" />;
+const PhoneLight: React.FC<{ at: [number, number, number] }> = ({ at }) => <pointLight position={at} intensity={0.3} distance={0.9} decay={1.8} color="#bcd4ff" />;
 
 const P1 = S(({ t }) => {   // HOOK: CU on the floor, last night's clothes, glow-stick still lit, face lit by the phone. Grinning.
   const h = headPos(NIO_FLOOR, NIO);
