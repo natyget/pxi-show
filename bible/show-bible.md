@@ -142,6 +142,6 @@ Founder notes win over everything else and are dated. Where an older line here d
     know nothing and think does this amke sense, is this over explanied is this slop etc."
   - "are we actually building our agent tho? because i need this to produce content on the daily for social and
     one long format a week at least for social medai so we can get discovered as a platform and company"
-- **Nov 11 (look options A/B/C, `studio/anim/src/look/`), the founder's pick:** "B: Hi-bit cel". The show moves to the 2D
-  rig drawn at 360x640 with anti-aliasing off, scaled 3x nearest-neighbour; each shape outlined in a darker shade of
-  itself, one cel shadow tone plus light. Render with `--gl=angle`. Reference renders: `/mnt/project-files/look-options/`.
+- **Nov 11 (look options A/B/C, `studio/anim/src/look/`):** tapped "B: Hi-bit cel" on the card, then a minute later, word
+  for word: "none of the looks you made are nice i need you to try again this looks like ai slop". No look is chosen.
+  The A/B/C round is rejected; do not build on it.
