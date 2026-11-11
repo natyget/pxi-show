@@ -142,3 +142,39 @@ Founder notes win over everything else and are dated. Where an older line here d
     know nothing and think does this amke sense, is this over explanied is this slop etc."
   - "are we actually building our agent tho? because i need this to produce content on the daily for social and
     one long format a week at least for social medai so we can get discovered as a platform and company"
+- **Nov 11, 12:22 PM (on the third look test, the drawn Nio), word for word:**
+  - "this is way better, but I don't understand why you still choose to stick with this cartoonish drawn style when
+    I clearly attached a different looking avatar and those avatars are more so like stylized representation of
+    humans. [...] if you're drawing the shirt that shirt is one thing and he should be able to takeoff and put on
+    the shirt no issue that means you would have to create a world like it's not just subtle animation. You really
+    have to create a nice engine around this and the motions need to be nice as well. [...] Please do research."
+- **Nov 11, 1:19 PM (on the first 3D figure proof, with two new reference images saved in
+  `/mnt/project-files/look-options/reference2/`: a soft pixel character sheet and a pixel-art bedroom), word for word:**
+  - "not quite yet. so here is a new asset for you and instruction i think you might find helpful we really need to
+    create the perfect world so any model after this can come and use it make it as close to a real functional
+    world that would not allow for any weird unwanted stuff
+    CRITICAL VISUAL REFERENCE INSTRUCTIONS
+    The attached images are the primary visual ground truth for this project.
+    I want you to study the actual pixels, outlines, proportions, color relationships, shading, texture and shapes.
+    Do not interpret these images as loose mood-board inspiration.
+    I want a highly faithful recreation of their overall visual language.
+    IMPORTANT DISTINCTIONS:
+    1. The bedroom image is the master environment reference.
+    2. The character sheet is the master character reference.
+    3. The character's hair must retain the same chunky, irregular silhouette and soft textured construction.
+    4. The eyes must retain the large, simple, slightly asymmetrical appearance.
+    5. Outlines must feel hand-drawn and imperfect, not clean corporate vector art.
+    6. Shading must be subtle, blocky, and slightly pixelated.
+    7. Keep the muted brown, mauve, plum, olive and warm cream palette.
+    8. Do not introduce generic anime, Disney, Pixar or glossy 3D cartoon aesthetics.
+    9. Do not make the backgrounds photorealistic.
+    10. Keep the same artistic language across every character, object and environment.
+    Do not simply apply a pixel filter to smooth vector illustrations. Construct the texture and shading into the
+    artwork itself.
+    Before creating the animation, create a visual comparison sheet showing your proposed character and environment
+    next to the supplied references.
+    The character must be original, but the visual technique should remain extremely close to the supplied references.
+    Treat approved character artwork as a locked model reference. Never casually change its proportions, hair
+    silhouette, eye shape or outline style between shots."
+- **Nov 11, 1:20 PM, word for word:**
+  - "this also mean nio no longer has braids but he is still lightskin not white"
