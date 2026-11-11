@@ -63,7 +63,7 @@ const R5 = S(({ t }) => {   // INSERT: the push "You might be in 61 photos". Tap
           return k > 0.01 ? <mesh key={i} geometry={plane(0.0215, 0.0215)} position={[x, y, z + 0.0004]} scale={k}><meshBasicMaterial map={s[`tile_${n}`]} transparent toneMapped={false} /></mesh> : null;
         })}
       </Insert>
-      <Say t={t} who="nio" at={1.2} d={2.4} text="every photo you're in, from everyone's phones." seed={16} />
+      <Say t={t} who="nio" at={1.2} d={2.4} text="it finds every photo you're in, from everyone's phone." seed={16} />
     </AbsoluteFill>
   );
 });
@@ -71,12 +71,12 @@ const R6 = S(({ t }) => {   // INSERT: the map, "Tonight near you". Pins pop in.
   const s = useNoEvidenceScreens();
   const n = Math.min(4, Math.floor((t - 0.2) / 0.35) + 1);
   return <AbsoluteFill><Insert screen={s ? (n >= 1 ? s[`map${n}`] : s.map) : undefined} tapK={0} />
-    <Say t={t} who="nio" at={0.3} d={1.9} text="and everything on tonight, on one map." seed={17} /></AbsoluteFill>;
+    <Say t={t} who="nio" at={0.3} d={1.9} text="and shows what's on tonight, near you." seed={17} /></AbsoluteFill>;
 });
 const R7 = S(({ t }) => (   // "It's free. Get it. Next time I throw something, you'll see it. And come."
   <AbsoluteFill><Desk t={t} p={{ mouth: Math.max(talk(t, 0.2, 0.6), talk(t, 2.0, 1.9), talk(t, 5.4, 0.7)), brow: 0.05, smile: 0.1 }} />
     <Say t={t} who="nio" at={0.2} d={0.6} text="it's free." until={1.7} />
-    <Say t={t} who="nio" at={2.0} d={1.9} text="get it. next time i throw something, you'll see it." until={3.2} />
+    <Say t={t} who="nio" at={2.0} d={1.9} text="next party i throw, it's on there." until={3.2} />
     <Say t={t} who="nio" at={5.4} d={0.7} text="and come." /></AbsoluteFill>
 ));
 const R8 = S(({ t }) => (   // A beat. "I'll know if you came." "I'll have photos."
@@ -125,6 +125,6 @@ const Caption: React.FC<{ text: string }> = ({ text }) => (
 export const Thumb: React.FC<{ which: 'ne' | 'wib' }> = ({ which }) => (
   <AbsoluteFill style={{ background: '#0b0a0d' }}><Fonts />
     {which === 'ne' ? <><NoEvidenceThumbArt /><Caption text="my phone died before i saved her number" /></>
-      : <><Desk t={0.4} size="mcu" p={{ smile: 0.2, armR: { sx: -1.25, sz: -0.25, el: 0.6 } }} handR={<PhoneInHand on={1} />} /><Caption text="so i'm making an app for this" /></>}
+      : <><Desk t={0.4} size="mcu" p={{ smile: 0.2, armR: { sx: -1.25, sz: -0.25, el: 0.6 } }} handR={<PhoneInHand on={1} />} /><Caption text="nobody sent me the pics, so i built this" /></>}
   </AbsoluteFill>
 );

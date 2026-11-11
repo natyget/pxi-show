@@ -22,7 +22,7 @@ import { talk, on, PhoneInHand, Insert, Card, Slide } from './PilotNotMe';
 const ex = (o: Partial<Look>): Look => ({ skin: '#c99a7a', skinShade: '#a87b5d', hair: '#1f1a1a', hairDark: '#1f1a1a', iris: '#2a1a12', top: '#3f6f8f',
   topDark: '#345d78', pants: '#2b2a33', shoes: '#efe6d2', shape: 'tri', hairStyle: 'crop', ...o });
 /** 3A: answers the door in a towel. Bare chest, bare feet. */
-export const TOWEL: Look = ex({ skin: '#e9c9b0', skinShade: '#c9a790', top: '#f2f0ea', topDark: '#d8d4cc', pants: '#eef2f4', shoes: '#e9c9b0', hair: '#6a3f24', hairDark: '#6a3f24', shape: 'long', build: 1.05 });
+export const TOWEL: Look = ex({ skin: '#e9c9b0', skinShade: '#c9a790', top: '#7d8796', topDark: '#646d7a', pants: '#eef2f4', shoes: '#e9c9b0', hair: '#6a3f24', hairDark: '#6a3f24', shape: 'long', build: 1.05 });
 /** 4C: robe, never looks up from her phone. */
 export const ROBE: Look = ex({ skin: '#a8765a', skinShade: '#875b43', hair: '#2a1d10', hairDark: '#2a1d10', top: '#d88aa0', topDark: '#b8708a', pants: '#d88aa0', shoes: '#efe6d2', shape: 'round', lashes: true, hoops: true });
 /** The "actually" guy. */
@@ -188,7 +188,6 @@ const P8 = S(({ t }) => {   // DAY. INSERT: a sheet of paper on his wall. His li
   const lineY = (i: number) => PAPER[1] + 0.2 - ((120 + i * 72 - 8) / 400) * 0.4;
   const hx = PAPER[0] - 0.12 + u * 0.22, hy = cur >= 0 ? lineY(cur) : PAPER[1] - 0.3;
   const away = t > 5.6 ? (t - 5.6) * 0.8 : 0;
-  const said = ['one: green jacket.', 'two: laughs at "actually".', 'three: about forty phones.', 'five photos each. two hundred.'];
   return (<AbsoluteFill>
     <PixelShot res={[360, 640]}><Cam pos={[PAPER[0], PAPER[1], PAPER[2] + 0.95]} at={PAPER} fov={38} /><Room curtain={0.5} lampOn={1}>
       <mesh geometry={plane(0.3, 0.4)} position={[PAPER[0], PAPER[1], PAPER[2] + 0.004]}>{s && <meshBasicMaterial map={n ? s[`paper${n}`] : s.paperBase} toneMapped={false} />}</mesh>
@@ -199,7 +198,6 @@ const P8 = S(({ t }) => {   // DAY. INSERT: a sheet of paper on his wall. His li
         <Solid geo={cyl(0.04, 0.045, 0.2, 10)} mat={toon(NIO.top)} position={[0.04, -0.12, -0.02]} rotation={[0, 0, 0.4]} line={0.006} />
       </group></Room></PixelShot>
     <Say t={t} who="nio" at={0.0} d={0.5} text="okay. what do i know." until={1.35} />
-    {said.map((x, i) => <Say key={i} t={t} who="nio" at={T[i]} d={1.2} text={x} until={1.25} />)}
   </AbsoluteFill>);
 });
 
@@ -213,7 +211,7 @@ const P9 = S(({ t }) => {   // MCU by the list, to the lens: "Somewhere there ar
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={0.5} lampOn={1}>
         <mesh geometry={plane(0.3, 0.4)} position={[PAPER[0], PAPER[1], PAPER[2] + 0.004]}>{s && <meshBasicMaterial map={s.paper4} toneMapped={false} />}</mesh>
         <Character look={NIO} p={nio} handR={<mesh geometry={cyl(0.008, 0.008, 0.12, 8)} position={[0, -0.04, 0.02]} material={flat('#1e2a52')} />} /></Room></PixelShot>
-      <Say t={t} who="nio" at={0.35} d={2.6} text="somewhere there are 200 photos of me having friends." seed={4} />
+      <Say t={t} who="nio" at={0.35} d={2.6} text="and one of them has her in it." seed={4} />
     </AbsoluteFill>
   );
 });
@@ -400,10 +398,11 @@ const P26 = S(({ t }) => {   // STAIRWELL. Going down, he passes his flyer on th
 const P27 = S(({ t }) => {   // INSERT: his flyer. DID YOU TAKE A PHOTO OF ME? Under his face, in green pen: "I have 61. Same roof, Saturday."
   const s = useNoEvidenceScreens();
   const k = sp(t, 1.0, 'lazy');
-  const d = 1.1 - k * 0.55;
+  const d = 1.1 - k * 0.38;
   const fp: [number, number, number] = [0.04, 1.47, -1.144];
-  const y = fp[1] + 0.01 - k * 0.13;
-  return <PixelShot res={[360, 640]}><Cam pos={[fp[0], y, fp[2] + d]} at={[fp[0], y, fp[2]]} fov={38} /><Hallway><Board x={0} flyer={s?.flyer_pen} /></Hallway></PixelShot>;
+  const y = fp[1] + 0.01 - k * 0.11;
+  const x = fp[0] - k * 0.012;
+  return <PixelShot res={[360, 640]}><Cam pos={[x, y, fp[2] + d]} at={[x, y, fp[2]]} fov={38} /><Hallway><Board x={0} flyer={s?.flyer_pen} /></Hallway></PixelShot>;
 });
 
 const P28 = S(({ t }) => {   // CU: he reads it twice. No number. No name.
@@ -448,7 +447,7 @@ const P31 = S(({ t }) => {   // CU, to the lens: "Okay." Beat. "Never again."
 
 const P32 = S(({ t }) => (   // TAG: black. SATURDAY.
   <AbsoluteFill style={{ background: '#0b0a0d', alignItems: 'center', justifyContent: 'center' }}>
-    {t > 0.3 && <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 120, color: '#efe6d2', letterSpacing: 6 }}>SATURDAY.</div>}
+    {t > 0.3 && <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 120, color: '#efe6d2', letterSpacing: 6 }}>saturday.</div>}
   </AbsoluteFill>
 ));
 
@@ -457,11 +456,10 @@ export const NE_SHOTS: [string, React.FC, number][] = [
   ['P1', P1, 74], ['P2', P2, 60], ['P3', P3, 118],
   ['P4', P4, 84], ['P5', P5, 52], ['P6', P6, 60], ['P7', P7, 72],
   ['P8', P8, 160], ['P9', P9, 104],
-  ['P10', P10, 60], ['P11', P11, 52], ['P12', P12, 62], ['P13', P13, 56], ['P14', P14, 52], ['P15', P15, 76],
-  ['P16', P16, 60], ['P17', P17, 72], ['P18', P18, MONTAGE.length * MONTAGE_STEP], ['P19', P19, 66], ['P20', P20, 44], ['P21', P21, 72], ['P22', P22, 72], ['P23', P23, 76],
-  ['P24', P24, 84], ['P25', P25, 60],
+  ['P13', P13, 56], ['P14', P14, 72], ['P15', P15, 76],
+  ['P17', P17, 72], ['P19', P19, 66], ['P20', P20, 64], ['P21', P21, 72], ['P22', P22, 72],
   ['P26', P26, 66], ['P27', P27, 108], ['P28', P28, 64],
-  ['P29', P29, 52], ['P30', P30, 88], ['P31', P31, 88], ['P32', P32, 60],
+  ['P32', P32, 60],
 ];
 const START = NE_SHOTS.reduce<number[]>((a, [, , d], i) => (a.push(i ? a[i - 1] + NE_SHOTS[i - 1][2] : 0), a), []);
 export const NE_STARTS = START;
@@ -471,19 +469,6 @@ const at = (id: string, s = 0) => START[idx(id)] + Math.round(s * 24);
 const end = (id: string) => at(id) + NE_SHOTS[idx(id)][2];
 
 // what he has paid, as a running receipt in the corner
-const PAID: [number, number][] = [...MONTAGE.map((_, k): [number, number] => [at('P18') + k * MONTAGE_STEP + 2, 5]), [at('P23', 1.2), 20]];
-const Tally: React.FC = () => {
-  const f = useCurrentFrame();
-  if (f < at('P18') || f >= end('P25')) return null;
-  const done = PAID.filter(([fr]) => f >= fr);
-  const amt = done.reduce((a, [, v]) => a + v, 0);
-  const last = done.length ? done[done.length - 1][0] : -99;
-  const bump = Math.max(0, 1 - (f - last) / 6);
-  return (
-    <div style={{ position: 'absolute', top: 120, right: 56, fontFamily: 'Pixelify', fontWeight: 700, fontSize: 64 + bump * 14, color: '#151216', background: '#f6f2e8', padding: '4px 22px 10px', borderRadius: 10,
-      boxShadow: '0 8px 0 #151216', transform: `rotate(${2 - bump * 3}deg)` }}>SPENT ${amt}</div>
-  );
-};
 
 // sound: [file, from, frames or 0 for the whole file, volume]
 type Cue = [string, number, number, number, number?];
@@ -497,23 +482,19 @@ const CUES = (): Cue[] => [
   // and out the same way, onto a dead silence, then the room
   ['sfx/ne_swell_out.wav', end('P7') - 10, 0, 0.9],
   ['sfx/ne_room.wav', at('P8'), end('P9') - at('P8'), 0.8],
-  ['sfx/ne_groove.wav', at('P8', 1.2), end('P23') - at('P8', 1.2), 0.8],
-  ['sfx/ne_hall.wav', at('P10'), end('P23') - at('P10'), 0.7],
-  ['sfx/ne_night.wav', at('P24'), end('P28') - at('P24'), 0.9],
-  ['sfx/ne_pad.wav', at('P24'), end('P25') - at('P24'), 0.9],
+  ['sfx/ne_groove.wav', at('P8', 1.2), end('P22') - at('P8', 1.2), 0.8],
+  ['sfx/ne_hall.wav', at('P13'), end('P22') - at('P13'), 0.7],
+  ['sfx/ne_night.wav', at('P26'), end('P28') - at('P26'), 0.9],
   ['sfx/ne_chime.wav', at('P27', 0.3), 0, 1.0],
-  ['sfx/ne_room.wav', at('P29'), end('P31') - at('P29'), 0.8],
-  ['sfx/ne_end.wav', at('P29'), end('P31') - at('P29'), 0.85],
   ['sfx/ne_thump.wav', at('P32', 0.3), 0, 1.0],
   // spot effects
   ['sfx/shutter.wav', at('P5', 0.25), 0, 0.5], ['sfx/shutter.wav', at('P5', 0.6), 0, 0.4], ['sfx/shutter.wav', at('P5', 0.9), 0, 0.5], ['sfx/shutter.wav', at('P5', 1.25), 0, 0.4],
   ['sfx/ne_tap.wav', at('P6', 0.15), 0, 0.7], ['sfx/ne_tap.wav', at('P6', 0.45), 0, 0.7], ['sfx/ne_tap.wav', at('P6', 0.75), 0, 0.7], ['sfx/ne_tap.wav', at('P6', 1.05), 0, 0.7],
   ['sfx/ne_die.wav', at('P6', 1.25), 0, 1.0],
   ...[1.4, 2.6, 3.8, 5.0].map((x): Cue => ['sfx/ne_marker.wav', at('P8', x), 0, 0.9]),
-  ['sfx/ne_knock.wav', at('P10'), 0, 1.0], ['sfx/ne_door.wav', at('P10', 0.35), 0, 0.8], ['sfx/ne_shut.wav', at('P12', 1.35), 0, 1.0],
+  ['sfx/ne_knock.wav', at('P13') - 12, 0, 1.0],
   ['sfx/ne_door.wav', at('P13', 0.1), 0, 0.8], ['sfx/ne_shut.wav', at('P15', 2.4), 0, 1.0],
-  ...PAID.map(([fr, v]): Cue => [v === 20 ? 'sfx/ne_till.wav' : 'sfx/ne_cash.wav', fr, 0, 0.9]),
-  ['sfx/ne_steps.wav', at('P26'), 0, 0.8], ['sfx/ne_typing.wav', at('P30', 0.25), 0, 0.9], ['sfx/ne_typing.wav', at('P29', 1.0), 0, 0.6],
+  ['sfx/ne_steps.wav', at('P26'), 0, 0.8],
 ];
 
 /** The memory look: warm, faded, soft, a heavier grain and a dark feathered edge. */
@@ -538,11 +519,9 @@ export const PilotNoEvidence: React.FC = () => (
     <Sequence from={at('P4')} durationInFrames={end('P7') - at('P4')}>
       <AbsoluteFill style={{ background: 'radial-gradient(ellipse 70% 60% at center, rgba(255,220,170,0) 55%, rgba(90,50,30,0.75) 100%)' }} />
       <AbsoluteFill style={{ backgroundImage: `url(${staticFile('grain.png')})`, backgroundSize: '540px 960px', imageRendering: 'pixelated', mixBlendMode: 'overlay', opacity: 0.35 }} />
-      <Sequence durationInFrames={30}><Stamp text="LAST NIGHT" big /></Sequence>
+      <Sequence durationInFrames={30}><Stamp text="last night" big /></Sequence>
     </Sequence>
     <WhiteFlash at={at('P4')} /><WhiteFlash at={end('P7')} />
-    <Sequence from={at('P8')} durationInFrames={30}><Stamp text="THE NEXT DAY" /></Sequence>
-    <Tally />
     {CUES().map(([src, from, d, v], i) => <Sequence key={i} from={Math.max(0, from)} durationInFrames={d || undefined} layout="none"><Audio src={staticFile(src)} volume={v} /></Sequence>)}
   </AbsoluteFill>
 );
