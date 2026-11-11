@@ -16,6 +16,7 @@ import { Hallway, Door, Board, ReturnsDesk, GlowStick, Laptop } from './world/Ha
 import { useNoEvidenceScreens } from './ui/NoEvidenceScreens';
 import { t12, sp, keys, blink, breathe, nz, walk } from './lib/motion';
 import { Solid, toon, flat, sph, cyl, rbox, plane } from './lib/toon';
+import vo from './vo_pilot.json';
 import { talk, on, PhoneInHand, Insert, Card, Slide } from './PilotNotMe';
 
 // ---------------------------------------------------------------- cast
@@ -37,13 +38,32 @@ const SHOOT = { sx: -1.35, sz: -0.12, el: 0.8 };      // phone up, taking a phot
 const FLOOR = { y: -0.55, legL: { hip: 1.25, knee: 1.9 }, legR: { hip: 1.1, knee: 1.75 } };
 const CHAIR = { y: -0.08, legL: { hip: 1.5, knee: 1.5 }, legR: { hip: 1.5, knee: 1.5 } };
 
-// ---------------------------------------------------------------- speech: subtitles + a voice blip track per speaker
+// ---------------------------------------------------------------- speech: the approved voices + burned-in subtitles
 type Who = 'nio' | 'maya' | 'hi' | 'lo';
-/** Subtitles only until the approved voices can be generated (no stand-in voice). Held 1 s + 1/3 s a word, at least. */
-export const holdFor = (text: string, d: number) => Math.max(d, 1 + text.split(/\s+/).length / 3);
-export const Say: React.FC<{ t: number; who: Who; at: number; d: number; text: string; seed?: number; until?: number }> = ({ t, who, at, d, text, until }) => (
-  <>{t > at && t < at + Math.min(until ?? 99, holdFor(text, d)) && <Sub text={text} color={who === 'nio' ? '#ffffff' : '#ffd98a'} />}</>
-);
+type VoLine = { file: string; text: string; dur: number; env: number[] };
+const VO = vo as Record<string, VoLine>;
+const NUMS: Record<string, string> = { '212': 'two hundred and twelve' };
+const norm = (s: string) => Object.entries(NUMS).reduce((a, [k, v]) => a.split(k).join(v), s.toLowerCase().replace(/\u2019/g, "'")).replace(/[^a-z' ]/g, '').trim();
+/** The performed line for a subtitle (studio/voice/clean.py writes vo_pilot.json). Every Say line must have one. */
+export const voFor = (text: string): VoLine => {
+  const l = Object.values(VO).find((x) => x.text === norm(text));
+  if (!l) throw new Error(`no voice line for "${text}"`);
+  return l;
+};
+/** Mouth open amount from the line's own loudness envelope (12 fps). */
+export const voTalk = (t: number, at: number, text: string) => {
+  const l = voFor(text); const i = Math.floor((t - at) * 12);
+  return i < 0 || i >= l.env.length ? 0 : Math.min(1, l.env[i] * 1.3);
+};
+/** Subtitle is held for the voice plus a beat (at least 1 s); `until` still cuts it where the next line follows. */
+export const holdFor = (text: string, d: number) => Math.max(d, 1, voFor(text).dur + 0.25);
+export const Say: React.FC<{ t: number; who: Who; at: number; d: number; text: string; seed?: number; until?: number; vol?: number }> = ({ t, who, at, d, text, until, vol = 1 }) => {
+  const l = voFor(text);
+  return (<>
+    <Sequence from={Math.round(at * 24)} durationInFrames={Math.ceil(l.dur * 24) + 2} layout="none"><Audio src={staticFile(l.file)} volume={vol} /></Sequence>
+    {t > at && t < at + Math.min(Math.max(until ?? 99, l.dur + 0.1), holdFor(text, d)) && <Sub text={text} color={who === 'nio' ? '#ffffff' : '#ffd98a'} />}
+  </>);
+};
 
 // ---------------------------------------------------------------- props
 const Flash: React.FC<{ k: boolean }> = ({ k }) => (k ? <mesh geometry={sph(0.04, 8, 6)} position={[0, -0.06, -0.03]}><meshBasicMaterial color="#ffffff" toneMapped={false} /></mesh> : null);
@@ -122,19 +142,19 @@ const P3 = S(({ t }) => {   // CU: the grin drops. Eyes up, to the lens. "No evi
 });
 
 const P4 = S(({ t }) => {   // MEMORY: the roof. She laughs so hard she bends over. "You said 'actually' again!"
-  const laugh = sp(t, 0.85, 'pop');
-  const shake = t > 0.85 ? Math.sin(t * 22) * 0.04 : 0;
-  const maya: Pose = { ...MAYA_R, lean: 0.5 * laugh + shake, breathe: breathe(t), lid: laugh * 0.85, smile: 1, mouth: laugh * (0.6 + Math.abs(Math.sin(t * 11)) * 0.3), headPitch: -0.2 * laugh,
+  const laugh = sp(t, 1.15, 'pop');
+  const shake = t > 1.15 ? Math.sin(t * 22) * 0.04 : 0;
+  const maya: Pose = { ...MAYA_R, lean: 0.5 * laugh + shake, breathe: breathe(t), lid: laugh * 0.85, smile: 1, mouth: Math.max(laugh * 0.45, voTalk(t, 1.3, 'you said "actually" again!')), headPitch: -0.2 * laugh,
     armL: { sx: -0.6 * laugh, sz: 0.3, el: 1.3 * laugh }, armR: { sx: -0.9 * laugh, sz: 0.2, el: 1.0 } };
-  const nio: Pose = { ...NIO_R, breathe: breathe(t), headYaw: 0.5, eyeX: 0.7, mouth: talk(t, 0.1, 0.65), smile: t > 1.0 ? 0.45 : 0.15, lid: 0.15, brow: t > 1.0 ? -0.2 : 0.1, browUp: t > 1.3 ? 0.4 : 0,
+  const nio: Pose = { ...NIO_R, breathe: breathe(t), headYaw: 0.5, eyeX: 0.7, mouth: voTalk(t, 0.1, "it's actually—"), smile: t > 1.3 ? 0.45 : 0.15, lid: 0.15, brow: t > 1.3 ? -0.2 : 0.1, browUp: t > 1.6 ? 0.4 : 0,
     armR: { sx: -0.4, sz: 0.2, el: 0.9 }, armL: { sx: -0.3, sz: 0.15, el: 0.6 } };
   const f = frame(headPos({ x: -0.02, z: 0.66 }, NIO), 'ms', 0, { fov: 40, up: 0.05 });
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Rooftop><Dancers t={t} />
         <Character look={NIO} p={nio} handL={<GlowStick />} /><Character look={MAYA} p={maya} handR={<Cup />} /></Rooftop></PixelShot>
-      <Say t={t} who="nio" at={0.1} d={0.65} text="it's actually—" seed={2} until={0.85} />
-      <Say t={t} who="maya" at={1.0} d={1.45} text={'you said "actually" again!'} />
+      <Say t={t} who="nio" at={0.1} d={0.65} text="it's actually—" seed={2} until={1.25} />
+      <Say t={t} who="maya" at={1.3} d={1.45} text={'you said "actually" again!'} />
     </AbsoluteFill>
   );
 });
@@ -165,7 +185,7 @@ const P7 = S(({ t }) => {   // MEMORY: she backs away into the crowd, waving. "I
   const back = Math.min(1, t / 2.0);
   const wm = walk(t, 1.6, 0.6);
   const maya: Pose = { x: -0.05, z: -0.1 - back * 1.5, yaw: 0, legL: wm.legL, legR: wm.legR, armR: { sx: -2.7, sz: 0.4 + Math.sin(t * 9) * 0.25, el: 0.3 }, armL: { sx: -0.4, sz: 0.2, el: 0.8 },
-    mouth: talk(t, 0.3, 1.3), smile: 0.8, browUp: 0.5, lid: 0.1 };
+    mouth: voTalk(t, 0.3, "i'll send you the pics!"), smile: 0.8, browUp: 0.5, lid: 0.1 };
   const nio: Pose = { ...NIO_R, yaw: Math.PI + 0.1, armR: HOLD, armL: { sx: -0.2, sz: 0.15, el: 0.3 } };
   // two dancers drift across between them; by the end they stand in front of her
   const cross = sp(t, 1.1, 'lazy');
@@ -204,7 +224,7 @@ const P8 = S(({ t }) => {   // DAY. INSERT: a sheet of paper on his wall. His li
 const P9 = S(({ t }) => {   // MCU by the list, to the lens: "Somewhere there are two hundred photos of me having friends."
   const s = useNoEvidenceScreens();
   const h = headPos(NIO_WALL, NIO);
-  const nio: Pose = { ...NIO_WALL, breathe: breathe(t), armR: { sx: -0.5, sz: 0.1, el: 1.6 }, armL: { sx: -0.1, sz: 0.1, el: 0.3 }, mouth: talk(t, 0.35, 2.6), lid: 0.2 + blink(t, [0.2, 2.9]), brow: 0.05, smile: 0.05 };
+  const nio: Pose = { ...NIO_WALL, breathe: breathe(t), armR: { sx: -0.5, sz: 0.1, el: 1.6 }, armL: { sx: -0.1, sz: 0.1, el: 0.3 }, mouth: voTalk(t, 0.35, 'and one of them has her in it.'), lid: 0.2 + blink(t, [0.2, 2.9]), brow: 0.05, smile: 0.05 };
   const f = frame(h, 'mcu', -0.45, { fov: 40, up: 0.03, side: -0.2 });
   return (
     <AbsoluteFill>
@@ -243,7 +263,7 @@ const P11 = S(({ t }) => {   // INSERT: the neighbour's selfie. Behind him, a bl
 const P12 = S(({ t }) => {   // "Can I have it?" The neighbour steps back. The door closes.
   const close = sp(t, 1.35, 'snap');
   const towel: Pose = { ...TOWEL_P, z: TOWEL_P.z! - close * 0.7, breathe: breathe(t), armR: { sx: -0.3, sz: -0.1, el: 0.9 }, lid: 0.3, smile: 0, eyeX: 0.3 };
-  const nio: Pose = { ...NIO_3A, breathe: breathe(t), mouth: talk(t, 0.2, 0.75), armL: { sx: -0.2, sz: 0.1, el: 0.3 }, armR: { sx: -0.3, sz: 0.1, el: 0.5 }, brow: 0.1, lid: 0.15 };
+  const nio: Pose = { ...NIO_3A, breathe: breathe(t), mouth: 0, armL: { sx: -0.2, sz: 0.1, el: 0.3 }, armR: { sx: -0.3, sz: 0.1, el: 0.5 }, brow: 0.1, lid: 0.15 };
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={[1.9, 1.5, 1.0]} at={[-0.8, 1.2, -0.5]} fov={40} /><Hallway><Door x={D3} num="3A" open={1 - close} /><Door x={2.6} num="3B" />
@@ -273,8 +293,8 @@ const P14 = S(({ t }) => {   // INSERT: her story. Her drink. At the edge of the
 
 const P15 = S(({ t }) => {   // "That's my elbow." "Okay." The door closes.
   const close = sp(t, 2.4, 'snap');
-  const robe: Pose = { ...ROBE_P, z: ROBE_P.z! - close * 0.7, breathe: breathe(t), armR: { sx: -1.25, sz: -0.4, el: 0.4 }, headPitch: 0.35, eyeY: -0.9, lid: 0.35, mouth: talk(t, 1.8, 0.35) };
-  const nio: Pose = { ...NIO_4C, breathe: breathe(t), mouth: talk(t, 0.25, 0.85), armL: { sx: -0.2, sz: 0.1, el: 0.3 }, armR: { sx: -0.2, sz: 0.1, el: 0.3 }, lid: 0.2, brow: 0.15 };
+  const robe: Pose = { ...ROBE_P, z: ROBE_P.z! - close * 0.7, breathe: breathe(t), armR: { sx: -1.25, sz: -0.4, el: 0.4 }, headPitch: 0.35, eyeY: -0.9, lid: 0.35, mouth: voTalk(t, 1.8, 'okay.') };
+  const nio: Pose = { ...NIO_4C, breathe: breathe(t), mouth: voTalk(t, 0.25, "that's my elbow."), armL: { sx: -0.2, sz: 0.1, el: 0.3 }, armR: { sx: -0.2, sz: 0.1, el: 0.3 }, lid: 0.2, brow: 0.15 };
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={[-1.9, 1.5, 1.0]} at={[0.8, 1.2, -0.5]} fov={40} /><Hallway><Door x={D4} num="4C" open={1 - close} /><Door x={-1.6} num="4B" />
@@ -325,7 +345,7 @@ const P19 = S(({ t }) => {   // The next guy reaches the table and lights up: "Y
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={[2.6, 1.6, 1.7]} at={[0.0, 1.2, 0.15]} fov={44} /><Lobby t={t} sign={s?.sign} nio={{ lid: 0.3, eyeX: 0.4 }}
-        guy={{ armR: { sx: -1.3 * point, sz: 0.1, el: 0.2 }, smile: 1, browUp: 0.8, wide: 0.3, mouth: talk(t, 0.3, 1.2), headTilt: -0.1 }} /></PixelShot>
+        guy={{ armR: { sx: -1.3 * point, sz: 0.1, el: 0.2 }, smile: 1, browUp: 0.8, wide: 0.3, mouth: voTalk(t, 0.3, 'you\'re the "actually" guy!'), headTilt: -0.1 }} /></PixelShot>
       <Say t={t} who="lo" at={0.3} d={1.2} text={'you\'re the "actually" guy!'} />
     </AbsoluteFill>
   );
@@ -342,7 +362,7 @@ const P21 = S(({ t }) => {   // CU Nio: "Is my face in it?"
   const f = frame(h, 'cu', 0.2, { up: 0.02 });
   return (
     <AbsoluteFill>
-      <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Lobby t={t} sign={s?.sign} queue={false} nio={{ mouth: talk(t, 0.3, 0.8), lid: 0.25, brow: 0.1, eyeX: 0.15 }} /></PixelShot>
+      <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Lobby t={t} sign={s?.sign} queue={false} nio={{ mouth: voTalk(t, 0.3, 'is my face in it?'), lid: 0.25, brow: 0.1, eyeX: 0.15 }} /></PixelShot>
       <Say t={t} who="nio" at={0.3} d={0.8} text="is my face in it?" seed={7} />
     </AbsoluteFill>
   );
@@ -355,7 +375,7 @@ const P22 = S(({ t }) => {   // MCU guy, happy to help: "It's the back of it."
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Hallway lobby><ReturnsDesk x={0} z={DESK_Z} sign={s?.sign} />
-        <Character look={GUY} p={{ ...g, smile: 0.9, browUp: 0.5, mouth: talk(t, 0.25, 0.85), armR: HOLD, breathe: breathe(t) }} handR={<PhoneInHand on={1} />} />
+        <Character look={GUY} p={{ ...g, smile: 0.9, browUp: 0.5, mouth: voTalk(t, 0.25, "it's the back of it."), armR: HOLD, breathe: breathe(t) }} handR={<PhoneInHand on={1} />} />
         {QUEUE.slice(1).map(([x, z], i) => <Character key={i} look={crowdLook(i + 2)} p={{ x, z, yaw: Math.PI - 0.15, armR: HOLD }} handR={<PhoneInHand on={1} />} />)}</Hallway></PixelShot>
       <Say t={t} who="lo" at={0.25} d={0.85} text="it's the back of it." seed={2} />
     </AbsoluteFill>
@@ -432,7 +452,7 @@ const P30 = S(({ t }) => {   // INSERT: the laptop. A blank page. He types: ever
 const P31 = S(({ t }) => {   // CU, to the lens: "Okay." Beat. "Never again."
   const p: Pose = { ...NIO_CHAIR, yaw: 0 };
   const h = headPos(p, NIO);
-  const nio: Pose = { ...p, armL: { sx: -1.05, sz: 0.15, el: 0.95 }, armR: { sx: -1.05, sz: 0.15, el: 0.95 }, mouth: Math.max(talk(t, 0.45, 0.4), talk(t, 1.9, 0.75)), lid: 0.25 + blink(t, [1.1]), brow: 0.15, smile: t > 3.0 ? 0.2 : 0, breathe: breathe(t) * 0.3 };
+  const nio: Pose = { ...p, armL: { sx: -1.05, sz: 0.15, el: 0.95 }, armR: { sx: -1.05, sz: 0.15, el: 0.95 }, mouth: 0, lid: 0.25 + blink(t, [1.1]), brow: 0.15, smile: t > 3.0 ? 0.2 : 0, breathe: breathe(t) * 0.3 };
   const f = frame(h, 'cu', 0, { up: 0.03 });
   return (
     <AbsoluteFill>
@@ -454,7 +474,7 @@ const P32 = S(({ t }) => (   // TAG: black. SATURDAY.
 // ---------------------------------------------------------------- cut
 export const NE_SHOTS: [string, React.FC, number][] = [
   ['P1', P1, 74], ['P2', P2, 60], ['P3', P3, 118],
-  ['P4', P4, 84], ['P5', P5, 52], ['P6', P6, 60], ['P7', P7, 72],
+  ['P4', P4, 106], ['P5', P5, 52], ['P6', P6, 60], ['P7', P7, 72],
   ['P8', P8, 160], ['P9', P9, 104],
   ['P13', P13, 56], ['P14', P14, 72], ['P15', P15, 76],
   ['P17', P17, 72], ['P19', P19, 66], ['P20', P20, 64], ['P21', P21, 72], ['P22', P22, 72],

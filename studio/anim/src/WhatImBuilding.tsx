@@ -12,7 +12,7 @@ import { useNoEvidenceScreens } from './ui/NoEvidenceScreens';
 import { t12, sp, keys, blink, breathe } from './lib/motion';
 import { plane } from './lib/toon';
 import { talk, PhoneInHand, Insert, Card, toScreen } from './PilotNotMe';
-import { Say, NoEvidenceThumbArt } from './PilotNoEvidence';
+import { Say, voTalk, NoEvidenceThumbArt } from './PilotNoEvidence';
 
 const S = (C: React.FC<{ t: number; f: number }>) => () => { const f = useCurrentFrame(); return <C t={t12(f)} f={f} />; };
 const SEAT: Pose = { x: -1.38, z: 0.75, yaw: 0, y: -0.08, legL: { hip: 1.5, knee: 1.5 }, legR: { hip: 1.5, knee: 1.5 } };
@@ -30,7 +30,7 @@ const Desk: React.FC<{ t: number; p?: Partial<Pose>; size?: 'mcu' | 'cu'; handR?
 };
 
 const R1 = S(({ t }) => (   // "I moved here three weeks ago. I've been to one party."
-  <AbsoluteFill><Desk t={t} p={{ mouth: Math.max(talk(t, 0.2, 1.4), talk(t, 2.1, 1.1)), brow: 0.05 }} />
+  <AbsoluteFill><Desk t={t} p={{ mouth: Math.max(voTalk(t, 0.2, 'i moved here three weeks ago.'), voTalk(t, 2.1, "i've been to one party.")), brow: 0.05 }} />
     <Say t={t} who="nio" at={0.2} d={1.4} text="i moved here three weeks ago." until={1.8} />
     <Say t={t} who="nio" at={2.1} d={1.1} text="i've been to one party." /></AbsoluteFill>
 ));
@@ -40,12 +40,12 @@ const R2 = S(({ t }) => {   // INSERT: "I have three photos of it." A blur, an e
     <Say t={t} who="nio" at={0.2} d={1.3} text="i have three photos of it." seed={13} /></AbsoluteFill>;
 });
 const R3 = S(({ t }) => (   // "Everyone else there has two hundred."
-  <AbsoluteFill><Desk t={t} p={{ mouth: talk(t, 0.25, 1.5), brow: 0.15, lid: 0.3 }} />
+  <AbsoluteFill><Desk t={t} p={{ mouth: voTalk(t, 0.25, 'everyone else there has two hundred.'), brow: 0.15, lid: 0.3 }} />
     <Say t={t} who="nio" at={0.25} d={1.5} text="everyone else there has two hundred." seed={14} /></AbsoluteFill>
 ));
 const R4 = S(({ t }) => {   // "So I'm building PXI." He holds his phone up to the lens.
   const up = sp(t, 0.15, 'snap');
-  return <AbsoluteFill><Desk t={t} size="mcu" p={{ mouth: talk(t, 0.55, 1.0), smile: 0.15, armR: { sx: -0.7 - up * 0.55, sz: -0.25, el: 1.35 - up * 0.75 } }} handR={<PhoneInHand on={1} />} />
+  return <AbsoluteFill><Desk t={t} size="mcu" p={{ mouth: voTalk(t, 0.55, "so i'm building PXI."), smile: 0.15, armR: { sx: -0.7 - up * 0.55, sz: -0.25, el: 1.35 - up * 0.75 } }} handR={<PhoneInHand on={1} />} />
     <Say t={t} who="nio" at={0.55} d={1.0} text="so i'm building PXI." seed={15} /></AbsoluteFill>;
 });
 
@@ -74,13 +74,13 @@ const R6 = S(({ t }) => {   // INSERT: the map, "Tonight near you". Pins pop in.
     <Say t={t} who="nio" at={0.3} d={1.9} text="and shows what's on tonight, near you." seed={17} /></AbsoluteFill>;
 });
 const R7 = S(({ t }) => (   // "It's free. Get it. Next time I throw something, you'll see it. And come."
-  <AbsoluteFill><Desk t={t} p={{ mouth: Math.max(talk(t, 0.2, 0.6), talk(t, 2.0, 1.9), talk(t, 5.4, 0.7)), brow: 0.05, smile: 0.1 }} />
+  <AbsoluteFill><Desk t={t} p={{ mouth: Math.max(voTalk(t, 0.2, "it's free."), voTalk(t, 2.0, "next party i throw, it's on there."), voTalk(t, 5.4, 'and come.')), brow: 0.05, smile: 0.1 }} />
     <Say t={t} who="nio" at={0.2} d={0.6} text="it's free." until={1.7} />
     <Say t={t} who="nio" at={2.0} d={1.9} text="next party i throw, it's on there." until={3.2} />
     <Say t={t} who="nio" at={5.4} d={0.7} text="and come." /></AbsoluteFill>
 ));
 const R8 = S(({ t }) => (   // A beat. "I'll know if you came." "I'll have photos."
-  <AbsoluteFill><Desk t={t} size="cu" p={{ mouth: Math.max(talk(t, 0.6, 1.0), talk(t, 3.4, 0.85)), lid: 0.3, brow: 0.2, smile: t > 4.4 ? 0.25 : 0 }} />
+  <AbsoluteFill><Desk t={t} size="cu" p={{ mouth: Math.max(voTalk(t, 0.6, "i'll know if you came."), voTalk(t, 3.4, "i'll have photos.")), lid: 0.3, brow: 0.2, smile: t > 4.4 ? 0.25 : 0 }} />
     <Say t={t} who="nio" at={0.6} d={1.0} text="i'll know if you came." until={2.6} />
     <Say t={t} who="nio" at={3.4} d={0.85} text="i'll have photos." /></AbsoluteFill>
 ));
