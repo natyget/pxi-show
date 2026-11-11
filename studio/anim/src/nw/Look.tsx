@@ -29,13 +29,16 @@ export const NWHead: React.FC = () => (
   </Stage>
 );
 
+const look = (f: Face, px: number, py: number): Face => ({ ...f, eyeL: { ...f.eyeL, px, py }, eyeR: { ...f.eyeR, px, py } });
+const P_PHONE: Pose = { elN: [44, 278], wrN: [48, 328], handN: 'relaxed', handNRot: 96, handNFlip: true, elF: [146, 272], wrF: [172, 246], handF: 'phone', handFRot: -6, headRot: 4 };
+const P_NEAR: Pose = { ...P_PHONE, elF: [146, 264], wrF: [166, 232], headRot: 9, headDx: 5, headDy: 3 };
+const P_YES: Pose = { ...P_PHONE, elN: [26, 262], wrN: [32, 212], handN: 'fist', handNRot: -84, handNFlip: false, elF: [150, 274], wrF: [178, 254], headRot: -5, headDy: -4, lean: -2 };
+const P_CAUGHT: Pose = { ...P_YES, headRot: 0, headDy: 0, lean: 0 };
 export const NWBody: React.FC = () => (
-  <Stage>
-    <g transform="translate(12 6) scale(0.62)"><Nio s={0.62} /></g>
-    <g transform="translate(150 20) scale(0.36)"><Nio s={0.36} uid="b" lod={1} pose={{ ...POSE_STAND, elN: [-8, 330], wrN: [40, 290], handN: 'point', handNRot: -30, elF: [160, 330], wrF: [196, 262], handF: 'phone', handFRot: -70 }} face={{ mouth: 'smirk' }} /></g>
-    <g transform="translate(140 300) scale(0.9)">{(['relaxed', 'point', 'open', 'fist', 'phone'] as const).map((h, i) => (
-      <g key={h} transform={`translate(${(i % 2) * 60} ${Math.floor(i / 2) * 58 + 40})`}><Hand name={h} s={0.9} at={[0, 0]} /></g>
-    ))}</g>
+  <Stage bg="#51485a">
+    <g transform="translate(0 20) scale(0.95)"><Nio s={0.95} /></g>
+    <g transform="translate(150 16) scale(0.5)"><Nio s={0.5} uid="b" pose={P_PHONE} face={{ ...FACES.smug, bud: true }} /></g>
+    <g transform="translate(150 250) scale(0.5)"><Nio s={0.5} uid="c" pose={P_YES} face={FACES.hyped} /></g>
   </Stage>
 );
 
@@ -73,7 +76,7 @@ export const NWSheet: React.FC = () => (
           <clipPath id={`cell${i}`}><rect x={x + 1} y={y + 1} width={88} height={118} /></clipPath>
           <g clipPath={`url(#cell${i})`}>
             <rect x={x} y={y} width={90} height={120} fill={['#665275', '#5a4a6c'][(i + Math.floor(i / 3)) % 2]} />
-            <g transform={`translate(${x - 2} ${y + 2}) scale(0.5)`}><Nio s={0.5} uid={`s${i}`} legs={false} face={FACES[name]} /></g>
+            <g transform={`translate(${x - 4} ${y - 2}) scale(0.54)`}><Nio s={0.56} uid={`s${i}`} legs={false} face={FACES[name]} /></g>
           </g>
         </g>
       );
@@ -84,11 +87,6 @@ export const NWSheet: React.FC = () => (
 // The motion test: one beat of silent acting, then the wide, then the glitch button (added by the finisher).
 export const CLIP_LEN = 192;
 export const CLIP_CUT = 138;
-const look = (f: Face, px: number, py: number): Face => ({ ...f, eyeL: { ...f.eyeL, px, py }, eyeR: { ...f.eyeR, px, py } });
-const P_PHONE: Pose = { elN: [0, 352], wrN: [22, 420], handN: 'relaxed', handNRot: 70, elF: [168, 340], wrF: [206, 286], handF: 'phone', handFRot: -8, headRot: 4 };
-const P_NEAR: Pose = { ...P_PHONE, elF: [164, 330], wrF: [190, 262], headRot: 9, headDx: 6, headDy: 4 };
-const P_YES: Pose = { ...P_PHONE, elN: [-22, 300], wrN: [-12, 226], handN: 'fist', handNRot: -84, elF: [172, 336], wrF: [214, 300], headRot: -5, headDy: -6, lean: -2 };
-const P_CAUGHT: Pose = { ...P_YES, headRot: 0, headDy: 0, lean: 0 };
 export const NWClip: React.FC = () => {
   const raw = useCurrentFrame();
   const f = Math.floor(raw / 2) * 2; // on twos
@@ -136,11 +134,11 @@ export const SHOTS: Record<string, Camera> = {
   side: { pos: [92, 70, 70], yaw: 30, pitch: 9, f: 300 }, // from the shelf side, the window behind him
   high: { pos: [478, 250, 30], yaw: -40, pitch: -30, f: 250 }, // from the ceiling corner
 };
-const P_DOWN: Pose = { ...P_PHONE, handNRot: 100, handNFlip: true };
+const P_DOWN: Pose = P_PHONE;
 const nioActor = (at: [number, number], pose: Pose, face: Face, glow: string = C3.pxiSoft, halo = 0) => ({
   at, render: (s: number) => (
     <>
-      {halo > 0 && <><ellipse cx={222} cy={262} rx={95 * halo} ry={110 * halo} fill="#7e5ab0" /><ellipse cx={222} cy={262} rx={55 * halo} ry={64 * halo} fill={C3.pxiSoft} /></>}
+      {halo > 0 && <><ellipse cx={190} cy={222} rx={70 * halo} ry={80 * halo} fill="#7e5ab0" /><ellipse cx={190} cy={222} rx={40 * halo} ry={46 * halo} fill={C3.pxiSoft} /></>}
       <Nio s={s} lod={s < 0.5 ? 1 : 0} pose={pose} face={face} glow={glow} />
     </>
   ),
@@ -168,7 +166,7 @@ export const NWClip2: React.FC = () => {
     [122, { ...look(FACES.smug, 0.75, 0.5), ...base }],
   ]);
   if ((f >= 14 && f < 18) || (f >= 156 && f < 160)) face = { ...face, eyeL: { ...face.eyeL, arc: 'shut' }, eyeR: { ...face.eyeR, arc: 'shut' } };
-  const pose = track<Pose>(f, [[0, P_DOWN], [30, { ...P_DOWN, headDy: -5 }], [52, { ...P_NEAR, handNRot: 100, handNFlip: true }], [78, P_YES], [106, P_CAUGHT], [122, P_DOWN]]);
+  const pose = track<Pose>(f, [[0, P_DOWN], [30, { ...P_DOWN, headDy: -5 }], [52, P_NEAR], [78, P_YES], [106, P_CAUGHT], [122, P_DOWN]]);
   // each beat gets its own angle: we move around him, he does not stand in front of a wall
   const cam: Camera = raw < 52 ? { ...SHOTS.low, f: raw >= 30 ? 356 : 330 } : raw < 78 ? SHOTS.tight : raw < 106 ? SHOTS.side : raw < 138 ? SHOTS.low : SHOTS.high;
   const buzz = f >= 30 && f < 46;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { INK, SKIN, HAIR, EYE, MOUTH } from './ink';
+import { Inked } from './Inked';
 
 // Nio's head, three-quarter view facing screen right. Design box is 200 x 240 units, neck base near (76,232).
 // `s` is native pixels per unit, so line weights stay the same number of pixels at every shot size.
@@ -132,15 +133,16 @@ const bez = (p0: P, p1: P, p2: P, p3: P, t: number): P => {
     u * u * u * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t * t * t * p3[1],
   ];
 };
-// Hairline (far temple to near sideburn) and skull silhouette (far temple, over the top, down to the nape).
+// Hairline (far temple to near sideburn) and skull silhouette (far temple, over the top, round the back to the nape).
+// The skull is a full round cranium: it carries on behind the neck, which sits under the middle of the head.
 const HAIRLINE: P[][] = [
-  [[151, 80], [131, 60], [102, 62], [85, 74]],
-  [[85, 74], [69, 86], [65, 104], [69, 119]],
+  [[152, 80], [132, 60], [104, 60], [86, 72]],
+  [[86, 72], [70, 84], [66, 102], [70, 119]],
 ];
 const SKULL: P[][] = [
-  [[154, 78], [152, 48], [131, 26], [102, 26]],
-  [[102, 26], [70, 26], [47, 54], [45, 90]],
-  [[45, 90], [43, 114], [46, 138], [52, 152]],
+  [[154, 78], [152, 48], [131, 26], [100, 26]],
+  [[100, 26], [64, 27], [31, 56], [28, 94]],
+  [[28, 94], [26, 114], [30, 134], [40, 147]],
 ];
 const along = (segs: P[][], t: number): P => {
   const x = Math.min(segs.length - 1e-6, Math.max(0, t * segs.length));
@@ -148,19 +150,20 @@ const along = (segs: P[][], t: number): P => {
   const s = segs[i];
   return bez(s[0], s[1], s[2], s[3], x - i);
 };
-const N_ROWS = 11;
+const N_ROWS = 9;
 // Cornrows: each row starts on the hairline, runs straight back over the skull and ends on the silhouette.
-// rowPath(t) gives the curve at hairline position t; rows sit at (i + 0.5) / N and the scalp parts at i / N.
-const rowPath = (t: number): string => {
+const rowEnds = (t: number): [P, P, P] => {
   const S = along(HAIRLINE, t);
-  const E = along(SKULL, 0.08 + 0.9 * Math.pow(t, 0.9));
+  const E = along(SKULL, 0.06 + 0.9 * Math.pow(t, 0.85));
   const dx = E[0] - S[0], dy = E[1] - S[1];
-  const k = 0.17;
-  const C: P = [S[0] + dx * 0.5 - dy * k, S[1] + dy * 0.5 + dx * k];
+  const k = 0.2;
+  return [S, [S[0] + dx * 0.5 - dy * k, S[1] + dy * 0.5 + dx * k], E];
+};
+const rowPath = (t: number): string => {
+  const [S, C, E] = rowEnds(t);
   return `M ${S[0].toFixed(1)} ${S[1].toFixed(1)} Q ${C[0].toFixed(1)} ${C[1].toFixed(1)} ${E[0].toFixed(1)} ${E[1].toFixed(1)}`;
 };
-const ROWS: string[] = Array.from({ length: N_ROWS }, (_, i) => rowPath((i + 0.5) / N_ROWS));
-const PARTS: string[] = Array.from({ length: N_ROWS - 1 }, (_, i) => rowPath((i + 1) / N_ROWS));
+const ROW_T = Array.from({ length: N_ROWS }, (_, i) => (i + 0.5) / N_ROWS);
 const d4 = (segs: P[][]) => segs.map((s, i) => `${i ? '' : `M ${s[0][0]} ${s[0][1]} `}C ${s[1][0]} ${s[1][1]} ${s[2][0]} ${s[2][1]} ${s[3][0]} ${s[3][1]}`).join(' ');
 
 export const NioHead: React.FC<{ s: number; face?: Face; uid?: string; lod?: 0 | 1 }> = ({ s, face = {}, uid = 'n', lod = 0 }) => {
@@ -168,67 +171,77 @@ export const NioHead: React.FC<{ s: number; face?: Face; uid?: string; lod?: 0 |
   const eL = face.eyeL ?? {}, eR = face.eyeR ?? {};
   const out = { fill: 'none', stroke: INK, strokeWidth: 2 * px, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   const thin = { ...out, strokeWidth: 1 * px };
-  const FACE = 'C 155 94 156 108 155 120 C 155 134 157 146 155 158 C 153 172 145 182 133 187 C 123 190 110 190 100 187 C 86 182 74 172 68 158';
-  const headD = `M 102 29 C 130 28 150 48 152 78 ${FACE} L 54 151 C 48 136 45 112 47 90 C 50 56 74 30 102 29 Z`;
-  const capD = `${d4(HAIRLINE)} L 62 146 L 52 152 C 46 138 43 114 45 90 C 47 54 70 26 102 26 C 131 26 152 48 154 78 Z`;
-  const tails: number[][] = [[45, 142, 40, 156, 41, 168], [50, 148, 46, 162, 48, 176], [56, 151, 54, 164, 56, 174]];
+  // far side of the face: one smooth taper from the cheek to a small round chin, then the jaw back to the ear
+  const FACE = 'C 155 94 156 108 155 122 C 154 140 148 160 135 176 C 128 184 116 187 106 185 C 92 182 80 173 72 160';
+  const BACK = 'C 62 163 50 158 40 147 C 30 134 26 114 28 94 C 31 56 64 27 100 26 C 131 26 152 48 154 78';
+  const headD = `M 154 78 ${FACE} ${BACK} Z`;
+  const capD = `${d4(HAIRLINE)} L 66 142 C 60 158 50 158 40 147 C 30 134 26 114 28 94 C 31 56 64 27 100 26 C 131 26 152 48 154 78 Z`;
+  const tails: number[][] = [[44, 146, 38, 158, 40, 170], [51, 152, 47, 164, 50, 178], [59, 154, 57, 164, 60, 174]];
   const st = face.stretch ?? 1;
   return (
-    <g transform={`translate(100 200) scale(${1 / Math.sqrt(st)} ${st}) translate(-100 -200)`}>
-      {/* short braid ends at the nape */}
+    <g transform={`translate(96 190) scale(${1 / Math.sqrt(st)} ${st}) translate(-96 -190)`}>
+      {/* short braid ends at the nape, each closed with a PXI-purple bead */}
       {tails.map((t, i) => {
         const d = `M ${t[0]} ${t[1]} Q ${t[2]} ${t[3]} ${t[4]} ${t[5]}`;
         return (
           <g key={i}>
-            <path d={d} fill="none" stroke={INK} strokeWidth={4.4 + 2 * px} strokeLinecap="round" />
-            <path d={d} fill="none" stroke={HAIR.base} strokeWidth={4.4} strokeLinecap="round" />
+            <path d={d} fill="none" stroke={INK} strokeWidth={5 + 3 * px} strokeLinecap="round" />
+            <path d={d} fill="none" stroke={HAIR.base} strokeWidth={5} strokeLinecap="round" />
+            <circle cx={t[4]} cy={t[5]} r={3.2} fill="#a523ef" stroke={INK} strokeWidth={1 * px} />
           </g>
         );
       })}
-      {/* neck */}
-      <path d="M 50 136 C 52 178 50 206 44 232 L 104 232 C 99 218 98 204 100 180 Z" fill={SKIN.base} />
-      <path d="M 60 154 C 70 174 86 184 104 188 C 99 200 97 214 99 226 C 80 216 63 192 57 166 Z" fill={SKIN.shade} />
-      <path d="M 51 153 C 52 178 50 206 44 232 M 100 188 C 98 204 100 222 104 232" {...out} />
+      {/* neck: short, under the middle of the head */}
+      <path d="M 66 150 L 66 212 L 112 212 L 108 176 Z" fill={SKIN.base} />
+      <path d="M 66 158 C 78 172 94 181 108 185 L 110 200 C 92 196 76 186 66 172 Z" fill={SKIN.shade} />
+      <path d="M 66 162 L 66 212 M 108 185 L 112 212" {...out} />
       {/* head */}
       <path d={headD} fill={SKIN.base} />
       <clipPath id={`${uid}hc`}><path d={headD} /></clipPath>
       <g clipPath={`url(#${uid}hc)`}>
-        <path d="M 62 96 C 67 118 70 142 79 160 C 87 174 98 184 112 189 L 60 200 L 30 150 Z" fill={SKIN.shade} />
-        <path d="M 123 150 C 127 151 131 150 133 147 L 134 154 C 130 156 126 155 123 154 Z" fill={SKIN.shade} />
-        <path d={`${d4(HAIRLINE)} L 72 121 C 69 106 72 92 88 80 C 104 69 130 68 151 87 Z`} fill={SKIN.shade} />
-        {face.rim && <path d="M 154 100 C 156 108 155 114 155 120 C 155 134 157 146 155 158 C 153 172 145 182 133 187 C 128 189 122 190 116 190" fill="none" stroke={face.rim} strokeWidth={6} />}
+        <path d="M 62 96 C 67 118 72 140 82 156 C 90 168 100 178 114 185 L 60 196 L 20 150 Z" fill={SKIN.shade} />
+        <path d="M 123 148 C 127 149 131 148 133 145 L 134 152 C 130 154 126 153 123 152 Z" fill={SKIN.shade} />
+        <path d={`${d4(HAIRLINE)} L 73 121 C 70 106 73 92 89 80 C 105 69 131 68 152 87 Z`} fill={SKIN.shade} />
+        {face.rim && <path d="M 154 100 C 156 108 156 114 155 122 C 154 140 148 160 135 176 C 130 182 124 185 118 186" fill="none" stroke={face.rim} strokeWidth={6} />}
         {face.gloom && <rect x={60} y={50} width={100} height={84} fill={SKIN.deep} opacity={0.85} />}
-        {face.blush && <><ellipse cx={88} cy={150} rx={10} ry={5} fill="#e88a7a" /><ellipse cx={146} cy={148} rx={7} ry={4.5} fill="#e88a7a" /></>}
+        {face.blush && <><ellipse cx={90} cy={148} rx={10} ry={5} fill="#e88a7a" /><ellipse cx={144} cy={146} rx={7} ry={4.5} fill="#e88a7a" /></>}
       </g>
-      {/* hair: one dark cap that hugs the skull, thin scalp parts between the rows, plait ticks along each row */}
-      <path d={capD} fill={HAIR.base} />
-      <clipPath id={`${uid}sc`}><path d={capD} /></clipPath>
+      {/* hair: a cap with a bump where every row crosses the silhouette, so the outline itself says braids */}
+      <Inked s={s}>
+        <path d={capD} fill={HAIR.base} />
+        {ROW_T.map((t, i) => { const E = rowEnds(t)[2]; return <circle key={i} cx={E[0]} cy={E[1]} r={5.2} fill={HAIR.base} />; })}
+      </Inked>
+      <clipPath id={`${uid}sc`}><path d={capD} />{ROW_T.map((t, i) => { const E = rowEnds(t)[2]; return <circle key={i} cx={E[0]} cy={E[1]} r={5.2} />; })}</clipPath>
       <g clipPath={`url(#${uid}sc)`}>
-        {PARTS.map((d, i) => <path key={`p${i}`} d={d} fill="none" stroke={HAIR.part} strokeWidth={1 * px} />)}
-        {lod === 0 && ROWS.map((d, i) => (
-          <path key={`f${i}`} d={d} fill="none" stroke={HAIR.light} strokeWidth={1 * px} strokeDasharray="1.6 3.4" strokeDashoffset={i * 1.7} />
+        {/* each row is a ridge: a dark part, a shadow under it, and a beaded highlight along its top */}
+        {ROW_T.map((t, i) => (
+          <g key={i}>
+            <path d={rowPath(t + 0.5 / N_ROWS)} fill="none" stroke={HAIR.deep} strokeWidth={3.2} />
+            {lod === 0 && <path d={rowPath(t - 0.12 / N_ROWS)} fill="none" stroke={HAIR.light} strokeWidth={2.4} strokeDasharray="3.2 2.6" strokeDashoffset={i * 2.3} strokeLinecap="round" />}
+            {lod === 1 && <path d={rowPath(t - 0.12 / N_ROWS)} fill="none" stroke={HAIR.light} strokeWidth={1 * px} />}
+          </g>
         ))}
       </g>
-      <path d={capD} {...out} />
+      <path d={d4(HAIRLINE)} {...out} strokeWidth={1.4 * px} />
       {/* face contour */}
-      <path d={`M 152 78 ${FACE}`} {...out} />
+      <path d={`M 154 78 ${FACE}`} {...out} />
       {/* ear */}
-      <path d="M 68 118 C 57 110 47 120 50 134 C 52 146 61 151 68 146 Z" fill={SKIN.base} stroke={INK} strokeWidth={2 * px} strokeLinejoin="round" />
-      <path d="M 64 124 C 58 123 55 130 58 138" {...thin} />
-      <rect x={56} y={144} width={2 * px} height={2 * px} fill="#f4f0ff" />
-      {face.bud && <><rect x={54} y={127} width={7} height={8} rx={2.5} fill="#f6f2ff" stroke={INK} strokeWidth={1 * px} /><rect x={56} y={134} width={3} height={9} fill="#f6f2ff" stroke={INK} strokeWidth={1 * px} /></>}
+      <path d="M 69 116 C 58 108 48 118 51 132 C 53 144 62 149 69 144 Z" fill={SKIN.base} stroke={INK} strokeWidth={2 * px} strokeLinejoin="round" />
+      <path d="M 65 122 C 59 121 56 128 59 136" {...thin} />
+      <rect x={57} y={142} width={2 * px} height={2 * px} fill="#f4f0ff" />
+      {face.bud && <><rect x={55} y={125} width={7} height={8} rx={2.5} fill="#f6f2ff" stroke={INK} strokeWidth={1 * px} /><rect x={57} y={132} width={3} height={9} fill="#f6f2ff" stroke={INK} strokeWidth={1 * px} /></>}
       {/* nose */}
-      <path d="M 122 128 C 125 136 131 141 132 146 C 132 150 127 151 122 150" {...thin} strokeWidth={1.4 * px} />
+      <path d="M 122 126 C 125 134 131 139 132 144 C 132 148 127 149 122 148" {...thin} strokeWidth={1.4 * px} />
       {/* eyes */}
-      <Eye id={`${uid}eL`} cx={96} cy={123} rx={17} ry={16} p={eL} s={s} />
-      <Eye id={`${uid}eR`} cx={138} cy={122} rx={12} ry={15} p={eR} s={s} far />
+      <Eye id={`${uid}eL`} cx={97} cy={121} rx={17} ry={16} p={eL} s={s} />
+      <Eye id={`${uid}eR`} cx={138} cy={120} rx={12} ry={15} p={eR} s={s} far />
       {/* brows */}
-      <Brow x1={113} y1={101} x2={75} y2={103} p={face.browL ?? {}} slit s={s} />
-      <Brow x1={128} y1={100} x2={152} y2={103} p={face.browR ?? {}} s={s} far />
+      <Brow x1={114} y1={99} x2={76} y2={101} p={face.browL ?? {}} slit s={s} />
+      <Brow x1={128} y1={98} x2={152} y2={101} p={face.browR ?? {}} s={s} far />
       {/* mouth */}
-      <Mouth name={face.mouth ?? 'flat'} cx={120} cy={167} k={face.mouthS ?? 1} s={s} />
-      {face.tear && <><path d="M 84 138 q -4 9 0 12 q 5 -3 0 -12 Z" fill="#bfe6ff" stroke={INK} strokeWidth={1 * px} /><rect x={80} y={136} width={30} height={2.5} fill="#bfe6ff" /><rect x={130} y={135} width={18} height={2.5} fill="#bfe6ff" /></>}
-      {face.sweat && <path d="M 160 60 q 6 10 0 14 q -6 -4 0 -14 Z" fill="#bfe6ff" stroke={INK} strokeWidth={1 * px} />}
+      <Mouth name={face.mouth ?? 'flat'} cx={119} cy={163} k={(face.mouthS ?? 1) * 0.95} s={s} />
+      {face.tear && <><path d="M 85 136 q -4 9 0 12 q 5 -3 0 -12 Z" fill="#bfe6ff" stroke={INK} strokeWidth={1 * px} /><rect x={81} y={134} width={30} height={2.5} fill="#bfe6ff" /><rect x={130} y={133} width={18} height={2.5} fill="#bfe6ff" /></>}
+      {face.sweat && <path d="M 160 58 q 6 10 0 14 q -6 -4 0 -14 Z" fill="#bfe6ff" stroke={INK} strokeWidth={1 * px} />}
     </g>
   );
 };

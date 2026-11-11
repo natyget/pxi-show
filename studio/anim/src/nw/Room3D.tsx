@@ -197,11 +197,11 @@ export const Room: React.FC<{ cam: Camera; actors?: Actor[]; lampOn?: boolean }>
   actors.forEach((a, i) => {
     const o = project(c, [a.at[0], 0, a.at[1]]);
     if (o.d < NEAR + 4) return;
-    const s = ((a.height ?? 176) / 634) * (c.f / o.d);
+    const s = ((a.height ?? 172) / 436) * (c.f / o.d);
     add(o.d, (
       <g key={`a${i}`}>
         <Poly c={c} pts={circle([a.at[0], 0.8, a.at[1]], [1, 0, 0], [0, 0, 1], 30, 20)} fill="#2a2230" />
-        <g transform={`translate(${o.x.toFixed(1)} ${o.y.toFixed(1)}) scale(${a.flip ? -s : s} ${s}) translate(-72 -636)`}>{a.render(s)}</g>
+        <g transform={`translate(${o.x.toFixed(1)} ${o.y.toFixed(1)}) scale(${a.flip ? -s : s} ${s}) translate(-90 -462)`}>{a.render(s)}</g>
       </g>
     ));
   });

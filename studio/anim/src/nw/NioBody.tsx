@@ -1,16 +1,10 @@
 import React from 'react';
 import { INK, SKIN, KNIT } from './ink';
 import { NioHead, Face } from './NioHead';
+import { Inked } from './Inked';
+export { Inked };
 
 type P = [number, number];
-
-// Draw children twice: once as a fat ink silhouette, once as fills. Overlapping parts share one outline.
-export const Inked: React.FC<{ s: number; children: React.ReactNode; w?: number }> = ({ s, children, w = 2 }) => (
-  <>
-    <g className="nwink" style={{ ['--w' as any]: `${(w * 2) / s}px` }}>{children}</g>
-    {children}
-  </>
-);
 
 // A tapered limb segment from A (radius ra) to B (radius rb).
 export const seg = (a: P, b: P, ra: number, rb: number): string => {
@@ -52,25 +46,37 @@ const HANDS: Record<HandName, { palm: string; fingers: Finger[]; thumb: Finger; 
   },
 };
 
-const Phone: React.FC<{ s: number; glow?: string }> = ({ s, glow = '#c58cff' }) => (
-  <g>
-    <Inked s={s}><rect x={9} y={-46} width={25} height={56} rx={4.5} fill="#2a2434" /></Inked>
-    <rect x={9} y={-46} width={3} height={56} rx={1} fill={glow} />
-    <rect x={21} y={-42} width={10} height={11} rx={3} fill="#3d3550" />
-    <circle cx={24} cy={-39} r={1.6} fill="#15121c" /><circle cx={28} cy={-34.5} r={1.6} fill="#15121c" />
-  </g>
-);
+// The phone sits in FRONT of the hand that holds it: we see its back, four fingertips curling round the far edge,
+// and the thumb on the near edge. The palm is behind it.
+const PhoneHand: React.FC<{ s: number; glow?: string }> = ({ s, glow = '#c58cff' }) => {
+  const px = 1 / s;
+  const tip = (x1: number, y1: number, x2: number, y2: number, r: number, key: string) => (
+    <g key={key}><Inked s={s} w={1.5}><path d={seg([x1, y1], [x2, y2], r, r * 0.9)} fill={SKIN.base} /></Inked></g>
+  );
+  return (
+    <g>
+      <Inked s={s}><path d="M -8 -2 C -6 -14 2 -20 10 -20 L 14 8 C 6 12 -4 10 -8 4 Z" fill={SKIN.shade} /></Inked>
+      <Inked s={s}><rect x={2} y={-50} width={27} height={56} rx={5} fill="#2c2636" /></Inked>
+      <rect x={2} y={-50} width={3} height={56} rx={1.5} fill={glow} />
+      <rect x={15} y={-46} width={11} height={12} rx={3.5} fill="#40384e" />
+      <circle cx={18.5} cy={-42.5} r={1.7} fill="#15121c" /><circle cx={22.5} cy={-37.5} r={1.7} fill="#15121c" />
+      {[-30, -21, -12, -3].map((y, i) => tip(32, y, 23, y + 0.5, 3.4 - i * 0.15, `f${i}`))}
+      {tip(-1, -4, 6, -17, 3.8, 't')}
+      <path d="M 0 0" stroke={INK} strokeWidth={px} />
+    </g>
+  );
+};
 
-export const Hand: React.FC<{ name: HandName; s: number; at: P; rot?: number; flip?: boolean; glow?: string; uid?: string; k?: number }> = ({ name, s, at, rot = 0, flip, glow, uid = 'h', k = 1.25 }) => {
+export const Hand: React.FC<{ name: HandName; s: number; at: P; rot?: number; flip?: boolean; glow?: string; uid?: string; k?: number }> = ({ name, s, at, rot = 0, flip, glow, uid = 'h', k = 1.05 }) => {
   const h = HANDS[name];
   const px = 1 / (s * k);
   const fd = (f: Finger) => [seg(f[0], f[1], f[3], f[3] * 0.94), seg(f[1], f[2], f[3] * 0.94, f[3] * 0.78)];
   const all = [...h.fingers, h.thumb];
   const id = `${uid}${name}`;
   const mid = (a: P, b: P): P => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+  if (name === 'phone') return <g transform={`translate(${at[0]} ${at[1]}) rotate(${rot}) scale(${k})`}><PhoneHand s={s * k} glow={glow} /></g>;
   return (
     <g transform={`translate(${at[0]} ${at[1]}) rotate(${rot}) scale(${k} ${flip ? -k : k})`}>
-      {name === 'phone' && <Phone s={s * k} glow={glow} />}
       {/* one silhouette for the whole hand, then a line between each pair of fingers */}
       <Inked s={s * k}>
         <path d={h.palm} fill={SKIN.base} />
@@ -83,14 +89,14 @@ export const Hand: React.FC<{ name: HandName; s: number; at: P; rot?: number; fl
           const a = mid(mid(f[0], g[0]), mid(f[1], g[1])), b = mid(f[1], g[1]), c = mid(f[2], g[2]);
           return <path key={i} d={`M ${a[0]} ${a[1]} L ${b[0]} ${b[1]} L ${c[0]} ${c[1]}`} fill="none" stroke={INK} strokeWidth={1 * px} strokeLinejoin="round" />;
         })}
-        {(() => { const f = h.thumb; const e = fd(f); return <>{e.map((d, i) => <path key={i} d={d} fill={SKIN.base} stroke={INK} strokeWidth={2 * px} />)}{e.map((d, i) => <path key={`b${i}`} d={d} fill={SKIN.base} />)}</>; })()}
+        {(() => { const e = fd(h.thumb); return <>{e.map((d, i) => <path key={i} d={d} fill={SKIN.base} stroke={INK} strokeWidth={2 * px} />)}{e.map((d, i) => <path key={`b${i}`} d={d} fill={SKIN.base} />)}</>; })()}
       </g>
     </g>
   );
 };
 
 export type Pose = {
-  // joints in head units; origin is the head design box. The neck base sits near (76, 232).
+  // joints in head units. Neck base (90, 208), shoulders near (54, 226) and far (128, 224), hips at y 332, feet at y 462.
   shN?: P; elN: P; wrN: P; handN?: HandName; handNRot?: number; handNFlip?: boolean;
   shF?: P; elF: P; wrF: P; handF?: HandName; handFRot?: number; handFFlip?: boolean;
   headRot?: number; headDx?: number; headDy?: number; lean?: number;
@@ -98,12 +104,14 @@ export type Pose = {
   nearArmBehind?: boolean;
 };
 export const POSE_STAND: Pose = {
-  elN: [2, 356], wrN: [10, 432], handN: 'relaxed', handNRot: 100, handNFlip: true,
-  elF: [150, 352], wrF: [138, 426], handF: 'fist', handFRot: 100, handFFlip: true,
+  elN: [44, 278], wrN: [48, 328], handN: 'relaxed', handNRot: 96, handNFlip: true,
+  elF: [136, 276], wrF: [130, 324], handF: 'fist', handFRot: 98, handFFlip: true,
 };
+export const FEET: P = [90, 462];
+export const HEIGHT = 436;
 
 const PANTS = { base: '#3a3442', shade: '#28232f', light: '#4d4658' };
-const SHOE = { base: '#f3ede4', shade: '#c9bfc9', sole: '#e3d9d2' };
+const SHOE = { base: '#f3ede4', shade: '#c9bfc9', sole: '#ddd3cc' };
 
 const Arm: React.FC<{ s: number; sh: P; el: P; wr: P; hand: HandName; rot: number; flip?: boolean; far?: boolean; glow?: string; uid: string }> = ({ s, sh, el, wr, hand, rot, flip, far, glow, uid }) => {
   const px = 1 / s;
@@ -111,20 +119,22 @@ const Arm: React.FC<{ s: number; sh: P; el: P; wr: P; hand: HandName; rot: numbe
   const c = Math.cos(ang), sn = Math.sin(ang);
   const cuffA: P = [wr[0] - c * 7, wr[1] - sn * 7];
   const base = far ? KNIT.shade : KNIT.base;
-  const handAt: P = [wr[0] + c * 4, wr[1] + sn * 4];
-  const cuff = `M ${cuffA[0] + sn * 12} ${cuffA[1] - c * 12} L ${wr[0] + sn * 11} ${wr[1] - c * 11} L ${wr[0] - sn * 11} ${wr[1] + c * 11} L ${cuffA[0] - sn * 12} ${cuffA[1] + c * 12} Z`;
+  const handAt: P = [wr[0] + c * 5, wr[1] + sn * 5];
+  const cw = 10.5;
+  const cuff = `M ${cuffA[0] + sn * cw} ${cuffA[1] - c * cw} L ${wr[0] + sn * (cw - 1)} ${wr[1] - c * (cw - 1)} L ${wr[0] - sn * (cw - 1)} ${wr[1] + c * (cw - 1)} L ${cuffA[0] - sn * cw} ${cuffA[1] + c * cw} Z`;
   const h = <Hand name={hand} s={s} at={handAt} rot={rot} flip={flip} glow={glow} uid={`${uid}${far ? 'f' : 'n'}`} />;
+  const id = `${uid}${far ? 'f' : 'n'}sl`;
   return (
     <g>
       {hand !== 'phone' && h}
-      <clipPath id={`${uid}sl`}><path d={seg(sh, el, 19, 16)} /><path d={seg(el, cuffA, 16, 14)} /></clipPath>
+      <clipPath id={id}><path d={seg(sh, el, 15, 12.5)} /><path d={seg(el, cuffA, 12.5, 11)} /></clipPath>
       <Inked s={s}>
-        <path d={seg(sh, el, 19, 16)} fill={base} />
-        <path d={seg(el, cuffA, 16, 14)} fill={base} />
+        <path d={seg(sh, el, 15, 12.5)} fill={base} />
+        <path d={seg(el, cuffA, 12.5, 11)} fill={base} />
         <path d={cuff} fill={far ? KNIT.rib : KNIT.shade} />
       </Inked>
-      {!far && <g clipPath={`url(#${uid}sl)`}><path d={seg([sh[0] - 12, sh[1]], [el[0] - 12, el[1] + 4], 12, 10)} fill={KNIT.shade} /><path d={seg([el[0] + sn * 10, el[1] - c * 10 + 3], [cuffA[0] + sn * 9, cuffA[1] - c * 9 + 3], 6, 5)} fill={KNIT.shade} /></g>}
-      <path d={`M ${el[0] - 7} ${el[1] - 3} q 6 5 13 1 M ${cuffA[0] + sn * 13} ${cuffA[1] - c * 13} L ${cuffA[0] - sn * 13} ${cuffA[1] + c * 13}`} fill="none" stroke={INK} strokeWidth={1 * px} strokeLinecap="round" />
+      {!far && <g clipPath={`url(#${id})`}><path d={seg([sh[0] - 11, sh[1]], [el[0] - 11, el[1] + 3], 9, 8)} fill={KNIT.shade} /></g>}
+      <path d={`M ${el[0] - 6} ${el[1] - 2} q 5 4 11 1 M ${cuffA[0] + sn * (cw + 1)} ${cuffA[1] - c * (cw + 1)} L ${cuffA[0] - sn * (cw + 1)} ${cuffA[1] + c * (cw + 1)}`} fill="none" stroke={INK} strokeWidth={1 * px} strokeLinecap="round" />
       {hand === 'phone' && h}
     </g>
   );
@@ -135,51 +145,54 @@ export const Nio: React.FC<{ s: number; pose?: Pose; face?: Face; uid?: string; 
 }) => {
   const px = 1 / s;
   const line = { fill: 'none', stroke: INK, strokeWidth: 1 * px, strokeLinecap: 'round' as const };
-  const shN = pose.shN ?? [16, 272], shF = pose.shF ?? [136, 268];
-  const hipN = pose.hipN ?? [42, 424], knN = pose.knN ?? [40, 522], anN = pose.anN ?? [38, 606];
-  const hipF = pose.hipF ?? [102, 424], knF = pose.knF ?? [108, 522], anF = pose.anF ?? [110, 606];
-  const torso = 'M 44 226 C 30 232 12 240 4 256 C -4 276 -2 330 2 428 L 142 430 C 146 380 152 300 148 262 C 144 244 122 234 108 228 C 96 246 60 246 44 226 Z';
+  const shN = pose.shN ?? [54, 228], shF = pose.shF ?? [128, 226];
+  const hipN = pose.hipN ?? [70, 334], knN = pose.knN ?? [68, 390], anN = pose.anN ?? [66, 440];
+  const hipF = pose.hipF ?? [110, 334], knF = pose.knF ?? [114, 390], anF = pose.anF ?? [116, 440];
+  // a crewneck that fits: soft shoulders, a slight taper to the hem band
+  const torso = 'M 66 204 C 54 207 44 214 41 228 C 37 256 40 300 45 338 L 137 338 C 142 300 144 256 140 228 C 137 214 126 207 114 203 C 106 216 76 217 66 204 Z';
   const shoe = (a: P, far: boolean) => (
-    <g transform={`translate(${a[0]} ${a[1]})`}>
-      <Inked s={s}>
-        <path d="M -17 4 C -18 -8 -8 -10 6 -8 C 16 -4 34 4 44 12 C 50 18 50 26 44 28 L -16 28 C -20 22 -18 12 -17 4 Z" fill={far ? SHOE.shade : SHOE.base} />
+    <g transform={`translate(${a[0]} ${a[1]}) scale(0.82)`}>
+      <Inked s={s * 0.82}>
+        <path d="M -15 2 C -16 -8 -6 -9 6 -7 C 16 -3 32 4 42 11 C 49 17 49 25 43 27 L -14 27 C -18 21 -16 11 -15 2 Z" fill={far ? SHOE.shade : SHOE.base} />
       </Inked>
-      <path d="M -17 19 L 48 19 L 44 28 L -16 28 Z" fill={SHOE.sole} />
-      <path d="M -17 19 L 48 19 M 8 -4 l 6 8 M 15 0 l 6 8 M 22 4 l 6 7" {...line} />
+      <path d="M -16 19 L 47 19 L 43 27 L -14 27 Z" fill={SHOE.sole} />
+      <path d="M -16 19 L 47 19 M 9 -3 l 6 7 M 16 1 l 6 7" {...line} />
     </g>
   );
-  const leg = (h: P, k: P, a: P, far: boolean) => (
-    <g>
-      {shoe(a, far)}
-      <Inked s={s}>
-        <path d={seg(h, k, 21, 17)} fill={far ? PANTS.shade : PANTS.base} />
-        <path d={seg(k, [a[0], a[1] - 6], 17, 14)} fill={far ? PANTS.shade : PANTS.base} />
-      </Inked>
-      <path d={`M ${a[0] - 12} ${a[1] - 16} q 10 5 24 0 M ${k[0] - 10} ${k[1] - 2} q 8 4 16 -1`} {...line} />
-    </g>
-  );
+  // tapered trousers that break once over the shoe
+  const leg = (h: P, k: P, a: P, far: boolean) => {
+    const col = far ? PANTS.shade : PANTS.base;
+    return (
+      <g>
+        {shoe(a, far)}
+        <Inked s={s}>
+          <path d={seg(h, k, 19, 14.5)} fill={col} />
+          <path d={seg(k, [a[0], a[1] - 2], 14.5, 11.5)} fill={col} />
+          <path d={`M ${a[0] - 13} ${a[1] - 4} L ${a[0] + 14} ${a[1] - 4} L ${a[0] + 15} ${a[1] + 6} L ${a[0] - 13} ${a[1] + 6} Z`} fill={col} />
+        </Inked>
+        <path d={`M ${a[0] - 9} ${a[1] - 7} q 9 4 20 -1 M ${k[0] - 8} ${k[1]} q 6 3 13 0`} {...line} />
+      </g>
+    );
+  };
   return (
-    <g transform={`rotate(${pose.lean ?? 0} 76 430)`}>
-      {/* far arm, behind the body */}
+    <g transform={`rotate(${pose.lean ?? 0} 90 462)`}>
       <Arm s={s} sh={shF} el={pose.elF} wr={pose.wrF} hand={pose.handF ?? 'relaxed'} rot={pose.handFRot ?? 90} flip={pose.handFFlip} far glow={glow} uid={uid} />
       {pose.nearArmBehind && <Arm s={s} sh={shN} el={pose.elN} wr={pose.wrN} hand={pose.handN ?? 'relaxed'} rot={pose.handNRot ?? 90} flip={pose.handNFlip} glow={glow} uid={uid} />}
       {legs && leg(hipF, knF, anF, true)}
       {legs && leg(hipN, knN, anN, false)}
-      {/* head sits behind the collar */}
-      <g transform={`translate(${pose.headDx ?? 0} ${(pose.headDy ?? 0) + 24}) rotate(${pose.headRot ?? 0} 76 220) translate(76 232) scale(1.12) translate(-76 -232)`}>
-        <NioHead s={s * 1.12} face={face} uid={uid} lod={lod} />
+      {/* the head sits behind the collar and turns about the neck */}
+      <g transform={`translate(${pose.headDx ?? 0} ${(pose.headDy ?? 0) + 13}) rotate(${pose.headRot ?? 0} 90 196)`}>
+        <NioHead s={s} face={face} uid={uid} lod={lod} />
       </g>
-      {/* crewneck */}
       <Inked s={s}><path d={torso} fill={KNIT.base} /></Inked>
       <clipPath id={`${uid}tc`}><path d={torso} /></clipPath>
       <g clipPath={`url(#${uid}tc)`}>
-        <path d="M 4 256 C -4 276 -2 330 2 428 L 30 428 C 24 380 24 320 34 262 Z" fill={KNIT.shade} />
-        <path d="M 0 408 L 146 410 L 146 432 L 0 432 Z" fill={KNIT.shade} />
-        <path d="M 40 232 C 56 262 104 262 116 234 L 122 248 C 104 282 60 284 36 250 Z" fill={KNIT.shade} />
-        <path d="M 60 408 C 80 380 120 366 150 370 L 150 410 Z" fill={KNIT.shade} />
+        <path d="M 41 228 C 37 256 40 300 45 338 L 62 338 C 58 300 58 258 64 226 Z" fill={KNIT.shade} />
+        <path d="M 62 208 C 76 228 108 228 118 208 L 122 218 C 108 240 76 240 60 218 Z" fill={KNIT.shade} />
+        <path d="M 40 324 L 142 324 L 142 340 L 40 340 Z" fill={KNIT.shade} />
       </g>
-      <path d="M 44 226 C 60 246 96 246 108 228 M 40 231 C 58 255 100 254 113 232" {...line} strokeWidth={1.4 * px} />
-      <path d="M 3 408 L 145 410 M 34 300 q 8 30 4 62 M 112 318 q -6 20 -2 40 M 70 392 q 20 -14 44 -18" {...line} />
+      <path d="M 66 204 C 76 217 106 216 114 203 M 62 208 C 76 226 108 225 118 207" {...line} strokeWidth={1.4 * px} />
+      <path d="M 43 324 L 139 324 M 104 270 q -4 16 -1 34" {...line} />
       {!pose.nearArmBehind && <Arm s={s} sh={shN} el={pose.elN} wr={pose.wrN} hand={pose.handN ?? 'relaxed'} rot={pose.handNRot ?? 90} flip={pose.handNFlip} glow={glow} uid={uid} />}
     </g>
   );
