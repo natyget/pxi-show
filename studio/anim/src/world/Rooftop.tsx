@@ -14,9 +14,9 @@ export const Rooftop: React.FC<{ children?: React.ReactNode }> = ({ children }) 
   <group>
     <SceneBg color="#140f26" />
     <mesh geometry={plane(14, 14)} rotation={[-Math.PI / 2, 0, 0]} material={toon('#3d3742')} />
-    {[[0, -5], [-5, 0], [5, 0]].map(([x, z], i) => <Solid key={i} geo={rbox(i ? 0.25 : 10, 0.9, i ? 10 : 0.25, 0.03)} mat={toon('#5a5262')} position={[x, 0.45, z]} />)}
-    {/* skyline */}
-    {Array.from({ length: 9 }).map((_, i) => {
+    {[[0, -5], [-5, 0], [5, 0], [0, 5]].map(([x, z], i) => <Solid key={i} geo={rbox(i === 1 || i === 2 ? 0.25 : 10, 0.9, i === 1 || i === 2 ? 10 : 0.25, 0.03)} mat={toon('#5a5262')} position={[x, 0.45, z]} />)}
+    {/* skyline, both ways */}
+    {[0, Math.PI].map((ry) => <group key={ry} rotation={[0, ry, 0]}>{Array.from({ length: 9 }).map((_, i) => {
       const h = 6 + ((i * 7) % 5) * 2.2, x = -14 + i * 3.5;
       return (
         <group key={i} position={[x, 0, -14]}>
@@ -24,7 +24,7 @@ export const Rooftop: React.FC<{ children?: React.ReactNode }> = ({ children }) 
           {Array.from({ length: Math.floor(h) }).map((_, k) => (k * 3 + i) % 4 < 2 ? <mesh key={k} geometry={plane(0.4, 0.5)} position={[(k % 3 - 1) * 0.9, -2 + k * 1.1, 0.02]} material={flat('#e8b86e')} /> : null)}
         </group>
       );
-    })}
+    })}</group>)}
     <mesh geometry={sph(1.6, 16, 12)} position={[6, 9, -20]} material={flat('#f3ead2')} />
     {/* string lights across */}
     {[-2.5, 0, 2.5].map((z, j) => Array.from({ length: 16 }).map((_, k) => {

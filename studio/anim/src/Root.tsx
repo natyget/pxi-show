@@ -7,6 +7,8 @@ import { CharSheet } from './CharSheet';
 import { Pilot, PILOT_LEN, PhotoStill } from './Pilot';
 import { Ep1, EP1_LEN, Ep1Photo } from './Ep1';
 import { PilotNotMe, NOTME_LEN, NotMePhoto } from './PilotNotMe';
+import { PilotNoEvidence, NE_LEN, NoEvidencePhoto } from './PilotNoEvidence';
+import { WhatImBuilding, WIB_LEN } from './WhatImBuilding';
 
 export const Root: React.FC = () => (
   <>
@@ -20,5 +22,8 @@ export const Root: React.FC = () => (
     <Composition id="Ep1Photo" component={Ep1Photo} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'behind' }} />
     <Composition id="PilotNotMe" component={PilotNotMe} durationInFrames={NOTME_LEN} fps={24} width={1080} height={1920} />
     <Composition id="NotMePhoto" component={NotMePhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'bite' }} />
+    <Composition id="PilotNoEvidence" component={PilotNoEvidence} durationInFrames={NE_LEN} fps={24} width={1080} height={1920} />
+    <Composition id="NoEvidencePhoto" component={NoEvidencePhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'face' }} />
+    <Composition id="WhatImBuilding" component={WhatImBuilding} durationInFrames={WIB_LEN} fps={24} width={1080} height={1920} />
   </>
 );

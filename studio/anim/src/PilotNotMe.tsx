@@ -31,8 +31,8 @@ const PRIYA: Look = ex({ skin: '#a87458', skinShade: '#8a5c44', top: '#c75a4a', 
 const KID: Look = ex({ skin: '#b98262', skinShade: '#99674b', top: '#e0b23c', topDark: '#c49a2e', pants: '#3f6f8f', shape: 'round', height: 0.62, build: 0.95 });
 
 // ---------------------------------------------------------------- talking without recorded lines yet: mouth flaps from subtitle timing
-const talk = (t: number, at: number, d: number) => (t > at && t < at + d ? 0.2 + 0.55 * Math.abs(Math.sin((t - at) * 13)) : 0);
-const on = (t: number, at: number, d: number) => t > at && t < at + d + 0.25;
+export const talk = (t: number, at: number, d: number) => (t > at && t < at + d ? 0.2 + 0.55 * Math.abs(Math.sin((t - at) * 13)) : 0);
+export const on = (t: number, at: number, d: number) => t > at && t < at + d + 0.25;
 
 // ---------------------------------------------------------------- props
 /** Sauce on the chin (the runner). Lives on the head. */
@@ -56,7 +56,7 @@ const Dumplings: React.FC = () => (
     {[[-0.03, 0], [0.03, 0.01], [0, -0.03]].map(([x, z], i) => <Solid key={i} geo={sph(0.03)} mat={toon('#f2e3c0')} position={[x, 0.03, z]} scale={[1, 0.8, 1]} line={0.005} />)}
   </group>
 );
-const PhoneInHand: React.FC<{ on?: number; buzz?: number }> = (p) => <group position={[0, -0.04, 0.03]} rotation={[0, 0, Math.PI]}><Phone {...p} /></group>;
+export const PhoneInHand: React.FC<{ on?: number; buzz?: number }> = (p) => <group position={[0, -0.04, 0.03]} rotation={[0, 0, Math.PI]}><Phone {...p} /></group>;
 /** The kid's balloon, as a world object (the string runs down to his hand). */
 const Balloon: React.FC<{ x: number; z: number; t: number }> = ({ x, z, t }) => {
   const sway = Math.sin(t * 1.3) * 0.04;
@@ -98,8 +98,8 @@ const Shoppers: React.FC<{ t: number }> = ({ t }) => <>{SHOPPERS.map(([x, z, yaw
 const Market: React.FC<{ t: number; children?: React.ReactNode }> = ({ t, children }) => <Exterior curtain={1}><Shoppers t={t} />{children}</Exterior>;
 
 // ---------------------------------------------------------------- phone inserts (Insert = phone in a hand, screen = texture)
-const toScreen = (px: number, py: number): [number, number, number] => [(px / 390) * 0.066 - 0.033, 0.071 - (py / 844) * 0.142, 0.0058];
-const Insert: React.FC<{ screen?: any; tap?: [number, number]; tapK?: number; press?: number; buzz?: number; swipe?: number; skin?: string; sleeve?: string; children?: React.ReactNode }> =
+export const toScreen = (px: number, py: number): [number, number, number] => [(px / 390) * 0.066 - 0.033, 0.071 - (py / 844) * 0.142, 0.0058];
+export const Insert: React.FC<{ screen?: any; tap?: [number, number]; tapK?: number; press?: number; buzz?: number; swipe?: number; skin?: string; sleeve?: string; children?: React.ReactNode }> =
   ({ screen, tap = [195, 600], tapK = 0, press = 0, buzz = 0, skin = NIO.skin, sleeve = NIO.top, children }) => {
   const base: [number, number] = [0.07, -0.115];
   const rest: [number, number] = [0.043, -0.06];
@@ -119,7 +119,7 @@ const Insert: React.FC<{ screen?: any; tap?: [number, number]; tapK?: number; pr
       <Solid geo={cap(0.06, 1.2)} mat={toon(sleeve)} position={[0.12, -0.22, -0.5]} rotation={[0, 0, 1.3]} line={0.012} />
       <group position={[buzz * 0.003, 0, 0]}>
         <Phone on={0} />
-        {screen && <mesh geometry={plane(0.066, 0.142)} position={[0, 0, 0.0056]}><meshBasicMaterial map={screen} toneMapped={false} /></mesh>}
+        {screen && <mesh geometry={plane(0.066, 0.142)} position={[0, 0, 0.0059]}><meshBasicMaterial map={screen} toneMapped={false} /></mesh>}
         {children}
         <Solid geo={sph(0.06)} mat={toon(skin)} position={[0.012, -0.11, -0.02]} scale={[1.3, 0.85, 0.7]} line={0.012} />
         {[0, 1, 2, 3].map((i) => <Solid key={i} geo={cap(0.0095, 0.006)} mat={toon(skin)} position={[-0.046, -0.005 - i * 0.022, 0.002]} rotation={[0, 0, 1.45]} line={0.009} />)}
@@ -131,12 +131,12 @@ const Insert: React.FC<{ screen?: any; tap?: [number, number]; tapK?: number; pr
   );
 };
 /** A push card sliding down over whatever is on screen. */
-const Card: React.FC<{ tex: any; k: number }> = ({ tex, k }) => {
+export const Card: React.FC<{ tex: any; k: number }> = ({ tex, k }) => {
   const [x, y, z] = toScreen(195, 365);
   return k > 0.01 ? <mesh geometry={plane(0.0626, 0.0254)} position={[x, y + (1 - k) * 0.02, z + 0.0003]}><meshBasicMaterial map={tex} transparent opacity={Math.min(1, k * 1.5)} toneMapped={false} /></mesh> : null;
 };
 /** Slides screen B in over screen A from the right (u 0..1). */
-const Slide: React.FC<{ a?: any; b?: any; u: number }> = ({ a, b, u }) => {
+export const Slide: React.FC<{ a?: any; b?: any; u: number }> = ({ a, b, u }) => {
   const [, , z] = toScreen(0, 0);
   return (
     <group>
