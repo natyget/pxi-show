@@ -1,0 +1,14 @@
+[
+ {"set":"nioRoom","camera":"wide","frames":48,"actors":[{"who":"nio","at":"rug","action":"stand","face":"deadpan","facing":"camera","hold":"phone"}]},
+ {"set":"nioRoom","camera":"full","frames":24,"actors":[{"who":"nio","at":"rugLeft","to":"rugRight","action":"walk","face":"smug"}]},
+ {"set":"nioRoom","camera":"mid","frames":48,"actors":[{"who":"nio","at":"rug","action":"talk","face":"charm","facing":"camera","look":"camera"}]},
+ {"set":"nioRoom","camera":"close","frames":48,"actors":[{"who":"nio","at":"rug","action":"stand","face":"suspicious","facing":"camera","look":"camera"}]},
+ {"set":"nioRoom","camera":"low","frames":48,"actors":[{"who":"nio","at":"rug","action":"stand","face":"smug","facing":"camera","hold":"arms-crossed"}]},
+ {"set":"nioRoom","camera":"side","frames":48,"actors":[{"who":"nio","at":"rug","action":"stand","face":"real"}]},
+ {"set":"nioRoom","camera":"high","frames":48,"actors":[{"who":"nio","at":"bedEdge","action":"sitTalk","face":"sheepish"}]},
+ {"set":"nioRoom","camera":"bed","frames":40,"actors":[{"who":"nio","at":"bedEdge","action":"sit","face":[[0,"deadpan"],[20,"shock"]]}]},
+ {"set":"nioRoom","camera":"atLamp","frames":40,"actors":[{"who":"nio","at":"nightstand","action":"touch","face":"neutral"}]},
+ {"set":"nioRoom","camera":"atDresser","frames":40,"actors":[{"who":"nio","at":"dresser","action":"touch","face":"neutral"}]},
+ {"set":"nioRoom","camera":"atDesk","frames":48,"actors":[{"who":"nio","at":"desk","action":"stand","face":"real","facing":"camera"}]},
+ {"set":"nioRoom","camera":"screen","frames":48,"actors":[{"who":"nio","at":"desk","action":"stand","face":"hyped"}]}
+]

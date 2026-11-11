@@ -178,3 +178,13 @@ Founder notes win over everything else and are dated. Where an older line here d
     silhouette, eye shape or outline style between shots."
 - **Nov 11, 1:20 PM, word for word:**
   - "this also mean nio no longer has braids but he is still lightskin not white"
+- **Nov 11, 5:58 PM (on the two comparison sheets in the new look: Nio next to the character sheet, the room next
+  to the bedroom reference), word for word:**
+  - "so i saw the work on the disgn thread and its great however
+    i think you can do more to copy the eyes the stroke pixel shape size an style, the head shape itseld, the hair texture
+    the facial expression seem missunderstood at points and not as nicely done especially the eyes.
+    crossing hands isnt well done for some reason. hair isnt accurate and some expressions really need working on like the shocked being too much and werid, its supposed to be subtle yet telling enough look at the reference well. but this is a step in the right direction
+
+    room is amazing to be honest lacks some details and i think in this direction we can build a whole world and build on it. if the reference helped i would like to do the sae thing but for writingthe stories it seems like once you have direction you know how to work. so when it comes to pacing audio's and more if you could do this on your own meaning find gumball and find the source and have an agent hand you off how to the same way i did and the agent needs to be smart enough to be ablet o genuinly capsulate gumball writing style for plots dialogue characters language and slang usage of trending topics etc it would really take this into the next step and really make this engine a real pxi series.
+
+    so the goal is to copy what i did with the desgin, see how i brought together what i want with another ai told the ai to generate different shots and text explaining the style and build a room and world around it and it did then i brought that here we should do the same for the story and we should aslo scrap part of nios character that wwasnt told as stories by me but rules because i copied meta ai descripiton and it wasnt good and i pasted it to you so now theres things like nio doesnt explain but ealrier i went on a rant about my experience and said this how nio should be and i think that only should be kep about my description of nio and the rest can be taken from gumball. please ensure you really make a new world plots characts with maya and other firends and make them interesting charaacters and bring the sreries to life"

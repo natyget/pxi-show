@@ -8,7 +8,7 @@ import { Pilot, PILOT_LEN, PhotoStill } from './Pilot';
 import { Ep1, EP1_LEN, Ep1Photo } from './Ep1';
 import { PilotOnePhoto, PILOT1_LEN, PilotPhoto } from './PilotOnePhoto';
 
-import { N3Still, N3_DEFAULT } from './nw3d/Scenes';
+import { N3Still, N3_DEFAULT, N3Shot } from './nw3d/Scenes';
 import { NWHead, NWBody, NWHero, NWWide, NWSheet, NWClip, CLIP_LEN, NWShot, NWClip2, CLIP2_LEN } from './nw/Look';
 
 export const Root: React.FC = () => (
@@ -23,6 +23,9 @@ export const Root: React.FC = () => (
     <Composition id="Ep1Photo" component={Ep1Photo} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'behind' }} />
     <Composition id="PilotOnePhoto" component={PilotOnePhoto} durationInFrames={PILOT1_LEN} fps={24} width={1080} height={1920} />
     <Composition id="PilotPhoto" component={PilotPhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'thumb' }} />
+    <Composition id="N3Shot" component={N3Shot} durationInFrames={48} fps={24} width={180} height={320}
+      defaultProps={{ spec: { set: 'nioRoom', camera: 'wide', frames: 48, actors: [{ who: 'nio', at: 'rug', action: 'stand', face: 'deadpan', facing: 'camera' }] } }}
+      calculateMetadata={({ props }) => ({ durationInFrames: props.spec.frames })} />
     <Composition id="N3Still" component={N3Still} durationInFrames={1} fps={24} width={180} height={320} defaultProps={N3_DEFAULT}
       calculateMetadata={({ props }) => ({ width: props.w, height: props.h })} />
     <Composition id="NWHead" component={NWHead} durationInFrames={1} fps={24} width={270} height={480} />
