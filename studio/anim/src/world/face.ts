@@ -60,7 +60,7 @@ export function faceTexture(f: FaceParams) {
     // lash line: thick along the lid edge (or the top of the eye when open)
     c.lineWidth = f.lashes ? 5 : 4;
     c.beginPath();
-    if (lid > 0.02) { c.moveTo(cx - w * 0.95, Math.max(ly, cy - 2)); c.quadraticCurveTo(cx, ly - 2, cx + w * 0.95, Math.max(ly, cy - 2)); }
+    if (lid > 0.02) { c.moveTo(cx - w * 0.95, ly + 1); c.quadraticCurveTo(cx, ly - 2, cx + w * 0.95, ly + 1); }
     else { c.moveTo(cx - w, cy + 1); c.bezierCurveTo(cx - w * 0.55, cy - h * 1.35, cx + w * 0.55, cy - h * 1.35, cx + w, cy - 1); }
     c.stroke();
     if (f.lashes) { c.lineWidth = 3; c.beginPath(); c.moveTo(cx + s * w * 0.95, cy - 1); c.lineTo(cx + s * (w + 5), cy - 6); c.stroke(); }
@@ -69,10 +69,10 @@ export function faceTexture(f: FaceParams) {
   // ---- brows: thick strokes; brow>0 inner ends down (annoyed), <0 inner ends up (worried)
   c.strokeStyle = f.brows; c.lineWidth = f.lashes ? 6 : 9;
   [-1, 1].forEach((s) => {
-    const raise = (f.browUp + (s === 1 ? f.browR : 0)) * 7 - f.lid * 3 + f.wide * 6;
+    const raise = (f.browUp + (s === 1 ? f.browR : 0)) * 12 - f.lid * 3 + f.wide * 9;
     const cx = X(s * 0.06), cy = Y(0.046) - raise;
     const inner = cx - s * 19, outer = cx + s * 21;
-    c.beginPath(); c.moveTo(inner, cy + f.brow * 6); c.quadraticCurveTo(cx, cy - 4 - f.brow * 1, outer, cy + 1 - f.brow * 2); c.stroke();
+    c.beginPath(); c.moveTo(inner, cy + f.brow * 15); c.quadraticCurveTo(cx, cy - 5 - f.brow * 2, outer, cy + 1 - f.brow * 5); c.stroke();
   });
 
   // ---- nose: a small hook in a shade of the skin
@@ -86,15 +86,27 @@ export function faceTexture(f: FaceParams) {
   if (sneeze) {
     c.lineWidth = 4; c.beginPath(); c.moveTo(mx - 12, my); for (let k = 0; k < 4; k++) c.lineTo(mx - 12 + (k + 0.5) * 6, my + (k % 2 ? -3 : 3)); c.lineTo(mx + 12, my); c.stroke();
   } else if (f.mouth > 0.1) {
-    const mw = 15 - f.mouth * 3 + f.wide * 4, mh = 3 + f.mouth * 12 + f.wide * 8;
-    c.beginPath(); c.ellipse(mx + f.smirk * 2, my + mh * 0.25, mw, mh / 2, 0, 0, Math.PI * 2); c.fill();
-    c.lineWidth = 2.5; c.stroke();
-    if (f.mouth > 0.5) { c.save(); c.beginPath(); c.ellipse(mx + f.smirk * 2, my + mh * 0.25, mw, mh / 2, 0, 0, Math.PI * 2); c.clip();
-      c.fillStyle = '#f2ece6'; c.fillRect(mx - mw, my + mh * 0.25 - mh / 2, mw * 2, mh * 0.22); c.restore(); }
+    const mw = 22 + f.smile * 8 + f.wide * 6, mh = 6 + f.mouth * 26 + f.wide * 12, ox = mx + f.smirk * 3;
+    const top = my - mh * 0.15 - f.smile * 3, bot = my + mh * 0.85;
+    // a D: flat-ish top lip (corners lift with smile), round bottom
+    const D = () => { c.beginPath(); c.moveTo(ox - mw, top - f.smile * 3); c.quadraticCurveTo(ox, top + 2 - f.smile * 2, ox + mw, top - f.smile * 3 - f.smirk * 4);
+      c.bezierCurveTo(ox + mw * 0.9, bot, ox - mw * 0.9, bot, ox - mw, top - f.smile * 3); c.closePath(); };
+    D(); c.fill(); c.lineWidth = 3; c.stroke();
+    c.save(); D(); c.clip();
+    c.fillStyle = '#f2ece6'; c.fillRect(ox - mw, top - 8, mw * 2, 8 + mh * 0.22);           // top teeth
+    c.fillStyle = '#c4525a'; c.beginPath(); c.ellipse(ox, bot - 2, mw * 0.55, mh * 0.28, 0, 0, Math.PI * 2); c.fill(); // tongue
+    c.restore();
   } else {
     // closed: a line that curves with smile; smirk lifts one corner
-    const l = mx - 15, r = mx + 15, curve = f.smile * 6;
-    c.lineWidth = 3.5; c.beginPath(); c.moveTo(l, my - f.smile * 2); c.quadraticCurveTo(mx, my + curve, r, my - f.smile * 2 - f.smirk * 6); c.stroke();
+    if (f.smile > 0.6) {                                     // big closed grin: a filled crescent with teeth
+      const gw = 24 + f.smile * 8, gh = 9 + f.smile * 11;
+      const G = () => { c.beginPath(); c.moveTo(mx - gw, my - 4); c.quadraticCurveTo(mx, my + 2, mx + gw, my - 4 - f.smirk * 5); c.bezierCurveTo(mx + gw * 0.8, my + gh * 1.3, mx - gw * 0.8, my + gh * 1.3, mx - gw, my - 4); c.closePath(); };
+      G(); c.fillStyle = '#3a1418'; c.fill(); c.save(); G(); c.clip(); c.fillStyle = '#f2ece6'; c.fillRect(mx - gw, my - 8, gw * 2, 9); c.restore();
+      c.lineWidth = 3; c.strokeStyle = INK; G(); c.stroke();
+    } else {
+      const l = mx - 17, r = mx + 17, curve = f.smile * 14;  // negative smile = frown
+      c.lineWidth = 3.5; c.beginPath(); c.moveTo(l, my - f.smile * 3); c.quadraticCurveTo(mx, my + curve, r, my - f.smile * 3 - f.smirk * 7); c.stroke();
+    }
   }
   // lower lip hint
   c.strokeStyle = f.lips; c.lineWidth = 3; c.beginPath(); c.moveTo(mx - 5, my + 9); c.lineTo(mx + 5, my + 9); c.stroke();

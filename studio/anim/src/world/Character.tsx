@@ -130,7 +130,7 @@ export const headPos = (p: Pose, look: Look): [number, number, number] => {
 
 /** The whole character. `handR`/`handL` render in the hands (e.g. the phone). */
 export const Character: React.FC<{ p: Pose; look: Look; handR?: React.ReactNode; handL?: React.ReactNode; onHead?: React.ReactNode }> = ({ p, look, handR, handL, onHead }) => {
-  const b = (p.breathe ?? 0) * 0.012;
+  const b = (p.breathe ?? 0) * 0.004;   // breath lives in the chest only; the head never bobs
   const aL = { ...D, ...p.armL }, aR = { ...D, ...p.armR };
   const legL = p.legL ?? { hip: 0, knee: 0 }, legR = p.legR ?? { hip: 0, knee: 0 };
   const w = look.build ?? 1, sx = 0.19 * w;
@@ -157,7 +157,7 @@ export const Character: React.FC<{ p: Pose; look: Look; handR?: React.ReactNode;
           </group>
           <group position={[sx, 0.35, 0]}><Limb a={aR} look={look} side={1} sleeve={look.sleeve ?? look.top}>{handR}</Limb></group>
           <group position={[-sx, 0.35, 0]}><Limb a={aL} look={look} side={-1} sleeve={look.sleeve ?? look.top}>{handL}</Limb></group>
-          <group position={[0, 0.47 + b * 2, 0]}>
+          <group position={[0, 0.47, 0]}>
             <Solid geo={cap(0.05, 0.09)} mat={toon(look.skin)} position={[0, -0.02, 0]} line={L} />
             <Head p={p} look={look}>{onHead}</Head>
           </group>
