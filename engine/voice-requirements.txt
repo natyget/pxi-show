@@ -1,0 +1,11 @@
+# Pinned deps for qwen-tts 0.1.1 (installed separately with --no-deps). torch/torchaudio come from the CPU index.
+transformers==4.57.3
+accelerate==1.12.0
+numpy
+librosa
+soundfile
+sox
+onnxruntime
+einops
+gradio
+huggingface_hub

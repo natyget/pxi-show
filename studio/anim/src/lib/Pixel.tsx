@@ -90,7 +90,7 @@ export const PixelShot: React.FC<{ children: React.ReactNode; glitch?: number; b
 
 /** Subtitles in a chunky pixel font with a hard ink outline, like the reference. */
 export const Sub: React.FC<{ text: string; y?: number; size?: number }> = ({ text, y = 1450, size = 84 }) => (
-  <div style={{ position: 'absolute', left: 60, right: 60, top: y, textAlign: 'center', fontFamily: 'Pixelify', fontWeight: 700, fontSize: size, fontVariantLigatures: 'none', fontFeatureSettings: '"liga" 0, "clig" 0',
+  <div data-kind="sub" style={{ position: 'absolute', left: 60, right: 60, top: y, textAlign: 'center', fontFamily: 'Pixelify', fontWeight: 700, fontSize: size, fontVariantLigatures: 'none', fontFeatureSettings: '"liga" 0, "clig" 0',
     color: '#fff', lineHeight: 1.05,
     textShadow: [[-6, 0], [6, 0], [0, -6], [0, 6], [-6, -6], [6, 6], [-6, 6], [6, -6], [0, 10]].map(([x, y2]) => `${x}px ${y2}px 0 #151216`).join(',') }}>
     {text.split(/([()*])/).map((part, i) => /^[()*]$/.test(part) ? <span key={i} style={{ fontFamily: 'DejaVu Sans Mono, monospace', fontWeight: 700 }}>{part}</span> : <React.Fragment key={i}>{part}</React.Fragment>)}
