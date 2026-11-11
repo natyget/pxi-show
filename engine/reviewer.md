@@ -34,12 +34,18 @@ kind. If you are unsure, say "not sure", and that counts as a no.
    that you had to look at twice.
 7. **Would you stop scrolling for the cover?** What do you think the video is about from the cover alone?
 8. **Would you watch to the end, and would you send it to anyone?** To whom?
+9. **Did you laugh or smile?** At what, exactly? If nothing, say "nothing".
+10. **Was anyone alive?** Do the faces change, or do the people look like they are waiting for their turn?
+    Name any stretch where nothing was happening, any shot of an empty room or a wall, any pause that felt
+    like a mistake, and anything that bobbed up and down.
+11. **Did anyone sound like they were explaining a plan or selling something?** Quote it.
 
 End with one line: **PASS** or **FAIL**, and the single most important thing to fix.
 
 ## How the run uses the answers
 
-- Any "not sure", any quoted line under 3 or 4, any difference under 5, or a no to 2 is a **FAIL**.
+- Any "not sure", any quoted line under 3, 4 or 11, any difference under 5, a no to 2, "nothing" under 9
+  for an episode, or anything named under 10 is a **FAIL**.
 - Fix what was named, re-render, and run a fresh stranger once. A second FAIL is `BLOCKED`, with the stranger's
   words copied into `STATE.md`.
 - The run never argues with the stranger and never gives it more context so that it will pass. If it needed

@@ -30,8 +30,8 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 - [ ] Room tone from frame 1; voices land on the right shot; thoughts subtitled in (parentheses); no clipping.
 
 ## Story
-- [ ] Premise in one sentence; escalation ladder; a laugh/gasp at least every 5 s; glitch beat; weird character;
-      mundane explanation planted; PXI shown not said; cliffhanger unless final part.
+- [ ] Premise in one sentence; escalation; a laugh or gasp at least every 5 s; the Kevin; one real feeling;
+      the glitch button; PXI shown not said, or absent on purpose; a whole release with no "Part" label.
 
 ## Added after the Ep 1 review (Nov 9)
 - [ ] Insert hands use the character's own skin; fingers wrap the phone; the thumb rests OFF the screen and only enters to tap.
@@ -41,7 +41,7 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 - [ ] No light source blows faces or hair out to white (phones have no point light).
 - [ ] Hero props read at phone size: real shape, contrasting colour (the red striped sock).
 - [ ] Wardrobe reads as written (a suit has a white shirt, tie and lapels).
-- [ ] Overlay labels sit on a dark pill and never on faces; hidden on the end card.
+- [ ] No standing label or pill on screen (`bible/craft-library.md`).
 - [ ] Hands have fingers; there is a neck between head and collar.
 - [ ] Pupils converge (no wall-eye on angled shots).
 - [ ] The face-match ring sits on the face in the in-app photo.
@@ -58,6 +58,16 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 - [ ] Front-camera calls don't show the caller's own phone/hand.
 - [ ] Subtitle font has no broken ligatures ("fi"); max 2 lines in split screen; never on a face.
 
+## Added after the founder's pilot review (Nov 11)
+- [ ] No idle bob: no head or body moves up and down on a loop. Listening is a held pose and a blink.
+- [ ] Eyelids are drawn over the eye white in every expression and at every angle.
+- [ ] Every line has a face that changes before it. Nio shows at least three clearly different faces.
+- [ ] No shot of a wall, an empty room or a person waiting. No pause that is not the marked hold on an acting face.
+- [ ] Every exchange of four lines or more has a reaction shot.
+- [ ] The voices are the designed voices in `bible/characters.md`, with the walkie-talkie colour and nothing else, each line performed, none flat.
+- [ ] Nobody states a plan to the camera. No narrator.
+- [ ] One Kevin, in the first wide shot, never explained. The glitch button is the last three seconds.
+
 ## Log of defects found (date · episode · defect → fix)
 - Nov 9 · pilot · 3D eyeballs poked through on head turns → flat 2D faces.
 - Nov 9 · pilot · seam line on the side of heads → hair/face cut from the welded head mesh.
@@ -67,3 +77,5 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 - Nov 9 · ep1 · camera inside the washers (black frame) → wider lens/shorter distance in small rooms.
 - Nov 9 · ep1 · push card covered the lock-screen clock → cards sit below the time.
 - Nov 9 · ep1 · conditional React hook crashed the render → read the frame once at the top of each shot.
+- Nov 11 · pilot · heads bobbing on a loop, faces not acting, lids behind the eye white, dead shots of walls
+  and waiting people, stand-in voices → `bible/director.md` acting rules and the checks above.

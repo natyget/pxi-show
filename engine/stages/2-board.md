@@ -2,28 +2,29 @@
 
 **Model:** the run itself (Sonnet). No subagents.
 
-**Read:** `episodes/<id>/script.md`, `bible/director.md` (Shot grammar and Acting), `bible/style-lock.md`,
+**Read:** `episodes/<id>/script.md`, `bible/director.md` (all of it), `bible/style-lock.md`,
 `bible/characters.md`, `bible/pxi-product.md`, `bible/anti-slop.md` (section 1), `bible/craft-library.md`, and the header comments of the
 files in `studio/anim/src/ui/`.
 
 **Do:**
 1. `episodes/<id>/shots.md`, a table: number, seconds, set, framing, the one purpose (geography, emotion,
    reveal, action, detail, insert, button, tag), the beat or line it carries, what the camera does for the joke,
-   the device from `bible/craft-library.md` if the shot uses one (flashback, thought, phone insert, list, to
-   viewer, take, reveal), and S or L for short cut or long-cut only. Mark every take and hold with its length in frames. Track who
+   the **named expression** of each face in it and what moves, the device from `bible/craft-library.md` if the
+   shot uses one (flashback, thought, phone insert, list, to viewer, take, reveal, the Kevin, glitch button), and S or L for short cut or long-cut only. Mark every take and hold with its length in frames. Track who
    stands where, what is in which hand, and eyelines. Mark with PROOF the 8 to 10 seconds hardest to make play.
 2. The **Intent ledger** at the end of `shots.md`, as in `bible/anti-slop.md`. If nothing is strange, say so.
 3. Phone screens: for each INSERT, open the one app source file named in `bible/pxi-product.md` and build or
    extend a screen in `studio/anim/src/ui/` that matches it 1:1, with the source path in a comment at the top.
    Render each once with `engine/tools/render.sh still` and look at it.
 4. Voice: write `studio/voice/jobs_<id>.json` in the format of the existing jobs files, with an acting note for
-   each line. Generate the lines only if the voice tools are installed. If not, say so in the report.
+   each line (the feeling and the energy, as in `bible/characters.md`). Only the designed voices recorded there. In the text sent to the voice tool, PXI is written `pixie`; subtitles keep `PXI`. Generate the lines only if the voice tools are installed. If not, say so in the report.
 
 5. Check the board against the pacing floors and the text rules in `bible/craft-library.md`: one new thing a
    shot, reading time for every text and screen, no standing label. A device that is not in the library gets its
    entry written there first; this is the one case where a line run may look something up.
 
-**Gate:** every shot has exactly one purpose and meets the pacing floors; every device follows its library entry; every line fits the seconds of its shot; the S shots alone tell
+**Gate:** the checks at the end of `bible/director.md` pass (a named expression and something moving in every
+shot, no dead shot, reaction shots in every exchange, the Kevin in the first wide); every shot has exactly one purpose and meets the pacing floors; every device follows its library entry; every line fits the seconds of its shot; the S shots alone tell
 the short cut; every screen cites its source and matches the app's wording character for character; every
 strange thing in the script has a ledger row.
 **Next:** stage 3.

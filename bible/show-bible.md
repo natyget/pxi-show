@@ -2,67 +2,40 @@
 
 How the show is run is in `engine/DIRECTIVE.md`, and each stage card in `engine/stages/` lists what to read.
 Founder notes win over everything else and are dated. Where an older line here disagrees with `bible/humor.md`,
-`bible/anti-slop.md` or `engine/formats.md`, those win, because they carry the newer notes.
+`bible/story.md`, `bible/characters.md`, `bible/anti-slop.md` or `engine/formats.md`, those win, because they
+carry the newer notes. For writing, start at `bible/writers-room.md`.
 
 ## What the show is
-- An animated short-form series (9:16, Shorts/Reels/TikTok). Entertaining first. PXI is subliminal: it shows up when
-  Nio is stuck and solves it *visually* (the screen, the push, the album). It is never an ad, and never "download PXI"
-  in the first 20 seconds.
-- Written like a Gumball spin-off in spirit (see `director.md`): mundane premise → absurd → (sometimes) emotional →
-  back to mundane. No lesson. Our own characters, designs and voices; we borrow the craft, not the IP.
+- An animated short-form series (9:16) for @pxi.app, with a long cut on YouTube. Entertaining first: funny even
+  if PXI did not exist. PXI is Nio's app. It shows up when he is stuck and is shown, never sold.
+- Written through a Gumball lens (`bible/writers-room.md`, `bible/humor.md`, `bible/gumball-lens.md`): mundane,
+  then absurd, then one real feeling, then mundane again. No lesson. Our own characters, designs and voices. We
+  borrow the craft, never the property.
 
-## Look
-- 3D toon world rendered as pixel art: 135×240 (inserts 216×384) scaled up with hard edges, 9-level palette with
-  ordered dither, ink outlines, flat 3-band shading. Animation on twos (12 fps).
-- **Faces are flat 2D**, drawn onto the head (never 3D eyeballs). Hair and faces are cut from the head mesh, never
-  stacked shapes.
-- Night is ~70% of the show. Palette: off-black, mauve/brown night, cream; PXI's purple only on the app.
-- App UI lives in the world (pixel), brighter than the room, with PXI's real wording.
-- Camera: locked off with slight drift, hard cuts, every beat is a new shot (no reused shots, no zooms to fake one).
-- A glitch beat in every episode (RGB split + horizontal slices).
+## Where each thing lives now
+| Subject | File |
+|---|---|
+| The writer's role, workflow and output format | `bible/writers-room.md` |
+| Who Nio, Maya and the others are; looks; the locked voices and how a line is made | `bible/characters.md` |
+| The humor engine, the Kevin, devices, the pause, the never list | `bible/humor.md` |
+| How they talk and what makes a conversation good | `bible/voice-and-dialogue.md` |
+| Beat sheet, plot engines, PXI in the story, the tests, the journey | `bible/story.md` |
+| Plot machines taken from how Gumball builds episodes | `bible/gumball-lens.md` |
+| Devices, pacing, text, look, voices, covers | `bible/craft-library.md` |
+| Directing and acting | `bible/director.md` |
+| Declared strangeness and the accident check | `bible/anti-slop.md`, `bible/qa-checklist.md` |
+| The app's real features and screens | `bible/pxi-product.md` |
+| The founder's real stories | `engine/real-stories.md`, `engine/story-intake.md` |
+| The founder's pasted briefs, word for word (not read by runs) | `bible/source/` |
 
-## Sound
-- Voices: Chatterbox (MIT) performing in Kokoro (Apache-2.0) timbres; the walkie-talkie treatment on everyone;
-  thoughts get an inside-the-head echo and are subtitled in (parentheses).
-- No narrator. On-screen dialogue and thoughts only. Nio explains himself to his best friend on the phone instead.
-- Music: original chiptune/needle drops synthesised in code only. SFX synthesised (pixel pop, glitch static, shutter,
-  poof). Every scene has a real room tone (dryers, TV, crowd) so nothing opens in dead silence.
-
-## Characters (details in characters.md)
-- **Nio** (21, new in the city, OCD-clean apartment, PXI handle @nio). Gumball-energy lead: impulsive, confident,
-  dramatic, the "this can't be real" fourth-wall face; misses social signals; oblivious to crushes; a fixer alone;
-  generous; leads conversations by pivoting. Non-contact (dancing is the ceiling).
-- **Maya** (~40% of episodes). Laid back, provoking, outspoken, gets into trouble, doesn't care (which scares Nio).
-  Plays the sweet, bright, earnest counterweight in delivery (Darwin-like energy), but she's the one who signs them
-  up for things. No girl-dinner or trend bits.
-- **Best friend**: across the country, phone only (split-screen, voice notes).
-- Three rotating circles: daily (Maya), weekly, monthly. No ex arcs.
-- **A weird character** in almost every episode. Nobody questions them but Nio. "Yeah, weird. But he's cool." No
-  origin story.
-
-## Story rules
-- Every weird situation has a mundane explanation Nio missed (pay it off later; log it in callbacks.md).
-- Show the travel when he goes somewhere (map, walking, bus). Home → out → home when the story goes out.
-- PXI's real features only: map + Discover, group plans, Shared Albums, face match ("You might be in a photo"),
-  face review ("IS THIS YOU?"), Camera (flash captures), Memories / Look-backs, Night Wrap / darkroom scrapbooks,
-  notifications, Threads, Wall, tickets in the wallet, stamps.
-- Product fit test on every PXI beat: would a real person use PXI exactly like this here?
-- Feature-led ideas belong in their own plot and must tie to the product (e.g. "there's nothing to do" while a market
-  is on the next block → Discover). Never drop a feature in at random.
-- **Dismissal engine**: Nio never denies or explains sensitive topics; he pivots to something sweeter or bigger,
-  naturally, in dialogue.
-- **Dreams track**: uncanny, no PXI or punchline needed. **Time travel: LOCKED.**
-- Tone over a week (a guide, not a fixed order): ~50% funny, 20% wholesome, 15% eerie, 15% sad. Never three sad in a
-  row; a devastating one is followed by a funny or wholesome one. Trends can override.
-- Humor: deadpan and grounded first (`bible/humor.md`). Absurd only when it is caused or declared. Then
-  relatable, melancholic, meta/lore, satire, slapstick.
-- Freedom: 1 in 5 episodes can be a wild card.
-
-## Series format
-- No "PART 1" labels (founder, Nov 10). Each release is whole. "Stay tuned" only when a story really ends on a
-  cliffhanger. No intro or outro unless the piece calls for one. Formats and cuts are in `engine/formats.md`.
-  The bottom band stays clear for the call to action.
-- Trial reels first on Instagram (non-followers only); a multi-part series only goes to the grid once Part 1 wins.
+## Standing facts
+- No narrator. No "PART 1" labels. No intro or outro unless the piece calls for one.
+- A glitch button ends every episode. One Kevin an episode, declared.
+- Dreams are their own track: uncanny, no PXI or punchline needed. **Time travel: LOCKED.**
+- PXI's real features only (`bible/pxi-product.md`), and only where they fit comfortably.
+- Music and sound effects are original, made in code. No copyrighted music, art or lyrics.
+- The look is being redesigned in its own thread after the founder's note of Nov 11 (below). Until
+  `bible/style-lock.md` is filled in, nothing about the look is locked except what the founder has said.
 
 ## Founder notes
 - **Nov 9 (pilot review):**
@@ -142,3 +115,75 @@ Founder notes win over everything else and are dated. Where an older line here d
     know nothing and think does this amke sense, is this over explanied is this slop etc."
   - "are we actually building our agent tho? because i need this to produce content on the daily for social and
     one long format a week at least for social medai so we can get discovered as a platform and company"
+- **Nov 11:** "pxi is pronounced pixie"
+- **Nov 11 (on the pilot with the stand-in voices; the full message is in `bible/source/` and the stories in
+  `engine/real-stories.md`), word for word:**
+  - "ive said the final voices a while back if you remember" (the Qwen3-TTS designed voices, now recorded in
+    `bible/characters.md`).
+  - "i have push notifications on i belive and metricool has been connected"
+  - "the heads bounce up and down and it has an animal cross feel but ive been stressing gumball, my character
+    talks like an npc rather than nio being gubmall soul."
+  - "there is weird things like his eye lisd being behind the actaul white eye sometimes. the voice not being
+    the voice i picked a while back."
+  - "there are werid long pauses and shots of just the people or just the wall. like shots that will kill
+    retention, we need to keep them entertained unless its no called for."
+  - "actually is not funny and calling a guy you are the actaully guy is weird and corny a plot never done on
+    gumball. i sttessed that you find all the gumball script and all the plos they ever did and learn from them
+    to really remake gumball but in nio world form. so please lock in i need nice funny stories so renetion is
+    kept and so pxi is discovered."
+  - "we also need things to feel intentional dialogue needs to be done well and talk between people needs to be
+    good. i dont think enough time is being put into that. lets have characters talk interact etc"
+  - "the facial expression are gone and gumball is expressive this guy feels robotic. the ill know if your there
+    could have been eerie, the part of going to a party he could have been excited and said he was the life of
+    it, then he could have been devestated and said i got no picture busy dancing and everyone took them but
+    wouldnt send it, then he can say this my app yo and use slang sound like gen z and not animal cross farm"
+  - "we need to tie loos ends and really make this into an actuall engine"
+  - "i think opus really needs your cleverness and guidance in making the nice story plots and you can help by
+    giving it like a role play character that it can become to be the writers of gumbal doing nio."
+  - "make the due diligence to anmite the seriece nicely make it look unique and nice instead of this animal
+    cross sound look and feel. please again try making this a little cool and artisitc, i am not a big fan of
+    the current looks even it seems a little foggy if it makes sense, not literally but figurativly."
+  - "in its core he is humoreous and can change humors too. lately he asks obvious questions and trolls. he
+    also hates and he is also laid back a support but can also be genuinly frustrating on purpose because he
+    likes to troll and rage bate like gumball. gumball really a good example of nio, except nio dont got a
+    penny and doesnt care for her, he has a girl and she becomes his ex within a couple episodes after a
+    comment from a friend that his room is messy after she just left"
+  - "i need nio rich with many hobbies and qualitties he speaks french arabic (although not so well and its
+    funny ...)"
+  - "the walks and alone moments after a long night ar ethe best ways to slip melhancholy"
+  - "like episodes of this calibar and better are what i expect."
+  - "if there is a way where i can just drop my stories in some chat ... and it can turn it into episodes where
+    pxi is involved it would be nice. just as plot and things inspo not a 1 to 1 story copying."
+  - "at the end of the day if we copy everything gumbal did or filter out thoughts through a gumbal lense it
+    would be amazing"
+  - Standing constraints restated from the earlier handoff are in `CLAUDE.md`.
+- **Nov 11 (answers on who Nio is), word for word:**
+  - "when truly losing he is hubmle he doesnt get loud, unless he feels the other person is truly in which he
+    appreciates the art so plays into characters cuz its fun."
+  - "the hand off was poluted by a missunderstranding of his laid back relaxed lifestyle of not worrying not
+    making things more complex avoiding being given lectures and advice, he just be wanna chiling he likes fun
+    and joking. i hate the 3-7 word flat i dont know who gave the hand off ai that idea."
+  - "he can get loud and animated like gumball but loud wont be it he doesnt rase his voice more than necessary
+    enough to be heard ... lets avoid singin and just make it screams serenades and dances when alone in
+    apartment and background music at all times and er/headphone constantly. in public scenarios with strangers
+    enless he drank he si calm but facae says it all"
+  - "never dumb questions on purpose unless its love scenrios love trios open relationships and weird western
+    realtionship things like that ... (which we need to make 16 age appropriate content and stay away from
+    sexual stuff) he stupid when it comes to realtion ship areas. so yes with girls and when he drunk with no
+    contacts. but also only when he is also not interested in a girl because he can be funny and flirty for
+    just the fun"
+  - "he made pxi and is making pxi because people discover botha t same time, so he is both the founder and the
+    guy using it and there is no need for tracking one or the other its like how shows can cut a character hair
+    and next episode its back"
+  - "the bedroom was only a messy with close and stuff everywhere and hers mostly too like girl stuff make up"
+  - "nio is not one thing that is a bible set to who he is and staying true to that earlier self but someone
+    that is willing to grow and change as the scenario demands it"
+  - "maya a friend and she is complementary to nio how darwin is ... she proably would have humor but not be a
+    troll like nio or have a loving heart and want a prince charming or so whle neo dont care"
+  - "i mean rich in hobbies and skills he plays videos games is good at them to (like only hardcore people are
+    better), he play soccer he decent and fun, he does photography, he codes, uses ai, good at school, loves
+    science channels like veretasimum, play yebbas haert break on pino, can solve a rubrick cube, love gym but
+    skinny and is knoweldgeable in manny things from physics to bio and more, makes his own liquor at some
+    point, tired sparing calesthenic, cooks, bakes, he is good at what he tried but tries with passion too."
+  - On the three look options, in the look thread: "none of the looks you made are nice i need you to try
+    again this looks like ai slop"

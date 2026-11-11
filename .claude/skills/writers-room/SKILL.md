@@ -5,8 +5,8 @@ description: Write a PXI LABS episode (45–60 s animated short) through a stage
 
 # PXI LABS writers' room
 
-Read first: the files listed on the stage card you were given (`engine/stages/1-write.md`). `bible/humor.md` is the
-humor doctrine and wins over anything below that disagrees with it. Run the stages in order. In a scheduled run the
+Read first: `bible/writers-room.md`. It is the role you take on, and it and the other files on the stage card
+(`engine/stages/1-write.md`) win over anything below that disagrees with them. Run the stages in order. In a scheduled run the
 only file left behind is `episodes/<id>/script.md`; the shot list (stage 7) is made in the BOARD stage.
 
 Sources this is built from (re-implemented in our own words; see CREDITS.md): sb-dev/narrative-production-skills,
@@ -15,18 +15,20 @@ danjdewhurst/story-skills (reader-panel), ccf/humanize, shir-danishyar/humanize,
 ameenmo/humanize-skill, and the idea of isolated audience critics from talsraviv/comedy-writers-room (unlicensed: idea only).
 
 ## Stage 1: Pitch
-- Write 6 loglines: one sentence each, a small social problem and a reasonable-sounding plan that makes it worse. They must differ in *comic logic*
-  (what's funny and why), not wording. Throw away the first two you thought of.
-- Each must use a real PXI feature the way a person would (product-fit test), and the feature must be the engine of
-  the plot, not decoration.
+- Write 6 loglines in the form "Nio wants X, but Y weird thing happens, and he responds by Z". They must differ
+  in *comic logic* (what's funny and why), not wording. Throw away the first two you thought of. Start from a
+  real story (`engine/real-stories.md`) or a machine in `bible/gumball-lens.md`.
+- Each must be funny with PXI taken out. Then decide honestly whether PXI is its engine, a moment, or absent
+  (`bible/story.md`, section 4). Never bend the story to fit a feature.
 - **Premise-machine test:** could this premise make five more jokes without wordplay? If you have to force puns, the
   premise is wrong. Keep the best two; lock one as APPROVED (an approved choice becomes a constraint, not a suggestion).
 
 ## Stage 2: Beat sheet
-- 5–7 beats. Beat 1 is the hook and lands in the first 3 seconds (cold open, motion and sound).
-- Each beat is *caused* by the one before and is *bigger*. Nio's own scheme or confidence makes it worse.
-- The ending costs Nio something or leaves chaos with no fix. No lesson, no epilogue after the climax, no inner
-  acceptance. Nio is wrong; the story does not vindicate him.
+- Six beats: hook (by 1.5 s), setup, absurd turn, escalation, emotional hit, glitch button (`bible/story.md`,
+  section 2).
+- Each beat is *caused* by the one before and is *bigger*. Nio's own ego, trolling or inability to say no makes
+  it worse. Everyone else stays calm.
+- It ends on the glitch with nothing resolved. No lesson, no epilogue, no inner acceptance.
 - A scene card per beat: want / obstacle / turn.
 
 ## Stage 3: Jokes and dialogue
@@ -34,12 +36,14 @@ ameenmo/humanize-skill, and the idea of isolated audience critics from talsraviv
   never hint at the punch. The punch word goes last. Don't talk past the joke.
 - One runner that returns twice; the last return is a reversal.
 - Mark every place a *take* (a face, a held silence) or a visual gag beats a line, and use the take.
-- Nio's comedic modes: exaggerated response, oddball point of view. Maya's: literal, understated. Nobody else
-  gets their modes.
-- Budget: 100–130 spoken words for 60 s, lines mostly under 8 words. Estimate runtime (≈2.3 words/s spoken,
+- Write the conversation before the jokes: two people who want different things, four to eight lines, status
+  changing hands (`bible/voice-and-dialogue.md`). Write every change of face in brackets.
+- Nio: quick and natural with a live face; trolls with questions; pivots. Maya: sweet, earnest, literal,
+  funny without trolling. The best friend: a real phone call.
+- Budget: 100–130 spoken words for 60 s, 60–80 for a 35 s short cut. Estimate runtime (≈2.3 words/s spoken,
   ≈2.5 s per action beat, plus takes) and keep it within ±15% of the target.
 - Inner thoughts are allowed but rare and *for a reason*: thinking while someone else is in the room, or one glance to
-  the lens. Never narrate what the picture shows.
+  the lens. Never narrate what the picture shows. Never have Nio state his plan to the camera.
 
 ## Stage 4: Independent critique (separate subagents, each sees only the script and its own brief)
 Spawn the critics in parallel on the cheapest model. They score and quote lines; they never rewrite. In a scheduled
@@ -53,7 +57,9 @@ Agreement between critics is not independent confirmation; weigh specifics over 
 ## Stage 5: Punch-up
 - Fix only what was flagged. For each weak line write three alternatives; keep one only if it beats the original.
   Top a joke at most twice. Cut jokes go in `episodes/<id>/room/candy-bag.md` for later.
-- Score with `rubric.md`. Ship at 38/50 or above with no veto; otherwise loop to stage 4 once with fresh critics.
+- Then the read-aloud test: a guy at 2 a.m. telling his best friend what happened. Rewrite what sounds like a
+  YouTuber.
+- Score with `rubric.md`. Ship at 40/55 or above with no veto; otherwise loop to stage 4 once with fresh critics.
 
 ## Stage 6: De-AI pass (preserve mode)
 - Audit table: each tell found → line → fix. Fix only what fired. Cutting is safe; additions must be justified.
