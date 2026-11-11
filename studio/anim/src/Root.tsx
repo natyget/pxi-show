@@ -10,6 +10,7 @@ import { PilotNotMe, NOTME_LEN, NotMePhoto } from './PilotNotMe';
 import { PilotNoEvidence, NE_LEN, NoEvidencePhoto } from './PilotNoEvidence';
 import { WhatImBuilding, WIB_LEN, Thumb } from './WhatImBuilding';
 import { FaceTest } from './FaceTest';
+import { PilotNoPics, NP_LEN, NoPicsPhoto } from './PilotNoPics';
 
 export const Root: React.FC = () => (
   <>
@@ -27,6 +28,8 @@ export const Root: React.FC = () => (
     <Composition id="NoEvidencePhoto" component={NoEvidencePhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'face' }} />
     <Composition id="WhatImBuilding" component={WhatImBuilding} durationInFrames={WIB_LEN} fps={24} width={1080} height={1920} />
     <Composition id="Thumb" component={Thumb} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'ne' as const }} />
+    <Composition id="PilotNoPics" component={PilotNoPics} durationInFrames={NP_LEN} fps={24} width={1080} height={1920} />
+    <Composition id="NoPicsPhoto" component={NoPicsPhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'fridge' }} />
     <Composition id="FaceTest" component={FaceTest} durationInFrames={9} fps={24} width={1080} height={1920} />
   </>
 );
