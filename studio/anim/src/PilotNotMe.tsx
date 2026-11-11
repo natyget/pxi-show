@@ -122,7 +122,7 @@ export const Insert: React.FC<{ screen?: any; tap?: [number, number]; tapK?: num
         {screen && <mesh geometry={plane(0.066, 0.142)} position={[0, 0, 0.0059]}><meshBasicMaterial map={screen} toneMapped={false} /></mesh>}
         {children}
         <Solid geo={sph(0.06)} mat={toon(skin)} position={[0.012, -0.11, -0.02]} scale={[1.3, 0.85, 0.7]} line={0.012} />
-        {[0, 1, 2, 3].map((i) => <Solid key={i} geo={sph(0.0105)} mat={toon(skin)} position={[-0.044, -0.004 - i * 0.021, 0.002]} scale={[1.45, 0.98, 0.75]} line={0.008} />)}
+        <Solid geo={sph(0.5)} mat={toon(skin)} position={[-0.043, -0.035, 0.0]} scale={[0.028, 0.092, 0.016]} line={0.008} />
         <group position={[base[0] + dx / 2, base[1] + dy / 2, 0.012 - press * 0.003 + tapK * 0.004]} rotation={[0, 0, Math.atan2(-dx, dy)]}>
           <Solid geo={sph(0.5)} mat={toon(skin)} scale={[0.029, Math.max(0.03, len + 0.004), 0.024]} line={0.008} />
           <mesh geometry={sph(0.5)} position={[0, Math.max(0.03, len + 0.004) * 0.36, 0.008]} scale={[0.014, 0.012, 0.003]} material={flat('#f0d0c0')} />

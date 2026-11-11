@@ -61,7 +61,7 @@ export const Hallway: React.FC<{ children?: React.ReactNode; lobby?: boolean }> 
     <mesh geometry={plane(10, 5)} rotation={[Math.PI / 2, 0, 0]} position={[0, 2.6, 1.2]} material={toon('#d8cfc0')} />
     {[-2.5, 0, 2.5].map((x) => <group key={x}>
       <Solid geo={cyl(0.18, 0.18, 0.05, 16)} mat={toon('#fff1c9', '#ffe2a8', 1.2)} position={[x, 2.57, 0.2]} line={0} />
-      <pointLight position={[x, 2.3, 0.4]} intensity={2.2} distance={5} decay={1.3} color="#ffe2b8" />
+      <pointLight position={[x, 2.3, 0.4]} intensity={1.3} distance={5} decay={1.3} color="#ffe8d0" />
     </group>)}
     {lobby && <>
       {/* mailboxes */}
@@ -75,7 +75,7 @@ export const Hallway: React.FC<{ children?: React.ReactNode; lobby?: boolean }> 
         <mesh geometry={plane(1.0, 1.6)} position={[0, 1.3, 0.035]} material={flat('#2c2a40')} />
       </group>
     </>}
-    <ambientLight intensity={1.3} color="#c8b8b0" />
+    <ambientLight intensity={1.5} color="#d0c4c0" />
     <hemisphereLight args={['#e8d8c8', '#4a3a32', 0.9]} />
     {children}
   </group>

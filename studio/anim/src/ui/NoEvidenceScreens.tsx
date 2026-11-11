@@ -124,7 +124,7 @@ async function build(): Promise<NETex> {
     c.strokeStyle = '#b8c8e0'; c.lineWidth = 2; for (let y = 60; y < 400; y += 40) { c.beginPath(); c.moveTo(0, y); c.lineTo(300, y); c.stroke(); }
     c.fillStyle = '#1e2a52'; c.font = `700 30px ${FONT}`; c.textAlign = 'center'; c.fillText('WHAT I KNOW', 150, 44); c.fillRect(60, 52, 180, 4);
     out.paperBase = tex(cv); }
-  const lines = ['1. GREEN JACKET', '2. LAUGHS AT "ACTUALLY"', '3. ~40 PHONES', '4. EST. 212 PHOTOS'];
+  const lines = ['1. GREEN JACKET', '2. LAUGHS AT "ACTUALLY"', '3. ABOUT 40 PHONES', '4. 40 x 5 = 200 PHOTOS'];
   for (let n = 1; n <= 4; n++) { const [cv, c] = canvas(300, 400); c.fillStyle = '#f2ecdc'; c.fillRect(0, 0, 300, 400);
     c.strokeStyle = '#b8c8e0'; c.lineWidth = 2; for (let y = 60; y < 400; y += 40) { c.beginPath(); c.moveTo(0, y); c.lineTo(300, y); c.stroke(); }
     c.fillStyle = '#1e2a52'; c.font = `700 30px ${FONT}`; c.textAlign = 'center'; c.fillText('WHAT I KNOW', 150, 44); c.fillRect(60, 52, 180, 4);
@@ -147,8 +147,8 @@ async function build(): Promise<NETex> {
 
   // the sign on the lobby desk
   { const [cv, c] = canvas(360, 200); c.fillStyle = '#f6f2e8'; c.fillRect(0, 0, 360, 200);
-    c.fillStyle = '#151216'; c.textAlign = 'center'; c.font = `700 40px ${FONT}`; c.fillText('PHOTO RETURNS', 180, 55);
-    c.font = `700 30px ${FONT}`; c.fillText('$5 a photo', 180, 110); c.fillStyle = '#c23a3a'; c.fillText('$20 if my face', 180, 150); c.fillText('is in it', 180, 184);
+    c.fillStyle = '#151216'; c.textAlign = 'center'; c.font = `700 30px ${FONT}`; c.fillText("I'LL PAY YOU FOR", 180, 42); c.fillText('PHOTOS OF ME', 180, 76);
+    c.font = `700 34px ${FONT}`; c.fillText('$5 each', 180, 124); c.fillStyle = '#c23a3a'; c.font = `700 28px ${FONT}`; c.fillText('$20 if my face', 180, 160); c.fillText('is in it', 180, 190);
     out.sign = tex(cv); }
 
   // the laptop: a blank page, then the line, typed

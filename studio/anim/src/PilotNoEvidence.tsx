@@ -22,7 +22,7 @@ import { talk, on, PhoneInHand, Insert, Card, Slide } from './PilotNotMe';
 const ex = (o: Partial<Look>): Look => ({ skin: '#c99a7a', skinShade: '#a87b5d', hair: '#1f1a1a', hairDark: '#1f1a1a', iris: '#2a1a12', top: '#3f6f8f',
   topDark: '#345d78', pants: '#2b2a33', shoes: '#efe6d2', shape: 'tri', hairStyle: 'crop', ...o });
 /** 3A: answers the door in a towel. Bare chest, bare feet. */
-export const TOWEL: Look = ex({ skin: '#e9c9b0', skinShade: '#c9a790', top: '#e9c9b0', topDark: '#c9a790', pants: '#eef2f4', shoes: '#e9c9b0', hair: '#6a3f24', hairDark: '#6a3f24', shape: 'long', build: 1.05 });
+export const TOWEL: Look = ex({ skin: '#e9c9b0', skinShade: '#c9a790', top: '#f2f0ea', topDark: '#d8d4cc', pants: '#eef2f4', shoes: '#e9c9b0', hair: '#6a3f24', hairDark: '#6a3f24', shape: 'long', build: 1.05 });
 /** 4C: robe, never looks up from her phone. */
 export const ROBE: Look = ex({ skin: '#a8765a', skinShade: '#875b43', hair: '#2a1d10', hairDark: '#2a1d10', top: '#d88aa0', topDark: '#b8708a', pants: '#d88aa0', shoes: '#efe6d2', shape: 'round', lashes: true, hoops: true });
 /** The "actually" guy. */
@@ -89,8 +89,8 @@ const P1 = S(({ t }) => {   // HOOK: CU on the floor, last night's clothes, glow
   const f = frame(h, 'cu', 0, { up: 0.04 });
   return (
     <AbsoluteFill>
-      <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={1} lampOn={0}><Boxes />
-        <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /><PhoneLight at={[h[0] + 0.02, h[1] - 0.1, h[2] + 0.3]} /></Room></PixelShot>
+      <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={0.7} lampOn={1}><Boxes />
+        <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /></Room></PixelShot>
       <Say t={t} who="nio" at={0.35} d={1.2} text="best night of my life." />
     </AbsoluteFill>
   );
@@ -114,8 +114,8 @@ const P3 = S(({ t }) => {   // CU: the grin drops. Eyes up, to the lens. "No evi
   if (t > 2.4) { nio.eyeY = -0.1; nio.eyeX = 0.15; nio.lid = 0.3; nio.headPitch = 0.05; }
   return (
     <AbsoluteFill>
-      <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={1} lampOn={0}><Boxes />
-        <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /><PhoneLight at={[h[0] + 0.02, h[1] - 0.1, h[2] + 0.3]} /></Room></PixelShot>
+      <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={0.7} lampOn={1}><Boxes />
+        <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /></Room></PixelShot>
       <Say t={t} who="nio" at={1.15} d={0.8} text="no evidence." seed={1} until={1.3} />
     </AbsoluteFill>
   );
@@ -188,7 +188,7 @@ const P8 = S(({ t }) => {   // DAY. INSERT: a sheet of paper on his wall. His li
   const lineY = (i: number) => PAPER[1] + 0.2 - ((120 + i * 72 - 8) / 400) * 0.4;
   const hx = PAPER[0] - 0.12 + u * 0.22, hy = cur >= 0 ? lineY(cur) : PAPER[1] - 0.3;
   const away = t > 5.6 ? (t - 5.6) * 0.8 : 0;
-  const said = ['one: green jacket.', 'two: laughs at "actually".', 'three: about forty phones.', 'so, about 212 photos.'];
+  const said = ['one: green jacket.', 'two: laughs at "actually".', 'three: about forty phones.', 'five photos each. two hundred.'];
   return (<AbsoluteFill>
     <PixelShot res={[360, 640]}><Cam pos={[PAPER[0], PAPER[1], PAPER[2] + 0.95]} at={PAPER} fov={38} /><Room curtain={0.5} lampOn={1}>
       <mesh geometry={plane(0.3, 0.4)} position={[PAPER[0], PAPER[1], PAPER[2] + 0.004]}>{s && <meshBasicMaterial map={n ? s[`paper${n}`] : s.paperBase} toneMapped={false} />}</mesh>
@@ -213,7 +213,7 @@ const P9 = S(({ t }) => {   // MCU by the list, to the lens: "Somewhere there ar
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={0.5} lampOn={1}>
         <mesh geometry={plane(0.3, 0.4)} position={[PAPER[0], PAPER[1], PAPER[2] + 0.004]}>{s && <meshBasicMaterial map={s.paper4} toneMapped={false} />}</mesh>
         <Character look={NIO} p={nio} handR={<mesh geometry={cyl(0.008, 0.008, 0.12, 8)} position={[0, -0.04, 0.02]} material={flat('#1e2a52')} />} /></Room></PixelShot>
-      <Say t={t} who="nio" at={0.35} d={2.6} text="somewhere there are 212 photos of me having friends." seed={4} />
+      <Say t={t} who="nio" at={0.35} d={2.6} text="somewhere there are 200 photos of me having friends." seed={4} />
     </AbsoluteFill>
   );
 });
@@ -232,7 +232,7 @@ const P10 = S(({ t }) => {   // HALLWAY, DOOR 3A. He knocks; a neighbour in a to
   const nio: Pose = { ...NIO_3A, breathe: breathe(t), armR: t < 0.3 ? { sx: -1.4, sz: 0.1, el: 1.3 } : { sx: -0.3, sz: 0.1, el: 0.5 }, armL: { sx: -0.2, sz: 0.1, el: 0.3 }, eyeY: show > 0.5 ? -0.5 : 0, headPitch: show * 0.15 };
   return (
     <PixelShot><Cam pos={[1.9, 1.5, 1.0]} at={[-0.8, 1.2, -0.5]} fov={40} /><Hallway><Door x={D3} num="3A" open={open} /><Door x={2.6} num="3B" />
-      {open > 0.2 && <><Character look={TOWEL} p={towel} handR={<PhoneInHand on={1} />} /><TowelNeck p={towel} /></>}
+      {open > 0.2 && <><Character look={TOWEL} p={towel} handR={<PhoneInHand on={1} />} /></>}
       <Character look={NIO} p={nio} /></Hallway></PixelShot>
   );
 });
@@ -249,7 +249,7 @@ const P12 = S(({ t }) => {   // "Can I have it?" The neighbour steps back. The d
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={[1.9, 1.5, 1.0]} at={[-0.8, 1.2, -0.5]} fov={40} /><Hallway><Door x={D3} num="3A" open={1 - close} /><Door x={2.6} num="3B" />
-        {close < 0.8 && <><Character look={TOWEL} p={towel} handR={<PhoneInHand on={1} />} /><TowelNeck p={towel} /></>}
+        {close < 0.8 && <><Character look={TOWEL} p={towel} handR={<PhoneInHand on={1} />} /></>}
         <Character look={NIO} p={nio} /></Hallway></PixelShot>
       <Say t={t} who="nio" at={0.2} d={0.75} text="can i have it?" seed={5} />
     </AbsoluteFill>
@@ -399,9 +399,11 @@ const P26 = S(({ t }) => {   // STAIRWELL. Going down, he passes his flyer on th
 
 const P27 = S(({ t }) => {   // INSERT: his flyer. DID YOU TAKE A PHOTO OF ME? Under his face, in green pen: "I have 61. Same roof, Saturday."
   const s = useNoEvidenceScreens();
-  const d = 1.1 - sp(t, 0.1, 'lazy') * 0.1;
+  const k = sp(t, 1.0, 'lazy');
+  const d = 1.1 - k * 0.55;
   const fp: [number, number, number] = [0.04, 1.47, -1.144];
-  return <PixelShot res={[360, 640]}><Cam pos={[fp[0], fp[1] + 0.01, fp[2] + d]} at={[fp[0], fp[1] + 0.01, fp[2]]} fov={38} /><Hallway><Board x={0} flyer={s?.flyer_pen} /></Hallway></PixelShot>;
+  const y = fp[1] + 0.01 - k * 0.13;
+  return <PixelShot res={[360, 640]}><Cam pos={[fp[0], y, fp[2] + d]} at={[fp[0], y, fp[2]]} fov={38} /><Hallway><Board x={0} flyer={s?.flyer_pen} /></Hallway></PixelShot>;
 });
 
 const P28 = S(({ t }) => {   // CU: he reads it twice. No number. No name.
@@ -479,7 +481,7 @@ const Tally: React.FC = () => {
   const bump = Math.max(0, 1 - (f - last) / 6);
   return (
     <div style={{ position: 'absolute', top: 120, right: 56, fontFamily: 'Pixelify', fontWeight: 700, fontSize: 64 + bump * 14, color: '#151216', background: '#f6f2e8', padding: '4px 22px 10px', borderRadius: 10,
-      boxShadow: '0 8px 0 #151216', transform: `rotate(${2 - bump * 3}deg)` }}>PAID ${amt}</div>
+      boxShadow: '0 8px 0 #151216', transform: `rotate(${2 - bump * 3}deg)` }}>SPENT ${amt}</div>
   );
 };
 
@@ -520,9 +522,9 @@ const WhiteFlash: React.FC<{ at: number }> = ({ at: a }) => {   // a white bloom
   const f = useCurrentFrame(); const d = Math.abs(f - a);
   return d < 10 ? <AbsoluteFill style={{ background: 'radial-gradient(circle, #fffaf0 30%, #ffe8c8 100%)', opacity: Math.max(0, 1 - d / 10) }} /> : null;
 };
-const Stamp: React.FC<{ text: string }> = ({ text }) => (
+const Stamp: React.FC<{ text: string; big?: boolean }> = ({ text, big }) => (
   <div style={{ position: 'absolute', top: 150, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
-    <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 64, color: '#fff3dc', letterSpacing: 6, textShadow: '0 6px 0 #3a2418' }}>{text}</div>
+    <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: big ? 104 : 72, color: '#fff3dc', letterSpacing: 6, textShadow: '0 6px 0 #3a2418' }}>{text}</div>
   </div>
 );
 
@@ -536,7 +538,7 @@ export const PilotNoEvidence: React.FC = () => (
     <Sequence from={at('P4')} durationInFrames={end('P7') - at('P4')}>
       <AbsoluteFill style={{ background: 'radial-gradient(ellipse 70% 60% at center, rgba(255,220,170,0) 55%, rgba(90,50,30,0.75) 100%)' }} />
       <AbsoluteFill style={{ backgroundImage: `url(${staticFile('grain.png')})`, backgroundSize: '540px 960px', imageRendering: 'pixelated', mixBlendMode: 'overlay', opacity: 0.35 }} />
-      <Sequence durationInFrames={30}><Stamp text="LAST NIGHT" /></Sequence>
+      <Sequence durationInFrames={30}><Stamp text="LAST NIGHT" big /></Sequence>
     </Sequence>
     <WhiteFlash at={at('P4')} /><WhiteFlash at={end('P7')} />
     <Sequence from={at('P8')} durationInFrames={30}><Stamp text="THE NEXT DAY" /></Sequence>
@@ -584,8 +586,8 @@ export const NoEvidencePhoto: React.FC<{ which: string }> = ({ which }) => {
 /** Cover art for reel 1: the rooftop, phones flashing at him, his face lit and lost. */
 export const NoEvidenceThumbArt: React.FC = () => {
   const h = headPos(NIO_FLOOR, NIO);
-  const nio: Pose = { ...NIO_FLOOR, armR: { ...HOLD, sx: -0.95 }, armL: { sx: -0.35, sz: 0.25, el: 1.4 }, headPitch: 0.05, eyeY: 0.05, smile: 0, lid: 0.15, brow: 0.3, browUp: 0.3, wide: 0.2 };
+  const nio: Pose = { ...NIO_FLOOR, armR: { ...HOLD, sx: -0.95 }, armL: { sx: -0.35, sz: 0.25, el: 1.4 }, headPitch: 0.05, eyeY: -0.35, eyeX: 0.25, smile: 0, lid: 0.45, brow: 0.1, browUp: 0, wide: 0 };
   const f = frame(h, 'mcu', 0, { up: 0.04, fov: 40 });
-  return <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={1} lampOn={0}><Boxes />
-    <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /><PhoneLight at={[h[0] + 0.02, h[1] - 0.1, h[2] + 0.3]} /></Room></PixelShot>;
+  return <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={0.7} lampOn={1}><Boxes />
+    <Character look={NIO} p={nio} handR={<PhoneInHand on={0} />} handL={<GlowStick />} /></Room></PixelShot>;
 };

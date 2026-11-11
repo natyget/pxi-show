@@ -146,9 +146,9 @@ export const Room: React.FC<{ curtain?: number; lampOn?: number; children?: Reac
     <Window curtain={curtain} />
     {children}
     {/* light: low mauve fill, warm lamp, cool moon through the window */}
-    <ambientLight intensity={1.5} color="#a8929e" />
+    <ambientLight intensity={1.6} color="#d6c8c2" />
     <pointLight position={[0.47, 0.95, -1.2]} intensity={3.5 * lampOn} distance={5} decay={1.2} color="#ffc98a" />
     <directionalLight position={[1.5, 2.2, -0.5]} intensity={1.1} color="#c4c2f0" />
-    <hemisphereLight args={['#8a86b8', '#4a3632', 1.0]} />
+    <hemisphereLight args={['#c8c4d8', '#5a4640', 0.9]} />
   </group>
 );

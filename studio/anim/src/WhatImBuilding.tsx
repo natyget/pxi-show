@@ -73,10 +73,10 @@ const R6 = S(({ t }) => {   // INSERT: the map, "Tonight near you". Pins pop in.
   return <AbsoluteFill><Insert screen={s ? (n >= 1 ? s[`map${n}`] : s.map) : undefined} tapK={0} />
     <Say t={t} who="nio" at={0.3} d={1.9} text="and everything on tonight, on one map." seed={17} /></AbsoluteFill>;
 });
-const R7 = S(({ t }) => (   // "It's free. Get it, so when I throw something, you can find it. And come."
+const R7 = S(({ t }) => (   // "It's free. Get it. Next time I throw something, you'll see it. And come."
   <AbsoluteFill><Desk t={t} p={{ mouth: Math.max(talk(t, 0.2, 0.6), talk(t, 2.0, 1.9), talk(t, 5.4, 0.7)), brow: 0.05, smile: 0.1 }} />
     <Say t={t} who="nio" at={0.2} d={0.6} text="it's free." until={1.7} />
-    <Say t={t} who="nio" at={2.0} d={1.9} text="get it, so when i throw something, you can find it." until={3.2} />
+    <Say t={t} who="nio" at={2.0} d={1.9} text="get it. next time i throw something, you'll see it." until={3.2} />
     <Say t={t} who="nio" at={5.4} d={0.7} text="and come." /></AbsoluteFill>
 ));
 const R8 = S(({ t }) => (   // A beat. "I'll know if you came." "I'll have photos."
@@ -90,7 +90,7 @@ const R9 = S(({ t }) => {   // End card.
     <AbsoluteFill style={{ background: '#0b0a0d', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 40 }}>
       <Img src={staticFile('pxi-app-icon.png')} style={{ width: 300, height: 300, borderRadius: 66, imageRendering: 'pixelated', transform: `scale(${k})` }} />
       <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 140, color: '#efe6d2', letterSpacing: 8 }}>PXI</div>
-      {t > 0.5 && <div style={{ fontFamily: 'Pixelify', fontWeight: 500, fontSize: 52, color: '#cfc4e8', textAlign: 'center', lineHeight: 1.3 }}>every photo you're in.<br />everything on tonight.</div>}
+      {t > 0.5 && <div style={{ fontFamily: 'Pixelify', fontWeight: 500, fontSize: 52, color: '#cfc4e8', textAlign: 'center', lineHeight: 1.3 }}>free. link in bio.</div>}
     </AbsoluteFill>
   );
 });
@@ -117,18 +117,14 @@ export const WhatImBuilding: React.FC = () => (
 );
 
 /** Covers: one strong image and a few words, big. */
-const Big: React.FC<{ top?: string; bottom: string; sub?: string; color?: string }> = ({ top, bottom, sub, color = '#ffd34d' }) => {
-  const ink = [[-8, 0], [8, 0], [0, -8], [0, 8], [-8, -8], [8, 8], [-8, 8], [8, -8], [0, 14]].map(([x, y]) => `${x}px ${y}px 0 #151216`).join(',');
-  const st = (size: number, c: string): React.CSSProperties => ({ fontFamily: 'Pixelify', fontWeight: 700, fontSize: size, color: c, textAlign: 'center', lineHeight: 1.0, textShadow: ink, padding: '0 50px' });
-  return (<>
-    {top && <div style={{ position: 'absolute', top: 170, left: 0, right: 0, ...st(150, '#ffffff') }}>{top}</div>}
-    <div style={{ position: 'absolute', bottom: 300, left: 0, right: 0, ...st(170, color) }}>{bottom}</div>
-    {sub && <div style={{ position: 'absolute', bottom: 190, left: 0, right: 0, ...st(64, '#ffffff') }}>{sub}</div>}
-  </>);
-};
+const Caption: React.FC<{ text: string }> = ({ text }) => (
+  <div style={{ position: 'absolute', top: 210, left: 70, right: 70, display: 'flex', justifyContent: 'center' }}>
+    <div style={{ background: '#ffffff', color: '#111014', fontFamily: 'Pixelify', fontWeight: 700, fontSize: 76, lineHeight: 1.15, textAlign: 'center', padding: '22px 34px', borderRadius: 18 }}>{text}</div>
+  </div>
+);
 export const Thumb: React.FC<{ which: 'ne' | 'wib' }> = ({ which }) => (
   <AbsoluteFill style={{ background: '#0b0a0d' }}><Fonts />
-    {which === 'ne' ? <><NoEvidenceThumbArt /><Big top="40 PHONES." bottom="0 PHOTOS." sub="pilot · no evidence" /></>
-      : <><Desk t={0.4} size="mcu" p={{ smile: 0.2, armR: { sx: -1.25, sz: -0.25, el: 0.6 } }} handR={<PhoneInHand on={1} />} /><Big top="I'M BUILDING" bottom="THE FIX." sub="every photo you're in" /></>}
+    {which === 'ne' ? <><NoEvidenceThumbArt /><Caption text="my phone died before i saved her number" /></>
+      : <><Desk t={0.4} size="mcu" p={{ smile: 0.2, armR: { sx: -1.25, sz: -0.25, el: 0.6 } }} handR={<PhoneInHand on={1} />} /><Caption text="so i'm making an app for this" /></>}
   </AbsoluteFill>
 );
