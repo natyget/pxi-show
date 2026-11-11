@@ -8,6 +8,8 @@ import { Pilot, PILOT_LEN, PhotoStill } from './Pilot';
 import { Ep1, EP1_LEN, Ep1Photo } from './Ep1';
 import { PilotOnePhoto, PILOT1_LEN, PilotPhoto } from './PilotOnePhoto';
 
+import { NWHead, NWBody, NWHero, NWWide, NWSheet, NWClip, CLIP_LEN } from './nw/Look';
+
 export const Root: React.FC = () => (
   <>
     <Composition id="Sheet" component={Sheet} durationInFrames={1} fps={24} width={1080} height={1920} />
@@ -20,5 +22,11 @@ export const Root: React.FC = () => (
     <Composition id="Ep1Photo" component={Ep1Photo} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'behind' }} />
     <Composition id="PilotOnePhoto" component={PilotOnePhoto} durationInFrames={PILOT1_LEN} fps={24} width={1080} height={1920} />
     <Composition id="PilotPhoto" component={PilotPhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'thumb' }} />
+    <Composition id="NWHead" component={NWHead} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWBody" component={NWBody} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWHero" component={NWHero} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWWide" component={NWWide} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWSheet" component={NWSheet} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWClip" component={NWClip} durationInFrames={CLIP_LEN} fps={24} width={270} height={480} />
   </>
 );
