@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
 const W = 390, H = 844;
 const img = (src: string) => new Promise<HTMLImageElement>((r) => { const i = new Image(); i.onload = () => r(i); i.src = staticFile(src); });
-const font = () => new FontFace('PixelifyCanvas', `url(${staticFile('PixelifySans.ttf')})`, { weight: '400 700' }).load().then((f) => { document.fonts.add(f); });
+const font = () => new FontFace('PixelifyCanvas', `url(${staticFile('PixelifyB.ttf')})`, { weight: '400 700' }).load().then((f) => { document.fonts.add(f); });
 const tex = (cv: HTMLCanvasElement) => { const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t; };
 function rr(c: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();

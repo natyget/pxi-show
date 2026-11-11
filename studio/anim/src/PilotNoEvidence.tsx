@@ -39,13 +39,10 @@ const CHAIR = { y: -0.08, legL: { hip: 1.5, knee: 1.5 }, legR: { hip: 1.5, knee:
 
 // ---------------------------------------------------------------- speech: subtitles + a voice blip track per speaker
 type Who = 'nio' | 'maya' | 'hi' | 'lo';
-export const Say: React.FC<{ t: number; who: Who; at: number; d: number; text: string; seed?: number }> = ({ t, who, at, d, text, seed = 0 }) => (
-  <>
-    <Sequence from={Math.round(at * 24)} durationInFrames={Math.round(d * 24)} layout="none">
-      <Audio src={staticFile(`sfx/blip_${who}.wav`)} startFrom={((seed * 7) % 20) * 12} volume={0.75} />
-    </Sequence>
-    {on(t, at, d) && <Sub text={text} color={who === 'nio' ? '#ffffff' : '#ffd98a'} />}
-  </>
+/** Subtitles only until the approved voices can be generated (no stand-in voice). Held 1 s + 1/3 s a word, at least. */
+export const holdFor = (text: string, d: number) => Math.max(d, 1 + text.split(/\s+/).length / 3);
+export const Say: React.FC<{ t: number; who: Who; at: number; d: number; text: string; seed?: number; until?: number }> = ({ t, who, at, d, text, until }) => (
+  <>{t > at && t < at + Math.min(until ?? 99, holdFor(text, d)) && <Sub text={text} color={who === 'nio' ? '#ffffff' : '#ffd98a'} />}</>
 );
 
 // ---------------------------------------------------------------- props
@@ -93,7 +90,7 @@ const P1 = S(({ t }) => {   // HOOK: CU on the floor, last night's clothes, glow
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={1} lampOn={0}><Boxes />
-        <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /><PhoneLight at={[h[0] + 0.05, h[1] - 0.25, h[2] + 0.35]} /></Room></PixelShot>
+        <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /><PhoneLight at={[h[0] + 0.02, h[1] - 0.1, h[2] + 0.3]} /></Room></PixelShot>
       <Say t={t} who="nio" at={0.35} d={1.2} text="best night of my life." />
     </AbsoluteFill>
   );
@@ -110,12 +107,16 @@ const P3 = S(({ t }) => {   // CU: the grin drops. Eyes up, to the lens. "No evi
   const up = sp(t, 0.75, 'lazy'), drop = sp(t, 0.3, 'sheet');
   const nio: Pose = { ...NIO_FLOOR, breathe: breathe(t) * 0.3, armR: { ...HOLD, sx: -0.95 }, armL: { sx: -0.35, sz: 0.25, el: 1.4 }, headPitch: 0.28 * (1 - up), eyeY: -0.8 + up * 0.85,
     smile: 0.95 * (1 - drop), lid: 0.25 + up * 0.1, brow: 0.25 * drop };
-  const f = frame(h, 'cu', 0, { up: 0.04 });
+  const f0 = frame(h, 'cu', 0, { up: 0.04 }), f1 = frame(h, 'ecu', 0, { up: 0.0 });
+  const push = sp(t, 2.6, 'lazy');
+  const lerp = (a: number[], b: number[]) => a.map((v, i) => v + (b[i] - v) * push) as [number, number, number];
+  const f = { pos: lerp(f0.pos, f1.pos), at: lerp(f0.at, f1.at), fov: f0.fov };
+  if (t > 2.4) { nio.eyeY = -0.1; nio.eyeX = 0.15; nio.lid = 0.3; nio.headPitch = 0.05; }
   return (
     <AbsoluteFill>
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={1} lampOn={0}><Boxes />
-        <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /><PhoneLight at={[h[0] + 0.05, h[1] - 0.25, h[2] + 0.35]} /></Room></PixelShot>
-      <Say t={t} who="nio" at={1.15} d={0.8} text="no evidence." seed={1} />
+        <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /><PhoneLight at={[h[0] + 0.02, h[1] - 0.1, h[2] + 0.3]} /></Room></PixelShot>
+      <Say t={t} who="nio" at={1.15} d={0.8} text="no evidence." seed={1} until={1.3} />
     </AbsoluteFill>
   );
 });
@@ -132,7 +133,7 @@ const P4 = S(({ t }) => {   // MEMORY: the roof. She laughs so hard she bends ov
     <AbsoluteFill>
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Rooftop><Dancers t={t} />
         <Character look={NIO} p={nio} handL={<GlowStick />} /><Character look={MAYA} p={maya} handR={<Cup />} /></Rooftop></PixelShot>
-      <Say t={t} who="nio" at={0.1} d={0.65} text="it's actually—" seed={2} />
+      <Say t={t} who="nio" at={0.1} d={0.65} text="it's actually—" seed={2} until={0.85} />
       <Say t={t} who="maya" at={1.0} d={1.45} text={'you said "actually" again!'} />
     </AbsoluteFill>
   );
@@ -180,15 +181,16 @@ const P7 = S(({ t }) => {   // MEMORY: she backs away into the crowd, waving. "I
 
 const P8 = S(({ t }) => {   // DAY. INSERT: a sheet of paper on his wall. His list, numbered. The last line circled.
   const s = useNoEvidenceScreens();
-  const T = [0.15, 0.7, 1.25, 1.8];
-  const n = T.filter((x) => t > x + 0.35).length;
+  const T = [1.4, 2.6, 3.8, 5.0];
+  const n = T.filter((x) => t > x + 0.45).length;
   const cur = Math.min(3, T.filter((x) => t > x).length - 1);
-  const u = cur >= 0 ? Math.min(1, (t - T[cur]) / 0.35) : 0;
-  const lineY = (i: number) => PAPER[1] + 0.2 - ((92 + i * 80 - 8) / 400) * 0.4;
+  const u = cur >= 0 ? Math.min(1, (t - T[cur]) / 0.45) : 0;
+  const lineY = (i: number) => PAPER[1] + 0.2 - ((120 + i * 72 - 8) / 400) * 0.4;
   const hx = PAPER[0] - 0.12 + u * 0.22, hy = cur >= 0 ? lineY(cur) : PAPER[1] - 0.3;
-  const away = t > 2.3 ? (t - 2.3) * 0.8 : 0;
-  return (
-    <PixelShot res={[216, 384]}><Cam pos={[PAPER[0], PAPER[1], PAPER[2] + 0.95]} at={PAPER} fov={38} /><Room curtain={0.5} lampOn={1}>
+  const away = t > 5.6 ? (t - 5.6) * 0.8 : 0;
+  const said = ['one: green jacket.', 'two: laughs at "actually".', 'three: about forty phones.', 'so, about 212 photos.'];
+  return (<AbsoluteFill>
+    <PixelShot res={[360, 640]}><Cam pos={[PAPER[0], PAPER[1], PAPER[2] + 0.95]} at={PAPER} fov={38} /><Room curtain={0.5} lampOn={1}>
       <mesh geometry={plane(0.3, 0.4)} position={[PAPER[0], PAPER[1], PAPER[2] + 0.004]}>{s && <meshBasicMaterial map={n ? s[`paper${n}`] : s.paperBase} toneMapped={false} />}</mesh>
       {/* his hand + marker */}
       <group position={[hx + 0.03 + away, hy - 0.03 - away * 0.5, PAPER[2] + 0.04]} rotation={[0, 0, 0.5]} scale={0.6}>
@@ -196,7 +198,9 @@ const P8 = S(({ t }) => {   // DAY. INSERT: a sheet of paper on his wall. His li
         <Solid geo={sph(0.035)} mat={toon(NIO.skin)} scale={[1.1, 0.9, 0.7]} line={0.006} />
         <Solid geo={cyl(0.04, 0.045, 0.2, 10)} mat={toon(NIO.top)} position={[0.04, -0.12, -0.02]} rotation={[0, 0, 0.4]} line={0.006} />
       </group></Room></PixelShot>
-  );
+    <Say t={t} who="nio" at={0.0} d={0.5} text="okay. what do i know." until={1.35} />
+    {said.map((x, i) => <Say key={i} t={t} who="nio" at={T[i]} d={1.2} text={x} until={1.25} />)}
+  </AbsoluteFill>);
 });
 
 const P9 = S(({ t }) => {   // MCU by the list, to the lens: "Somewhere there are two hundred photos of me having friends."
@@ -209,7 +213,7 @@ const P9 = S(({ t }) => {   // MCU by the list, to the lens: "Somewhere there ar
       <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={0.5} lampOn={1}>
         <mesh geometry={plane(0.3, 0.4)} position={[PAPER[0], PAPER[1], PAPER[2] + 0.004]}>{s && <meshBasicMaterial map={s.paper4} toneMapped={false} />}</mesh>
         <Character look={NIO} p={nio} handR={<mesh geometry={cyl(0.008, 0.008, 0.12, 8)} position={[0, -0.04, 0.02]} material={flat('#1e2a52')} />} /></Room></PixelShot>
-      <Say t={t} who="nio" at={0.35} d={2.6} text="somewhere there are 200 photos of me having friends." seed={4} />
+      <Say t={t} who="nio" at={0.35} d={2.6} text="somewhere there are 212 photos of me having friends." seed={4} />
     </AbsoluteFill>
   );
 });
@@ -270,8 +274,8 @@ const P14 = S(({ t }) => {   // INSERT: her story. Her drink. At the edge of the
 });
 
 const P15 = S(({ t }) => {   // "That's my elbow." "Okay." The door closes.
-  const close = sp(t, 2.0, 'snap');
-  const robe: Pose = { ...ROBE_P, z: ROBE_P.z! - close * 0.7, breathe: breathe(t), armR: { sx: -1.25, sz: -0.4, el: 0.4 }, headPitch: 0.35, eyeY: -0.9, lid: 0.35, mouth: talk(t, 1.45, 0.35) };
+  const close = sp(t, 2.4, 'snap');
+  const robe: Pose = { ...ROBE_P, z: ROBE_P.z! - close * 0.7, breathe: breathe(t), armR: { sx: -1.25, sz: -0.4, el: 0.4 }, headPitch: 0.35, eyeY: -0.9, lid: 0.35, mouth: talk(t, 1.8, 0.35) };
   const nio: Pose = { ...NIO_4C, breathe: breathe(t), mouth: talk(t, 0.25, 0.85), armL: { sx: -0.2, sz: 0.1, el: 0.3 }, armR: { sx: -0.2, sz: 0.1, el: 0.3 }, lid: 0.2, brow: 0.15 };
   return (
     <AbsoluteFill>
@@ -279,7 +283,7 @@ const P15 = S(({ t }) => {   // "That's my elbow." "Okay." The door closes.
         {close < 0.8 && <Character look={ROBE} p={robe} handR={<PhoneInHand on={1} />} />}
         <Character look={NIO} p={nio} /></Hallway></PixelShot>
       <Say t={t} who="nio" at={0.25} d={0.85} text="that's my elbow." seed={6} />
-      <Say t={t} who="hi" at={1.45} d={0.35} text="okay." />
+      <Say t={t} who="hi" at={1.8} d={0.35} text="okay." />
     </AbsoluteFill>
   );
 });
@@ -303,13 +307,13 @@ const P16 = S(({ t }) => {   // LOBBY, LATER. Nio behind a folding table. A poli
 
 const P17 = S(({ t }) => {   // The sign, straight on, him behind it like a vendor: PHOTO RETURNS, $5 A PHOTO, $20 IF MY FACE IS IN IT.
   const s = useNoEvidenceScreens();
-  return <PixelShot res={[216, 384]}><Cam pos={[0, 0.95, 2.15]} at={[0, 0.92, 0]} fov={44} /><Lobby t={t} sign={s?.sign} queue={false} nio={{ smile: 0.15, lid: 0.15, armL: { sx: -0.3, sz: 0.1, el: 1.5 }, armR: { sx: -0.3, sz: -0.1, el: 1.5 } }} /></PixelShot>;
+  return <PixelShot res={[360, 640]}><Cam pos={[0, 0.95, 2.15]} at={[0, 0.92, 0]} fov={44} /><Lobby t={t} sign={s?.sign} queue={false} nio={{ smile: 0.15, lid: 0.15, armL: { sx: -0.3, sz: 0.1, el: 1.5 }, armR: { sx: -0.3, sz: -0.1, el: 1.5 } }} /></PixelShot>;
 });
 
 // the montage: one photo after another, $5 each
 export const MONTAGE: [string, string][] = [['v_sky', EXTRAS[2].skin], ['v_moon', EXTRAS[0].skin], ['v_thumb', EXTRAS[1].skin], ['v_dark', EXTRAS[3].skin], ['v_floor', EXTRAS[4].skin],
   ['v_blur', EXTRAS[5].skin], ['v_moon', EXTRAS[2].skin], ['v_sky', EXTRAS[0].skin], ['v_thumb', EXTRAS[3].skin]];
-export const MONTAGE_STEP = 8;
+export const MONTAGE_STEP = 11;
 const P18 = S(({ f }) => {   // INSERTS, fast: a ceiling. The moon. A thumb. Nothing. The floor. A blur. The moon again. ($5 each.)
   const s = useNoEvidenceScreens();
   const k = Math.min(MONTAGE.length - 1, Math.floor(f / MONTAGE_STEP));
@@ -397,7 +401,7 @@ const P27 = S(({ t }) => {   // INSERT: his flyer. DID YOU TAKE A PHOTO OF ME? U
   const s = useNoEvidenceScreens();
   const d = 1.1 - sp(t, 0.1, 'lazy') * 0.1;
   const fp: [number, number, number] = [0.04, 1.47, -1.144];
-  return <PixelShot res={[216, 384]}><Cam pos={[fp[0], fp[1] + 0.01, fp[2] + d]} at={[fp[0], fp[1] + 0.01, fp[2]]} fov={38} /><Hallway><Board x={0} flyer={s?.flyer_pen} /></Hallway></PixelShot>;
+  return <PixelShot res={[360, 640]}><Cam pos={[fp[0], fp[1] + 0.01, fp[2] + d]} at={[fp[0], fp[1] + 0.01, fp[2]]} fov={38} /><Hallway><Board x={0} flyer={s?.flyer_pen} /></Hallway></PixelShot>;
 });
 
 const P28 = S(({ t }) => {   // CU: he reads it twice. No number. No name.
@@ -420,14 +424,14 @@ const P29 = S(({ t }) => {   // HIS ROOM. He opens his laptop.
 const P30 = S(({ t }) => {   // INSERT: the laptop. A blank page. He types: every photo you're in, from everyone's phones.
   const s = useNoEvidenceScreens();
   const k = Math.max(0, Math.min(10, Math.floor((t - 0.25) / 0.17)));
-  return <PixelShot res={[216, 384]}><Cam pos={[-1.5, 1.0, 0.75]} at={[-1.99, 0.9, 0.75]} fov={62} /><Room curtain={0.5} lampOn={1}>
+  return <PixelShot res={[360, 640]}><Cam pos={[-1.5, 1.0, 0.75]} at={[-1.99, 0.9, 0.75]} fov={62} /><Room curtain={0.5} lampOn={1}>
     <group position={[-1.85, 0.787, 0.75]} rotation={[0, Math.PI / 2, 0]}><Laptop open={1} screen={s?.[`laptop${k}`]} /></group></Room></PixelShot>;
 });
 
 const P31 = S(({ t }) => {   // CU, to the lens: "Okay." Beat. "Never again."
   const p: Pose = { ...NIO_CHAIR, yaw: 0 };
   const h = headPos(p, NIO);
-  const nio: Pose = { ...p, armL: { sx: -1.05, sz: 0.15, el: 0.95 }, armR: { sx: -1.05, sz: 0.15, el: 0.95 }, mouth: Math.max(talk(t, 0.45, 0.4), talk(t, 1.5, 0.75)), lid: 0.25 + blink(t, [1.1]), brow: 0.15, smile: t > 2.4 ? 0.2 : 0, breathe: breathe(t) * 0.3 };
+  const nio: Pose = { ...p, armL: { sx: -1.05, sz: 0.15, el: 0.95 }, armR: { sx: -1.05, sz: 0.15, el: 0.95 }, mouth: Math.max(talk(t, 0.45, 0.4), talk(t, 1.9, 0.75)), lid: 0.25 + blink(t, [1.1]), brow: 0.15, smile: t > 3.0 ? 0.2 : 0, breathe: breathe(t) * 0.3 };
   const f = frame(h, 'cu', 0, { up: 0.03 });
   return (
     <AbsoluteFill>
@@ -435,7 +439,7 @@ const P31 = S(({ t }) => {   // CU, to the lens: "Okay." Beat. "Never again."
         <group position={[-1.85, 0.787, 0.75]} rotation={[0, Math.PI / 2, 0]}><Laptop open={1} /></group>
         <Character look={NIO} p={nio} /></Room></PixelShot>
       <Say t={t} who="nio" at={0.45} d={0.4} text="okay." seed={8} />
-      <Say t={t} who="nio" at={1.5} d={0.75} text="never again." seed={9} />
+      <Say t={t} who="nio" at={1.9} d={0.75} text="never again." seed={9} />
     </AbsoluteFill>
   );
 });
@@ -448,14 +452,14 @@ const P32 = S(({ t }) => (   // TAG: black. SATURDAY.
 
 // ---------------------------------------------------------------- cut
 export const NE_SHOTS: [string, React.FC, number][] = [
-  ['P1', P1, 52], ['P2', P2, 44], ['P3', P3, 50],
-  ['P4', P4, 64], ['P5', P5, 40], ['P6', P6, 50], ['P7', P7, 54],
-  ['P8', P8, 62], ['P9', P9, 76],
-  ['P10', P10, 46], ['P11', P11, 36], ['P12', P12, 46], ['P13', P13, 40], ['P14', P14, 34], ['P15', P15, 58],
-  ['P16', P16, 46], ['P17', P17, 48], ['P18', P18, MONTAGE.length * MONTAGE_STEP], ['P19', P19, 46], ['P20', P20, 32], ['P21', P21, 36], ['P22', P22, 36], ['P23', P23, 54],
-  ['P24', P24, 62], ['P25', P25, 44],
-  ['P26', P26, 56], ['P27', P27, 76], ['P28', P28, 48],
-  ['P29', P29, 40], ['P30', P30, 64], ['P31', P31, 70], ['P32', P32, 44],
+  ['P1', P1, 74], ['P2', P2, 60], ['P3', P3, 118],
+  ['P4', P4, 84], ['P5', P5, 52], ['P6', P6, 60], ['P7', P7, 72],
+  ['P8', P8, 160], ['P9', P9, 104],
+  ['P10', P10, 60], ['P11', P11, 52], ['P12', P12, 62], ['P13', P13, 56], ['P14', P14, 52], ['P15', P15, 76],
+  ['P16', P16, 60], ['P17', P17, 72], ['P18', P18, MONTAGE.length * MONTAGE_STEP], ['P19', P19, 66], ['P20', P20, 44], ['P21', P21, 72], ['P22', P22, 72], ['P23', P23, 76],
+  ['P24', P24, 84], ['P25', P25, 60],
+  ['P26', P26, 66], ['P27', P27, 108], ['P28', P28, 64],
+  ['P29', P29, 52], ['P30', P30, 88], ['P31', P31, 88], ['P32', P32, 60],
 ];
 const START = NE_SHOTS.reduce<number[]>((a, [, , d], i) => (a.push(i ? a[i - 1] + NE_SHOTS[i - 1][2] : 0), a), []);
 export const NE_STARTS = START;
@@ -474,70 +478,77 @@ const Tally: React.FC = () => {
   const last = done.length ? done[done.length - 1][0] : -99;
   const bump = Math.max(0, 1 - (f - last) / 6);
   return (
-    <div style={{ position: 'absolute', top: 210, right: 56, fontFamily: 'Pixelify', fontWeight: 700, fontSize: 64 + bump * 14, color: '#151216', background: '#f6f2e8', padding: '4px 22px 10px', borderRadius: 10,
+    <div style={{ position: 'absolute', top: 120, right: 56, fontFamily: 'Pixelify', fontWeight: 700, fontSize: 64 + bump * 14, color: '#151216', background: '#f6f2e8', padding: '4px 22px 10px', borderRadius: 10,
       boxShadow: '0 8px 0 #151216', transform: `rotate(${2 - bump * 3}deg)` }}>PAID ${amt}</div>
   );
 };
-const Chip: React.FC<{ text: string }> = ({ text }) => (
-  <div style={{ position: 'absolute', top: 210, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
-    <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 48, color: '#ffe2b8', letterSpacing: 4 }}>{text}</div>
-  </div>
-);
 
 // sound: [file, from, frames or 0 for the whole file, volume]
 type Cue = [string, number, number, number, number?];
+const MEM = ['P4', 'P5', 'P6', 'P7'];
 const CUES = (): Cue[] => [
-  ['sfx/ne_room.wav', 0, end('P3'), 0.8],
+  ['sfx/ne_room.wav', 0, at('P4'), 0.8],
   ['sfx/ne_happy.wav', 0, at('P3', 1.05), 0.9],
-  ['sfx/ne_party.wav', at('P4'), end('P7') - at('P4'), 1.0],
+  // into the memory: a sound bridge (the party creeps in under his face before we see it) and a swell to the white flash
+  ['sfx/ne_swell.wav', at('P4') - 48, 0, 0.9],
+  ['sfx/ne_party_mem.wav', at('P4') - 30, end('P7') - at('P4') + 30, 1.0],
+  // and out the same way, onto a dead silence, then the room
+  ['sfx/ne_swell_out.wav', end('P7') - 10, 0, 0.9],
   ['sfx/ne_room.wav', at('P8'), end('P9') - at('P8'), 0.8],
-  ['sfx/ne_groove.wav', at('P8', 0.1), end('P23') - at('P8', 0.1), 0.85],
+  ['sfx/ne_groove.wav', at('P8', 1.2), end('P23') - at('P8', 1.2), 0.8],
   ['sfx/ne_hall.wav', at('P10'), end('P23') - at('P10'), 0.7],
   ['sfx/ne_night.wav', at('P24'), end('P28') - at('P24'), 0.9],
   ['sfx/ne_pad.wav', at('P24'), end('P25') - at('P24'), 0.9],
-  ['sfx/ne_chime.wav', at('P27', 0.2), 0, 1.0],
+  ['sfx/ne_chime.wav', at('P27', 0.3), 0, 1.0],
   ['sfx/ne_room.wav', at('P29'), end('P31') - at('P29'), 0.8],
   ['sfx/ne_end.wav', at('P29'), end('P31') - at('P29'), 0.85],
   ['sfx/ne_thump.wav', at('P32', 0.3), 0, 1.0],
   // spot effects
-  ['sfx/shutter.wav', at('P5', 0.25), 0, 0.6], ['sfx/shutter.wav', at('P5', 0.6), 0, 0.5], ['sfx/shutter.wav', at('P5', 0.9), 0, 0.6], ['sfx/shutter.wav', at('P5', 1.25), 0, 0.5],
-  ['sfx/ne_tap.wav', at('P6', 0.15), 0, 0.9], ['sfx/ne_tap.wav', at('P6', 0.45), 0, 0.9], ['sfx/ne_tap.wav', at('P6', 0.75), 0, 0.9], ['sfx/ne_tap.wav', at('P6', 1.05), 0, 0.9],
+  ['sfx/shutter.wav', at('P5', 0.25), 0, 0.5], ['sfx/shutter.wav', at('P5', 0.6), 0, 0.4], ['sfx/shutter.wav', at('P5', 0.9), 0, 0.5], ['sfx/shutter.wav', at('P5', 1.25), 0, 0.4],
+  ['sfx/ne_tap.wav', at('P6', 0.15), 0, 0.7], ['sfx/ne_tap.wav', at('P6', 0.45), 0, 0.7], ['sfx/ne_tap.wav', at('P6', 0.75), 0, 0.7], ['sfx/ne_tap.wav', at('P6', 1.05), 0, 0.7],
   ['sfx/ne_die.wav', at('P6', 1.25), 0, 1.0],
-  ['sfx/ne_marker.wav', at('P8', 0.15), 0, 0.9], ['sfx/ne_marker.wav', at('P8', 0.7), 0, 0.9], ['sfx/ne_marker.wav', at('P8', 1.25), 0, 0.9], ['sfx/ne_marker.wav', at('P8', 1.8), 0, 0.9],
+  ...[1.4, 2.6, 3.8, 5.0].map((x): Cue => ['sfx/ne_marker.wav', at('P8', x), 0, 0.9]),
   ['sfx/ne_knock.wav', at('P10'), 0, 1.0], ['sfx/ne_door.wav', at('P10', 0.35), 0, 0.8], ['sfx/ne_shut.wav', at('P12', 1.35), 0, 1.0],
-  ['sfx/ne_door.wav', at('P13', 0.1), 0, 0.8], ['sfx/ne_shut.wav', at('P15', 2.0), 0, 1.0],
+  ['sfx/ne_door.wav', at('P13', 0.1), 0, 0.8], ['sfx/ne_shut.wav', at('P15', 2.4), 0, 1.0],
   ...PAID.map(([fr, v]): Cue => [v === 20 ? 'sfx/ne_till.wav' : 'sfx/ne_cash.wav', fr, 0, 0.9]),
   ['sfx/ne_steps.wav', at('P26'), 0, 0.8], ['sfx/ne_typing.wav', at('P30', 0.25), 0, 0.9], ['sfx/ne_typing.wav', at('P29', 1.0), 0, 0.6],
 ];
 
-export const PilotNoEvidence: React.FC = () => {
-  const memory = [at('P4'), end('P7')];
-  return (
-    <AbsoluteFill style={{ background: '#0b0a0d' }}>
-      <Fonts />
-      {NE_SHOTS.map(([id, C, d], i) => <Sequence key={id} from={START[i]} durationInFrames={d}><C /></Sequence>)}
-      {/* last night: warm, soft */}
-      <Sequence from={memory[0]} durationInFrames={memory[1] - memory[0]}>
-        <AbsoluteFill style={{ background: 'radial-gradient(ellipse at center, rgba(255,170,90,0.0) 45%, rgba(120,40,20,0.4) 100%)', pointerEvents: 'none' }} />
-        <AbsoluteFill style={{ background: '#ffb070', mixBlendMode: 'soft-light', opacity: 0.3 }} />
-        <Chip text="LAST NIGHT" />
-      </Sequence>
-      <Sequence from={at('P8')} durationInFrames={44}><Chip text="THE NEXT DAY" /></Sequence>
-      <Tally />
-      {CUES().map(([src, from, d, v], i) => <Sequence key={i} from={from} durationInFrames={d || undefined} layout="none"><Audio src={staticFile(src)} volume={v} /></Sequence>)}
-      <Sequence from={0} durationInFrames={START[START.length - 1]}>
-        <div style={{ position: 'absolute', top: 96, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
-          <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 52, color: '#efe6d2', background: 'rgba(21,18,22,0.78)', padding: '6px 26px 10px', borderRadius: 40 }}>PILOT</div>
-        </div>
-      </Sequence>
-    </AbsoluteFill>
-  );
+/** The memory look: warm, faded, soft, a heavier grain and a dark feathered edge. */
+const MEMORY_GRADE = 'sepia(0.5) saturate(0.8) contrast(0.88) brightness(1.08) blur(1.2px)';
+const WhiteFlash: React.FC<{ at: number }> = ({ at: a }) => {   // a white bloom peaking at frame `a`
+  const f = useCurrentFrame(); const d = Math.abs(f - a);
+  return d < 10 ? <AbsoluteFill style={{ background: 'radial-gradient(circle, #fffaf0 30%, #ffe8c8 100%)', opacity: Math.max(0, 1 - d / 10) }} /> : null;
 };
+const Stamp: React.FC<{ text: string }> = ({ text }) => (
+  <div style={{ position: 'absolute', top: 150, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
+    <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 64, color: '#fff3dc', letterSpacing: 6, textShadow: '0 6px 0 #3a2418' }}>{text}</div>
+  </div>
+);
+
+export const PilotNoEvidence: React.FC = () => (
+  <AbsoluteFill style={{ background: '#0b0a0d' }}>
+    <Fonts />
+    {NE_SHOTS.map(([id, C, d], i) => <Sequence key={id} from={START[i]} durationInFrames={d}>
+      {MEM.includes(id) ? <AbsoluteFill style={{ filter: MEMORY_GRADE }}><C /></AbsoluteFill> : <C />}
+    </Sequence>)}
+    {/* the memory: feathered warm edge and grain on top of the grade */}
+    <Sequence from={at('P4')} durationInFrames={end('P7') - at('P4')}>
+      <AbsoluteFill style={{ background: 'radial-gradient(ellipse 70% 60% at center, rgba(255,220,170,0) 55%, rgba(90,50,30,0.75) 100%)' }} />
+      <AbsoluteFill style={{ backgroundImage: `url(${staticFile('grain.png')})`, backgroundSize: '540px 960px', imageRendering: 'pixelated', mixBlendMode: 'overlay', opacity: 0.35 }} />
+      <Sequence durationInFrames={30}><Stamp text="LAST NIGHT" /></Sequence>
+    </Sequence>
+    <WhiteFlash at={at('P4')} /><WhiteFlash at={end('P7')} />
+    <Sequence from={at('P8')} durationInFrames={30}><Stamp text="THE NEXT DAY" /></Sequence>
+    <Tally />
+    {CUES().map(([src, from, d, v], i) => <Sequence key={i} from={Math.max(0, from)} durationInFrames={d || undefined} layout="none"><Audio src={staticFile(src)} volume={v} /></Sequence>)}
+  </AbsoluteFill>
+);
 
 // ---------------------------------------------------------------- the in-show photos (rendered first into public/photos/ne_*.png)
 export const NoEvidencePhoto: React.FC<{ which: string }> = ({ which }) => {
   const R = (cam: { pos: [number, number, number]; at: [number, number, number]; fov: number }, kids: React.ReactNode, set: 'roof' | 'room' = 'roof') => (
-    <PixelShot res={[216, 384]}><Cam pos={cam.pos} at={cam.at} fov={cam.fov} />{set === 'roof' ? <Rooftop>{kids}</Rooftop> : <Room curtain={0} lampOn={0}>{kids}</Room>}</PixelShot>
+    <PixelShot res={[360, 640]}><Cam pos={cam.pos} at={cam.at} fov={cam.fov} />{set === 'roof' ? <Rooftop>{kids}</Rooftop> : <Room curtain={0} lampOn={0}>{kids}</Room>}</PixelShot>
   );
   const party = { smile: 1, lid: 0.2 };
   switch (which) {
@@ -568,4 +579,13 @@ export const NoEvidencePhoto: React.FC<{ which: string }> = ({ which }) => {
       return R(f, <><Dancers t={0.8} /><Character look={NIO} p={p} /></>); }
   }
   return null;
+};
+
+/** Cover art for reel 1: the rooftop, phones flashing at him, his face lit and lost. */
+export const NoEvidenceThumbArt: React.FC = () => {
+  const h = headPos(NIO_FLOOR, NIO);
+  const nio: Pose = { ...NIO_FLOOR, armR: { ...HOLD, sx: -0.95 }, armL: { sx: -0.35, sz: 0.25, el: 1.4 }, headPitch: 0.05, eyeY: 0.05, smile: 0, lid: 0.15, brow: 0.3, browUp: 0.3, wide: 0.2 };
+  const f = frame(h, 'mcu', 0, { up: 0.04, fov: 40 });
+  return <PixelShot><Cam pos={f.pos} at={f.at} fov={f.fov} /><Room curtain={1} lampOn={0}><Boxes />
+    <Character look={NIO} p={nio} handR={<PhoneInHand on={1} />} handL={<GlowStick />} /><PhoneLight at={[h[0] + 0.02, h[1] - 0.1, h[2] + 0.3]} /></Room></PixelShot>;
 };

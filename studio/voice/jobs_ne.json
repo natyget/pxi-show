@@ -1,0 +1,219 @@
+[
+ {
+  "who": "nio",
+  "text": "Best night of my life.",
+  "out": "raw_ne_p1.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "No evidence.",
+  "out": "raw_ne_p3.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "It's actually\u2014",
+  "out": "raw_ne_p4.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "maya",
+  "text": "You said \"actually\" again!",
+  "out": "raw_ne_p4m.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "maya",
+  "text": "I'll send you the pics!",
+  "out": "raw_ne_p7.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Okay. What do I know.",
+  "out": "raw_ne_p8a.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "One: green jacket.",
+  "out": "raw_ne_p8b.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Two: laughs at \"actually\".",
+  "out": "raw_ne_p8c.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Three: about forty phones.",
+  "out": "raw_ne_p8d.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "So, about two hundred and twelve photos.",
+  "out": "raw_ne_p8e.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Somewhere there are two hundred and twelve photos of me having friends.",
+  "out": "raw_ne_p9.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Can I have it?",
+  "out": "raw_ne_p12.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "That's my elbow.",
+  "out": "raw_ne_p15.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "m_kore",
+  "text": "Okay.",
+  "out": "raw_ne_p15r.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "n_liam",
+  "text": "You're the \"actually\" guy!",
+  "out": "raw_ne_p19.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Is my face in it?",
+  "out": "raw_ne_p21.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "n_liam",
+  "text": "It's the back of it.",
+  "out": "raw_ne_p22.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Okay.",
+  "out": "raw_ne_p31a.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Never again.",
+  "out": "raw_ne_p31b.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "I moved here three weeks ago.",
+  "out": "raw_wib_r1a.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "I've been to one party.",
+  "out": "raw_wib_r1b.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "I have three photos of it.",
+  "out": "raw_wib_r2.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Everyone else there has two hundred.",
+  "out": "raw_wib_r3.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "So I'm building PXI.",
+  "out": "raw_wib_r4.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Every photo you're in, from everyone's phones.",
+  "out": "raw_wib_r5.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "And everything on tonight, on one map.",
+  "out": "raw_wib_r6.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "It's free.",
+  "out": "raw_wib_r7a.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "Get it, so when I throw something, you can find it.",
+  "out": "raw_wib_r7b.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "And come.",
+  "out": "raw_wib_r7c.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "I'll know if you came.",
+  "out": "raw_wib_r8a.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ },
+ {
+  "who": "nio",
+  "text": "I'll have photos.",
+  "out": "raw_wib_r8b.wav",
+  "ex": 0.55,
+  "cfg": 0.35
+ }
+]

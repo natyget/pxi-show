@@ -37,7 +37,7 @@ export type NMTex = Record<string, THREE.Texture>;
 let cached: Promise<NMTex> | null = null;
 
 async function build(): Promise<NMTex> {
-  const f = new FontFace(FONT, `url(${staticFile('PixelifySans.ttf')})`, { weight: '400 700' }); await f.load(); document.fonts.add(f);
+  const f = new FontFace(FONT, `url(${staticFile('PixelifyB.ttf')})`, { weight: '400 700' }); await f.load(); document.fonts.add(f);
   const [icon, bite, family, group] = await Promise.all(['pxi-app-icon.png', 'photos/nm_bite.png', 'photos/nm_family.png', 'photos/nm_group.png'].map(img));
   const out: NMTex = {};
 

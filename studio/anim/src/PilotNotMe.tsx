@@ -107,7 +107,7 @@ export const Insert: React.FC<{ screen?: any; tap?: [number, number]; tapK?: num
   const tip: [number, number] = [rest[0] + (tx - rest[0]) * tapK, rest[1] + (ty - rest[1]) * tapK];
   const dx = tip[0] - base[0], dy = tip[1] - base[1], len = Math.hypot(dx, dy);
   return (
-    <PixelShot res={[216, 384]}>
+    <PixelShot res={[360, 640]}>
       <SceneBg color="#221c2e" />
       <Cam pos={[0, -0.005, 0.25]} at={[0, -0.005, 0]} fov={38} />
       <ambientLight intensity={1.3} color="#e8dcf0" />
@@ -122,9 +122,10 @@ export const Insert: React.FC<{ screen?: any; tap?: [number, number]; tapK?: num
         {screen && <mesh geometry={plane(0.066, 0.142)} position={[0, 0, 0.0059]}><meshBasicMaterial map={screen} toneMapped={false} /></mesh>}
         {children}
         <Solid geo={sph(0.06)} mat={toon(skin)} position={[0.012, -0.11, -0.02]} scale={[1.3, 0.85, 0.7]} line={0.012} />
-        {[0, 1, 2, 3].map((i) => <Solid key={i} geo={cap(0.0095, 0.006)} mat={toon(skin)} position={[-0.046, -0.005 - i * 0.022, 0.002]} rotation={[0, 0, 1.45]} line={0.009} />)}
+        {[0, 1, 2, 3].map((i) => <Solid key={i} geo={sph(0.0105)} mat={toon(skin)} position={[-0.044, -0.004 - i * 0.021, 0.002]} scale={[1.45, 0.98, 0.75]} line={0.008} />)}
         <group position={[base[0] + dx / 2, base[1] + dy / 2, 0.012 - press * 0.003 + tapK * 0.004]} rotation={[0, 0, Math.atan2(-dx, dy)]}>
-          <Solid geo={cap(0.014, Math.max(0.01, len - 0.028))} mat={toon(skin)} line={0.01} />
+          <Solid geo={sph(0.5)} mat={toon(skin)} scale={[0.029, Math.max(0.03, len + 0.004), 0.024]} line={0.008} />
+          <mesh geometry={sph(0.5)} position={[0, Math.max(0.03, len + 0.004) * 0.36, 0.008]} scale={[0.014, 0.012, 0.003]} material={flat('#f0d0c0')} />
         </group>
       </group>
     </PixelShot>
@@ -465,17 +466,17 @@ export const NotMePhoto: React.FC<{ which: string }> = ({ which }) => {
   // the selfie: the family in front of the candle stall, Dev's arm out; behind them, Nio at the dumpling stall, mid-bite
   if (which === 'bite') {
     const fam = { smile: 1, lid: 0.1 };
-    return <PixelShot res={[216, 384]}><Cam pos={[-0.95, 1.7, 10.75]} at={[-1.3, 1.4, 8.0]} fov={58} /><Market t={0.4}>
+    return <PixelShot res={[360, 640]}><Cam pos={[-0.95, 1.7, 10.75]} at={[-1.3, 1.4, 8.0]} fov={58} /><Market t={0.4}>
       <Character look={DEV} p={{ x: -0.72, z: 9.2, yaw: 0.05, ...fam, headTilt: -0.1, armR: { sx: -1.5, sz: 0.2, el: 0.2 } }} />
       <Character look={PRIYA} p={{ x: -1.12, z: 9.1, yaw: 0.1, ...fam, headTilt: 0.2 }} />
       <Character look={KID} p={{ x: -0.92, z: 9.5, yaw: 0.1, ...fam, armR: KID_STRING }} /><Balloon x={-0.62} z={9.55} t={0} />
       <Character look={NIO} p={{ ...NIO_A, armR: BITE, mouth: 0.9, lid: 0.75, headPitch: -0.05, armL: HOLD }} handR={<Skewer />} onHead={<Sauce />} /></Market></PixelShot>;
   }
   // the photo Nio took of them
-  if (which === 'family') return <PixelShot res={[216, 384]}><Cam pos={[1.95, 1.45, 7.0]} at={[1.95, 1.05, 9.7]} fov={46} /><Market t={0.4}>
+  if (which === 'family') return <PixelShot res={[360, 640]}><Cam pos={[1.95, 1.45, 7.0]} at={[1.95, 1.05, 9.7]} fov={46} /><Market t={0.4}>
     <Family t={0} devPhone={false} dev={{ smile: 1, lid: 0.1, yaw: Math.PI, armL: { sx: -0.3, sz: 0.9, el: 0.6 } }} priya={{ smile: 1, lid: 0.1, yaw: Math.PI, headTilt: 0.15 }} kid={{ yaw: Math.PI, lid: 0 }} still /></Market></PixelShot>;
   // the group photo: Nio in the middle, polite, sauce
-  if (which === 'group') return <PixelShot res={[216, 384]}><Cam pos={[1.95, 1.45, 7.1]} at={[1.95, 1.15, 9.6]} fov={52} /><Market t={0.4}>
+  if (which === 'group') return <PixelShot res={[360, 640]}><Cam pos={[1.95, 1.45, 7.1]} at={[1.95, 1.15, 9.6]} fov={52} /><Market t={0.4}>
     <Family t={0} devPhone={false} dev={{ x: 1.3, yaw: Math.PI, smile: 1, lid: 0.1, armR: { sx: -0.2, sz: -1.0, el: 0.3 } }} priya={{ x: 2.6, yaw: Math.PI, smile: 1, armL: { sx: -0.2, sz: -1.0, el: 0.3 } }} kid={{ x: 1.75, z: 9.25, yaw: Math.PI, lid: 0 }} still />
     <Character look={NIO} p={{ ...G_NIO, smile: 0.45, lid: 0.25, brow: 0.2 }} onHead={<Sauce />} /></Market></PixelShot>;
   return null;

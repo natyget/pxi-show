@@ -6,7 +6,7 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { AbsoluteFill, useCurrentFrame, staticFile } from 'remotion';
 import * as THREE from 'three';
 
-export const LW = 135, LH = 240, SCALE = 8;
+export const LW = 270, LH = 480, SCALE = 4;
 
 export const Cam: React.FC<{ pos: [number, number, number]; at: [number, number, number]; fov?: number }> = ({ pos, at, fov = 35 }) => {
   const { camera, invalidate } = useThree();
@@ -98,5 +98,5 @@ export const Sub: React.FC<{ text: string; y?: number; size?: number; color?: st
 );
 
 export const Fonts: React.FC = () => (
-  <style>{`@font-face { font-family: 'Pixelify'; src: url(${staticFile('PixelifySans.ttf')}) format('truetype'); font-weight: 400 700; }`}</style>
+  <style>{`@font-face { font-family: 'Pixelify'; src: url(${staticFile('PixelifyR.ttf')}) format('truetype'); font-weight: 400 599; } @font-face { font-family: 'Pixelify'; src: url(${staticFile('PixelifyB.ttf')}) format('truetype'); font-weight: 600 900; }`}</style>
 );

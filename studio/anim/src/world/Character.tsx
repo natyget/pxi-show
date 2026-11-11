@@ -98,9 +98,10 @@ function Limb({ a, look, side, sleeve, children }: { a: Arm; look: Look; side: 1
         <Solid geo={cap(0.046, 0.15)} mat={toon(sleeve)} position={[0, -0.1, 0]} line={L} />
         <group position={[0, -0.22, 0]}>
           <Solid geo={sph(0.045)} mat={toon(look.skin)} scale={[0.85, 1, 0.75]} line={L} />
-          <Solid geo={cap(0.016, 0.03)} mat={toon(look.skin)} position={[side * -0.035, 0.005, 0.02]} rotation={[0.4, 0, side * 0.6]} line={L} />
-          {/* fingers, curled */}
-          {[-1, 0, 1].map((k) => <Solid key={k} geo={cap(0.0125, 0.03)} mat={toon(look.skin)} position={[k * 0.018, -0.045, 0.012]} rotation={[0.35, 0, 0]} line={L * 0.8} />)}
+          {/* thumb: a soft tapered oval, not a tube */}
+          <Solid geo={sph(0.02)} mat={toon(look.skin)} position={[side * -0.036, 0.0, 0.022]} rotation={[0.4, 0, side * 0.6]} scale={[0.8, 1.6, 0.8]} line={L} />
+          {/* fingers: one rounded, curled mitten with soft knuckle bumps */}
+          <Solid geo={sph(0.04)} mat={toon(look.skin)} position={[0, -0.042, 0.012]} rotation={[0.35, 0, 0]} scale={[1.0, 0.8, 0.72]} line={L * 0.8} />
           {children}
         </group>
       </group>

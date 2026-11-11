@@ -26,7 +26,7 @@ let cached: Promise<NETex> | null = null;
 export const PHOTOS = ['apartment', 'selfie', 'drink', 'sky', 'moon', 'backhead', 'face', 'party1', 'party2', 'party3', 'party4'] as const;
 
 async function build(): Promise<NETex> {
-  const f = new FontFace(FONT, `url(${staticFile('PixelifySans.ttf')})`, { weight: '400 700' }); await f.load(); document.fonts.add(f);
+  const f = new FontFace(FONT, `url(${staticFile('PixelifyB.ttf')})`, { weight: '400 700' }); await f.load(); document.fonts.add(f);
   const icon = await img('pxi-app-icon.png');
   const ph: Record<string, HTMLImageElement> = {};
   await Promise.all(PHOTOS.map(async (n) => { ph[n] = await img(`photos/ne_${n}.png`); }));
@@ -122,13 +122,15 @@ async function build(): Promise<NETex> {
   // paper: his list
   { const [cv, c] = canvas(300, 400); c.fillStyle = '#f2ecdc'; c.fillRect(0, 0, 300, 400);
     c.strokeStyle = '#b8c8e0'; c.lineWidth = 2; for (let y = 60; y < 400; y += 40) { c.beginPath(); c.moveTo(0, y); c.lineTo(300, y); c.stroke(); }
+    c.fillStyle = '#1e2a52'; c.font = `700 30px ${FONT}`; c.textAlign = 'center'; c.fillText('WHAT I KNOW', 150, 44); c.fillRect(60, 52, 180, 4);
     out.paperBase = tex(cv); }
   const lines = ['1. GREEN JACKET', '2. LAUGHS AT "ACTUALLY"', '3. ~40 PHONES', '4. EST. 212 PHOTOS'];
   for (let n = 1; n <= 4; n++) { const [cv, c] = canvas(300, 400); c.fillStyle = '#f2ecdc'; c.fillRect(0, 0, 300, 400);
     c.strokeStyle = '#b8c8e0'; c.lineWidth = 2; for (let y = 60; y < 400; y += 40) { c.beginPath(); c.moveTo(0, y); c.lineTo(300, y); c.stroke(); }
-    c.fillStyle = '#1e2a52'; c.font = `700 24px ${FONT}`; c.textAlign = 'left';
-    lines.slice(0, n).forEach((l, i) => c.fillText(l, 16, 92 + i * 80, 270));
-    if (n === 4) { c.strokeStyle = '#c23a3a'; c.lineWidth = 4; c.beginPath(); c.ellipse(130, 325, 125, 32, 0, 0, 7); c.stroke(); }
+    c.fillStyle = '#1e2a52'; c.font = `700 30px ${FONT}`; c.textAlign = 'center'; c.fillText('WHAT I KNOW', 150, 44); c.fillRect(60, 52, 180, 4);
+    c.font = `700 24px ${FONT}`; c.textAlign = 'left';
+    lines.slice(0, n).forEach((l, i) => c.fillText(l, 16, 120 + i * 72, 270));
+    if (n === 4) { c.strokeStyle = '#c23a3a'; c.lineWidth = 4; c.beginPath(); c.ellipse(130, 337, 125, 32, 0, 0, 7); c.stroke(); }
     out[`paper${n}`] = tex(cv); }
 
   // the flyer (his face), and the same flyer with green pen on it

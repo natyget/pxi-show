@@ -174,11 +174,27 @@ def blips(base, d=40, spread=0.22, rate=13):
         if w > R.integers(2, 5): t += R.uniform(0.04, 0.09); w = 0
     return lp(out, 3500)
 
+def reverb(x, secs=1.6, mix=0.35):
+    n = int(SR * secs); ir = R.normal(0, 1, n) * np.exp(-np.arange(n) / SR * 4.5); ir /= np.abs(ir).sum() ** 0.5 * 8
+    L = len(x) + n; y = irfft(rfft(x, L) * rfft(ir, L), L)[:len(x)]
+    return x * (1 - mix) + norm(y, np.abs(x).max()) * mix
+def party_mem(d=14):
+    """The party as a memory: duller, further away, a slow wobble, a long room."""
+    x = lp(party(d), 900); t = t_(d)
+    x = reverb(x, 2.2, 0.45) * (0.85 + 0.15 * np.sin(2 * np.pi * 0.35 * t))
+    return x + pad([69, 73, 76, 81], d, 0.05)
+def swell(d=2.0, out=False):
+    """A reversed shimmer that rises into the white flash."""
+    t = t_(d); x = noise(d, 2000, 9000) * 0.3 + sum(np.sin(2 * np.pi * mtof(m) * t) for m in (76, 83, 88)) * 0.25
+    env = (t / d) ** 2.5; x = x * env
+    x = reverb(x, 1.2, 0.5)
+    return x[::-1] if out else x
+
 if __name__ == '__main__':
+    save('ne_party_mem.wav', party_mem(), 0.8); save('ne_swell.wav', swell(), 0.8); save('ne_swell_out.wav', swell(1.4, True), 0.8)
     save('ne_groove.wav', groove(), 0.8); save('ne_happy.wav', happy(), 0.8); save('ne_party.wav', party(), 0.85)
     save('ne_pad.wav', sadpad(), 0.55); save('ne_chime.wav', chime(), 0.6); save('ne_end.wav', ending(), 0.75); save('ne_thump.wav', thump(), 0.9)
     save('ne_room.wav', roomtone(), 0.25); save('ne_hall.wav', hall(), 0.25); save('ne_night.wav', night(), 0.45)
     save('ne_tap.wav', tap(), 0.5); save('ne_die.wav', die(), 0.6); save('ne_marker.wav', marker(), 0.5); save('ne_knock.wav', knock(), 0.95)
     save('ne_door.wav', latch(), 0.6); save('ne_shut.wav', shut(), 0.9); save('ne_cash.wav', cash(), 0.7); save('ne_till.wav', till(), 0.8)
     save('ne_steps.wav', steps(), 0.6); save('ne_typing.wav', typing(), 0.6)
-    for who, f0 in [('nio', 196), ('maya', 330), ('hi', 290), ('lo', 150)]: save(f'blip_{who}.wav', blips(f0), 0.55)
