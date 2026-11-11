@@ -59,10 +59,11 @@
  {
   "who": "maya",
   "role": "dmaya",
-  "text": "Mornin'! Okay so everybody has pictures and nobody will send them. Somebody said they're \"saving it.\" For what? Also you were so happy up there. Also you have my shoe!",
+  "text": "Mornin'! Okay, everybody has pictures and nobody's sending them. Somebody said they're \"saving it.\" For what? Also, you have my shoe!",
   "note": "A voice note, bright and breathless, sincere and warm, talking fast. The first word is a cheerful hello.",
   "out": "raw_nb2_09.wav",
-  "sub": "Morning! Okay so everybody has pictures and nobody will send them. Somebody said they're \"saving it.\" For what? Also you were so happy up there. Also you have my shoe!"
+  "sub": "Morning! Okay, everybody has pictures and nobody's sending them. Somebody said they're \"saving it.\" For what? Also, you have my shoe!",
+  "post": "silenceremove=stop_periods=-1:stop_duration=0.12:stop_threshold=-42dB,atempo=1.15"
  },
  {
   "who": "nio",
