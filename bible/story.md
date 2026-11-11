@@ -12,7 +12,8 @@ becomes his ex, the nights out and the walks home, with a world around him that 
 
 - It is a comedy about him and his people first. An episode has to be funny to someone who has never heard of
   PXI.
-- PXI is his. It shows up when he is stuck, the way he would really use it, and his world slowly fills up
+- PXI is his, and it is also simply an app that exists: he is its founder and a guy using it at once, and
+  nobody tracks which. It shows up when he is stuck, the way he would really use it, and his world slowly fills up
   because of it: people, places, albums, stamps. That is the journey a viewer follows.
 - The founder's line for what the series is, which the tag and the pinned reel carry: "nio making a platform
   he thinks would have solved his problems and will in future and inviting us to use it."
@@ -96,10 +97,12 @@ One line each. If a line is hard to write, the premise is not ready.
 
 - **Chapters** the viewer can hold. First: new here, a girl, nobody else. Then the girl is gone and the circle
   starts to fill. Then his thing becomes the place to be. The founder names and reorders the chapters.
-- **The girl.** She is there from the start. Within the first few episodes a friend says his room is messy,
-  just after she has left, and she is his ex. He never discusses it. It surfaces in dismissals and on walks.
+- **The girl.** She is there from the start. Within the first few episodes a friend remarks on the bedroom
+  (clothes and things everywhere, mostly hers) just after she has left, and she is his ex. He never discusses it. It surfaces in dismissals and on walks.
 - What visibly grows and never resets: his circle, the albums he is in, his stamps, the places that know him.
 - People return. Lore questions go in the caption for the comments.
+- **Nio changes.** He is not a fixed list of traits. He drops a habit when life asks him to (the backpack zip,
+  `engine/real-stories.md` R3).
 
 ## 8. Real stories
 

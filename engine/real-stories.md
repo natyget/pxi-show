@@ -74,6 +74,16 @@ Rules for using any of them:
   friend's reaction is the sane one. The neighbour does not get the girl. Nobody's background is the joke.
 - *PXI, if it fits:* he recognises her from a shared album, or the meeting is at an event on the map. Or NONE.
 
+## R3. The backpack zip (banked Nov 11) · USED BY: none yet
+
+> his ocd is he decides that life cant go on like this so he drops this obsession, he would only close backpack
+> in the middle and a friend brought his back pack from like a bench farther and he closed it to the side but
+> [Nio] thought im mad for even thinking of getting frustrated when this kid brought my back pack all the way
+> from there and thanks him and never adjusts the zip moves on.
+
+**What is in it:** a plant for a later episode, and the proof that Nio changes. The whole thing is one look at
+a zip, one beat of him catching himself, and "thanks, bro." Never explained. PXI: NONE.
+
 ## T1. How Nio trolls (character colour, banked Nov 11)
 
 > he could ask stupid question to annoy like when a girl on chemo says i have chemo brain and when [friend]

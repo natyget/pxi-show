@@ -23,3 +23,6 @@ it is done. Do these in a normal thread, one item at a time. None of it needs th
 | 16 | **Acting kit.** Remove every idle bob from the rigs. Add pose-to-pose helpers: a snap move with squash and settle, anticipation, a held pose with blinks, `face(name, atFrame)` that changes the face a few frames before a line | Opus | A two-line exchange built with the kit shows no looping motion and a face change before each line |
 | 17 | **Glitch button and Kevin.** A `GlitchButton` component with the three declared breaks and its sound, and a board check that the Kevin is in the first wide shot | Opus | Any episode ends on the button with one line of code |
 | 18 | **Dead-shot check.** `engine/tools/dead_check.sh <video>`: flag any stretch over 1.2 s where almost nothing in the frame changes, and any gap between lines over 1 s that is not a marked hold | Sonnet | It flags a test clip with a two-second static wall |
+
+Note, Nov 11: the look is being redesigned and no rig is chosen. Items 1, 3, 12, 13, 15, 16 and 17 depend on the
+rig and wait for that choice. The others can start now.

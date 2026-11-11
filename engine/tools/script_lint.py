@@ -18,8 +18,6 @@ WORDS_PER_SECOND = 2.3
 SECONDS_PER_ACTION = 2.5
 MAX_WORDS = 130
 MAX_MEDIAN_LINE = 8
-MAX_LINE = 10          # founder brief, Nov 11: cut every line over ten words unless it is Maya
-LONG_LINES_ALLOWED = 1  # the one run-on Nio is allowed
 KEY_LINES = ["this can't be real", "yeah, what's up", "i'm just tired", "they left"]
 TOLERANCE = 0.15
 
@@ -115,11 +113,6 @@ def main():
     if not target * (1 - TOLERANCE) <= est <= target * (1 + TOLERANCE):
         warns.append(f"runtime estimate {est:.0f} s is outside {target:.0f} s ±15% (rough: words and action lines)")
 
-    long_lines = [(w, s) for (w, s), n in zip(lines, counts) if n > MAX_LINE and not w.upper().startswith("MAYA")]
-    for w, s in long_lines:
-        warns.append(f'{w}: "{s}" (over {MAX_LINE} words)')
-    if len(long_lines) > LONG_LINES_ALLOWED:
-        fails.append(f"{len(long_lines)} lines over {MAX_LINE} words that are not Maya's (at most {LONG_LINES_ALLOWED})")
     if len(lines) >= 6 and len({w.upper() for w, _ in lines}) < 2:
         fails.append("only one person speaks; an episode needs people talking to each other")
     for w, _ in lines:

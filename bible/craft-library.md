@@ -150,7 +150,7 @@ Nio's skin tone differed between the two pilot reels. A character is one person 
 
 ## Look
 
-The look is being redesigned in its own thread (founder, Nov 11: "unique and nice instead of this animal cross
+The look is being redesigned in its own thread and none is chosen yet (founder, Nov 11: "unique and nice instead of this animal cross
 sound look and feel ... a little cool and artisitc", and the current one feels "a little foggy"). What follows
 still holds for any look.
 

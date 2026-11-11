@@ -1,8 +1,11 @@
 # Characters (who they are, how they look, how they sound)
 
 Who they are comes from the founder's notes of Nov 9 to Nov 11 (`bible/show-bible.md`). The newest note wins.
-Looks are as built in `studio/anim/src/world/Character.tsx`. The look of the whole show is being redesigned in
-its own thread; until `bible/style-lock.md` is filled in, the looks below are the working ones.
+**Who Nio is, how he talks and the writer's role are owned by the thread "Write Nio's character and stories".**
+What is here is the founder's own answers so far; that thread's output replaces it.
+
+The look of the whole show is being redesigned in its own thread, and no look is chosen yet (the founder
+rejected the first three options on Nov 11 as "ai slop"). The looks below describe the people.
 
 ## Nio
 
@@ -15,6 +18,15 @@ because he kept missing everything, and is funnier than everyone in the room and
 - **He trolls.** He asks the obvious question on purpose and keeps a straight face while the other person
   explains. He rage-baits friends for fun, copies the way they talk back at them, and starts laughing before
   they work out what he is doing. A dumb question from Nio is always a move, never a mistake.
+- **The two places he really is clueless:** anything to do with relationships (a girl who likes him, love
+  triangles, how other people's arrangements work), and when he has been drinking without his contacts in. If
+  he is not interested in a girl he can still be funny and flirty with her, just because it is funny.
+- **How loud he is.** Laid back: he does not worry, does not complicate things, and avoids lectures and advice.
+  He just wants to chill, have fun and joke. He can be as animated as Gumball, but he does not raise his voice
+  more than it takes to be heard. In public and with strangers he is calm and his face says everything, unless
+  he has been drinking. Alone in his apartment he screams, serenades and dances, with music always on and
+  headphones always in. When he truly loses he is humble about it. When someone is truly committed to a bit, he
+  appreciates the art and plays along in character.
 - **He changes humors.** Deadpan one scene, hyped the next, petty, then sweet. The switch is the character.
 - **He is laid back and he shows up.** He carries the friend home. He cannot say no to people, which is how he
   ends up in most of his problems. He hates on things freely and has a take on everything.
@@ -23,14 +35,24 @@ because he kept missing everything, and is funnier than everyone in the room and
 - **He never explains himself.** Asked about anything sensitive (the girl, the breakup, the state of his room,
   why he was crying), he does not deny it, explain it or say he does not want to talk about it. He pivots to
   something sweeter, bigger or more interesting, and the room follows him.
-- **Chill about the weird, big about himself.** A man under his bean bag gets a nod. A bad photo of him gets a
-  full collapse. He stays calm when the world is insane and never screams at the strange thing.
-- **PXI is his.** He built it and he is casual about it: "this my app, yo." Nobody around him is impressed.
+- **Chill about the weird.** A man under his bean bag gets a nod. He stays calm when the world is insane.
+- **PXI is his, and it is also just there.** He is the founder telling his story and a guy using an app that
+  already exists, both at once. Nobody tracks which. Episodes about making it can jump around in time, the way
+  a cartoon character's haircut is back the next week.
+- **He grows.** He is not one fixed thing. He had a rule that his backpack is zipped closed exactly in the
+  middle; a friend carried it over from a far bench and zipped it to the side, and Nio caught himself getting
+  annoyed, thanked him, and never fixed the zip. He drops things like that when life asks him to.
+- **He is good at a lot.** Video games (only the hardcore beat him), soccer (decent, fun), photography, coding,
+  AI, school, science channels, one heartbreak song on the piano, a Rubik's cube, the gym (and still skinny),
+  calisthenics, sparring, cooking, baking, and at some point making his own liquor. He knows a bit of
+  everything from physics to biology. What he tries, he tries with passion.
 - **Colour to use:** he wears contacts and cannot see without them. He speaks a little French and a little
   Arabic, both badly and with total confidence, which makes him friends with everyone in his building. His
   apartment is nice, new and spotless. He goes for walks alone after a long night; those are the quiet moments.
-- **His girl.** He has a girlfriend when the series starts. She becomes his ex within the first few episodes,
-  after a friend remarks that his room is messy just after she has left. He does not talk about it. Ever.
+- **His girl.** He has a girlfriend when the series starts. The apartment is spotless but the bedroom is a
+  mess of clothes and things, mostly hers. A friend remarks on it just after she has left, and within a few
+  episodes she is his ex. He does not talk about it.
+- **The show is for 16 and up.** Nothing sexual.
 - **Key lines, each at most once an episode and not every episode:** "This can't be real." "Yeah, what's up."
   "I'm just tired." "They left."
 
@@ -45,14 +67,13 @@ sent to the tool, word for word:
 
 ## Maya
 
-**In one line:** Nio as a girl, except that he cares what happens and she does not, and that scares him.
+**In one line:** his friend, and what Darwin is to Gumball: the one who completes him.
 
-- Co-lead, in about four episodes out of ten. Provoking, outspoken, bossy in a way that gets things done, laid
-  back. She gets them into things: she has already said yes for both of them.
-- **She says the quiet part out loud, then moves on as if it were nothing.** She interrupts. She is faster and
-  louder than Nio and she says the thing he will not say.
-- Her voice is sweet, bright and earnest, and that is the joke: the most alarming sentence in the episode
-  arrives in the kindest voice. She answers the words, not the meaning.
+- Co-lead, in about four episodes out of ten. A friend, not family and not a love interest.
+- She is funny, but she is not a troll the way he is. She has a loving heart and wants a prince charming.
+  Nio does not care about any of that, and that difference is their engine (founder, Nov 11, which replaces the
+  earlier "she doesn't care").
+- Sweet, bright, earnest, literal. She answers the words, not the meaning, and says the true thing plainly.
 - She never does trend bits. If a trend appears, a girl says it to Nio's face and he cannot believe it.
 
 **Look:** deep brown skin `#8d5a3d`, round face, curly puff high on the back of the head, gold hoops, lashes,

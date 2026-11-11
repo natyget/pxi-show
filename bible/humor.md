@@ -94,8 +94,9 @@ minutes alone after a long night.
 - A moral, a lesson, a hug that fixes it.
 - A narrator, or Nio explaining his plan to the camera.
 - Nio explaining himself: "I'm not a relationship guy", "I don't want to talk about it".
-- Nio screaming at the strange thing. (He may be loud about himself: a win, a bad photo, a parking ticket.)
+- Nio shouting in public. He is animated, not loud; the screams, serenades and dances are for when he is alone.
 - Maya doing a trend bit.
+- Anything sexual. The show is for 16 and up.
 - A random line as a punchline. Odd props piling up. Jokes that need a character to be stupid.
 - Gross shock. Blunt and confusing is good. The reference video's sexual joke is not ours.
 - A joke at the expense of someone's illness, body, accent, religion or where they are from. When Nio's bad

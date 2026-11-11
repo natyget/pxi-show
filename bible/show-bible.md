@@ -157,3 +157,33 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "at the end of the day if we copy everything gumbal did or filter out thoughts through a gumbal lense it
     would be amazing"
   - Standing constraints restated from the earlier handoff are in `CLAUDE.md`.
+- **Nov 11 (answers on who Nio is), word for word:**
+  - "when truly losing he is hubmle he doesnt get loud, unless he feels the other person is truly in which he
+    appreciates the art so plays into characters cuz its fun."
+  - "the hand off was poluted by a missunderstranding of his laid back relaxed lifestyle of not worrying not
+    making things more complex avoiding being given lectures and advice, he just be wanna chiling he likes fun
+    and joking. i hate the 3-7 word flat i dont know who gave the hand off ai that idea."
+  - "he can get loud and animated like gumball but loud wont be it he doesnt rase his voice more than necessary
+    enough to be heard ... lets avoid singin and just make it screams serenades and dances when alone in
+    apartment and background music at all times and er/headphone constantly. in public scenarios with strangers
+    enless he drank he si calm but facae says it all"
+  - "never dumb questions on purpose unless its love scenrios love trios open relationships and weird western
+    realtionship things like that ... (which we need to make 16 age appropriate content and stay away from
+    sexual stuff) he stupid when it comes to realtion ship areas. so yes with girls and when he drunk with no
+    contacts. but also only when he is also not interested in a girl because he can be funny and flirty for
+    just the fun"
+  - "he made pxi and is making pxi because people discover botha t same time, so he is both the founder and the
+    guy using it and there is no need for tracking one or the other its like how shows can cut a character hair
+    and next episode its back"
+  - "the bedroom was only a messy with close and stuff everywhere and hers mostly too like girl stuff make up"
+  - "nio is not one thing that is a bible set to who he is and staying true to that earlier self but someone
+    that is willing to grow and change as the scenario demands it"
+  - "maya a friend and she is complementary to nio how darwin is ... she proably would have humor but not be a
+    troll like nio or have a loving heart and want a prince charming or so whle neo dont care"
+  - "i mean rich in hobbies and skills he plays videos games is good at them to (like only hardcore people are
+    better), he play soccer he decent and fun, he does photography, he codes, uses ai, good at school, loves
+    science channels like veretasimum, play yebbas haert break on pino, can solve a rubrick cube, love gym but
+    skinny and is knoweldgeable in manny things from physics to bio and more, makes his own liquor at some
+    point, tired sparing calesthenic, cooks, bakes, he is good at what he tried but tries with passion too."
+  - On the three look options, in the look thread: "none of the looks you made are nice i need you to try
+    again this looks like ai slop"

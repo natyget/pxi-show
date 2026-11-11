@@ -15,17 +15,11 @@ gate_failures: 0
 - Approve `engine/DIRECTIVE.md` (draft, rewritten Nov 11 around the head writer brief).
 - Approve a pilot. "Not Me" (Nov 10) and "No Evidence" (Nov 11) were both rejected. Owned by the pilot thread,
   which now writes from `bible/writers-room.md`. Not for scheduled runs.
-- Approve the new look. Owned by the look thread. Not for scheduled runs.
-- Who Nio is: answer the questions in the Nio thread. Until then `bible/characters.md` holds the working answer.
-- Calls made on Nov 11 where two notes pulled apart; say if any is wrong:
-  1. Nio is a broke college student **and** PXI is his app ("this my app yo").
-  2. PXI is never forced: at most one episode in four has no PXI in the picture, holiday episodes always have
-     it, and every release still carries the call to action in the tag or caption.
-  3. "Never overreact" means he stays calm about the weird. About himself he is big: hyped, devastated, petty.
-  4. The pause is one beat on an acting face. Shots where nothing happens are cut.
-  5. Voices are clean, without the walkie-talkie colour, until the founder has heard both.
-  6. The girl who becomes his ex replaces the old "no ex arcs" rule. His apartment stays spotless, so the
-     friend's "messy" remark is about something else. What?
+- Pick a look. Owned by the look thread; the first three options were rejected on Nov 11 ("ai slop").
+- Who Nio is, how he talks and the writer's role are owned by the thread "Write Nio's character and stories".
+  `bible/characters.md` holds the founder's answers of Nov 11 until that thread's output replaces it.
+- Voices are clean, without the walkie-talkie colour, until the founder has heard both and picks.
+- How often an episode may have no PXI in the picture. Working answer: at most one in four, never a holiday.
 - The best friend has no approved voice. Until one is picked he appears as text on Nio's phone.
 - Make `main` the default branch of this repo, so scheduled runs can save state (BACKLOG item 8).
 - Confirm the cadence in section 12 of the directive, then switch on the scheduled tasks in `engine/ROUTINES.md`.
@@ -33,6 +27,7 @@ gate_failures: 0
   format and the first holiday episode is New Year's Eve.
 
 ## Decided
+
 
 - Voices (founder, restated Nov 11): the designed Qwen3-TTS voices for Nio and Maya, in `bible/characters.md`.
 - Backlog tools (founder, Nov 11: "yes i say yes to that too"): to be built in their own thread on a cheaper

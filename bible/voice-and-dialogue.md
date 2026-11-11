@@ -1,5 +1,7 @@
 # Dialogue (how they talk, and how two people talk to each other)
 
+Owned by the thread "Write Nio's character and stories"; its output replaces this page.
+
 The founder, Nov 11: "my character talks like an npc rather than nio being gubmall soul ... dialogue needs to be
 done well and talk between people needs to be good. i dont think enough time is being put into that. lets have
 characters talk interact etc." Most of the writing time goes here.
@@ -8,11 +10,12 @@ We borrow speech patterns from the shows we admire. Never lines, catchphrases or
 
 ## Nio
 
-- **Short.** Three to seven words is his normal line. Ten is the ceiling. One run-on an episode is allowed,
-  when he is bragging or when something small has ruined his life. No monologues. No plan explained aloud.
-- **The words are flat. The face and the voice are not.** A flat line from a man who is visibly thrilled, or
-  visibly crushed, or visibly lying. Every line carries a note for the face and the voice actor: hyped, smug,
-  wounded, bored, trolling, sincere for one second.
+- **He talks like a person, not in a fixed length.** The founder, Nov 11: "i hate the 3-7 word flat i dont know
+  who gave the hand off ai that idea." Lines are as long as a quick, funny 21-year-old would make them. No
+  monologues and no plan explained aloud.
+- **Animated, not loud.** He does not raise his voice past what it takes to be heard. In public his face does
+  the work. Alone at home he is at full volume. Every line carries a note for the face and the voice: hyped,
+  smug, wounded, bored, trolling, sincere for one second.
 - **He swings.** An example of the range the founder asked for, in one scene: he comes home from a party
   glowing, sure he was the life of it. Then it drops: he was dancing, everyone took photos, nobody sent him
   one. Then the turn, casual: "this my app, yo."
@@ -30,10 +33,9 @@ We borrow speech patterns from the shows we admire. Never lines, catchphrases or
 
 ## Maya
 
-- Faster and louder. She interrupts, and she is allowed long lines.
-- She says the quiet part out loud in a sweet, bright voice and is on to the next thing before it lands.
+- Sweet, bright, earnest. Funny, but not a troll. She believes in things he shrugs at, love most of all.
 - She answers the words, not the meaning. She notices the one concrete detail he missed.
-- She is never impressed by PXI and never scared of what scares him.
+- She says the true thing plainly, and it lands harder because she means it kindly.
 
 ## The best friend (phone)
 

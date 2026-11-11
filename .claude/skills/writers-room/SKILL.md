@@ -38,8 +38,8 @@ ameenmo/humanize-skill, and the idea of isolated audience critics from talsraviv
 - Mark every place a *take* (a face, a held silence) or a visual gag beats a line, and use the take.
 - Write the conversation before the jokes: two people who want different things, four to eight lines, status
   changing hands (`bible/voice-and-dialogue.md`). Write every change of face in brackets.
-- Nio: three to seven flat words with a live face; trolls with questions; pivots. Maya: faster, louder,
-  interrupts, says the quiet part. The best friend: a real phone call.
+- Nio: quick and natural with a live face; trolls with questions; pivots. Maya: sweet, earnest, literal,
+  funny without trolling. The best friend: a real phone call.
 - Budget: 100–130 spoken words for 60 s, 60–80 for a 35 s short cut. Estimate runtime (≈2.3 words/s spoken,
   ≈2.5 s per action beat, plus takes) and keep it within ±15% of the target.
 - Inner thoughts are allowed but rare and *for a reason*: thinking while someone else is in the room, or one glance to

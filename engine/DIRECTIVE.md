@@ -63,16 +63,16 @@ in one shared album.
   obvious question to wind people up, he hates on things, he carries his friend home, and he cannot say no. He
   is chill about the weird and big about himself. He never explains himself: he pivots. He is never a goof,
   never stupid and never a narrator. He is good-looking. He is the one character who can talk to the viewer.
-- **Maya** is Nio as a girl, except that she does not care, which scares him. She says the quiet part out loud
-  in a sweet voice and moves on.
+- **Maya** is his friend and completes him the way Darwin completes Gumball: sweet, earnest, funny without
+  being a troll, with a loving heart he does not share.
 - **The best friend** is across the country and on the phone. Telling him what happened is how the show
   explains anything, because there is no narrator.
 - **The world** treats strange things as normal. One thing in every episode was there the whole time and is
   never explained (the Kevin). Friends and neighbours are plots, and many come from the founder's real stories.
 
 Who they are, their looks and the locked voices are in `bible/characters.md`, and how they talk is in
-`bible/voice-and-dialogue.md`. The voices are the designed Qwen3-TTS voices the founder approved. The look of
-the show is being redesigned on the founder's note of Nov 11.
+`bible/voice-and-dialogue.md`. The voices are the designed Qwen3-TTS voices the founder approved. The look is
+being redesigned on the founder's note of Nov 11 and none is chosen yet. The show is for viewers of 16 and up, with nothing sexual.
 
 ## 4. Writing
 
