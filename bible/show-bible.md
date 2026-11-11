@@ -145,3 +145,6 @@ Founder notes win over everything else and are dated. Where an older line here d
 - **Nov 11 (look options A/B/C, `studio/anim/src/look/`):** tapped "B: Hi-bit cel" on the card, then a minute later, word
   for word: "none of the looks you made are nice i need you to try again this looks like ai slop". No look is chosen.
   The A/B/C round is rejected; do not build on it.
+- **Nov 11, 05:13 UTC (with four reference frames, saved in `/mnt/project-files/look-options/reference/`), word for word:**
+  "look at what i attached and how it has a soul i want a unique cool look like this but not this just similarly new
+  and clean and well engeneered all of what you did is a big no"
