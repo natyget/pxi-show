@@ -13,6 +13,7 @@ QUADS = {
     'discover': ('02-find-your-next-night.jpg', [(86, 900), (994, 900), (996, 2752), (128, 2752)]),
     'camera': ('01-never-lose-the-night.jpg', [(236, 1190), (1046, 1190), (1046, 2945), (236, 2945)]),
     'passport': ('06-every-night-stamped.jpg', [(164, 163), (1049, 133), (1133, 2029), (233, 2067)]),
+    'lock': ('04-found-in-every-shot.jpg', [(348, 118), (1196, 135), (1161, 1972), (313, 1955)]),
 }
 W, H = 360, 780
 def rectify(name, scale=1):

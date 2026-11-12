@@ -25,6 +25,7 @@ SHOTS = {
     'high':     {'cam': 'high', 'yaw': 215, 'face': 'hyped', 'lookCam': 1},
     'phone':    {'cam': 'mid', 'yaw': 195, 'face': 'deadpan', 'phone': 1, 'gaze': [0, -0.8], 'lookCam': 0},
     'window':   {'cam': 'land', 'actor': False},
+    'lockwall': {'cam': 'wide', 'camPos': [2.5, 1.5, 0.6], 'camAt': [1.7, 1.25, 4.4], 'fov': 58, 'actor': False},
     'room':     {'cam': 'wide', 'actor': False},
     'close':    {'cam': 'close', 'yaw': 150, 'face': 'suspicious', 'lookCam': 1},
     'side':     {'cam': 'side', 'yaw': 250, 'face': 'real', 'lookCam': 0.8},
@@ -352,7 +353,43 @@ def passport():
     tabbar(s, -1)
     return s.im
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'camera': camera, 'passport': passport}
+def app_icon(px):
+    """PXI's own icon (pxi-mobile-app/assets/icon.png) in hard pixels, with the phone's rounded corners."""
+    f = os.path.join(UI, 'art', f'pxi-icon_{px}.png')
+    if not os.path.exists(f):
+        big = Image.open('/home/user/pxi-mobile-app/assets/icon.png').convert('RGB')
+        sm = big.resize((px, px), Image.BOX).quantize(12, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).convert('RGB'); sm.save(f)
+    return Image.open(f).convert('RGB')
+
+def lock():
+    """The phone's lock screen with PXI's notifications on it. This is the phone's own screen, not the app's, so there is
+    no app code for it: the layout is measured from the App Store picture (04, "Found in every shot") and the three
+    notifications are its words, character for character. The wallpaper and the small pictures are Nio's room."""
+    s = Screen(); s.photo(pic('lockwall', W, H), 0, 0, W, H)
+    s.shade(0, 0, W, 300, 0.45, 0.0)                                       # the top is dimmed so the clock reads
+    s.status('9:40')
+    s.text(180, 87, 'Saturday, October 3', 600, 18, WHITE, align='c')
+    s.text(180, 141, '9:40', 700, 88, WHITE, ls=-1, align='c')
+    card, ink, grey = (233, 233, 236), (12, 12, 14), (128, 128, 134)
+    notes = (('Late Checkout', "You're in 14 new photos", 'now', 'bed', None),
+             ('Kofi saved your photo', 'from Late Checkout', '2m ago', 'low', None),
+             ('Ama reacted', 'to your photo in Late Checkout', '4m ago', 'laugh', '❤️'))
+    for i, (title, body, when, shot, em) in enumerate(notes):
+        y = 359 + i * 65
+        s.box(11, y, 341, y + 59, card, r=20)
+        s.photo(app_icon(34), 22, y + 12, 56, y + 46, r=8)
+        _, x1 = s.text(66, y + 19, title, 600, sysp(15), ink)
+        if em: s.emoji(em, 13, x1 + 10, y + 19)
+        s.text(66, y + 37, body, 400, sysp(15), ink)
+        s.text(284, y + 21, when, 400, sysp(13), grey, align='r')
+        s.photo(pic(shot, 38, 38), 293, y + 11, 331, y + 49, r=7)
+    for cx, name in ((79, 'FlashlightIcon'), (281, 'Camera01Icon')):          # the torch and the camera
+        s.shade(cx - 22, 699, cx + 22, 743, 0.0, 0.0); d = Image.new('L', (44, 44), 0); ImageDraw.Draw(d).ellipse([0, 0, 43, 43], fill=255)
+        s.im.paste(mix(s.im.getpixel((cx, 721)), (20, 20, 22), 0.72), (cx - 22, 699), d); s.icon(name, 20, cx, 721, WHITE)
+    s.box(119, 771, 241, 775, WHITE, r=2)                                  # the home bar
+    return s.im
+
+SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'camera': camera, 'passport': passport, 'lock': lock}
 if __name__ == '__main__':
     name = sys.argv[1]
     for n in (SCREENS if name == 'all' else [name]):

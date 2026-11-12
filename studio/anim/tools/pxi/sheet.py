@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sheet.py <out.png> : the founder's comparison sheet for PXI's screens. Each pair is the App Store picture (squared up
 by ref.py, read from the website repo, never copied here) next to the same screen in the show's pixels (screens.py),
-then the phone in Nio's hand in his room and three close looks at the pixels. Needs out/pxi/<screen>.png and
+then the Passport's two pages close, the phone in Nio's hand in his room and three close looks at the pixels. Needs out/pxi/<screen>.png and
 out/pxi/hand_discover.png, hand_thread.png (tools/n3_still.sh with "screen" and "hold")."""
 import os, sys
 from PIL import Image, ImageDraw, ImageFont
@@ -32,10 +32,12 @@ def main(out):
     rows = [[('discover', 'Discover', 'Same layout and words. The app has since moved the title to the middle and gone to three tabs.'),
              ('camera', 'Camera', 'His room through the viewfinder. The live album pill and the tabs follow the current app.')],
             [('thread', 'Album thread', 'Every bubble, pill, icon and count in its place. The photos are his.'),
-             ('gallery', 'Gallery', 'His shots first, then everyone else, as the app lays them out now.')]]
+             ('gallery', 'Gallery', 'His shots first, then everyone else, as the app lays them out now.')],
+            [('passport', 'Passport', "His stamps are placed and drawn by the app's own stamp code. The app has since added Edit profile."),
+             ('lock', 'Lock screen', "The phone's own screen with PXI's notifications, word for word, and PXI's real icon.")]]
     hand = [Image.open(os.path.join(OUT, f'hand_{n}.png')).convert('RGB') for n in ('discover', 'thread')]
     closes = [close('thread', (48, 268, 312, 480), 3), close('discover', (48, 506, 312, 694), 3), close('gallery', (0, 160, 264, 372), 3)]
-    H = M + 150 + 3 * (112 + SH * Z + 60 + 70) + 112 + hand[0].height + 60 + M
+    H = M + 150 + 3 * (112 + SH * Z + 60 + 70) + 112 + 816 + 130 + 112 + hand[0].height + 60 + M
     sheet = Image.new('RGB', (W, H), BG); d = ImageDraw.Draw(sheet)
     d.text((M, M - 10), "PXI in Nio's world", font=F('Black', 76), fill=INK)
     d.text((M, M + 84), "The real app, screen for screen, drawn from the app's own code in the show's pixels. The photos and faces are Nio and his room.",
@@ -45,12 +47,11 @@ def main(out):
         yy = y
         for i, (name, title, note) in enumerate(row): yy = pair(d, sheet, name, title, note, M + i * (PAIR + GAP), y)
         y = yy + 70
-    # the Passport, with its two pages at three times beside it
-    y0 = y; yy = pair(d, sheet, 'passport', 'Passport', "His stamps are placed and drawn by the app's own stamp code. The app has since added Edit profile and dropped the level bar.", M, y)
-    x = M + PAIR + GAP; d.text((x, y0), 'Up close', font=F('Bold', 44), fill=INK)
-    d.text((x, y0 + 58), 'The stamp page and the ID page at four times.', font=F('Regular', 26), fill=DIM)
-    c = close('passport', (5, 237, 355, 441), 4); sheet.paste(c, (x, y0 + 112)); c2 = close('passport', (5, 441, 355, 617), 4); sheet.paste(c2, (x, y0 + 112 + c.height + 24))
-    y = yy + 70
+    # the Passport's two pages, close
+    d.text((M, y), 'The Passport, close', font=F('Bold', 44), fill=INK)
+    d.text((M, y + 58), 'The stamp page and the ID page at four times.', font=F('Regular', 26), fill=DIM)
+    y += 112; c = close('passport', (5, 237, 355, 441), 4); sheet.paste(c, (M, y)); sheet.paste(close('passport', (5, 441, 355, 645), 4), (M + PAIR + GAP, y))
+    y += c.height + 130
     d.text((M, y), 'On his phone', font=F('Bold', 44), fill=INK)
     d.text((M, y + 58), 'The same screens on the phone in his hand, over his shoulder and closer. Far right: the pixels at three times, nothing blurred.',
            font=F('Regular', 26), fill=DIM)
