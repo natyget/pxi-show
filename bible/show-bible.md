@@ -187,3 +187,56 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     point, tired sparing calesthenic, cooks, bakes, he is good at what he tried but tries with passion too."
   - On the three look options, in the look thread: "none of the looks you made are nice i need you to try
     again this looks like ai slop"
+- **Nov 11, 12:22 PM (on the third look test, the drawn Nio), word for word:**
+  - "this is way better, but I don't understand why you still choose to stick with this cartoonish drawn style when
+    I clearly attached a different looking avatar and those avatars are more so like stylized representation of
+    humans. [...] if you're drawing the shirt that shirt is one thing and he should be able to takeoff and put on
+    the shirt no issue that means you would have to create a world like it's not just subtle animation. You really
+    have to create a nice engine around this and the motions need to be nice as well. [...] Please do research."
+- **Nov 11, 1:19 PM (on the first 3D figure proof, with two new reference images saved in
+  `/mnt/project-files/look-options/reference2/`: a soft pixel character sheet and a pixel-art bedroom), word for word:**
+  - "not quite yet. so here is a new asset for you and instruction i think you might find helpful we really need to
+    create the perfect world so any model after this can come and use it make it as close to a real functional
+    world that would not allow for any weird unwanted stuff
+    CRITICAL VISUAL REFERENCE INSTRUCTIONS
+    The attached images are the primary visual ground truth for this project.
+    I want you to study the actual pixels, outlines, proportions, color relationships, shading, texture and shapes.
+    Do not interpret these images as loose mood-board inspiration.
+    I want a highly faithful recreation of their overall visual language.
+    IMPORTANT DISTINCTIONS:
+    1. The bedroom image is the master environment reference.
+    2. The character sheet is the master character reference.
+    3. The character's hair must retain the same chunky, irregular silhouette and soft textured construction.
+    4. The eyes must retain the large, simple, slightly asymmetrical appearance.
+    5. Outlines must feel hand-drawn and imperfect, not clean corporate vector art.
+    6. Shading must be subtle, blocky, and slightly pixelated.
+    7. Keep the muted brown, mauve, plum, olive and warm cream palette.
+    8. Do not introduce generic anime, Disney, Pixar or glossy 3D cartoon aesthetics.
+    9. Do not make the backgrounds photorealistic.
+    10. Keep the same artistic language across every character, object and environment.
+    Do not simply apply a pixel filter to smooth vector illustrations. Construct the texture and shading into the
+    artwork itself.
+    Before creating the animation, create a visual comparison sheet showing your proposed character and environment
+    next to the supplied references.
+    The character must be original, but the visual technique should remain extremely close to the supplied references.
+    Treat approved character artwork as a locked model reference. Never casually change its proportions, hair
+    silhouette, eye shape or outline style between shots."
+- **Nov 11, 1:20 PM, word for word:**
+  - "this also mean nio no longer has braids but he is still lightskin not white"
+- **Nov 11, 5:58 PM (on the two comparison sheets in the new look: Nio next to the character sheet, the room next
+  to the bedroom reference), word for word:**
+  - "so i saw the work on the disgn thread and its great however
+    i think you can do more to copy the eyes the stroke pixel shape size an style, the head shape itseld, the hair texture
+    the facial expression seem missunderstood at points and not as nicely done especially the eyes.
+    crossing hands isnt well done for some reason. hair isnt accurate and some expressions really need working on like the shocked being too much and werid, its supposed to be subtle yet telling enough look at the reference well. but this is a step in the right direction
+
+    room is amazing to be honest lacks some details and i think in this direction we can build a whole world and build on it. if the reference helped i would like to do the sae thing but for writingthe stories it seems like once you have direction you know how to work. so when it comes to pacing audio's and more if you could do this on your own meaning find gumball and find the source and have an agent hand you off how to the same way i did and the agent needs to be smart enough to be ablet o genuinly capsulate gumball writing style for plots dialogue characters language and slang usage of trending topics etc it would really take this into the next step and really make this engine a real pxi series.
+
+    so the goal is to copy what i did with the desgin, see how i brought together what i want with another ai told the ai to generate different shots and text explaining the style and build a room and world around it and it did then i brought that here we should do the same for the story and we should aslo scrap part of nios character that wwasnt told as stories by me but rules because i copied meta ai descripiton and it wasnt good and i pasted it to you so now theres things like nio doesnt explain but ealrier i went on a rant about my experience and said this how nio should be and i think that only should be kep about my description of nio and the rest can be taken from gumball. please ensure you really make a new world plots characts with maya and other firends and make them interesting charaacters and bring the sreries to life"
+- **Nov 11, 10:55 PM, word for word:**
+  - "continue the nio world rendering
+    while rendering the world i learned people look up Whats the appo that you can take photos on and share instantly into an album
+    and find my profile so captions should be key too. so in the scheduler lets back the find events near you and all the good seo things we used
+    if nio uses real events that are on pxi instead of invested ones it would also be cool but nit a necessary thing
+    the mobile app should also be 1 to 1 i havent seen latest shots but we need to make it 1 to 1 in that verse aesthetics
+    lets keep at it were heading in a good direction i belive."
