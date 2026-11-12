@@ -1,7 +1,7 @@
 # Learning loop
 
-LEARN runs once a week. It reads this file and `engine/playbook.md`, pulls numbers from Metricool for @pxi.app,
-updates the ledger below and rewrites the playbook. It reads no scripts and opens no video.
+LEARN runs once a week. It reads this file and `engine/playbook.md`, pulls numbers for @pxi.app from Metricool
+and Supermetrics, updates the ledger below and rewrites the playbook. It reads no scripts and opens no video.
 
 ## What gets recorded for every release (one row in the ledger)
 
@@ -10,17 +10,20 @@ action type · holiday · trial reel or not · experiment id and arm
 
 ## What gets measured
 
-In this order of importance. Views alone decide nothing.
+The founder, Nov 12: "we want more people to follow us not like and comment but follow". The score of a release
+is **follows per 1,000 people reached**. Everything else explains the score. Views alone decide nothing, and
+likes and comments decide nothing.
 
-1. **Hold:** the share of viewers still watching after the first three seconds.
-2. **Watch:** average share of the video watched, and completion.
-3. **Sends and saves for each person reached.** Sends matter most with people who do not follow yet.
-4. **Follows and profile visits** from the release.
-5. **Link clicks and app store clicks**, where the platform reports them.
-6. Likes and comments, as context only.
+1. **Follows per 1,000 reached** (the score). Instagram per reel from Supermetrics `media_follows`; TikTok from
+   the account's gain in the two days after posting, marked "acct".
+2. **Full watches:** completion (TikTok full-watch rate, Instagram average watch time over length). The people
+   who finish are the warm audience in `engine/promotion.md`.
+3. **Hold:** the share still watching after three seconds.
+4. **Sends for each person reached.** Sends matter most with people who do not follow yet.
+5. **Profile visits, bio link clicks and app store clicks** (the road from follower to app user).
+6. Saves, likes and comments, as context only.
 
-For a trial reel: is watch time above the account's average, are strangers sending it, and are they visiting
-the profile.
+For a trial reel: is watch time above the account's average, are strangers sending it, and are they following.
 
 ## How a test is run
 
@@ -41,14 +44,10 @@ the profile.
 
 ## Promotion (paid)
 
-- A release is proposed for paid promotion on Instagram and TikTok only after it has won without it: watch time
-  above the account's average, and sends and follows from people who did not follow. Never boost a release to
-  rescue it.
-- The proposal names the post, the numbers, the audience, a daily budget and an end date. The founder approves
-  each one. A run never spends, raises a budget or starts a campaign without that approval.
-- A boosted post is tagged in the ledger, and its paid and unpaid numbers are kept apart. Judge it on follows,
-  profile visits and app store clicks for each dollar, not on views.
-- Stop a promotion when its cost for each follow or click is worse than the last one's for three days.
+The ladder, the winner rules, the warm audience of 95% watchers and the budgets are in `engine/promotion.md`.
+In short: boost organic winners for follows, collect the people who watch to the end and engage, and show them
+the Nio app videos that already won. Judge on cost per follow and cost per install, never views. Every campaign
+is built paused and switched on only on the founder's recorded yes.
 
 ## Comments and search
 

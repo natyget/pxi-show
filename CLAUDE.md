@@ -103,6 +103,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 | `engine/formats.md`, `engine/calendar.md` | The format menu and the holiday calendar |
 | `engine/captions.md` | How every caption is written so the release is found in search |
 | `engine/learning.md`, `engine/playbook.md` | The results ledger, and the one page of what is working now |
+| `engine/promotion.md` | Paid promotion: boost winners for follows, the 95% watchers audience, app retargeting, budgets |
 | `engine/reviewer.md` | The stranger: the last review of the finished video and cover |
 | `engine/BACKLOG.md`, `engine/ROUTINES.md` | Tools still to build, and the scheduled tasks' exact text |
 | `bible/` | The writers' room role, characters and voices, the world, the style handoff, humor, dialogue, story, the Gumball lens, the craft library, directing and acting, product truth, QA checklist, canon. `bible/show-bible.md` has the index and every founder note |

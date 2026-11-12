@@ -274,6 +274,10 @@ A proposal until the founder confirms it, and the learning loop adjusts it after
 
 ## 13. Change log
 
+- 2026-11-12 (evening): the score is follows per 1,000 reached; LEARN reads Supermetrics as well as Metricool;
+  the promotion ladder (`engine/promotion.md`): boost winners for follows, a warm audience of 95% watchers and
+  engagers, retarget it with winning Nio app videos, every campaign paused until the founder says yes. All posts
+  are Nio style; APP PROMO, TALK TO USERS and STORYLINE added to the menu. Posting waits on an approved episode.
 - 2026-11-12 (later): captions and search (`engine/captions.md`), wired into packaging, the daily post and
   scheduling. Real PXI events preferred over invented ones where they fit.
 - 2026-11-12: the style handoff (`bible/gumball-style.md`) and the world (`bible/world.md`) added. Nio pruned to

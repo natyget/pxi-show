@@ -16,7 +16,7 @@ not animate and does not write scripts.
    a machine in `bible/gumball-lens.md` not yet used in the bank. At least one should fit the next holiday on
    the calendar. Skip any that breaks the Never list in `bible/humor.md`. If the bank already holds sixteen
    candidates, add none.
-3. Report: the phase, what the founder still has to decide (from `STATE.md`), the next holiday and whether its
+3. Report: the phase, that posting stays closed until the founder approves a built episode, what the founder still has to decide (from `STATE.md`), the next holiday and whether its
    dates can still be met, and the new premises in one line each.
 
 **Gate:** none. This stage always ends after one pass.

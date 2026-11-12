@@ -12,6 +12,10 @@ gate_failures: 0
 
 ## Open founder decisions
 
+- **Posting is closed** until the founder watches a built episode and approves it (founder, Nov 12: "once weve
+  built it i approve and once approved then we can start posting"). Then each format posts once one sample is approved.
+- Ads (`engine/promotion.md`): confirm the old budget ($1 a day a campaign, $150 a month in all). Each campaign
+  is built paused and needs its own yes. The Supermetrics trial ends about Nov 14; without it, LEARN uses Metricool alone.
 - Approve `engine/DIRECTIVE.md` (draft, rewritten Nov 11 around the head writer brief).
 - Approve a pilot. "Not Me" (Nov 10) and "No Evidence" (Nov 11) were both rejected. Owned by the pilot thread,
   which now writes from `bible/writers-room.md`. Not for scheduled runs.
@@ -38,11 +42,6 @@ gate_failures: 0
   model.
 - Push notifications are on and Metricool is connected (founder, Nov 11).
 
-## Ready to schedule
-
-- Stage 6 is written. The first post is scheduled in the run after the founder approves the next cut, provided
-  the Metricool connector is on for that run.
-
 ## Founder approvals (word for word, dated)
 
 - (none yet)
@@ -59,6 +58,7 @@ gate_failures: 0
 
 ## Run log (newest first, keep five)
 
+- 2026-11-12 · engine · learn scores follows, reads Supermetrics; promotion ladder (95% watchers, paused until yes); Nio-style format menu; posting waits on an approved episode.
 - 2026-11-12 · engine · captions and search written and wired into package, daily and schedule.
 - 2026-11-12 · bible · style handoff and world added; Nio pruned to the founder's own words; pasted-brief rules
   unconfirmed; thirteen candidates in the bank.
