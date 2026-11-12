@@ -1,5 +1,5 @@
 // Nio's room: the furniture, the soft things, the lamps, and how a character is posed in it. Pure data and maths.
-import { V, add, sub, mul, norm, cross, lerp } from './vec';
+import { V, add, sub, mul, norm, cross, dot, lerp } from './vec';
 import { Skel, Prim, sampleClip, solve, place, reach, lookAt, buildBody, G } from './rig';
 import { Face } from './face';
 import { Scene3, Box, Obb, Cam3, Soft, Light } from './types';
@@ -93,7 +93,7 @@ export const AMB: V = [0.35, 0.36, 0.45], AMB_CHAR: V = [0.88, 0.82, 0.86];
 
 // ---- posing ----
 export type Act = { who?: Character; clip: string; t: number; at: [number, number]; yaw: number; face: Face;
-  stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string };
+  stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string };
 export const pose = (a: Act) => {
   const ch = a.who ?? NIO_CHAR, P = ch.body;
   let s: Skel = place(solve(sampleClip(a.clip, a.t), P, { stance: a.stance ?? 1, arms: a.arms ?? 1, upright: a.upright ?? 0, seat: a.seat }), [X(a.at[0]), a.at[1]], a.yaw);
@@ -114,11 +114,14 @@ export const pose = (a: Act) => {
   if (ph > 0.01) {
     // the phone floats where his eyes can read it; the hand is placed BEHIND it and the thumb comes round the front
     const body = norm([s.headFw[0], 0, s.headFw[2]]), rt = norm(cross([0, 1, 0], body));
-    const pc = add(s.neckBase, add(mul(body, 0.25), add(mul(rt, -0.06), [0, -0.09, 0])));
+    // `hold` = how far in front of the neck, how far to his right, and how far below it (metres)
+    const hd = a.hold ?? [0.25, 0.06, 0.09];
+    const pc = add(s.neckBase, add(mul(body, hd[0]), add(mul(rt, -hd[1]), [0, -hd[2], 0])));
     s = lookAt(s, pc, 0.35 * ph, P);
-    const z = norm(sub(add(s.headC, mul(s.headFw, 0.1)), pc)), x = norm(cross([0, 1, 0], z)), y = cross(z, x);
+    // the glass faces his eyes, and its sides stay square to his shoulders however flat he holds it
+    const z = norm(sub(add(s.headC, mul(s.headFw, 0.1)), pc)), hr = mul(rt, -1), x = norm(sub(hr, mul(z, dot(hr, z)))), y = cross(z, x);
     const wr = add(pc, add(mul(y, -0.1), mul(z, -0.03)));
-    const held = reach(s, 1, wr, add(mul(rt, -1), [0, -0.6, 0]), P, add(y, mul(z, 0.12)), add(mul(x, -0.5), mul(z, 0.55)));
+    const held = reach(s, 1, wr, add(mul(rt, -1), [0, -0.6, 0]), P, add(y, mul(z, 0.12)), add(mul(x, -0.2), add(mul(y, 0.62), mul(z, 0.76))));
     const mixS: any = { ...s };
     (['el', 'wr', 'tip', 'thumb'] as const).forEach((k) => { mixS[k] = [s[k][0], lerp(s[k][1], held[k][1], ph)]; });
     s = mixS;

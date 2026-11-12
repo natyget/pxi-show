@@ -31,7 +31,7 @@ def hexc(s): s = s.lstrip('#'); return tuple(int(s[i:i + 2], 16) for i in (0, 2,
 
 # The app's type. Headers are Stack Sans Notch; everything else is the system font, which on a phone is San Francisco.
 # Inter stands in for it here (same proportions, free licence).
-FACES = {'display': 'StackSansNotch-Bold.ttf', 'display6': 'StackSansNotch-SemiBold.ttf', 'mono': 'DMMono-Medium.ttf',
+FACES = {'serif': 'Gelasio.ttf', 'display': 'StackSansNotch-Bold.ttf', 'display6': 'StackSansNotch-SemiBold.ttf', 'mono': 'DMMono-Medium.ttf',
          400: 'Inter-Regular.otf', 500: 'Inter-Medium.otf', 600: 'Inter-SemiBold.otf', 700: 'Inter-Bold.otf',
          800: 'Inter-ExtraBold.otf', 900: 'Inter-Black.otf'}
 _fonts = {}
@@ -68,6 +68,18 @@ def emoji_im(ch, px):
         sm = big.resize((max(1, round(big.width * k)), max(1, round(big.height * k))), Image.BOX)
         a = _mask1(sm.getchannel('A'), 110)
         rgb = sm.convert('RGB').quantize(10, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).convert('RGB')
+        o = Image.new('RGBA', sm.size, (0, 0, 0, 0)); o.paste(rgb, (0, 0), a); o.save(f)
+    return Image.open(f).convert('RGBA')
+
+def reduce_art(name, w, colors=12):
+    """Art drawn large by tools/pxi/svg.cjs (a stamp), reduced to hard pixels and few colours; kept in public/pxi-ui/art."""
+    f = os.path.join(UI, 'art', f'{name}_{w}.png')
+    if not os.path.exists(f):
+        os.makedirs(os.path.dirname(f), exist_ok=True)
+        big = Image.open(os.path.join(OUT, 'svg_big', f'{name}_{w}.png')).convert('RGBA')
+        sm = big.resize((w, round(big.height * w / big.width)), Image.BOX); a = _mask1(sm.getchannel('A'), 120)
+        flat = Image.new('RGB', sm.size, (0, 0, 0)); flat.paste(sm.convert('RGB'), (0, 0), sm.getchannel('A'))
+        rgb = flat.quantize(colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).convert('RGB')
         o = Image.new('RGBA', sm.size, (0, 0, 0, 0)); o.paste(rgb, (0, 0), a); o.save(f)
     return Image.open(f).convert('RGBA')
 
@@ -122,6 +134,27 @@ class Screen:
         s.im.paste(im, (x0, y0), m)
     def avatar(s, im, x0, y0, d): s.photo(im, x0, y0, x0 + d, y0 + d, r=d // 2)
     def paste(s, other, x, y, mask=None): s.im.paste(other, (x, y), mask)
+
+    def shade(s, x0, y0, x1, y1, a0, a1, col=BLACK):
+        """A soft shade the pixel way: a checker of darkened pixels that thins out from strength a0 at the top to a1 at
+        the bottom. This is how the app's see-through blacks and gradients are drawn here."""
+        B = ((0, 8, 2, 10), (12, 4, 14, 6), (3, 11, 1, 9), (15, 7, 13, 5)); am = max(a0, a1)
+        if am <= 0: return
+        for y in range(max(0, y0), min(s.im.height, y1)):
+            a = a0 + (a1 - a0) * (y - y0) / max(1, y1 - y0 - 1)
+            for x in range(max(0, x0), min(s.im.width, x1)):
+                if (B[y % 4][x % 4] + 0.5) / 16 < a / am: s.im.putpixel((x, y), mix(s.im.getpixel((x, y)), col, am))
+    def stamp(s, name, w, cx, cy):
+        """One of the app's stamps (tools/pxi/stamps.sh), with its lettering set again on the pixel grid."""
+        import json
+        art = reduce_art(name, w); x0, y0 = cx - art.width // 2, cy - art.height // 2; s.im.paste(art, (x0, y0), art)
+        meta = json.load(open(os.path.join(OUT, 'svg_big', f'{name}_{w}.json')))
+        for t in meta['texts']:
+            if t['op'] < 1: continue
+            px = max(7, round(t['size'] * meta['unit'])); face = 800 if px < 10 else 'serif'
+            f = font(face, px); tw = text_w(t['s'], face, px, 1); x = x0 + t['x'] * meta['unit'] - tw / 2; y = y0 + round(t['y'] * meta['unit'])
+            for c in t['s']:
+                s.d.text((round(x), y), c, font=f, fill=hexc(t['fill']), anchor='ls'); x += f.getlength(c) + 1
 
     # ---- the phone's own status bar: the time, signal, wifi, battery
     def status(s, time='9:41', col=WHITE):

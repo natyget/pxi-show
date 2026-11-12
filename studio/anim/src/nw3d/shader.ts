@@ -28,6 +28,7 @@ uniform vec3 uHc[NHD]; uniform vec3 uHr[NHD]; uniform vec3 uHu[NHD]; uniform vec
 uniform vec3 uSkin[NHD]; uniform vec3 uHairA[NHD]; uniform vec3 uHairB[NHD]; uniform vec4 uHb[NHD * NHB]; uniform int uHn[NHD]; uniform vec4 uFace[NHD * 9];
 uniform vec3 uBc[NB]; uniform vec3 uBh[NB]; uniform vec4 uBcol[NB]; uniform vec4 uBm[NB]; uniform int uNB;
 uniform vec3 uOc[NO]; uniform vec3 uOx[NO]; uniform vec3 uOy[NO]; uniform vec3 uOz[NO]; uniform vec3 uOh[NO]; uniform vec3 uOcol[NO]; uniform vec3 uOem[NO]; uniform int uNO;
+uniform sampler2D uScr; uniform vec3 uScrOn;   // a picture for the lit face of one hand prop (a phone screen): x = which prop (-1 none), y = picture width in pixels
 uniform vec4 uL[NL]; uniform vec4 uLc[NL]; uniform int uNL;
 uniform vec4 uSh[4]; uniform vec3 uRoom; uniform vec3 uAmb; uniform vec3 uAmbC; uniform float uSet;
 
@@ -358,7 +359,12 @@ void main(){
   for (int i = 0; i < NO; i++){ if (i >= uNO) break; vec3 bn; vec3 d = ro - uOc[i];
     float tb = boxHit(vec3(dot(d, uOx[i]), dot(d, uOy[i]), dot(d, uOz[i])), vec3(dot(rd, uOx[i]), dot(rd, uOy[i]), dot(rd, uOz[i])), uOh[i], bn);
     if (tb > 0.0 && tb < t){ t = tb; n = uOx[i] * bn.x + uOy[i] * bn.y + uOz[i] * bn.z; id = 200.0 + float(i); face = 20.0 + dot(abs(bn), vec3(1.0, 2.0, 3.0)); add = vec3(0.0);
-      if (bn.z > 0.5){ base = uOem[i]; em = 1.0; } else { base = uOcol[i]; em = 0.0; } } }
+      if (bn.z > 0.5){ base = uOem[i]; em = 1.0;
+        if (float(i) == uScrOn.x){   // the phone shows a real screen: read it at the fineness this shot can hold, hard pixels up close
+          vec3 pl = vec3(dot(d, uOx[i]), dot(d, uOy[i]), dot(d, uOz[i])) + vec3(dot(rd, uOx[i]), dot(rd, uOy[i]), dot(rd, uOz[i])) * tb;
+          vec2 sh = vec2(uOh[i].y * 0.96 * 360.0 / 780.0, uOh[i].y * 0.96); vec2 uv = pl.xy / sh * 0.5 + 0.5;
+          if (uv.x > 0.0 && uv.x < 1.0 && uv.y > 0.0 && uv.y < 1.0) base = textureLod(uScr, uv, max(0.0, log2(pxw * tb * uScrOn.y / (sh.x * 2.0)))).rgb; else base = vec3(0.02);
+        } } else { base = uOcol[i]; em = 0.0; } } }
 
   // soft bodies: characters, pillows, plants
   int hc = -1;

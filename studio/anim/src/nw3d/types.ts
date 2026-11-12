@@ -16,5 +16,5 @@ export type Soft = { prims: Prim[]; origin: V; character?: boolean; head?: Head 
 export type Light = { p: V; r: number; col: V; halo?: number };
 export type Scene3 = {
   cam: Cam3; room: V; amb: V; ambChar: V; boxes: Box[]; softs: Soft[]; lights: Light[];
-  props?: Obb[]; shadows?: number[][]; time?: number; studio?: boolean;
+  props?: Obb[]; screenTex?: string; shadows?: number[][]; time?: number; studio?: boolean;
 };

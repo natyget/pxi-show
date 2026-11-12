@@ -9,6 +9,9 @@ STORE = '/home/user/pxispace.com/.claude/skills/social-content-engine/examples/p
 QUADS = {
     'thread': ('07-keep-the-night-talking.jpg', [(196, 815), (1090, 815), (1090, 2752.6), (196, 2752.6)]),
     'gallery': ('03-relive-the-moment.jpg', [(412.3, 924.6), (1223, 966.5), (1119.3, 2716.8), (308.6, 2674.9)]),
+    # these two run off the bottom of their pictures, and the app has moved on since (see screens.py): rough corners
+    'discover': ('02-find-your-next-night.jpg', [(86, 900), (994, 900), (996, 2752), (128, 2752)]),
+    'camera': ('01-never-lose-the-night.jpg', [(236, 1190), (1046, 1190), (1046, 2945), (236, 2945)]),
 }
 W, H = 360, 780
 def rectify(name, scale=1):
