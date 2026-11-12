@@ -70,10 +70,7 @@ the profile.
 | E2 | Short-cut length | about 30 s · about 45 s | 0 | waiting | |
 | E3 | Call to action | Nio's tag · caption only · end frame | 0 | waiting | |
 | E4 | Long cut | YouTube only · every platform | 0 | waiting | |
-
-- **E5 · the search line.** Arm A: the photos need ("everyone's photos from the night in one shared album").
-  Arm B: the something-to-do need ("every event near you on one map"). Same format and hook. Measure profile
-  visits, link clicks and follows for each person reached. Three releases an arm.
+| E5 | Search line in the caption (`engine/captions.md`) | photos in one shared album · events near you on one map | 0 | waiting | |
 
 ## Ledger (newest first)
 
