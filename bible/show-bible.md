@@ -205,3 +205,12 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - What this changed: `bible/gumball-style.md` and `bible/world.md` were added, Nio was pruned
     (`bible/characters.md`, "Where each part of Nio comes from"), and the rules that came only from the pasted
     brief are unconfirmed (`bible/story.md` section 3, `bible/humor.md`).
+- **Nov 12, word for word:**
+  - "while rendering the world i learned people look up Whats the appo that you can take photos on and share
+    instantly into an album and find my profile so captions should be key too. so in the scheduler lets back
+    the find events near you and all the good seo things we used"
+  - "if nio uses real events that are on pxi instead of invested ones it would also be cool but nit a necessary
+    thing"
+  - "the mobile app should also be 1 to 1 i havent seen latest shots but we need to make it 1 to 1 in that verse
+    aesthetics"
+  - What this changed: `engine/captions.md`; the real events paragraph in `bible/world.md`.

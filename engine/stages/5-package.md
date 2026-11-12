@@ -1,15 +1,15 @@
 # Stage 5: PACKAGE
 
-**Model:** the run itself (Sonnet). Captions may be drafted by one **Haiku** subagent given the script and the
-playbook.
+**Model:** the run itself (Sonnet). Captions may be drafted by one **Haiku** subagent given the script, the
+playbook and `engine/captions.md`.
 
-**Read:** `engine/reviewer.md`, `episodes/<id>/script.md`, `bible/craft-library.md` (Thumbnails), `engine/playbook.md`, `engine/formats.md`, `bible/callbacks.md`,
+**Read:** `engine/captions.md`, `engine/reviewer.md`, `episodes/<id>/script.md`, `bible/craft-library.md` (Thumbnails), `engine/playbook.md`, `engine/formats.md`, `bible/callbacks.md`,
 `bible/timeline.md`.
 
 **Do:**
-1. `episodes/<id>/post.md`: for each platform, the cut, a caption (the script's Caption: one plain line and a
-   lore question for the comments; then one line that PXI is a free app and what it does; no hashtag wall; the
-   AI content label switched on), the cover frame, the proposed date and time,
+1. `episodes/<id>/post.md`: for each platform, the cut, a caption built exactly as `engine/captions.md` says (the
+   script's joke line, then the search line for the need this episode showed), with that platform's extra
+   fields: alt text, hashtags, title, description, tags and the tracked link; the AI content label switched on, the cover frame, the proposed date and time,
    whether it goes out as a trial reel, and the tags for the learning ledger (format, hook, length, look, call
    to action, holiday, experiment and arm).
 2. **Thumbnails.** For each video, a cover made on purpose by the rules in `bible/craft-library.md`: vertical for

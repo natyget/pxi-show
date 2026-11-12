@@ -120,6 +120,12 @@ without anyone explaining it.
   nothing.
 - **Night.** The market, someone's party, the walk home alone.
 
+**Real events (founder, Nov 12).** Where a story sends Nio out to something on the map, prefer an event that
+is really on PXI that week over an invented one, when one fits the story. It is not required, and the story
+is never bent to fit a listing. Two things people actually search for are the two things Nio most often needs
+in a plot: an app where everyone's photos from the night land in one album, and something to do near him
+tonight. A story that turns on either of those has set up its own caption.
+
 ## A first slate (twelve stories; each is one ordinary thing)
 
 Format: the one-line premise, whose ego drives it, the kind of story (`bible/gumball-style.md` section 2), and

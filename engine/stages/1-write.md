@@ -51,7 +51,8 @@ INSERT: what the phone shows, in the app's exact words
 <Nio to the viewer, after the last joke, 5 seconds at most. The PXI ask, in his voice, fun and cute.>
 
 ## Caption
-<one plain line, then a lore question for the comments>
+<the joke in one plain line, as a funny 22-year-old would post it. PACKAGE adds the search line
+(`engine/captions.md`)>
 
 ## Screen text
 <every piece of text the show itself puts on screen or on the cover, one a line. Not the app's own wording.>

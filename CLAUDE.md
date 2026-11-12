@@ -44,7 +44,8 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
   expression for every line, no idle bobbing, no shot where nothing happens.
 - **PXI is Nio's app and is never forced** (`bible/story.md`, section 4). It is shown and never sold. Screens
   are the real app 1:1 in the show's pixels (`bible/pxi-product.md`). Every release carries a PXI call to
-  action in its own slot: the tag, the caption or the end frame (`engine/formats.md`).
+  action in its own slot: the tag, the caption or the end frame (`engine/formats.md`), and every caption says
+  what PXI is for in the words people search (`engine/captions.md`).
 - **Nothing by accident** (`bible/anti-slop.md`). Every strange thing is declared in the intent ledger before
   it is built. Anything strange that is not in the ledger is a defect, however good it looks.
 - **Whole releases, never "Part 1".** No intro or outro unless the piece calls for one.
@@ -100,6 +101,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 | `engine/premise-bank.md` | Approved and candidate premises |
 | `engine/real-stories.md`, `engine/story-intake.md` | The founder's real stories, and how one becomes a premise |
 | `engine/formats.md`, `engine/calendar.md` | The format menu and the holiday calendar |
+| `engine/captions.md` | How every caption is written so the release is found in search |
 | `engine/learning.md`, `engine/playbook.md` | The results ledger, and the one page of what is working now |
 | `engine/reviewer.md` | The stranger: the last review of the finished video and cover |
 | `engine/BACKLOG.md`, `engine/ROUTINES.md` | Tools still to build, and the scheduled tasks' exact text |

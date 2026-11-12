@@ -218,6 +218,9 @@ The house learns from its own numbers every week (`engine/learning.md`).
 - **Paid promotion follows winners.** A release that has already won without it is proposed for promotion on
   Instagram and TikTok with its numbers, a budget and an end date. The founder approves each one, and no run
   ever spends without that.
+- **Captions are written to be found** (`engine/captions.md`). People type a need: an app where everyone's
+  photos land in one album, or something to do nearby. Every caption is the joke and then one plain sentence
+  that answers one of those, with each platform's search fields filled in.
 - **Comments feed the website and the stories.** What viewers keep asking, in their words, is collected every
   week, turned into website proposals for search once a month, and into premises at any time.
 - Learning changes hooks, cuts, covers, captions, calls to action, timing and the format mix. It never changes
@@ -271,6 +274,8 @@ A proposal until the founder confirms it, and the learning loop adjusts it after
 
 ## 13. Change log
 
+- 2026-11-12 (later): captions and search (`engine/captions.md`), wired into packaging, the daily post and
+  scheduling. Real PXI events preferred over invented ones where they fit.
 - 2026-11-12: the style handoff (`bible/gumball-style.md`) and the world (`bible/world.md`) added. Nio pruned to
   what the founder told in the founder's own words. Rules that came only from the pasted brief (the six-beat
   sheet, the Kevin, the glitch ending, the dismissal, the catchphrases, the tone split) are unconfirmed.

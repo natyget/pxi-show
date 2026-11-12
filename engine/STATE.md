@@ -22,6 +22,8 @@ gate_failures: 0
   whole time and the glitch ending; the best friend who is only on the phone; Nio knowing he is in a show; age
   21 in a different city. Until answered these are allowed and never required.
 - How often an episode may have no PXI in the picture. Working answer: at most one in four, never a holiday.
+- Profile name and bio on each platform should say PXI and both searched needs (`engine/captions.md`). A
+  proposal for the founder to make or approve; no run edits a profile.
 - The best friend has no approved voice. Until one is picked he appears as text on Nio's phone.
 - Make `main` the default branch of this repo, so scheduled runs can save state (BACKLOG item 8).
 - Confirm the cadence in section 12 of the directive, then switch on the scheduled tasks in `engine/ROUTINES.md`.
@@ -57,6 +59,7 @@ gate_failures: 0
 
 ## Run log (newest first, keep five)
 
+- 2026-11-12 · engine · captions and search written and wired into package, daily and schedule.
 - 2026-11-12 · bible · style handoff and world added; Nio pruned to the founder's own words; pasted-brief rules
   unconfirmed; thirteen candidates in the bank.
 - 2026-11-11 · bible · rewritten around the head writer brief: the room, Nio, six beats, the Kevin, dialogue,

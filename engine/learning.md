@@ -71,6 +71,10 @@ the profile.
 | E3 | Call to action | Nio's tag · caption only · end frame | 0 | waiting | |
 | E4 | Long cut | YouTube only · every platform | 0 | waiting | |
 
+- **E5 · the search line.** Arm A: the photos need ("everyone's photos from the night in one shared album").
+  Arm B: the something-to-do need ("every event near you on one map"). Same format and hook. Measure profile
+  visits, link clicks and follows for each person reached. Three releases an arm.
+
 ## Ledger (newest first)
 
 | Date | Platform | Format | Id | Cut | Sec | Hook | Look | CTA | Holiday | Trial | Exp | Hold | Watch | Sends/reach | Saves/reach | Follows | Clicks |
