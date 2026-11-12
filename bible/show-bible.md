@@ -240,3 +240,8 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     if nio uses real events that are on pxi instead of invested ones it would also be cool but nit a necessary thing
     the mobile app should also be 1 to 1 i havent seen latest shots but we need to make it 1 to 1 in that verse aesthetics
     lets keep at it were heading in a good direction i belive."
+- **Nov 12, 8:26 PM (on the post formats remade in Nio's world, and the engine), word for word:**
+  - "yes its $1 a day but as scales as we see results, the one that shows most results gets more budget
+    how much does supermetrics cost and is it necessary considering mtericool also has all those things i belive. is supermetrics worth it?
+    yes pill request to merge all and lets see a pilot episode of nio world
+    when it comes to the remakes i like them and i think it should keep all post that are gen z funny humor relatable and all and scratch the werid uncanny ones from the engine, what it did was nice but there are so many post ideas and format on that engine i think we can take as much good as we can"

@@ -36,11 +36,76 @@ founder's review.** Nothing here ships until the founder approves the format.
 | PAPER STILL | A receipt (or report card, ticket, flyer, label) lying in his room, itemising something that should not be itemised | 1 | `tools/formats/stills.py` (`still_receipt`) | Very low |
 | MOVING STILL | A room shot where only small things move: rain, lights, breathing, a phone glow | 2 to 3 s loop, MP4 with sound and a GIF | engine `N3Shot` spec + `tools/nw_finish.py seq`, see below | Low |
 
-Old formats that move onto the same objects: on the cork board, bingo cards, starter packs, Venn diagrams, five
-signs, sticky-note walls, seating charts; on his phone, search history, the calculator, wallet passes, boarding
-passes and the PXI Passport; on paper, dictionary entries, report cards, parking tickets, prescription labels,
-tear-off flyers, newspaper front pages. Dropped for good: price anchors, fee receipts, "don't pay 3.7%", and
-anything built on real people's photos.
+Built and sampled in the second batch (Nov 12, the founder liked the first five and asked for every funny,
+relatable format from the old engine): FIVE STAGES, BINGO, SEARCH, SUPERLATIVES, DICTIONARY, FORTUNE, made by
+`tools/formats/batch2.py`.
+
+## Every old format, sorted (founder, Nov 12: keep the Gen Z funny relatable ones, drop the weird uncanny ones)
+
+The old engine had 76 formats over 100 posts. Its wording and topics are never reused; only the shape comes over.
+
+**Kept. Each has its object in Nio's world and a first idea.** (S = sampled, T = a tool exists for its object.)
+
+| Old format | In Nio's world | First idea | |
+|---|---|---|---|
+| Tier list | Cork board in his room | The group chat, ranked | S |
+| Crayon doodle | Crayon on printer paper on his desk | Saturday, drawn from memory | S |
+| Group chat | The PXI album thread on his phone | Theo's Roof the morning after | S |
+| iPhone Notes, Texts from mom | His lock screen on the bed | Everyone's messages the morning after | S |
+| Receipt comparison | A receipt on his nightstand that itemises the night | Theo's Roof, 02:47 | S |
+| Five stages | Polaroids of his faces on the board | Waiting for the pics | S |
+| Bingo card | Maya's card on the board, her green pen | Night out bingo | S |
+| Search autocomplete | A phone on his desk, the search bar typed "how to" | What you search the morning after | S |
+| Yearbook superlatives | A printed page on his desk | Theo's Roof superlatives; only his photo was sent | S |
+| Dictionary entry | A dictionary page on his desk | pic debt, outside, one more song | S |
+| Fortune cookie | The slip on his desk next to the takeout | You will be in many photos | S |
+| Moving still (from the video formats) | A room shot where only rain, lights and breathing move | Sunday | S |
+| Starter pack | Things laid out on his bed, each one the engine's prop | The Theo starter pack | T |
+| Two- and three-circle Venn | Marker circles on the board | Maya's love life vs a film she is rooting for | T |
+| 5 signs | Sticky notes down the board | 5 signs Benji is already outside | T |
+| Sticky-note wall | The board covered in his notes | Things i said i'd do this weekend | T |
+| Seating chart | Paper on the board, Maya's plan in green | Friendsgiving, who sits away from Theo | T |
+| Expectation vs reality | Two polaroids of his faces | The outfit, the photo you get sent | T |
+| Character select | Polaroids of his faces as a select screen on the board | Choose your Nio for tonight | T |
+| Trading cards | A card per friend with stats, his photo the only real one | Benji: helpfulness 99, accuracy 4 | T |
+| Report card | Printed page on his desk | Sami's report card for the night | T |
+| Prescription label | A pill bottle label on his nightstand | Prescribed by Dr Maya: one honest answer a day | T |
+| Parking ticket | A ticket stuck to his door | Notice: parked in the group chat, said nothing | T |
+| Nutrition label | Printed on the side of the takeout | Nutrition facts of one more song | T |
+| Weather forecast | His phone's weather screen | The forecast for Saturday, Theo's version | T |
+| Tear-off flyer | A flyer on his door, tabs torn off | Missing: every photo of me | T |
+| Newspaper front page | A paper on his desk | Local man still outside (Benji) | T |
+| Breaking news drop | A news alert on his lock screen | Sami is fine, sources say | T |
+| Honest side effect | Small print on a box on his desk | Side effects of going out with Theo | T |
+| Playlist | His phone's music app in the show's pixels | Songs for the walk home | T |
+| Guess who I am | Polaroids of a friend, cropped, on the board | Guess the friend from their shoes | T |
+| Tap your ___ | Polaroids of his faces, "tap your mood" | Tap your Sunday | T |
+| Lost and found box | A box by his door | What Benji is holding for people | T |
+| Fridge door | His fridge, magnets and notes | The flat's fridge, mostly Maya's notes | T |
+| Coffee punch card | A card in his wallet | Two more nights to a free one | T |
+| Wristband stack | His wrist, a phone photo from the bed | A wrist full of Saturdays | T |
+| Boarding pass, passport page | The PXI Passport on his phone | His stamps from the month | T |
+| Wallet passes | His phone's wallet with PXI tickets | His weekend, as tickets | T |
+| CAPTCHA grid | A phone screen | Select all squares with Benji in them | T |
+| Weather, calendar, map ("always something to do") | PXI's Discover map on his phone | Tonight, near him | T |
+| Whiteboard chart | A small whiteboard by his desk, his marker | Photos taken of me vs photos sent to me | T |
+| Movie end credits | Moving still: credits roll over his room | Saturday night, the credits | T |
+| Advent calendar | Paper doors on the board | December, one plan a day | T |
+| Story wrap | PXI's Night Wrap on his phone | His night, wrapped | T |
+| Transit map | Marker map on the board | The weekend line: roof, laundromat, home | T |
+| Delivery tracker | His phone | Your photos are out for delivery (since Tuesday) | T |
+| Censored photo, censored then revealed | A polaroid with a sticky note over it, then lifted | The one photo of him that got sent | T |
+
+**Dropped.** Never brought over:
+
+- Price anchor, receipt comparison by fee, "don't pay 3.7%", calculator, pizza pie chart of sales, tip jars,
+  fundraising thermometer, giant novelty check, bouncer clicker, report cards for events, "isn't for every host":
+  fee comparisons are forbidden, and money is unanswered for Nio.
+- Doodles on photos, contact sheet, email + caption, "size matters": built on real people's photos.
+- Forum thread + promoted, zero stars billboard, "like X but for Y", "don't be an idiot", face the facts: read as
+  ads or as lectures, and Nio never pitches to the lens.
+- Museum wall label, split-flap board, neon sign, patches on denim: the weird or uncanny ones the founder asked to
+  drop, or needing a set the show does not have.
 
 ## How to make one
 
