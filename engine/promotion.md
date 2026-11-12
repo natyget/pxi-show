@@ -47,11 +47,13 @@ it creates it (an audience costs nothing). If they cannot, the founder makes it 
 
 ## Budgets (from the founder's earlier engine; unchanged until the founder says otherwise)
 
-- Start each campaign at **$1 a day**. Combined hard cap **$150 a month** across every platform, rising to
-  **$250** only with traction and the founder's yes. Ceilings a month: Meta $90, TikTok $90, Google $220,
-  Apple $90.
-- A budget rises by about 20% at most, and only after two weeks of a cost per follow or install that is better
-  than the month before.
+- The founder, Nov 12: "yes its $1 a day but as scales as we see results, the one that shows most results gets
+  more budget".
+- Every campaign starts at **$1 a day**. Each week LEARN ranks the running campaigns by cost per follow (rung 2)
+  or cost per install (rung 4). The best one's budget goes up by about 20%, and money comes off the worst. That
+  rule is the founder's standing yes for raises; a new campaign still needs its own yes.
+- Kept from the earlier engine until the founder changes it: all campaigns together stay under **$150 a month**
+  (Meta $90, TikTok $90, Google $220, Apple $90 at most). Going past it needs the founder's yes.
 - Every proposal has an end date (14 days at most). A campaign whose cost per result is worse than the last one's
   for three days in a row is proposed for a pause.
 - Paid and organic numbers are always kept apart in the ledger (paid columns are marked "paid").

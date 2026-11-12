@@ -6,6 +6,8 @@ in the slot named here, and every format goes through the accident check before 
 The founder, Nov 12: "all posts from now on are nio style". Every post is Nio World: drawn in the show's look,
 voiced by the approved voices, set in his world. The old posts (tier lists, receipts, phone screens and the rest)
 come back as formats only, as objects in his world (`engine/post-formats.md`). Their wording is never reused.
+The founder, Nov 12: keep "all post that are gen z funny humor relatable" and "scratch the werid uncanny ones".
+So every post between episodes is relatable and funny; the uncanny DREAM post is retired.
 
 **Nothing posts until the founder has approved a built episode** (`engine/STATE.md`, Open founder decisions).
 After that, each format below posts only once the founder has approved one sample of it.
@@ -15,7 +17,6 @@ After that, each format below posts only once the founder has approved one sampl
 | EPISODE | One story in the build in `bible/story.md`, funny without PXI, with PXI where it fits. Built as a long cut with a short cut marked inside it | Long cut up to 3 min; short cut 30 to 50 s | The full line, stages 1 to 6 | Tag at the end, plus caption | High |
 | HOLIDAY | An episode with a date, modelling how to use PXI that day (`engine/calendar.md`) | Same as an episode | The full line, with the calendar's dates | Tag that asks the viewer to do the same today | High |
 | FOURTH WALL | Nio talks to the viewer as himself: cocky, quick, funny, a little trolling. Never a pitch. The discovery map is the default subject | 10 to 25 s | Existing set, one or two shots, one phone insert | The piece is the ask, kept fun and cute | Low |
-| DREAM | Uncanny on purpose. No plot or PXI needed in the picture. A different look is allowed and declared in the ledger | 10 to 30 s | Existing rigs; one new idea | Caption only | Medium |
 | FILLER | One gag in one place. A take, a background character, a moment between episodes | 6 to 20 s | Existing sets and rigs only | End frame or caption | Low |
 | LOOP | A seamless loop or GIF cut from a take that already exists | 2 to 6 s | No new animation | Caption | Very low |
 | STILL | A frame, a phone screen from the world, or a carousel: tier lists, crayon, receipts and the rest, each as an object in his world (`engine/post-formats.md`) | Image | No new animation | Caption, and the last slide of a carousel | Very low |
@@ -56,7 +57,7 @@ The founder needs a post every day and at least one long video a week. A week is
 | 2 | LOOP or STILL from the episode |
 | 3 | FOURTH WALL: Nio to the viewer, usually the map |
 | 4 | STILL or carousel: a phone screen or an album from his world |
-| 5 | FILLER or DREAM |
+| 5 | FILLER or TALK TO USERS |
 | 6 | LOOP or STILL from the episode |
 | 7 | A second short cut of the episode with a different hook, or a FOURTH WALL for the next one |
 

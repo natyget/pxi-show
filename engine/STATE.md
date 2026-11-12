@@ -14,8 +14,8 @@ gate_failures: 0
 
 - **Posting is closed** until the founder watches a built episode and approves it (founder, Nov 12: "once weve
   built it i approve and once approved then we can start posting"). Then each format posts once one sample is approved.
-- Ads (`engine/promotion.md`): confirm the old budget ($1 a day a campaign, $150 a month in all). Each campaign
-  is built paused and needs its own yes. The Supermetrics trial ends about Nov 14; without it, LEARN uses Metricool alone.
+- Supermetrics: the trial ends about Nov 14. Keep it or not (answered in the thread, Nov 12). Without it, LEARN
+  uses Metricool alone and Instagram follows per reel stay "acct".
 - Approve `engine/DIRECTIVE.md` (draft, rewritten Nov 11 around the head writer brief).
 - Approve a pilot. "Not Me" (Nov 10) and "No Evidence" (Nov 11) were both rejected. Owned by the pilot thread,
   which now writes from `bible/writers-room.md`. Not for scheduled runs.
@@ -36,6 +36,8 @@ gate_failures: 0
 
 ## Decided
 
+- Ads (founder, Nov 12): $1 a day each, and the best performer gets more budget (`engine/promotion.md`).
+- Posts between episodes are gen-z funny and relatable; the uncanny ones are scratched (founder, Nov 12).
 - Voices (founder, restated Nov 11): the designed Qwen3-TTS voices for Nio and Maya, in `bible/characters.md`,
   with the walkie-talkie colour (picked by ear on a decision card, Nov 11).
 - Backlog tools (founder, Nov 11: "yes i say yes to that too"): to be built in their own thread on a cheaper

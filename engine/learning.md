@@ -31,7 +31,7 @@ For a trial reel: is watch time above the account's average, are strangers sendi
 - Each arm needs at least three releases before anything is concluded. Until then the ledger says "open".
 - A result is a sentence with numbers in it. If the difference is small, the result is "no difference".
 - The mix: about 70% of releases use what is winning, 20% are variations of it, 10% are something new.
-- A different look is tested only in DREAM and FILLER releases. If one wins three times, propose it to the
+- A different look is tested only in FILLER releases. If one wins three times, propose it to the
   founder. Do not change the locked style.
 - Never tested, never changed by this loop: the characters, the voices, the humor doctrine, the rule that PXI
   is real and the story is clean, and the approval gate.
