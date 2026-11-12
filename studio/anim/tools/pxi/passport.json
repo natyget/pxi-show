@@ -1,0 +1,13 @@
+{
+ "area": { "width": 381, "height": 223 },
+ "now": "2026-10-03T12:00:00",
+ "user": { "since": "2026-08-01T12:00:00", "xp": 6880 },
+ "events": [
+  { "id": "late-checkout", "name": "Late Checkout", "startDate": "2026-10-02T21:00:00", "ticketPriceUsd": 0, "xp": 1900 },
+  { "id": "golden-hour", "name": "Golden Hour", "startDate": "2026-09-19T18:00:00", "ticketPriceUsd": 25, "xp": 820 },
+  { "id": "velvet-hour", "name": "Velvet Hour", "startDate": "2026-09-05T22:00:00", "ticketPriceUsd": 60, "xp": 420 },
+  { "id": "gala-noir", "name": "Gala Noir", "startDate": "2026-08-22T20:00:00", "ticketPriceUsd": 120, "xp": 3400 },
+  { "id": "a-private-night", "name": "", "startDate": "2026-08-08T21:00:00", "ticketPriceUsd": 0, "xp": 190, "isPrivate": true },
+  { "id": "strictly-piano", "name": "Strictly Piano", "startDate": "2026-08-01T21:00:00", "ticketPriceUsd": 25, "xp": 150 }
+ ]
+}

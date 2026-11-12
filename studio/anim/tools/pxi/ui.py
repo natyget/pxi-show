@@ -32,6 +32,7 @@ def hexc(s): s = s.lstrip('#'); return tuple(int(s[i:i + 2], 16) for i in (0, 2,
 # The app's type. Headers are Stack Sans Notch; everything else is the system font, which on a phone is San Francisco.
 # Inter stands in for it here (same proportions, free licence).
 FACES = {'serif': 'Gelasio.ttf', 'display': 'StackSansNotch-Bold.ttf', 'display6': 'StackSansNotch-SemiBold.ttf', 'mono': 'DMMono-Medium.ttf',
+         'dots': 'Codystar-Regular.ttf',
          400: 'Inter-Regular.otf', 500: 'Inter-Medium.otf', 600: 'Inter-SemiBold.otf', 700: 'Inter-Bold.otf',
          800: 'Inter-ExtraBold.otf', 900: 'Inter-Black.otf'}
 _fonts = {}
@@ -80,6 +81,31 @@ def reduce_art(name, w, colors=12):
         sm = big.resize((w, round(big.height * w / big.width)), Image.BOX); a = _mask1(sm.getchannel('A'), 120)
         flat = Image.new('RGB', sm.size, (0, 0, 0)); flat.paste(sm.convert('RGB'), (0, 0), sm.getchannel('A'))
         rgb = flat.quantize(colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).convert('RGB')
+        o = Image.new('RGBA', sm.size, (0, 0, 0, 0)); o.paste(rgb, (0, 0), a); o.save(f)
+    return Image.open(f).convert('RGBA')
+
+def dotted(t, px, ls=0, z=6, thr=70):
+    """A line in the app's dotted letters (Codystar) as a one-bit mask. The letters are rows of dots finer than a
+    pixel at this size, so they are set large and each pixel is lit where enough of a dot falls in it."""
+    f = ImageFont.truetype(os.path.join(UI, 'fonts', FACES['dots']), px * z)
+    w = round(sum(f.getlength(c) for c in t) + ls * z * (len(t) - 1)); big = Image.new('L', (w + 4 * z, round(px * z * 1.4)), 0)
+    g = ImageDraw.Draw(big); g.fontmode = 'L'; x = 2.0 * z
+    for c in t: g.text((x, px * z * 1.1), c, font=f, fill=255, anchor='ls'); x += f.getlength(c) + ls * z
+    return big.resize((big.width // z, big.height // z), Image.BOX).point(lambda v: 255 if v > thr else 0)
+
+def turned_art(name, w, rot=0, colors=14, flat=None):
+    """Art drawn large with its lettering in it (svg.cjs ":keep"), turned `rot` degrees clockwise while it is still
+    large and only then reduced to hard pixels, so a stamp pressed at an angle keeps clean edges. Kept in public/pxi-ui/art."""
+    f = os.path.join(UI, 'art', f'{name}_{w}_r{rot}.png')
+    if not os.path.exists(f):
+        os.makedirs(os.path.dirname(f), exist_ok=True)
+        big = Image.open(os.path.join(OUT, 'svg_big', f'{name}_{w}.png')).convert('RGBA'); z = big.width / w
+        if rot: big = big.rotate(-rot, Image.BICUBIC, expand=True)
+        if flat is not None:    # see-through parts (a faint ring) are kept, as the solid colour they make on this ground
+            on = big.getchannel('A').point(lambda v: 255 if v > 30 else 0); g = Image.new('RGBA', big.size, flat + (255,)); g.alpha_composite(big); big = g; big.putalpha(on)
+        sm = big.resize((round(big.width / z), round(big.height / z)), Image.BOX); a = _mask1(sm.getchannel('A'), 120)
+        flt = Image.new('RGB', sm.size, flat or (0, 0, 0)); flt.paste(sm.convert('RGB'), (0, 0), sm.getchannel('A'))
+        rgb = flt.quantize(colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).convert('RGB')
         o = Image.new('RGBA', sm.size, (0, 0, 0, 0)); o.paste(rgb, (0, 0), a); o.save(f)
     return Image.open(f).convert('RGBA')
 
@@ -144,6 +170,17 @@ class Screen:
             a = a0 + (a1 - a0) * (y - y0) / max(1, y1 - y0 - 1)
             for x in range(max(0, x0), min(s.im.width, x1)):
                 if (B[y % 4][x % 4] + 0.5) / 16 < a / am: s.im.putpixel((x, y), mix(s.im.getpixel((x, y)), col, am))
+    def glow(s, art, x0, y0, col, reach=5, strength=0.5):
+        """The soft light round a stamp, the pixel way: a checker of tinted pixels that thins out away from its edge."""
+        from PIL import ImageFilter
+        B = ((0, 8, 2, 10), (12, 4, 14, 6), (3, 11, 1, 9), (15, 7, 13, 5)); pad = reach * 2
+        m = Image.new('L', (art.width + pad * 2, art.height + pad * 2), 0); m.paste(art.getchannel('A'), (pad, pad))
+        g = m.filter(ImageFilter.GaussianBlur(reach * 0.7)); gp, mp = g.load(), m.load()
+        for yy in range(m.height):
+            for xx in range(m.width):
+                x, y = x0 - pad + xx, y0 - pad + yy
+                if mp[xx, yy] or not (0 <= x < s.im.width and 0 <= y < s.im.height): continue
+                if (B[y % 4][x % 4] + 0.5) / 16 < gp[xx, yy] / 255 * 1.6: s.im.putpixel((x, y), mix(s.im.getpixel((x, y)), col, strength))
     def stamp(s, name, w, cx, cy):
         """One of the app's stamps (tools/pxi/stamps.sh), with its lettering set again on the pixel grid."""
         import json

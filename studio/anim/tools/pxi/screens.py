@@ -15,6 +15,7 @@ SHOTS = {
     'cover':    {'cam': 'mid', 'camPos': [2.45, 1.5, 0.75], 'camAt': [1.95, 1.45, 2.5], 'fov': 52, 'yaw': 165, 'face': 'smug', 'crossed': True, 'lookCam': 1},
     'view':     {'cam': 'wide', 'camPos': [2.9, 1.45, 0.25], 'camAt': [1.75, 1.0, 3.6], 'fov': 62, 'actor': False},
     'selfie':   {'cam': 'head', 'yaw': 168, 'face': 'charm', 'lookCam': 1},
+    'passport': {'cam': 'head', 'camPos': [2.0, 1.44, 1.2], 'camAt': [2.0, 1.42, 2.5], 'fov': 36, 'yaw': 180, 'face': 'smug', 'lookCam': 1},
     'avatar':   {'cam': 'head', 'camPos': [2.12, 1.45, 1.3], 'camAt': [2.0, 1.44, 2.5], 'fov': 24, 'yaw': 172, 'face': 'charm', 'lookCam': 1},
     'smug':     {'cam': 'mid', 'yaw': 160, 'face': 'smug', 'crossed': True, 'lookCam': 1},
     'bed':      {'cam': 'bed', 'clip': 'Sitting_Idle_Loop', 'at': [1.6, 3.02], 'seat': 0.47, 'yaw': 180, 'stance': 1, 'arms': 1, 'upright': 0.3, 'face': 'charm'},
@@ -269,7 +270,89 @@ def camera():
     tabbar(s, 1)
     return s.im
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'camera': camera}
+def passport():
+    """The Passport (app/(tabs)/passport.tsx, src/components/passport/NewPassportCard.tsx, PassportStampsLayer.tsx,
+    MemberStamp.tsx). Where the stamps sit, what they look like, the member stamp and the level all come out of the
+    app's own code (tools/pxi/passport.sh, with Nio's nights in tools/pxi/passport.json). On a 393 x 852 phone the
+    card is 381 x 491 points: 223 of stamps over the 268-point ID page."""
+    import json
+    from ui import turned_art, dotted
+    P = lambda v: round(v * K)
+    data = json.load(open(os.path.join(OUT, 'passport', 'passport.json')))
+    s = Screen(); s.status()
+    # the header: his handle with the account arrow, and settings
+    _, x1 = s.text(P(24), P(85), '@nio', 'display', pt(20), WHITE); s.icon('ArrowDown01Icon', 13, x1 + P(4) + 6, P(85) + 1, white(0.72))
+    s.icon('Settings01Icon', 20, P(349), P(85), WHITE)
+    # the numbers, and the level hexagon in its ring
+    x = P(24)
+    for label, n in (('FRIENDS', '23'), ('ALL POSTS', '12'), ('MY SHOTS', '148')):
+        _, a = s.text(x, P(147), label, 500, sysp(10), white(0.5), ls=1); _, b = s.text(x, P(163), n, 700, sysp(16), WHITE); x = max(a, b) + P(24)
+    lv = turned_art('level', 59, colors=6, flat=(0, 0, 0)); s.im.paste(lv, (P(345) - 29, P(157) - 29), lv)
+    s.text(P(345), P(157), data['level']['letter'], 800, sysp(13), WHITE, align='c')
+    # Edit profile
+    bg = hexc('121212'); s.box(P(6), P(203), P(387), P(243), bg, r=P(8)); s.ring(P(6), P(203), P(387), P(243), white(0.09, bg), r=P(8))
+    tw = text_w('Edit profile', 600, sysp(14)); gx = (W - (16 + P(8) + tw)) // 2
+    s.icon('PencilEdit02Icon', 16, gx + 8, P(223), WHITE); s.text(gx + 16 + P(8), P(223), 'Edit profile', 600, sysp(14), WHITE)
+
+    # ---- the card: the stamp page over the ID page
+    cx0, cy0, cw = P(6), P(259), P(381); top, idh = P(223), P(268); fold = cy0 + top; cy1 = fold + idh
+    card = Screen(hexc('0a0a0a'), cw, top + idh)
+    m = Image.open('/home/user/pxi-mobile-app/src/assets/images/passport/map-world.png').convert('RGBA')
+    dots = Image.new('RGB', m.size, hexc('0a0a0a')); dots.paste(m.convert('RGB'), (0, 0), m.getchannel('A'))
+    dots = dots.convert('L').point(lambda v: 255 if v >= 36 else 0)          # the map's dots, already about one pixel each: kept as they are
+    ox, oy = (m.width - cw) // 2, (m.height - top) // 2
+    card.im.paste(hexc('3e3e3e'), (0, 0), dots.crop((ox, oy, ox + cw, oy + top)))
+    # SEASON up the left edge and the passport number at the top right, in the app's dotted letters
+    mk = dotted('SEASON 2026', pt(24), P(2)).rotate(90, expand=True)
+    card.im.paste(white(0.6, hexc('0a0a0a')), (P(15) - mk.width // 2, P(145) - mk.height // 2), mk)
+    num = 'P7C2E9A4XI'; mk = dotted(num, pt(14), P(2))
+    card.im.paste(white(0.27, hexc('0a0a0a')), (P(317) - mk.width // 2, P(18) - mk.height // 2), mk)
+    # the stamps, each where the app's layout put it, turned as it was pressed, with its light
+    for st in data['stamps']:
+        w = P(st['width']); art = turned_art('stamp-' + st['id'], w, st['rotation'])
+        x0 = P(st['left'] + st['width'] / 2) - art.width // 2; y0 = P(st['top'] + st['height'] / 2) - art.height // 2
+        card.glow(art, x0, y0, hexc(st['color'])); card.im.paste(art, (x0, y0), art)
+    # the ID page
+    idb = hexc('070707'); card.box(0, top, cw, top + idh, idb)
+    c0 = top + P(18.5); L = P(12); R = cw - P(12); lab = white(0.45, idb)
+    card.text(L, c0 + P(8.5), 'PXI PASSPORT', 700, sysp(14), WHITE, ls=P(2))
+    card.box(L, c0 + P(21), L + P(188), c0 + P(21) + 2, WHITE); card.box(L + P(12), c0 + P(25), L + P(200), c0 + P(25) + 2, WHITE)
+    card.text(R, c0 + P(5.5), 'PXI PASSPORT NO.', 700, sysp(9), lab, ls=1, align='r')
+    card.text(R, c0 + P(20.5), num, 500, sysp(12), white(0.6, idb), ls=1, align='r')
+    mark = turned_art('mark', 18, colors=4); card.im.paste(mark, (L, c0 + P(38) - mark.height // 2), mark)
+    card.text(L + 18 + P(2), c0 + P(38), 'PASSPORT   PASS   PORT', 600, sysp(9), WHITE, ls=P(0.5))
+    card.text(R - P(126), c0 + P(36.5), 'LEVEL ' + data['level']['label'].upper(), 600, sysp(9), white(0.8, idb), ls=P(0.45))
+    g0 = c0 + P(51)                                    # the details grid: the photo and the column beside it
+    # the member stamp goes down first, so the page's print stays on top of the ink
+    ms = turned_art('member', 66, -10, colors=6); mx, my = cw - P(8) - 33 - ms.width // 2, top + P(225.5) - 33 - ms.height // 2
+    ink = Image.new('RGB', ms.size, mix(idb, PURPLE, 0.72)); card.im.paste(ink, (mx, my), ms.getchannel('A'))
+    card.photo(pic('passport', P(124), P(144)), L, g0, L + P(124), g0 + P(144), r=P(6))
+    ix = L + P(124) + P(10)
+    cz = turned_art('citizen', 70, colors=2); card.im.paste(WHITE, (R - cz.width, g0 - P(4)), cz.getchannel('A'))
+    card.text(ix, g0 + P(7.75), 'FULL NAME', 700, sysp(9), lab, ls=1)
+    nm = Screen(BLACK, text_w('NIO', 800, sysp(13), P(0.5)) + 2, 16); nm.text(1, 8, 'NIO', 800, sysp(13), WHITE, ls=P(0.5))     # the name glows
+    na = nm.im.convert('RGBA'); na.putalpha(nm.im.convert('L').point(lambda v: 255 if v else 0))
+    card.glow(na, ix - 1, g0 + P(20.85) - 8, WHITE, reach=4, strength=0.22); card.text(ix, g0 + P(20.85), 'NIO', 800, sysp(13), WHITE, ls=P(0.5))
+    card.text(ix, g0 + P(38.75), 'USERNAME', 700, sysp(9), lab, ls=1); card.text(ix, g0 + P(51.85), 'nio', 600, sysp(13), WHITE)
+    for dx, label, val, wt, a in ((0, 'CITY', 'BOS', 500, 0.85), (P(58), 'AGE', '21', 500, 0.85), (P(98), 'INSTA', '@nio', 600, 0.65)):
+        card.text(ix + dx, g0 + P(79.25), label, 700, sysp(9), lab, ls=1); card.text(ix + dx, g0 + P(92.35), val, wt, sysp(13), white(a, idb))
+    card.text(ix, g0 + P(109.35), 'BIO', 700, sysp(9), lab, ls=1)
+    card.text(ix, g0 + P(121.95), 'New in town. Built PXI.', 400, sysp(11.5), white(0.85, idb))
+    # the rule and the two machine lines
+    card.box(0, top + P(227), cw, top + P(227) + 2, white(0.4, idb))
+    def line(parts): j = '<<'.join(parts); return j + '<' * max(0, 55 - len(j))
+    for i, parts in enumerate((('PXI', 'NIO', 'NIO'), ('ISSUED01AUG26', num, 'PXISPACE'))):
+        card.text(P(6), top + P(242 + 14 * i), line(parts), 400, sysp(10), white(0.32, idb), ls=1)
+    card.box(cw - P(6), top + P(232), cw, top + idh, idb)                    # the lines are clipped at the page's inner edge
+    # the fold: the binding, with its stitching
+    card.shade(0, top - P(11.5), cw, top - P(1.5), 0.85, 0.85, (10, 10, 10)); card.box(0, top - P(1.5), cw, top + P(1.5) + 1, hexc('050505'))
+    for x in range(0, cw, P(10)): card.box(x, top - 1, x + P(4), top + 1, white(0.4, hexc('050505')))
+    mask = Image.new('L', card.im.size, 0); ImageDraw.Draw(mask).rounded_rectangle([0, 0, cw - 1, top + idh - 1], P(8), fill=255)
+    s.im.paste(card.im, (cx0, cy0), mask)
+    tabbar(s, -1)
+    return s.im
+
+SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'camera': camera, 'passport': passport}
 if __name__ == '__main__':
     name = sys.argv[1]
     for n in (SCREENS if name == 'all' else [name]):
