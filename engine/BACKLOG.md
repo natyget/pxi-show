@@ -21,8 +21,21 @@ it is done. Do these in a normal thread, one item at a time. None of it needs th
 | 14 | **Cover render.** `render.sh cover <Comp> <frame>` at vertical and horizontal sizes | Sonnet | Both covers come out of one command |
 | 15 | **Expression sheet.** Named expressions for each character in the rig (lit up, smug, trolling, crushed, bored, caught, sincere, dead-eyed, and more), pushed big and asymmetrical, with the lids always over the eye white; shown on the rig sheet | Opus | The sheet shows twelve clearly different faces per character and no lid behind an eye |
 | 16 | **Acting kit.** Remove every idle bob from the rigs. Add pose-to-pose helpers: a snap move with squash and settle, anticipation, a held pose with blinks, `face(name, atFrame)` that changes the face a few frames before a line | Opus | A two-line exchange built with the kit shows no looping motion and a face change before each line |
-| 17 | **Glitch button and Kevin.** A `GlitchButton` component with the three declared breaks and its sound, and a board check that the Kevin is in the first wide shot | Opus | Any episode ends on the button with one line of code |
+| 17 | **Glitch button and Kevin (on hold: unconfirmed with the founder).** A `GlitchButton` component with the three declared breaks and its sound, and a board check that the Kevin is in the first wide shot | Opus | Any episode ends on the button with one line of code |
 | 18 | **Dead-shot check.** `engine/tools/dead_check.sh <video>`: flag any stretch over 1.2 s where almost nothing in the frame changes, and any gap between lines over 1 s that is not a marked hold | Sonnet | It flags a test clip with a two-second static wall |
 
 Note, Nov 11: the look is being redesigned and no rig is chosen. Items 1, 3, 12, 13, 15, 16 and 17 depend on the
 rig and wait for that choice. The others can start now.
+
+Built Nov 11 (proof in each tool's test; nothing here changes how an episode looks):
+- 2 `engine/tools/av_check.sh`: fails a clip with 1 s of black. 18 `engine/tools/dead_check.sh`: flags a 2 s static wall.
+- 4 `src/lib/cut.ts` and `render.sh draft|final --cut short|long`: PilotOnePhoto renders a 35 s short cut and a
+  44 s long cut from one shot list. A shot marked `'long'` or `'short'` is in that cut only.
+- 5, 9, 11 `engine/setup.sh all|render|voice`, `engine/tools/voice.sh <jobs.json>` (locked settings in
+  `voice_lock.json`, a sidecar per line), and `voice_check.py` inside `render.sh check`. A test Nio line came out at
+  -16.0 LUFS. Every line made before the wrapper has no sidecar, so older cuts now fail `check` until re-voiced.
+- 6, 14 `render.sh loop` (crossfaded, last-to-first step as small as a normal frame step) and `render.sh cover`
+  (vertical, wide, and the Instagram grid crop).
+- 7 "Pulling the numbers (Metricool)" in `engine/stages/L-learn.md`, tested on real posts.
+- 10 `engine/tools/text_check.py <Comp>`: reads the text the render actually draws. Open question: spoken
+  subtitles held only while the line plays fail the reading-time floor; the pilot fails it on all 11 lines.

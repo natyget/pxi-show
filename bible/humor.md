@@ -11,38 +11,31 @@ What the founder has thrown out, so it is never written again:
   on gumball" (Nov 11, on the pilot where Nio explained his plan to the camera and a stranger turned out to be
   "the actual guy").
 
-## The six rules
+## The engine
 
-1. **Everyone has a different logic, and nobody questions it.** Nio, Maya, the best friend on the phone and
-   the man in the corner each run on their own rules. Nobody asks why.
-2. **Mundane, then absurd, then one real feeling, then mundane again.** Start with a tiny real problem. Push
-   it until it is insane. Hit one true feeling for two seconds. End as if nothing happened. No lesson.
-3. **Treat the absurd as normal and the normal as absurd.** A man under the bean bag after a party is normal.
-   Nio saying "good morning" is suspicious.
-4. **Meta one scene, oblivious the next.** Nio can look at us and say "this can't be real", then fail to
-   notice that a girl is flirting with him. That switch is who he is.
-5. **A picture is a joke.** A face, a background detail, a man in the corner, a drink left on the couch. The
-   punchline is very often not a line.
-6. **Dark and cute live in the same episode.** Sweet, then devastating for ten seconds, then funny again.
+How the show we study is written is in `bible/gumball-style.md`: where stories come from, how one is built,
+what makes the pair work, how they talk, pacing, trends and sound. That page and its ten checks are the
+engine. In short:
 
-## The Kevin (the mechanic the founder asked us to copy)
+1. **Someone's ego causes it.** Nio's, Maya's or a friend's. A confident wrong theory turns a small itch into
+   a project.
+2. **Mundane, then absurd, then one real second, then out.** No lesson.
+3. **Everyone runs on their own logic and nobody remarks on it.** The absurd is treated as normal.
+4. **A picture is a joke.** The best joke in the episode has no words.
+5. **The score plays his delusion straight, then stops dead.**
+6. **Dark and sweet live in the same episode.**
 
-A normal room and a normal, slightly boring problem. Somebody is sitting in the corner chair. He was there the
-whole time and nobody explained him. Asked, he says something like "I'm just here to watch." The scene carries
-on as if he were furniture. He gets involved. Then the picture glitches and it ends.
+## From the pasted brief: the Kevin and the glitch
 
-Why it works, and what every Kevin must keep:
+**Unconfirmed.** This came from the brief the founder pasted on Nov 11, which the founder has since said to
+scrap except for what was told in the founder's own words. The founder is deciding whether to keep it. Until
+then it is allowed and never required, and no check fails a script for lacking it.
 
-1. The setup is normal. The intruder is insane and is **never explained**.
-2. Everyone treats it as normal. Only the audience, and sometimes Nio, does not.
-3. The lines are deadpan. Nobody overreacts.
-4. One visual rule breaks at the end: the glitch.
-5. It ends before it explains itself.
-
-A Kevin can be a person, an object or an event. There is **one** per episode, it is written in the script
-header and in the intent ledger (`bible/anti-slop.md`), and it is staged on purpose. That is the difference
-between a Kevin and the random nonsense the founder rejected: a Kevin is one calm, committed, deliberate wrong
-thing that the whole episode leans on. A pile of odd props and a line from nowhere is still slop.
+The Kevin: a normal room, and somebody in the corner who was there the whole time, never explained, treated
+by everyone as furniture. The glitch: the picture breaks in the last three seconds and the episode ends
+before it explains itself. If a script uses either, it is one deliberate, calm, committed wrong thing,
+declared in the intent ledger (`bible/anti-slop.md`), and staged as `bible/craft-library.md` says. A pile of
+odd props and a line from nowhere is still slop.
 
 ## Where the comedy comes from, most to least
 
@@ -67,9 +60,7 @@ thing that the whole episode leans on. A pile of odd props and a line from nowhe
 - **The troll.** Nio asks the obvious question with a straight face and makes someone explain themselves.
   We see him enjoying it before they catch on. He trolls people who can take it, and he trolls up or sideways,
   never down.
-- **The dismissal.** A sensitive question, and Nio is already talking about something better. Never mark it
-  in the script and never let anyone notice it.
-- **The medium breaks.** When reality cracks, the picture does: the glitch, a change of style in a dream.
+- **The medium breaks.** When reality cracks, the picture does: the drawing changes style for a beat.
 
 ## The pause
 
@@ -82,18 +73,16 @@ Both are true, and this is the line between them:
 - One or two an episode. Everything else moves.
 - A shot of a wall, a room or a person waiting is not a pause. It is dead air, and it is cut.
 
-## Tone over a week
+## Tone
 
-About half funny or absurd, a fifth wholesome, and the rest split between eerie and sad. Never three sad in a
-row. A devastating one is followed by a funny or a sweet one. Melancholy lives in the walks home and the
-minutes alone after a long night.
+Mostly funny. Melancholy lives in the walks home and the minutes alone after a long night. Never three sad
+ones in a row. (The exact weekly split in the pasted brief is unconfirmed.)
 
 ## Never
 
 - Explain the joke. Have anyone say it was random, crazy, weird or awkward.
 - A moral, a lesson, a hug that fixes it.
-- A narrator, or Nio explaining his plan to the camera.
-- Nio explaining himself: "I'm not a relationship guy", "I don't want to talk about it".
+- A narrator, or Nio stating the problem flatly to the camera. (A boast or a theory aimed at a person is him.)
 - Nio shouting in public. He is animated, not loud; the screams, serenades and dances are for when he is alone.
 - Maya doing a trend bit.
 - Anything sexual. The show is for 16 and up.

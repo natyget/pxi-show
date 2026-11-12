@@ -18,7 +18,6 @@ WORDS_PER_SECOND = 2.3
 SECONDS_PER_ACTION = 2.5
 MAX_WORDS = 130
 MAX_MEDIAN_LINE = 8
-KEY_LINES = ["this can't be real", "yeah, what's up", "i'm just tired", "they left"]
 TOLERANCE = 0.15
 
 # Phrases the founder banned, plus the tells in .claude/skills/writers-room/tells.md that can be matched by text.
@@ -26,8 +25,6 @@ BANNED = [
     (r"\bhold up\b", "founder: avoid 'hold up' out loud"),
     (r"\ba?ight\b", "founder: never 'ight' or 'aight'"),
     (r"\bna+h{2,}\b|\bnaa+h\b", "founder: no drawn-out 'nah'"),
-    (r"\bnot a relationship guy\b", "Nio never explains himself; he pivots"),
-    (r"\bdon'?t want to talk about it\b", "Nio never explains himself; he pivots"),
     (r"\bso (random|crazy|weird)\b", "someone acknowledges the joke"),
     (r"\bcheaper than\b", "never compare fees"),
     (r"\bit'?s a short one\b", "founder's example of a forced non sequitur"),
@@ -51,7 +48,8 @@ NOT_X_BUT_Y = re.compile(r"\b(it'?s|that'?s|this is) not\b[^.?!]*,\s*(it'?s|that
 LIST_OF_THREE = re.compile(r"\b[\w']+(?: [\w']+)?, [\w']+(?: [\w']+)?,? (?:and|or) [\w']+", re.I)
 LINE = re.compile(r"^\s*(?:[-*]\s+)?\**([A-Z][A-Z .'-]{1,24}?)\**\s*(?:\*?\([^)]*\)\*?)?\s*:\s*(.+)$")
 NOT_SPEAKERS = {"INSERT", "COLD OPEN", "BUTTON", "MONTAGE", "CUT", "STAMP", "TRUE THING", "PXI ENGINE", "SETS",
-                "HOOK", "SETUP", "ABSURD TURN", "ESCALATION", "EMOTIONAL HIT", "GLITCH BUTTON", "INT", "EXT"}
+                "HOOK", "SETUP", "ABSURD TURN", "ESCALATION", "EMOTIONAL HIT", "GLITCH BUTTON", "INT", "EXT",
+                "ORDINARY MOMENT", "ITCH", "THEORY", "TILT", "SET PIECE", "REAL SECOND", "OUT"}
 NARRATORS = {"NARRATOR", "VO", "V.O.", "VOICEOVER", "VOICE OVER"}
 
 
@@ -119,10 +117,6 @@ def main():
         if w.upper() in NARRATORS:
             fails.append(f"{w} speaks (no narrator, ever)")
             break
-    joined = " ".join(s.lower().replace("\u2019", "'") for _, s in lines)
-    for k in KEY_LINES:
-        if joined.count(k) > 1:
-            fails.append(f'key line "{k}" used {joined.count(k)} times (at most once an episode)')
     faces = len(re.findall(r"\[[^\]]*\b(Nio|NIO)\b[^\]]*\]", body))
     if "[" in body and faces < 3:
         warns.append(f"only {faces} bracketed cues mention Nio; write his face changes (at least three)")

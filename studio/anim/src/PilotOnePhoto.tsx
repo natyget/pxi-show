@@ -7,6 +7,7 @@ import React from 'react';
 import { AbsoluteFill, Sequence, Audio, staticFile, useCurrentFrame } from 'remotion';
 import { PixelShot, Cam, Fonts, Sub } from './lib/Pixel';
 import { frame } from './lib/frame';
+import { buildCut, Cut, CutProps, Shot } from './lib/cut';
 import { Exterior, EXTRAS, SceneBg } from './world/Exterior';
 import { Character, NIO, MAYA, Look, Pose, headPos } from './world/Character';
 import { Phone } from './world/Phone';
@@ -310,16 +311,18 @@ const END = () => <AbsoluteFill style={{ background: '#0b0a0d' }} />;
 
 // ---------------------------------------------------------------- cut + sound
 const L = (k: string, extra: number, d: number) => Math.round((has(k) ? A.lines[k].dur + extra : d) * 24);
-const SHOTS: [React.FC, number][] = [
-  [SH1, L('p_m1', 1.6, 2.6)], [SH2, 38], [SH3, 30], [SH4, L('p_m2', 0.7, 1.5)], [SH5, L('p_n1', 0.75, 1.4)],
-  [SH6, L('p_m3', 1.4, 2.8)], [SH7, L('p_n2', 0.7, 2.2)], [SH8, 30], [SH9, 34], [SH10, 22], [SH11, 22], [SH12, 50],
-  [SH13, L('p_n3', 0.9, 1.8)], [SH14, 62], [SH15, 64], [SH16, 30], [SH17, 46], [SH18, 40], [SH19, 66], [SH20, 34],
+// The short cut (about 30 s) drops the beats a complete joke can lose: the nod, the lamp, two bad photos, the
+// aftermath and the album filling. Everything else is shared, so both cuts come from this one list.
+const SHOTS: Shot[] = [
+  [SH1, L('p_m1', 1.6, 2.6)], [SH2, 38, 'long'], [SH3, 30], [SH4, L('p_m2', 0.7, 1.5)], [SH5, L('p_n1', 0.75, 1.4)],
+  [SH6, L('p_m3', 1.4, 2.8)], [SH7, L('p_n2', 0.7, 2.2)], [SH8, 30, 'long'], [SH9, 34], [SH10, 22, 'long'], [SH11, 22, 'long'], [SH12, 50],
+  [SH13, L('p_n3', 0.9, 1.8)], [SH14, 62], [SH15, 64], [SH16, 30], [SH17, 46, 'long'], [SH18, 40], [SH19, 66, 'long'], [SH20, 34],
   [SH21, L('p_m5', 0.8, 1.6)], [SH22, 48], [SH23, L('p_n6', 1.0, 2.0)], [END, 20],
 ];
-const START = SHOTS.reduce<number[]>((a, [, d], i) => (a.push(i ? a[i - 1] + SHOTS[i - 1][1] : 0), a), []);
-export const PILOT1_LEN = START[START.length - 1] + SHOTS[SHOTS.length - 1][1];
-export const PILOT1_STARTS = START;
-const at = (shot: number, s: number) => START[shot] + Math.round(s * 24);
+const LONG = buildCut(SHOTS, 'long');
+export const PILOT1_LEN = LONG.len;
+export const PILOT1_STARTS = LONG.shots.map((s) => s.from);
+export const pilot1Len = (cut: Cut = 'long') => buildCut(SHOTS, cut).len;
 
 const VO: [string, number, number][] = [
   ['p_m1', 0, 0.25], ['p_m2', 3, 0.3], ['p_n1', 4, 0.25], ['p_m3', 5, 0.9], ['p_n2', 6, 0.2], ['p_n3', 12, 0.3],
@@ -330,22 +333,26 @@ const SFX: [string, number, number, number][] = [
   ['buzz', 17, 0.05, 0.9], ['shutter', 18, 0.3, 0.4], ['shutter', 18, 0.7, 0.4], ['shutter', 18, 1.1, 0.4], ['sting', 22, 1.2, 0.8],
 ];
 
-export const PilotOnePhoto: React.FC = () => (
-  <AbsoluteFill style={{ background: '#0b0a0d' }}>
-    <Fonts />
-    {SHOTS.map(([C, d], i) => <Sequence key={i} from={START[i]} durationInFrames={d}><C /></Sequence>)}
-    {/* the market murmurs... until "Everybody quiet." Then nothing but the roof. */}
-    <Sequence from={0} durationInFrames={at(12, 1.0)}><Audio src={staticFile(A.sfx.market)} volume={0.5} /></Sequence>
-    <Sequence from={at(15, 1.2)} durationInFrames={START[23] - at(15, 1.2)}><Audio src={staticFile(A.sfx.market)} volume={0.35} /></Sequence>
-    {VO.map(([k, s, o]) => has(k) ? <Sequence key={k} from={at(s, o)}><Audio src={staticFile(A.lines[k].file)} /></Sequence> : null)}
-    {SFX.map(([k, s, o, v], i) => A.sfx[k] ? <Sequence key={`s${i}`} from={at(s, o)}><Audio src={staticFile(A.sfx[k])} volume={v} /></Sequence> : null)}
-    <Sequence from={0} durationInFrames={START[23]}>
-      <div style={{ position: 'absolute', top: 96, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
-        <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 52, color: '#efe6d2', background: 'rgba(21,18,22,0.78)', padding: '6px 26px 10px', borderRadius: 40 }}>PILOT</div>
-      </div>
-    </Sequence>
-  </AbsoluteFill>
-);
+export const PilotOnePhoto: React.FC<CutProps> = ({ cut = 'long' }) => {
+  const c = buildCut(SHOTS, cut);
+  const cue = (k: string, f: number | null, key: string, v = 1) => (f === null ? null : <Sequence key={key} from={f}><Audio src={staticFile(k)} volume={v} /></Sequence>);
+  return (
+    <AbsoluteFill style={{ background: '#0b0a0d' }}>
+      <Fonts />
+      {c.shots.map(({ C, from, d, i }) => <Sequence key={i} from={from} durationInFrames={d}><C /></Sequence>)}
+      {/* the market murmurs... until "Everybody quiet." Then nothing but the roof. */}
+      <Sequence from={0} durationInFrames={c.at(12, 1.0)!}><Audio src={staticFile(A.sfx.market)} volume={0.5} /></Sequence>
+      <Sequence from={c.at(15, 1.2)!} durationInFrames={c.edge(23) - c.at(15, 1.2)!}><Audio src={staticFile(A.sfx.market)} volume={0.35} /></Sequence>
+      {VO.map(([k, s, o]) => (has(k) ? cue(A.lines[k].file, c.at(s, o), k) : null))}
+      {SFX.map(([k, s, o, v], i) => (A.sfx[k] ? cue(A.sfx[k], c.at(s, o), `s${i}`, v) : null))}
+      <Sequence from={0} durationInFrames={c.edge(23)}>
+        <div style={{ position: 'absolute', top: 96, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
+          <div style={{ fontFamily: 'Pixelify', fontWeight: 700, fontSize: 52, color: '#efe6d2', background: 'rgba(21,18,22,0.78)', padding: '6px 26px 10px', borderRadius: 40 }}>PILOT</div>
+        </div>
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
 
 /** The in-show photos (rendered first into public/photos/p_*.png). */
 export const PilotPhoto: React.FC<{ which: string }> = ({ which }) => {

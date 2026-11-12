@@ -92,6 +92,22 @@ earlier threads.
   the cheaper models named on the stage cards.
 ```
 
+## Environment setup script
+
+Paste this as the cloud environment's setup script. It installs everything a scheduled run needs to reach a draft
+render (ffmpeg, fontTools, `npm ci`) and the pinned voice stack, and skips what is already there.
+
+```bash
+#!/bin/bash
+set -e
+cd "$(git rev-parse --show-toplevel 2>/dev/null || echo /home/user/pxi-show)"
+bash engine/setup.sh all
+```
+
+Voice lines are made only with `bash engine/tools/voice.sh <jobs.json>` (see `engine/tools/voice_lock.json`).
+Use `bash engine/setup.sh render` for a run that makes no voice lines. The venv is `~/.pxi-voice` and the model
+cache `~/.cache/pxi-hf`; both are outside the repo.
+
 ## Why this is cheap
 
 - A run loads `CLAUDE.md`, `STATE.md`, one stage card and the few files it lists. That is a few thousand words,

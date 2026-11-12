@@ -8,53 +8,56 @@ APPROVED.
 Format:
 
 ```
-- [CANDIDATE] <the sentence: Nio wants X, but Y weird thing happens, and he responds by Z>
-  Engine: … · Want: … · The Kevin: … · Feeling: … · PXI: ENGINE | MOMENT | NONE, and what · Tone: … ·
-  Send: … · From: R<n> or original
+- [CANDIDATE] **Title.** <one ordinary thing: Nio wants X, but Y happens, and he responds by Z>
+  Ego: whose · Kind: from `bible/gumball-style.md` section 2 · PXI: ENGINE | MOMENT | NONE, and what ·
+  From: R<n>, the slate in `bible/world.md`, or original
 ```
 
 ## Premises
 
-- [CANDIDATE] Nio wants to get his lightweight friend home from a party, but he has no contacts in and books
-  the wrong ride, and he responds by begging a car full of calm strangers to look after him.
-  Engine: the friend plot · Want: the friend in a car, then home · The Kevin: the passengers already in the
-  back, speaking another language, who treat a man being loaded in like luggage as normal · Feeling: the walk
-  home alone, and the worst-typed "home safe" at 5 a.m. · PXI: MOMENT, the party's shared album next morning,
-  the friend upright and dignified in every photo; or NONE · Tone: funny, then quiet · Send: to the friend who
-  cannot hold a drink · From: R1
-- [CANDIDATE] Nio wants a quiet evening, but the neighbour down the hall is in love with a girl from the train
-  and Nio cannot say no, and he responds by helping a grown man get ready for a wedding nobody else knows about.
-  Engine: can't-say-no · Want: to not be part of this · The Kevin: the neighbour's total certainty, which
-  everyone in the building treats as reasonable · Feeling: a man crying in a good suit, and Nio wondering how
-  he got here · PXI: MOMENT, Nio recognises her from a shared album from college; or NONE · Tone: funny, fond ·
-  Send: to the friend who agrees to things · From: R2
-- [CANDIDATE] Nio wants his girl to stay over again, but a friend walks in just after she leaves and says the
-  room is messy, and he responds by never mentioning her again.
-  Engine: the dismissal · Want: nothing; he is fine · The Kevin: one thing of hers left in a spotless
-  apartment that nobody moves for the rest of the series · Feeling: he cleans a clean room at 2 a.m. · PXI:
-  MOMENT, a look-back surfaces a photo of the two of them and he swipes to the next thing · Tone: sad under
-  funny · Send: to the friend who says "I'm good" · From: founder note, Nov 11
-- [CANDIDATE] Nio says there is nothing to do tonight, but everything in the city is happening directly behind
-  him, and he responds by complaining to his best friend on the phone for the whole walk.
-  Engine: nothing to do (`bible/gumball-lens.md` 4) · Want: something to do · The Kevin: a parade, a wedding
-  and a fire-eater pass behind him, in that order, and nobody on the street looks up either · Feeling: he gets
-  home, opens the map, and it was all there · PXI: ENGINE, the Discover map, opened last · Tone: funny ·
-  Send: to the friend who says the city is dead · From: original
-- [CANDIDATE] Nio comes home sure he was the life of the party, but he is not in a single photo because he was
-  the one dancing, and he responds with "this my app, yo."
-  Engine: the troll turned on himself · Want: one photo that proves it · The Kevin: a man at the party who took
-  four hundred photos, all of the ceiling · Feeling: the drop when the chat fills with photos and none are his ·
-  PXI: ENGINE, the shared album and "You might be in a photo" · Tone: funny · Send: to the friend who is
-  never in the photos · From: the founder's example, Nov 11
-- [CANDIDATE] Nio cannot fly home for Thanksgiving, so he puts a dinner on the map for everyone else who can't,
-  but every guest brings the same thing, and he responds by serving nine pies as courses.
-  Engine: the made-up holiday (`bible/gumball-lens.md` 17) · Want: a full table · The Kevin: a guest nobody
-  invited who carves · Feeling: the photo he sends home · PXI: ENGINE, the event, the invite link and the
-  thread where strangers decide who brings what · Tone: wholesome · Send: to anyone not going home ·
-  From: original
+The slate from `bible/world.md` (Nov 12). Names of people are working names. The fuller note on each is there.
+
+- [CANDIDATE] **No Pics.** The morning after the best night of his life, Nio is in no photos.
+  Ego: Nio's vanity · Kind: small thing · PXI: ENGINE, "you're in 38 photos" · From: the founder's example,
+  Nov 11. This is the pilot, owned by the pilot thread.
+- [CANDIDATE] **Tiger.** Nio has to get Sami home, cannot see without his contacts, and books the wrong ride.
+  Ego: Sami's dignity · Kind: quest · PXI: MOMENT, next morning's album, Sami upright in every photo · From: R1
+- [CANDIDATE] **The Zip.** Benji returns Nio's bag from across campus, zipped wrong.
+  Ego: Nio's itch, and him choosing not to scratch it · Kind: small habit · PXI: NONE. The quiet one · From: R3
+- [CANDIDATE] **A Break.** Maya explains that two friends are "on a break". Nio's honest questions spread
+  through the group until nobody can say what the rules are, including the couple.
+  Ego: nobody believes he is really asking · Kind: small thing balloons · PXI: MOMENT, the group album where
+  two people stop appearing together · From: the slate
+- [CANDIDATE] **The Hands.** Nio tells Theo the moon is closer than they say. Theo makes slides.
+  Ego: Theo cannot let it go, Nio cannot stop · Kind: the leads fall out · PXI: ENGINE, Theo puts "the moon
+  talk" on the map as an event and sixty strangers come · From: T1 and the slate
+- [CANDIDATE] **Good Game.** Nio finally meets the one player who beats him, at that player's eleventh
+  birthday party.
+  Ego: Nio's, quietly set aside · Kind: side character · PXI: ENGINE, the invite came from the kid's mum ·
+  From: the slate
+- [CANDIDATE] **The Suit.** Farid is in love with someone he saw on a train and needs Nio's help getting ready.
+  Ego: Farid's certainty · Kind: a friend's pride drives it · PXI: MOMENT or NONE · From: R2
+- [CANDIDATE] **Batch One.** Nio takes up fermenting. By evening the building treats his kitchen as a bar.
+  Ego: whole-chest commitment · Kind: balloons · PXI: ENGINE, a tasting on the map · From: the slate. For a
+  16 and up audience this may need to be ginger beer or hot sauce; the founder decides.
+- [CANDIDATE] **Nothing On.** Nio tells Dev the city is dead while a parade, a wedding and a fire-eater pass
+  behind him.
+  Ego: he has decided, so he will not look · Kind: small thing · PXI: ENGINE, the map, opened last · From:
+  the slate
+- [CANDIDATE] **Potential.** Dr. Okafor wants a word. Nio spends a day escaping one conversation.
+  Ego: his dread of a lecture against her patience · Kind: authority · PXI: MOMENT, he goes to every event on
+  the map to be somewhere she is not, and she is at the last one · From: the slate
+- [CANDIDATE] **Open Goal.** A girl is plainly into Nio. He thinks she wants photography tips. Maya watches.
+  Ego: none; this is his blind spot · Kind: romance (rare) · PXI: MOMENT, she makes a shared album for two
+  and he adds Theo · From: the slate
+- [CANDIDATE] **Upright.** The night of "Tiger", told from Sami's side, in which he was magnificent.
+  Ego: Sami's · Kind: side character · PXI: ENGINE, the album disagrees with him photo by photo · From: R1
+- [CANDIDATE] **Nine Pies.** Nio cannot fly home for Thanksgiving, so he puts a dinner on the map for everyone
+  else who can't, and every guest brings the same thing.
+  Ego: he said he could host · Kind: holiday · PXI: ENGINE, the event, the invite link and the thread where
+  strangers decide who brings what · From: original
 - [RETIRED, Nov 11] The earlier candidates (no photo by Sunday for his mum; his birthday on the map; going to
-  everything on the map) were built on Nio stating a problem and a plan. Their situations may come back,
-  rewritten through `bible/writers-room.md`.
+  everything on the map) were built on Nio stating a problem and a plan.
 - [REJECTED by the founder, Nov 10] "Not Me": Nio is mid-bite in a stranger family's photo and tries to get it
   deleted without asking. Why it failed is in `bible/story.md`, section 10.
 - [REJECTED by the founder, Nov 11] "No Evidence": Nio tells the camera he is in no photos, and a stranger

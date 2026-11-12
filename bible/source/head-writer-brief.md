@@ -4,6 +4,9 @@ Source text from the founder's message of 2026-11-11, word for word (the founder
 with "[the founder]"). Kept for the record. **Runs do not read this folder.** What a run needs from it has been
 written into the bible and the stage cards.
 
+**Superseded.** The founder said later on Nov 11 that this text was copied from another AI's description and
+"wasnt good", and that only what the founder told in the founder's own words is kept.
+
 ---
 
 YOU ARE THE HEAD WRITER FOR NIO WORLD

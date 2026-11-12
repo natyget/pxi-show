@@ -19,7 +19,7 @@ Release on the day, or the evening before when the day itself is spent offline.
 | New Year's Eve | Thu 31 Dec 2026 | Map to choose a party, shared album at midnight, Night Wrap on the 1st | Nio plans midnight to the second |
 | Valentine's and Galentine's | 13 to 14 Feb 2027 | Discover date ideas, a two-person album | Nio is certain it is not a date |
 | St Patrick's Day | Wed 17 Mar 2027 | Map of what is on, group plan, stamps | |
-| April Fools | Thu 1 Apr 2027 | A DREAM slot: the uncanny one, on purpose | |
+| April Fools | Thu 1 Apr 2027 | A FILLER slot: the one prank Nio is proud of | |
 | Spring break and festivals | Mar to Apr | Camera into a live album, scrapbook after | |
 | Graduation season | May to Jun | Event, invites, album from every family's phones | |
 | Memorial Day weekend | 29 to 31 May 2027 | Map for the long weekend | |

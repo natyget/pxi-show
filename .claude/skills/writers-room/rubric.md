@@ -7,8 +7,8 @@
 5. **Voice**: cover the names; can you tell Nio from Maya from anyone else?
 6. **Conversation**: is there a real exchange where two people want different things and the status moves?
 7. **Faces and pictures**: do faces change on the page, and is at least one joke only a picture?
-8. **The Kevin**: one strange thing, there the whole time, never explained, taken calmly.
-9. **Ending**: one real feeling for two seconds, then the glitch on the weirdest image. No lesson.
+8. **The cause**: someone's ego and a confident wrong theory drive it; nothing comes from outside.
+9. **Ending**: one real second, then out within three seconds of the peak. No lesson.
 10. **Runtime fit**: within ±15% of target; lines fit their shots.
 11. **Tells**: AI tells found (5 = none).
 

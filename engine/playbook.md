@@ -16,7 +16,8 @@ bible or the style lock.
 - Nio's tag after the button, different every time. Default subject: the map of everything on near you.
 
 ## Captions and covers
-- The joke first, in one plain line. Then one line saying PXI is a free app and what it does.
+- The joke first, in one plain line. Then the search line from `engine/captions.md`: PXI, free, and one of
+  the two needs in the words people type (photos in one shared album; events near you).
 - The cover is a face in a take, never a title card.
 
 ## Posting
