@@ -5,7 +5,7 @@ in the slot named here, and every format goes through the accident check before 
 
 | Format | What it is | Length | Uses | Call to action | Cost |
 |---|---|---|---|---|---|
-| EPISODE | One story in the six-beat shape, funny without PXI, with PXI where it fits. Built as a long cut with a short cut marked inside it | Long cut up to 3 min; short cut 30 to 50 s | The full line, stages 1 to 6 | Tag at the end, plus caption | High |
+| EPISODE | One story in the build in `bible/story.md`, funny without PXI, with PXI where it fits. Built as a long cut with a short cut marked inside it | Long cut up to 3 min; short cut 30 to 50 s | The full line, stages 1 to 6 | Tag at the end, plus caption | High |
 | HOLIDAY | An episode with a date, modelling how to use PXI that day (`engine/calendar.md`) | Same as an episode | The full line, with the calendar's dates | Tag that asks the viewer to do the same today | High |
 | FOURTH WALL | Nio talks to the viewer as himself: cocky, quick, funny, a little trolling. Never a pitch. The discovery map is the default subject | 10 to 25 s | Existing set, one or two shots, one phone insert | The piece is the ask, kept fun and cute | Low |
 | DREAM | Uncanny on purpose. No plot or PXI needed in the picture. A different look is allowed and declared in the ledger | 10 to 30 s | Existing rigs; one new idea | Caption only | Medium |
@@ -20,7 +20,7 @@ in the slot named here, and every format goes through the accident check before 
 - **No intro, no outro, no logo sting** unless the piece calls for one. It starts on motion and sound.
 - **The first second** is a picture that asks a question: something moving, a face reacting, a phone lighting up.
   Never a title, never a greeting, never anything that looks like an ad.
-- **It ends on the glitch button.** The tag comes after it and is short. It never asks for likes or follows in a
+- **It ends on the joke, fast.** The tag comes after it and is short. It never asks for likes or follows in a
   generic way. Asking viewers to follow for the next episode is allowed when there is a next episode.
 - **The call to action is Nio's**, in his voice, and it changes every time. The standing idea: get PXI so you can
   see what is on near you and come to his things. The current best versions are in `engine/playbook.md`.

@@ -18,38 +18,55 @@ becomes his ex, the nights out and the walks home, with a world around him that 
 - The founder's line for what the series is, which the tag and the pinned reel carry: "nio making a platform
   he thinks would have solved his problems and will in future and inviting us to use it."
 
-## 2. The beat sheet, every time, even for 15 seconds
+## 2. How an episode is built
 
-Times are for a short cut of about 35 seconds. Scale them for a longer cut and keep the order.
+The shape is in `bible/gumball-style.md`, section 3, taken from how the show we study builds a story. For a
+short cut of 35 to 60 seconds it is one of everything:
 
-| Beat | When | What happens |
-|---|---|---|
-| **Hook** | 0 to 1.5 s | One picture or line that is off. Maya says something insane. A man is already in the room. |
-| **Setup** | 2 to 8 s | The tiny, real problem, and a real reason to leave the apartment. It starts at home. We learn what he wants from people talking, never from a speech. |
-| **Absurd turn** | 8 to 18 s | The normal problem gets weird. The Kevin appears, or the thing everyone treats as normal. |
-| **Escalation** | 18 to 30 s | Worse, and everyone stays calm. A second weird thing. He tries to fix it alone and fails because other people are involved. A callback if there is one. |
-| **Emotional hit** | 2 s | One real feeling. He sits down. He wipes his eyes and says "I'm just tired." He looks at a memory. It is not explained. |
-| **Glitch button** | last 3 s | The picture breaks (`bible/craft-library.md`, Glitch button), then cut. No resolution. A standalone ends on its weirdest image. |
+| Step | What happens |
+|---|---|
+| **Inside an ordinary moment** | Already going. The first line is someone mid-thought. It starts at home when the story goes out. |
+| **The itch** | A small annoyance, want or embarrassment, in the first few seconds. |
+| **The theory** | Nio (or Maya, or a friend) decides what this means and what to do about it, and says so with total confidence to someone. It is wrong in an interesting way. His ego turns the itch into a project. |
+| **Three "so" steps** | Each caused by the fix for the last, each bigger: me, then us, then everybody. Never "and then". |
+| **The tilt** | About two-thirds in, the story changes size or kind, and everyone carries on as though that is reasonable. |
+| **The set piece** | The furthest the idea can go. |
+| **The real second** | One true feeling, connected to why he started. Short, and not explained. |
+| **Out fast** | A reset, an ironic price, or a hard cut on the last joke, within three seconds of the peak. No lesson. |
 
 A story that honestly needs two releases ends its first on a real cliffhanger and says "stay tuned". It is
-still never labelled "Part 1", and each release still plays whole.
+never labelled "Part 1", and each release still plays whole.
 
-## 3. Plot engines (rotate them; never the same one two episodes running)
+The ten checks at the end of `bible/gumball-style.md` are the test of the build.
 
-1. **The oblivious plot.** Nio walks into a social situation, misses every signal and stays chill. We see it
-   before he does. Someone has to tell him afterwards.
-2. **The dismissal plot.** Someone brings up the girl, the breakup, the room. He never denies or explains. He
-   pivots, and we forget the question too.
-3. **The weird character plot.** Someone strange is simply there. Nio is the only one bothered. Everyone else:
-   "yeah, weird, he's cool." By the end Nio is calm too. No origin story.
-4. **The troll plot.** Nio winds someone up for fun, commits to it, and it gets away from him.
-5. **The can't-say-no plot.** Someone asks him for a small favour. He says "sure", and it is not small.
-6. **The friend plot.** A friend is the problem tonight and Nio is the one who gets him home.
-7. **The dream.** Uncanny. It can be eerie, funny, sad or truly devastating. No PXI and no punchline needed.
-8. **The after-party** is an ending, not an episode: the mess, the quiet, the drink on the couch, he sits, the
-   camera pulls wide, a man gets up from under the bean bag, Nio does not turn his head, "they left."
+## 3. Kinds of story (rotate them; never the same kind two episodes running)
 
-More shapes, taken from how Gumball builds plots, are in `bible/gumball-lens.md`.
+The spread to aim for is the table in `bible/gumball-style.md`, section 2: mostly a friend's problem or pride,
+a small thing that balloons, a side character's turn, the leads falling out over something petty, a habit or
+mishap that escalates. Romance is rare. The leads are the cause far more often than anyone outside.
+
+From the founder's own stories and notes:
+
+1. **The friend plot.** A friend is the problem tonight and Nio is the one who gets him home.
+2. **The can't-say-no plot.** Someone friendly asks for a small favour. He says "sure", and it is not small.
+3. **The troll plot.** Nio winds someone up for fun, they commit, and it gets away from him.
+4. **The blind spot.** Anything to do with dating. His questions are real and nobody believes they are.
+5. **The new passion.** He takes something up with his whole chest, and by evening it is a situation.
+
+The plot machines in `bible/gumball-lens.md` and the slate in `bible/world.md` give many more.
+
+### From the pasted brief
+
+**Unconfirmed.** This came from the brief the founder pasted on Nov 11, which the founder has since said to
+scrap except for what was told in the founder's own words. The founder is deciding whether to keep it. Until
+then it is allowed and never required, and no check fails a script for lacking it.
+
+- The six-beat sheet with timings (hook, setup, absurd turn, escalation, emotional hit, glitch button).
+- The oblivious plot, the dismissal plot, the weird character plot, the dream plot, and the after-party as an
+  ending.
+- The tone split over a week (about half funny, a fifth wholesome, the rest eerie and sad, never three sad in
+  a row).
+- The Kevin and the glitch button (`bible/humor.md`).
 
 ## 4. PXI in the story
 
@@ -72,11 +89,13 @@ out." And the founder's aim: "so pxi is discovered", with "pxi being at the cent
 
 One line each. If a line is hard to write, the premise is not ready.
 
-1. **The sentence.** Nio wants X, but Y weird thing happens, and he responds by Z.
+1. **The sentence.** One ordinary thing, from something that really happened to someone and still makes them
+   wince or laugh. Nio wants X, but Y happens, and he responds by Z.
 2. **Funny without PXI.** Tell it without the app. Is it still a story someone would retell?
 3. **Recognition.** Is there a moment in it the viewer has lived this month?
 4. **A want you can film.** Small, real and visible. Get the friend home. Get one photo. Find the event.
-5. **The weird thing.** What is the Kevin, and can everyone stay calm about it?
+5. **The cause.** Whose ego turns it into a problem: Nio's, Maya's or a friend's? If the trouble comes from
+   outside, it is not ready.
 6. **The engine.** Does it keep producing trouble without help? Three steps should come easily.
 7. **The feeling.** One true feeling, hit once for two seconds, never said aloud.
 8. **PXI.** Engine, moment or none, by section 4.
@@ -98,7 +117,7 @@ One line each. If a line is hard to write, the premise is not ready.
 - **Chapters** the viewer can hold. First: new here, a girl, nobody else. Then the girl is gone and the circle
   starts to fill. Then his thing becomes the place to be. The founder names and reorders the chapters.
 - **The girl.** She is there from the start. Within the first few episodes a friend remarks on the bedroom
-  (clothes and things everywhere, mostly hers) just after she has left, and she is his ex. He never discusses it. It surfaces in dismissals and on walks.
+  (clothes and things everywhere, mostly hers) just after she has left, and she is his ex. How that happens is open with the founder.
 - What visibly grows and never resets: his circle, the albums he is in, his stamps, the places that know him.
 - People return. Lore questions go in the caption for the comments.
 - **Nio changes.** He is not a fixed list of traits. He drops a habit when life asks him to (the backpack zip,

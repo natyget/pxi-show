@@ -30,8 +30,8 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 - [ ] Room tone from frame 1; voices land on the right shot; thoughts subtitled in (parentheses); no clipping.
 
 ## Story
-- [ ] Premise in one sentence; escalation; a laugh or gasp at least every 5 s; the Kevin; one real feeling;
-      the glitch button; PXI shown not said, or absent on purpose; a whole release with no "Part" label.
+- [ ] Premise in one sentence; escalation; a laugh or gasp at least every 5 s; one real feeling;
+      out fast; PXI shown not said, or absent on purpose; a whole release with no "Part" label.
 
 ## Added after the Ep 1 review (Nov 9)
 - [ ] Insert hands use the character's own skin; fingers wrap the phone; the thumb rests OFF the screen and only enters to tap.
@@ -66,7 +66,7 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 - [ ] Every exchange of four lines or more has a reaction shot.
 - [ ] The voices are the designed voices in `bible/characters.md`, with the walkie-talkie colour and nothing else, each line performed, none flat.
 - [ ] Nobody states a plan to the camera. No narrator.
-- [ ] One Kevin, in the first wide shot, never explained. The glitch button is the last three seconds.
+- [ ] Anything strange on purpose (a Kevin, a glitch) is in the intent ledger and staged as the craft library says.
 
 ## Log of defects found (date · episode · defect → fix)
 - Nov 9 · pilot · 3D eyeballs poked through on head turns → flat 2D faces.

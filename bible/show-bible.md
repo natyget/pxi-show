@@ -17,7 +17,9 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 |---|---|
 | The writer's role, workflow and output format | `bible/writers-room.md` |
 | Who Nio, Maya and the others are; looks; the locked voices and how a line is made | `bible/characters.md` |
-| The humor engine, the Kevin, devices, the pause, the never list | `bible/humor.md` |
+| The style handoff: how the show we study is written, with ten checks | `bible/gumball-style.md` |
+| Maya in depth, the friends, the places, the slate of stories | `bible/world.md` |
+| The humor engine, devices, the pause, the never list | `bible/humor.md` |
 | How they talk and what makes a conversation good | `bible/voice-and-dialogue.md` |
 | Beat sheet, plot engines, PXI in the story, the tests, the journey | `bible/story.md` |
 | Plot machines taken from how Gumball builds episodes | `bible/gumball-lens.md` |
@@ -30,7 +32,8 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 
 ## Standing facts
 - No narrator. No "PART 1" labels. No intro or outro unless the piece calls for one.
-- A glitch button ends every episode. One Kevin an episode, declared.
+- Rules that came only from the brief pasted on Nov 11 (the Kevin, the glitch ending, the dismissal, the
+  catchphrases, the tone split) are unconfirmed: allowed, never required, until the founder says.
 - Dreams are their own track: uncanny, no PXI or punchline needed. **Time travel: LOCKED.**
 - PXI's real features only (`bible/pxi-product.md`), and only where they fit comfortably.
 - Music and sound effects are original, made in code. No copyrighted music, art or lyrics.
@@ -187,3 +190,18 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     point, tired sparing calesthenic, cooks, bakes, he is good at what he tried but tries with passion too."
   - On the three look options, in the look thread: "none of the looks you made are nice i need you to try
     again this looks like ai slop"
+- **Nov 11, late (on the writing), word for word:**
+  - "if the reference helped i would like to do the sae thing but for writingthe stories it seems like once you
+    have direction you know how to work. so when it comes to pacing audio's and more if you could do this on
+    your own meaning find gumball and find the source and have an agent hand you off how to the same way i did
+    and the agent needs to be smart enough to be ablet o genuinly capsulate gumball writing style for plots
+    dialogue characters language and slang usage of trending topics etc"
+  - "we should aslo scrap part of nios character that wwasnt told as stories by me but rules because i copied
+    meta ai descripiton and it wasnt good and i pasted it to you so now theres things like nio doesnt explain
+    but ealrier i went on a rant about my experience and said this how nio should be and i think that only
+    should be kep about my description of nio and the rest can be taken from gumball."
+  - "please ensure you really make a new world plots characts with maya and other firends and make them
+    interesting charaacters and bring the sreries to life"
+  - What this changed: `bible/gumball-style.md` and `bible/world.md` were added, Nio was pruned
+    (`bible/characters.md`, "Where each part of Nio comes from"), and the rules that came only from the pasted
+    brief are unconfirmed (`bible/story.md` section 3, `bible/humor.md`).

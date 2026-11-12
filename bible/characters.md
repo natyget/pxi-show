@@ -1,7 +1,10 @@
 # Characters (who they are, how they look, how they sound)
 
-Who Nio and Maya are is written by the thread "Write Nio's character and stories", from the founder's two notes
-of Nov 11 (the long brief and the six answers). The newest founder note wins over this page. How they talk is
+Who Nio and Maya are is written by the thread "Write Nio's character and stories". **Founder, Nov 11 (late):
+only what the founder told in his own words and stories stays as Nio. The rule-style description he pasted in
+from another AI is scrapped**, and the gaps are filled from the study of the show we admire
+(`bible/gumball-style.md`). The section "Where each part of Nio comes from" marks which is which. The rest of
+the cast and the plots are in `bible/world.md`. The newest founder note wins over this page. How they talk is
 in `bible/voice-and-dialogue.md`. Looks and the voice recipe are owned by their own threads and are unchanged.
 
 ## Nio
@@ -100,7 +103,7 @@ one. So:
 - **When he is interested, or when it would be funny, he can flirt well**, as a game, lightly, and he
   treats it as a game.
 - **He does not chase anyone.** There is no girl he pines for. A girlfriend is in his life when the series
-  starts and is his ex a few episodes in. He does not discuss it.
+  starts and is his ex a few episodes in.
 - The other time he is slow: **drunk with no contacts in.** He cannot see, he is sure he can, and he acts on
   what he thinks he saw. Plant it early in the episode.
 
@@ -112,9 +115,13 @@ Everything here stays suitable for a sixteen-year-old. No sexual material, no in
   was me." And he moves on. The friend who was ready to gloat is left with nothing to push against, which
   is its own joke.
 - **Caring.** Sleeves up, no speech. If someone tries to thank him, he gives them a joke to hold instead.
-- **Hurt.** He gets out of it sideways: a better subject, a question, a bit. Never "I don't want to talk
-  about it", never an explanation, and nobody in the scene notices he did it. This is not coldness. He just
-  does not want a small sad thing made into a large complicated one.
+- **Cornered.** When he is merely caught out (not truly beaten) he does what the lead of this kind of show
+  does: he talks. A confident theory, a justification that gets thinner each time he repeats it, a rant
+  about something else entirely. He digs the hole with enthusiasm. Only when it is really lost does he go
+  quiet and humble. *(Filled from the study.)*
+- **Small personal things hit him hard, and it shows.** No photo of him from the best night of his life is a
+  tragedy, played at full size on his face. He does not hide it and he does not get noble about it.
+  *(The founder's own example, plus the study.)*
 - **Alone afterwards.** The walk home, both earbuds in. That is where the show keeps its sadness, and where
   he laughs to himself about the night until he is nearly crying. "This guy can't be real" is said with
   love, about a friend, laughing.
@@ -177,6 +184,33 @@ For writers this means:
 - It is at the centre because his problems are the ones it is for: no photos from the night, nothing to do,
   a plan with too many people in it.
 
+### Where each part of Nio comes from
+
+**Kept, because the founder told it himself (his notes, his answers, his stories):** he is funny and changes
+humors; he trolls with obvious questions and is laughing before you catch on; he rage-baits; he copies the
+people he is winding up; he is a hater with takes; laid back, does not worry or complicate, avoids lectures
+and advice; a support who carries the friend, cleans up and begs the driver; cannot say no to a friendly
+person; humble when he has truly lost; plays along when someone commits to a bit; never raises his voice
+past being heard, calm with strangers with the face saying it all, and screams, serenades and dances alone
+with music always on; slow only about relationships and when drunk without his contacts; flirts for fun when
+it would be funny; no girl he pines for; the girlfriend who becomes his ex; the clean apartment and the
+bedroom; the backpack zip and growing; founder and user of PXI at once; every hobby and skill; the French
+and the bad Arabic; the walks alone; hyped then devastated then "this my app, yo"; sounding like his
+generation; "this guy can't be real", said laughing about a friend.
+
+**Scrapped, because it came from the pasted description and not from him:** "blank but aware"; never
+explains, never denies, always pivots away from a sensitive subject; never overreacts; short flat lines; the
+four catchphrases ("Yeah, what's up", "I'm just tired", "They left", and "This can't be real" as a
+fourth-wall line); Maya as Nio-as-a-girl.
+
+**Filled from the study of the show we admire:** his ego causes the plot; he states a confident wrong theory
+and commits; he talks more, not less, when cornered; small personal losses are played huge; a second of real
+insecurity under the cockiness; the sincere friend who completes him.
+
+**Not sure which pile, waiting on the founder:** the stranger who was in the room the whole time and the
+glitch ending; the best friend who is only ever on the phone; Nio knowing he is in a show; his exact age and
+"a different city".
+
 ### Facts to use
 
 - He wears contacts and cannot see without them.
@@ -185,7 +219,6 @@ For writers this means:
   within a few episodes she is his ex. How exactly that happens is an open question with the founder.
 - He walks alone after a long night. Those are the quiet moments.
 - His French and his little Arabic make him friends with everyone in his building.
-- Sometimes he knows he is in a show. One look or one short line, then he is back in it.
 - The show is suitable for a sixteen-year-old. Nothing sexual.
 
 **Look:** light skin `#d8a27c`, short black textured hair with a fade and its own volume, brown eyes, broad

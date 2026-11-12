@@ -68,7 +68,7 @@ one of them is why a device reads as a mistake.
   the mouth move. Room tone only. 8 to 12 frames longer than is comfortable, then a hard cut. One or two an
   episode. A hold on a wall, a room or a face with nothing happening on it is dead air and is cut.
 
-### The Kevin
+### The Kevin (unconfirmed: use only if the script declares one)
 - **Way in:** none. He is in the first wide shot of the room, small, still, off the centre, and nobody looks
   at him. A viewer who rewinds finds him there from frame one.
 - **Picture:** lit and drawn exactly like everything else. No glow, no music sting, no zoom. He moves less
@@ -77,7 +77,7 @@ one of them is why a device reads as a mistake.
 - **Way out:** he gets involved, and the glitch button takes him. Never an explanation.
 - **Never:** a reveal shot with a sound effect; anyone asking who he is twice; more than one in an episode.
 
-### Glitch button
+### Glitch button (unconfirmed: use only if the script declares one)
 - The last three seconds of an episode. The picture breaks in one of three declared ways: the colours split
   (red and blue pull apart), the frame slices into horizontal bands that slide, or the subject dissolves into
   pixels. One of them, not all three.

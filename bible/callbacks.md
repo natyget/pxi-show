@@ -2,7 +2,7 @@
 
 **The rule (founder, Nov 11):** one episode in three pays off a joke from at least five episodes earlier.
 "That is how lore is built." Every episode leaves at least one plant here: a background detail, a line, a
-Kevin who can come back. PLAN marks which episode pays off which plant. Until five episodes exist, plant and
+character who can come back. PLAN marks which episode pays off which plant. Until five episodes exist, plant and
 do not force a payoff.
 
 ## Live plants

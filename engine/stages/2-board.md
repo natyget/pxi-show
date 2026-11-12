@@ -24,7 +24,7 @@ files in `studio/anim/src/ui/`.
    entry written there first; this is the one case where a line run may look something up.
 
 **Gate:** the checks at the end of `bible/director.md` pass (a named expression and something moving in every
-shot, no dead shot, reaction shots in every exchange, the Kevin in the first wide); every shot has exactly one purpose and meets the pacing floors; every device follows its library entry; every line fits the seconds of its shot; the S shots alone tell
+shot, no dead shot, reaction shots in every exchange); every shot has exactly one purpose and meets the pacing floors; every device follows its library entry; every line fits the seconds of its shot; the S shots alone tell
 the short cut; every screen cites its source and matches the app's wording character for character; every
 strange thing in the script has a ledger row.
 **Next:** stage 3.

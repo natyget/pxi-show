@@ -61,14 +61,13 @@ in one shared album.
 
 - **Nio** is Gumball's kind of lead: alive, quick, expressive, laid back, and a troll on purpose. He asks the
   obvious question to wind people up, he hates on things, he carries his friend home, and he cannot say no. He
-  is chill about the weird and big about himself. He never explains himself: he pivots. He is never a goof,
+  is chill about the weird and big about himself. He is light in what he says and heavy in what he does. He is never a goof,
   never stupid and never a narrator. He is good-looking. He is the one character who can talk to the viewer.
 - **Maya** is his friend and completes him the way Darwin completes Gumball: sweet, earnest, funny without
   being a troll, with a loving heart he does not share.
 - **The best friend** is across the country and on the phone. Telling him what happened is how the show
   explains anything, because there is no narrator.
-- **The world** treats strange things as normal. One thing in every episode was there the whole time and is
-  never explained (the Kevin). Friends and neighbours are plots, and many come from the founder's real stories.
+- **The world** treats strange things as normal. Friends and neighbours (`bible/world.md`) are plots, and many come from the founder's real stories.
 
 Who they are, their looks and the locked voices are in `bible/characters.md`, and how they talk is in
 `bible/voice-and-dialogue.md`. The voices are the designed Qwen3-TTS voices the founder approved. The look is
@@ -81,10 +80,14 @@ best, hired to make Nio World. Cheaper models write well when they are told who 
 and what it hands over. The role, the characters, the humor engine, the dialogue rules, the story shape and
 the plot machines are each one short file, and the WRITE stage gives the writer all six.
 
-**The shape** (`bible/story.md`). Every episode, even fifteen seconds: a hook that is off; a tiny real problem
-that starts at home; an absurd turn; an escalation where everyone stays calm; one real feeling for two
-seconds; and a glitch button that ends it before it explains itself. No lesson. What Nio wants comes out of
-people talking, never from a speech to the camera.
+**The style** (`bible/gumball-style.md`) is a handoff written from the source: interviews with the makers of
+the show we study, a storyboarding panel, and the plots of eighty episodes sorted by kind. It says where
+stories come from, how one is built, what makes the pair work, how they talk, pacing, trends and sound, and it
+ends in ten checks.
+
+**The shape** (`bible/story.md`). An ordinary moment already going; a small itch; a confident wrong theory;
+three steps each caused by the fix for the last; a tilt; a set piece; one real second; out fast. No lesson.
+What Nio wants comes out of people talking, never from a flat statement to the camera.
 
 **The humor** (`bible/humor.md`). Everyone has a different logic and nobody questions it. The absurd is treated
 as normal and the normal as absurd. Calm lines against loud pictures, never both loud. A picture is a joke.
@@ -170,7 +173,7 @@ to do, what to leave behind and the gate that ends it. A run does one stage and 
 | Stage | Output | Gate |
 |---|---|---|
 | P PLAN (weekly) | The next two weeks of releases in `STATE.md`, from the calendar, the bank and the playbook | Every holiday in range has an owner and dates |
-| 1 WRITE | `script.md`: logline, six beats, dialogue with faces, PXI moment, glitch, callback, tag, caption | Cold read matches and quotes a laugh, lint passes, rubric 40/55, no veto |
+| 1 WRITE | `script.md`: logline, the build, dialogue with faces, PXI moment, callback, tag, caption | Cold read matches and quotes a laugh, lint passes, rubric 40/55, no veto |
 | 2 BOARD | `shots.md` with a named expression per face, the intent ledger, phone screens, voice lines | One purpose per shot, no dead shot; every screen cites its app source |
 | 3 PROOF | The hardest 8 to 10 seconds at full quality | Accident check clean, and the reviewer names the second a viewer laughs |
 | 4 BUILD | Short cut first, then the long cut; contact sheets | Has sound, reads with sound off, `bible/qa-checklist.md` and the accident check pass |
@@ -268,6 +271,9 @@ A proposal until the founder confirms it, and the learning loop adjusts it after
 
 ## 13. Change log
 
+- 2026-11-12: the style handoff (`bible/gumball-style.md`) and the world (`bible/world.md`) added. Nio pruned to
+  what the founder told in the founder's own words. Rules that came only from the pasted brief (the six-beat
+  sheet, the Kevin, the glitch ending, the dismissal, the catchphrases, the tone split) are unconfirmed.
 - 2026-11-11 (night): rewritten around the founder's head writer brief and pilot review. The writer's role
   (`bible/writers-room.md`), Nio as a live, trolling college student, the six-beat sheet, the Kevin and
   the glitch button, PXI never forced, dialogue and acting rules, the Gumball plot machines, the story intake,

@@ -23,8 +23,8 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 ## Rules that never bend
 
 - **A rendered sequence is the only proof.** Never describe how good something will be. Show it.
-- **Funny first, and clear** (`bible/story.md`). An episode is funny even if PXI did not exist. Six beats: hook,
-  setup, absurd turn, escalation, one real feeling, glitch button. A stranger can say what Nio wanted and what
+- **Funny first, and clear** (`bible/story.md`). An episode is funny even if PXI did not exist. It starts from something real, someone's ego
+  causes it, it escalates by "so" and never "and then", it has one real second, and it is out fast. A stranger can say what Nio wanted and what
   happened, and can quote a laugh. A script that fails the cold read does not go forward.
 - **The writer takes on the room** (`bible/writers-room.md`): a Cartoon Network writers' room making Nio World.
   Our own characters and jokes. Never a character, line, name or design from an existing show.
@@ -35,8 +35,8 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - **The stranger reviews every finished video and cover** (`engine/reviewer.md`): a reviewer who knows nothing,
   given only what a viewer gets. If it is lost, finds text a person would not write, or sees a character look
   different from the golden frames, the piece does not go to the founder.
-- **Humor is the Gumball engine** (`bible/humor.md`): a normal problem, one insane thing everyone treats as
-  normal (the Kevin), calm lines against loud pictures, a picture that is the joke, no lesson. Never a random
+- **Humor is the Gumball engine** (`bible/humor.md`): built as `bible/gumball-style.md` says: a small itch, a confident wrong
+  theory, the absurd treated as normal, calm lines against loud pictures, a picture that is the joke, no lesson. Never a random
   line as a punchline, never an explained joke, no narrator.
 - **Nio is alive** (`bible/characters.md`): quick, funny, laid back, a troll on purpose, chill about the weird
   and big about himself. Never a goof, never stupid, never an NPC reading a plan. He is good-looking.
@@ -103,7 +103,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 | `engine/learning.md`, `engine/playbook.md` | The results ledger, and the one page of what is working now |
 | `engine/reviewer.md` | The stranger: the last review of the finished video and cover |
 | `engine/BACKLOG.md`, `engine/ROUTINES.md` | Tools still to build, and the scheduled tasks' exact text |
-| `bible/` | The writers' room role, characters and voices, humor, dialogue, story, the Gumball lens, the craft library, directing and acting, product truth, QA checklist, canon. `bible/show-bible.md` has the index and every founder note |
+| `bible/` | The writers' room role, characters and voices, the world, the style handoff, humor, dialogue, story, the Gumball lens, the craft library, directing and acting, product truth, QA checklist, canon. `bible/show-bible.md` has the index and every founder note |
 | `.claude/skills/writers-room/` | The staged writing method, rubric and tells |
 | `episodes/<id>/` | Script, shots, final render and contact sheet for each episode |
 | `studio/anim/` | Remotion and three.js project: `src/world` sets and rigs, `src/ui` phone screens, `src/lib` helpers |
