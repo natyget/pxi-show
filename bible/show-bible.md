@@ -17,7 +17,9 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 |---|---|
 | The writer's role, workflow and output format | `bible/writers-room.md` |
 | Who Nio, Maya and the others are; looks; the locked voices and how a line is made | `bible/characters.md` |
-| The humor engine, the Kevin, devices, the pause, the never list | `bible/humor.md` |
+| The style handoff: how the show we study is written, with ten checks | `bible/gumball-style.md` |
+| Maya in depth, the friends, the places, the slate of stories | `bible/world.md` |
+| The humor engine, devices, the pause, the never list | `bible/humor.md` |
 | How they talk and what makes a conversation good | `bible/voice-and-dialogue.md` |
 | Beat sheet, plot engines, PXI in the story, the tests, the journey | `bible/story.md` |
 | Plot machines taken from how Gumball builds episodes | `bible/gumball-lens.md` |
@@ -30,7 +32,8 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 
 ## Standing facts
 - No narrator. No "PART 1" labels. No intro or outro unless the piece calls for one.
-- A glitch button ends every episode. One Kevin an episode, declared.
+- Rules that came only from the brief pasted on Nov 11 (the Kevin, the glitch ending, the dismissal, the
+  catchphrases, the tone split) are unconfirmed: allowed, never required, until the founder says.
 - Dreams are their own track: uncanny, no PXI or punchline needed. **Time travel: LOCKED.**
 - PXI's real features only (`bible/pxi-product.md`), and only where they fit comfortably.
 - Music and sound effects are original, made in code. No copyrighted music, art or lyrics.
@@ -187,6 +190,30 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     point, tired sparing calesthenic, cooks, bakes, he is good at what he tried but tries with passion too."
   - On the three look options, in the look thread: "none of the looks you made are nice i need you to try
     again this looks like ai slop"
+- **Nov 11, late (on the writing), word for word:**
+  - "if the reference helped i would like to do the sae thing but for writingthe stories it seems like once you
+    have direction you know how to work. so when it comes to pacing audio's and more if you could do this on
+    your own meaning find gumball and find the source and have an agent hand you off how to the same way i did
+    and the agent needs to be smart enough to be ablet o genuinly capsulate gumball writing style for plots
+    dialogue characters language and slang usage of trending topics etc"
+  - "we should aslo scrap part of nios character that wwasnt told as stories by me but rules because i copied
+    meta ai descripiton and it wasnt good and i pasted it to you so now theres things like nio doesnt explain
+    but ealrier i went on a rant about my experience and said this how nio should be and i think that only
+    should be kep about my description of nio and the rest can be taken from gumball."
+  - "please ensure you really make a new world plots characts with maya and other firends and make them
+    interesting charaacters and bring the sreries to life"
+  - What this changed: `bible/gumball-style.md` and `bible/world.md` were added, Nio was pruned
+    (`bible/characters.md`, "Where each part of Nio comes from"), and the rules that came only from the pasted
+    brief are unconfirmed (`bible/story.md` section 3, `bible/humor.md`).
+- **Nov 12, word for word:**
+  - "while rendering the world i learned people look up Whats the appo that you can take photos on and share
+    instantly into an album and find my profile so captions should be key too. so in the scheduler lets back
+    the find events near you and all the good seo things we used"
+  - "if nio uses real events that are on pxi instead of invested ones it would also be cool but nit a necessary
+    thing"
+  - "the mobile app should also be 1 to 1 i havent seen latest shots but we need to make it 1 to 1 in that verse
+    aesthetics"
+  - What this changed: `engine/captions.md`; the real events paragraph in `bible/world.md`.
 - **Nov 11, 12:22 PM (on the third look test, the drawn Nio), word for word:**
   - "this is way better, but I don't understand why you still choose to stick with this cartoonish drawn style when
     I clearly attached a different looking avatar and those avatars are more so like stylized representation of
@@ -240,8 +267,23 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     if nio uses real events that are on pxi instead of invested ones it would also be cool but nit a necessary thing
     the mobile app should also be 1 to 1 i havent seen latest shots but we need to make it 1 to 1 in that verse aesthetics
     lets keep at it were heading in a good direction i belive."
-- **Nov 12, 8:26 PM (on the post formats remade in Nio's world, and the engine), word for word:**
-  - "yes its $1 a day but as scales as we see results, the one that shows most results gets more budget
-    how much does supermetrics cost and is it necessary considering mtericool also has all those things i belive. is supermetrics worth it?
-    yes pill request to merge all and lets see a pilot episode of nio world
-    when it comes to the remakes i like them and i think it should keep all post that are gen z funny humor relatable and all and scratch the werid uncanny ones from the engine, what it did was nice but there are so many post ideas and format on that engine i think we can take as much good as we can"
+- **Nov 12, 7:45 PM, word for word (excerpts):**
+  - "lets finish whats lets so we can start posting. ensuring the engine can learn well from the metricool and
+    supermarket connectors to improve content over time run ads on better performing one to get more followers
+    and from there also turn followers to app users. ensure that the video production quality is great"
+  - "once weve built it i approve and once approved then we can start posting long videos, shorter ones, gifs,
+    still images, carousels, filler episodes, story line, promotional videos for app, talking to users, and many
+    more format in nio style. all posts from now on are nio style"
+  - "we want more people to follow us not like and comment but follow, and we want to reach more people and then
+    from theones that watch 95% of our videos and engange a lot we want to make an audiance and show ads to those
+    people to get the app and the ads will have to be videos that were successful when promoting the app as nio"
+  - What this changed: `engine/promotion.md`, the score in `engine/learning.md`, the menu in `engine/formats.md`,
+    posting closed in `engine/STATE.md` until a built episode is approved.
+- **Nov 12, 8:26 PM, word for word:**
+  - "yes its $1 a day but as scales as we see results, the one that shows most results gets more budget"
+  - "how much does supermetrics cost and is it necessary considering mtericool also has all those things i belive.
+    is supermetrics worth it?"
+  - "yes pill request to merge all and lets see a pilot episode of nio world"
+  - "when it comes to the remakes i like them and i think it should keep all post that are gen z funny humor
+    relatable and all and scratch the werid uncanny ones from the engine, what it did was nice but there are so
+    many post ideas and format on that engine i think we can take as much good as we can"

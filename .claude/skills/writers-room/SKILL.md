@@ -17,18 +17,18 @@ ameenmo/humanize-skill, and the idea of isolated audience critics from talsraviv
 ## Stage 1: Pitch
 - Write 6 loglines in the form "Nio wants X, but Y weird thing happens, and he responds by Z". They must differ
   in *comic logic* (what's funny and why), not wording. Throw away the first two you thought of. Start from a
-  real story (`engine/real-stories.md`) or a machine in `bible/gumball-lens.md`.
+  real story (`engine/real-stories.md`), the slate in `bible/world.md`, or a machine in `bible/gumball-lens.md`.
 - Each must be funny with PXI taken out. Then decide honestly whether PXI is its engine, a moment, or absent
   (`bible/story.md`, section 4). Never bend the story to fit a feature.
 - **Premise-machine test:** could this premise make five more jokes without wordplay? If you have to force puns, the
   premise is wrong. Keep the best two; lock one as APPROVED (an approved choice becomes a constraint, not a suggestion).
 
 ## Stage 2: Beat sheet
-- Six beats: hook (by 1.5 s), setup, absurd turn, escalation, emotional hit, glitch button (`bible/story.md`,
-  section 2).
+- The build in `bible/story.md` section 2: an ordinary moment, the itch, the theory, three "so" steps, the
+  tilt, the set piece, the real second, out fast.
 - Each beat is *caused* by the one before and is *bigger*. Nio's own ego, trolling or inability to say no makes
   it worse. Everyone else stays calm.
-- It ends on the glitch with nothing resolved. No lesson, no epilogue, no inner acceptance.
+- It is out within three seconds of the peak. No lesson, no epilogue, no inner acceptance.
 - A scene card per beat: want / obstacle / turn.
 
 ## Stage 3: Jokes and dialogue

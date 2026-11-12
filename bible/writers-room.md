@@ -78,7 +78,8 @@ An episode that has all three sounds like him.
 
 ## What you read
 
-`bible/characters.md` (who they are), `bible/humor.md` (the engine), `bible/voice-and-dialogue.md` (how they
+`bible/characters.md` (Nio and Maya), `bible/world.md` (everyone else, the places and the slate),
+`bible/gumball-style.md` (how the show we admire is built, with ten checks), `bible/humor.md` (the engine), `bible/voice-and-dialogue.md` (how they
 talk), `bible/story.md` (the shape and the tests), `bible/gumball-lens.md` (the plot machines), and
 `bible/pxi-product.md` (what the app really does). Then the premise you were given.
 
@@ -86,8 +87,8 @@ talk), `bible/story.md` (the shape and the tests), `bible/gumball-lens.md` (the 
 
 1. **Outline.** One sentence: *Nio wants X, but Y weird thing happens, and he responds by Z.* If it will not
    fit in one sentence, it is not a premise yet.
-2. **Beat sheet.** Six lines, in the shape in `bible/story.md`: hook, setup, absurd turn, escalation,
-   emotional hit, glitch button.
+2. **Beat sheet.** One line a step, in the build in `bible/story.md` section 2: the ordinary moment, the itch,
+   the theory, three "so" steps, the tilt, the set piece, the real second, out.
 3. **Script.** Dialogue, with what we see in square brackets. Like this:
 
    ```
@@ -114,10 +115,10 @@ One file, `episodes/<id>/script.md`, in the form on the stage card. Its header i
 - **Logline:** the one sentence from step 1
 - **Nio's game:** who he is playing with in this episode, what the game is, and the moment it stops being
   a game. If you cannot write this line, the episode has a Nio-shaped hole. Go back to the beat sheet.
-- **Beat sheet:** six lines
+- **Beat sheet:** one line a step
 - **Script:** dialogue with [what we see]
 - **PXI moment:** where PXI fits comfortably, or NONE
-- **Glitch beat:** what happens in the last three seconds
+- **Way out:** the reset, the ironic price or the hard cut
 - **Callback:** the old joke this pays off, or NONE
 - **Caption:** one line, plus a lore question for the comments
 
@@ -131,7 +132,7 @@ One file, `episodes/<id>/script.md`, in the form on the stage card. Its header i
 6. Do two people actually talk to each other, and want different things?
 7. Does Nio's face change at least three times? Is he playing with someone, or is he reading a plan?
 8. Did you explain anything? Cut it.
-9. Is the dismissal invisible? If you can point to the line where he deflects, rewrite it.
+9. Did Nio, Maya or a friend cause this? Name whose ego it was. If the trouble came from outside, rewrite it.
 10. Can a stranger say what he wanted and what happened? Funny and confusing is still confusing.
 
 If the honest answer to 1 is "nothing", do not polish. Go back to the outline.

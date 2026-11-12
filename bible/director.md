@@ -45,7 +45,7 @@ The face is flat 2D on the head (lids, brows, pupils, mouth) and it carries the 
 ## Shot grammar
 
 - **Hook in the first second**, with motion and sound.
-- **Geography first:** a wide that shows where everyone is, and the Kevin is already in it.
+- **Geography first:** a wide that shows where everyone is.
 - **Hard cuts on action.** A shot lasts as long as its joke. Most are 1.2 to 3 seconds
   (`bible/craft-library.md` has the floors).
 - **Conversations are covered properly:** the two-shot to place them, then singles that favour the listener
@@ -56,12 +56,15 @@ The face is flat 2D on the head (lids, brows, pupils, mouth) and it carries the 
   deadpan. A scene uses at least three framings.
 - **The quiet moment** (the walk home, the couch) is the one place the camera is allowed to sit wide and still.
   Something small still moves: him, a light, the phone.
-- **The button** is the smallest, driest image, and then the glitch.
+- **The button** is the smallest, driest image, and the cut comes on it.
+- **Plain staging for jokes.** Flat, clear, the face readable. A showy angle can overpower a joke; save it for
+  when he is taking himself too seriously.
+- **The board can beat the script.** Do not just draw what the script says. A joke with no words wins.
 
 ## Before a board is called finished
 
 - Every shot has one purpose, one named expression for each face in it, and something that moves.
 - No shot shows a wall, an empty room or a person waiting.
 - Every exchange of four lines or more has at least one reaction shot.
-- The picture joke, the hold, the Kevin and the glitch button are each marked.
+- The picture joke, the hold, the smash cut and the place the music stops dead are each marked.
 - Read the board with the lines covered. Is it still funny, and can you still follow it?

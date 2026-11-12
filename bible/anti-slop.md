@@ -19,7 +19,7 @@ never the style. It is a detail nobody looked at. So every strange thing is eith
 Rules for a ledger entry:
 - It is **staged**: framed, held, or reacted to. An odd thing that flashes past unframed reads as a glitch.
 - It is **consistent**: the same in every shot it appears in.
-- It **costs or reveals** something. Strange for decoration is cut (`bible/humor.md`). The one declared exception is the Kevin: a single unexplained thing an episode, staged on purpose and written in the ledger.
+- It **costs or reveals** something. Strange for decoration is cut (`bible/humor.md`). A script may declare one unexplained thing (a Kevin), staged on purpose and written in the ledger.
 - A dream or a filler in a different look is one ledger entry for the whole piece, with the look named.
 
 At review, anything strange that is not in the ledger is a defect, even if it looks good. The reviewer never

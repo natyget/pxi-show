@@ -15,7 +15,8 @@ We borrow craft from the shows we admire. Never lines, catchphrases or voices.
   a run of questions. The more real it is, the less he says. There is no word limit. There is a rule: a long
   line must be him *playing*, never him explaining.
 - **He asks more than he tells.** Questions are his main tool. A Nio scene with no question in it is suspect.
-- **He never announces.** Not his plan, not his feelings, not what is on screen, not what the app does.
+- **He does not narrate.** Not what is on screen and not what the app does. A plan comes out as a boast or
+  a theory aimed at someone, never as a statement of the problem.
 - **He reacts first.** His face changes before he speaks, and often the face is the whole reply.
 - **He sounds 21, right now.** Easy, current, dropped words: "bro", "yo", "this my app". Slang the way a
   person uses it, a little, never stacked to sound young. Never "aight" or "ight", never a long
@@ -23,13 +24,16 @@ We borrow craft from the shows we admire. Never lines, catchphrases or voices.
 - **Normal volume with other people.** Size comes from speed, the face and the body. Capitals are for home,
   alone, or the rare moment he has to be heard across a room.
 - **No lectures, in or out.** He does not give advice either. If he helps, he does the thing.
-- **Lines he owns, rarely:** "This can't be real." (delighted, usually about a friend) "Yeah, what's up."
-  "I'm just tired." "They left."
+- **He explains when he is enjoying it or digging a hole.** The old rule that he "never explains" is
+  scrapped. He will give you a full confident theory of why he is right. What he does not do is narrate the
+  plot or pitch the app.
+- **No catchphrases.** The four lines from the old brief are retired. The one thing he does say, laughing,
+  about a friend: "this guy can't be real."
 - **He mixes languages.** A word or two of French or Arabic, wrong, said with total confidence, to someone
   who speaks it properly and answers in English.
 - **Every line carries a note for the face and the voice:** hyped, smug, leaking a laugh, wounded, honestly
   asking, quiet. A line with no note comes out flat, and flat is a defect.
-- **He does not pitch to the lens.** Inside the story he talks to people. The tag after the glitch is the
+- **He does not pitch to the lens.** Inside the story he talks to people. The tag after the last joke is the
   one place he talks to the viewer.
 
 ## Maya
@@ -107,7 +111,7 @@ NIO: Don't. You owe me shoes.
 3. **The leak.** Is there a moment we see he is enjoying it before the others do?
 4. **The dial.** Is his size right for who is watching? Capitals in public are a defect.
 5. **Mouth and hands.** Did he say something caring? Move it to an action.
-6. **The announcement.** Does he state a plan, a feeling or a feature? Cut it.
+6. **The narration.** Does he describe what is on screen, state the problem flatly, or pitch a feature? Cut it.
 7. **Cover the names.** Could anyone else have said this line? Then it is not his yet.
 8. **Maya.** Is she sincere, and is she funnier for it? If she is trolling, it is the wrong character.
 
