@@ -11,7 +11,7 @@ in the slot named here, and every format goes through the accident check before 
 | DREAM | Uncanny on purpose. No plot or PXI needed in the picture. A different look is allowed and declared in the ledger | 10 to 30 s | Existing rigs; one new idea | Caption only | Medium |
 | FILLER | One gag in one place. A take, a background character, a moment between episodes | 6 to 20 s | Existing sets and rigs only | End frame or caption | Low |
 | LOOP | A seamless loop or GIF cut from a take that already exists | 2 to 6 s | No new animation | Caption | Very low |
-| STILL | A frame, a phone screen from the world, or a carousel (for example the album "nio being nio") | Image | No new animation | Caption, and the last slide of a carousel | Very low |
+| STILL | A frame, a phone screen from the world, or a carousel: tier lists, crayon, receipts and the rest, each as an object in his world (`engine/post-formats.md`) | Image | No new animation | Caption, and the last slide of a carousel | Very low |
 
 ## Rules for every format
 
