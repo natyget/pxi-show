@@ -36,11 +36,23 @@ export const ROOM_BOXES: Box[] = [
   // a small screen on the dresser, a shelf with a clock and a frame
   B(3.52, 1.02, 3.55, 0.03, 0.17, 0.2, '#2c2126', 24), B(3.487, 1.02, 3.55, 0.004, 0.145, 0.175, '#3d4a66', 23, { glow: true }),
   B(3.3, 1.62, 4.31, 0.32, 0.014, 0.085, WOOD_L, 18, { mat: 1 }),
-  B(3.18, 1.72, 4.32, 0.085, 0.085, 0.03, '#d9c7a4', 19), B(3.45, 1.71, 4.33, 0.06, 0.075, 0.02, WOOD_D, 20),
+  B(3.12, 1.72, 4.32, 0.085, 0.085, 0.03, '#d9c7a4', 19), B(3.54, 1.71, 4.33, 0.055, 0.075, 0.02, WOOD_D, 20),
+  B(3.3, 1.71, 4.33, 0.014, 0.075, 0.05, '#8a3f3a', 30), B(3.332, 1.7, 4.33, 0.013, 0.066, 0.05, '#3f5f5c', 31), B(3.37, 1.705, 4.33, 0.016, 0.07, 0.05, '#b08a5c', 32, { yaw: 8 }),
   // the desk near the front, laptop open
   B(3.42, 0.72, 1.3, 0.34, 0.02, 0.5, WOOD, 21, { mat: 1 }),
   ...[[-0.3, -0.45], [0.3, -0.45], [-0.3, 0.45], [0.3, 0.45]].map(([a, b]) => B(3.42 + a, 0.35, 1.3 + b, 0.02, 0.35, 0.02, WOOD_D, 21)),
   B(3.4, 0.748, 1.3, 0.11, 0.008, 0.16, '#2c2126', 22), B(3.53, 0.86, 1.3, 0.008, 0.11, 0.16, '#2c2126', 22), B(3.521, 0.86, 1.3, 0.002, 0.095, 0.145, '#7f62a8', 26, { glow: true }),
+  // the small things that make it his: slippers by the bed, a mug and a note, books, a basket of clothes, a backpack
+  B(0.98, 0.03, 2.98, 0.045, 0.03, 0.11, '#cdb89a', 27, { yaw: 12 }), B(1.11, 0.03, 2.97, 0.045, 0.03, 0.11, '#cdb89a', 27, { yaw: -6 }),
+  B(0.2, 0.628, 2.62, 0.032, 0.04, 0.032, '#d9c7a4', 28), B(0.44, 0.59, 2.61, 0.07, 0.003, 0.05, '#e4d8c0', 29, { yaw: 15 }),
+  B(3.28, 0.84, 3.64, 0.09, 0.016, 0.065, '#5a4a6e', 33, { yaw: 10 }), B(3.28, 0.871, 3.64, 0.08, 0.014, 0.06, '#8a5a3c', 34, { yaw: -8 }),
+  B(3.52, 0.17, 2.48, 0.16, 0.17, 0.16, '#8a6a4a', 39, { mat: 4 }), B(3.52, 0.365, 2.48, 0.13, 0.03, 0.13, '#6c5466', 40, { mat: 2, yaw: 9 }),
+  B(3.5, 0.2, 0.52, 0.14, 0.2, 0.1, '#4f4660', 35, { mat: 2, yaw: 15 }), B(3.4, 0.13, 0.44, 0.09, 0.09, 0.03, '#5d5470', 36, { mat: 2, yaw: 15 }),
+  // on the desk and the shelf above it: a pencil cup, a book, three more books, an instant camera
+  B(3.62, 0.79, 0.95, 0.03, 0.05, 0.03, '#7c3f35', 37), B(3.3, 0.752, 1.62, 0.1, 0.012, 0.07, '#3f5f5c', 38, { yaw: -12 }),
+  B(3.69, 1.28, 1.3, 0.1, 0.012, 0.32, WOOD_L, 41, { mat: 1 }),
+  B(3.71, 1.372, 1.08, 0.07, 0.08, 0.014, '#8a3f3a', 42), B(3.71, 1.362, 1.112, 0.07, 0.07, 0.013, '#b08a5c', 43), B(3.71, 1.377, 1.146, 0.07, 0.085, 0.016, '#4f4660', 44),
+  B(3.7, 1.335, 1.46, 0.045, 0.04, 0.06, '#d9c7a4', 45), B(3.652, 1.34, 1.46, 0.006, 0.022, 0.022, '#2c2126', 46),
 ];
 const cp = (a: V, ra: number, b: V, rb: number, g: number, c: string, k: number, x: Partial<Prim> = {}): Prim => ({ a, ra, b, rb, g, k, c, ...x });
 const plant = (at: V, n: number, seed: number, pot: string): Soft => {
@@ -89,10 +101,14 @@ export const pose = (a: Act) => {
   if (a.look) s = lookAt(s, a.look, a.lookAmt ?? 1, P);
   const fwd = norm(cross(s.side, s.chestDir));
   if (a.crossed) {
-    // arms folded: each wrist goes to the far side of the chest, the hands lie flat along the opposite arm
-    const c = add(sub(s.neckBase, mul(s.chestDir, 0.19)), mul(fwd, 0.1));
-    s = reach(s, 0, add(c, add(mul(s.side, -0.03), mul(fwd, 0.012))), add(mul(s.side, 0.6), [0, -1, 0]), P, add(mul(s.side, -1), mul(fwd, -0.5)), s.chestDir);
-    s = reach(s, 1, add(c, add(mul(s.side, 0.035), add(mul(fwd, 0.04), [0, -0.04, 0]))), add(mul(s.side, -0.6), [0, -1, 0]), P, add(s.side, mul(fwd, -0.5)), s.chestDir);
+    // Folded arms, placed by hand: both elbows forward of the ribs, both forearms level across the chest. His left
+    // forearm lies on top with its hand on the right arm; the right hand tucks under the left elbow.
+    const o = sub(s.neckBase, mul(s.chestDir, 0.05));
+    const at = (x: number, y: number, f: number): V => add(o, add(mul(s.side, x), add(mul(s.chestDir, y), mul(fwd, f))));
+    const c: Skel = { ...s, el: [...s.el] as any, wr: [...s.wr] as any, tip: [...s.tip] as any, thumb: [...s.thumb] as any };
+    c.el[0] = at(0.17, -0.2, 0.14); c.wr[0] = at(-0.045, -0.168, 0.212); c.tip[0] = at(-0.118, -0.14, 0.2); c.thumb[0] = at(-0.06, -0.128, 0.205);
+    c.el[1] = at(-0.17, -0.2, 0.14); c.wr[1] = at(0.05, -0.222, 0.182); c.tip[1] = at(0.118, -0.212, 0.158); c.thumb[1] = at(0.075, -0.19, 0.172);
+    s = c;
   }
   const ph = a.phone ?? 0;
   if (ph > 0.01) {
@@ -112,7 +128,7 @@ export const pose = (a: Act) => {
     }
   }
   const o = ch.wardrobe[a.outfit ?? ch.outfit];
-  const soft: Soft = { character: true, origin: s.hips, prims: buildBody(s, P, ch.skin, o),
+  const soft: Soft = { character: true, origin: s.hips, prims: buildBody(s, P, ch.skin, o, a.crossed ? 0 : undefined),
     head: { c: s.headC, rt: s.headRt, up: s.headUp, fw: s.headFw, face: a.face, skin: ch.skin, hairA: ch.hairA, hairB: ch.hairB, blobs: ch.hair } };
   const mid = lerp(s.an[0], s.an[1], 0.5);
   const shadows = a.seat === undefined ? [[mid[0], mid[2], 0.2, 0.3]] : [];

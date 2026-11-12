@@ -44,6 +44,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
   u.uTan.value = Math.tan((sc.cam.fov * Math.PI) / 360); u.uTime.value = sc.time ?? 0; u.uSet.value = sc.studio ? 1 : 0;
   R.cm.uniforms.uPxw.value = (2 * u.uTan.value) / h;
 
+  u.uFace.value.fill(0); u.uHn.value.fill(0);
   let pi = 0, hi = 0;
   const softs = sc.softs.slice(0, NC);
   softs.forEach((s, ci) => {
@@ -52,13 +53,13 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
     s.prims.forEach((p) => {
       if (pi >= NP) return;
       u.uA.value.set([...p.a, p.ra], pi * 4); u.uB.value.set([...p.b, p.rb], pi * 4);
-      u.uM.value.set([Math.min(p.g, 4), p.k, (p.cutA ? 1 : 0) + (p.cutB ? 2 : 0), p.sq ?? 1], pi * 4);
+      u.uM.value.set([Math.min(p.g, 7), p.k, (p.cutA ? 1 : 0) + (p.cutB ? 2 : 0), p.sq ?? 1], pi * 4);
       u.uC.value.set([...rgb(p.c), (p.tex ?? 0) + Math.min(p.em ?? 0, 1) * 0.99], pi * 4);
       grow(p.a, p.ra); grow(p.b, p.rb); pi++;
     });
     let hIdx = -1;
     if (s.head && hi < NHD) {
-      const hd = s.head; hIdx = hi; grow(hd.c, 0.41);
+      const hd = s.head; hIdx = hi; grow(hd.c, 0.48);
       u.uHc.value.set(hd.c, hi * 3); u.uHr.value.set(hd.rt, hi * 3); u.uHu.value.set(hd.up, hi * 3); u.uHf.value.set(hd.fw, hi * 3);
       u.uSkin.value.set(rgb(hd.skin), hi * 3); u.uHairA.value.set(rgb(hd.hairA), hi * 3); u.uHairB.value.set(rgb(hd.hairB), hi * 3);
       const nb = Math.min(hd.blobs.length, NHB / 2);

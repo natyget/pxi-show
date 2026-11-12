@@ -40,8 +40,8 @@ export type Props = {
   armR: number; legR: number; torsoR: number;
 };
 export const NIO: Props = {
-  ankle: 0.06, shin: 0.32, thigh: 0.34, hipHalf: 0.072, torso: 0.4, neck: 0.1, headR: 0.2,
-  shoulderHalf: 0.115, upperArm: 0.25, foreArm: 0.23, hand: 0.07, foot: 0.14,
+  ankle: 0.06, shin: 0.32, thigh: 0.34, hipHalf: 0.072, torso: 0.4, neck: 0.125, headR: 0.2,
+  shoulderHalf: 0.13, upperArm: 0.25, foreArm: 0.23, hand: 0.07, foot: 0.16,
   armR: 0.02, legR: 0.03, torsoR: 0.088,
 };
 
@@ -147,7 +147,10 @@ export const lookAt = (s: Skel, target: V, amount = 1, P: Props = NIO): Skel => 
 // under the clothes. A garment is its own single piece in its own material: the same joints, a little larger.
 // So a tee always fits, always follows the body, and comes off by leaving it out of the outfit.
 // ---------------------------------------------------------------------------------------------------------
-export const G = { skin: 0, top: 1, bottom: 2, shoe: 3, hair: 4 };
+// The surfaces of a body. Capsules in the same surface melt into one shape; two surfaces meet in an ink line.
+// Each trouser leg is its own surface, so there is a line between the legs. skinB is for a forearm that lies across
+// the body or the other arm (folded arms), so it reads as lying on top instead of melting in.
+export const G = { skin: 0, top: 1, bottom: 2, shoe: 3, hair: 4, legL: 5, legR: 6, skinB: 7 };
 // tex: 0 flat, 1 soft blocky texture, 2 strong flecks. em: 0..1 how much it glows. sq: >1 flattens it vertically.
 export type Prim = { a: V; ra: number; b: V; rb: number; g: number; k: number; c: string; cutA?: boolean; cutB?: boolean; sq?: number; tex?: number; em?: number };
 export type Outfit = {
@@ -155,7 +158,7 @@ export type Outfit = {
   bottom?: { color: string; cuff: string; width: number } | null; // width: 0 slim .. 0.06 very wide
   shoes?: { color: string } | null;
 };
-export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit): Prim[] => {
+export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?: 0 | 1): Prim[] => {
   const out: Prim[] = [];
   const cap = (a: V, ra: number, b: V, rb: number, g: number, c: string, k = 0.03, x: Partial<Prim> = {}) => out.push({ a, ra, b, rb, g, k, c, ...x });
   const top = o.top, bot = o.bottom;
@@ -165,39 +168,43 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit): Prim[] =>
   cap(belly, P.torsoR - 0.02, chest, P.torsoR, G.skin, skin, 0.06);
   cap(s.sh[0], 0.042, s.sh[1], 0.042, G.skin, skin, 0.06);
   cap(s.hip[0], P.legR + 0.022, s.hip[1], P.legR + 0.022, G.skin, skin, 0.05);
-  cap(sub(s.neckBase, mul(s.chestDir, 0.03)), 0.03, add(s.neckBase, mul(s.headUp, P.neck + 0.03)), 0.027, G.skin, skin, 0.03);
+  cap(sub(s.neckBase, mul(s.chestDir, 0.03)), 0.04, add(s.neckBase, mul(s.headUp, P.neck + 0.03)), 0.037, G.skin, skin, 0.03);
   for (let i = 0; i < 2; i++) {
     cap(s.sh[i], P.armR + 0.004, s.el[i], P.armR, G.skin, skin, 0.03);
-    cap(s.el[i], P.armR, s.wr[i], P.armR - 0.002, G.skin, skin, 0.03);
-    cap(s.wr[i], 0.027, s.tip[i], 0.024, G.skin, skin, 0.02); // the hand: one mitten and a thumb, one surface with the arm
-    cap(lerp(s.wr[i], s.tip[i], 0.2), 0.014, s.thumb[i], 0.012, G.skin, skin, 0.012);
+    const ga = frontArm === i ? G.skinB : G.skin;
+    cap(s.el[i], P.armR, s.wr[i], P.armR - 0.002, ga, skin, 0.03);
+    cap(s.wr[i], 0.027, s.tip[i], 0.024, ga, skin, 0.02); // the hand: one mitten and a thumb, one surface with the arm
+    cap(lerp(s.wr[i], s.tip[i], 0.2), 0.014, s.thumb[i], 0.012, ga, skin, 0.012);
     cap(s.hip[i], P.legR + 0.008, s.kn[i], P.legR, G.skin, skin, 0.04);
     cap(s.kn[i], P.legR, s.an[i], P.legR - 0.006, G.skin, skin, 0.04);
     if (!o.shoes) cap(add(s.an[i], [0, -P.ankle + 0.035, 0]), 0.032, [s.toe[i][0], Math.max(0.03, s.toe[i][1]), s.toe[i][2]], 0.028, G.skin, skin, 0.03);
   }
-  // THE TEE: a loose tube over the torso with an open hem, and two wide short sleeves the arms come out of
+  // THE TEE: a boxy tube over the torso with an open hem, and two wide short sleeves that stand off the arms
   if (top) {
     const l = top.loose, hem = add(s.hips, mul(s.chestDir, -0.075));
-    cap(hem, P.torsoR + l + 0.04, chest, P.torsoR + l + 0.008, G.top, top.color, 0.05, { cutA: true, tex: 1 });
+    cap(hem, P.torsoR + l + 0.052, chest, P.torsoR + l + 0.008, G.top, top.color, 0.05, { cutA: true, tex: 1 });
     cap(s.sh[0], 0.046 + l, s.sh[1], 0.046 + l, G.top, top.color, 0.05, { tex: 1 });
-    for (let i = 0; i < 2; i++) cap(s.sh[i], P.armR + 0.024 + l * 0.5, lerp(s.sh[i], s.el[i], top.sleeve), P.armR + 0.03 + l * 0.5, G.top, top.color, 0.04, { cutB: true, tex: 1 });
+    for (let i = 0; i < 2; i++) cap(s.sh[i], P.armR + 0.03 + l * 0.5, lerp(s.sh[i], s.el[i], top.sleeve), P.armR + 0.042 + l * 0.5, G.top, top.color, 0.04, { cutB: true, tex: 1 });
   }
-  // THE TROUSERS: one garment, wide in the leg, with a turned cuff
+  // THE TROUSERS: wide in the thigh and wider at the hem, which sits on the shoe. Each leg is its own surface.
   if (bot) {
     const w = bot.width;
     cap(s.hip[0], 0.05 + w * 0.1, s.hip[1], 0.05 + w * 0.1, G.bottom, bot.color, 0.05, { tex: 1 });
     cap(add(s.hips, mul(s.chestDir, -0.03)), 0.098, add(s.hips, mul(s.chestDir, 0.045)), 0.094, G.bottom, bot.color, 0.03, { cutA: true, cutB: true, tex: 1 }); // the waistband
     for (let i = 0; i < 2; i++) {
-      const r0 = P.legR + 0.018 + w * 0.1, r1 = P.legR + 0.03 + w * 0.5, r2 = P.legR + 0.036 + w * 0.7;
-      cap(s.hip[i], r0, s.kn[i], r1, G.bottom, bot.color, 0.04, { tex: 1 });
-      cap(s.kn[i], r1, s.an[i], r2, G.bottom, bot.color, 0.04, { cutB: true, tex: 1 });
-      cap(lerp(s.kn[i], s.an[i], 0.86), r2 + 0.004, s.an[i], r2 + 0.006, G.bottom, bot.cuff, 0.002, { cutA: true, cutB: true, tex: 1 });
+      const g = i === 0 ? G.legL : G.legR;
+      const r0 = P.legR + 0.022 + w * 0.18, r1 = P.legR + 0.03 + w * 0.6, r2 = P.legR + 0.036 + w * 0.95;
+      const down = norm(sub(s.an[i], s.kn[i]));
+      const hem = add(add(s.an[i], mul(down, P.ankle - 0.028)), mul(s.side, (i === 0 ? 1 : -1) * w * 0.45)); // on the shoe, pushed outward
+      cap(s.hip[i], r0, s.kn[i], r1, g, bot.color, 0.04, { tex: 1 });
+      cap(s.kn[i], r1, hem, r2, g, bot.color, 0.04, { cutB: true, tex: 1 });
+      cap(lerp(s.kn[i], hem, 0.88), r2 + 0.004, hem, r2 + 0.006, g, bot.cuff, 0.002, { cutA: true, cutB: true, tex: 1 });
     }
   }
   if (o.shoes) for (let i = 0; i < 2; i++) {
-    const heel = add(s.an[i], [0, -P.ankle + 0.05, 0]);
-    const toe: V = [s.toe[i][0], Math.max(0.044, s.toe[i][1]), s.toe[i][2]];
-    cap(heel, 0.052, toe, 0.044, G.shoe, o.shoes.color, 0.03); cap(s.an[i], 0.04, heel, 0.052, G.shoe, o.shoes.color, 0.03);
+    const heel = add(s.an[i], [0, -P.ankle + 0.056, 0]);
+    const toe: V = [s.toe[i][0], Math.max(0.052, s.toe[i][1]), s.toe[i][2]];
+    cap(heel, 0.056, toe, 0.052, G.shoe, o.shoes.color, 0.03); cap(s.an[i], 0.04, heel, 0.056, G.shoe, o.shoes.color, 0.03);
   }
   return out;
 };

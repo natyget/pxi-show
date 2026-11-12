@@ -64,22 +64,27 @@ class Sheet:
 out = sys.argv[1]; os.makedirs(out, exist_ok=True)
 cs = Image.open(REF + 'character-sheet.png').convert('RGB'); bed = Image.open(REF + 'bedroom.jpg').convert('RGB')
 ST = {'studio': True}
-head = lambda face, **k: shot({'cam': 'face', 'w': 112, 'h': 112, 'yaw': 150, 'face': face, **ST, **k}, 3)
+head = lambda face, **k: shot({'cam': 'head', 'w': 124, 'h': 124, 'yaw': 152, 'face': face, **ST, **k}, 3)
+head2 = lambda face: shot({'cam': 'head', 'w': 124, 'h': 124, 'yaw': 152, 'face': face, **ST}, 3).resize((392, 392), Image.NEAREST)
 SIT = {'cam': 'bed', 'clip': 'Sitting_Idle_Loop', 'at': [1.6, 3.02], 'seat': 0.47, 'yaw': 180, 'stance': 1, 'arms': 1, 'upright': 0.3, 'face': 'charm'}
 WALK = {'clip': 'Walk_Loop', 't': 8, 'stance': 1, 'arms': 1, 'upright': 0.3, 'lookCam': 0}
 
 # ---- sheet 1: the character ----
-s = Sheet(2560, 'NIO  ·  proposed look next to your character sheet', 'Original character, same technique: chunky uneven hair, large simple eyes that are never quite the same size, off-centre pupils, uneven ink line, flat colour with a blocky texture.')
-LW = 980
-s.add('portrait', fit(cs.crop((18, 105, 400, 455)), LW, 760), shot({'cam': 'head', 'w': 190, 'h': 190, 'yaw': 150, 'face': 'neutral', **ST}, 4))
-s.add('expressions', fit(cs.crop((18, 478, 552, 795)), LW), grid([head(f) for f in ['neutral', 'deadpan', 'suspicious', 'shock', 'crushed', 'rage', 'laughing', 'sheepish']], 4),
-      'Every expression is a set of numbers on the same face, so any two blend and nothing off-model can be drawn.')
+s = Sheet(2560, 'NIO  ·  second pass, next to your character sheet', 'Rebuilt from your notes: the eyes (heavy line, rounded square, big pupil tucked to one side), the head, the hair, quieter expressions, folded arms, the clothes.')
+LW = 900
+s.add('portrait', fit(cs.crop((18, 105, 400, 455)), LW, 760), row([shot({'cam': 'head', 'w': 124, 'h': 124, 'yaw': 150, 'face': 'neutral', **ST}, 6), shot({'cam': 'head', 'w': 124, 'h': 124, 'yaw': 180, 'face': 'deadpan', 'lookCam': 1, **ST}, 6)]),
+      'Drawn at the same pixel size as your reference. Left: the same three-quarter view. Right: Nio at rest, straight on.')
+s.add('eyes', fit(cs.crop((1010, 70, 1230, 195)), LW, 420), row([shot({'cam': 'face', 'w': 150, 'h': 84, 'yaw': 180, 'face': 'neutral', 'lookCam': 1, 'camPos': [2.0, 1.36, 1.3], 'camAt': [2.0, 1.345, 2.5], 'fov': 11, **ST}, 5)]),
+      'A rounded square with a heavy line, a warm white, a tall pupil tucked to one side with one small bite of white. The two eyes are never quite the same size.')
+s.add('expressions', fit(cs.crop((18, 478, 552, 795)), LW), grid([head(f) for f in ['neutral', 'smug', 'shock', 'uneasy', 'crushed', 'rage', 'laughing', 'sheepish']], 4),
+      'The same eight as your sheet, in the same order. The eyes never change size: the feeling is in the lids, the pupils, the brows and the small marks. Shock is now small pupils, a tiny mouth and two marks.')
+s.add('more of his faces', None, grid([head2(f) for f in ['deadpan', 'charm', 'suspicious', 'hyped', 'real', 'deadInside']], 6, 12), 'Deadpan is how he rests. Then charm, suspicious, hyped, sincere, dead inside.')
 s.add('full body and poses', fit(cs.crop((562, 478, 1254, 800)), LW), row([
-    shot({'cam': 'full', 'yaw': 172, **ST}, 2), shot({'cam': 'full', 'yaw': 150, 'crossed': True, 'face': 'smug', **ST}, 2), shot(SIT, 2), shot({'cam': 'full', 'yaw': 140, 'face': 'neutral', **ST, **WALK}, 2)]),
-      'One body. Standing, folded arms, sitting on his bed and walking are the same rig; the walk is real human motion.')
+    shot({'cam': 'full', 'yaw': 172, **ST}, 2), shot({'cam': 'full', 'yaw': 158, 'crossed': True, 'face': 'smug', **ST}, 2), shot({'cam': 'mid', 'yaw': 165, 'crossed': True, 'face': 'smug', 'camPos': [2.25, 1.2, 0.9], 'camAt': [2.0, 1.02, 2.5], 'fov': 40, **ST}, 2), shot({'cam': 'full', 'yaw': 140, 'face': 'neutral', **ST, **WALK}, 2)], 12),
+      'One body. Wide trousers that sit on the shoes, a boxy tee. Folded arms are rebuilt: both forearms across the chest, one hand on the other arm.')
 s.add('more shots', fit(cs.crop((18, 1035, 1085, 1242)), LW), row([
     shot({'cam': 'head', 'w': 168, 'h': 168, 'yaw': 118, 'lookCam': 0, 'face': 'neutral', **ST}, 2), shot({'cam': 'head', 'w': 168, 'h': 168, 'yaw': 20, 'lookCam': 0, **ST}, 2),
-    shot({'cam': 'mid', 'w': 168, 'h': 168, 'yaw': 200, 'phone': 1, 'face': 'suspicious', 'gaze': [0, -0.8], 'lookCam': 0, **ST}, 2), shot({'cam': 'head', 'w': 168, 'h': 168, 'yaw': 165, 'face': 'asleep', **ST}, 2)]))
+    shot({'cam': 'mid', 'w': 168, 'h': 168, 'yaw': 200, 'phone': 1, 'face': 'deadpan', 'gaze': [0, -0.8], 'lookCam': 0, **ST}, 2), shot({'cam': 'head', 'w': 168, 'h': 168, 'yaw': 165, 'face': 'laughing', **ST}, 2)]))
 s.add('clothes are real pieces', None, row([shot({'cam': 'full', 'yaw': 165, 'outfit': o, **ST}, 2) for o in ['home', 'olive', 'bare']] + [shot({'cam': 'full', 'yaw': 20, 'lookCam': 0, **ST}, 2), shot({'cam': 'full', 'yaw': 118, 'lookCam': 0, **ST}, 2)]),
       'The tee is one garment over a complete body. It changes or comes off without touching the character. The same model from the back and the side.')
 ours = shot({'cam': 'full', 'yaw': 172, **ST}, 2)
@@ -87,12 +92,21 @@ s.add('palette', palette(cs.crop((570, 490, 1050, 790)), 10), palette(ours, 10))
 s.save(os.path.join(out, 'nio-comparison-character.png'), LW)
 
 # ---- sheet 2: the room ----
-s = Sheet(2700, "NIO'S ROOM  ·  proposed look next to your bedroom", 'Same language: dark wood boards, a rain window, a string of lights, warm lamp pools that fall off in steps, flecked cloth. Built as a real room, so the camera can stand anywhere.')
+s = Sheet(2700, "NIO'S ROOM  ·  second pass, next to your bedroom", 'More of his things in it now: slippers, a mug and a note, books, a basket of clothes, a backpack, a pin board, photos on a string, an instant camera, and a door.')
 LW = 1252
 land = shot({'w': 320, 'h': 180, 'cam': 'land', 'actor': False}, 4)
 s.add('the room', bed.resize((1252, 682), Image.LANCZOS), land)
-s.add('the same room in the upright frame the show uses', None, row([
-    shot({'cam': 'wide', 'yaw': 150, 'at': [2.2, 2.6]}, 3), shot({'cam': 'high', 'yaw': 215, 'at': [2.1, 2.5], 'face': 'neutral', **WALK}, 3),
-    shot(SIT, 3), shot({'cam': 'low', 'yaw': 152, 'phone': 1, 'face': 'shock', 'gaze': [0, -0.7], 'lookCam': 0}, 3)], 20))
+import json as _j
+SP = _j.load(open(os.path.join(here, 'n3_specs', 'cameras.json')))
+def spec_shot(i, frame=12, scale=3):
+    sp = SP[i]; key = hashlib.sha1((_j.dumps(sp, sort_keys=True) + str(frame) + str(scale) + os.environ.get('N3_REV', '')).encode()).hexdigest()[:16]
+    f = os.path.join(cache, 's' + key + '.png')
+    if not os.path.exists(f):
+        tmp = os.path.join(cache, '_spec.json'); _j.dump(sp, open(tmp, 'w'))
+        subprocess.run([os.path.join(here, 'n3_shot.sh'), tmp, f, str(frame), str(scale)], check=True, stdout=subprocess.DEVNULL)
+    return Image.open(f).convert('RGB')
+s.add('the same room in the upright frame the show uses', None, row([spec_shot(0), spec_shot(7, 30), spec_shot(8), spec_shot(10)], 20),
+      'These four are drawn through the world rules: a named camera, a named place, a named action and face. The rules refuse anything else.')
+s.add('more corners of it', None, row([spec_shot(12), spec_shot(4), spec_shot(6), spec_shot(9)], 20), 'The door, from the floor looking up, from the top corner, at the dresser.')
 s.add('palette', palette(bed, 12), palette(land, 12))
 s.save(os.path.join(out, 'nio-comparison-room.png'), LW)

@@ -35,16 +35,19 @@ export const SETS: Record<string, SetDef> = {
       atLamp: C([0.35, 1.36, 0.9], [0.7, 1.05, 2.65], 60), // at the nightstand, with the lamp
       atDresser: C([3.5, 1.36, 1.85], [2.85, 1.12, 3.1], 46), // at the dresser
       atDesk: C([1.25, 1.3, 0.45], [3.0, 1.05, 1.4], 42), // at the desk when he turns round from it
-      screen: C([3.7, 1.3, 1.3], [2.8, 1.38, 1.3], 56), // from behind the laptop, when he is working at the desk
+      screen: C([3.72, 1.12, 1.3], [2.8, 1.38, 1.3], 56), // from behind the laptop, when he is working at the desk
+      atDoor: C([2.55, 1.35, 3.0], [1.05, 1.05, 0.6], 50), // the reverse angle: from the window end, back toward the door
     },
     marks: {
       rug: { s: 2.0, z: 2.5, yaw: 180 }, rugLeft: { s: 1.55, z: 2.45, yaw: 180 }, rugRight: { s: 2.55, z: 2.45, yaw: 180 },
       bedEdge: { s: 1.6, z: 3.02, yaw: 180, seat: 0.47 }, window: { s: 2.55, z: 3.85, yaw: 0 },
       nightstand: { s: 1.0, z: 2.55, yaw: 90 }, dresser: { s: 2.8, z: 3.1, yaw: 270 }, desk: { s: 2.8, z: 1.3, yaw: 270 },
+      door: { s: 0.9, z: 0.7, yaw: 0 }, // just inside the door, facing into the room
     },
     solids: [
       { name: 'the bed', s: [0.0, 2.14], z: [3.1, 4.4] }, { name: 'the nightstand', s: [0.06, 0.7], z: [2.52, 3.04] },
       { name: 'the dresser', s: [3.06, 3.8], z: [2.78, 3.82] }, { name: 'the desk', s: [3.06, 3.78], z: [0.78, 1.82] },
+      { name: 'the clothes basket', s: [3.34, 3.7], z: [2.3, 2.66] }, { name: 'the backpack', s: [3.3, 3.7], z: [0.36, 0.66] },
     ],
   },
 };

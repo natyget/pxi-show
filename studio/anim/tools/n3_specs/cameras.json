@@ -10,5 +10,6 @@
  {"set":"nioRoom","camera":"atLamp","frames":40,"actors":[{"who":"nio","at":"nightstand","action":"touch","face":"neutral"}]},
  {"set":"nioRoom","camera":"atDresser","frames":40,"actors":[{"who":"nio","at":"dresser","action":"touch","face":"neutral"}]},
  {"set":"nioRoom","camera":"atDesk","frames":48,"actors":[{"who":"nio","at":"desk","action":"stand","face":"real","facing":"camera"}]},
- {"set":"nioRoom","camera":"screen","frames":48,"actors":[{"who":"nio","at":"desk","action":"stand","face":"hyped"}]}
+ {"set":"nioRoom","camera":"screen","frames":48,"actors":[{"who":"nio","at":"desk","action":"stand","face":"hyped"}]},
+ {"set":"nioRoom","camera":"atDoor","frames":48,"actors":[{"who":"nio","at":"door","action":"stand","face":"neutral"}]}
 ]
