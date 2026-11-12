@@ -10,7 +10,8 @@ export type Cam3 = { pos: V; at: V; fov: number };
 export type Box = { c: V; h: V; col: string; obj: number; yaw?: number; glow?: boolean; noShadow?: boolean; mat?: number };
 // A prop that moves (a phone in a hand): centre, three unit axes, half sizes. The +z face is `screen` if given.
 export type Obb = { c: V; x: V; y: V; z: V; h: V; col: string; screen?: string };
-export type Head = { c: V; rt: V; up: V; fw: V; face: Face; skin: string; hairA: string; hairB: string; blobs: number[][] };
+export type Head = { c: V; rt: V; up: V; fw: V; face: Face; skin: string; hairA: string; hairB: string; blobs: number[][];
+  build?: [number, number, number, number] }; // lashes, face width, chin length, curls (see Character.head)
 // A soft body: capsules blended per material slot. A character also has a head.
 export type Soft = { prims: Prim[]; origin: V; character?: boolean; head?: Head };
 export type Light = { p: V; r: number; col: V; halo?: number };

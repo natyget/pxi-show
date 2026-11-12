@@ -7,7 +7,7 @@ import { AbsoluteFill, continueRender, delayRender } from 'remotion';
 import * as THREE from 'three';
 import { V, sub, norm, cross } from './vec';
 import { faceArr } from './face';
-import { VERT, SCENE_FRAG, COMP_FRAG, NP, NC, NHD, NHB, NB, NO, NL, FS } from './shader';
+import { VERT, SCENE_FRAG, COMP_FRAG, NP, NC, NHD, NHB, NB, NO, NL, FS, NSH } from './shader';
 
 export * from './types';
 import { Scene3, PW, PH } from './types';
@@ -22,10 +22,10 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
       uRes: { value: new THREE.Vector2(w, h) }, uCamP: { value: new THREE.Vector3() }, uCamR: { value: new THREE.Vector3() }, uCamU: { value: new THREE.Vector3() }, uCamF: { value: new THREE.Vector3() }, uTan: { value: 0.3 }, uTime: { value: 0 },
       uA: f(NP * 4), uB: f(NP * 4), uM: f(NP * 4), uC: f(NP * 4),
       uCl: f(NC * 4), uCr: f(NC * 4), uCo: f(NC * 3), uNC: { value: 0 },
-      uHc: f(NHD * 3), uHr: f(NHD * 3), uHu: f(NHD * 3), uHf: f(NHD * 3), uSkin: f(NHD * 3), uHairA: f(NHD * 3), uHairB: f(NHD * 3), uHb: f(NHD * NHB * 4), uHn: { value: new Int32Array(NHD) }, uFace: f(NHD * 9 * 4),
+      uHc: f(NHD * 3), uHr: f(NHD * 3), uHu: f(NHD * 3), uHf: f(NHD * 3), uHk: f(NHD * 4), uSkin: f(NHD * 3), uHairA: f(NHD * 3), uHairB: f(NHD * 3), uHb: f(NHD * NHB * 4), uHn: { value: new Int32Array(NHD) }, uFace: f(NHD * 9 * 4),
       uBc: f(NB * 3), uBh: f(NB * 3), uBcol: f(NB * 4), uBm: f(NB * 4), uNB: { value: 0 },
       uOc: f(NO * 3), uOx: f(NO * 3), uOy: f(NO * 3), uOz: f(NO * 3), uOh: f(NO * 3), uOcol: f(NO * 3), uOem: f(NO * 3), uNO: { value: 0 },
-      uL: f(NL * 4), uLc: f(NL * 4), uNL: { value: 0 }, uSh: f(16),
+      uL: f(NL * 4), uLc: f(NL * 4), uNL: { value: 0 }, uSh: f(NSH * 4),
       uScr: { value: null }, uScrOn: { value: new THREE.Vector3(-1, 360, 0) },
       uSet: { value: 0 }, uRoom: { value: new THREE.Vector3() }, uAmb: { value: new THREE.Vector3() }, uAmbC: { value: new THREE.Vector3() },
     };
@@ -82,7 +82,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
       u.uSkin.value.set(rgb(hd.skin), hi * 3); u.uHairA.value.set(rgb(hd.hairA), hi * 3); u.uHairB.value.set(rgb(hd.hairB), hi * 3);
       const nb = Math.min(hd.blobs.length, NHB / 2);
       for (let k = 0; k < nb; k++) u.uHb.value.set(hd.blobs[k], (hi * NHB + k * 2) * 4);
-      u.uHn.value[hi] = nb; u.uFace.value.set(faceArr(hd.face), hi * FS);
+      u.uHn.value[hi] = nb; u.uFace.value.set(faceArr(hd.face), hi * FS); u.uHk.value.set(hd.build ?? [0, 1, 1, 0], hi * 4);
       hi++;
     }
     u.uCl.value.set([(mn[0] + mx[0]) / 2, (mn[1] + mx[1]) / 2, (mn[2] + mx[2]) / 2, Math.hypot(mx[0] - mn[0], mx[1] - mn[1], mx[2] - mn[2]) / 2 + 0.02], ci * 4);
@@ -103,7 +103,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
   const ls = sc.lights.slice(0, NL);
   ls.forEach((l, i) => { u.uL.value.set([...l.p, l.r], i * 4); u.uLc.value.set([...l.col, l.halo ?? 0], i * 4); });
   u.uNL.value = ls.length;
-  u.uSh.value.fill(0); (sc.shadows ?? []).slice(0, 4).forEach((s, i) => u.uSh.value.set(s, i * 4));
+  u.uSh.value.fill(0); (sc.shadows ?? []).slice(0, NSH).forEach((s, i) => u.uSh.value.set(s, i * 4));
   u.uRoom.value.set(...sc.room); u.uAmb.value.set(...sc.amb); u.uAmbC.value.set(...sc.ambChar);
 
   useLayoutEffect(() => { invalidate(); });
