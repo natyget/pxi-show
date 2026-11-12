@@ -11,6 +11,9 @@ import type { Cut } from './lib/cut';
 import { TextCheckTest } from './TextCheckTest';
 import { withProbe } from './lib/TextProbe';
 
+import { N3Still, N3_DEFAULT, N3Shot } from './nw3d/Scenes';
+import { NWHead, NWBody, NWHero, NWWide, NWSheet, NWClip, CLIP_LEN, NWShot, NWClip2, CLIP2_LEN } from './nw/Look';
+
 export const Root: React.FC = () => (
   <>
     <Composition id="Sheet" component={withProbe(Sheet)} durationInFrames={1} fps={24} width={1080} height={1920} />
@@ -25,5 +28,18 @@ export const Root: React.FC = () => (
       defaultProps={{ cut: 'long' as Cut }} calculateMetadata={({ props }) => ({ durationInFrames: pilot1Len(props.cut) })} />
     <Composition id="PilotPhoto" component={withProbe(PilotPhoto)} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'thumb' }} />
     <Composition id="TextCheckTest" component={withProbe(TextCheckTest)} durationInFrames={96} fps={24} width={1080} height={1920} defaultProps={{ variant: 'good' }} />
+    <Composition id="N3Shot" component={N3Shot} durationInFrames={48} fps={24} width={180} height={320}
+      defaultProps={{ spec: { set: 'nioRoom', camera: 'wide', frames: 48, actors: [{ who: 'nio', at: 'rug', action: 'stand', face: 'deadpan', facing: 'camera' }] } }}
+      calculateMetadata={({ props }) => ({ durationInFrames: props.spec.frames })} />
+    <Composition id="N3Still" component={N3Still} durationInFrames={1} fps={24} width={180} height={320} defaultProps={N3_DEFAULT}
+      calculateMetadata={({ props }) => ({ width: props.w, height: props.h })} />
+    <Composition id="NWHead" component={NWHead} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWBody" component={NWBody} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWHero" component={NWHero} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWWide" component={NWWide} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWSheet" component={NWSheet} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWClip" component={NWClip} durationInFrames={CLIP_LEN} fps={24} width={270} height={480} />
+    <Composition id="NWShot" component={NWShot} durationInFrames={1} fps={24} width={270} height={480} defaultProps={{ shot: 'corner' }} />
+    <Composition id="NWClip2" component={NWClip2} durationInFrames={CLIP2_LEN} fps={24} width={270} height={480} />
   </>
 );
