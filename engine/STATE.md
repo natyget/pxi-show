@@ -10,6 +10,14 @@ next_action: Add up to three premises to engine/premise-bank.md and report statu
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 0
 
+## BLOCKED: pilot "No Pics" (Nov 12)
+
+The cut (`episodes/nopics/`, built by `build.py`) failed the stranger review twice. Its words: "the middle and end
+are muddled, and the app reveal reads as an ad, not a punchline"; "two phone screens of dark blurry crowds";
+"Nio's face is cropped and close, almost the same pose in every shot". What the engine needs first: Maya and the
+friends drawn (only Nio exists, in one room), props he can hold and use, and the approved voices (huggingface.co is
+blocked in this environment).
+
 ## Open founder decisions
 
 - **Posting is closed** until the founder watches a built episode and approves it (founder, Nov 12: "once weve
