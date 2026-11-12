@@ -68,10 +68,7 @@ blocked in this environment).
 
 ## Run log (newest first, keep five)
 
+- 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.
 - 2026-11-12 · engine · learn scores follows, reads Supermetrics; promotion ladder (95% watchers, paused until yes); Nio-style format menu; posting waits on an approved episode.
 - 2026-11-12 · engine · captions and search written and wired into package, daily and schedule.
-- 2026-11-12 · bible · style handoff and world added; Nio pruned to the founder's own words; pasted-brief rules
-  unconfirmed; thirteen candidates in the bank.
-- 2026-11-11 · bible · rewritten around the head writer brief: the room, Nio, six beats, the Kevin, dialogue,
-  acting, the Gumball lens, story intake, voices locked. Pilot, look and Nio threads still open.
-- 2026-11-10 · setup · directive, stage cards and tools written; waiting for founder approval.
+- 2026-11-12 · bible · style handoff and world; Nio pruned to the founder's words; thirteen candidates banked.
