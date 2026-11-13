@@ -2,11 +2,9 @@
 """The second batch of post formats in Nio's world:
 
   FIVE STAGES   polaroids of Nio's faces on his cork board (the engine's faces, so the acting carries it)
-  BINGO         Maya's night-out bingo card on the board, marked in her green pen
   SEARCH        a phone face up on his desk, a search bar that has typed "how to"
   SUPERLATIVES  a yearbook page for the night where nobody's photo was sent, except his
   DICTIONARY    a dictionary page on his desk with words from his world
-  FORTUNE       a fortune cookie slip on his desk next to the takeout
 
   batch2.py <out_dir> [names...]
 """
@@ -22,13 +20,6 @@ STAGES_TITLE = 'waiting for the pics, in 5 stages'
 STAGES = [('deadpan', '1. they\'ll send them tonight'), ('rage', '2. theo posted 9 stories. none of me'),
           ('charm', '3. if i send mine first they have to'), ('crushed', '4. was i even there'),
           ('deadInside', "5. i'll draw them myself"), ('hyped', '6. remembered i made an app for this')]
-BINGO_TITLE = 'night out bingo'
-BINGO_BY = "maya's card"
-BINGO = ["\"i'm not even drunk\"", 'sami: "i\'m fine"', 'theo calls the last song', 'lost a jacket',
-         '"send me that"', 'one pic of you. blurry', 'uber 4 min away for 20 min', 'benji already outside',
-         'nio says "this my app"', 'phone on 3%', '"one more song"', 'happy crying in the bathroom',
-         'cold fries at 2', "in the back of a stranger's selfie", 'the group splits up', 'home before 4 (lie)']
-BINGO_MARKED = {1, 4, 5, 6, 7, 8, 9, 10, 11}   # the second row and the third: she got a line
 SEARCH_TYPED = 'how to'
 SEARCH = ['how to get the pics from last night', 'how to ask for pics without being weird',
           'how to tell if i blinked in every photo', "how to find what's on tonight near me",
@@ -42,8 +33,6 @@ YB_NOPHOTO = 'photo not sent'
 DICT = [('pic debt', 'n.', "the photos someone owes you from a night out. see also: theo"),
         ('outside', 'adj.', 'where benji is. has been since six. the party starts at ten'),
         ('one more song', 'phr.', 'a unit of time between forty minutes and the sun coming up')]
-FORTUNE = ['you will be in many photos.', 'you will be sent none of them.']
-FORTUNE_LUCKY = 'lucky numbers  3  14  22  9'
 
 
 def cork(W, H, seed=5, s=1.0):
@@ -84,27 +73,6 @@ def five_stages(out):
         drop_shadow(b, turn(p, (-3, 4)[i]), x, y, (3, 4)); pin(ImageDraw.Draw(b), x + 118, y + 10)
     im.alpha_composite(b, (-20, -20))
     return [f1, save_post(im.convert('RGB'), os.path.join(out, '02.png'), 22)]
-
-
-def bingo(out):
-    im = wall(BW, BH, 8); b = cork(500, 610, 8)
-    card = paper(440, 556, base=(240, 234, 222), seed=81); d = ImageDraw.Draw(card)
-    hand_text(d, (220, 34), BINGO_TITLE, 'marker', 34, (118, 84, 140), 'mm')
-    hand_text(d, (220, 66), BINGO_BY, 'maya', 24, OLIVE, 'mm', seed=3)
-    x0, y0, c = 20, 90, 100
-    for i, t in enumerate(BINGO):
-        x, y = x0 + (i % 4) * c, y0 + (i // 4) * c
-        d.rectangle([x, y, x + c, y + c], outline=INK, width=2)
-        for k, ln in enumerate(wrap(t, 'print', 17, c - 12)[:4]):
-            hand_text(d, (x + c // 2, y + 22 + k * 17), ln, 'print', 17, INK, 'mm')
-        if i in BINGO_MARKED:   # her green circle, a little off
-            r = random.Random(i); cx, cy = x + c // 2 + r.randint(-4, 4), y + c // 2 + r.randint(-4, 4)
-            for w in range(3): d.ellipse([cx - 42 + w, cy - 40 + w, cx + 42 - w, cy + 40 - w], outline=OLIVE)
-    # BINGO across the bottom in her pen, very pleased
-    hand_text(d, (220, 522), 'BINGO!!', 'maya', 40, OLIVE, 'mm', seed=9)
-    drop_shadow(b, turn(card, 1.5), 30, 40, (3, 4)); pin(ImageDraw.Draw(b), 250, 48, (70, 96, 140))
-    drop_shadow(im, b, 20, 34, (5, 7), 140)
-    return [save_post(im.convert('RGB'), os.path.join(out, '01.png'), 31)]
 
 
 def search_screen():
@@ -169,23 +137,7 @@ def dictionary(out):
     return [save_post(im.convert('RGB'), os.path.join(out, '01.png'), 61)]
 
 
-def fortune(out):
-    im = mottle(BW, BH, (88, 58, 46), 8, 3, 15).convert('RGBA'); d = ImageDraw.Draw(im)
-    for y in range(0, BH, 34): d.line([(0, y), (BW, y + 6)], fill=(66, 42, 36), width=2)
-    # the takeout carton it came with: white card, red print, a wire handle
-    bx = [(70, 140), (250, 140), (226, 310), (94, 310)]
-    d.polygon(bx, fill=(232, 226, 214), outline=INK); d.line(bx + [bx[0]], fill=INK, width=3)
-    d.polygon([(70, 140), (160, 110), (250, 140)], fill=(214, 206, 192), outline=INK)
-    d.arc([96, 60, 224, 150], 200, 340, fill=(150, 150, 156), width=3)
-    for k in range(3): d.line([(118 + k * 4, 190 + k * 22), (202 - k * 4, 190 + k * 22)], fill=(176, 56, 52), width=3)
-    sl = paper(420, 130, base=(244, 240, 232), seed=93); sd = ImageDraw.Draw(sl)
-    for k, ln in enumerate(FORTUNE): hand_text(sd, (210, 34 + k * 30), ln, 'print', 26, (176, 56, 52), 'mm')
-    hand_text(sd, (210, 104), FORTUNE_LUCKY, 'print', 18, (110, 100, 96), 'mm')
-    drop_shadow(im, turn(sl, -3), 70, 380, (4, 6), 130)
-    return [save_post(im.convert('RGB'), os.path.join(out, '01.png'), 71)]
-
-
-MAKERS = {'five-stages': five_stages, 'bingo': bingo, 'search': search, 'superlatives': superlatives, 'dictionary': dictionary, 'fortune': fortune}
+MAKERS = {'five-stages': five_stages, 'search': search, 'superlatives': superlatives, 'dictionary': dictionary}
 if __name__ == '__main__':
     out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ANIM, 'out', 'formats')
     for n in (sys.argv[2:] or MAKERS):
