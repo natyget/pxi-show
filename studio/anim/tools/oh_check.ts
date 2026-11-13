@@ -1,5 +1,6 @@
 // Check every built shot of Office Hours against the world rules (start, middle and end frame of each shot).
-import { SHOTS } from '../src/ep/OfficeHours';
+import { timeline } from '../src/ep/OfficeHours';
+const SHOTS = timeline({ cut: 'long' });
 import { validate } from '../src/nw3d/world';
 let bad = 0;
 for (const s of SHOTS) {

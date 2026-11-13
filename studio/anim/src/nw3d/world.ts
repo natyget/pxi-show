@@ -13,7 +13,7 @@ import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_
 import { STRANGERS } from './people';
 import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
 import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS, CORRIDOR_MARKS, CORRIDOR_INSERTS, PITCH_MARKS, PITCH_INSERTS, PITCH_SOLIDS, Keyed, keyed } from './campus';
-import { Act, shot, CAMS, ROOM, X, C } from './room';
+import { Act, shot, CAMS, ROOM, X, C, CamArg } from './room';
 
 export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, ...STRANGERS };
 
@@ -162,7 +162,11 @@ const speaking = (f: Face, lines: [number, Cues][] | undefined, frame: number, s
   const l = lines && [...lines].reverse().find(([at]) => frame + 1 >= at);
   return l ? lips(f, l[1], frame - l[0], size) : f;
 };
-export type ShotSpec = { set: string; camera: string; frames: number; actors: ActorSpec[]; club?: ClubSpec; campus?: CampusOpts };
+// phone: look through the first actor's phone instead (he must hold 'phone'): 'insert' over his hand at the screen, 'pov'
+// his eyes. The named camera still has to see him, so the world check holds. screen: a PXI screen
+// (public/pxi-ui/screens/<name>.png). thumb: where his thumb is on the glass, [frame, [across, up, lift]] keys.
+export type ShotSpec = { set: string; camera: string; frames: number; actors: ActorSpec[]; club?: ClubSpec; campus?: CampusOpts;
+  phone?: 'insert' | 'pov'; screen?: string; thumb?: [number, [number, number, number]][] };
 
 const names = (o: object) => Object.keys(o).join(', ');
 // a colour part of the way to another (#rrggbb)
@@ -300,8 +304,9 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
     return { who: paled(ch, keyed(a.pale, frame, 0)), clip: act.clip, t: act.back ? clipLength(act.clip) * 20 - t : act.loop ? t : Math.min(t, clipLength(act.clip) - 1), at: [s, z], yaw, face, outfit: a.outfit,
       stance: act.stance, arms: act.arms, upright: act.upright, seat: act.seat ? m.seat : undefined,
       phone: a.hold === 'phone' ? 1 : 0, glow: a.glow, crossed: a.hold === 'arms-crossed', look: a.look === 'camera' ? cam.pos : undefined, lookAmt: 0.7,
-      pose: a.hold, lift: m.on };
+      pose: a.hold, lift: m.on, thumb: spec.thumb && a === spec.actors[0] ? [...spec.thumb].reverse().find(([at]) => frame >= at)?.[1] ?? spec.thumb[0][1] : undefined };
   });
-  if (set.campus) return campusShot(set.campus, cam, acts, { ...spec.campus, time: frame / 24 });
+  const camP: CamArg = spec.phone ? [spec.phone, 0] : cam;
+  if (set.campus) { const sc = campusShot(set.campus, camP, acts, { ...spec.campus, time: frame / 24 }); return sc; } // the screen picture (spec.screen) is set by the composition, which knows where public/ is
   return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash);
 };
