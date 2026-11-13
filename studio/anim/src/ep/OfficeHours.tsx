@@ -26,6 +26,10 @@ const W = (camera: string, frames: number, actors: ShotSpec['actors'], campus: S
 const H = (camera: string, actors: ShotSpec['actors'], campus: ShotSpec['campus'] = {}): ShotSpec => ({ set: 'hall', camera, frames: 1, actors, campus: { dusty: true, ...campus } });
 const prof = (face: ShotSpec['actors'][0]['face']) => ({ who: 'profH', at: 'lectern', action: 'talk', face });
 const seat = (who: string, face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: who === 'capGirl' ? 'cap' : who, at: who, action: talk ? 'sitTalk' : 'sit', face });
+// The office.
+const O = (camera: string, actors: ShotSpec['actors'], campus: ShotSpec['campus'] = {}): ShotSpec => ({ set: 'office', camera, frames: 1, actors, campus: { flyer: 0, door: 0, ...campus } });
+const onio = (face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: 'nio', at: 'nio', action: talk ? 'sitTalk' : 'sit', face });
+const oprof = (face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: 'profH', at: 'profH', action: talk ? 'sitTalk' : 'sit', face });
 const waiters = (spin = true): ShotSpec['actors'] => [
   { who: 'spinner', at: 'seatR4', action: 'sit', face: 'deadInside', hold: spin ? 'spinner' : undefined },
   { who: 'crown', at: 'seatR5', action: 'sit', face: 'neutral' },
@@ -69,18 +73,18 @@ export const SHOTS: Shot[] = [
   sh(28, 29, 'L', W('darnell', 29, [darnellSit([[0, 'charm'], [14, 'neutral']])])),
   sh(29, 56, 'S', (f) => W('door', 56, f < 6 ? [] : [{ who: 'profH', at: 'doorway', action: 'talk', face: 'laughing' }],
     { serving: 3, clock: null, door: Math.min(1, f / 6) }), [L('oh_16', 'profH', 10)], [['creak', 0, 0.6]]),
-  // THE OFFICE
-  sh(30, 52, 'S', NONE, [L('oh_17', 'profH', 10)]),
-  sh(31, 24, 'S', NONE),
-  sh(32, 80, 'S', NONE, undefined, [['paper', 10, 0.7]]), // insert: the flyer slides across the desk
-  sh(33, 52, 'S', NONE, [L('oh_18', 'profH', 8)]),
-  sh(34, 60, 'S', NONE, [L('oh_19', 'nio', 26)]),
-  sh(34.5, 48, 'S', NONE, [L('oh_20', 'profH', 4)]),
+  // THE OFFICE. Nio in the visitor's chair, Prof H folded behind the desk, the door behind Nio.
+  sh(30, 52, 'S', O('wide', [{ ...onio('uneasy'), back: true }, oprof('real', true)]), [L('oh_17', 'profH', 10)]),
+  sh(31, 24, 'S', O('nio', [onio('uneasy')])),
+  sh(32, 80, 'S', O('flyer', [{ ...oprof('neutral'), hold: 'slideFlyer' }], { flyer: [[6, 0], [34, 1]] }), undefined, [['paper', 6, 0.7]]),
+  sh(33, 52, 'S', O('profH', [oprof('real', true)], { flyer: 1 }), [L('oh_18', 'profH', 8)]),
+  sh(34, 60, 'S', O('nio', [onio([[0, 'uneasy'], [24, 'sheepish']], true)], { flyer: 1 }), [L('oh_19', 'nio', 26)]),
+  sh(34.5, 48, 'S', O('profH', [oprof('crushed', true)], { flyer: 1 }), [L('oh_20', 'profH', 4)]),
   // Same angle as 20: the clock has hands, NOW SERVING 4, the door open, and Darnell walks out into the light.
   sh(35, 48, 'S', W('aisle', 48, [{ who: 'darnell', at: 'middle', to: 'doorway', action: 'walk', face: 'charm', back: true }, ...waiters(false)],
     { serving: 4, clock: [2.6, 0.1], door: 1 })),
-  sh(36, 44, 'S', NONE, [L('oh_21', 'profH', 6)]),
-  sh(37, 36, 'L', NONE, undefined, [['click', 20, 0.8]]),
+  sh(36, 44, 'S', O('door', [oprof('hyped', true)], { flyer: 1, door: 1 }), [L('oh_21', 'profH', 6)]),
+  sh(37, 36, 'L', O('wide', [oprof('charm')], { flyer: 1, door: [[0, 1], [20, 0]] }), undefined, [['click', 20, 0.8]]),
   // THE PITCH
   sh(38, 40, 'S', NONE, [L('oh_22', 'theo', 14)], [['grass', 0, 0.4], ['grass', 8, 0.4], ['grass', 16, 0.4]]),
   sh(39, 30, 'S', NONE, [L('oh_23', 'nio', 2)]),
