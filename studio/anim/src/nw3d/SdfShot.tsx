@@ -25,7 +25,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
       uCl: f(NC * 4), uCr: f(NC * 4), uCo: f(NC * 3), uNC: { value: 0 },
       uHc: f(NHD * 3), uHr: f(NHD * 3), uHu: f(NHD * 3), uHf: f(NHD * 3), uHk: f(NHD * 4), uSkin: f(NHD * 3), uHairA: f(NHD * 3), uHairB: f(NHD * 3), uHb: f(NHD * NHB * 4), uHn: { value: new Int32Array(NHD) }, uFace: f(NHD * 9 * 4),
       uBc: f(NB * 3), uBh: f(NB * 3), uBcol: f(NB * 4), uBm: f(NB * 4), uNB: { value: 0 },
-      uOc: f(NO * 3), uOx: f(NO * 3), uOy: f(NO * 3), uOz: f(NO * 3), uOh: f(NO * 3), uOcol: f(NO * 3), uOem: f(NO * 3), uNO: { value: 0 },
+      uOc: f(NO * 3), uOx: f(NO * 3), uOy: f(NO * 3), uOz: f(NO * 3), uOh: f(NO * 3), uOcol: f(NO * 3), uOem: f(NO * 3), uOs: f(NO * 4), uNO: { value: 0 },
       uL: f(NL * 4), uLc: f(NL * 4), uNL: { value: 0 }, uSh: f(NSH * 4),
       uScr: { value: null }, uScrOn: { value: new THREE.Vector3(-1, 360, 0) },
       uSet: { value: 0 }, uRoom: { value: new THREE.Vector3() }, uRoom0: { value: new THREE.Vector3() },
@@ -59,7 +59,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
     advance(performance.now()); continueRender(hold.current); hold.current = null;
   }, [scr, advance]);
   // the sign atlas (tools/signs.py), when anything in the shot shows a sign. The frame waits for it the same way.
-  const wantSigns = scene.boxes.some((b) => b.sign);
+  const wantSigns = scene.boxes.some((b) => b.sign) || (scene.props ?? []).some((o) => o.sign);
   const [sig, setSig] = useState<THREE.Texture | null>(null);
   const sigHold = useRef<number | null>(null);
   useEffect(() => {
@@ -121,7 +121,9 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
   u.uNB.value = nb;
   const pr = (sc.props ?? []).slice(0, NO);
   pr.forEach((o, i) => { u.uOc.value.set(o.c, i * 3); u.uOx.value.set(o.x, i * 3); u.uOy.value.set(o.y, i * 3); u.uOz.value.set(o.z, i * 3); u.uOh.value.set(o.h, i * 3);
-    u.uOcol.value.set(rgb(o.col), i * 3); u.uOem.value.set(rgb(o.screen ?? o.col), i * 3); });
+    u.uOcol.value.set(rgb(o.col), i * 3); u.uOem.value.set(rgb(o.screen ?? o.col), i * 3);
+    const rc = o.sign ? (SIGNS.rects as Record<string, number[]>)[o.sign] : undefined; if (o.sign && !rc) throw new Error('no sign ' + o.sign + ' in the atlas (tools/signs.py)');
+    u.uOs.value.set(rc ?? [0, 0, 0, 0], i * 4); });
   u.uNO.value = pr.length;
   u.uScr.value = scr; u.uScrOn.value.set(scr ? pr.findIndex((o) => o.screen) : -1, scr ? (scr.image as any).width : 360, 0);
   const ls = sc.lights.slice(0, NL);

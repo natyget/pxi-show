@@ -5,7 +5,7 @@
 // Positions are (s, y, z) as everywhere: s from the wall on the LEFT of the picture when you face the far wall, z toward
 // the far wall. Each room sits so that X(s) from room.ts still gives world x.
 // Signs (words and pictures on things) are drawn by tools/signs.py into one atlas; a box shows one with `sign`.
-import { V } from './vec';
+import { V, add } from './vec';
 import { Scene3, Box, Light, Cam3, Soft, Obb, CrowdSpec } from './types';
 import { Act, pose, P3, X, C, CamArg, camOf, lensActs } from './room';
 
@@ -13,7 +13,8 @@ import { Act, pose, P3, X, C, CamArg, camOf, lensActs } from './room';
 export const CAMPUS_GLSL = `
 // ==== the campus ====
 uniform vec4 uCampus; // x: the room (0 lecture hall, 1 corridor, 2 waiting room, 3 office, 4 outdoors), y: how far the
-                      // door in the far wall is open (0..1), z: world x of that door's centre, w: spare
+                      // door is open (0..1), z: world x of that door's centre, w: 0 the door is in the far wall, 1 in the
+                      // near wall and it opens onto the sunny quad
 uniform sampler2D uSign; uniform vec2 uSignSz; uniform vec4 uBs[NB]; // the sign atlas, its size, and each box's sign
 // rectangle (or the clock's hands: x 1 = it has hands, y the hour hand's angle, z the minute hand's, clockwise from 12)
 
@@ -26,10 +27,19 @@ vec3 vinyl(vec2 q, vec3 a, vec3 b, float s, float fp){
 }
 // a door in a wall, centred at q = 0 on the floor: a frame, and either the closed door (wood, a frosted window high
 // up) or, open, the warm light of the room behind it
+// the quad through an open door, in the sun: sky, a tree, the grass and a path
+vec3 quadView(vec2 q){
+  if (q.y < 0.82){ vec3 g = vec3(0.47, 0.74, 0.3) * (0.94 + 0.12 * hash(floor(q * 18.0))); if (abs(q.x + (0.82 - q.y) * 0.35) < 0.08 + (0.82 - q.y) * 0.25) g = vec3(0.86, 0.8, 0.66); return g; }
+  vec2 tc = q - vec2(-0.16, 1.36);
+  if (length(tc * vec2(1.0, 1.15)) < 0.3) return vec3(0.3, 0.56, 0.26) * (0.9 + 0.15 * hash(floor(q * 14.0)));
+  if (abs(q.x + 0.16) < 0.035 && q.y < 1.2) return vec3(0.42, 0.3, 0.22);
+  return mix(vec3(0.72, 0.87, 0.98), vec3(0.52, 0.74, 0.96), smoothstep(0.9, 2.0, q.y));
+}
 void campusDoor(inout vec3 c, inout float em, vec2 q, float open, float fp){
   if (abs(q.x) > 0.52 || q.y > 2.12) return;
   c = vec3(0.24, 0.17, 0.15);
   if (abs(q.x) > 0.45 || q.y > 2.05) return;
+  if (open > 0.01 && uCampus.w > 0.5){ c = quadView(q); em = 1.0; return; }
   if (open > 0.01){ // the light inside, warm, brightest low down where it spills toward us
     c = mix(vec3(1.0, 0.78, 0.45), vec3(0.93, 0.6, 0.32), smoothstep(0.2, 2.0, q.y)); em = 1.0; return; }
   c = vec3(0.5, 0.33, 0.24) * (0.95 + 0.08 * hash(vec2(floor((q.x + 0.45) / 0.15), 2.0)));
@@ -40,13 +50,15 @@ void campusDoor(inout vec3 c, inout float em, vec2 q, float open, float fp){
 vec3 campusFloor(vec3 p, float fp, vec2 px, out float em){
   em = 0.0; float k = uCampus.x; vec3 c;
   if (k < 0.5) return vec3(0.243, 0.275, 0.345) * mott(p * 1.4, 2.2); // the lecture hall: blue carpet
-  if (k > 1.5 && k < 2.5) c = vinyl(p.xz, vec3(0.53, 0.56, 0.55), vec3(0.47, 0.5, 0.5), 0.33, fp);
+  if (k > 2.5 && k < 3.5){ c = vec3(0.42, 0.24, 0.21) * mott(p * 1.4, 2.2); } // the office: old red-brown carpet
+  else if (k > 1.5 && k < 2.5) c = vinyl(p.xz, vec3(0.53, 0.56, 0.55), vec3(0.47, 0.5, 0.5), 0.33, fp);
   else c = vinyl(p.xz, vec3(0.5, 0.48, 0.46), vec3(0.45, 0.43, 0.42), 0.33, fp);
   // the warm light from the open door, spilling across the floor toward us, in hard steps
-  float o = uCampus.y;
-  if (o > 0.01){ float dz = uRoom0.z + uRoom.z - p.z, dx = abs(p.x - uCampus.z);
-    float wedge = 0.44 + dz * 0.3 * o; float r = dz / (3.4 * o);
-    if (dz > 0.0 && dx < wedge && r < 1.0){ float s = floor((1.0 - r) * 3.0 + 0.5 + (bayer(px) - 0.5) * 0.5) / 3.0; c = mix(c, c * vec3(1.85, 1.45, 0.95) + vec3(0.07, 0.04, 0.0), s); } }
+  float o = uCampus.y; bool sun = uCampus.w > 0.5;
+  if (o > 0.01){ float dz = sun ? p.z - uRoom0.z : uRoom0.z + uRoom.z - p.z, dx = abs(p.x - uCampus.z);
+    float wedge = 0.44 + dz * 0.3 * o; float r = dz / ((sun ? 2.6 : 3.4) * o);
+    if (dz > 0.0 && dx < wedge && r < 1.0){ float s = floor((1.0 - r) * 3.0 + 0.5 + (bayer(px) - 0.5) * 0.5) / 3.0;
+      c = mix(c, sun ? c * vec3(2.1, 1.95, 1.55) + vec3(0.06, 0.05, 0.02) : c * vec3(1.85, 1.45, 0.95) + vec3(0.07, 0.04, 0.0), s); } }
   return c;
 }
 vec3 campusWall(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
@@ -59,6 +71,8 @@ vec3 campusWall(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
       for (int i = 0; i < 5; i++){ vec2 at = i < 4 ? vec2(i % 2 == 0 ? 2.2 : 6.2, i < 2 ? 3.0 : 6.5) : vec2(4.2, 8.8);
         vec2 d = abs(q - vec2(uRoom0.x + uRoom.x - at.x, at.y)) - vec2(0.3, 0.6);
         if (max(d.x, d.y) < 0.0){ c = max(d.x, d.y) > -max(0.03, fp) ? vec3(0.66, 0.66, 0.64) : vec3(0.96, 0.95, 0.88); em = 1.0; } } }
+    if (k > 2.5 && k < 3.5){ vec2 d = abs(q - vec2(cx, uRoom0.z + 1.65)) - vec2(0.3, 0.3);
+      if (max(d.x, d.y) < 0.0){ c = max(d.x, d.y) > -max(0.03, fp) ? vec3(0.66, 0.66, 0.64) : vec3(0.96, 0.95, 0.88); em = 1.0; } }
     if (k > 1.5 && k < 2.5){ for (int i = 0; i < 2; i++){ vec2 d = abs(q - vec2(cx, 2.2 + 2.2 * float(i))) - vec2(0.3, 0.6);
       if (max(d.x, d.y) < 0.0){ c = max(d.x, d.y) > -max(0.03, fp) ? vec3(0.66, 0.66, 0.64) : vec3(0.92, 0.97, 0.9); em = 1.0; } } }
     return c;
@@ -74,12 +88,14 @@ vec3 campusWall(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
     vec3 c = vec3(0.7, 0.68, 0.62) * mott(p, 0.5); vec2 g = fract(vec2(uv.x / 1.2, (uv.y - top) / 0.9));
     if (min(g.x * 1.2, g.y * 0.9) < max(0.012, fp * 0.7)) c *= 0.82;
     return c; }
-  // institutional paint: a darker band below the rail, a pale one above, a dark skirting
-  vec3 lo = vec3(0.42, 0.52, 0.45), hi = vec3(0.76, 0.78, 0.66);
+  // institutional paint: a darker band below the rail, a pale one above, a dark skirting. The office: wood below, cream above
+  bool off = k > 2.5 && k < 3.5;
+  vec3 lo = off ? vec3(0.44, 0.31, 0.23) : vec3(0.42, 0.52, 0.45), hi = off ? vec3(0.84, 0.78, 0.63) : vec3(0.76, 0.78, 0.66);
   vec3 c = (uv.y < 1.0 ? lo : hi) * mott(p, 0.6);
   if (abs(uv.y - 1.0) < max(0.022, fp * 0.8)) c = vec3(0.34, 0.4, 0.36);
   if (uv.y < 0.1) c = vec3(0.24, 0.26, 0.25);
-  if (w == 3) campusDoor(c, em, vec2(p.x - uCampus.z, p.y), uCampus.y, fp);
+  if (off && uv.y < 1.0){ float sy = floor(uv.y / 0.14); float st = hash(vec2(sy, floor(uv.x / 0.8 + hash(vec2(sy, 5.0)) * 2.0))); c *= st > 0.84 ? 0.9 : st < 0.14 ? 1.08 : 1.0; }
+  if ((w == 3 && uCampus.w < 0.5) || (w == 6 && uCampus.w > 0.5)) campusDoor(c, em, vec2((w == 6 ? -1.0 : 1.0) * (p.x - uCampus.z), p.y), uCampus.y, fp);
   return c;
 }
 // a sign on the front face of a box (mat 7): read from the atlas at the fineness this shot can hold
@@ -130,9 +146,9 @@ const chairs = (s: number, side: 1 | -1, o: number): Box[] => [
     B(s, 0.21, z, 0.015, 0.21, 0.015, FRAME, o), // the post under each seat
   ]),
 ];
-export type WaitOpts = { door?: number; serving?: 3 | 4; clock?: null | [number, number]; ticketMachine?: boolean };
-export const waitBoxes = (o: WaitOpts = {}): Box[] => {
-  const zF = WAIT.d, open = o.door ?? 0;
+export type WaitOpts = { door?: Keyed; serving?: 3 | 4; clock?: null | [number, number]; ticketMachine?: boolean };
+export const waitBoxes = (o: WaitOpts = {}, f = 0): Box[] => {
+  const zF = WAIT.d, open = keyed(o.door, f, 0);
   const bs: Box[] = [
     ...chairs(WAIT.rowS[0], 1, 1), ...chairs(WAIT.rowS[1], -1, 20),
     // NOW SERVING over the door, lit
@@ -177,9 +193,9 @@ export const WAIT_SOLIDS = [
 ];
 
 // the light: two fluorescent panels, cold and a little green; the warm door when it is open
-const waitLights = (o: WaitOpts): Light[] => [
+const waitLights = (o: WaitOpts, f: number): Light[] => [
   { p: P3(1.5, 2.55, 2.2), r: 3.4, col: [0.46, 0.52, 0.47] }, { p: P3(1.5, 2.55, 4.4), r: 3.4, col: [0.46, 0.52, 0.47] },
-  ...((o.door ?? 0) > 0.01 ? [{ p: P3(WAIT.door, 1.3, WAIT.d - 0.25), r: 2.6 * (o.door ?? 0) + 0.6, col: [0.75, 0.5, 0.24] as V, halo: 0.12 }] : []),
+  ...(keyed(o.door, f, 0) > 0.01 ? [{ p: P3(WAIT.door, 1.3, WAIT.d - 0.25), r: 2.6 * keyed(o.door, f, 0) + 0.6, col: [0.75, 0.5, 0.24] as V, halo: 0.12 }] : []),
 ];
 
 // THE LECTURE HALL: 8.4 wide, 4.8 high, 10.5 deep. The front is the far wall: the projector screen, two speakers high
@@ -285,24 +301,113 @@ const hallLights = (): Light[] => [
   { p: P3(4.2, 4.2, 8.8), r: 3.6, col: [0.42, 0.39, 0.34] }, { p: P3(4.2, 2.9, 10.1), r: 2.6, col: [0.22, 0.24, 0.3] }, // over the lectern; the screen's glow
 ];
 
-export type CampusOpts = WaitOpts & HallOpts & { time?: number };
+// THE OFFICE: tiny. 2.6 wide, 2.5 high, 3.3 deep. Prof H's desk across it, near the far wall, with his high-backed
+// chair folded in behind it; the HANG IN THERE poster over his shoulder; a bookcase on the right wall; on the desk a
+// lamp, a mug, papers and a bobblehead of himself. The visitor's chair faces the desk; the door is behind it, in the
+// near wall: it opens onto the sunny quad.
+export const OFF = { w: 2.6, h: 2.5, d: 3.3, door: 1.3, desk: { s: 1.3, z: 2.2, hw: 0.72, hd: 0.3, top: 0.745 } };
+const FLY = { s: 1.2, z0: 2.4, z1: 2.04 }; // the flyer slides from Prof H's side of the desk to Nio's
+// door: how open the door is (0 shut .. 1 open, the quad beyond). flyer: where the improv flyer is on the desk, 0 at
+// Prof H's side .. 1 in front of Nio, keyed by frame to slide it (with Prof H's hold slideFlyer, his hand goes with it);
+// left out, there is no flyer.
+export type OfficeOpts = { door?: Keyed; flyer?: Keyed };
+const flyerAt = (o: OfficeOpts, f: number): V | undefined => o.flyer === undefined ? undefined : P3(FLY.s, OFF.desk.top + 0.003, FLY.z0 + (FLY.z1 - FLY.z0) * keyed(o.flyer, f, 0));
+const BOOKS = ['#7a3b47', '#3f6f78', '#c9a23a', '#4c5f8c', '#4f6142', '#a85a42', '#e3d8c4', '#2c262e'];
+const officeBoxes = (o: OfficeOpts, f: number): Box[] => {
+  const D = OFF.desk, W0 = '#6e4f3a', bs: Box[] = [
+    // the desk: a top, a panel down the front (Nio's side), a drawer pedestal each end; Prof H's knees go between
+    B(D.s, D.top - 0.02, D.z, D.hw, 0.022, D.hd, '#7a5a40', 1, { mat: 1 }), B(D.s, 0.37, D.z - D.hd + 0.02, D.hw, 0.35, 0.02, W0, 2, { mat: 1 }),
+    B(D.s - D.hw + 0.2, 0.36, D.z, 0.2, 0.36, D.hd - 0.02, W0, 3, { mat: 1 }), B(D.s + D.hw - 0.2, 0.36, D.z, 0.2, 0.36, D.hd - 0.02, W0, 3, { mat: 1 }),
+    B(D.s + 0.45, D.top + 0.012, D.z + 0.08, 0.14, 0.012, 0.18, '#ece6d6', 4, { yaw: 12 }), // a stack of papers
+    // his chair: a high back, a seat, one post
+    B(D.s, 0.45, 2.98, 0.28, 0.04, 0.25, '#3a3438', 5), B(D.s, 0.98, 3.2, 0.28, 0.46, 0.04, '#3a3438', 5), B(D.s, 0.21, 2.98, 0.03, 0.21, 0.03, '#2a2628', 5),
+    // the visitor's chair, facing the desk
+    B(D.s, 0.43, 1.35, 0.22, 0.03, 0.21, '#56705e', 6), B(D.s, 0.74, 1.15, 0.22, 0.28, 0.025, '#56705e', 6), // green seat and back
+    ...[[-1, -1], [1, -1], [-1, 1], [1, 1]].map(([a, b]) => B(D.s + a * 0.19, 0.21, 1.35 + b * 0.18, 0.018, 0.21, 0.018, '#4a3428', 6)),
+    // the poster over his shoulder, and the bookcase on the right wall
+    B(0.62, 1.62, OFF.d - 0.01, 0.24, 0.32, 0.008, '#e8e2d2', 7, { yaw: FACING.us, mat: 7, sign: 'hangInThere' }),
+    B(OFF.w - 0.15, 0.95, 2.45, 0.15, 0.95, 0.5, '#5e4434', 8, { mat: 1 }),
+  ];
+  // the books on its three shelves, spines to the room
+  let k = 0;
+  for (const y of [0.42, 0.92, 1.42]) { let z = 2.02;
+    while (z < 2.86) { const t = 0.03 + 0.025 * ((k * 7) % 3), h = 0.17 + 0.03 * ((k * 5) % 4);
+      bs.push(B(OFF.w - 0.31, y + h / 2, z + t, 0.008, h / 2, t, BOOKS[k % BOOKS.length], 9)); z += 2 * t + 0.006; k++; } }
+  const door = keyed(o.door, f, 0);
+  if (door > 0.01) {
+    // the door, swung in on its hinge on the left wall's side, out of the way of the cameras
+    const a = door * 1.5, hs = OFF.door - 0.45, L = 0.9, cs = hs + Math.cos(a) * L * 0.5, cz = Math.sin(a) * L * 0.5;
+    bs.push({ c: P3(cs, 1.025, cz + 0.022), h: [0.45, 1.025, 0.022], col: '#80553e', obj: 10, yaw: (a * 180) / Math.PI });
+  }
+  const fp = flyerAt(o, f); if (fp) bs.push({ c: fp, h: [0.108, 0.002, 0.14], col: '#f6f3ea', obj: 11, yaw: 180 + 6, mat: 9, sign: 'flyer' });
+  return bs;
+};
+// the lamp, the mug and the bobblehead of Prof H on the desk
+const officeSofts = (): Soft[] => {
+  const D = OFF.desk, t = D.top, m = (s: number, y: number, z: number): V => P3(s, y, z);
+  const lamp = { prims: [
+    { a: m(0.78, t, 2.36), ra: 0.07, b: m(0.78, t + 0.02, 2.36), rb: 0.07, g: 0, k: 0.01, c: '#2c4a3e' },
+    { a: m(0.78, t + 0.02, 2.36), ra: 0.012, b: m(0.8, t + 0.36, 2.3), rb: 0.012, g: 0, k: 0.01, c: '#2c4a3e' },
+    { a: m(0.8, t + 0.36, 2.3), ra: 0.04, b: m(0.88, t + 0.3, 2.16), rb: 0.075, g: 1, k: 0.01, c: '#2c4a3e', cutB: true },
+    { a: m(0.875, t + 0.3, 2.17), ra: 0.035, b: m(0.875, t + 0.3, 2.17), rb: 0.035, g: 2, k: 0.004, c: '#fff1c8', em: 1 },
+  ], origin: m(0.78, t, 2.36) };
+  const mug = { prims: [{ a: m(1.72, t + 0.002, 1.98), ra: 0.04, b: m(1.72, t + 0.09, 1.98), rb: 0.04, g: 0, k: 0.004, c: '#c8553d', cutA: true, cutB: true },
+    { a: m(1.765, t + 0.065, 1.98), ra: 0.012, b: m(1.765, t + 0.03, 1.98), rb: 0.012, g: 0, k: 0.02, c: '#c8553d' }], origin: m(1.72, t, 1.98) };
+  // the bobblehead: a little Prof H on a round base, his big head, his hair, the dots of his glasses, his cardigan
+  const bx = 1.86, bz = 2.04;
+  const bob = { prims: [
+    { a: m(bx, t, bz), ra: 0.035, b: m(bx, t + 0.015, bz), rb: 0.035, g: 0, k: 0.004, c: '#2a2628', cutA: true },
+    { a: m(bx, t + 0.03, bz), ra: 0.028, b: m(bx, t + 0.075, bz), rb: 0.022, g: 1, k: 0.01, c: '#a8834f' },
+    { a: m(bx, t + 0.115, bz), ra: 0.042, b: m(bx, t + 0.115, bz), rb: 0.042, g: 2, k: 0.004, c: '#e2b49a' },
+    { a: m(bx + 0.004, t + 0.142, bz + 0.006), ra: 0.035, b: m(bx - 0.012, t + 0.15, bz + 0.01), rb: 0.032, g: 3, k: 0.01, c: '#857262' },
+    { a: m(bx - 0.016, t + 0.12, bz - 0.036), ra: 0.008, b: m(bx - 0.016, t + 0.12, bz - 0.036), rb: 0.008, g: 4, k: 0.002, c: '#3a2c22' },
+    { a: m(bx + 0.016, t + 0.12, bz - 0.036), ra: 0.008, b: m(bx + 0.016, t + 0.12, bz - 0.036), rb: 0.008, g: 4, k: 0.002, c: '#3a2c22' },
+  ], origin: m(bx, t, bz) };
+  return [lamp, mug, bob] as Soft[];
+};
+export const OFFICE_CAMS: Record<string, Cam3> = {
+  wide: C([2.42, 2.05, 0.12], [1.22, 1.0, 2.3], 64), // from the corner by the door: Nio from behind in his chair, Prof H behind the desk, the poster
+  nio: C([1.85, 1.32, 2.62], [1.3, 1.17, 1.35], 38), // close on Nio, from beside Prof H
+  profH: C([1.78, 1.36, 1.4], [1.3, 1.44, 2.75], 32), // close on Prof H, from beside Nio
+  door: C([1.3, 1.22, 0.14], [1.3, 1.22, 2.75], 36), // from the doorway: the chair Nio sat in, Prof H alone behind the desk, the sun on him
+  flyer: C([1.2, 1.5, 1.66], [1.2, 0.745, 2.18], 44), // insert: the desk from Nio's side, the flyer coming across it
+};
+export const OFFICE_INSERTS = ['flyer'];
+export const OFFICE_MARKS = {
+  nio: { s: OFF.desk.s, z: 1.35, yaw: 0, seat: 0.455 }, // the visitor's chair
+  profH: { s: OFF.desk.s, z: 2.82, yaw: 180, seat: 0.49, who: 'profH' }, // his chair behind the desk
+};
+export const OFFICE_SOLIDS = [{ name: 'the desk', s: [0.58, 2.02] as [number, number], z: [1.9, 2.5] as [number, number] },
+  { name: 'the bookcase', s: [2.3, 2.6] as [number, number], z: [1.95, 2.95] as [number, number] }];
+const officeLights = (o: OfficeOpts, f: number): Light[] => {
+  const door = keyed(o.door, f, 0);
+  return [{ p: P3(1.3, 2.35, 1.65), r: 3.2, col: [0.4, 0.4, 0.38] }, { p: P3(0.88, OFF.desk.top + 0.24, 2.14), r: 1.6, col: [0.6, 0.45, 0.24], halo: 0.06 },
+    ...(door > 0.01 ? [{ p: P3(OFF.door, 1.5, 0.3), r: 3.6 * door, col: [0.6, 0.56, 0.44] as V }] : [])];
+};
+
+export type CampusOpts = WaitOpts & HallOpts & OfficeOpts & { time?: number };
 export const CAMPUS_ROOMS = {
   waiting: { kind: 2, size: [WAIT.w, WAIT.h, WAIT.d] as V, cams: WAIT_CAMS },
   hall: { kind: 0, size: [HALL.w, HALL.h, HALL.d] as V, cams: HALL_CAMS },
+  office: { kind: 3, size: [OFF.w, OFF.h, OFF.d] as V, cams: OFFICE_CAMS },
 };
 export type CampusRoom = keyof typeof CAMPUS_ROOMS;
 // A shot in a campus room. acts: the cast, placed by (s, z) as anywhere else.
 export const campusShot = (room: CampusRoom, camA: CamArg, acts: Act[], o: CampusOpts = {}): Scene3 => {
-  const R = CAMPUS_ROOMS[room], ps = lensActs(camA, acts).map((a) => pose(a)), cam = camOf(camA, ps);
-  const hall = room === 'hall', f = (o.time ?? 0) * 24;
-  const boxes = hall ? hallBoxes(o) : waitBoxes(o), lights = hall ? hallLights() : waitLights(o);
+  const R = CAMPUS_ROOMS[room], hall = room === 'hall', office = room === 'office', f = (o.time ?? 0) * 24;
+  // Prof H's hand goes wherever the flyer is this frame: its near edge, on his side
+  const fp = office ? flyerAt(o, f) : undefined;
+  const acts2 = acts.map((a) => (a.pose === 'slideFlyer' && fp ? { ...a, reachTo: add(fp, [0, 0, 0.13]) as V } : a));
+  const ps = lensActs(camA, acts2).map((a) => pose(a)), cam = camOf(camA, ps);
+  const boxes = hall ? hallBoxes(o) : office ? officeBoxes(o, f) : waitBoxes(o, f), lights = hall ? hallLights() : office ? officeLights(o, f) : waitLights(o, f);
   const look = ps.find((p, i) => acts[i].who?.id === 'nio')?.soft.head?.c ?? P3(seatS(0), 2.1, seatZ(4));
+  const door = hall ? 0 : keyed(o.door, f, 0), doorX = X(office ? OFF.door : WAIT.door);
   return {
     cam, room: R.size, room0: [X(R.size[0]), 0, 0], set: 3, time: o.time ?? 0,
-    campus: [R.kind, hall ? 0 : o.door ?? 0, X(WAIT.door), 0],
-    amb: hall ? [0.3, 0.29, 0.31] : [0.3, 0.34, 0.31], ambChar: hall ? [0.86, 0.84, 0.82] : [0.84, 0.88, 0.84],
+    campus: [R.kind, door, doorX, office ? 1 : 0],
+    amb: hall ? [0.3, 0.29, 0.31] : office ? [0.32, 0.29, 0.27] : [0.3, 0.34, 0.31], ambChar: hall ? [0.86, 0.84, 0.82] : office ? [0.88, 0.84, 0.8] : [0.84, 0.88, 0.84],
     crowd: hall ? hallCrowd(o, acts.map((a) => a.at as [number, number]), look, cam, f) : undefined,
-    boxes, softs: [...ps.map((p) => p.soft), ...(hall ? hallSofts(o) : [])], lights: [...lights, ...ps.flatMap((p) => p.lights)],
+    boxes, softs: [...ps.map((p) => p.soft), ...(hall ? hallSofts(o) : office ? officeSofts() : [])], lights: [...lights, ...ps.flatMap((p) => p.lights)],
     props: [...ps.flatMap((p) => p.props), ...(hall ? hallProps(o, f) : [])], shadows: ps.flatMap((p) => p.shadows),
   };
 };

@@ -136,10 +136,17 @@ export const PARTY_AMB: V = [0.56, 0.52, 0.58], PARTY_AMB_CHAR: V = [0.97, 0.92,
 export type Act = { who?: Character; clip: string; t: number; at: [number, number]; yaw: number; face: Face;
   stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string;
   pose?: string; lift?: number;
+  reachTo?: V; // a point in the world the hold's hand goes to (set by the set: Prof H's fingers on the flyer)
   thumb?: [number, number, number]; // where his thumb is on the glass: across and up it (-1..1), and how far lifted (0 pressed, 1 off)
   lens?: boolean }; // set by the selfie camera: this is the picture his own phone takes (see phoneCam) // where his thumb is on the glass: across and up it (-1..1), and how far lifted (0 pressed, 1 off)
 // Turn a vector round an axis (radians).
 const rot = (v: V, k: V, a: number): V => add(add(mul(v, Math.cos(a)), mul(cross(k, v), Math.sin(a))), mul(k, dot(k, v) * (1 - Math.cos(a))));
+// Lean the upper body forward from the hips (radians): the spine, the head, the arms all go with it.
+const leanFwd = (s: Skel, a: number): Skel => {
+  const P = (p: V) => add(s.hips, rot(sub(p, s.hips), s.side, a)), D = (d: V) => rot(d, s.side, a), two = (q: [V, V]): [V, V] => [P(q[0]), P(q[1])];
+  return { ...s, neckBase: P(s.neckBase), chestDir: D(s.chestDir), headC: P(s.headC), headUp: D(s.headUp), headFw: D(s.headFw), headRt: D(s.headRt),
+    sh: two(s.sh), el: two(s.el), wr: two(s.wr), tip: two(s.tip), thumb: two(s.thumb) };
+};
 // The party cup: red, a little wider at the top, a cream rim and something dark in it. Its own surface, so it is inked
 // where the hand meets it.
 const cup = (c: V): Prim[] => [
@@ -299,6 +306,23 @@ export const pose = (a: Act) => {
       s = reach(s, i, lerp(s.wr[i], grip, hIn), add(out(i), [0, -0.7, 0]), P, mul(sd, i === 0 ? -1 : 1), up);
     }
     if (e > 0.5) s = lookAt(s, add(c1, mul(fwd, 0.4)), 0.35 * (e - 0.5) * 2, P);
+  }
+  // Prof H pushes the flyer across the desk to Nio: his right hand flat on it, the fingers on its near edge, wherever
+  // the set says the flyer is this frame (reachTo). He leans in after it, and watches it go.
+  if (nm === 'slideFlyer' && a.reachTo) {
+    s = leanFwd(s, 0.38);
+    const w = add(a.reachTo, add(mul(fwd, -0.07), [0, 0.03, 0]));
+    s = reach(s, 1, w, add(out(1), [0, -0.6, 0]), P, norm(add(fwd, [0, -0.25, 0])), mul(out(1), -1)); hands[1] = 'open';
+    s = lookAt(s, a.reachTo, 0.3, P);
+  }
+  // the flyer held up in both hands at chest height, its face to whoever he shows it to
+  if (nm === 'flyer') {
+    const pc = add(add(s.neckBase, mul(s.chestDir, -0.12)), mul(fwd, P.torsoR + 0.2)), z = norm(add(fwd, [0, 0.15, 0])), x0 = s.side, x = norm(sub(x0, mul(z, dot(x0, z)))), y = cross(z, x);
+    props.push({ c: pc, x, y, z, h: [0.108, 0.14, 0.002], col: '#f6f3ea', sign: 'flyer' });
+    for (const i of [0, 1] as const) {
+      const edge = add(pc, add(mul(x, (i === 0 ? 1 : -1) * 0.112), add(mul(y, 0.07), mul(z, -0.012))));
+      s = reach(s, i, add(edge, mul(z, -0.03)), add(out(i), [0, -1, 0]), P, y, mul(z, 1)); hands[i] = 'fist';
+    }
   }
   // a pen in the right hand, its point on the desk in front of him
   if (nm === 'pen') {

@@ -12,7 +12,7 @@ import { Scene3, Cam3 } from './types';
 import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_H_CHAR, DARNELL_CHAR } from './characters';
 import { STRANGERS } from './people';
 import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
-import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS } from './campus';
+import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS } from './campus';
 import { Act, shot, CAMS, ROOM, X, C } from './room';
 
 export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, ...STRANGERS };
@@ -107,6 +107,9 @@ SETS.waiting = { room: CAMPUS_ROOMS.waiting.size, campus: 'waiting', cameras: CA
 // THE LECTURE HALL: seven rows of desks climbing from the lectern, an aisle with steps up the right. Students fill the
 // rows (a shot's campus.crowd: how full, campus.turn: how far every head has turned to stare at Nio).
 SETS.hall = { room: CAMPUS_ROOMS.hall.size, campus: 'hall', cameras: CAMPUS_ROOMS.hall.cams, inserts: HALL_INSERTS, marks: HALL_MARKS, solids: HALL_SOLIDS };
+// PROF H'S OFFICE: tiny; his desk, the visitor's chair, the door behind it onto the sunny quad (campus.door), the improv
+// flyer on the desk (campus.flyer; with his hold slideFlyer his hand pushes it across).
+SETS.office = { room: CAMPUS_ROOMS.office.size, campus: 'office', cameras: CAMPUS_ROOMS.office.cams, inserts: OFFICE_INSERTS, marks: OFFICE_MARKS, solids: OFFICE_SOLIDS };
 
 // What a body can do. Each is real human motion fitted to the character. speed: metres per second it must travel.
 export type Action = { clip: string; loop: boolean; stance: number; arms: number; upright: number; seat?: boolean; speed?: number };
@@ -129,8 +132,8 @@ export const ACTIONS: Record<string, Action> = {
 //  arms-up: both arms up in a V. cup: a party cup at the waist. cup-point: the cup held out, to point with.
 //  asleep: sitting, the head dropped onto one shoulder (use the face "asleep").
 //  photo: the phone up at eye height, taking a picture. sweep: crouched, both hands circling flat on the floor (with the action crouch).
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen'] as const;
-const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen'], TRAVEL_HOLDS = ['phone', 'cup'];
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer'] as const;
+const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer'], TRAVEL_HOLDS = ['phone', 'cup'];
 
 export type ActorSpec = {
   who: string; outfit?: string;
@@ -240,8 +243,8 @@ export const validate = (spec: ShotSpec): string[] => {
     if (a.hold && SEATED_HOLDS.includes(a.hold) && !act.seat) e.push(`${a.who}: "${a.hold}" is for sitting. Use sit or sitTalk.`);
     if (!act.loop && spec.frames > clipLength(act.clip)) e.push(`"${a.action}" lasts ${clipLength(act.clip)} frames; the shot asks for ${spec.frames}.`);
     spots.push({ who: a.who, s: m.s, z: m.z });
-    // is he in the picture?
-    if (cam) {
+    // is he in the picture? (An insert is on a thing: a hand or a sleeve may come into it, so anyone goes.)
+    if (cam && !set.inserts?.includes(spec.camera)) {
       const why = (name: string, f: Framing) => ({ in: '', out: `is not in the picture`, cut: `would be cut by the edge of the picture`, steep: `would be seen from too steep an angle to read his face`, near: `is too close to the lens` }[f]
         + ` from camera "${spec.camera}". Cameras that see "${name}": ${seenBy(set, set.marks[name], ch) || 'none'}.`);
       const low = (mk: Mark): Mark => (a.action === 'crouch' && mk.seat === undefined ? { ...mk, seat: 0.0 } : mk); // crouched, the head is down at a sitter's height

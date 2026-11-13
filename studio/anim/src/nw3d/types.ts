@@ -11,7 +11,8 @@ export type Box = { c: V; h: V; col: string; obj: number; yaw?: number; glow?: b
   sign?: string; // mat 7: the front (+z) face shows this sign from the atlas (tools/signs.py); mat 9: the top face, its top toward -z
   clock?: [number, number, number] }; // mat 8, a round wall clock: [has hands, hour hand angle, minute hand angle] (radians, clockwise from 12)
 // A prop that moves (a phone in a hand): centre, three unit axes, half sizes. The +z face is `screen` if given.
-export type Obb = { c: V; x: V; y: V; z: V; h: V; col: string; screen?: string };
+// sign: a paper or card; its +z face shows this sign from the atlas, lit (not glowing like a screen)
+export type Obb = { c: V; x: V; y: V; z: V; h: V; col: string; screen?: string; sign?: string };
 export type Head = { c: V; rt: V; up: V; fw: V; face: Face; skin: string; hairA: string; hairB: string; blobs: number[][];
   build?: number[] }; // lashes, face width, chin length, curls, eye size (see Character.head)
 // A soft body: capsules blended per material slot. A character also has a head.
