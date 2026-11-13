@@ -40,7 +40,9 @@ BANNED = [
     (r"\b(totally )?normal (person )?thing\b", "tidy self-narration"),
     (r"\bi guess we learned\b", "closing moral"),
     (r"\b(that'?s|this is) (so |really |kind of )?(weird|awkward|crazy|random|funny)\b", "someone acknowledges the joke"),
-    (r"\bdownload\b", "PXI is shown, never sold"),
+    (r"\b(evidence|proof)\b", "founder, Nov 13: retired, no evidence talk"),
+    (r"\belbows?\b", "founder, Nov 13: retired, no elbow jokes"),
+    (r"\bthe actual guy\b", "rejected pilot; never again"),
     (r"\bapp store\b", "PXI is shown, never sold"),
     (r"\bcheck out pxi\b", "PXI is shown, never sold"),
 ]

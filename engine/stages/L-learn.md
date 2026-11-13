@@ -1,5 +1,7 @@
 # Stage L: LEARN (weekly)
 
+**Paused** (founder, Nov 13: "we'll skip metricool for now"). A run that lands here stops and says so.
+
 **Model:** the run itself (Sonnet). Pulling numbers may go to one **Haiku** subagent that returns only a table.
 
 **Read:** `engine/learning.md`, `engine/promotion.md`, `engine/playbook.md`, `engine/audience-notes.md`. Nothing else. Open no script and no video.

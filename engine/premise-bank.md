@@ -17,7 +17,7 @@ Format:
 
 The slate from `bible/world.md` (Nov 12). Names of people are working names. The fuller note on each is there.
 
-- [CANDIDATE] **No Pics.** The morning after the best night of his life, Nio is in no photos.
+- [RETIRED, Nov 13: built, the founder found the plot "underwhelming" and product-centred; the premise "Nio in no photos" is not to be used again] **No Pics.** The morning after the best night of his life, Nio is in no photos.
   Ego: Nio's vanity · Kind: small thing · PXI: ENGINE, "you're in 38 photos" · From: the founder's example,
   Nov 11. This is the pilot, owned by the pilot thread.
 - [CANDIDATE] **Tiger.** Nio has to get Sami home, cannot see without his contacts, and books the wrong ride.

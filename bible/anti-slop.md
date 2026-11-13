@@ -94,3 +94,19 @@ found in an episode means the rig check was skipped, and the fix goes into the r
 - The show is plainly a cartoon. YouTube asks for an AI disclosure only when made or altered content looks
   realistic, and says clearly unrealistic animation does not need one. Check each platform's current rule at
   the first upload and once a quarter, and write the answer in `engine/playbook.md`.
+
+## 5. Nothing carried over (founder, Nov 13)
+
+"lets drop the repetitive stuff like the elbow ... every story needs to be new and not polluted by any inside jokes
+or lame humor like that." And: "what is the evidence talk just like the elbow ... these werid things need to stop".
+
+- **Every story starts empty.** No joke, word, image or bit is carried from an earlier draft, a rejected pilot, an
+  example in the bible or another thread's script. The examples in `bible/voice-and-dialogue.md` are for the sound
+  only and are never reused.
+- **Retired for good:** "evidence", "proof" and courtroom talk; the elbow (or any body part as "the only photo of
+  me"); "the actual guy"; a stranger who turns out to matter; Nio in no photos as a premise. A script that uses one
+  fails the lint.
+- **A callback is allowed only** when it is listed in `bible/callbacks.md` and the episode it pays off has
+  been posted. Anything else that repeats is pollution.
+- The writer checks the last three scripts in `episodes/` and the rejected premises, and changes any line, prop or
+  beat that echoes them.

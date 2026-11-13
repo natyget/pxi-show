@@ -5,6 +5,9 @@ to app users ... we want more people to follow us not like and comment but follo
 95% of our videos and engange a lot we want to make an audiance and show ads to those people to get the app and
 the ads will have to be videos that were successful when promoting the app as nio".
 
+**Paused (founder, Nov 13):** "we'll skip metricool for now until we see better results till then ill run ads
+manually". This page is the plan for when that changes.
+
 Nothing on this page spends money by itself. Every campaign is built **paused** and is switched on only after
 the founder approves that exact campaign in their own words, recorded with a date in `engine/STATE.md`. A run
 never raises a budget, starts a campaign, edits billing or touches @pxi.nyc.

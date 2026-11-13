@@ -214,3 +214,21 @@ The entries above are the standard conventions of film and animation editing as 
 shaped by the founder's notes. A short look at published guides on flashbacks found the same core advice: mark
 the start and the end clearly, change the visual tone (grain, design, costume), keep it brief and tied to the
 present story. Entries are corrected when a release shows that a treatment did not read.
+
+## Continuity in the engine (founder, Nov 13)
+
+- **One world, one hand.** Every hand, thumb and phone on screen is drawn by the engine, from the same rig as the
+  body. A phone insert is a shot of his hand holding the phone (the engine's hand), never a flat drawing over a
+  screenshot. No insert may use a hand, a person or a face drawn any other way.
+- **Crowds are people.** Background characters come from the cast and the background set (each with their own head
+  shape, hair, build, clothes and face), never silhouettes, blocks or blur standing in for people.
+- **A reflection or a photo is a shot.** A face seen in glasses, a mirror or a photo is the scene rendered from that
+  point of view, then mapped onto the surface. Never a head pasted into a frame.
+- **The filter is the app's.** A photo taken in the world (with flash or not) is the scene rendered through the PXI
+  filter's look, so a viewer sees the filter working in their world. Map the app's filters before the first photo.
+- **Mouths speak.** Talking uses mouth shapes for the sounds (open, wide, round, closed on b, p, m, teeth, tongue),
+  timed to the voice, never one shape flapping up and down to the chin.
+- **Places.** Each story goes where it happens (rooftops, clubs, a speakeasy, a game bar, a classroom, outdoors).
+  A bedroom stands in for nowhere else.
+- **Drunk Nio dances sillier.** His dance vocabulary grows with the night (founder: "if we can have him do more
+  silly ones when he's drunk that sould be tuff").
