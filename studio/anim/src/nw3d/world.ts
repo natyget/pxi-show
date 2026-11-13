@@ -11,14 +11,15 @@ import { Scene3, Cam3 } from './types';
 import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_H_CHAR, DARNELL_CHAR } from './characters';
 import { STRANGERS } from './people';
 import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
-import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS } from './campus';
+import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS } from './campus';
 import { Act, shot, CAMS, ROOM, X, C } from './room';
 
 export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, ...STRANGERS };
 
 // A place a character can be. s and z as in room.ts. yaw: the way he faces there by default. seat: sit height.
 // on: stand on top of something this high (the desk, the bed). A place with `on` may be inside a piece of furniture.
-export type Mark = { s: number; z: number; yaw: number; seat?: number; on?: number };
+// who: whose place this is, when it is one person's (the lectern is Prof H's): the world check frames his head, not an everyman's.
+export type Mark = { s: number; z: number; yaw: number; seat?: number; on?: number; who?: string };
 export type SetDef = {
   room: V; cameras: Record<string, Cam3>; marks: Record<string, Mark>;
   solids: { name: string; s: [number, number]; z: [number, number] }[]; // furniture footprints nobody may stand in
@@ -102,6 +103,9 @@ SETS.club = {
 // OFFICE HOURS (campus.ts). THE WAITING ROOM outside Prof H's office: two rows of chairs facing across, the inner door
 // with NOW SERVING over it, the clock, the ticket machine. Seats are numbered from the way in: L on the left, R on the right.
 SETS.waiting = { room: CAMPUS_ROOMS.waiting.size, campus: 'waiting', cameras: CAMPUS_ROOMS.waiting.cams, inserts: WAIT_INSERTS, marks: WAIT_MARKS, solids: WAIT_SOLIDS };
+// THE LECTURE HALL: seven rows of desks climbing from the lectern, an aisle with steps up the right. Students fill the
+// rows (a shot's campus.crowd: how full, campus.turn: how far every head has turned to stare at Nio).
+SETS.hall = { room: CAMPUS_ROOMS.hall.size, campus: 'hall', cameras: CAMPUS_ROOMS.hall.cams, inserts: HALL_INSERTS, marks: HALL_MARKS, solids: HALL_SOLIDS };
 
 // What a body can do. Each is real human motion fitted to the character. speed: metres per second it must travel.
 export type Action = { clip: string; loop: boolean; stance: number; arms: number; upright: number; seat?: boolean; speed?: number };
@@ -124,8 +128,8 @@ export const ACTIONS: Record<string, Action> = {
 //  arms-up: both arms up in a V. cup: a party cup at the waist. cup-point: the cup held out, to point with.
 //  asleep: sitting, the head dropped onto one shoulder (use the face "asleep").
 //  photo: the phone up at eye height, taking a picture. sweep: crouched, both hands circling flat on the floor (with the action crouch).
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner'] as const;
-const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner'], TRAVEL_HOLDS = ['phone', 'cup'];
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen'] as const;
+const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen'], TRAVEL_HOLDS = ['phone', 'cup'];
 
 export type ActorSpec = {
   who: string; outfit?: string;
@@ -144,9 +148,13 @@ const yawTo = (from: Mark | { s: number; z: number }, s: number, z: number) => (
 // Where a character standing (or sitting) at a place lands in a camera's picture.
 // 'in': the whole head is inside. 'out': the whole body is outside. 'cut': the edge of the picture slices him.
 export type Framing = 'in' | 'out' | 'cut' | 'steep' | 'near';
-const headOf = (mk: Mark): V => [X(mk.s), (mk.seat !== undefined ? mk.seat + 0.75 : 1.42) + (mk.on ?? 0), mk.z];
-export const framing = (cam: Cam3, mk: Mark): Framing => {
-  const F = norm(sub(cam.at, cam.pos)), R = norm(cross(F, [0, 1, 0])), U = cross(R, F), d = sub(headOf(mk), cam.pos);
+// where his head is at a place: an everyman's (Nio's height), or this character's, taller or shorter than Nio
+const headOf = (mk: Mark, ch?: Character): V => {
+  const b = (ch ?? CHARACTERS[mk.who ?? ''])?.body, up = b ? b.torso + b.neck + b.headR - 0.725 : 0, legs = b ? b.ankle + b.shin + b.thigh - 0.72 : 0;
+  return [X(mk.s), (mk.seat !== undefined ? mk.seat + 0.75 + up : 1.42 + up + legs) + (mk.on ?? 0), mk.z];
+};
+export const framing = (cam: Cam3, mk: Mark, ch?: Character): Framing => {
+  const F = norm(sub(cam.at, cam.pos)), R = norm(cross(F, [0, 1, 0])), U = cross(R, F), d = sub(headOf(mk, ch), cam.pos);
   const zc = dot(d, F); if (zc < 0.3) return 'out';
   const ty = Math.tan((cam.fov * Math.PI) / 360) * zc, tx = ty * (180 / 320); // half the picture, in metres, at his distance
   const x = Math.abs(dot(d, R)), y = dot(d, U);
@@ -162,7 +170,7 @@ export const facesCamera = (cam: Cam3, mk: { s: number; z: number }, yaw: number
   const a = (yaw * Math.PI) / 180, to = norm([cam.pos[0] - X(mk.s), 0, cam.pos[2] - mk.z]);
   return Math.sin(a) * to[0] + Math.cos(a) * to[2] > -0.35;
 };
-export const seenBy = (set: SetDef, mk: Mark) => Object.keys(set.cameras).filter((c) => framing(set.cameras[c], mk) === 'in').join(', ');
+export const seenBy = (set: SetDef, mk: Mark, ch?: Character) => Object.keys(set.cameras).filter((c) => framing(set.cameras[c], mk, ch) === 'in').join(', ');
 
 // Check the registries themselves. Run after adding a place, a camera or a set.
 export const checkWorld = (): string[] => {
@@ -203,6 +211,7 @@ export const validate = (spec: ShotSpec): string[] => {
     (typeof a.face === 'string' ? [a.face] : a.face.map((f) => f[1])).forEach((f) => { if (!FACES[f]) e.push(`There is no face "${f}". Faces: ${names(FACES)}.`); });
     if (a.gaze && a.gaze.some((g) => !(g >= -1 && g <= 1))) e.push(`${a.who}: gaze runs from -1 to 1.`);
     if (a.hold && !HOLDS.includes(a.hold)) e.push(`${a.who} cannot hold "${a.hold}". Holds: ${HOLDS.join(', ')}.`);
+    if (a.hold === 'capOff' && !ch.cap) e.push(`${a.who} has no cap to take off.`);
     const m = set.marks[a.at], m2 = a.to ? set.marks[a.to] : undefined;
     if (!m) { e.push(`There is no place "${a.at}" in ${spec.set}. Places: ${names(set.marks)}.`); return; }
     if (a.to && !m2) e.push(`There is no place "${a.to}" in ${spec.set}. Places: ${names(set.marks)}.`);
@@ -226,9 +235,9 @@ export const validate = (spec: ShotSpec): string[] => {
     // is he in the picture?
     if (cam) {
       const why = (name: string, f: Framing) => ({ in: '', out: `is not in the picture`, cut: `would be cut by the edge of the picture`, steep: `would be seen from too steep an angle to read his face`, near: `is too close to the lens` }[f]
-        + ` from camera "${spec.camera}". Cameras that see "${name}": ${seenBy(set, set.marks[name]) || 'none'}.`);
+        + ` from camera "${spec.camera}". Cameras that see "${name}": ${seenBy(set, set.marks[name], ch) || 'none'}.`);
       const low = (mk: Mark): Mark => (a.action === 'crouch' && mk.seat === undefined ? { ...mk, seat: 0.0 } : mk); // crouched, the head is down at a sitter's height
-      const f1 = framing(cam, low(m)), f2 = m2 ? framing(cam, low(m2)) : undefined;
+      const f1 = framing(cam, low(m), ch), f2 = m2 ? framing(cam, low(m2), ch) : undefined;
       if (!f2) { if (f1 !== 'in') e.push(`${a.who} at "${a.at}" ${why(a.at, f1)}`); }
       else { if (f1 !== 'in' && f1 !== 'out') e.push(`${a.who} at "${a.at}" ${why(a.at, f1)}`); if (f2 !== 'in' && f2 !== 'out') e.push(`${a.who} at "${a.to}" ${why(a.to!, f2)}`);
         if (f1 === 'out' && f2 === 'out') e.push(`${a.who} is never in the picture from camera "${spec.camera}" on the way from ${a.at} to ${a.to}.`); }

@@ -14,6 +14,7 @@ export type Character = {
   earrings?: string; // small hoops, this colour
   beard?: string; // a long beard, this colour, from the jaw down to the belt
   crown?: string[]; // a crown of small flowers round the head, in these colours
+  cap?: string; // a baseball cap, this colour (the hold 'capOff' takes it off)
 };
 
 // Hair is built from soft lumps (L) for the mass and tapered locks (T, fat root to thin tip) for the fringe and flicks.

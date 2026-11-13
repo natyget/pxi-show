@@ -95,7 +95,7 @@ def lineup(out):
     sheet.save(out); print(out, sheet.size)
 
 def shots(specs, out, title, note, caps):
-    sp = json.load(open(specs)); ims = [shot(s, i) for i, s in enumerate(sp)]
+    sp = json.load(open(specs)); ims = [shot(s, i, s.get('_frame', 12)) for i, s in enumerate(sp)] # _frame: which frame to show
     subprocess.run([os.path.join(HERE, 'n3_check.sh'), specs], check=True, stdout=subprocess.DEVNULL)
     cols = 3; w, h = ims[0].size; M, G = 70, 36; rows = (len(ims) + cols - 1) // cols
     W = 2 * M + cols * w + (cols - 1) * G; H = M + 170 + rows * (h + 70) + M
