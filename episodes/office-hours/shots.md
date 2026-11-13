@@ -34,7 +34,7 @@ Theo: a pen. Darnell: his ticket (4) in his left hand, the lab report on his kne
 | 13 | 48 | corridor | MS behind Nio as he turns a corner | reveal | The same door, ahead of him. A little more open | Same lens as 11, mirrored: the viewer sees it is the same picture | Nio stops dead mid-step | none | S |
 | 14 | 29 | corridor | CU Nio | line | NIO: "No." | Flat | Nio **deadInside** | none | L |
 | 15 | 72 | corridor | stairwell, two quick angles, then the stairwell door bursting open | action + reveal | He takes the stairs down two flights and bursts through the door: the same corridor, the same door | Two 18 f stair shots (montage), then 36 f on the corridor | Nio **hyped** (running), then **shock** | none | L |
-| 16 | 72 | corridor | phone insert in his hand (the engine's hand and thumb) | insert | The PXI map: his blue dot inside a grey building that is not on campus. Event card: "Office Hours. Always. 1 going." The thumb taps "1 going": his own face | Phone brighter than the corridor; the hum keeps going | Thumb taps | phone insert | S |
+| 16 | 72 | corridor | phone insert in his hand (the engine's hand and thumb) | insert | The PXI map (`public/pxi-ui/screens/map-office-hours.png`): his dot (the app's light purple in a white ring) inside a grey building set apart from campus, its record pin selected. The card under the map: ALWAYS · Office Hours · Haverbrook Hall · FREE | Phone brighter than the corridor; the hum keeps going; the thumb lands on the card | Thumb taps the card | phone insert | S |
 | 17 | 62 | corridor | MCU Nio, the phone light on his face | line | NIO (quietly): "I did not RSVP to that." | Still; the door glows behind him out of focus | Nio **real** (betrayed) | none | S |
 | 18 | 62 | corridor | wide, the cleaner crossing frame | line | CLEANER (mopping past, unbothered): "Just go in, baby. It's faster." | She does not stop or look up | Cleaner **deadpan**. Nio turns his head to follow her | none | L |
 | 19 | 12 | corridor | MS | action | Nio sprints toward camera | 2-frame smear, then | Nio **shock** | smash cut | S |
@@ -72,9 +72,11 @@ pitch at 38.
 
 ## PXI
 
-The map in 16 (Discover and map, `src/components/discover/`, and the event card from `app/event/[id].tsx`) is
-the impossible thing: the app shows where he really is. Wording on the card is the script's, in the app's own
-card layout. The call to action is in the caption.
+The map in 16 is the impossible thing: the app shows where he really is. It is the real Discover map view
+(`src/components/discover/map/`: DiscoverMap, mapStyle, mapLook, MapPin, MapCarousel, PosterFallback), drawn by
+`tools/pxi/screens.py map`. Two changes from the script so it matches the app 1:1: the viewer's dot is PXI's light
+purple, not blue, and the map card has no attendee count, so "1 going" becomes the card's own when line, ALWAYS
+(the title and the venue do the rest). The call to action is in the caption.
 
 ## Voices
 

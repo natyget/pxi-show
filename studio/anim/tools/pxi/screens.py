@@ -389,7 +389,68 @@ def lock():
     s.box(119, 771, 241, 775, WHITE, r=2)                                  # the home bar
     return s.im
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'camera': camera, 'passport': passport, 'lock': lock}
+def map_pin(s, cx, cy, purple=True, k=1.0):
+    """One venue on the map (map/MapPin.tsx): a 30pt black disc with a groove and a small label, purple for a PXI night."""
+    d = round(pt(30) * k); s.disc(cx - d // 2, cy - d // 2, d, hexc('111111'))
+    g = round(d * 0.36); s.d.ellipse([cx - g, cy - g, cx + g, cy + g], outline=mix(hexc('111111'), WHITE, 0.12))
+    l = round(d * 0.34); s.disc(cx - l // 2, cy - l // 2, l, PURPLE if purple else WHITE)
+
+def discover_map(event='Office Hours', when='ALWAYS', venue='Haverbrook Hall', price='FREE'):
+    """Home, Discover, in its Map view. Sources: src/components/discover/map/DiscoverMap.tsx (the map fills the screen
+    under the title and the filter pill; the card strip floats over its bottom above the tab bar), mapStyle.ts (the
+    charcoal colours), mapLook.ts (the viewer's dot: #D651FB in a white ring), MapPin.tsx (the records), MapCarousel.tsx
+    (the card: the cover at 3:4 on the left, then when, the title, the venue, the price), EventWhen.tsx (the day in
+    purple), allEvents/PosterFallback.tsx (a night with no flyer: PXI purple ink, the title in off-white, one rule).
+    For Office Hours (episode 1): his dot sits inside a grey building that is not on campus; that night is the only
+    one there, and its card says when it is: ALWAYS."""
+    s = Screen()
+    LAND, MINOR, MAJOR, PARK, BLD, PLACE = hexc('0D0D0F'), hexc('1B1B1E'), hexc('242428'), hexc('111113'), hexc('141416'), hexc('7C7C83')
+    s.box(0, 0, 360, 780, LAND)
+    # campus: a park with its buildings, the streets round it, a river along the right
+    s.box(30, 250, 230, 470, PARK, r=6)
+    for x0, y0, x1, y1 in ((48, 270, 110, 318), (124, 266, 212, 300), (52, 338, 96, 420), (118, 322, 160, 380), (170, 318, 214, 452), (110, 400, 156, 452)):
+        s.box(x0, y0, x1, y1, BLD, r=2)
+    for x in (20, 240, 300): s.box(x, 180, x + 8, 760, MAJOR)
+    for y in (238, 480, 560): s.box(0, y, 360, y + 8, MAJOR)
+    for x in (70, 140, 270): s.box(x, 180, x + 3, 250, MINOR); s.box(x, 488, x + 3, 760, MINOR)
+    for y in (300, 360, 420): s.box(240, y, 360, y + 3, MINOR)
+    s.box(330, 180, 360, 760, hexc('060607'))
+    s.text(130, 362, 'CAMPUS', 700, pt(11), PLACE, ls=2, align='c')
+    for cx, cy in ((80, 296), (168, 284), (190, 400), (132, 430)): map_pin(s, cx, cy)
+    # the building that is not on campus: grey, set apart, his dot inside it, its record selected (1.35x)
+    s.box(258, 372, 318, 448, hexc('3A3A40'), r=3); s.box(262, 376, 314, 444, hexc('2D2D32'), r=2)
+    s.disc(288 - pt(9), 418 - pt(9), 2 * pt(9), WHITE); s.disc(288 - pt(6), 418 - pt(6), 2 * pt(6), hexc('D651FB'))
+    map_pin(s, 288, 392, k=1.35)
+    # the title row and the filter pill float over the map
+    s.status()
+    s.avatar(pic('avatar', 38, 38), 15, 66, 38)
+    x0, x1 = s.text(186, 85, 'Discover', 'display', pt(33), WHITE, ls=-1, align='c'); s.icon('ArrowDown01Icon', 13, x1 + 9, 89, WHITE)
+    s.disc(307, 66, 38, PURPLE); s.icon('PlusSignIcon', 18, 326, 85, WHITE)
+    P = hexc('232323'); s.box(7, 116, 353, 167, P, r=26); x = 23
+    def group(x, small, value):
+        _, x = s.text(x, 142, small, 700, pt(14), white(0.35, P)); _, x = s.text(x + 16, 141, value, 800, pt(20), WHITE)
+        s.icon('ArrowDown01Icon', 12, x + 8, 143, white(0.55, P)); return x + 14
+    x = group(x, 'at', 'This week'); x = group(x + 24, 'in', 'City')
+    s.box(265, 130, 266, 154, white(0.22, P)); s.icon('Sorting01Icon', 20, 286, 141, WHITE); s.icon('Search01Icon', 20, 326, 141, WHITE)
+    a, b = s.text(94, 192, 'Cards', 800, pt(15), white(0.55, LAND), align='c'); a2, b2 = s.text(267, 192, 'Map', 800, pt(15), WHITE, align='c')
+    s.box(7, 208, 353, 209, white(0.16, LAND)); s.box(a2, 207, b2, 209, PURPLE)
+    # the card strip: one card, the poster on the left
+    ch = pt(116); cw = round(ch * 0.75); x0 = pt(24); y0 = 690 - 12 - ch
+    s.box(x0, y0, 360 - x0, y0 + ch, hexc('1C1C1C'), r=pt(18))
+    s.box(x0, y0, x0 + cw, y0 + ch, PURPLE, r=pt(18)); s.box(x0 + cw - pt(18), y0, x0 + cw, y0 + ch, PURPLE)
+    ty = y0 + 14
+    for wd in event.upper().split():
+        s.text(x0 + 8, ty, wd, 'display', pt(15), hexc('F4EFE6'), ls=-1); ty += pt(15)
+    s.box(x0 + 8, ty + 2, x0 + cw - 8, ty + 3, hexc('F4EFE6'))
+    bx = x0 + cw + pt(14)
+    s.text(bx, y0 + pt(11) + 6, when, 800, pt(11), PURPLE, ls=1)
+    s.text(bx, y0 + pt(11) + 28, event, 'display', pt(18), WHITE)
+    s.text(bx, y0 + ch - pt(11) - 30, venue, 600, pt(13), white(0.55, hexc('1C1C1C')))
+    s.text(bx, y0 + ch - pt(11) - 8, price, 900, pt(14), WHITE)
+    tabbar(s, 0)
+    return s.im
+
+SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock}
 if __name__ == '__main__':
     name = sys.argv[1]
     for n in (SCREENS if name == 'all' else [name]):
