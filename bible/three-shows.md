@@ -52,6 +52,10 @@ What the founder asked for: like Gumball's characters, and like Gen Z. The rules
 - **Specific, odd, true.** "There's a fry." beats any clever line.
 - **Slang is how they talk, not what they talk about.** One or two terms in a scene, from the right person,
   dropped in passing. An adult using it slightly wrong is a joke. A young character explaining it is a defect.
+- **Founder, Nov 13: keep slang out of the early episodes.** The comedy comes from the situation and the
+  faces, like Gumball and Regular Show. When a term is used later, it is used with confidence (calling someone
+  a high tier normie, which is a decent rank; the insult is being a low tier chud), never as a character's
+  insecurity, and never as the punchline.
 - **Current terms the room can use (Nov 2026), in passing:** cooked, crash out, aura (and losing it), mogged,
   mogging, looksmaxxing, "it's giving", delulu, the ick, chopped, glazing, twin, unc, NPC, side quest, main
   character, "be so fr", "no shot", lowkey, highkey, "we're so back", "it's over", touch grass, ratio, valid,

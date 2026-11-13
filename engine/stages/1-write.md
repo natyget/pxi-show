@@ -4,7 +4,9 @@
 followed by this card and the premise. It takes on that role and stays in it. Critics and the cold reader are
 **Haiku** subagents. The run itself only runs the lint, checks the gate and updates the state.
 
-**Read (the writer):** `bible/writers-room.md` first, then `bible/three-shows.md` (plot, humor, eerie and how they talk), then `bible/characters.md` (who they are; skip the voice
+**Read (the writer):** `bible/writers-room.md` first, then `bible/three-shows.md` (plot, humor, eerie and how they talk),
+**No slang in the early episodes** (founder, Nov 13, in `bible/three-shows.md`). Later, slang is used with confidence, never
+as a character's insecurity and never as the punchline. This wins over "he sounds 21" in `bible/voice-and-dialogue.md`. then `bible/characters.md` (who they are; skip the voice
 recipe), `bible/world.md`, `bible/gumball-style.md`, `bible/humor.md`, `bible/voice-and-dialogue.md`, `bible/story.md`,
 `bible/gumball-lens.md`,
 `bible/pxi-product.md`, `bible/callbacks.md`, `bible/timeline.md`, `engine/playbook.md`, `engine/formats.md`
