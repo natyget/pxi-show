@@ -3,7 +3,8 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { ThreeCanvas } from '@remotion/three';
 import { useThree, useFrame } from '@react-three/fiber';
-import { AbsoluteFill, continueRender, delayRender } from 'remotion';
+import { AbsoluteFill, continueRender, delayRender, staticFile } from 'remotion';
+import SIGNS from './signs.json';
 import * as THREE from 'three';
 import { V, sub, norm, cross } from './vec';
 import { faceArr } from './face';
@@ -30,6 +31,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
       uSet: { value: 0 }, uRoom: { value: new THREE.Vector3() }, uRoom0: { value: new THREE.Vector3() },
       uClub: { value: new THREE.Vector4() }, uClubF: { value: new THREE.Vector4() }, uBo: f(16), uBd: f(16), uBk: f(16), uNBm: { value: 0 },
       uCw0: { value: new THREE.Vector4() }, uCw1: { value: new THREE.Vector4() }, uCw2: { value: new THREE.Vector4() }, uCw3: { value: new THREE.Vector4() }, uCw4: { value: new THREE.Vector4() }, uHole: f(24), uAmb: { value: new THREE.Vector3() }, uAmbC: { value: new THREE.Vector3() },
+      uCampus: { value: new THREE.Vector4() }, uSign: { value: null }, uSignSz: { value: new THREE.Vector2(1, 1) }, uBs: f(NB * 4),
     };
     const geo = new THREE.PlaneGeometry(2, 2);
     const sm = new THREE.RawShaderMaterial({ glslVersion: THREE.GLSL3, vertexShader: VERT, fragmentShader: SCENE_FRAG, uniforms: u, depthTest: false, depthWrite: false });
@@ -56,6 +58,22 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
     if (!scr || hold.current === null) return;
     advance(performance.now()); continueRender(hold.current); hold.current = null;
   }, [scr, advance]);
+  // the sign atlas (tools/signs.py), when anything in the shot shows a sign. The frame waits for it the same way.
+  const wantSigns = scene.boxes.some((b) => b.sign);
+  const [sig, setSig] = useState<THREE.Texture | null>(null);
+  const sigHold = useRef<number | null>(null);
+  useEffect(() => {
+    if (!wantSigns || sig) return;
+    sigHold.current = delayRender('sign atlas');
+    new THREE.TextureLoader().load(staticFile('signs/atlas.png'), (t) => {
+      t.magFilter = THREE.LinearFilter; t.minFilter = THREE.LinearMipmapLinearFilter; t.generateMipmaps = true; t.colorSpace = THREE.NoColorSpace; t.needsUpdate = true;
+      setSig(t);
+    }, undefined, () => { throw new Error('sign atlas not found: run tools/signs.py'); });
+  }, [wantSigns, sig]);
+  useEffect(() => {
+    if (!sig || sigHold.current === null) return;
+    advance(performance.now()); continueRender(sigHold.current); sigHold.current = null;
+  }, [sig, advance]);
 
   // uniforms are set during render so the very first frame is already right
   const u = R.u, sc = scene;
@@ -84,7 +102,8 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
       u.uSkin.value.set(rgb(hd.skin), hi * 3); u.uHairA.value.set(rgb(hd.hairA), hi * 3); u.uHairB.value.set(rgb(hd.hairB), hi * 3);
       const nb = Math.min(hd.blobs.length, NHB / 2);
       for (let k = 0; k < nb; k++) u.uHb.value.set(hd.blobs[k], (hi * NHB + k * 2) * 4);
-      u.uHn.value[hi] = nb; u.uFace.value.set(faceArr(hd.face), hi * FS); u.uHk.value.set(hd.build ?? [0, 1, 1, 0], hi * 4);
+      u.uHn.value[hi] = nb; u.uFace.value.set(faceArr(hd.face), hi * FS); u.uHk.value.set((hd.build ?? [0, 1, 1, 0]).slice(0, 4), hi * 4);
+      u.uFace.value[hi * FS + 34] = hd.build?.[4] ?? 1; // the eye size rides in a spare slot of the face
       hi++;
     }
     u.uCl.value.set([(mn[0] + mx[0]) / 2, (mn[1] + mx[1]) / 2, (mn[2] + mx[2]) / 2, Math.hypot(mx[0] - mn[0], mx[1] - mn[1], mx[2] - mn[2]) / 2 + 0.02], ci * 4);
@@ -95,7 +114,10 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
   const nb = Math.min(sc.boxes.length, NB);
   for (let i = 0; i < nb; i++) { const b = sc.boxes[i];
     u.uBc.value.set(b.c, i * 3); u.uBh.value.set(b.h, i * 3); u.uBcol.value.set([...rgb(b.col), b.mat ?? 0], i * 4);
-    u.uBm.value.set([((b.yaw ?? 0) * Math.PI) / 180, b.obj, b.glow ? 1 : 0, b.noShadow || b.glow ? 1 : 0], i * 4); }
+    u.uBm.value.set([((b.yaw ?? 0) * Math.PI) / 180, b.obj, b.glow ? 1 : 0, b.noShadow || b.glow ? 1 : 0], i * 4);
+    const rc = b.sign ? (SIGNS.rects as Record<string, number[]>)[b.sign] : undefined; if (b.sign && !rc) throw new Error('no sign ' + b.sign + ' in the atlas (tools/signs.py)');
+    u.uBs.value.set(rc ?? b.clock ?? [0, 0, 0], i * 4); }
+  u.uSign.value = sig; u.uSignSz.value.set(SIGNS.size[0], SIGNS.size[1]); u.uCampus.value.set(...(sc.campus ?? [0, 0, 0, 0]));
   u.uNB.value = nb;
   const pr = (sc.props ?? []).slice(0, NO);
   pr.forEach((o, i) => { u.uOc.value.set(o.c, i * 3); u.uOx.value.set(o.x, i * 3); u.uOy.value.set(o.y, i * 3); u.uOz.value.set(o.z, i * 3); u.uOh.value.set(o.h, i * 3);

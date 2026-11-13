@@ -40,7 +40,7 @@ export const hairOf = (style: Style, r: () => number): number[][] => {
       T(0.12, 0.06, -0.13, 0.12, 0.13, -0.36, -0.12, 0.09), T(-0.12, 0.06, -0.13, 0.12, -0.13, -0.36, -0.12, 0.09), T(0, 0.05, -0.17, 0.12, 0, -0.38, -0.15, 0.1),
       T(0.02, 0.19, 0.12, 0.05, 0.15, 0.1, 0.12, 0.05), T(-0.02, 0.19, 0.12, 0.05, -0.15, 0.1, 0.12, 0.05)];
     case 'afro': return puff(0, 0.1, -0.05, v(0.25), 22, 0.1);
-    case 'buzz': return [L(0, 0.14, -0.04, 0.155)];
+    case 'buzz': return [L(0, 0.1, -0.04, 0.14), L(0, 0.06, -0.1, 0.14)]; // close to the head: a buzz never stands up
     case 'ponytail': return [L(0.05, 0.16, -0.03, 0.15), L(-0.05, 0.16, -0.03, 0.15), L(0, 0.11, -0.12, 0.15),
       T(0, 0.14, -0.2, 0.07, 0, v(-0.1), -0.29, 0.05), T(0, -0.1, -0.29, 0.05, 0.01, -0.28, -0.26, 0.03)];
     case 'bun': return [L(0.05, 0.16, -0.03, 0.15), L(-0.05, 0.16, -0.03, 0.15), L(0, 0.11, -0.12, 0.15), ...puff(0, 0.27, -0.06, v(0.07), 6, 0.035)];
@@ -81,4 +81,9 @@ export const GIRL2 = npc('girl2', 77, { skin: 2, hair: 3, style: 'ponytail', top
 export const GIRL3 = npc('girl3', 93, { skin: 8, hair: 0, style: 'bob', top: 12, bottom: 3, shoes: 4, long: false, lashes: true, slight: true, height: 0.97 });
 // THE DJ, up in the booth: short crop, a black tee.
 export const DJ = npc('dj', 12, { skin: 5, hair: 0, style: 'crop', top: 6, bottom: 1, shoes: 1, long: false, lashes: false, slight: false, height: 1.04 });
-export const STRANGERS: Record<string, Character> = { girl: GIRL, girl2: GIRL2, girl3: GIRL3, dj: DJ };
+// OFFICE HOURS. In the waiting room: a boy with a fidget spinner (buzz cut, an orange tee), a girl in a flower crown
+// (long hair, a white top). In the lecture hall: a girl in a cap (her own colour and cap in campus.ts's cast).
+export const SPINNER = npc('spinner', 211, { skin: 3, hair: 0, style: 'buzz', top: 13, bottom: 0, shoes: 2, long: false, lashes: false, slight: false, height: 0.97 });
+export const CROWN = { ...npc('crown', 305, { skin: 1, hair: 4, style: 'long', top: 10, bottom: 4, shoes: 4, long: true, lashes: true, slight: true, height: 1.0 }),
+  crown: ['#f0a6c0', '#f6d36a', '#ffffff', '#c58ad8'] };
+export const STRANGERS: Record<string, Character> = { girl: GIRL, girl2: GIRL2, girl3: GIRL3, dj: DJ, spinner: SPINNER, crown: CROWN };

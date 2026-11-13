@@ -7,6 +7,7 @@
 //  - a face is painted on the head from numbers: big simple eyes, off-centre pupils, a small mouth
 //  - the outline pass inks one pixel wherever a nearer thing begins, with a slightly uneven weight
 import { CROWD_GLSL } from './crowd';
+import { CAMPUS_GLSL } from './campus';
 export const NP = 320, NC = 16, NHD = 5, NHB = 80, NB = 80, NO = 6, NL = 12, FS = 36, NSH = 8;
 
 export const VERT = `in vec3 position; out vec2 vUv; void main(){ vUv = position.xy * 0.5 + 0.5; gl_Position = vec4(position.xy, 0.0, 1.0); }`;
@@ -159,14 +160,14 @@ vec3 roomLight(vec3 p, vec3 n, vec2 px, float lv){
 // tucks under the line. A lid is a straight heavy line across it; above a lid there is only skin.
 // Returns the height of the top of what is drawn, so the brow can sit just above it.
 float eyeTop(int h, int o, float sg){
-  float sc = (sg > 0.0 ? 1.0 : 0.94) * F(h, o + 6); float ry = 0.33 * sc;
+  float sc = (sg > 0.0 ? 1.0 : 0.94) * F(h, o + 6) * F(h, 34); float ry = 0.33 * sc;
   if (abs(F(h, o + 7)) > 0.5) return 0.0;
   return ry * (2.0 * min(F(h, o), 1.0) - 1.0);
 }
 vec2 eyeC(float sg){ return vec2(sg * 0.415, sg > 0.0 ? -0.3 : -0.288); }
 void drawEye(inout vec3 col, inout float fl, vec2 uv, float sg, int h, int o, float st, float px){
   float open = F(h, o), low = F(h, o + 1), slope = tan(F(h, o + 2) * 0.01745), arc = F(h, o + 7);
-  float sc = (sg > 0.0 ? 1.0 : 0.94) * F(h, o + 6); // the two eyes are never quite the same size
+  float sc = (sg > 0.0 ? 1.0 : 0.94) * F(h, o + 6) * F(h, 34); // the two eyes are never quite the same size; slot 34 is the character's eye size
   vec2 e = uv - eyeC(sg);
   float rx = 0.312 * sc, ry = 0.33 * sc;
   if (abs(arc) > 0.5){ // shut: one heavy curved stroke. arc 1 = a happy arch, -1 = a sleeping curve
@@ -346,6 +347,7 @@ vec3 wallCol(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
 }
 
 ${CROWD_GLSL}
+${CAMPUS_GLSL}
 void main(){
   vec2 px = floor(vUv * uRes); vec2 ndc = (px + 0.5) / uRes * 2.0 - 1.0;
   vec3 ro = uCamP; vec3 rd = normalize(uCamF + uCamR * ndc.x * uTan * uRes.x / uRes.y + uCamU * ndc.y * uTan);
@@ -359,12 +361,14 @@ void main(){
   else if (t == tt.z){ n = vec3(0.0, 0.0, -sign(rd.z)); wall = rd.z > 0.0 ? 3 : 6; }
   else { n = vec3(-sign(rd.x), 0.0, 0.0); wall = rd.x < 0.0 ? 4 : 5; }
   float id = 1.0, face = float(wall), em = 0.0; vec3 base; vec3 add = vec3(0.0); vec3 p = ro + rd * t; bool chr = false; float mat = -1.0;
-  if (uSet > 1.5) base = wall == 1 ? clubFloor(p, pxw * t, em) : clubWall(p, wall, pxw * t, px, em, add);
+  if (uSet > 2.5) base = wall == 1 ? campusFloor(p, pxw * t, px, em) : campusWall(p, wall, pxw * t, px, em, add);
+  else if (uSet > 1.5) base = wall == 1 ? clubFloor(p, pxw * t, em) : clubWall(p, wall, pxw * t, px, em, add);
   else base = wall == 1 ? floorCol(p, pxw * t) : wallCol(p, wall, pxw * t, px, em, add);
 
   int bi = -1; vec3 bln = vec3(0.0);
   for (int i = 0; i < NB; i++){ if (i >= uNB) break; vec3 bn; float a = uBm[i].x;
-    float tb = boxHit(rotY(ro - uBc[i], -a), rotY(rd, -a), uBh[i], bn);
+    vec3 lo = rotY(ro - uBc[i], -a), ld = rotY(rd, -a); float tb = boxHit(lo, ld, uBh[i], bn);
+    if (tb > 0.0 && tb < t && uBcol[i].a > 7.5 && uBcol[i].a < 8.5 && length((lo + ld * tb).xy) > min(uBh[i].x, uBh[i].y)) continue; // the clock is round
     if (tb > 0.0 && tb < t){ t = tb; bi = i; bln = bn; n = rotY(bn, a); base = uBcol[i].rgb; mat = uBcol[i].a; id = 10.0 + uBm[i].y; em = uBm[i].z; add = vec3(0.0); face = 10.0 + dot(abs(bn), vec3(1.0, 2.0, 3.0)); } }
   if (mat >= 0.0){ p = ro + rd * t; float fp = pxw * t;
     if (mat < 0.5) base *= mott(p, 1.0);
@@ -374,6 +378,8 @@ void main(){
     else if (mat < 4.5){ float u = abs(n.x) > 0.5 ? p.z : p.x; if (fract(u / 0.13) * 0.13 < max(0.012, fp * 0.9)) base *= 0.62; base *= 0.94 + 0.12 * hash(vec2(floor(u / 0.13), 4.0)); }
     else if (mat < 5.5) base = speakerFace(base * mott(p, 1.0), rotY(p - uBc[bi], -uBm[bi].x), uBh[bi], bln);
     else if (mat < 6.5){ base = base.r > 0.5 ? neonB() : neonA(); em = 1.0; } // a neon strip in the club's mood: red over half = the second neon
+    else if (mat < 7.5) base = signFace(base, rotY(p - uBc[bi], -uBm[bi].x), uBh[bi], bln, bi, fp);
+    else if (mat < 8.5) base = clockFace(rotY(p - uBc[bi], -uBm[bi].x), uBh[bi], bi, fp);
   }
   for (int i = 0; i < NO; i++){ if (i >= uNO) break; vec3 bn; vec3 d = ro - uOc[i];
     float tb = boxHit(vec3(dot(d, uOx[i]), dot(d, uOy[i]), dot(d, uOz[i])), vec3(dot(rd, uOx[i]), dot(rd, uOy[i]), dot(rd, uOz[i])), uOh[i], bn);
