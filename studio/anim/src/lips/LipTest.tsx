@@ -18,7 +18,7 @@ export const lipLen = (p: LipProps) => (p.shape ? 1 : LINES[p.line].frames + 12)
 export const LipTest: React.FC<LipProps> = (p) => {
   const frame = useCurrentFrame();
   const cam = C([2.0, 1.4, 0.7] as V, [2.0, 1.33, 2.5] as V, 30);
-  const c: Cues | undefined = p.shape ? { fps: 24, frames: 1, cues: [[0, p.shape as Shape]] } : LINES[p.line];
+  const c: Cues | undefined = p.shape ? { fps: 24, frames: 3, cues: [[0, p.shape as Shape]] } : LINES[p.line];
   const face = lips(FACES[p.face], c, p.shape ? 0 : frame - 6);
   const scene = studioShot(cam, [{ who: CHARACTERS.nio, clip: 'Idle_Loop', t: 0, at: [2.0, 2.5], yaw: 180, face, stance: 0.5, arms: 0.35, upright: 0.85 }]);
   return <>

@@ -7,6 +7,7 @@
 import { V, sub, norm, cross, dot } from './vec';
 import { clipLength } from './rig';
 import { Face, FACES, gaze } from './face';
+import { lips, Cues } from '../lips/mouths';
 import { Scene3, Cam3 } from './types';
 import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR } from './characters';
 import { Act, shot, CAMS, ROOM, X, C } from './room';
@@ -106,14 +107,13 @@ export type ActorSpec = {
   action: string; face: string | [number, string][]; // one face, or [frame, face] changes
   gaze?: [number, number]; hold?: (typeof HOLDS)[number]; look?: 'camera';
   back?: true; // say so when the shot means to show his back. Otherwise his face must be visible.
-  speak?: [number, number][]; // frame ranges where he is talking: the mouth opens and closes on twos, over the face he has
+  speak?: [number, Cues][]; // the lines he says: [the frame the line starts, its mouth cues from engine/tools/lipsync.py]
+  mouth?: number; // mouth size for this character (1 = Nio)
 };
-// Talking: the mouth shapes cycle on twos in an uneven order, so it never reads as a metronome.
-const FLAP = [0.35, 0.12, 0.5, 0.28, 0.08, 0.42, 0.2, 0.5, 0.15, 0.32];
-const speaking = (f: Face, ranges: [number, number][] | undefined, frame: number): Face => {
-  if (!ranges || !ranges.some(([a, b]) => frame >= a && frame < b)) return f;
-  const o = FLAP[Math.floor(frame / 2) % FLAP.length];
-  return { ...f, mouth: { ...f.mouth, w: Math.max(f.mouth.w, 0.16), open: Math.max(f.mouth.open, o), curve: f.mouth.curve * 0.6 } };
+// Talking: the mouth follows the voice line, shape by shape (src/lips/mouths.ts), over the face he has.
+const speaking = (f: Face, lines: [number, Cues][] | undefined, frame: number, size = 1): Face => {
+  const l = lines && [...lines].reverse().find(([at]) => frame + 1 >= at);
+  return l ? lips(f, l[1], frame - l[0], size) : f;
 };
 export type ShotSpec = { set: string; camera: string; frames: number; actors: ActorSpec[] };
 
@@ -236,7 +236,7 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
     if (!m2 && a.facing === 'camera') yaw = (Math.atan2(cam.pos[0] - X(s), cam.pos[2] - z) * 180) / Math.PI;
     else if (!m2 && a.facing) yaw = yawTo({ s, z }, set.marks[a.facing].s, set.marks[a.facing].z);
     let face: Face = FACES[faceAt(a.face, frame)]; if (a.gaze) face = gaze(face, a.gaze[0], a.gaze[1]);
-    face = speaking(face, a.speak, frame);
+    face = speaking(face, a.speak, frame, a.mouth);
     return { who: ch, clip: act.clip, t: act.loop ? t : Math.min(t, clipLength(act.clip) - 1), at: [s, z], yaw, face, outfit: a.outfit,
       stance: act.stance, arms: act.arms, upright: act.upright, seat: act.seat ? m.seat : undefined,
       phone: a.hold === 'phone' ? 1 : 0, crossed: a.hold === 'arms-crossed', look: a.look === 'camera' ? cam.pos : undefined, lookAmt: 0.7,
