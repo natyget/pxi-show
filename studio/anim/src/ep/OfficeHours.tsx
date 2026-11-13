@@ -53,13 +53,14 @@ export const SHOTS: Shot[] = [
   sh(2, 36, 'S', H('profH', [{ ...prof('hyped'), look: 'camera' }]), [L('oh_25', 'profH', 4)]),
   sh(3, 36, 'S', { ...H('rows', [seat('nio', 'deadpan'), seat('theo', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]], ball: true }), push: 0.5 }),
   sh(4, 48, 'S', H('capGirl', [{ who: 'cap', at: 'capGirl', action: 'sit', face: 'real', hold: 'capOff' }, seat('nio', 'suspicious')], { turn: 1, ball: true })),
-  sh(4.5, 30, 'S', H('clock', [], { clock: [2.574, 5.76], turn: 1 })), // insert: 4:55
+  // inserts: the clock. The minute hand jumps once while we look (4:54 to 4:55, then 4:55 to 4:56), and the camera creeps in
+  sh(4.5, 30, 'S', (f) => ({ ...H('clock', [], { clock: f < 12 ? [2.565, 5.655] : [2.574, 5.76], turn: 1 }), push: 0.25 }), undefined, [['click', 12, 0.35]]),
   sh(6, 40, 'S', H('nio', [seat('nio', 'smug', true)], { ball: true, turn: 1 }), [L('oh_26', 'nio', 4)]),
   sh(7, 36, 'S', H('theo', [{ ...seat('theo', 'deadInside', true), hold: 'pen' }], { turn: 1 }), [L('oh_05', 'theo', 2)]),
   sh(9, 48, 'S', { ...H('seat', [], { turn: 1 }), push: 0.12 }), // insert: the dusty seat, his planner, his name card
   sh(8, 30, 'S', H('nio', [seat('nio', 'suspicious', true)], { ball: true, turn: 1 }), [L('oh_06', 'nio', 2)]),
   sh(5, 36, 'S', H('two', [seat('nio', 'uneasy'), { ...seat('theo', 'deadInside', true), hold: 'pen', mouth: 0.5, gaze: [0.6, 0] }], { ball: true, turn: 1 }), [L('oh_03', 'theo', 2)]),
-  sh(9.5, 24, 'S', H('clock', [], { clock: [2.583, 5.864], turn: 1 })), // insert: 4:56
+  sh(9.5, 24, 'S', (f) => ({ ...H('clock', [], { clock: f < 10 ? [2.574, 5.76] : [2.583, 5.864], turn: 1 }), push: 0.25 }), undefined, [['click', 10, 0.35]]),
   sh(10, 36, 'S', H('nio', [seat('nio', [[0, 'uneasy'], [12, 'deadpan']])], { ball: true, turn: 1 }), undefined, [['zip', 14, 0.6]]),
   // THE CORRIDOR. It loops: the same door, a little more open each time.
   sh(11, 60, 'S', (f) => ({ ...C('long', [f < 26 ? { ...cnio('look', 'deadpan'), facing: 'far', back: true } : { ...cnio('look', 'deadpan'), facing: 'near' }], { door: 0.7 }), push: 0.4 })),

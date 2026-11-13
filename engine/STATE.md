@@ -6,9 +6,9 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Office Hours v2 is voiced (24 lines, B voices) and rendered (short 87 s, checks pass), but the stranger FAILED it once (Nov 13): the first 25 s do not say what Nio wants; Darnell, the 2019 planner and "Pickup's at five" read as random; Theo going white read as a render bug. Waiting on a v3 cold open from the character thread. Then re-voice the changed lines, re-render, and run the stranger once more. A second FAIL is BLOCKED.
+next_action: BLOCKED. Office Hours failed the stranger twice (Nov 13): v2, then v3 with the new cold open. Its words are in episodes/office-hours/review/stranger-2.md: it cannot say what Nio wanted, finds no clear laugh beyond a maybe at the GTA line, and reads Theo going white as a wrong face. The founder decides: watch the cut anyway, or send the episode back to the writers' room.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
-gate_failures: 1 (stranger, Office Hours short cut)
+gate_failures: 2 (stranger, Office Hours short cut, v2 and v3): BLOCKED
 
 ## Next render: "Office Hours" (season 1, episode 1)
 
