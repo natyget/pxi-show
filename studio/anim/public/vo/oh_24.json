@@ -1,0 +1,38 @@
+{
+  "key": "oh_24",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "versions": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3",
+    "torch": "2.8.0+cpu"
+  },
+  "seed": 7,
+  "language": "English",
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "character": "nio",
+  "description_sha256": "bbb38827dc5f48e23a4339de859dc0a771fc859d0ea9fd172922d722bfe6a7a4",
+  "note": "Flat and calm, passing the doom on to his friend, deadpan with the smallest smile.",
+  "line": "You're coming to improv Thursday.",
+  "text_sent": "You're coming to improv Thursday.",
+  "treatment": {
+    "pitch": 0,
+    "trim_silence": true,
+    "colour": "walkie",
+    "walkie": "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8",
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1,
+    "pa_room": "Prof H's lecture-hall mic lines add bass=g=9:f=110 and a hall echo (the whisper made to boom by the room)"
+  },
+  "dur": 1.701,
+  "wav_sha256": "269f3a34084e32c6607e39cffcf8884c2480fd623652e724da061651434afd0b",
+  "made_by": "studio/voice/audition_oh.py + treat_oh.py"
+}

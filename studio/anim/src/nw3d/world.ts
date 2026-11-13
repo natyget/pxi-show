@@ -166,7 +166,8 @@ const speaking = (f: Face, lines: [number, Cues][] | undefined, frame: number, s
 // his eyes. The named camera still has to see him, so the world check holds. screen: a PXI screen
 // (public/pxi-ui/screens/<name>.png). thumb: where his thumb is on the glass, [frame, [across, up, lift]] keys.
 export type ShotSpec = { set: string; camera: string; frames: number; actors: ActorSpec[]; club?: ClubSpec; campus?: CampusOpts;
-  phone?: 'insert' | 'pov'; screen?: string; thumb?: [number, [number, number, number]][] };
+  phone?: 'insert' | 'pov'; screen?: string; thumb?: [number, [number, number, number]][];
+  push?: number }; // a slow push in: the camera moves this many metres toward what it looks at over the shot
 
 const names = (o: object) => Object.keys(o).join(', ');
 // a colour part of the way to another (#rrggbb)
@@ -290,7 +291,9 @@ export const validate = (spec: ShotSpec): string[] => {
 export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
   const errs = validate(spec);
   if (errs.length) throw new Error('This shot is refused by the world rules:\n - ' + errs.join('\n - '));
-  const set = SETS[spec.set], cam = set.cameras[spec.camera];
+  const set = SETS[spec.set], cam0 = set.cameras[spec.camera];
+  const k = spec.push ? (spec.push * frame) / Math.max(1, spec.frames - 1) : 0, dir = norm(sub(cam0.at, cam0.pos));
+  const cam: Cam3 = k ? { ...cam0, pos: [cam0.pos[0] + dir[0] * k, cam0.pos[1] + dir[1] * k, cam0.pos[2] + dir[2] * k] } : cam0;
   const t = Math.floor(frame / 2) * 2;
   const acts: Act[] = spec.actors.map((a) => {
     const ch = CHARACTERS[a.who], act = ACTIONS[a.action], m = set.marks[a.at], m2 = a.to ? set.marks[a.to] : undefined;

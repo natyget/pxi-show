@@ -1,0 +1,38 @@
+{
+  "key": "oh_03",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "versions": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3",
+    "torch": "2.8.0+cpu"
+  },
+  "seed": 7,
+  "language": "English",
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "character": "theo",
+  "description_sha256": "4a1b96df3e91e94005f2c8636af13532a0b6512984bc36c7ac55b35e837b8864",
+  "note": "Barely moving his lips, low, certain, like a funeral.",
+  "line": "Bro's not coming back.",
+  "text_sent": "Bro's not coming back.",
+  "treatment": {
+    "pitch": 0,
+    "trim_silence": true,
+    "colour": "walkie",
+    "walkie": "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8",
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1,
+    "pa_room": "Prof H's lecture-hall mic lines add bass=g=9:f=110 and a hall echo (the whisper made to boom by the room)"
+  },
+  "dur": 1.795,
+  "wav_sha256": "9a46b84c526576db77306acad0bd3cf7ec5d81ca8ef70ea600dc02c1f05722c8",
+  "made_by": "studio/voice/audition_oh.py + treat_oh.py"
+}

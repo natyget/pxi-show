@@ -121,8 +121,8 @@ def grass():
     t = t_(0.2); return band(R.normal(0, 1, len(t)), 400, 3000) * np.exp(-t * 20)
 
 if __name__ == '__main__':
-    save('oh_theme.wav', theme(16), 0.8)
-    save('oh_hall.wav', hall(), 0.6); save('oh_hum.wav', hum(), 0.5); save('oh_office.wav', office(), 0.5); save('oh_pitch.wav', pitch(), 0.6)
+    save('oh_theme.wav', theme(48), 0.8)
+    save('oh_hall.wav', hall(90), 0.6); save('oh_hum.wav', hum(90), 0.5); save('oh_office.wav', office(90), 0.5); save('oh_pitch.wav', pitch(90), 0.6)
     for name, f in [('laptop', laptop), ('zip', zipper), ('bang', bang), ('tap', tap), ('mop', mop), ('whoosh', whoosh), ('hit', hit),
                     ('creak', creak), ('paper', paper), ('click', click), ('grass', grass)]:
         save(f'oh_{name}.wav', f())

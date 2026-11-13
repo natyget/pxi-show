@@ -1,0 +1,38 @@
+{
+  "key": "oh_22",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "versions": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3",
+    "torch": "2.8.0+cpu"
+  },
+  "seed": 7,
+  "language": "English",
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "character": "theo",
+  "description_sha256": "4a1b96df3e91e94005f2c8636af13532a0b6512984bc36c7ac55b35e837b8864",
+  "note": "Normal, a bit annoyed, on the pitch.",
+  "line": "Where were you?",
+  "text_sent": "Where were you?",
+  "treatment": {
+    "pitch": 0,
+    "trim_silence": true,
+    "colour": "walkie",
+    "walkie": "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8",
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1,
+    "pa_room": "Prof H's lecture-hall mic lines add bass=g=9:f=110 and a hall echo (the whisper made to boom by the room)"
+  },
+  "dur": 0.886,
+  "wav_sha256": "2d2bba9476928d2f04483f9701086395cb052ede23f76790c07dc6a123eca751",
+  "made_by": "studio/voice/audition_oh.py + treat_oh.py"
+}

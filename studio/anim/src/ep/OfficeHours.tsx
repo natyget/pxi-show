@@ -55,11 +55,11 @@ export const SHOTS: Shot[] = [
   sh(6, 74, 'S', H('nio', [seat('nio', 'smug', true)]), [L('oh_04', 'nio', 4)], [['zip', 104, 0.6]]),
   sh(7, 36, 'S', H('theo', [{ ...seat('theo', 'deadInside', true), hold: 'pen' }]), [L('oh_05', 'theo', 2)]),
   sh(8, 30, 'S', H('nio', [seat('nio', 'suspicious', true)]), [L('oh_06', 'nio', 2)]),
-  sh(9, 48, 'S', H('seat', [])),
+  sh(9, 48, 'S', { ...H('seat', []), push: 0.12 }),
   sh(10, 44, 'S', H('nio', [seat('nio', [[0, 'uneasy'], [12, 'deadpan']], true)]), [L('oh_07', 'nio', 12)]),
   // THE CORRIDOR. It loops: the same door, a little more open each time.
   sh(11, 60, 'S', (f) => C('long', [f < 26 ? { ...cnio('look', 'deadpan'), facing: 'far', back: true } : { ...cnio('look', 'deadpan'), facing: 'near' }], { door: 0.7 })),
-  sh(12, 80, 'S', C('plaque', [], { door: [[0, 0.7], [79, 0.78]] })),
+  sh(12, 80, 'S', { ...C('plaque', [], { door: [[0, 0.7], [79, 0.78]] }), push: 0.15 }),
   sh(13, 48, 'S', C('corner', [{ ...cnio('look2', 'deadpan'), facing: 'near', back: true }], { door2: 0.95 })),
   sh(14, 29, 'L', C('nio', [{ ...cnio('mid', 'deadInside'), facing: 'camera' }]), [L('oh_08', 'nio', 6)]),
   sh(15, 72, 'L', (f) => f < 36 ? C('stairs', [cnio('stairDoor', [[0, 'hyped'], [8, 'shock']])], { stairs: [[0, 0], [4, 1]] })
@@ -71,7 +71,7 @@ export const SHOTS: Shot[] = [
     [L('oh_10', 'cleaner', 20)], [['mop', 0, 0.5], ['mop', 30, 0.5], ['mop', 60, 0.5]]),
   sh(19, 29, 'S', C('sprint', [{ who: 'nio', at: 'mid', to: 'door', action: 'sprint', face: 'shock' }], { door: 0.9 }), undefined, [['whoosh', 14, 0.8]]),
   // THE WAITING ROOM. The smash cut lands; silence but the hum; only the spinner and Nio's eyes move.
-  sh(20, 72, 'S', W('aisle', 72, [nioSit('shock'), darnellSit('neutral'), ...waiters()]), undefined, [['hit', 0, 0.9]]),
+  sh(20, 72, 'S', { ...W('aisle', 72, [nioSit('shock'), darnellSit('neutral'), ...waiters()]), push: 0.35 }, undefined, [['hit', 0, 0.9]]),
   sh(21, 29, 'L', W('clock', 29, [])),
   sh(22, 36, 'S', W('darnell', 36, [darnellSit('charm', true)]), [L('oh_11', 'darnell', 6)]),
   sh(23, 44, 'S', W('nio', 44, [nioSit('smug', true)]), [L('oh_12', 'nio', 4)]),
@@ -156,9 +156,9 @@ export const OfficeHours: React.FC<OHProps> = (p) => {
         </Sequence>
       ))}
       {runs(shots, (s) => PLACE(s.n)).flatMap(([k, a, b]) => BEDS[k].map(([f, v]) => (
-        <Sequence key={`${k}${a}${f}`} from={a} durationInFrames={b - a} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} loop /></Sequence>)))}
+        <Sequence key={`${k}${a}${f}`} from={a} durationInFrames={b - a} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} /></Sequence>)))}
       {runs(shots, (s) => (MUSIC(s.n) ? 'm' : '')).filter(([k]) => k).map(([, a, b]) => (
-        <Sequence key={`m${a}`} from={a} durationInFrames={b - a} layout="none"><Audio src={staticFile('sfx/oh_theme.wav')} volume={(f) => ((shots.find((s) => s.from <= a + f && a + f < s.from + s.frames)?.say?.length ?? 0) ? 0.1 : 0.2)} loop /></Sequence>))}
+        <Sequence key={`m${a}`} from={a} durationInFrames={b - a} layout="none"><Audio src={staticFile('sfx/oh_theme.wav')} volume={(f) => ((shots.find((s) => s.from <= a + f && a + f < s.from + s.frames)?.say?.length ?? 0) ? 0.1 : 0.2)} /></Sequence>))}
       {shots.flatMap((s) => (s.sfx ?? []).map(([f, at, v], i) => (
         <Sequence key={`${s.n}fx${i}`} from={s.from + at} layout="none"><Audio src={staticFile(`sfx/oh_${f}.wav`)} volume={v ?? 1} /></Sequence>)))}
       {shots.flatMap((s) => (s.say ?? []).filter((l) => vo[l.key]).map((l) => {
