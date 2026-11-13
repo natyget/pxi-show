@@ -1,0 +1,44 @@
+[
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "...Pickup's at five.",
+  "note": "A beat of unease, then brisk, changing the subject, leaving. Say every word clearly, including the last word, five.",
+  "out": "raw_oh_07t1.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "...Pickup's at five.",
+  "note": "A beat of unease, then brisk, changing the subject, leaving. Start right on the first word and finish the sentence.",
+  "out": "raw_oh_07t2.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "...Pickup's at five.",
+  "note": "A beat of unease, then brisk, changing the subject, leaving. Clean read, exactly these words.",
+  "out": "raw_oh_07t3.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Prof. You're mogging the whole faculty. Everybody says it.",
+  "note": "Leaning in, fully committed, hyping him up, sincere and confident. Say mogging with a clear short o, like 'fogging' with an m.",
+  "out": "raw_oh_19t1.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Prof. You're mogging the whole faculty. Everybody says it.",
+  "note": "Leaning in, fully committed, hyping him up, sincere and confident. Clean read, exactly these words, mogging said clearly.",
+  "out": "raw_oh_19t2.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Prof. You're mogging the whole faculty. Everybody says it.",
+  "note": "Leaning in, fully committed, hyping him up, sincere and confident. Start right on the first word.",
+  "out": "raw_oh_19t3.wav"
+ }
+]
