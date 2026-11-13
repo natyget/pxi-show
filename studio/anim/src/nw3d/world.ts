@@ -9,9 +9,11 @@ import { clipLength } from './rig';
 import { Face, FACES, gaze } from './face';
 import { Scene3, Cam3 } from './types';
 import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR } from './characters';
+import { STRANGERS } from './people';
+import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
 import { Act, shot, CAMS, ROOM, X, C } from './room';
 
-export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR };
+export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, ...STRANGERS };
 
 // A place a character can be. s and z as in room.ts. yaw: the way he faces there by default. seat: sit height.
 // on: stand on top of something this high (the desk, the bed). A place with `on` may be inside a piece of furniture.
@@ -21,6 +23,7 @@ export type SetDef = {
   solids: { name: string; s: [number, number]; z: [number, number] }[]; // furniture footprints nobody may stand in
   dress?: string; // how the room is dressed: left out, the everyday room; 'party', the night of the party
   flash?: boolean; // every shot is a photo taken with the flash on (the party pictures on his phone)
+  club?: true; // the club (club.ts): its own room, light and crowd. A shot there may carry `club` (mood, crowd)
 };
 export const SETS: Record<string, SetDef> = {
   nioRoom: {
@@ -76,6 +79,23 @@ SETS.party = {
   },
 };
 
+// THE CLUB (club.ts), first used in The Move: a packed floor round a circle the crowd clears for Nio, the DJ booth up
+// against the far wall, the bar on the right. Marks are where The Move's board puts people.
+SETS.club = {
+  room: [CLUB_W, CLUB_H, CLUB_D], club: true, cameras: CLUB_CAMS,
+  marks: {
+    circle: { s: 6.0, z: 6.4, yaw: 180 }, // the middle of the cleared circle, facing the back of the room
+    circleFront: { s: 6.0, z: 5.6, yaw: 0 }, circleLeft: { s: 5.0, z: 6.6, yaw: 90 }, circleRight: { s: 7.0, z: 6.6, yaw: 270 },
+    theo: { s: 5.0, z: 5.5, yaw: 45 }, // front left of the circle, filming
+    maya: { s: 5.25, z: 7.0, yaw: 120 }, // in the circle, behind Theo's line
+    girl: { s: 6.65, z: 6.5, yaw: 200 }, // right of Nio
+    girl2: { s: 6.95, z: 7.3, yaw: 205 }, girl3: { s: 6.4, z: 7.5, yaw: 190 }, // her two friends, behind her
+    dj: { s: 6.0, z: 12.45, yaw: 180, on: 0.85 }, // behind the decks, up on the booth
+  },
+  solids: [{ name: 'the DJ booth', s: [4.0, 8.0], z: [11.4, 14] }, { name: 'the bar', s: [10.7, 12], z: [2.5, 8.7] },
+    { name: 'the left speakers', s: [2.6, 3.6], z: [12.6, 13.8] }, { name: 'the right speakers', s: [8.4, 9.4], z: [12.6, 13.8] }, { name: 'the low wall', s: [0.45, 0.75], z: [2.2, 10.8] }],
+};
+
 // What a body can do. Each is real human motion fitted to the character. speed: metres per second it must travel.
 export type Action = { clip: string; loop: boolean; stance: number; arms: number; upright: number; seat?: boolean; speed?: number };
 export const ACTIONS: Record<string, Action> = {
@@ -86,7 +106,7 @@ export const ACTIONS: Record<string, Action> = {
   sit: { clip: 'Sitting_Idle_Loop', loop: true, stance: 1, arms: 1, upright: 0.3, seat: true },
   sitTalk: { clip: 'Sitting_Talking_Loop', loop: true, stance: 1, arms: 1, upright: 0.3, seat: true },
   dance: { clip: 'Dance_Loop', loop: true, stance: 1, arms: 1, upright: 0 },
-  crouch: { clip: 'Crouch_Idle_Loop', loop: true, stance: 1, arms: 1, upright: 0 },
+  crouch: { clip: 'Crouch_Idle_Loop', loop: true, stance: 1, arms: 1, upright: 0.55 },
   pickUp: { clip: 'PickUp_Table', loop: false, stance: 0.8, arms: 1, upright: 0 },
   touch: { clip: 'Interact', loop: false, stance: 0.8, arms: 1, upright: 0.3 },
 };
@@ -96,7 +116,8 @@ export const ACTIONS: Record<string, Action> = {
 //  call on speaker). arms-crossed. point: one arm out, the first finger pointing. arm-up: one fist straight up.
 //  arms-up: both arms up in a V. cup: a party cup at the waist. cup-point: the cup held out, to point with.
 //  asleep: sitting, the head dropped onto one shoulder (use the face "asleep").
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep'] as const;
+//  photo: the phone up at eye height, taking a picture. sweep: crouched, both hands circling flat on the floor (with the action crouch).
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep'] as const;
 const SEATED_HOLDS = ['phone-knee', 'asleep'], TRAVEL_HOLDS = ['phone', 'cup'];
 
 export type ActorSpec = {
@@ -107,7 +128,7 @@ export type ActorSpec = {
   gaze?: [number, number]; hold?: (typeof HOLDS)[number]; look?: 'camera';
   back?: true; // say so when the shot means to show his back. Otherwise his face must be visible.
 };
-export type ShotSpec = { set: string; camera: string; frames: number; actors: ActorSpec[] };
+export type ShotSpec = { set: string; camera: string; frames: number; actors: ActorSpec[]; club?: ClubSpec };
 
 const names = (o: object) => Object.keys(o).join(', ');
 const faceAt = (f: ActorSpec['face'], frame: number): string => typeof f === 'string' ? f : [...f].reverse().find(([at]) => frame >= at)?.[1] ?? f[0][1];
@@ -147,7 +168,7 @@ export const checkWorld = (): string[] => {
       if (!seenBy(set, mk)) e.push(`${sn}: no camera sees place "${mn}". Add a camera for it or remove the place.`);
     }
     for (const [cn, cam] of Object.entries(set.cameras)) {
-      const s = set.room[0] - cam.pos[0];
+      const s = X(0) - cam.pos[0]; // the room's left wall is at world x = X(0) in every set
       if (!(s > 0.02 && s < set.room[0] - 0.02 && cam.pos[1] > 0.1 && cam.pos[1] < set.room[1] - 0.05 && cam.pos[2] > 0.02 && cam.pos[2] < set.room[2] - 0.02)) e.push(`${sn}: camera "${cn}" is outside the room.`);
       const hit = set.solids.find((o) => s > o.s[0] && s < o.s[1] && cam.pos[2] > o.z[0] && cam.pos[2] < o.z[1] && cam.pos[1] < 1.0);
       if (hit) e.push(`${sn}: camera "${cn}" is inside ${hit.name}.`);
@@ -199,7 +220,8 @@ export const validate = (spec: ShotSpec): string[] => {
     if (cam) {
       const why = (name: string, f: Framing) => ({ in: '', out: `is not in the picture`, cut: `would be cut by the edge of the picture`, steep: `would be seen from too steep an angle to read his face`, near: `is too close to the lens` }[f]
         + ` from camera "${spec.camera}". Cameras that see "${name}": ${seenBy(set, set.marks[name]) || 'none'}.`);
-      const f1 = framing(cam, m), f2 = m2 ? framing(cam, m2) : undefined;
+      const low = (mk: Mark): Mark => (a.action === 'crouch' && mk.seat === undefined ? { ...mk, seat: 0.0 } : mk); // crouched, the head is down at a sitter's height
+      const f1 = framing(cam, low(m)), f2 = m2 ? framing(cam, low(m2)) : undefined;
       if (!f2) { if (f1 !== 'in') e.push(`${a.who} at "${a.at}" ${why(a.at, f1)}`); }
       else { if (f1 !== 'in' && f1 !== 'out') e.push(`${a.who} at "${a.at}" ${why(a.at, f1)}`); if (f2 !== 'in' && f2 !== 'out') e.push(`${a.who} at "${a.to}" ${why(a.to!, f2)}`);
         if (f1 === 'out' && f2 === 'out') e.push(`${a.who} is never in the picture from camera "${spec.camera}" on the way from ${a.at} to ${a.to}.`); }
@@ -233,5 +255,5 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
       phone: a.hold === 'phone' ? 1 : 0, crossed: a.hold === 'arms-crossed', look: a.look === 'camera' ? cam.pos : undefined, lookAmt: 0.7,
       pose: a.hold, lift: m.on };
   });
-  return shot(cam, acts, frame / 24, set.dress, set.flash);
+  return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash);
 };

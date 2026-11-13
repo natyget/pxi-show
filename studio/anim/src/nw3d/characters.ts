@@ -14,8 +14,8 @@ export type Character = {
 };
 
 // Hair is built from soft lumps (L) for the mass and tapered locks (T, fat root to thin tip) for the fringe and flicks.
-const L = (x: number, y: number, z: number, r: number) => [x, y, z, r, x, y, z, r];
-const T = (x: number, y: number, z: number, r: number, x2: number, y2: number, z2: number, r2: number) => [x, y, z, r, x2, y2, z2, r2];
+export const L = (x: number, y: number, z: number, r: number) => [x, y, z, r, x, y, z, r];
+export const T = (x: number, y: number, z: number, r: number, x2: number, y2: number, z2: number, r2: number) => [x, y, z, r, x2, y2, z2, r2];
 
 // NIO. Light brown skin. A soft chunky mop of dark brown hair: a lumpy mass a third bigger than his head, down over the
 // ears, with a zigzag fringe swept toward his left and one cowlick. Muted plum tee, wide dark trousers, cream shoes.
@@ -48,7 +48,7 @@ export const NIO_CHAR: Character = {
 };
 
 // A round puff of curls: one ball and a ring of lumps round it, so the outline is bumpy, not a circle.
-const puff = (cx: number, cy: number, cz: number, R: number, n: number, r: number): number[][] => {
+export const puff = (cx: number, cy: number, cz: number, R: number, n: number, r: number): number[][] => {
   const out = [L(cx, cy, cz, R)];
   for (let i = 0; i < n; i++) {
     const y = 1 - (2 * (i + 0.5)) / n, a = i * 2.39996, k = Math.sqrt(1 - y * y);
@@ -107,7 +107,7 @@ export const SAMI_CHAR: Character = {
 };
 
 // Short twists all over the top: little tapered locks standing out from the scalp, leaning up and back.
-const twists = (): number[][] => {
+export const twists = (): number[][] => {
   const out: number[][] = [L(0, 0.14, -0.04, 0.15)];
   for (let i = 0; i < 17; i++) {
     const y = 0.25 + 0.75 * (1 - i / 16), a = i * 2.39996, k = Math.sqrt(1 - y * y);

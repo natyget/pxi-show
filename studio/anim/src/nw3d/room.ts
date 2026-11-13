@@ -260,6 +260,16 @@ export const pose = (a: Act) => {
     s = reach(s, i, wr, add(out(i), [0, -1, 0]), P, norm(add(mul(fwd, 0.8), mul(out(i), -0.6))), norm(add(UP, mul(out(i), -0.5))));
     extra.push(...cup(c));
   }
+  if (nm === 'sweep') {
+    // crouched, both hands flat on the floor in front, slow circles, one each way (the move in The Move). The circle
+    // keeps the club's beat: one round every two beats at 124 a minute.
+    const ft = lerp(s.an[0], s.an[1], 0.5), fh = norm([fwd[0], 0, fwd[2]]), sw = ((a.t ?? 0) / 24) * (124 / 60) * Math.PI;
+    for (const i of [0, 1] as const) {
+      const c = add(add(ft, mul(fh, 0.36)), add(mul(out(i), 0.15), [0, 0.04 + (a.lift ?? 0), 0]));
+      s = reach(s, i, add(c, add(mul(out(i), 0.1 * Math.cos(sw)), mul(fh, 0.1 * Math.sin(sw)))), add(out(i), [0, 0.6, 0]), P, fh, mul(out(i), -1));
+    }
+    s = lookAt(s, add(ft, add(mul(fh, 0.6), [0, 0.25 + (a.lift ?? 0), 0])), 0.4, P); // eyes on the floor, the face still to the front
+  }
   if (nm === 'asleep') {
     // asleep sitting up: the head drops forward and rolls onto one shoulder
     const fw = rot(s.headFw, s.headRt, 0.26), up = rot(rot(s.headUp, s.headRt, 0.26), fw, -0.52), rt = cross(up, fw);
@@ -303,13 +313,13 @@ export const phoneCam = (kind: string, ph: PhoneAt): Cam3 => {
 };
 // The studio: a plain mauve backdrop with flat light, for model sheets.
 // cam: a camera, or [kind, actor index] for one of the phone cameras above.
-type CamArg = Cam3 | [string, number];
-const camOf = (cam: CamArg, ps: ReturnType<typeof pose>[]): Cam3 => {
+export type CamArg = Cam3 | [string, number];
+export const camOf = (cam: CamArg, ps: ReturnType<typeof pose>[]): Cam3 => {
   if (!Array.isArray(cam)) return cam;
   const ph = ps[cam[1]]?.phone; if (!ph) throw new Error(`camera "${cam[0]}" needs actor ${cam[1]} to be holding a phone`);
   return phoneCam(cam[0], ph);
 };
-const lensActs = (cam: CamArg, acts: Act[]) => (Array.isArray(cam) && cam[0] === 'selfie' ? acts.map((a, i) => (i === cam[1] ? { ...a, lens: true } : a)) : acts);
+export const lensActs = (cam: CamArg, acts: Act[]) => (Array.isArray(cam) && cam[0] === 'selfie' ? acts.map((a, i) => (i === cam[1] ? { ...a, lens: true } : a)) : acts);
 export const studioShot = (camA: CamArg, acts: Act[]): Scene3 => {
   const ps = lensActs(camA, acts).map(pose), cam = camOf(camA, ps);
   return { cam, room: ROOM, amb: [0.94, 0.94, 0.94], ambChar: [0.97, 0.94, 0.95], boxes: [], studio: true,
