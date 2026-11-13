@@ -281,6 +281,27 @@ only as text on Nio's screen.
 - The sock guy (tall, bald, moustache, sunglasses indoors, black suit) is from the parked Ep 1 and may return
   as a Kevin.
 
+
+## Approved voices beyond Nio and Maya (founder, Nov 13: "I prefer voice B for everything including the cleaner, Darnell and Theo")
+
+Made the same way as Nio's and Maya's (below), each description plus an acting note, seed 7, walkie colour.
+
+- **Prof H:**
+
+> A huge, gentle professor around sixty, hushed airy voice with a soft rasp, medium-low pitch, earnest and a little nervous, always talking like he is in a library.
+
+- **Theo:**
+
+> A 21-year-old guy, clear mid pitch, quick and confident, a sports commentator's certainty in a quiet voice, slightly nasal, playful.
+
+- **Darnell:**
+
+> A gentle man in his thirties, warm mid voice, dreamy and peaceful, speaks slowly and friendly, like a monk who likes video games.
+
+- **The cleaner (Office Hours):**
+
+> A brisk woman in her fifties, bright clear voice, quick and casual, a little amused, has seen it all.
+
 ## How a voice line is made (the only approved way)
 
 - **Model:** `Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign` (Apache-2.0). An original voice designed from text. No

@@ -11,6 +11,11 @@ VOICES = {
           "the lead of a cartoon comedy; confident, cocky, playful; big swings between deadpan and excited; casual Gen Z delivery."),
   "maya": ("A young woman around 20, bright, sweet and earnest voice, soft and clear, slightly higher pitch, gentle and kind, "
            "a little breathless when excited; sincere and literal, like the kind sidekick in a cartoon."),
+  # Approved by the founder by ear, Nov 13 ("I prefer voice B for everything"): design B of candidates_oh.py.
+  "profh": 'A huge, gentle professor around sixty, hushed airy voice with a soft rasp, medium-low pitch, earnest and a little nervous, always talking like he is in a library.',
+  "theo": "A 21-year-old guy, clear mid pitch, quick and confident, a sports commentator's certainty in a quiet voice, slightly nasal, playful.",
+  "darnell": 'A gentle man in his thirties, warm mid voice, dreamy and peaceful, speaks slowly and friendly, like a monk who likes video games.',
+  "cleaner": 'A brisk woman in her fifties, bright clear voice, quick and casual, a little amused, has seen it all.',
   # Original designs for the pilot "No Pics" (Nov 11), written from the script's character notes.
   "dev": ("A 21-year-old guy on a video call from another city, relaxed low-mid voice, dry and unimpressed, talks while "
           "chewing, unhurried; sounds like a real best friend on the phone at midnight, not a performer."),

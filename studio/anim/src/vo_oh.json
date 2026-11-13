@@ -1,0 +1,56 @@
+{
+"oh_04": {
+"file": "vo/oh_04.wav",
+"who": "nio",
+"sub": "It says hours. Plural. That's a suggestion.",
+"dur": 5.403
+},
+"oh_06": {
+"file": "vo/oh_06.wav",
+"who": "nio",
+"sub": "Who's Darnell?",
+"dur": 1.462
+},
+"oh_07": {
+"file": "vo/oh_07.wav",
+"who": "nio",
+"sub": "...Pickup's at five.",
+"dur": 1.035
+},
+"oh_08": {
+"file": "vo/oh_08.wav",
+"who": "nio",
+"sub": "No.",
+"dur": 0.592
+},
+"oh_09": {
+"file": "vo/oh_09.wav",
+"who": "nio",
+"sub": "I did not RSVP to that.",
+"dur": 2.155
+},
+"oh_12": {
+"file": "vo/oh_12.wav",
+"who": "nio",
+"sub": "I'm not even here.",
+"dur": 1.246
+},
+"oh_15": {
+"file": "vo/oh_15.wav",
+"who": "nio",
+"sub": "...Not yet, bro.",
+"dur": 1.209
+},
+"oh_19": {
+"file": "vo/oh_19.wav",
+"who": "nio",
+"sub": "Prof. You're mogging the whole faculty. Everybody says it.",
+"dur": 4.566
+},
+"oh_23": {
+"file": "vo/oh_23.wav",
+"who": "nio",
+"sub": "Office hours.",
+"dur": 1.185
+}
+}

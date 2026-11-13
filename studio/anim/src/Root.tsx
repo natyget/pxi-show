@@ -12,6 +12,7 @@ import { TextCheckTest } from './TextCheckTest';
 import { withProbe } from './lib/TextProbe';
 
 import { N3Still, N3_DEFAULT, N3Shot, N3Cast, N3_CAST } from './nw3d/Scenes';
+import { OfficeHours, ohLength } from './ep/OfficeHours';
 import { LipTest, LIP_DEFAULT, lipLen } from './lips/LipTest';
 import { NWHead, NWBody, NWHero, NWWide, NWSheet, NWClip, CLIP_LEN, NWShot, NWClip2, CLIP2_LEN } from './nw/Look';
 
@@ -44,6 +45,8 @@ export const Root: React.FC = () => (
     <Composition id="NWClip" component={NWClip} durationInFrames={CLIP_LEN} fps={24} width={270} height={480} />
     <Composition id="NWShot" component={NWShot} durationInFrames={1} fps={24} width={270} height={480} defaultProps={{ shot: 'corner' }} />
     <Composition id="NWClip2" component={NWClip2} durationInFrames={CLIP2_LEN} fps={24} width={270} height={480} />
+    <Composition id="OfficeHours" component={OfficeHours} durationInFrames={1706} fps={24} width={1080} height={1920} defaultProps={{ cut: 'short' as const }}
+      calculateMetadata={({ props }) => ({ durationInFrames: ohLength(props) })} />
     <Composition id="LipTest" component={LipTest} durationInFrames={60} fps={24} width={180} height={320} defaultProps={LIP_DEFAULT}
       calculateMetadata={({ props }) => ({ durationInFrames: lipLen(props) })} />
   </>

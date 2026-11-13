@@ -369,3 +369,9 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "i told the writer to fix some writing and sharpen the stories"
   - "i do not see why i need to add hugging face when access ro website all over are limitless and its full access.
     i cant even add hugging face since its full access"
+- **Nov 13, 6:11 AM (UTC), on the Office Hours script and the voice samples, word for word:**
+  - "I really hope that the HTN line is not actually in the script because first of all it needs to be high tier Normie. I wish the students don’t think I’m a high tier Normie, but even that is kind of weird like it would probably be funnier to use it and call someone a high your Normie instead of being insecure about it and people would be insecure about being a low tear chud not a hight tier normie because that’s actually a decent rank either way I do prefer the voice for the professor, but you need to refine the script if that’s how we’re gonna make a script and especially don’t use mogging and all these terms early on again we’re really focused on making gumbo like funny episode episodes so even like inspiring from gumball the language and scripts and dialog and taking the plots from regular show would be pretty much enough rather than making your own bullshit like this, I know you have a lot of instructions, but please forget them when you make the episodes that we inspire on regular show and gumball
+    I prefer voice B for everything including the cleaner, Darnell and Theo"
+  - What this changed: voices B are approved for Prof H, Theo, Darnell and the cleaner (`bible/characters.md`,
+    "Approved voices beyond Nio and Maya"). The Office Hours script goes back to the writer: no HTN, no mogging,
+    no borrowed slang terms; Gumball-style dialogue and a Regular Show plot.
