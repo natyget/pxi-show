@@ -22,6 +22,10 @@ const lips = LIPS as unknown as Record<string, Cues>;
 // The waiting room: Nio by the way in (L3), Darnell beside him (L4), the spinner boy and the flower-crown girl across (R4, R5).
 const W = (camera: string, frames: number, actors: ShotSpec['actors'], campus: ShotSpec['campus'] = { serving: 3, clock: null }): ShotSpec =>
   ({ set: 'waiting', camera, frames, actors, campus });
+// The lecture hall.
+const H = (camera: string, actors: ShotSpec['actors'], campus: ShotSpec['campus'] = {}): ShotSpec => ({ set: 'hall', camera, frames: 1, actors, campus: { dusty: true, ...campus } });
+const prof = (face: ShotSpec['actors'][0]['face']) => ({ who: 'profH', at: 'lectern', action: 'talk', face });
+const seat = (who: string, face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: who === 'capGirl' ? 'cap' : who, at: who, action: talk ? 'sitTalk' : 'sit', face });
 const waiters = (spin = true): ShotSpec['actors'] => [
   { who: 'spinner', at: 'seatR4', action: 'sit', face: 'deadInside', hold: spin ? 'spinner' : undefined },
   { who: 'crown', at: 'seatR5', action: 'sit', face: 'neutral' },
@@ -34,17 +38,17 @@ const sh = (n: number, frames: number, cut: 'S' | 'L', spec: Shot['spec'], say?:
 const L = (key: string, who: string, at: number): Line => ({ key, who, at });
 
 export const SHOTS: Shot[] = [
-  // THE LECTURE HALL
-  sh(1, 94, 'S', NONE, [L('oh_01', 'profH', 12)], [['laptop', 4, 0.8]]),
-  sh(2, 36, 'S', NONE, [L('oh_02', 'profH', 4)]),
-  sh(3, 36, 'S', NONE),
-  sh(4, 48, 'S', NONE),
-  sh(5, 36, 'S', NONE, [L('oh_03', 'theo', 2)]),
-  sh(6, 74, 'S', NONE, [L('oh_04', 'nio', 4)], [['zip', 104, 0.6]]),
-  sh(7, 36, 'S', NONE, [L('oh_05', 'theo', 2)]),
-  sh(8, 30, 'S', NONE, [L('oh_06', 'nio', 2)]),
-  sh(9, 48, 'S', NONE),
-  sh(10, 44, 'S', NONE, [L('oh_07', 'nio', 12)]),
+  // THE LECTURE HALL. Prof H at the lectern; Nio row 4 aisle, Theo on his left, the cap girl in front of Nio.
+  sh(1, 94, 'S', H('low', [prof('charm')], { laptop: [[0, 1], [8, 0]] }), [L('oh_01', 'profH', 12)], [['laptop', 6, 0.8]]),
+  sh(2, 36, 'S', H('profH', [{ ...prof('hyped'), look: 'camera' }]), [L('oh_02', 'profH', 4)]),
+  sh(3, 36, 'S', H('rows', [seat('nio', 'deadpan'), seat('theo', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]] })),
+  sh(4, 48, 'S', H('capGirl', [{ who: 'cap', at: 'capGirl', action: 'sit', face: 'real', hold: 'capOff' }, seat('nio', 'suspicious')], { turn: 1 })),
+  sh(5, 36, 'S', H('two', [seat('nio', 'deadpan'), { ...seat('theo', 'uneasy', true), hold: 'pen', mouth: 0.5, gaze: [0.6, 0] }]), [L('oh_03', 'theo', 2)]),
+  sh(6, 74, 'S', H('nio', [seat('nio', 'smug', true)]), [L('oh_04', 'nio', 4)], [['zip', 104, 0.6]]),
+  sh(7, 36, 'S', H('theo', [{ ...seat('theo', 'deadInside', true), hold: 'pen' }]), [L('oh_05', 'theo', 2)]),
+  sh(8, 30, 'S', H('nio', [seat('nio', 'suspicious', true)]), [L('oh_06', 'nio', 2)]),
+  sh(9, 48, 'S', H('seat', [])),
+  sh(10, 44, 'S', H('nio', [seat('nio', [[0, 'uneasy'], [12, 'deadpan']], true)]), [L('oh_07', 'nio', 12)]),
   // THE CORRIDOR
   sh(11, 60, 'S', NONE), sh(12, 80, 'S', NONE), sh(13, 48, 'S', NONE),
   sh(14, 29, 'L', NONE, [L('oh_08', 'nio', 6)]),
