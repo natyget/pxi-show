@@ -287,3 +287,15 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "when it comes to the remakes i like them and i think it should keep all post that are gen z funny humor
     relatable and all and scratch the werid uncanny ones from the engine, what it did was nice but there are so
     many post ideas and format on that engine i think we can take as much good as we can"
+- **Nov 13, 12:45 AM (on the post formats and the failed No Pics draft), word for word (the part about post formats;
+  the rest of the message is recorded by the threads it concerns):**
+  - "the fortune and bingo are not it the more repost worthy and engaging should be the one to keep or humoreous
+    ones. binga and fortune cookie have nothing gen z or humerous about htem"
+  - "we'll skip metricool for now until we see better results till then ill run ads manually"
+  - "lets drop the repetitive stuff like the elbow. i keep seeing it and. dont know why i keep seeing these weird
+    references that seem like pure slop that each new chat and generation holds onto from somewhere. every story
+    needs to be new and not polluted by any inside jokes or lame humor like that."
+  - "also what is the evidence talk just like the elbow we talk about evidence these werid things need to stop"
+  - "dont center episodes around product. again whole point is nice stories to follow along with our character nio."
+  - What this changed: bingo and fortune dropped, and the kept list in `engine/post-formats.md` re-cut to the
+    formats a person would repost.
