@@ -6,7 +6,7 @@ phase: PILOT_LOCK
 episode: the-move
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Wait for the club set, the crowd and the phone-hand insert from the design thread; then build The Move (episodes/season-1/episodes.md). Build nothing else.
+next_action: The Move is boarded (episodes/the-move/shots.md, voice jobs in studio/voice/jobs_the-move.json). Build it when the design thread delivers the club, the crowd, the phone hand, the flash look and mouths, and the voices can be made. Build nothing else.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 0
 
@@ -16,7 +16,7 @@ Scripts: `episodes/season-1/episodes.md` (six, in posting order); plan: `episode
 Pics" is retired. The Move is built when the design thread delivers what the plan's last section lists: the club
 set, the friends and a reusable crowd, Nio's real hand on the phone, a phone-lens camera, the PXI flash and filter
 in the world, and mouth shapes from the audio. The cast (Maya, Sami, Theo, Imane) is approved. Voices still need
-huggingface.co allowed.
+huggingface.co allowed, and Theo, the girl and the club chant need voices the founder approves by ear.
 
 ## Learning and ads: paused (founder, Nov 13)
 
@@ -69,6 +69,7 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
+- 2026-11-13 · pilot · The Move boarded: 21 shots, about 46 s short cut; POV device added to the craft library; voice jobs written, not generated.
 - 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.
 - 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.
 - 2026-11-12 · engine · learn scores follows, reads Supermetrics; promotion ladder (95% watchers, paused until yes); Nio-style format menu; posting waits on an approved episode.

@@ -40,6 +40,16 @@ one of them is why a device reads as a mistake.
 - Declared in the intent ledger. A named look that is clearly not the show's own. No way in: it simply starts,
   and something is wrong within two seconds. Ends on a hard cut to Nio awake. Sound is close, slow and sparse.
 
+### Point of view (what a character sees)
+- **Way in:** a hard cut from a close-up of the character's face or eyes to what they see. Used when what
+  they see is the joke or the problem (no glasses, no contacts, half asleep, a dark room).
+- **Picture:** the same set and the same people, rendered from the character's eye height and moving the way
+  their head moves. A blur or a distortion is allowed only here, only when it is the story (a lost lens), and
+  it is declared in the intent ledger. People inside the blur are the real crowd, never blocks.
+- **Sound:** the scene's sound, unchanged, unless the face before it says otherwise.
+- **Way out:** a hard cut back to the face, or a snap from the bad view to the clear one on a beat.
+- **Length:** 1.2 to 2 seconds. Never more than three in a short cut.
+
 ### Time passing
 - A hard cut with a clock, a light change, or the same framing with one thing different. A stamp ("11:42 PM")
   only when the time matters to the plot. No dissolves and no montage music unless the piece is a montage.
