@@ -13,6 +13,15 @@ Format:
   From: R<n>, the slate in `bible/world.md`, or original
 ```
 
+## Season 1 (in posting order, Nov 13; scripts in `episodes/season-1/episodes.md`)
+
+1. **The Move** (a club). Drunk Nio loses a contact lens on the dance floor and the whole club copies how he looks for it.
+2. **Password** (a speakeasy behind a laundromat). Nio tries to talk his way past a doorman with better and better passwords.
+3. **On a Break** (a rooftop). Nio's honest questions about "a break" break the couple's break.
+4. **Good Game** (a game bar). Nio finally meets the only player who beats him.
+5. **Potential** (campus). A professor wants a word and Nio spends a day escaping it.
+6. **Tiger** (a house party, the street, a car; LONG plus a short cut, from R1). Nio gets his lightweight friend home with no contacts in.
+
 ## Premises
 
 The slate from `bible/world.md` (Nov 12). Names of people are working names. The fuller note on each is there.

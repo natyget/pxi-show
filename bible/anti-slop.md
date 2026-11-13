@@ -110,3 +110,9 @@ or lame humor like that." And: "what is the evidence talk just like the elbow ..
   been posted. Anything else that repeats is pollution.
 - The writer checks the last three scripts in `episodes/` and the rejected premises, and changes any line, prop or
   beat that echoes them.
+- **The slop list** (from the season plan, `episodes/season-1/series-plan.md`): the elbow; "evidence", "proof",
+  "pics or it didn't happen", "no photos of me"; "who is this", the man in the beanie, the guy who was there the
+  whole time, glitch endings by default; the old catchphrases "Yeah, what's up", "I'm just tired", "They left",
+  "This can't be real" (the founder's own "this guy can't be real", about a friend, stays); numbers as drama,
+  labels with dots, "Part 1"; filler formats with no joke in them; a party in his bedroom; Nio talking to himself
+  in different places; Nio explaining the app.

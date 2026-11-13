@@ -3,19 +3,20 @@
 Every run reads this file first and updates it last. Keep it under 70 lines.
 
 phase: PILOT_LOCK
-episode: pilot
+episode: the-move
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
 next_action: Add up to three premises to engine/premise-bank.md and report status. Build nothing.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 0
 
-## Pilot: waiting on new scripts and engine pieces (Nov 13)
+## Next render: "The Move" (season 1, episode 1)
 
-"No Pics" was built and retired (founder, Nov 13: the plot "sells pxi well" but is "underwhelming"). The next pilot
-is a new story from the story thread, built only after the design thread delivers: Nio's real hand on phone
-inserts, a phone-lens camera, the PXI flash filter on in-world photos, mouth shapes from the audio, background
-people and more sets. The cast (Maya, Sami, Theo, Imane) is approved. Voices still need huggingface.co allowed.
+Scripts: `episodes/season-1/episodes.md` (six, in posting order); plan: `episodes/season-1/series-plan.md`. "No
+Pics" is retired. The Move is built when the design thread delivers what the plan's last section lists: the club
+set, the friends and a reusable crowd, Nio's real hand on the phone, a phone-lens camera, the PXI flash and filter
+in the world, and mouth shapes from the audio. The cast (Maya, Sami, Theo, Imane) is approved. Voices still need
+huggingface.co allowed.
 
 ## Learning and ads: paused (founder, Nov 13)
 

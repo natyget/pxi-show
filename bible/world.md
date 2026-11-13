@@ -131,8 +131,7 @@ tonight. A story that turns on either of those has set up its own caption.
 Format: the one-line premise, whose ego drives it, the kind of story (`bible/gumball-style.md` section 2), and
 where PXI sits. All are CANDIDATE until the founder approves them in `engine/premise-bank.md`.
 
-1. **No Pics.** The morning after the best night of his life, Nio is in no photos. *Ego:* Nio's vanity.
-   *Kind:* small thing. *PXI:* engine, "you're in 38 photos". (The pilot.)
+1. ~~No Pics~~ retired Nov 13 by the founder. Season 1 starts from `season-1/series-plan.md` instead.
 2. **Tiger.** Nio has to get Sami home, cannot see without his contacts, and books the wrong ride. *Ego:*
    Sami's dignity. *Kind:* quest. *PXI:* moment, next morning's album, Sami upright in every photo. *From R1.*
 3. **The Zip.** Benji returns Nio's bag from across campus, zipped wrong. *Ego:* Nio's itch, and him choosing

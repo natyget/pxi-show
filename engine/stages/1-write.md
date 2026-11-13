@@ -59,6 +59,9 @@ INSERT: what the phone shows, in the app's exact words
 ```
 
 Then:
+0. **Freshness check.** List the main props, places and jokes of the last ten scripts (`episodes/`, including
+   `episodes/season-1/episodes.md`) and the slop list in `bible/anti-slop.md` section 5. Nothing in the new script may
+   repeat them, unless it is a callback named in `bible/callbacks.md`.
 1. `python3 engine/tools/script_lint.py episodes/<id>/script.md` and fix every FAIL.
 2. Read the script with every `[LONG]` line removed. It must be complete, with its own opening and way out.
 3. **The cold read.** One Haiku subagent given only the short-cut Script section. It answers in a line each:
