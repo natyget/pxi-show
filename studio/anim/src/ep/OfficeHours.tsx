@@ -113,7 +113,7 @@ const PLACE = (n: number) => n <= 10 ? 'hall' : n <= 19 ? 'corridor' : n <= 29 |
 const BEDS: Record<string, [string, number][]> = { hall: [['oh_hall', 0.35]], corridor: [['oh_hum', 0.25]], waiting: [['oh_hum', 0.3]], office: [['oh_office', 0.3]], pitch: [['oh_pitch', 0.35]] };
 const MUSIC = (n: number) => n <= 19 || n >= 38;
 
-export type OHProps = { cut: 'short' | 'long'; only?: number[] };
+export type OHProps = { cut: 'short' | 'long'; only?: number[]; subs?: boolean };
 export const timeline = (p: OHProps) => {
   let at = 0;
   return SHOTS.filter((s) => (p.cut === 'long' || s.cut === 'S') && (!p.only || p.only.includes(s.n))).map((s) => { const r = { ...s, frames: lenOf(s), from: at }; at += r.frames; return r; });
@@ -165,7 +165,7 @@ export const OfficeHours: React.FC<OHProps> = (p) => {
         <Sequence key={`${s.n}fx${i}`} from={s.from + at} layout="none"><Audio src={staticFile(`sfx/oh_${f}.wav`)} volume={v ?? 1} /></Sequence>)))}
       {shots.flatMap((s) => (s.say ?? []).filter((l) => vo[l.key]).map((l) => {
         const a = s.from + l.at, b = a + Math.max(Math.ceil(vo[l.key].dur * 24) + 8, 30);
-        return frame >= a && frame < b ? <Sub key={l.key} text={vo[l.key].sub} /> : null;
+        return p.subs !== false && frame >= a && frame < b ? <Sub key={l.key} text={vo[l.key].sub} /> : null;
       }))}
     </AbsoluteFill>
   );

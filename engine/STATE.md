@@ -6,9 +6,9 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Wait for the campus sets, Prof H and the phone-hand insert from the design thread; then build Office Hours (episodes/season-1/episodes-v2.md). Build nothing else.
+next_action: Office Hours v2 is voiced (24 lines, B voices) and rendered (short 87 s, checks pass), but the stranger FAILED it once (Nov 13): the first 25 s do not say what Nio wants; Darnell, the 2019 planner and "Pickup's at five" read as random; Theo going white read as a render bug. Waiting on a v3 cold open from the character thread. Then re-voice the changed lines, re-render, and run the stranger once more. A second FAIL is BLOCKED.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
-gate_failures: 0
+gate_failures: 1 (stranger, Office Hours short cut)
 
 ## Next render: "Office Hours" (season 1, episode 1)
 
