@@ -14,7 +14,7 @@ import VO from '../vo_oh.json';
 import LIPS from '../lips/oh.json';
 
 type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
-type Shot = { n: number; frames: number; cut: 'S' | 'L'; spec: ShotSpec | ((f: number) => ShotSpec) | null; say?: Line[]; sfx?: [string, number, number?][] };
+type Shot = { n: number; frames: number; cut: 'S' | 'L'; spec: ShotSpec | ((f: number) => ShotSpec) | null; say?: Line[]; sfx?: [string, number, number?][]; res?: number };
 type VoLine = { file: string; who: string; sub: string; dur: number };
 const vo = VO as unknown as Record<string, VoLine>;
 const lips = LIPS as unknown as Record<string, Cues>;
@@ -42,14 +42,15 @@ const nioSit = (face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: 'n
 const darnellSit = (face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: 'darnell', at: 'seatL4', action: talk ? 'sitTalk' : 'sit', face, hold: 'ticket' as const });
 
 const NONE = null; // a set the design thread has not delivered yet: the shot cannot be drawn, so no cut ships with it
-const sh = (n: number, frames: number, cut: 'S' | 'L', spec: Shot['spec'], say?: Line[], sfx?: Shot['sfx']): Shot => ({ n, frames, cut, spec, say, sfx });
+// res: draw this shot at that many times the show's pixels (only the phone insert, so the screen reads)
+const sh = (n: number, frames: number, cut: 'S' | 'L', spec: Shot['spec'], say?: Line[], sfx?: Shot['sfx'], res = 1): Shot => ({ n, frames, cut, spec, say, sfx, res });
 const L = (key: string, who: string, at: number): Line => ({ key, who, at });
 
 export const SHOTS: Shot[] = [
   // THE LECTURE HALL. Prof H at the lectern; Nio row 4 aisle, Theo on his left, the cap girl in front of Nio.
   sh(1, 94, 'S', H('low', [prof('charm')], { laptop: [[0, 1], [8, 0]] }), [L('oh_01', 'profH', 12)], [['laptop', 6, 0.8]]),
   sh(2, 36, 'S', H('profH', [{ ...prof('hyped'), look: 'camera' }]), [L('oh_02', 'profH', 4)]),
-  sh(3, 36, 'S', H('rows', [seat('nio', 'deadpan'), seat('theo', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]] })),
+  sh(3, 36, 'S', { ...H('rows', [seat('nio', 'deadpan'), seat('theo', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]] }), push: 0.5 }),
   sh(4, 48, 'S', H('capGirl', [{ who: 'cap', at: 'capGirl', action: 'sit', face: 'real', hold: 'capOff' }, seat('nio', 'suspicious')], { turn: 1 })),
   sh(5, 36, 'S', H('two', [seat('nio', 'deadpan'), { ...seat('theo', 'uneasy', true), hold: 'pen', mouth: 0.5, gaze: [0.6, 0] }]), [L('oh_03', 'theo', 2)]),
   sh(6, 74, 'S', H('nio', [seat('nio', 'smug', true)]), [L('oh_04', 'nio', 4)], [['zip', 104, 0.6]]),
@@ -58,14 +59,14 @@ export const SHOTS: Shot[] = [
   sh(9, 48, 'S', { ...H('seat', []), push: 0.12 }),
   sh(10, 44, 'S', H('nio', [seat('nio', [[0, 'uneasy'], [12, 'deadpan']], true)]), [L('oh_07', 'nio', 12)]),
   // THE CORRIDOR. It loops: the same door, a little more open each time.
-  sh(11, 60, 'S', (f) => C('long', [f < 26 ? { ...cnio('look', 'deadpan'), facing: 'far', back: true } : { ...cnio('look', 'deadpan'), facing: 'near' }], { door: 0.7 })),
+  sh(11, 60, 'S', (f) => ({ ...C('long', [f < 26 ? { ...cnio('look', 'deadpan'), facing: 'far', back: true } : { ...cnio('look', 'deadpan'), facing: 'near' }], { door: 0.7 }), push: 0.4 })),
   sh(12, 80, 'S', { ...C('plaque', [], { door: [[0, 0.7], [79, 0.78]] }), push: 0.15 }),
-  sh(13, 48, 'S', C('corner', [{ ...cnio('look2', 'deadpan'), facing: 'near', back: true }], { door2: 0.95 })),
+  sh(13, 48, 'S', { ...C('corner', [{ ...cnio('look2', 'deadpan'), facing: 'near', back: true }], { door2: 0.95 }), push: 0.4 }),
   sh(14, 29, 'L', C('nio', [{ ...cnio('mid', 'deadInside'), facing: 'camera' }]), [L('oh_08', 'nio', 6)]),
   sh(15, 72, 'L', (f) => f < 36 ? C('stairs', [cnio('stairDoor', [[0, 'hyped'], [8, 'shock']])], { stairs: [[0, 0], [4, 1]] })
     : C('long', [{ ...cnio('look', 'shock'), facing: 'far', back: true }], { door: 0.85 }), undefined, [['bang', 4, 0.8]]),
-  sh(16, 72, 'S', { ...C('mcu', [{ ...cnio('mid', 'deadpan'), facing: 'camera', hold: 'phone' }], { door: 0.85 }), phone: 'insert', screen: 'map-office-hours',
-    thumb: [[0, [0.35, -0.1, 1]], [30, [0.0, -0.55, 1]], [38, [0.0, -0.55, 0]], [46, [0.0, -0.55, 1]]] }, undefined, [['tap', 38, 0.9]]),
+  sh(16, 72, 'S', { ...C('mcu', [{ ...cnio('mid', 'deadpan'), facing: 'camera', hold: 'phone' }], { door: 0.85 }), phone: 'pov', screen: 'map-office-hours',
+    thumb: [[0, [0.95, -0.95, 1]], [44, [0.95, -0.95, 1]], [50, [0.2, -0.6, 1]], [54, [0.2, -0.6, 0]], [62, [0.6, -0.9, 1]]] }, undefined, [['tap', 54, 0.9]], 2),
   sh(17, 62, 'S', C('mcu', [{ ...cnio('mid', 'real'), facing: 'camera', hold: 'phone', glow: 1, gaze: [0, -0.8] }], { door: 0.85 }), [L('oh_09', 'nio', 6)]),
   sh(18, 96, 'L', C('cleaner', [{ ...cnio('mid', 'uneasy'), facing: 'camera', hold: 'phone', gaze: [0.6, -0.2] }, { who: 'cleaner', at: 'cleanerA', to: 'cleanerB', action: 'walk', face: 'deadpan', hold: 'mop' }], { door: 0.85 }),
     [L('oh_10', 'cleaner', 20)], [['mop', 0, 0.5], ['mop', 30, 0.5], ['mop', 60, 0.5]]),
@@ -76,7 +77,7 @@ export const SHOTS: Shot[] = [
   sh(22, 36, 'S', W('darnell', 36, [darnellSit('charm', true)]), [L('oh_11', 'darnell', 6)]),
   sh(23, 44, 'S', W('nio', 44, [nioSit('smug', true)]), [L('oh_12', 'nio', 4)]),
   sh(24, 44, 'S', W('two', 44, [nioSit('uneasy'), darnellSit('charm', true)]), [L('oh_13', 'darnell', 3)]),
-  sh(25, 36, 'S', W('ticket', 36, [darnellSit('neutral')])), // insert: Darnell's ticket, 4, his thumb on the coffee ring
+  sh(25, 36, 'S', { ...W('ticket', 36, [darnellSit('neutral')]), push: 0.2 }), // insert: Darnell's ticket, 4, his thumb on the coffee ring
   sh(26, 72, 'S', W('darnell', 72, [darnellSit('real', true)]), [L('oh_14', 'darnell', 8)]),
   sh(27, 60, 'S', W('nio', 60, [nioSit([[0, 'crushed'], [24, 'sheepish']], true)]), [L('oh_15', 'nio', 26)]),
   sh(28, 29, 'L', W('darnell', 29, [darnellSit([[0, 'charm'], [14, 'neutral']])])),
@@ -137,8 +138,9 @@ const ShotView: React.FC<{ shot: Shot }> = ({ shot }) => {
     const mine = (shot.say ?? []).filter((l) => l.who === a.who && lips[l.key]);
     return mine.length ? { ...a, speak: mine.map((l) => [l.at, lips[l.key]] as [number, Cues]) } : a;
   }) };
-  return <div style={{ position: 'absolute', left: 0, top: 0, width: PW, height: PH, transform: `scale(${1080 / PW})`, transformOrigin: '0 0', imageRendering: 'pixelated' }}>
-    <SdfShot scene={withScreen(buildShot(spec, f), spec.screen)} /></div>;
+  const r = shot.res ?? 1;
+  return <div style={{ position: 'absolute', left: 0, top: 0, width: PW * r, height: PH * r, transform: `scale(${1080 / (PW * r)})`, transformOrigin: '0 0', imageRendering: 'pixelated' }}>
+    <SdfShot scene={withScreen(buildShot(spec, f), spec.screen)} w={PW * r} h={PH * r} /></div>;
 };
 
 export const OfficeHours: React.FC<OHProps> = (p) => {
