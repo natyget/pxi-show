@@ -8,12 +8,13 @@ import { V, sub, norm, cross, dot } from './vec';
 import { clipLength } from './rig';
 import { Face, FACES, gaze } from './face';
 import { Scene3, Cam3 } from './types';
-import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR } from './characters';
+import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_H_CHAR, DARNELL_CHAR } from './characters';
 import { STRANGERS } from './people';
 import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
+import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS } from './campus';
 import { Act, shot, CAMS, ROOM, X, C } from './room';
 
-export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, ...STRANGERS };
+export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, ...STRANGERS };
 
 // A place a character can be. s and z as in room.ts. yaw: the way he faces there by default. seat: sit height.
 // on: stand on top of something this high (the desk, the bed). A place with `on` may be inside a piece of furniture.
@@ -24,6 +25,8 @@ export type SetDef = {
   dress?: string; // how the room is dressed: left out, the everyday room; 'party', the night of the party
   flash?: boolean; // every shot is a photo taken with the flash on (the party pictures on his phone)
   club?: true; // the club (club.ts): its own room, light and crowd. A shot there may carry `club` (mood, crowd)
+  inserts?: string[]; // cameras on a thing (a sign, a clock), not on a person: they need not see a place
+  campus?: CampusRoom; // a room of the campus (campus.ts). A shot there may carry `campus` (the door, NOW SERVING, the clock)
 };
 export const SETS: Record<string, SetDef> = {
   nioRoom: {
@@ -96,6 +99,10 @@ SETS.club = {
     { name: 'the left speakers', s: [2.6, 3.6], z: [12.6, 13.8] }, { name: 'the right speakers', s: [8.4, 9.4], z: [12.6, 13.8] }, { name: 'the low wall', s: [0.45, 0.75], z: [2.2, 10.8] }],
 };
 
+// OFFICE HOURS (campus.ts). THE WAITING ROOM outside Prof H's office: two rows of chairs facing across, the inner door
+// with NOW SERVING over it, the clock, the ticket machine. Seats are numbered from the way in: L on the left, R on the right.
+SETS.waiting = { room: CAMPUS_ROOMS.waiting.size, campus: 'waiting', cameras: CAMPUS_ROOMS.waiting.cams, inserts: WAIT_INSERTS, marks: WAIT_MARKS, solids: WAIT_SOLIDS };
+
 // What a body can do. Each is real human motion fitted to the character. speed: metres per second it must travel.
 export type Action = { clip: string; loop: boolean; stance: number; arms: number; upright: number; seat?: boolean; speed?: number };
 export const ACTIONS: Record<string, Action> = {
@@ -117,8 +124,8 @@ export const ACTIONS: Record<string, Action> = {
 //  arms-up: both arms up in a V. cup: a party cup at the waist. cup-point: the cup held out, to point with.
 //  asleep: sitting, the head dropped onto one shoulder (use the face "asleep").
 //  photo: the phone up at eye height, taking a picture. sweep: crouched, both hands circling flat on the floor (with the action crouch).
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep'] as const;
-const SEATED_HOLDS = ['phone-knee', 'asleep'], TRAVEL_HOLDS = ['phone', 'cup'];
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner'] as const;
+const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner'], TRAVEL_HOLDS = ['phone', 'cup'];
 
 export type ActorSpec = {
   who: string; outfit?: string;
@@ -128,7 +135,7 @@ export type ActorSpec = {
   gaze?: [number, number]; hold?: (typeof HOLDS)[number]; look?: 'camera';
   back?: true; // say so when the shot means to show his back. Otherwise his face must be visible.
 };
-export type ShotSpec = { set: string; camera: string; frames: number; actors: ActorSpec[]; club?: ClubSpec };
+export type ShotSpec = { set: string; camera: string; frames: number; actors: ActorSpec[]; club?: ClubSpec; campus?: CampusOpts };
 
 const names = (o: object) => Object.keys(o).join(', ');
 const faceAt = (f: ActorSpec['face'], frame: number): string => typeof f === 'string' ? f : [...f].reverse().find(([at]) => frame >= at)?.[1] ?? f[0][1];
@@ -172,7 +179,7 @@ export const checkWorld = (): string[] => {
       if (!(s > 0.02 && s < set.room[0] - 0.02 && cam.pos[1] > 0.1 && cam.pos[1] < set.room[1] - 0.05 && cam.pos[2] > 0.02 && cam.pos[2] < set.room[2] - 0.02)) e.push(`${sn}: camera "${cn}" is outside the room.`);
       const hit = set.solids.find((o) => s > o.s[0] && s < o.s[1] && cam.pos[2] > o.z[0] && cam.pos[2] < o.z[1] && cam.pos[1] < 1.0);
       if (hit) e.push(`${sn}: camera "${cn}" is inside ${hit.name}.`);
-      if (!Object.values(set.marks).some((mk) => framing(cam, mk) === 'in')) e.push(`${sn}: camera "${cn}" sees no place. Remove it or add a place.`);
+      if (!set.inserts?.includes(cn) && !Object.values(set.marks).some((mk) => framing(cam, mk) === 'in')) e.push(`${sn}: camera "${cn}" sees no place. Remove it or add a place.`);
     }
   }
   return e;
@@ -255,5 +262,6 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
       phone: a.hold === 'phone' ? 1 : 0, crossed: a.hold === 'arms-crossed', look: a.look === 'camera' ? cam.pos : undefined, lookAmt: 0.7,
       pose: a.hold, lift: m.on };
   });
+  if (set.campus) return campusShot(set.campus, cam, acts, { ...spec.campus, time: frame / 24 });
   return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash);
 };

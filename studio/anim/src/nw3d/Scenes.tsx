@@ -7,6 +7,7 @@ import { SdfShot } from './SdfShot';
 import { PW, PH } from './types';
 import { Act, shot, studioShot, CAMS, C } from './room';
 import { clubShot, CLUB_CAMS } from './club';
+import { campusShot, CAMPUS_ROOMS, CampusRoom, CampusOpts } from './campus';
 import { STRANGERS } from './people';
 import { ShotSpec, buildShot, CHARACTERS } from './world';
 
@@ -34,10 +35,12 @@ export const N3Shot: React.FC<{ spec: ShotSpec }> = ({ spec }) => <SdfShot scene
 export type CastActor = { who: string; clip?: string; t?: number; at: number[]; yaw: number; face?: string; gaze?: number[]; pose?: string; outfit?: string;
   stance?: number; arms?: number; upright?: number; seat?: number; lift?: number; lookCam?: number; lookAt?: number[]; hold?: number[]; thumb?: number[] };
 export type CastProps = { w: number; h: number; set: string; camPos: number[]; camAt: number[]; fov: number; time?: number; screen?: string; flash?: boolean; phoneCam?: [string, number]; actors: CastActor[];
-  cam?: string; mood?: number; bpm?: number; crowd?: Record<string, any> | null }; // cam: a named camera of the set. The club: mood, bpm, crowd (see club.ts)
+  cam?: string; mood?: number; bpm?: number; crowd?: Record<string, any> | null; // cam: a named camera of the set. The club: mood, bpm, crowd (see club.ts)
+  campus?: CampusOpts }; // a campus room (set 'waiting' ...): the door, NOW SERVING, the clock (see campus.ts)
 export const N3_CAST: CastProps = { w: PW, h: PH, set: 'studio', camPos: [2.0, 0.95, 0.2], camAt: [2.0, 0.8, 2.5], fov: 44, actors: [{ who: 'maya', at: [2.0, 2.5], yaw: 180 }] };
 export const N3Cast: React.FC<CastProps> = (p) => {
-  const named = p.cam ? (p.set === 'club' ? CLUB_CAMS : CAMS)[p.cam] : undefined; if (p.cam && !named) throw new Error('no camera ' + p.cam);
+  const room = p.set in CAMPUS_ROOMS ? (p.set as CampusRoom) : undefined;
+  const named = p.cam ? (p.set === 'club' ? CLUB_CAMS : room ? CAMPUS_ROOMS[room].cams : CAMS)[p.cam] : undefined; if (p.cam && !named) throw new Error('no camera ' + p.cam);
   const cam = named ?? C(p.camPos as V, p.camAt as V, p.fov);
   const acts: Act[] = p.actors.map((a) => {
     const ch = CHARACTERS[a.who] ?? STRANGERS[a.who]; if (!ch) throw new Error('no character ' + a.who);
@@ -47,7 +50,7 @@ export const N3Cast: React.FC<CastProps> = (p) => {
       stance: a.stance ?? 0.5, arms: a.arms ?? 0.35, upright: a.upright ?? 0.85, seat: a.seat, lift: a.lift, look, lookAmt: a.lookCam ?? 0.8, hold: a.hold, thumb: a.thumb as Act['thumb'] };
   });
   const camA = p.phoneCam ?? cam; // phoneCam: [kind, actor] looks through that actor's phone or eyes (see phoneCam in room.ts)
-  const scene = p.set === 'studio' ? studioShot(camA, acts) : p.set === 'club' ? clubShot(camA, acts, { time: p.time, mood: p.mood, bpm: p.bpm, flash: p.flash, crowd: p.crowd as any })
+  const scene = p.set === 'studio' ? studioShot(camA, acts) : room ? campusShot(room, camA, acts, { time: p.time, ...p.campus }) : p.set === 'club' ? clubShot(camA, acts, { time: p.time, mood: p.mood, bpm: p.bpm, flash: p.flash, crowd: p.crowd as any })
     : shot(camA, acts, p.time ?? 0, p.set === 'party' ? 'party' : undefined, p.flash);
   if (p.screen) scene.screenTex = staticFile(`pxi-ui/screens/${p.screen}.png`);
   return <SdfShot scene={scene} w={p.w} h={p.h} />;
