@@ -1,0 +1,1 @@
+{"set": "waiting", "camera": "wide", "frames": 48, "campus": {"serving": 4, "clock": [2.6, 0.1], "door": 1}, "actors": [{"who": "nio", "at": "seatL3", "action": "sit", "face": "deadInside"}, {"who": "darnell", "at": "middle", "to": "doorway", "action": "walk", "face": "charm", "back": true}]}
