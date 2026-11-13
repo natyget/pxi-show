@@ -6,7 +6,7 @@ phase: PILOT_LOCK
 episode: the-move
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Add up to three premises to engine/premise-bank.md and report status. Build nothing.
+next_action: Wait for the club set, the crowd and the phone-hand insert from the design thread; then build The Move (episodes/season-1/episodes.md). Build nothing else.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 0
 
