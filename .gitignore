@@ -1,3 +1,5 @@
 studio/voice/raw/
 episodes/nopics/*.mp4
 episodes/nopics/__pycache__/
+__pycache__/
+studio/anim/public/pxi-ui/screens/*_x3.png
