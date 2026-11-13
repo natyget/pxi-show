@@ -3,10 +3,10 @@
 Every run reads this file first and updates it last. Keep it under 70 lines.
 
 phase: PILOT_LOCK
-episode: the-move
+episode: potential (waiting for the rewrite)
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: The Move is boarded (episodes/the-move/shots.md, voice jobs in studio/voice/jobs_the-move.json). Build it when the design thread delivers the club, the crowd, the phone hand, the flash look and mouths, and the voices can be made. Build nothing else.
+next_action: HOLD. The founder (Nov 13, 01:34) wants Potential (campus, the professor) as episode 1, and every season-1 script is being rewritten in the story thread. Build nothing until the new Potential script arrives. The Move's board is kept for reference only.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 0
 
@@ -69,6 +69,7 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
+- 2026-11-13 · pilot · speech mouths from the voice audio (lipsync.py, src/lips); The Move on hold for the rewrite, Potential first.
 - 2026-11-13 · pilot · The Move boarded: 21 shots, about 46 s short cut; POV device added to the craft library; voice jobs written, not generated.
 - 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.
 - 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.
