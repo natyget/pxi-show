@@ -6,17 +6,17 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Office Hours is boarded (episodes/office-hours/shots.md; voice jobs in studio/voice/jobs_office-hours.json). Build it as the design thread delivers Prof H, the waiting room, the lecture hall, the corridor, the office and the pitch, and once voices can be made (huggingface.co is refused by this session's proxy). Build nothing else.
+next_action: Wait for the campus sets, Prof H and the phone-hand insert from the design thread; then build Office Hours (episodes/season-1/episodes-v2.md). Build nothing else.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 0
 
-## Next render: "The Move" (season 1, episode 1)
+## Next render: "Office Hours" (season 1, episode 1)
 
-Scripts: `episodes/season-1/episodes.md` (six, in posting order); plan: `episodes/season-1/series-plan.md`. "No
-Pics" is retired. The Move is built when the design thread delivers what the plan's last section lists: the club
-set, the friends and a reusable crowd, Nio's real hand on the phone, a phone-lens camera, the PXI flash and filter
-in the world, and mouth shapes from the audio. The cast (Maya, Sami, Theo, Imane) is approved. Voices still need
-huggingface.co allowed, and Theo, the girl and the club chant need voices the founder approves by ear.
+Scripts: `episodes/season-1/episodes-v2.md` (episodes 1 to 5) and `episodes.md` (Tiger,
+episode 6); plan: `episodes/season-1/series-plan.md`. `the-move-board.md` is out of date. Office Hours is
+built when the design thread delivers the campus sets (lecture hall, the corridor to his office), Prof H, Nio's
+real hand on the phone and mouth shapes from the audio. The cast (Maya, Sami, Theo, Imane) is approved. Voices run
+in a new session, which has full network access.
 
 ## Learning and ads: paused (founder, Nov 13)
 
@@ -69,8 +69,6 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
-- 2026-11-13 · pilot · Office Hours (episode 1 now) boarded: 40 shots, short 71 s, long 82 s; voice jobs written.
-- 2026-11-13 · pilot · speech mouths from the voice audio (lipsync.py, src/lips); The Move on hold for the rewrite, Potential first.
-- 2026-11-13 · pilot · The Move boarded: 21 shots, about 46 s short cut; POV device added to the craft library; voice jobs written, not generated.
 - 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.
 - 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.
+- 2026-11-12 · engine · learn scores follows, reads Supermetrics; promotion ladder (95% watchers, paused until yes); Nio-style format menu; posting waits on an approved episode.
