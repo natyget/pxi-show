@@ -6,6 +6,7 @@
 //    no seams and a garment is a single piece that wraps it
 //  - a face is painted on the head from numbers: big simple eyes, off-centre pupils, a small mouth
 //  - the outline pass inks one pixel wherever a nearer thing begins, with a slightly uneven weight
+import { CROWD_GLSL } from './crowd';
 export const NP = 320, NC = 16, NHD = 5, NHB = 80, NB = 80, NO = 6, NL = 12, FS = 36, NSH = 8;
 
 export const VERT = `in vec3 position; out vec2 vUv; void main(){ vUv = position.xy * 0.5 + 0.5; gl_Position = vec4(position.xy, 0.0, 1.0); }`;
@@ -32,7 +33,7 @@ uniform vec3 uBc[NB]; uniform vec3 uBh[NB]; uniform vec4 uBcol[NB]; uniform vec4
 uniform vec3 uOc[NO]; uniform vec3 uOx[NO]; uniform vec3 uOy[NO]; uniform vec3 uOz[NO]; uniform vec3 uOh[NO]; uniform vec3 uOcol[NO]; uniform vec3 uOem[NO]; uniform int uNO;
 uniform sampler2D uScr; uniform vec3 uScrOn;   // a picture for the lit face of one hand prop (a phone screen): x = which prop (-1 none), y = picture width in pixels
 uniform vec4 uL[NL]; uniform vec4 uLc[NL]; uniform int uNL;
-uniform vec4 uSh[NSH]; uniform vec3 uRoom; uniform vec3 uAmb; uniform vec3 uAmbC; uniform float uSet;
+uniform vec4 uSh[NSH]; uniform vec3 uRoom0; uniform vec3 uRoom; uniform vec3 uAmb; uniform vec3 uAmbC; uniform float uSet;
 
 const vec3 INK = vec3(0.07, 0.046, 0.045);
 const vec3 WHITE = vec3(0.96, 0.925, 0.88);
@@ -344,6 +345,7 @@ vec3 wallCol(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
   return c;
 }
 
+${CROWD_GLSL}
 void main(){
   vec2 px = floor(vUv * uRes); vec2 ndc = (px + 0.5) / uRes * 2.0 - 1.0;
   vec3 ro = uCamP; vec3 rd = normalize(uCamF + uCamR * ndc.x * uTan * uRes.x / uRes.y + uCamU * ndc.y * uTan);
@@ -351,23 +353,27 @@ void main(){
   float by = bayer(px);
 
   // the room shell (the camera is inside it)
-  vec3 tt = (mix(vec3(0.0), uRoom, step(0.0, rd)) - ro) / rd;
+  vec3 tt = (mix(uRoom0, uRoom0 + uRoom, step(0.0, rd)) - ro) / rd;
   float t = min(tt.x, min(tt.y, tt.z)); vec3 n; int wall;
   if (t == tt.y){ n = vec3(0.0, -sign(rd.y), 0.0); wall = rd.y < 0.0 ? 1 : 2; }
   else if (t == tt.z){ n = vec3(0.0, 0.0, -sign(rd.z)); wall = rd.z > 0.0 ? 3 : 6; }
   else { n = vec3(-sign(rd.x), 0.0, 0.0); wall = rd.x < 0.0 ? 4 : 5; }
   float id = 1.0, face = float(wall), em = 0.0; vec3 base; vec3 add = vec3(0.0); vec3 p = ro + rd * t; bool chr = false; float mat = -1.0;
-  base = wall == 1 ? floorCol(p, pxw * t) : wallCol(p, wall, pxw * t, px, em, add);
+  if (uSet > 1.5) base = wall == 1 ? clubFloor(p, pxw * t, em) : clubWall(p, wall, pxw * t, px, em, add);
+  else base = wall == 1 ? floorCol(p, pxw * t) : wallCol(p, wall, pxw * t, px, em, add);
 
+  int bi = -1; vec3 bln = vec3(0.0);
   for (int i = 0; i < NB; i++){ if (i >= uNB) break; vec3 bn; float a = uBm[i].x;
     float tb = boxHit(rotY(ro - uBc[i], -a), rotY(rd, -a), uBh[i], bn);
-    if (tb > 0.0 && tb < t){ t = tb; n = rotY(bn, a); base = uBcol[i].rgb; mat = uBcol[i].a; id = 10.0 + uBm[i].y; em = uBm[i].z; add = vec3(0.0); face = 10.0 + dot(abs(bn), vec3(1.0, 2.0, 3.0)); } }
+    if (tb > 0.0 && tb < t){ t = tb; bi = i; bln = bn; n = rotY(bn, a); base = uBcol[i].rgb; mat = uBcol[i].a; id = 10.0 + uBm[i].y; em = uBm[i].z; add = vec3(0.0); face = 10.0 + dot(abs(bn), vec3(1.0, 2.0, 3.0)); } }
   if (mat >= 0.0){ p = ro + rd * t; float fp = pxw * t;
     if (mat < 0.5) base *= mott(p, 1.0);
     else if (mat < 1.5){ float sy = floor(p.y / 0.022); float st = hash(vec2(sy, floor((p.x + p.z) / 0.35 + hash(vec2(sy, 1.0)) * 3.0))); base *= st > 0.84 ? 0.9 : st < 0.14 ? 1.08 : 1.0; }
     else if (mat < 2.5) base *= mott(p * 1.4, 2.2);
     else if (mat < 3.5){ float f = fract((p.x + p.z) / 0.085 + 0.25 * sin(p.y * 4.0)); base *= f < 0.3 ? 0.78 : f > 0.75 ? 1.1 : 1.0; base *= mott(p, 1.0); }
-    else { float u = abs(n.x) > 0.5 ? p.z : p.x; if (fract(u / 0.13) * 0.13 < max(0.012, fp * 0.9)) base *= 0.62; base *= 0.94 + 0.12 * hash(vec2(floor(u / 0.13), 4.0)); }
+    else if (mat < 4.5){ float u = abs(n.x) > 0.5 ? p.z : p.x; if (fract(u / 0.13) * 0.13 < max(0.012, fp * 0.9)) base *= 0.62; base *= 0.94 + 0.12 * hash(vec2(floor(u / 0.13), 4.0)); }
+    else if (mat < 5.5) base = speakerFace(base * mott(p, 1.0), rotY(p - uBc[bi], -uBm[bi].x), uBh[bi], bln);
+    else if (mat < 6.5){ base = base.r > 0.5 ? neonB() : neonA(); em = 1.0; } // a neon strip in the club's mood: red over half = the second neon
   }
   for (int i = 0; i < NO; i++){ if (i >= uNO) break; vec3 bn; vec3 d = ro - uOc[i];
     float tb = boxHit(vec3(dot(d, uOx[i]), dot(d, uOy[i]), dot(d, uOz[i])), vec3(dot(rd, uOx[i]), dot(rd, uOy[i]), dot(rd, uOz[i])), uOh[i], bn);
@@ -398,21 +404,29 @@ void main(){
         if (q.z > 0.03){ float fl; vec3 pc = paintFace(base, q, h, pxw * t / 0.2, px, fl); base = pc; if (fl > 0.5) face = fl; } } }
   }
 
+  // the crowd, if this set has one
+  { Pp CP; float tcw = crowdHit(ro, rd, t, CP);
+    if (tcw > 0.0){ t = tcw; hc = -1; p = ro + rd * t; int g; crowdSD(p, CP, g); n = crowdN(p, CP); base = crowdCol(p, CP, g); add = vec3(0.0); em = 0.0; face = 0.0;
+      chr = true; id = 228.0 + float(CP.cls * 5 + g);
+      if (g == 0){ vec3 q = cHeadQ(p, CP); if (dot(q, q) < 0.085 && q.z > 0.03){ face = 0.6; float fl; base = crowdFace(base, q, CP, pxw * t / (0.2 * CP.hs), fl); if (fl > 0.5) face = fl; } } } }
+
   p = ro + rd * t;
   vec3 col;
   if (em > 0.99){ col = base; if (hc >= 0 && dot(n, -rd) + (by - 0.5) * 0.12 < 0.52) col *= vec3(0.95, 0.76, 0.56); }
   else if (chr){
     // characters are lit flatter than the set, so they always read: one soft step of shade, never a gradient
-    vec3 L = min(uAmbC + roomLight(p, n, px, 2.0) * 0.42, vec3(1.12, 1.05, 1.02));
+    vec3 L = min(uAmbC + roomLight(p, n, px, 2.0) * 0.42 + beamLight(p, px) * 0.6, vec3(1.12, 1.05, 1.02));
     vec3 kd = normalize(normalize(uL[0].xyz - p) + vec3(0.0, 0.9, 0.0));
     if (face < 0.5 && dot(n, kd) + (by - 0.5) * 0.1 < -0.34) L *= vec3(0.84, 0.77, 0.82);
     col = base * (face > 1.5 ? mix(L, vec3(1.0), 0.6) : L);
   } else {
-    col = base * (uAmb + roomLight(p, n, px, 8.0));
+    col = base * (uAmb + roomLight(p, n, px, 8.0) + beamLight(p, px));
     if (em > 0.0) col = mix(col, base, em);
+    if (id < 1.5 && wall == 1) col *= crowdShade(p, by);
     if (id < 1.5 && wall == 1) for (int i = 0; i < NSH; i++){ if (uSh[i].w <= 0.0) continue; float e = length(p.xz - uSh[i].xy) / uSh[i].z; if (e + (by - 0.5) * 0.35 < 1.0) col *= 1.0 - uSh[i].w; }
   }
   col += add;
+  col += beamHaze(ro, rd, t, px);
   // halos: a lamp glows in the air around it
   for (int i = 0; i < NL; i++){ if (i >= uNL) break; float rh = uLc[i].a; if (rh <= 0.0) continue;
     float tl = dot(uL[i].xyz - ro, rd); if (tl > 0.0 && tl < t + 0.03){ float dd = length(ro + rd * tl - uL[i].xyz);

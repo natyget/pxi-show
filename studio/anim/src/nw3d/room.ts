@@ -1,5 +1,5 @@
 // Nio's room: the furniture, the soft things, the lamps, and how a character is posed in it. Pure data and maths.
-import { V, add, sub, mul, norm, cross, dot, lerp } from './vec';
+import { V, add, sub, mul, norm, cross, dot, lerp, len } from './vec';
 import { Skel, Prim, Hand, sampleClip, solve, place, reach, lookAt, buildBody, shift, G } from './rig';
 import { Face } from './face';
 import { Scene3, Box, Obb, Cam3, Soft, Light } from './types';
@@ -135,7 +135,9 @@ export const PARTY_AMB: V = [0.56, 0.52, 0.58], PARTY_AMB_CHAR: V = [0.97, 0.92,
 // pose: a named way of holding the arms (see HOLDS in world.ts). lift: stand on something this high (metres).
 export type Act = { who?: Character; clip: string; t: number; at: [number, number]; yaw: number; face: Face;
   stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string;
-  pose?: string; lift?: number };
+  pose?: string; lift?: number;
+  thumb?: [number, number, number]; // where his thumb is on the glass: across and up it (-1..1), and how far lifted (0 pressed, 1 off)
+  lens?: boolean }; // set by the selfie camera: this is the picture his own phone takes (see phoneCam) // where his thumb is on the glass: across and up it (-1..1), and how far lifted (0 pressed, 1 off)
 // Turn a vector round an axis (radians).
 const rot = (v: V, k: V, a: number): V => add(add(mul(v, Math.cos(a)), mul(cross(k, v), Math.sin(a))), mul(k, dot(k, v) * (1 - Math.cos(a))));
 // The party cup: red, a little wider at the top, a cream rim and something dark in it. Its own surface, so it is inked
@@ -145,11 +147,44 @@ const cup = (c: V): Prim[] => [
   { a: add(c, [0, 0.047, 0]), ra: 0.0385, b: add(c, [0, 0.057, 0]), rb: 0.0385, g: G.shoe, k: 0.002, c: '#e6d9c0', cutA: true, cutB: true },
   { a: add(c, [0, 0.055, 0]), ra: 0.031, b: add(c, [0, 0.0585, 0]), rb: 0.031, g: G.shoe, k: 0.001, c: '#4a2a26', cutA: true, cutB: true },
 ];
+// The phone, in the show's proportion: half its width, height and thickness (metres).
+export const PHONE_H: V = [0.035, 0.0718, 0.0055];
+// A hand holding a phone, built in the phone's own frame (u across the glass toward the thumb side, v up it, w out of
+// it). The phone lies in the palm; four fingers wrap round the far edge so their tips show on the front; the thumb comes
+// over the near edge onto the glass. The fingers alternate between the two skin surfaces, so an ink line parts each one
+// from the next, like a drawn hand. Same skin, same line, same light as the rest of him: one hand in every shot.
+const ik2 = (base: V, tip: V, a: number, b: number, pole: V): V => {
+  const to = sub(tip, base), d = Math.max(Math.abs(a - b) + 0.001, Math.min(a + b - 0.0005, len(to))), n = norm(to);
+  const x = (a * a - b * b + d * d) / (2 * d), r = Math.sqrt(Math.max(0, a * a - x * x));
+  return add(add(base, mul(n, x)), mul(norm(sub(pole, mul(n, dot(pole, n)))), r));
+};
+export const gripHand = (pc: V, x: V, y: V, z: V, skin: string, th: [number, number, number] = [0.35, -0.3, 0]): Prim[] => {
+  const [W, H, D] = PHONE_H;
+  const L = (u: number, v: number, w: number): V => add(pc, add(mul(x, u), add(mul(y, v), mul(z, w))));
+  const c = (a: V, ra: number, b: V, rb: number, g: number, k = 0.003): Prim => ({ a, ra, b, rb, g, k, c: skin });
+  const out: Prim[] = [
+    // the palm, flat behind the lower half: two capsules side by side, melting into the wrist
+    c(L(0.026, -0.1, -D - 0.017), 0.015, L(0.018, -0.042, -D - 0.014), 0.0155, G.skin, 0.012),
+    c(L(0.006, -0.096, -D - 0.018), 0.014, L(-0.002, -0.044, -D - 0.014), 0.0155, G.skin, 0.012),
+  ];
+  [[-0.026, 0.0082], [-0.042, 0.0086], [-0.058, 0.0082], [-0.073, 0.0072]].forEach(([v, r], i) => {
+    const g = i % 2 ? G.skin : G.skinB;
+    const kn = L(0.004 - i * 0.003, v, -D - 0.012), mid = L(-W + 0.006, v + 0.004, -D - 0.006), tip = L(-W - 0.0015, v + 0.007, D - 0.0005 - i * 0.0005);
+    out.push(c(kn, r, mid, r, g), c(mid, r, tip, r * 0.9, g));
+  });
+  // the thumb: two joints, its tip wherever it is on the glass (as far as a thumb reaches)
+  const base = L(W - 0.003, -0.062, -D - 0.004), tgt = L(th[0] * W * 0.85, th[1] * H * 0.9, D + 0.0085 + th[2] * 0.016);
+  const joint = ik2(base, tgt, 0.026, 0.05, add(x, add(mul(y, -0.5), mul(z, 0.9)))); // the knuckle arches up off the glass
+  out.push(c(base, 0.0098, joint, 0.009, G.skinB, 0.004), c(joint, 0.009, tgt, 0.008, G.skinB, 0.004));
+  return out;
+};
+// Where the phone's lenses and his eyes are, for the cameras that look through them (see phoneCam).
+export type PhoneAt = { c: V; x: V; y: V; z: V; eye: V };
 export const pose = (a: Act) => {
   const ch = a.who ?? NIO_CHAR, P = ch.body, nm = a.pose ?? '';
   let s: Skel = place(solve(sampleClip(a.clip, a.t), P, { stance: a.stance ?? 1, arms: a.arms ?? 1, upright: a.upright ?? 0, seat: a.seat }), [X(a.at[0]), a.at[1]], a.yaw);
   if (a.lift) { s = { ...s, sh: [...s.sh], el: [...s.el], wr: [...s.wr], tip: [...s.tip], thumb: [...s.thumb], hip: [...s.hip], kn: [...s.kn], an: [...s.an], toe: [...s.toe] } as Skel; shift(s, [0, a.lift, 0]); }
-  const props: Obb[] = []; const lights: Light[] = []; const extra: Prim[] = []; const hands: [Hand?, Hand?] = [];
+  const props: Obb[] = []; const lights: Light[] = []; const extra: Prim[] = []; const hands: [Hand?, Hand?] = []; let phoneAt: PhoneAt | undefined;
   if (a.look) s = lookAt(s, a.look, a.lookAmt ?? 1, P);
   const fwd = norm(cross(s.side, s.chestDir)), UP: V = [0, 1, 0];
   const out = (i: 0 | 1) => mul(s.side, i === 0 ? 1 : -1); // away from the body, on that side. 0 is his left, 1 his right.
@@ -167,33 +202,40 @@ export const pose = (a: Act) => {
     c.el[1] = at(-0.17, -0.2, 0.14); c.wr[1] = at(0.05, -0.222, 0.182); c.tip[1] = at(0.118, -0.212, 0.158); c.thumb[1] = at(0.075, -0.19, 0.172);
     s = c;
   }
-  const ph = nm === 'phone' || nm === 'selfie' ? 1 : a.phone ?? 0;
+  const ph = nm === 'phone' || nm === 'selfie' || nm === 'photo' ? 1 : a.phone ?? 0;
   if (ph > 0.01) {
     // the phone floats where his eyes can read it; the hand is placed BEHIND it and the thumb comes round the front
     const body = norm([s.headFw[0], 0, s.headFw[2]]), rt = norm(cross([0, 1, 0], body));
     // `hold` = how far in front of the neck, how far to his right, and how far below it (metres)
-    // A selfie: the arm nearly straight, the phone up and out to his right, and he looks right into it.
-    const hd = nm === 'selfie' ? [0.34, 0.25, -0.12] : a.hold ?? [0.25, 0.06, 0.09];
+    // A selfie: the arm straight, the phone up and out to his right at arm's length, and he looks right into it.
+    // A photo: the phone up at eye height in front of him, the glass upright, so the back lens looks where he looks.
+    // Seen from the selfie lens itself, the phone goes out to where a real arm would put it on a real-sized head (the
+    // show's heads are big), the arm reaches out of the frame to it, and the phone and hand are behind the lens.
+    const lens = nm === 'selfie' && a.lens;
+    const hd = lens ? [0.74, 0.52, -0.38] : nm === 'selfie' ? [0.36, 0.38, -0.2] : nm === 'photo' ? [0.38, 0.03, -0.24] : a.hold ?? [0.25, 0.06, 0.09];
     const pc = add(s.neckBase, add(mul(body, hd[0]), add(mul(rt, -hd[1]), [0, -hd[2], 0])));
-    s = lookAt(s, pc, (nm === 'selfie' ? 0.8 : 0.35) * ph, P);
+    s = lookAt(s, pc, (nm === 'selfie' ? 0.8 : nm === 'photo' ? 0.5 : 0.35) * ph, P);
     // the glass faces his eyes, and its sides stay square to his shoulders however flat he holds it
     const z = norm(sub(add(s.headC, mul(s.headFw, 0.1)), pc)), hr = mul(rt, -1), x = norm(sub(hr, mul(z, dot(hr, z)))), y = cross(z, x);
-    const wr = add(pc, add(mul(y, -0.1), mul(z, -0.03)));
-    const held = reach(s, 1, wr, add(mul(rt, -1), [0, -0.6, 0]), P, add(y, mul(z, 0.12)), add(mul(x, -0.2), add(mul(y, 0.62), mul(z, 0.76))));
+    const wr = add(pc, add(mul(x, 0.022), add(mul(y, -0.122), mul(z, -PHONE_H[2] - 0.02))));
+    const held = reach(s, 1, wr, add(mul(rt, -1), [0, -0.6, 0]), lens ? { ...P, upperArm: P.upperArm * 1.95, foreArm: P.foreArm * 1.95 } : P, add(y, mul(z, 0.12)), add(mul(x, -0.2), add(mul(y, 0.62), mul(z, 0.76))));
     const mixS: any = { ...s };
     (['el', 'wr', 'tip', 'thumb'] as const).forEach((k) => { mixS[k] = [s[k][0], lerp(s[k][1], held[k][1], ph)]; });
     s = mixS;
-    if (ph > 0.6) {
-      props.push({ c: pc, x, y, z, h: [0.04, 0.082, 0.006], col: '#241a1e', screen: '#a523ef' });
+    if (lens) { hands[1] = 'none'; phoneAt = { c: pc, x, y, z, eye: [0, 0, 0] }; }
+    else if (ph > 0.6) {
+      props.push({ c: pc, x, y, z, h: PHONE_H, col: '#241a1e', screen: '#a523ef' });
       lights.push({ p: add(pc, mul(z, 0.05)), r: 0.2, col: [0.3, 0.12, 0.5] });
+      extra.push(...gripHand(pc, x, y, z, ch.skin, a.thumb)); hands[1] = 'none'; phoneAt = { c: pc, x, y, z, eye: [0, 0, 0] };
     }
   }
   // ---- the other holds. Each puts the hands exactly where they must be with the same two-bone reach as the phone. ----
   if (nm === 'show-phone') {
     // the phone held out at shoulder height, the screen turned to whoever he is showing: the camera, or the other person
     const pc = A(1, 0.42, 0.02, -0.06), z = norm(add(fwd, [0, 0.12, 0])), x0 = s.side, x = norm(sub(x0, mul(z, dot(x0, z)))), y = cross(z, x);
-    s = reach(s, 1, add(pc, add(mul(y, -0.088), mul(z, -0.03))), add(out(1), [0, -1, 0]), P, y, add(mul(x, 0.75), add(mul(y, 0.6), mul(z, 0.25)))); // the thumb up the edge, off the glass
-    props.push({ c: pc, x, y, z, h: [0.04, 0.082, 0.006], col: '#241a1e', screen: '#a523ef' });
+    s = reach(s, 1, add(pc, add(mul(x, 0.022), add(mul(y, -0.122), mul(z, -PHONE_H[2] - 0.02)))), add(out(1), [0, -1, 0]), P, y, x);
+    props.push({ c: pc, x, y, z, h: PHONE_H, col: '#241a1e', screen: '#a523ef' });
+    extra.push(...gripHand(pc, x, y, z, ch.skin, a.thumb ?? [0.95, -0.35, 0.6])); hands[1] = 'none'; phoneAt = { c: pc, x, y, z, eye: [0, 0, 0] }; // the thumb on the edge, off the glass
     lights.push({ p: add(pc, mul(z, 0.06)), r: 0.22, col: [0.3, 0.12, 0.5] });
   }
   if (nm === 'phone-knee') {
@@ -202,8 +244,8 @@ export const pose = (a: Act) => {
     const th = sub(s.kn[1], s.hip[1]), y = norm([th[0], 0, th[2]]), z = UP, x = cross(y, z);
     const pc = add(lerp(s.hip[1], s.kn[1], 0.8), [0, w + 0.008, 0]);
     s = lookAt(s, pc, 0.55, P); // he looks down at it
-    props.push({ c: pc, x, y, z, h: [0.04, 0.082, 0.006], col: '#241a1e', screen: '#a523ef' });
-    lights.push({ p: add(pc, [0, 0.07, 0]), r: 0.2, col: [0.3, 0.12, 0.5] });
+    props.push({ c: pc, x, y, z, h: PHONE_H, col: '#241a1e', screen: '#a523ef' });
+    lights.push({ p: add(pc, [0, 0.07, 0]), r: 0.2, col: [0.3, 0.12, 0.5] }); phoneAt = { c: pc, x, y, z, eye: [0, 0, 0] };
   }
   if (nm === 'arm-up') { s = reach(s, 1, straight(1, 0.06, 0.47, 0.2), add(out(1), mul(fwd, -0.4)), P, UP, fwd); hands[1] = 'fist'; }
   if (nm === 'arms-up') for (const i of [0, 1] as const) s = reach(s, i, straight(i, 0.08, 0.44, 0.3), add(out(i), [0, -0.4, 0]), P, norm(add(UP, mul(out(i), 0.5))), fwd);
@@ -217,6 +259,16 @@ export const pose = (a: Act) => {
     const wr = add(c, add(mul(out(i), 0.058), mul(fwd, -0.024)));
     s = reach(s, i, wr, add(out(i), [0, -1, 0]), P, norm(add(mul(fwd, 0.8), mul(out(i), -0.6))), norm(add(UP, mul(out(i), -0.5))));
     extra.push(...cup(c));
+  }
+  if (nm === 'sweep') {
+    // crouched, both hands flat on the floor in front, slow circles, one each way (the move in The Move). The circle
+    // keeps the club's beat: one round every two beats at 124 a minute.
+    const ft = lerp(s.an[0], s.an[1], 0.5), fh = norm([fwd[0], 0, fwd[2]]), sw = ((a.t ?? 0) / 24) * (124 / 60) * Math.PI;
+    for (const i of [0, 1] as const) {
+      const c = add(add(ft, mul(fh, 0.36)), add(mul(out(i), 0.15), [0, 0.04 + (a.lift ?? 0), 0]));
+      s = reach(s, i, add(c, add(mul(out(i), 0.1 * Math.cos(sw)), mul(fh, 0.1 * Math.sin(sw)))), add(out(i), [0, 0.6, 0]), P, fh, mul(out(i), -1));
+    }
+    s = lookAt(s, add(ft, add(mul(fh, 0.6), [0, 0.25 + (a.lift ?? 0), 0])), 0.4, P); // eyes on the floor, the face still to the front
   }
   if (nm === 'asleep') {
     // asleep sitting up: the head drops forward and rolls onto one shoulder
@@ -238,18 +290,45 @@ export const pose = (a: Act) => {
       build: [hk.lashes ?? 0, hk.width ?? 1, hk.chin ?? 1, hk.curls ?? 0] } };
   const mid = lerp(s.an[0], s.an[1], 0.5);
   const shadows = a.seat === undefined ? [[mid[0], mid[2], 0.2, 0.3]] : [];
-  return { soft, props, lights, shadows };
+  if (phoneAt) phoneAt.eye = add(s.headC, add(mul(s.headFw, P.headR * 1.35), mul(s.headUp, P.headR * 0.12))); // just in front of his eyes
+  return { soft, props, lights, shadows, phone: phoneAt };
+};
+// The cameras that come from a person holding a phone, made from where the phone is in this frame.
+//  pov: through his own eyes, down at the phone in his hand (his thumb on the glass).
+//  insert: close on the phone in his hand, from over his shoulder on the phone side.
+//  lens: the phone's back camera, what a photo he takes sees. selfie: the front camera, looking back at him.
+export const phoneCam = (kind: string, ph: PhoneAt): Cam3 => {
+  const [W, H, D] = PHONE_H, { c, x, y, z } = ph;
+  if (kind === 'pov') return { pos: ph.eye, at: add(c, mul(y, -0.03)), fov: 46, up: y };
+  if (kind === 'insert') {
+    // his own screen (the glass faces his eyes): from just past his right cheek, over the hand. A screen he holds out to
+    // someone: straight on, from where they stand.
+    const own = dot(sub(ph.eye, c), z) > 0.15;
+    const d = own ? norm(add(mul(z, 0.55), add(mul(x, 0.72), mul(y, 0.22)))) : norm(add(z, mul(y, 0.08)));
+    return { pos: add(c, mul(d, own ? 0.46 : 0.36)), at: add(c, mul(y, -0.025)), fov: 26, up: norm(add(y, mul(x, own ? -0.1 : 0))) };
+  }
+  if (kind === 'lens') { const p = add(c, add(mul(z, -D - 0.003), add(mul(y, H - 0.012), mul(x, -W + 0.012)))); return { pos: p, at: add(p, mul(z, -1)), fov: 62, up: y }; }
+  if (kind === 'selfie') { const p = add(c, add(mul(z, D + 0.003), mul(y, H - 0.008))); return { pos: p, at: add(p, z), fov: 66, up: y }; }
+  throw new Error('no phone camera "' + kind + '"');
 };
 // The studio: a plain mauve backdrop with flat light, for model sheets.
-export const studioShot = (cam: Cam3, acts: Act[]): Scene3 => {
-  const ps = acts.map(pose);
+// cam: a camera, or [kind, actor index] for one of the phone cameras above.
+export type CamArg = Cam3 | [string, number];
+export const camOf = (cam: CamArg, ps: ReturnType<typeof pose>[]): Cam3 => {
+  if (!Array.isArray(cam)) return cam;
+  const ph = ps[cam[1]]?.phone; if (!ph) throw new Error(`camera "${cam[0]}" needs actor ${cam[1]} to be holding a phone`);
+  return phoneCam(cam[0], ph);
+};
+export const lensActs = (cam: CamArg, acts: Act[]) => (Array.isArray(cam) && cam[0] === 'selfie' ? acts.map((a, i) => (i === cam[1] ? { ...a, lens: true } : a)) : acts);
+export const studioShot = (camA: CamArg, acts: Act[]): Scene3 => {
+  const ps = lensActs(camA, acts).map(pose), cam = camOf(camA, ps);
   return { cam, room: ROOM, amb: [0.94, 0.94, 0.94], ambChar: [0.97, 0.94, 0.95], boxes: [], studio: true,
     softs: ps.map((p) => p.soft), lights: [{ p: P3(1.2, 2.3, 0.6), r: 3, col: [0.08, 0.07, 0.06] }, ...ps.flatMap((p) => p.lights)],
     props: ps.flatMap((p) => p.props), shadows: ps.flatMap((p) => p.shadows) };
 };
 // dress: 'party' for the night of the party. flash: a photo taken with the flash on, so every face is lit from the lens.
-export const shot = (cam: Cam3, acts: Act[], time = 0, dress?: string, flash?: boolean): Scene3 => {
-  const ps = acts.map(pose), party = dress === 'party';
+export const shot = (camA: CamArg, acts: Act[], time = 0, dress?: string, flash?: boolean): Scene3 => {
+  const ps = lensActs(camA, acts).map(pose), party = dress === 'party', cam = camOf(camA, ps);
   const fl: Light[] = flash ? [{ p: cam.pos, r: 2.4, col: [0.42, 0.42, 0.44] }] : [];
   return { cam, room: ROOM, amb: party ? PARTY_AMB : AMB, ambChar: party ? PARTY_AMB_CHAR : AMB_CHAR, boxes: party ? PARTY_BOXES : ROOM_BOXES, time,
     softs: [...ps.map((p) => p.soft), ...(party ? PARTY_SOFTS : ROOM_SOFTS)], lights: [...(party ? PARTY_LIGHTS : ROOM_LIGHTS), ...fl, ...ps.flatMap((p) => p.lights)],

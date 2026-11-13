@@ -27,7 +27,9 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
       uOc: f(NO * 3), uOx: f(NO * 3), uOy: f(NO * 3), uOz: f(NO * 3), uOh: f(NO * 3), uOcol: f(NO * 3), uOem: f(NO * 3), uNO: { value: 0 },
       uL: f(NL * 4), uLc: f(NL * 4), uNL: { value: 0 }, uSh: f(NSH * 4),
       uScr: { value: null }, uScrOn: { value: new THREE.Vector3(-1, 360, 0) },
-      uSet: { value: 0 }, uRoom: { value: new THREE.Vector3() }, uAmb: { value: new THREE.Vector3() }, uAmbC: { value: new THREE.Vector3() },
+      uSet: { value: 0 }, uRoom: { value: new THREE.Vector3() }, uRoom0: { value: new THREE.Vector3() },
+      uClub: { value: new THREE.Vector4() }, uClubF: { value: new THREE.Vector4() }, uBo: f(16), uBd: f(16), uBk: f(16), uNBm: { value: 0 },
+      uCw0: { value: new THREE.Vector4() }, uCw1: { value: new THREE.Vector4() }, uCw2: { value: new THREE.Vector4() }, uCw3: { value: new THREE.Vector4() }, uCw4: { value: new THREE.Vector4() }, uHole: f(24), uAmb: { value: new THREE.Vector3() }, uAmbC: { value: new THREE.Vector3() },
     };
     const geo = new THREE.PlaneGeometry(2, 2);
     const sm = new THREE.RawShaderMaterial({ glslVersion: THREE.GLSL3, vertexShader: VERT, fragmentShader: SCENE_FRAG, uniforms: u, depthTest: false, depthWrite: false });
@@ -57,9 +59,9 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
 
   // uniforms are set during render so the very first frame is already right
   const u = R.u, sc = scene;
-  const F = norm(sub(sc.cam.at, sc.cam.pos)), Rt = norm(cross(F, [0, 1, 0])), Up = cross(Rt, F);
+  const F = norm(sub(sc.cam.at, sc.cam.pos)), Rt = norm(cross(F, sc.cam.up ?? [0, 1, 0])), Up = cross(Rt, F);
   u.uCamP.value.set(...sc.cam.pos); u.uCamF.value.set(...F); u.uCamR.value.set(...Rt); u.uCamU.value.set(...Up);
-  u.uTan.value = Math.tan((sc.cam.fov * Math.PI) / 360); u.uTime.value = sc.time ?? 0; u.uSet.value = sc.studio ? 1 : 0;
+  u.uTan.value = Math.tan((sc.cam.fov * Math.PI) / 360); u.uTime.value = sc.time ?? 0; u.uSet.value = sc.studio ? 1 : sc.set ?? 0;
   R.cm.uniforms.uPxw.value = (2 * u.uTan.value) / h;
 
   u.uFace.value.fill(0); u.uHn.value.fill(0);
@@ -104,7 +106,16 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
   ls.forEach((l, i) => { u.uL.value.set([...l.p, l.r], i * 4); u.uLc.value.set([...l.col, l.halo ?? 0], i * 4); });
   u.uNL.value = ls.length;
   u.uSh.value.fill(0); (sc.shadows ?? []).slice(0, NSH).forEach((s, i) => u.uSh.value.set(s, i * 4));
-  u.uRoom.value.set(...sc.room); u.uAmb.value.set(...sc.amb); u.uAmbC.value.set(...sc.ambChar);
+  u.uRoom.value.set(...sc.room); u.uRoom0.value.set(...(sc.room0 ?? [0, 0, 0]));
+  const cl = sc.club; u.uClub.value.set(cl?.mood ?? 0, cl?.bps ?? 2, cl?.led[0] ?? 0, cl?.led[1] ?? 0); u.uClubF.value.set(...(cl?.floor ?? [0, 0, 0, 0]));
+  const bm = (sc.beams ?? []).slice(0, 4); u.uBo.value.fill(0); u.uBd.value.fill(0); u.uBk.value.fill(0);
+  bm.forEach((b, i) => { const d = norm(b.d); u.uBo.value.set([...b.o, b.spread], i * 4); u.uBd.value.set([...d, b.k], i * 4); u.uBk.value.set([...b.col, 0], i * 4); });
+  u.uNBm.value = bm.length;
+  const cw = sc.crowd; u.uHole.value.fill(0);
+  if (cw) {
+    u.uCw0.value.set(cw.x0, cw.z0, cw.cw, cw.cd); u.uCw1.value.set(cw.nx, cw.nz, cw.seed, cw.fill); u.uCw2.value.set(cw.dance, cw.crouch, cw.armsUp, cw.headsUp);
+    u.uCw3.value.set(...cw.clear, cw.spread); u.uCw4.value.set(...cw.face, cw.ring, cw.faces); cw.holes.slice(0, 6).forEach((h, i) => u.uHole.value.set([...h, 0], i * 4));
+  } else u.uCw1.value.set(0, 0, 0, 0); u.uAmb.value.set(...sc.amb); u.uAmbC.value.set(...sc.ambChar);
 
   useLayoutEffect(() => { invalidate(); });
   useFrame(() => {
