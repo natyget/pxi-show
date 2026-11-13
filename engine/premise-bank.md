@@ -13,11 +13,20 @@ Format:
   From: R<n>, the slate in `bible/world.md`, or original
 ```
 
+## Season 1 (in posting order, Nov 13, second order; scripts in `episodes/season-1/episodes-v2.md` for 1 to 5 and `episodes.md` for 6)
+
+1. **Office Hours** (campus). Nio skips office hours and finds out they are a place, and the people who skipped them are still in it. Short, 60 s.
+2. **The Move** (a basement club, his couch). Drunk Nio puts a contact back in off the club floor and gets an infection on the beat.
+3. **Lost and Found** (a laundromat). The password to Theo's birthday is in the lost-and-found, which is a world. Short, and LONG.
+4. **On a Break** (a rooftop). A referee for the break, and the album used as a video review.
+5. **Good Game** (a game bar). The screens go dark at 9:00.
+6. **Tiger** (a house party, the street, a car; LONG plus a short cut, from R1). Nio gets his lightweight friend home with no contacts in.
+
 ## Premises
 
 The slate from `bible/world.md` (Nov 12). Names of people are working names. The fuller note on each is there.
 
-- [CANDIDATE] **No Pics.** The morning after the best night of his life, Nio is in no photos.
+- [RETIRED, Nov 13: built, the founder found the plot "underwhelming" and product-centred; the premise "Nio in no photos" is not to be used again] **No Pics.** The morning after the best night of his life, Nio is in no photos.
   Ego: Nio's vanity · Kind: small thing · PXI: ENGINE, "you're in 38 photos" · From: the founder's example,
   Nov 11. This is the pilot, owned by the pilot thread.
 - [CANDIDATE] **Tiger.** Nio has to get Sami home, cannot see without his contacts, and books the wrong ride.

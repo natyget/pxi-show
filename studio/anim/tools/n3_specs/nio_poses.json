@@ -1,0 +1,8 @@
+[
+ {"set": "nioRoom", "camera": "bed", "frames": 24, "actors": [{"who": "nio", "at": "bedEdge", "action": "sit", "hold": "phone", "face": "deadpan"}]},
+ {"set": "nioRoom", "camera": "high", "frames": 24, "actors": [{"who": "nio", "at": "bedEdge", "action": "sitTalk", "hold": "phone-knee", "face": "smug"}]},
+ {"set": "nioRoom", "camera": "mid", "frames": 24, "actors": [{"who": "nio", "at": "rug", "action": "stand", "hold": "show-phone", "face": "smug", "facing": "camera"}]},
+ {"set": "nioRoom", "camera": "full", "frames": 24, "actors": [{"who": "nio", "at": "rug", "action": "stand", "hold": "selfie", "face": "charm", "facing": "camera"}]},
+ {"set": "nioRoom", "camera": "full", "frames": 24, "actors": [{"who": "nio", "at": "rug", "action": "dance", "hold": "point", "face": "hyped", "facing": "camera"}]},
+ {"set": "nioRoom", "camera": "full", "frames": 24, "actors": [{"who": "nio", "at": "rug", "action": "dance", "hold": "arm-up", "face": "shock", "facing": "camera"}]}
+]

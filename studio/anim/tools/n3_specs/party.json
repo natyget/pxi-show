@@ -1,0 +1,18 @@
+[
+ {"set": "party", "camera": "party", "frames": 24, "actors": [
+   {"who": "nio", "at": "rug", "action": "dance", "hold": "arms-up", "face": "hyped", "facing": "camera"},
+   {"who": "maya", "at": "bedEdge", "action": "sitTalk", "face": "laughing", "facing": "camera"},
+   {"who": "imane", "at": "window", "action": "stand", "hold": "cup", "face": "deadpan", "facing": "camera"}]},
+ {"set": "party", "camera": "deskUp", "frames": 24, "actors": [
+   {"who": "sami", "at": "deskTop", "action": "stand", "hold": "arms-up", "face": "hyped", "facing": "camera"}]},
+ {"set": "party", "camera": "doorPhoto", "frames": 24, "actors": [
+   {"who": "maya", "at": "doorRight", "action": "stand", "hold": "arm-up", "face": "hyped", "facing": "camera"},
+   {"who": "imane", "at": "doorLeft", "action": "stand", "hold": "cup", "face": "deadpan", "facing": "camera"}]},
+ {"set": "party", "camera": "dancePhoto", "frames": 24, "actors": [
+   {"who": "theo", "at": "dance", "action": "talk", "hold": "cup-point", "face": "laughing", "facing": "camera"}]},
+ {"set": "party", "camera": "over", "frames": 24, "actors": [
+   {"who": "theo", "at": "dance", "action": "stand", "hold": "arm-up", "face": "hyped", "facing": "camera", "look": "camera"}]},
+ {"set": "party", "camera": "bedPhoto", "frames": 24, "actors": [
+   {"who": "sami", "at": "bedEdge", "action": "sit", "hold": "asleep", "face": "asleep"},
+   {"who": "theo", "at": "bedEdgeLeft", "action": "sitTalk", "hold": "cup", "face": "smug", "facing": "camera"}]}
+]

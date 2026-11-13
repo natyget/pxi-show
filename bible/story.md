@@ -18,6 +18,10 @@ becomes his ex, the nights out and the walks home, with a world around him that 
 - The founder's line for what the series is, which the tag and the pinned reel carry: "nio making a platform
   he thinks would have solved his problems and will in future and inviting us to use it."
 
+**The tone (founder, Nov 13):** a series people "just watch along" to, with "decent humor ... and nice plots", the
+way a good animated social series is followed episode to episode. Nio is sometimes the realist in the room. We take
+that feel only, never a character, line or design from any show.
+
 ## 2. How an episode is built
 
 The shape is in `bible/gumball-style.md`, section 3, taken from how the show we study builds a story. For a
@@ -69,6 +73,16 @@ then it is allowed and never required, and no check fails a script for lacking i
 - The Kevin and the glitch button (`bible/humor.md`).
 
 ## 4. PXI in the story
+
+**Newest (founder, Nov 13), and it wins over the rest of this section:** the episodes are "nice stories to follow
+along with our character nio", written for laughs and never centred on the product. PXI is the phone his world runs
+on: "if we were apple we would just say factime me or use iphone in any phone usage". Nio is a college kid in
+clubs, teams, pick-up games, trips (spring, fall, cabin), house parties, clubs, events he promotes, BBQs,
+birthdays and holidays, and in every one of those, when someone plans, invites, shoots or shares, they use PXI by
+default, smoothly, as part of the scene. The story never turns on it, and nobody explains it. "At times nio can
+break the 4th wall and say its his app": the tag after the last joke, e.g. "this my app, go download pxi right now".
+"dont center episodes around product" means no ENGINE episodes until the founder says otherwise, holidays included:
+PXI is a MOMENT in nearly every episode, and NONE where no phone would come out.
 
 The founder's brief: "Never force PXI. Ask: can PXI fit comfortably without forced placement? If no, leave it
 out." And the founder's aim: "so pxi is discovered", with "pxi being at the centere of it." So:

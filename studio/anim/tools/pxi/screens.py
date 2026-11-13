@@ -241,14 +241,14 @@ def discover():
     tabbar(s, 0)
     return s.im
 
-def camera():
+def camera(album='LATE CHECKOUT', view='view', print_shot='selfie'):
     """The camera. Sources: app/(tabs)/camera.tsx (a full-bleed viewfinder with the controls over it), and in
     src/components/camera: LiveAlbumPill.tsx, VaultPolaroid.tsx, FilterModePill.tsx, filterPillThemes.ts (SNAP: a matte
     black body, white shutter, the orange ring and name)."""
     s = Screen(); ORANGE = hexc('FF5A1F'); BODY = hexc('121212')
-    global VIEW; VIEW = pic('view', W, H); s.photo(VIEW, 0, 0, W, H); s.status()
+    global VIEW; VIEW = pic(view, W, H) if isinstance(view, str) else view; s.photo(VIEW, 0, 0, W, H); s.status()
     # the live album pill under the island: every shot goes to this album
-    nm = 'LATE CHECKOUT'; w = 11 + 6 + 7 + text_w('LIVE', 900, pt(11), 1) + 7 + 1 + 7 + text_w(nm, 'display6', pt(13)) + 15; x = (W - w) // 2
+    nm = album; w = 11 + 6 + 7 + text_w('LIVE', 900, pt(11), 1) + 7 + 1 + 7 + text_w(nm, 'display6', pt(13)) + 15; x = (W - w) // 2
     s.box(x, 61, x + w, 90, BODY, r=15); s.disc(x + 11, 72, 6, ORANGE)
     _, x1 = s.text(x + 24, 75, 'LIVE', 900, pt(11), ORANGE, ls=1); s.box(x1 + 7, 69, x1 + 8, 82, white(0.25, BODY)); s.text(x1 + 15, 75, nm, 'display6', pt(13), WHITE)
     # zoom: .5 / 1 / 3 in a see-through black pill, the chosen one on a dark disc
@@ -262,7 +262,7 @@ def camera():
         if i == 1: s.disc(cx - 16, 551, 33, mix(BLACK, WHITE, 0.12)); s.disc(cx - 15, 552, 31, BODY)
         s.text(cx + 1, 567, t, 900, pt(11), WHITE if i == 1 else mix(mix(VIEW.getpixel((cx, 567)), BLACK, 0.4), WHITE, 0.6), align='c')
     # the newest shot as a small print with a polaroid chin
-    s.box(294, 543, 334, 592, hexc('F4F1EA'), r=3); s.photo(pic('selfie', 34, 37), 297, 546, 331, 583, r=1)
+    s.box(294, 543, 334, 592, hexc('F4F1EA'), r=3); s.photo(pic(print_shot, 34, 37), 297, 546, 331, 583, r=1)
     # the capture pill: flip, the shutter, the flash; the filter's name under it
     s.box(41, 602, 318, 671, mix(BLACK, WHITE, 0.07), r=35); s.box(42, 603, 317, 670, BODY, r=34)
     s.icon('Refresh04Icon', 18, 82, 637, white(0.9, BODY)); s.icon('FlashIcon', 16, 278, 637, white(0.9, BODY))

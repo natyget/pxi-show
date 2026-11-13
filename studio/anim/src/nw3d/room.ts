@@ -1,6 +1,6 @@
 // Nio's room: the furniture, the soft things, the lamps, and how a character is posed in it. Pure data and maths.
 import { V, add, sub, mul, norm, cross, dot, lerp } from './vec';
-import { Skel, Prim, sampleClip, solve, place, reach, lookAt, buildBody, G } from './rig';
+import { Skel, Prim, Hand, sampleClip, solve, place, reach, lookAt, buildBody, shift, G } from './rig';
 import { Face } from './face';
 import { Scene3, Box, Obb, Cam3, Soft, Light } from './types';
 import { Character, NIO_CHAR } from './characters';
@@ -91,16 +91,73 @@ export const ROOM_LIGHTS: Light[] = [
 ];
 export const AMB: V = [0.35, 0.36, 0.45], AMB_CHAR: V = [0.88, 0.82, 0.86];
 
+// ---- the party: the same room on the night of the party. The big light is on, fairy lights hang along the curtain
+// rod and down the wall by the bed, there are cups on every surface, a speaker on the dresser, a pizza box and a
+// coat on the bed. Bright, so every face in a photo reads. ----
+const bulbCols = ['#ffd890', '#ff9fb8', '#ffd890', '#86dccf', '#ffd890', '#c39bff'];
+const bulbs = (pts: V[]): Prim[] => pts.map((p, i) => cp(p, 0.019, add(p, [0, -0.012, 0]), 0.016, 1, bulbCols[i % bulbCols.length], 0.002, { em: 1 }));
+const swag = (s0: number, s1: number, y: number, z: number, sag: number, n: number): V[] =>
+  Array.from({ length: n }, (_, i) => { const t = i / (n - 1); return P3(s0 + (s1 - s0) * t, y - sag * 4 * t * (1 - t), z); });
+const partyCup = (p: V): Prim[] => [cp(p, 0.03, add(p, [0, 0.105, 0]), 0.037, 0, '#b4473c', 0.004, { cutA: true, cutB: true, tex: 1 }),
+  cp(add(p, [0, 0.1, 0]), 0.0385, add(p, [0, 0.11, 0]), 0.0385, 1, '#e6d9c0', 0.002, { cutA: true, cutB: true })];
+export const PARTY_BOXES: Box[] = [
+  ...ROOM_BOXES,
+  // the speaker on the dresser, its light strip on
+  B(3.36, 0.912, 3.38, 0.06, 0.09, 0.1, '#2c2630', 50), B(3.297, 0.88, 3.38, 0.003, 0.012, 0.075, '#86dccf', 51, { glow: true }),
+  // a pizza box on the bed
+  B(1.62, 0.575, 3.62, 0.19, 0.022, 0.19, '#c9a36b', 52, { yaw: 14 }),
+];
+export const PARTY_SOFTS: Soft[] = [
+  ...ROOM_SOFTS,
+  { origin: P3(1.95, 2.1, 4.2), prims: bulbs([...swag(0.62, 1.95, 2.28, 4.3, 0.16, 9), ...swag(1.95, 3.28, 2.28, 4.3, 0.16, 9).slice(1)]) },
+  { origin: P3(0.05, 1.7, 3.7), prims: bulbs(Array.from({ length: 8 }, (_, i) => P3(0.05, 1.74 - 0.06 * Math.abs(Math.sin(i * 0.9)), 3.12 + i * 0.16))) },
+  // the cups, and a coat thrown on the bed
+  { origin: P3(2.5, 0.8, 2.5), prims: [
+    ...partyCup(P3(3.25, 0.74, 1.0)), ...partyCup(P3(3.55, 0.74, 1.62)), ...partyCup(P3(3.18, 0.822, 3.02)), ...partyCup(P3(3.58, 0.822, 2.92)),
+    ...partyCup(P3(1.5, 0.977, 4.31)), ...partyCup(P3(1.68, 0.977, 4.29)), ...partyCup(P3(0.5, 0.587, 2.9)),
+    cp(P3(2.62, 0.035, 2.02), 0.03, P3(2.72, 0.04, 2.1), 0.037, 0, '#b4473c', 0.004, { cutA: true, cutB: true, tex: 1 }),
+    cp(P3(0.8, 0.6, 3.85), 0.09, P3(1.2, 0.6, 3.95), 0.08, 1, '#4d5f7a', 0.05, { sq: 2.2, tex: 2 }),
+    cp(P3(1.05, 0.6, 3.6), 0.05, P3(1.3, 0.58, 3.45), 0.045, 1, '#4d5f7a', 0.05, { sq: 1.8, tex: 2 }) ] },
+];
+const CEIL = P3(1.9, 2.3, 2.2);
+export const PARTY_LIGHTS: Light[] = [
+  ROOM_LIGHTS[0], // the bedside lamp stays light 0
+  { p: CEIL, r: 3.2, col: [0.5, 0.45, 0.38] }, // the big light
+  { p: P3(1.3, 2.1, 4.15), r: 0.95, col: [0.5, 0.38, 0.2] }, { p: P3(2.6, 2.1, 4.15), r: 0.95, col: [0.5, 0.38, 0.2] }, // the fairy lights
+  { p: P3(0.25, 1.65, 3.6), r: 0.8, col: [0.45, 0.3, 0.2] },
+  { p: P3(0.3, 1.7, 1.4), r: 1.5, col: [0.32, 0.12, 0.24] }, // a pink wash by the door, a teal one from the speaker
+  { p: P3(3.2, 1.0, 3.38), r: 1.3, col: [0.08, 0.26, 0.24] },
+  ROOM_LIGHTS[1], ROOM_LIGHTS[2],
+];
+export const PARTY_AMB: V = [0.56, 0.52, 0.58], PARTY_AMB_CHAR: V = [0.97, 0.92, 0.95];
+
 // ---- posing ----
+// pose: a named way of holding the arms (see HOLDS in world.ts). lift: stand on something this high (metres).
 export type Act = { who?: Character; clip: string; t: number; at: [number, number]; yaw: number; face: Face;
-  stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string };
+  stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string;
+  pose?: string; lift?: number };
+// Turn a vector round an axis (radians).
+const rot = (v: V, k: V, a: number): V => add(add(mul(v, Math.cos(a)), mul(cross(k, v), Math.sin(a))), mul(k, dot(k, v) * (1 - Math.cos(a))));
+// The party cup: red, a little wider at the top, a cream rim and something dark in it. Its own surface, so it is inked
+// where the hand meets it.
+const cup = (c: V): Prim[] => [
+  { a: add(c, [0, -0.055, 0]), ra: 0.03, b: add(c, [0, 0.05, 0]), rb: 0.037, g: G.shoe, k: 0.004, c: '#b4473c', cutA: true, cutB: true, tex: 1 },
+  { a: add(c, [0, 0.047, 0]), ra: 0.0385, b: add(c, [0, 0.057, 0]), rb: 0.0385, g: G.shoe, k: 0.002, c: '#e6d9c0', cutA: true, cutB: true },
+  { a: add(c, [0, 0.055, 0]), ra: 0.031, b: add(c, [0, 0.0585, 0]), rb: 0.031, g: G.shoe, k: 0.001, c: '#4a2a26', cutA: true, cutB: true },
+];
 export const pose = (a: Act) => {
-  const ch = a.who ?? NIO_CHAR, P = ch.body;
+  const ch = a.who ?? NIO_CHAR, P = ch.body, nm = a.pose ?? '';
   let s: Skel = place(solve(sampleClip(a.clip, a.t), P, { stance: a.stance ?? 1, arms: a.arms ?? 1, upright: a.upright ?? 0, seat: a.seat }), [X(a.at[0]), a.at[1]], a.yaw);
-  const props: Obb[] = []; const lights: Light[] = [];
+  if (a.lift) { s = { ...s, sh: [...s.sh], el: [...s.el], wr: [...s.wr], tip: [...s.tip], thumb: [...s.thumb], hip: [...s.hip], kn: [...s.kn], an: [...s.an], toe: [...s.toe] } as Skel; shift(s, [0, a.lift, 0]); }
+  const props: Obb[] = []; const lights: Light[] = []; const extra: Prim[] = []; const hands: [Hand?, Hand?] = [];
   if (a.look) s = lookAt(s, a.look, a.lookAmt ?? 1, P);
-  const fwd = norm(cross(s.side, s.chestDir));
-  if (a.crossed) {
+  const fwd = norm(cross(s.side, s.chestDir)), UP: V = [0, 1, 0];
+  const out = (i: 0 | 1) => mul(s.side, i === 0 ? 1 : -1); // away from the body, on that side. 0 is his left, 1 his right.
+  const A = (i: 0 | 1, f: number, u: number, o: number): V => add(s.sh[i], add(mul(fwd, f), add(mul(UP, u), mul(out(i), o)))); // from that shoulder
+  // a straight arm from that shoulder in a direction (forward, up, out), whatever the arm's length
+  const straight = (i: 0 | 1, f: number, u: number, o: number): V => add(s.sh[i], mul(norm(add(mul(fwd, f), add(mul(UP, u), mul(out(i), o)))), (P.upperArm + P.foreArm) * 1.02));
+  const crossed = a.crossed || nm === 'arms-crossed';
+  if (crossed) {
     // Folded arms, placed by hand: both elbows forward of the ribs, both forearms level across the chest. His left
     // forearm lies on top with its hand on the right arm; the right hand tucks under the left elbow.
     const o = sub(s.neckBase, mul(s.chestDir, 0.05));
@@ -110,14 +167,15 @@ export const pose = (a: Act) => {
     c.el[1] = at(-0.17, -0.2, 0.14); c.wr[1] = at(0.05, -0.222, 0.182); c.tip[1] = at(0.118, -0.212, 0.158); c.thumb[1] = at(0.075, -0.19, 0.172);
     s = c;
   }
-  const ph = a.phone ?? 0;
+  const ph = nm === 'phone' || nm === 'selfie' ? 1 : a.phone ?? 0;
   if (ph > 0.01) {
     // the phone floats where his eyes can read it; the hand is placed BEHIND it and the thumb comes round the front
     const body = norm([s.headFw[0], 0, s.headFw[2]]), rt = norm(cross([0, 1, 0], body));
     // `hold` = how far in front of the neck, how far to his right, and how far below it (metres)
-    const hd = a.hold ?? [0.25, 0.06, 0.09];
+    // A selfie: the arm nearly straight, the phone up and out to his right, and he looks right into it.
+    const hd = nm === 'selfie' ? [0.34, 0.25, -0.12] : a.hold ?? [0.25, 0.06, 0.09];
     const pc = add(s.neckBase, add(mul(body, hd[0]), add(mul(rt, -hd[1]), [0, -hd[2], 0])));
-    s = lookAt(s, pc, 0.35 * ph, P);
+    s = lookAt(s, pc, (nm === 'selfie' ? 0.8 : 0.35) * ph, P);
     // the glass faces his eyes, and its sides stay square to his shoulders however flat he holds it
     const z = norm(sub(add(s.headC, mul(s.headFw, 0.1)), pc)), hr = mul(rt, -1), x = norm(sub(hr, mul(z, dot(hr, z)))), y = cross(z, x);
     const wr = add(pc, add(mul(y, -0.1), mul(z, -0.03)));
@@ -130,9 +188,54 @@ export const pose = (a: Act) => {
       lights.push({ p: add(pc, mul(z, 0.05)), r: 0.2, col: [0.3, 0.12, 0.5] });
     }
   }
+  // ---- the other holds. Each puts the hands exactly where they must be with the same two-bone reach as the phone. ----
+  if (nm === 'show-phone') {
+    // the phone held out at shoulder height, the screen turned to whoever he is showing: the camera, or the other person
+    const pc = A(1, 0.42, 0.02, -0.06), z = norm(add(fwd, [0, 0.12, 0])), x0 = s.side, x = norm(sub(x0, mul(z, dot(x0, z)))), y = cross(z, x);
+    s = reach(s, 1, add(pc, add(mul(y, -0.088), mul(z, -0.03))), add(out(1), [0, -1, 0]), P, y, add(mul(x, 0.75), add(mul(y, 0.6), mul(z, 0.25)))); // the thumb up the edge, off the glass
+    props.push({ c: pc, x, y, z, h: [0.04, 0.082, 0.006], col: '#241a1e', screen: '#a523ef' });
+    lights.push({ p: add(pc, mul(z, 0.06)), r: 0.22, col: [0.3, 0.12, 0.5] });
+  }
+  if (nm === 'phone-knee') {
+    // sitting, the phone lies face up on his right knee (a call on speaker)
+    const o0 = ch.wardrobe[a.outfit ?? ch.outfit], w = o0.bottom ? P.legR + 0.03 + o0.bottom.width * 0.6 : P.legR;
+    const th = sub(s.kn[1], s.hip[1]), y = norm([th[0], 0, th[2]]), z = UP, x = cross(y, z);
+    const pc = add(lerp(s.hip[1], s.kn[1], 0.8), [0, w + 0.008, 0]);
+    s = lookAt(s, pc, 0.55, P); // he looks down at it
+    props.push({ c: pc, x, y, z, h: [0.04, 0.082, 0.006], col: '#241a1e', screen: '#a523ef' });
+    lights.push({ p: add(pc, [0, 0.07, 0]), r: 0.2, col: [0.3, 0.12, 0.5] });
+  }
+  if (nm === 'arm-up') { s = reach(s, 1, straight(1, 0.06, 0.47, 0.2), add(out(1), mul(fwd, -0.4)), P, UP, fwd); hands[1] = 'fist'; }
+  if (nm === 'arms-up') for (const i of [0, 1] as const) s = reach(s, i, straight(i, 0.08, 0.44, 0.3), add(out(i), [0, -0.4, 0]), P, norm(add(UP, mul(out(i), 0.5))), fwd);
+  // pointing: the right arm straight out in front, a little high, the first finger out
+  if (nm === 'point') { s = reach(s, 1, A(1, 0.42, 0.08, 0.04), add(out(1), [0, -1, 0]), P, norm(add(fwd, [0, 0.12, 0])), UP); hands[1] = 'point'; }
+  const held = nm === 'cup' ? 0 : nm === 'cup-point' ? 1 : -1;
+  if (held >= 0) {
+    // the cup in one hand: the hand round its outside, fingers across the front, thumb over the top edge.
+    // cup: in his left hand at the waist. cup-point: held out in the right hand, to point with.
+    const i = held as 0 | 1, c = held === 0 ? A(0, 0.2, -0.24, -0.04) : A(1, 0.36, -0.02, 0.0);
+    const wr = add(c, add(mul(out(i), 0.058), mul(fwd, -0.024)));
+    s = reach(s, i, wr, add(out(i), [0, -1, 0]), P, norm(add(mul(fwd, 0.8), mul(out(i), -0.6))), norm(add(UP, mul(out(i), -0.5))));
+    extra.push(...cup(c));
+  }
+  if (nm === 'asleep') {
+    // asleep sitting up: the head drops forward and rolls onto one shoulder
+    const fw = rot(s.headFw, s.headRt, 0.26), up = rot(rot(s.headUp, s.headRt, 0.26), fw, -0.52), rt = cross(up, fw);
+    s = { ...s, headUp: up, headFw: fw, headRt: rt, headC: add(s.neckBase, mul(up, P.neck + P.headR * 0.8)) };
+  }
   const o = ch.wardrobe[a.outfit ?? ch.outfit];
-  const soft: Soft = { character: true, origin: s.hips, prims: buildBody(s, P, ch.skin, o, a.crossed ? 0 : undefined),
-    head: { c: s.headC, rt: s.headRt, up: s.headUp, fw: s.headFw, face: a.face, skin: ch.skin, hairA: ch.hairA, hairB: ch.hairB, blobs: ch.hair } };
+  const prims = [...buildBody(s, P, ch.skin, o, crossed ? 0 : undefined, hands), ...extra];
+  const hk = ch.head ?? {};
+  if (ch.earrings) for (const sd of [1, -1]) {
+    // a small hoop hanging from each ear lobe: a ring of short capsules, its own surface so it is inked
+    const w = hk.width ?? 1, at = (x: number, y: number, z: number): V => add(s.headC, add(mul(s.headRt, x), add(mul(s.headUp, y), mul(s.headFw, z))));
+    const R = 0.03, cy = -0.164, cx = sd * (0.226 * w), N = 8;
+    for (let k = 0; k < N; k++) { const a0 = (k / N) * 6.283, a1 = ((k + 1) / N) * 6.283;
+      prims.push({ a: at(cx, cy + Math.cos(a0) * R, -0.005 + Math.sin(a0) * R), ra: 0.0062, b: at(cx, cy + Math.cos(a1) * R, -0.005 + Math.sin(a1) * R), rb: 0.0062, g: G.shoe, k: 0.004, c: ch.earrings }); }
+  }
+  const soft: Soft = { character: true, origin: s.hips, prims,
+    head: { c: s.headC, rt: s.headRt, up: s.headUp, fw: s.headFw, face: a.face, skin: ch.skin, hairA: ch.hairA, hairB: ch.hairB, blobs: ch.hair,
+      build: [hk.lashes ?? 0, hk.width ?? 1, hk.chin ?? 1, hk.curls ?? 0] } };
   const mid = lerp(s.an[0], s.an[1], 0.5);
   const shadows = a.seat === undefined ? [[mid[0], mid[2], 0.2, 0.3]] : [];
   return { soft, props, lights, shadows };
@@ -144,10 +247,12 @@ export const studioShot = (cam: Cam3, acts: Act[]): Scene3 => {
     softs: ps.map((p) => p.soft), lights: [{ p: P3(1.2, 2.3, 0.6), r: 3, col: [0.08, 0.07, 0.06] }, ...ps.flatMap((p) => p.lights)],
     props: ps.flatMap((p) => p.props), shadows: ps.flatMap((p) => p.shadows) };
 };
-export const shot = (cam: Cam3, acts: Act[], time = 0): Scene3 => {
-  const ps = acts.map(pose);
-  return { cam, room: ROOM, amb: AMB, ambChar: AMB_CHAR, boxes: ROOM_BOXES, time,
-    softs: [...ps.map((p) => p.soft), ...ROOM_SOFTS], lights: [...ROOM_LIGHTS, ...ps.flatMap((p) => p.lights)],
+// dress: 'party' for the night of the party. flash: a photo taken with the flash on, so every face is lit from the lens.
+export const shot = (cam: Cam3, acts: Act[], time = 0, dress?: string, flash?: boolean): Scene3 => {
+  const ps = acts.map(pose), party = dress === 'party';
+  const fl: Light[] = flash ? [{ p: cam.pos, r: 2.4, col: [0.42, 0.42, 0.44] }] : [];
+  return { cam, room: ROOM, amb: party ? PARTY_AMB : AMB, ambChar: party ? PARTY_AMB_CHAR : AMB_CHAR, boxes: party ? PARTY_BOXES : ROOM_BOXES, time,
+    softs: [...ps.map((p) => p.soft), ...(party ? PARTY_SOFTS : ROOM_SOFTS)], lights: [...(party ? PARTY_LIGHTS : ROOM_LIGHTS), ...fl, ...ps.flatMap((p) => p.lights)],
     props: ps.flatMap((p) => p.props), shadows: ps.flatMap((p) => p.shadows) };
 };
 

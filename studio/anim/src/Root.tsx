@@ -11,7 +11,7 @@ import type { Cut } from './lib/cut';
 import { TextCheckTest } from './TextCheckTest';
 import { withProbe } from './lib/TextProbe';
 
-import { N3Still, N3_DEFAULT, N3Shot } from './nw3d/Scenes';
+import { N3Still, N3_DEFAULT, N3Shot, N3Cast, N3_CAST } from './nw3d/Scenes';
 import { NWHead, NWBody, NWHero, NWWide, NWSheet, NWClip, CLIP_LEN, NWShot, NWClip2, CLIP2_LEN } from './nw/Look';
 
 export const Root: React.FC = () => (
@@ -32,6 +32,8 @@ export const Root: React.FC = () => (
       defaultProps={{ spec: { set: 'nioRoom', camera: 'wide', frames: 48, actors: [{ who: 'nio', at: 'rug', action: 'stand', face: 'deadpan', facing: 'camera' }] } }}
       calculateMetadata={({ props }) => ({ durationInFrames: props.spec.frames })} />
     <Composition id="N3Still" component={N3Still} durationInFrames={1} fps={24} width={180} height={320} defaultProps={N3_DEFAULT}
+      calculateMetadata={({ props }) => ({ width: props.w, height: props.h })} />
+    <Composition id="N3Cast" component={N3Cast} durationInFrames={1} fps={24} width={180} height={320} defaultProps={N3_CAST}
       calculateMetadata={({ props }) => ({ width: props.w, height: props.h })} />
     <Composition id="NWHead" component={NWHead} durationInFrames={1} fps={24} width={270} height={480} />
     <Composition id="NWBody" component={NWBody} durationInFrames={1} fps={24} width={270} height={480} />

@@ -87,6 +87,11 @@ Nobody is the joke for where they are from, how they sound, their body or their 
   almost anything to leave the room before the lesson arrives, and she is very patient.
 - *Hook:* she can appear at the end of any corridor.
 
+**Professor Haverbrook ("Prof H").** *(New, Nov 13, from "Office Hours".)*
+- An enormous, soft man in a cardigan with tiny round glasses who speaks in a whisper the microphone turns into
+  thunder. He is desperate for his students to think he is cool, learns their slang from the internet and uses it
+  nearly right. Everyone on campus treats his office hours the way you treat a haunted house. He has no idea.
+
 **The ex.** She is in the first episodes and gone a few in. *Waiting on the founder for who she is and how it
 ends.* Until then she is written warmly and is never the villain. Most of the mess in the bedroom is hers.
 
@@ -131,8 +136,7 @@ tonight. A story that turns on either of those has set up its own caption.
 Format: the one-line premise, whose ego drives it, the kind of story (`bible/gumball-style.md` section 2), and
 where PXI sits. All are CANDIDATE until the founder approves them in `engine/premise-bank.md`.
 
-1. **No Pics.** The morning after the best night of his life, Nio is in no photos. *Ego:* Nio's vanity.
-   *Kind:* small thing. *PXI:* engine, "you're in 38 photos". (The pilot.)
+1. ~~No Pics~~ retired Nov 13 by the founder. Season 1 starts from `season-1/series-plan.md` instead.
 2. **Tiger.** Nio has to get Sami home, cannot see without his contacts, and books the wrong ride. *Ego:*
    Sami's dignity. *Kind:* quest. *PXI:* moment, next morning's album, Sami upright in every photo. *From R1.*
 3. **The Zip.** Benji returns Nio's bag from across campus, zipped wrong. *Ego:* Nio's itch, and him choosing

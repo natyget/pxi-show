@@ -287,15 +287,66 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "when it comes to the remakes i like them and i think it should keep all post that are gen z funny humor
     relatable and all and scratch the werid uncanny ones from the engine, what it did was nice but there are so
     many post ideas and format on that engine i think we can take as much good as we can"
-- **Nov 13, 12:45 AM (on the post formats and the failed No Pics draft), word for word (the part about post formats;
-  the rest of the message is recorded by the threads it concerns):**
+- **Nov 13, 12:45 AM (on the "No Pics" draft), word for word:**
   - "the fortune and bingo are not it the more repost worthy and engaging should be the one to keep or humoreous
     ones. binga and fortune cookie have nothing gen z or humerous about htem"
   - "we'll skip metricool for now until we see better results till then ill run ads manually"
-  - "lets drop the repetitive stuff like the elbow. i keep seeing it and. dont know why i keep seeing these weird
-    references that seem like pure slop that each new chat and generation holds onto from somewhere. every story
-    needs to be new and not polluted by any inside jokes or lame humor like that."
-  - "also what is the evidence talk just like the elbow we talk about evidence these werid things need to stop"
-  - "dont center episodes around product. again whole point is nice stories to follow along with our character nio."
-  - What this changed: bingo and fortune dropped, and the kept list in `engine/post-formats.md` re-cut to the
-    formats a person would repost.
+  - "i think all pr are merged check."
+  - "when it comes to the failed draft i with no audio i like the animation and dancing etc but i noticed the hand
+    holding the phone and using it is nothing like the actual hand that is genreated, its as if we lose continuity
+    and its just a random hand there from another animation world. so lets make everything consistent since we
+    worked so hard in builidng an engine it would be sad to leave out hand holding phone frames and thumbs. then i
+    saw that in some images where it shows the party the people are like block characters, aslo im unsure if it
+    made many othr characters like maya and his other frineds because i only see dialogue between nio and himself
+    standing in diffrenet planes. all characters need to look like they belong in the wrold but have different
+    characterisitcs, diff hair, small structural differences, head shapes, aesthetis, close, facial features you
+    know like how an animated serires makes many characters we need nios friends to be in they own character
+    styles so background characters included. when we show shots of a person dancing and nio in the refelction it
+    needs to be convincing in teh sens that its really in the monent picture bexause right now there is a head
+    delibritly made into inthe frame and the lense looks werid the headshpe is not nio world style the production
+    of it is uncanny."
+  - "also the party should be in differnt places why is he dancing in his bedroom alone and saying part two taking
+    slefies. the images also need to accuratly represent our actaull fitler so see how you can map out the filter
+    to nio world when they capture something with flash so it feels like the filter is working in their wolrd with
+    the images appearing a litle diff and nicerly in shots"
+  - "i noticed we have made new charactrs / i really like these looks id also want you to make background
+    characters like randomized looks that can be used as public npc's as well as larger group of characters that
+    get repeated as the world grows and we interact with them more"
+  - "nio's face epression are on point but the mouth movement at some point that was just up and down low to the
+    chin is cheap we need elaborate mouth movements for speach so it seems real and character like. aslo the plot
+    seems a little underwhelming, it sells pxi well but again were just trynna tell amazing funny stories and
+    having pxi slip in there and i dont think this failed format was it but we have a lot to learn from it."
+  - "we need out door settings, rooftops, clubs, underground speak easies, game bars class rooms, and more
+    physical env too with the nio world aesthetic"
+  - "i really think we got something on our hands and need to really turn this into an engaging series. because i
+    recently saw bob figures it out cartoon that really represent one good aspect of nio which is him being a
+    realist at times but in genreal this new bob figures it out social media account has decent humor and we need
+    contents like that that induces humor and is funny and engaging with nice plots and people just watch along to
+    be honest you should also write it in that manner, but then we you during production we see an opportunity to
+    slip pxi we do it and do it nicely smoothly, blended so well that the natural conversation and scenes leans
+    into so well. we dont want to appear like a forced product placement at all avoid at all cost and dont center
+    episodes around product. again whole point is nice stories to follow along with our character nio. and make it
+    really interesting world of gumbal like stories"
+  - "and lets drop the repetitive stuff like the elbow. i keep seeing it and. dont know why i keep seeing these
+    weird references that seem like pure slop that each new chat and generation holds onto from somewhere. every
+    story needs to be new and not polluted by any inside jokes or lame humor like that."
+  - "i fuck with the dance moves and if we can have him do more silly ones when he's drunk that sould be tuff.
+    also what is the evidence talk just like the elbow we talk about evidence these werid things need to stop"
+  - "again very importantly the emphasis is in making good quality short episodes that are nice to follow up and
+    watch as a insta/tiktok series and youtube too when we make the longer format that will be posted and then
+    have that use pxi. think of it like this, in an episode the likely hood that someone uses a phone is not low
+    so if we were apple we would just say factime me or or use iphone in any phone usage, now since nio is a
+    vollege kid active in clubs and groups and teams and sports and pick up games, spring trips, fall trips, cabin
+    trips, house parties, clubs, promoting events, bbq, birthdays, holidays and more we will by default position
+    pxi well in all of those episodes so pxi is a functionality product in the series and at times nio can break
+    the 4th wall and say its his app "this my app go downlaod pxi right now" etc. make sense?"
+  - "lets wrap this up for an actual sries we can start posting"
+  - What this changed: `bible/anti-slop.md` section 5 (no carried-over jokes), `bible/story.md` sections 1 and 4
+    (follow-along stories; PXI is the phone his world runs on), `bible/craft-library.md` (continuity in the
+    engine), LEARN paused in `engine/STATE.md`, "No Pics" retired as built; bingo and fortune dropped, and the kept list in
+    `engine/post-formats.md` re-cut to the formats a person would repost.
+- **Nov 13, 1:36 AM, word for word:**
+  - "i merged pr 5 first and now pr 6 has merge conflicts that need to be fix so lets fix it please"
+  - "i told the writer to fix some writing and sharpen the stories"
+  - "i do not see why i need to add hugging face when access ro website all over are limitless and its full access.
+    i cant even add hugging face since its full access"
