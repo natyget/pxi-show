@@ -36,5 +36,7 @@ export type Scene3 = {
   room0?: V; set?: number; // where the room starts (its far corner is room0 + room); 0 a room, 1 the studio, 2 the club, 3 the campus
   club?: { mood: number; bps: number; led: [number, number]; floor: [number, number, number, number] }; // mood 0 party .. 1 low and green
   beams?: Beam[]; crowd?: CrowdSpec;
-  campus?: [number, number, number, number]; // set 3, the campus (campus.ts): which room, how open its far door is, the door's x, spare
+  campus?: [number, number, number, number]; // set 3, the campus (campus.ts): which room, how open its door is, the door's x, near wall/quad
+  campus2?: [number, number, number, number]; // more of the campus room: the near door's opening, the stairwell door's, its z, spare
+  outdoor?: boolean; // a big open set (the pitch): far surfaces seen edge-on get no ink from their own depth
 };
