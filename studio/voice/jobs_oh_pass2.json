@@ -1,0 +1,114 @@
+[
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Great sesh, fam. Real ones come to office hours.",
+  "note": "A soft, gentle whisper right into the mic, proud of saying fam; the room's PA makes it boom. Say 'real ones' clearly.",
+  "out": "raw_oh_01.wav"
+ },
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Nio. Today.",
+  "note": "Whispered, warm, delighted, into the mic. Clean read, exactly these words.",
+  "out": "raw_oh_02.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Bro's not coming back.",
+  "note": "Barely moving his lips, low, certain, like a funeral.",
+  "out": "raw_oh_03.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Darnell said that.",
+  "note": "Flat, quiet, like a warning.",
+  "out": "raw_oh_05.wav"
+ },
+ {
+  "who": "cleaner",
+  "role": "dcleaner",
+  "text": "Just go in, baby. It's faster.",
+  "note": "Warm older woman, unbothered, mopping, not looking up.",
+  "out": "raw_oh_10.wav"
+ },
+ {
+  "who": "darnell",
+  "role": "ddarnell",
+  "text": "First time?",
+  "note": "Very calm, kind, slow, soft.",
+  "out": "raw_oh_11.wav"
+ },
+ {
+  "who": "darnell",
+  "role": "ddarnell",
+  "text": "Yeah. We all were.",
+  "note": "Nodding, kind, completely at peace.",
+  "out": "raw_oh_13.wav"
+ },
+ {
+  "who": "darnell",
+  "role": "ddarnell",
+  "text": "Did they ever drop the new GTA?",
+  "note": "Gentle, hopeful, like it's nothing.",
+  "out": "raw_oh_14.wav"
+ },
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Nio! Come in, come in.",
+  "note": "Delighted, warm, still soft, no mic now.",
+  "out": "raw_oh_16.wav"
+ },
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "So. I wanted a word.",
+  "note": "Nervous, gentle, soft.",
+  "out": "raw_oh_17.wav"
+ },
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Would you come?",
+  "note": "Very small, hopeful and scared of the answer, his lip trembling.",
+  "out": "raw_oh_18.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "...Sure.",
+  "note": "Soft, a beat of giving in; he cannot say no to this man.",
+  "out": "raw_oh_19.wav"
+ },
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Nobody's ever said yes.",
+  "note": "A whisper, moved to tears, overwhelmed.",
+  "out": "raw_oh_20.wav"
+ },
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Same time next week?",
+  "note": "Hopeful, bright, soft.",
+  "out": "raw_oh_21.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Where were you?",
+  "note": "Normal, a bit annoyed, on the pitch.",
+  "out": "raw_oh_22.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "You're coming to improv Thursday.",
+  "note": "Flat and calm, passing the doom on to his friend, deadpan with the smallest smile.",
+  "out": "raw_oh_24.wav"
+ }
+]

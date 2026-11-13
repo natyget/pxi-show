@@ -50,17 +50,20 @@ Theo: a pen. Darnell: his ticket (4) in his left hand, the lab report on his kne
 | 29 | 56 | waiting room | MS the inner door from Nio's chair | line | The door opens. PROF H fills it sideways, delighted: "Nio! Come in, come in." | His body blocks the whole doorway | Prof H **laughing** | none | S |
 | 30 | 52 | office | wide, tight room | geography + line | Tiny office. Prof H folded behind the desk. HANG IN THERE poster. A bobblehead of himself. PROF H: "So. I wanted a word." | Flat; his knees higher than the desk | Prof H **real** (nervous). Nio **uneasy** | none | S |
 | 31 | 24 | office | CU Nio | the take | Hold. Room tone. Nio sweating | Dead still | Nio **uneasy**, a bead of sweat | the take (24 f) | S |
-| 32 | 66 | office | CU Prof H | line | PROF H (very small): "Do the students think I'm... HTN?" | Push in a touch across the line | Prof H **crushed**, lip going (mouth **wobble**) | none | S |
-| 33 | 94 | office | MCU Nio leaning in all the way | line (the save) | NIO: "Prof. You're mogging the whole faculty. Everybody says it." | Low on Nio: the one time he is the hero | Nio **charm**, fully committed, then **hyped** | none | S |
-| 34 | 36 | office | CU Prof H | line | PROF H (a whisper, a tear): "...Mogging." | Flat | Prof H **real** + tear | none | S |
+| 32 | 80 | office | insert: the desk from above | prop + reading | Prof H's big hand slides a hand-drawn flyer across the desk: "PROF H'S IMPROV NIGHT. THURSDAY. BRING A FRIEND. OR YOURSELF." | Flat, the hand leaves it in the middle | Reading time for 12 words | none | S |
+| 33 | 52 | office | CU Prof H | line | PROF H (very small): "Would you come?" | Push in a touch across the line | Prof H **crushed**, lip going (mouth **wobble**) | none | S |
+| 34 | 60 | office | CU Nio | the take + line | Long beat (24 f): Nio looks at the flyer, at Prof H. NIO: "...Sure." | Dead still for the beat | Nio **uneasy** into **sheepish** | the take (24 f) | S |
+| 34.5 | 48 | office | CU Prof H | line | PROF H (a whisper, a tear): "Nobody's ever said yes." | Flat | Prof H **real** + tear | none | S |
 | 35 | 48 | waiting room | wide (as 20) | reveal | The clock has hands. NOW SERVING 4. Darnell stands, squints at the sun through the door, and walks out into it, beard first | Same angle as 20, so the change reads | Darnell **suspicious** (squint) into **charm** | none | S |
 | 36 | 44 | office | MCU Prof H, the open door behind Nio's empty chair | line | PROF H: "Same time next week?" | The chair is empty when we cut to it | Prof H **hyped** | none | S |
 | 37 | 36 | office | wide | button of the office | The door clicks shut by itself | Still | Prof H waves at nobody | none | L |
 | 38 | 40 | pitch | wide, 5:01 PM | line | Nio jogs on, hair wrecked. THEO: "Where were you?" | Bright, normal, after the eerie | Theo **suspicious**. Nio **deadpan** | none | S |
 | 39 | 30 | pitch | MCU Nio | line | NIO: "Office hours." | Flat | Nio **deadInside** | none | S |
-| 40 | 36 | pitch | MS Theo | button | Theo goes white and takes one step back | Flat, the cut comes on the step | Theo **shock**, colour drains (skin to grey) | none | S |
+| 40 | 30 | pitch | MS Theo | reaction | Theo takes one step back | Flat, the cut comes on the step | Theo **shock** | none | S |
+| 41 | 56 | pitch | MS Nio holding the flyer up at Theo | line | NIO: "You're coming to improv Thursday." | Still; the flyer in frame | Nio **deadpan**, the smallest smile | none | S |
+| 42 | 30 | pitch | MS Theo | button | Theo goes white | Flat; cut out on the colour change | Theo **shock**, colour drains (skin to grey) | none | S |
 
-Short cut: S shots, 1706 frames, about 71 s. Long cut: every shot, 1963 frames, about 82 s.
+Short cut: S shots, 1830 frames, about 76 s. Long cut: every shot, 2087 frames, about 87 s.
 
 **PROOF (the hardest seconds):** shots 11 to 13 (the corridor that loops must read as the same picture both
 ways) and 20 (the waiting room's stillness must feel eerie and not like a frozen render: only the spinner and
@@ -102,4 +105,4 @@ ceiling). The plaque is held 3.3 s and the map 3 s. Subtitles carry every line.
 | 20, 21 | A clock with no hands; no music | Time does not move in the waiting room | Same angle in 35 when it has hands again |
 | 20-28 | Darnell's beard to his belt; he asks about a game that came out years ago | He has waited since 2019 | Ticket 4, NOW SERVING 3; he walks out when it becomes 4 |
 | 37 | The door shuts by itself | The place lets him go | Prof H waves at nobody |
-| 40 | Theo's skin goes grey | He is scared of where Nio has been | The cut is on his step back |
+| 42 | Theo's skin goes grey | He is scared of where Nio has been | The cut is on his step back |

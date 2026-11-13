@@ -2,7 +2,7 @@
 
 Where: a lecture hall, a corridor that loops, a waiting room, a tiny office, the pitch · Chore: go to office
 hours · Dodge: Nio decides they are optional · The impossible thing: office hours are a place, and the
-people who skipped them are still in it · Skill that saves him: he can read a lonely man and hype him up ·
+people who skipped them are still in it · Skill that saves him: he cannot say no to people ·
 PXI: the map shows a building that isn't on campus · Eerie: Darnell · About 60 s
 
 **Professor Haverbrook ("Prof H")**, new to the cast: an enormous, soft man in a cardigan with tiny round
@@ -17,7 +17,7 @@ PROF H: Great sesh, fam. Real ones come to office hours.
 PROF H: Nio. Today.
 
 [Thirty heads turn. A girl in the next row slowly takes her cap off, like at a funeral.]
-THEO (barely moving his lips): You're cooked.
+THEO (barely moving his lips): Bro's not coming back.
 NIO (packing up, easy): It says hours. Plural. That's a suggestion.
 THEO: Darnell said that.
 NIO: Who's Darnell?
@@ -29,8 +29,8 @@ NIO (beat): ...Pickup's at five.
 door, ahead of him. A little more open.]
 NIO: No.
 [He takes the stairs down two flights, bursts through the stairwell door: the same corridor, the same door.]
-[He opens the PXI map. His blue dot is inside a grey building that is not on campus. Event card:
-"Office Hours. Always. 1 going." He is the one.]
+[He opens the PXI map. His light purple dot is inside a grey building that is not on campus. The event card:
+"ALWAYS · Office Hours · Haverbrook Hall · FREE". The dot is inside it.]
 NIO (quietly): I did not RSVP to that.
 [A CLEANER mops past, unbothered.]
 CLEANER: Just go in, baby. It's faster.
@@ -55,10 +55,12 @@ PROF H: Nio! Come in, come in.
 [INT. OFFICE. Tiny. Prof H folded behind the desk. A HANG IN THERE cat poster. A bobblehead of himself.]
 PROF H: So. I wanted a word.
 [Hold. Room tone. Nio, sweating.]
-PROF H (very small): Do the students think I'm... HTN?
-[Nio looks at him. The man's lip is going. Nio leans in, all the way, fully committed.]
-NIO: Prof. You're mogging the whole faculty. Everybody says it.
-PROF H (a whisper, a tear): ...Mogging.
+[Prof H slides a flyer across the desk. Hand-drawn. "PROF H'S IMPROV NIGHT. THURSDAY. BRING A FRIEND. OR
+YOURSELF."]
+PROF H (very small): Would you come?
+[Nio looks at the flyer. At Prof H. Prof H's lip is going. A long beat.]
+NIO: ...Sure.
+PROF H (a whisper, a tear): Nobody's ever said yes.
 
 [Behind Nio, the door swings open onto the sunny quad. In the waiting room the clock has hands. NOW SERVING
 4. Darnell stands, squints at the sun, and walks out into it, beard first.]
@@ -68,12 +70,13 @@ PROF H: Same time next week?
 [EXT. FIVE-A-SIDE PITCH, 5:01 PM. Nio jogs on, hair wrecked.]
 THEO: Where were you?
 NIO: Office hours.
-[Theo goes white and takes one step back.]
+[Theo takes one step back. Nio holds up the flyer.]
+NIO: You're coming to improv Thursday.
+[Theo goes white.]
 ```
 
 Laughs: the cap off like a funeral / the dusty seat / "I did not RSVP to that" / "Just go in, baby. It's
-faster." / Darnell's beard / "Did they ever drop the new GTA?" and "Not yet, bro" / "HTN?" / "mogging the
-whole faculty" / Theo stepping back.
+faster." / Darnell's beard / "Did they ever drop the new GTA?" and "Not yet, bro" / the improv flyer / "Nobody's ever said yes"
+and Darnell set free by it / "You're coming to improv Thursday".
 Eerie: the corridor that loops, the clock with no hands, NOW SERVING 3, Darnell's calm. Never explained.
 Caption: skipped office hours one time. Who's your Darnell?
-

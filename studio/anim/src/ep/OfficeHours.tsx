@@ -29,36 +29,85 @@ const waiters = (spin = true): ShotSpec['actors'] => [
 const nioSit = (face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: 'nio', at: 'seatL3', action: talk ? 'sitTalk' : 'sit', face });
 const darnellSit = (face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: 'darnell', at: 'seatL4', action: talk ? 'sitTalk' : 'sit', face });
 
+const NONE = null; // a set the design thread has not delivered yet: the shot cannot be drawn, so no cut ships with it
+const sh = (n: number, frames: number, cut: 'S' | 'L', spec: Shot['spec'], say?: Line[], sfx?: Shot['sfx']): Shot => ({ n, frames, cut, spec, say, sfx });
+const L = (key: string, who: string, at: number): Line => ({ key, who, at });
+
 export const SHOTS: Shot[] = [
-  // 1-19: the lecture hall and the corridor (sets in progress in the design thread)
-  ...[[1, 94, 'S'], [2, 36, 'S'], [3, 36, 'S'], [4, 48, 'S'], [5, 36, 'S'], [6, 74, 'S'], [7, 36, 'S'], [8, 30, 'S'], [9, 48, 'S'], [10, 44, 'S'],
-    [11, 60, 'S'], [12, 80, 'S'], [13, 48, 'S'], [14, 29, 'L'], [15, 72, 'L'], [16, 72, 'S'], [17, 62, 'S'], [18, 62, 'L'], [19, 12, 'S']]
-    .map(([n, frames, cut]) => ({ n: n as number, frames: frames as number, cut: cut as 'S' | 'L', spec: null })),
-  // 20: the smash cut lands. Silence but the hum; only the spinner and Nio's eyes move.
-  { n: 20, frames: 72, cut: 'S', spec: W('aisle', 72, [nioSit('shock'), darnellSit('neutral'), ...waiters()]) },
-  { n: 21, frames: 29, cut: 'L', spec: W('clock', 29, []) },
-  { n: 22, frames: 36, cut: 'S', spec: W('darnell', 36, [darnellSit('charm', true)]), say: [{ key: 'oh_11', who: 'darnell', at: 4 }] },
-  { n: 23, frames: 44, cut: 'S', spec: W('nio', 44, [nioSit('smug', true)]), say: [{ key: 'oh_12', who: 'nio', at: 4 }] },
-  { n: 24, frames: 44, cut: 'S', spec: W('two', 44, [darnellSit('charm', true), nioSit('uneasy')]), say: [{ key: 'oh_13', who: 'darnell', at: 3 }] },
-  { n: 25, frames: 36, cut: 'S', spec: null }, // insert: Darnell's ticket, 4 (needs an insert camera)
-  { n: 26, frames: 72, cut: 'S', spec: W('darnell', 72, [{ ...darnellSit('real', true), gaze: [0.4, 0.1] }]), say: [{ key: 'oh_14', who: 'darnell', at: 6 }] },
-  { n: 27, frames: 60, cut: 'S', spec: W('nio', 60, [nioSit([[0, 'crushed'], [24, 'sheepish']], true)]), say: [{ key: 'oh_15', who: 'nio', at: 26 }] },
-  { n: 28, frames: 29, cut: 'L', spec: W('darnell', 29, [darnellSit([[0, 'charm'], [16, 'neutral']])]) },
-  { n: 29, frames: 56, cut: 'S', spec: (f) => W('door', 56, f < 6 ? [] : [{ who: 'profH', at: 'doorway', action: 'talk', face: 'laughing' }],
-      { serving: 3, clock: null, door: Math.min(1, f / 6) }), say: [{ key: 'oh_16', who: 'profH', at: 10 }] },
-  // 30-34: the office (in progress)
-  ...[[30, 52, 'S'], [31, 24, 'S'], [32, 66, 'S'], [33, 94, 'S'], [34, 36, 'S']].map(([n, frames, cut]) => ({ n: n as number, frames: frames as number, cut: cut as 'S' | 'L', spec: null })),
-  // 35: the same angle as 20. The clock has hands, NOW SERVING 4, the door open; Darnell goes.
-  { n: 35, frames: 48, cut: 'S', spec: null }, // needs Darnell to stand and walk out (a way-out mark)
-  ...[[36, 44, 'S'], [37, 36, 'L'], [38, 40, 'S'], [39, 30, 'S'], [40, 36, 'S']].map(([n, frames, cut]) => ({ n: n as number, frames: frames as number, cut: cut as 'S' | 'L', spec: null })),
+  // THE LECTURE HALL
+  sh(1, 94, 'S', NONE, [L('oh_01', 'profH', 12)], [['laptop', 4, 0.8]]),
+  sh(2, 36, 'S', NONE, [L('oh_02', 'profH', 4)]),
+  sh(3, 36, 'S', NONE),
+  sh(4, 48, 'S', NONE),
+  sh(5, 36, 'S', NONE, [L('oh_03', 'theo', 2)]),
+  sh(6, 74, 'S', NONE, [L('oh_04', 'nio', 4)], [['zip', 104, 0.6]]),
+  sh(7, 36, 'S', NONE, [L('oh_05', 'theo', 2)]),
+  sh(8, 30, 'S', NONE, [L('oh_06', 'nio', 2)]),
+  sh(9, 48, 'S', NONE),
+  sh(10, 44, 'S', NONE, [L('oh_07', 'nio', 12)]),
+  // THE CORRIDOR
+  sh(11, 60, 'S', NONE), sh(12, 80, 'S', NONE), sh(13, 48, 'S', NONE),
+  sh(14, 29, 'L', NONE, [L('oh_08', 'nio', 6)]),
+  sh(15, 72, 'L', NONE, undefined, [['bang', 38, 0.8]]),
+  sh(16, 72, 'S', NONE, undefined, [['tap', 40, 0.9]]),
+  sh(17, 62, 'S', NONE, [L('oh_09', 'nio', 6)]),
+  sh(18, 62, 'L', NONE, [L('oh_10', 'cleaner', 8)], [['mop', 0, 0.5], ['mop', 24, 0.5]]),
+  sh(19, 12, 'S', NONE, undefined, [['whoosh', 0, 0.8]]),
+  // THE WAITING ROOM. The smash cut lands; silence but the hum; only the spinner and Nio's eyes move.
+  sh(20, 72, 'S', W('aisle', 72, [nioSit('shock'), darnellSit('neutral'), ...waiters()]), undefined, [['hit', 0, 0.9]]),
+  sh(21, 29, 'L', W('clock', 29, [])),
+  sh(22, 36, 'S', W('darnell', 36, [darnellSit('charm', true)]), [L('oh_11', 'darnell', 6)]),
+  sh(23, 44, 'S', W('nio', 44, [nioSit('smug', true)]), [L('oh_12', 'nio', 4)]),
+  sh(24, 44, 'S', W('two', 44, [nioSit('uneasy'), darnellSit('charm', true)]), [L('oh_13', 'darnell', 3)]),
+  sh(25, 36, 'S', NONE), // insert: Darnell's ticket, 4
+  sh(26, 72, 'S', W('darnell', 72, [darnellSit('real', true)]), [L('oh_14', 'darnell', 8)]),
+  sh(27, 60, 'S', W('nio', 60, [nioSit([[0, 'crushed'], [24, 'sheepish']], true)]), [L('oh_15', 'nio', 26)]),
+  sh(28, 29, 'L', W('darnell', 29, [darnellSit([[0, 'charm'], [14, 'neutral']])])),
+  sh(29, 56, 'S', (f) => W('door', 56, f < 6 ? [] : [{ who: 'profH', at: 'doorway', action: 'talk', face: 'laughing' }],
+    { serving: 3, clock: null, door: Math.min(1, f / 6) }), [L('oh_16', 'profH', 10)], [['creak', 0, 0.6]]),
+  // THE OFFICE
+  sh(30, 52, 'S', NONE, [L('oh_17', 'profH', 10)]),
+  sh(31, 24, 'S', NONE),
+  sh(32, 80, 'S', NONE, undefined, [['paper', 10, 0.7]]), // insert: the flyer slides across the desk
+  sh(33, 52, 'S', NONE, [L('oh_18', 'profH', 8)]),
+  sh(34, 60, 'S', NONE, [L('oh_19', 'nio', 26)]),
+  sh(34.5, 48, 'S', NONE, [L('oh_20', 'profH', 4)]),
+  // Same angle as 20: the clock has hands, NOW SERVING 4, the door open, and Darnell walks out into the light.
+  sh(35, 48, 'S', W('aisle', 48, [{ who: 'darnell', at: 'middle', to: 'doorway', action: 'walk', face: 'charm', back: true }, ...waiters(false)],
+    { serving: 4, clock: [2.6, 0.1], door: 1 })),
+  sh(36, 44, 'S', NONE, [L('oh_21', 'profH', 6)]),
+  sh(37, 36, 'L', NONE, undefined, [['click', 20, 0.8]]),
+  // THE PITCH
+  sh(38, 40, 'S', NONE, [L('oh_22', 'theo', 14)], [['grass', 0, 0.4], ['grass', 8, 0.4], ['grass', 16, 0.4]]),
+  sh(39, 30, 'S', NONE, [L('oh_23', 'nio', 2)]),
+  sh(40, 30, 'S', NONE),
+  sh(41, 56, 'S', NONE, [L('oh_24', 'nio', 6)]),
+  sh(42, 30, 'S', NONE),
 ];
+
+// A shot is never shorter than its lines: the last line ends at least 6 frames before the cut.
+const lenOf = (s: Shot) => Math.max(s.frames, ...(s.say ?? []).map((l) => l.at + Math.ceil((vo[l.key]?.dur ?? 0) * 24) + 6));
+
+// Where each shot is, for the sound beds. The theme plays from the lecture hall through the corridor, stops dead on the
+// smash cut into the waiting room (20), and comes back on the pitch (38).
+const PLACE = (n: number) => n <= 10 ? 'hall' : n <= 19 ? 'corridor' : n <= 29 || n === 35 ? 'waiting' : n <= 37 ? 'office' : 'pitch';
+const BEDS: Record<string, [string, number][]> = { hall: [['oh_hall', 0.35]], corridor: [['oh_hum', 0.25]], waiting: [['oh_hum', 0.3]], office: [['oh_office', 0.3]], pitch: [['oh_pitch', 0.35]] };
+const MUSIC = (n: number) => n <= 19 || n >= 38;
 
 export type OHProps = { cut: 'short' | 'long'; only?: number[] };
 export const timeline = (p: OHProps) => {
   let at = 0;
-  return SHOTS.filter((s) => (p.cut === 'long' || s.cut === 'S') && (!p.only || p.only.includes(s.n))).map((s) => { const r = { ...s, from: at }; at += s.frames; return r; });
+  return SHOTS.filter((s) => (p.cut === 'long' || s.cut === 'S') && (!p.only || p.only.includes(s.n))).map((s) => { const r = { ...s, frames: lenOf(s), from: at }; at += r.frames; return r; });
 };
 export const ohLength = (p: OHProps) => timeline(p).reduce((a, s) => a + s.frames, 0);
+
+// Runs of shots that share a key: [key, first frame, end frame].
+const runs = (shots: (Shot & { from: number })[], key: (s: Shot) => string): [string, number, number][] => {
+  const out: [string, number, number][] = [];
+  shots.forEach((s) => { const k = key(s), last = out[out.length - 1];
+    if (last && last[0] === k && last[2] === s.from) last[2] = s.from + s.frames; else out.push([k, s.from, s.from + s.frames]); });
+  return out;
+};
 
 const ShotView: React.FC<{ shot: Shot }> = ({ shot }) => {
   const f = useCurrentFrame();
@@ -86,6 +135,12 @@ export const OfficeHours: React.FC<OHProps> = (p) => {
           ))}
         </Sequence>
       ))}
+      {runs(shots, (s) => PLACE(s.n)).flatMap(([k, a, b]) => BEDS[k].map(([f, v]) => (
+        <Sequence key={`${k}${a}${f}`} from={a} durationInFrames={b - a} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} loop /></Sequence>)))}
+      {runs(shots, (s) => (MUSIC(s.n) ? 'm' : '')).filter(([k]) => k).map(([, a, b]) => (
+        <Sequence key={`m${a}`} from={a} durationInFrames={b - a} layout="none"><Audio src={staticFile('sfx/oh_theme.wav')} volume={(f) => ((shots.find((s) => s.from <= a + f && a + f < s.from + s.frames)?.say?.length ?? 0) ? 0.1 : 0.2)} loop /></Sequence>))}
+      {shots.flatMap((s) => (s.sfx ?? []).map(([f, at, v], i) => (
+        <Sequence key={`${s.n}fx${i}`} from={s.from + at} layout="none"><Audio src={staticFile(`sfx/oh_${f}.wav`)} volume={v ?? 1} /></Sequence>)))}
       {shots.flatMap((s) => (s.say ?? []).filter((l) => vo[l.key]).map((l) => {
         const a = s.from + l.at, b = a + Math.max(Math.ceil(vo[l.key].dur * 24) + 8, 30);
         return frame >= a && frame < b ? <Sub key={l.key} text={vo[l.key].sub} /> : null;

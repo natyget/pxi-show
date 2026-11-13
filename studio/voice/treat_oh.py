@@ -3,7 +3,7 @@
 # usage: python treat_oh.py jobs.json manifest_out.json
 import sys, json, subprocess, soundfile as sf
 import clean
-PA = {"raw_oh_01.wav", "raw_oh_02.wav", "raw_aud_profh_a_01.wav", "raw_aud_profh_b_01.wav", "raw_aud_profh_c_01.wav"}
+PA = {"raw_oh_01t1.wav","raw_oh_01t2.wav","raw_oh_02t1.wav","raw_oh_02t2.wav", "raw_oh_01.wav", "raw_oh_02.wav", "raw_aud_profh_a_01.wav", "raw_aud_profh_b_01.wav", "raw_aud_profh_c_01.wav"}
 PA_FX = ",bass=g=9:f=110,aecho=0.9:0.7:90|180|320:0.45|0.3|0.18,volume=1.4"
 jobs = json.load(open(sys.argv[1])); out = {}
 for j in jobs:
