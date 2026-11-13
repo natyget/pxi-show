@@ -343,4 +343,10 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "lets wrap this up for an actual sries we can start posting"
   - What this changed: `bible/anti-slop.md` section 5 (no carried-over jokes), `bible/story.md` sections 1 and 4
     (follow-along stories; PXI is the phone his world runs on), `bible/craft-library.md` (continuity in the
-    engine), LEARN paused in `engine/STATE.md`, "No Pics" retired as built.
+    engine), LEARN paused in `engine/STATE.md`, "No Pics" retired as built; bingo and fortune dropped, and the kept list in
+    `engine/post-formats.md` re-cut to the formats a person would repost.
+- **Nov 13, 1:36 AM, word for word:**
+  - "i merged pr 5 first and now pr 6 has merge conflicts that need to be fix so lets fix it please"
+  - "i told the writer to fix some writing and sharpen the stories"
+  - "i do not see why i need to add hugging face when access ro website all over are limitless and its full access.
+    i cant even add hugging face since its full access"
