@@ -1,0 +1,5 @@
+[
+ {"set":"nioRoom","camera":"wide","frames":48,"actors":[{"who":"nio","at":"rug","action":"stand","face":"deadpan","facing":"camera","hold":"phone"}]},
+ {"set":"nioRoom","camera":"full","frames":24,"actors":[{"who":"nio","at":"rugLeft","to":"rugRight","action":"walk","face":"smug"}]},
+ {"set":"nioRoom","camera":"bed","frames":40,"actors":[{"who":"nio","at":"bedEdge","action":"sit","face":[[0,"deadpan"],[20,"shock"]]}]}
+]

@@ -77,14 +77,36 @@ is the working rule and engine/DIRECTIVE.md is the standing order; follow them o
 earlier threads.
 
 - A rendered sequence is the only proof. Show frames or video, never a description.
-- Humor is deadpan and grounded (bible/humor.md). Nio is sharp, vain and certain, never a goof.
-- PXI is the engine of every plot, with the real app's screens 1:1. Every release has a PXI call to action.
+- The show is Nio World, written through a Gumball lens (bible/writers-room.md, bible/humor.md). Nio is alive,
+  funny and a troll on purpose, never a goof, never an NPC. Episodes are funny even without PXI.
+- PXI is Nio's app. It is never forced into a story, its screens are the real app 1:1, and every release has a
+  PXI call to action in the tag, caption or end frame.
+- When the founder tells a story from their life, in any chat, bank it and turn it into premises the same turn
+  (engine/story-intake.md), then say in a line or two what it became.
+- Voices are only the designed voices in bible/characters.md.
+- The standing constraints in CLAUDE.md hold in every thread.
 - Nothing by accident: every strange thing is declared, or it is a defect (bible/anti-slop.md).
 - Record every founder note in the founder's own words, dated, in bible/show-bible.md, in the turn it arrives.
 - Nothing is posted or scheduled without the founder's approval of that exact piece.
 - Use the top model only for the directive and the bible. Building, rendering, retrieving and scheduling go to
   the cheaper models named on the stage cards.
 ```
+
+## Environment setup script
+
+Paste this as the cloud environment's setup script. It installs everything a scheduled run needs to reach a draft
+render (ffmpeg, fontTools, `npm ci`) and the pinned voice stack, and skips what is already there.
+
+```bash
+#!/bin/bash
+set -e
+cd "$(git rev-parse --show-toplevel 2>/dev/null || echo /home/user/pxi-show)"
+bash engine/setup.sh all
+```
+
+Voice lines are made only with `bash engine/tools/voice.sh <jobs.json>` (see `engine/tools/voice_lock.json`).
+Use `bash engine/setup.sh render` for a run that makes no voice lines. The venv is `~/.pxi-voice` and the model
+cache `~/.cache/pxi-hf`; both are outside the repo.
 
 ## Why this is cheap
 

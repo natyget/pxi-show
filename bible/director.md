@@ -1,52 +1,70 @@
-# Director's playbook — directing PXI LABS like a Gumball spin-off (our characters, their craft)
+# Directing and acting (how a script becomes a sequence that is alive)
 
-Sources: creator Ben Bocquelet and crew interviews (Skwigly 2014; ScreenRant 2025), AV Club reviews, critic essays.
-We copy none of Gumball's characters, designs, names or voices. We copy the *discipline*.
+The founder, Nov 11, on the pilot: "the heads bounce up and down and it has an animal cross feel", "the facial
+expression are gone and gumball is expressive this guy feels robotic", "weird long pauses and shots of just the
+people or just the wall". And on the bar: shots "flawless and oscard worthy so be clever". This page is how.
+We copy no show's characters or designs. We copy the discipline.
 
-## The rules the Gumball team works by
-1. **One-sentence mundane premise.** Bocquelet writes premises as one line on his phone ("a guy gets a push that he's
-   in a photo"). If it doesn't fit in one sentence, it isn't a premise.
-2. **Take it as far as it can go.** "If there's a gag, it has to be the best possible version of that gag. It has to be
-   pushed as far as it can go." Each beat must top the last: photo of him → album of him → photo from the future →
-   he deletes the app → the app tells on him anyway.
-3. **Comedy is a physical reaction or it's cut.** "It's supposed to induce a reaction, a physical one. If it doesn't,
-   it doesn't work. Rework it until it does." The QA reviewer asks: where exactly does a viewer laugh/gasp? If no
-   answer per 5 seconds, rewrite.
-4. **From a real place.** Real feelings (being watched, being left out, being bored at 11 PM) under the absurd.
-5. **The world treats absurd things as normal.** Only Nio reacts. The sock guy is just there.
-6. **Three acts + a set piece**, even in 45 seconds: setup (0–8 s) → escalation (8–35 s) → set piece / turn → button.
-7. **Long-running mystery, loose continuity.** Plant things (the rooftop flyer on the laundromat board) and pay them off
-   episodes later. Log every plant in `callbacks.md`.
-8. **Something they haven't seen before**, every episode: a visual idea, a format break, a new use of the phone screen.
+## The rules the room directs by
+
+1. **Comedy is a physical reaction or it is cut.** For every five seconds, name the picture or line where a
+   viewer laughs, gasps or leans in. If there is no answer, the stretch is rewritten.
+2. **Push it.** A gag is the best possible version of that gag, taken as far as it goes.
+3. **The world treats the absurd as normal.** Staging says so: the strange thing gets no special light, no
+   zoom and no music.
+4. **Something they have not seen before**, every episode: one picture idea, one use of the medium.
+5. **Every shot earns its place.** It carries a line, a face, an action or a find. If it carries none, cut it.
+
+## Acting: faces first
+
+The face is flat 2D on the head (lids, brows, pupils, mouth) and it carries the show.
+
+- **An expression for every line**, named on the board (`shots.md`): lit up, smug, trolling, crushed, bored,
+  caught, sincere, dead-eyed. "Neutral" is allowed once a scene, as a choice.
+- **The face goes first.** It changes 3 to 6 frames before the line, and it changes again when the other
+  person's line lands. A reply is always preceded by a reaction.
+- **Big, then bigger.** Expressions are pushed past realistic: eyes to slits or to saucers, the mouth across
+  half the face, brows off the head. Subtle reads as nothing at phone size.
+- **Asymmetry.** One brow, half a smile, one eye narrowed. A symmetrical face looks like a mask.
+- **Eyes lead.** Pupils move to the thing before the head does. Blinks land on changes of thought.
+- **Layering:** lids are always drawn over the eye white. Check every expression on the rig sheet.
+
+## Acting: bodies
+
+- **Pose to pose.** A strong, readable pose, a fast move (2 to 4 frames, with a squash or a smear), a settle,
+  and a hold. That snap is the cartoon feel. Even, floaty motion is the farm-game feel.
+- **No idle loops.** Nothing bobs. A character who is listening holds a pose, blinks, and shifts weight once
+  when something lands. Nobody breathes in sync.
+- **Anticipation and overlap.** A dip before a jump, a lean back before a lunge. Hair, sleeves and held things
+  arrive a frame or two late.
+- **Silhouette.** Each pose reads in black. Arms are away from the body when they are doing something.
+- **Hands act.** They point, dismiss, hold the phone, cover the face. Never a raised hand with no reason.
+- **Physics always.** A moving body travels, feet stay on the floor, props are held and fall.
+- **Attitude walks.** Nio leaving a party he won walks differently from Nio leaving one he lost.
 
 ## Shot grammar
-- **Hook in the first second** with motion and sound (a lone sock spinning; dryers; a TV mid-sentence).
-- **Hard cuts** on action. A shot lasts as long as the joke needs, not longer (most 1–3 s).
-- **Reaction shots are the comedy.** After every reveal, cut to the face. Hold the deadpan one beat longer than
-  comfortable, then cut.
-- **Inserts** of the phone are their own beats, readable in one glance.
-- **Reverse shots** to show what he's afraid of, and that nothing is there (or something absurdly calm is).
-- **Coverage per scene:** a wide to place everyone, then MCU/CU for acting, then inserts. Frame faces with `frame()`
-  from the head's real position: eyes ~40% from the top, centred, headroom kept.
-- **The button:** end on the smallest, driest line or image (". . . it's clean.").
 
-## Acting (flat 2D faces)
-- Faces carry it: lids, brows, pupils, mouth. Escalate expressions with the story: neutral → squint → one brow →
-  sweat → wide-eyed trip-out (tiny pupils, mouth wobble).
-- Squash on sharp reactions (a whip turn, a realisation) for 2–4 frames, then settle. Anticipation before big moves
-  (a dip before standing). Overlap: nothing starts and stops at the same time. No dead pauses between animations.
-- Physics always: a moving body travels; feet stay on the floor; props fall with gravity; hands hold things.
+- **Hook in the first second**, with motion and sound.
+- **Geography first:** a wide that shows where everyone is.
+- **Hard cuts on action.** A shot lasts as long as its joke. Most are 1.2 to 3 seconds
+  (`bible/craft-library.md` has the floors).
+- **Conversations are covered properly:** the two-shot to place them, then singles that favour the listener
+  as often as the speaker, because the reaction is the joke. Cut on the look, not on the end of the line.
+- **A picture joke gets its own shot** and its own half second of quiet.
+- **Inserts** of the phone are their own beats, readable at a glance.
+- **Angles are chosen for the joke:** low for his ego, high and wide for his loneliness, flat and centred for
+  deadpan. A scene uses at least three framings.
+- **The quiet moment** (the walk home, the couch) is the one place the camera is allowed to sit wide and still.
+  Something small still moves: him, a light, the phone.
+- **The button** is the smallest, driest image, and the cut comes on it.
+- **Plain staging for jokes.** Flat, clear, the face readable. A showy angle can overpower a joke; save it for
+  when he is taking himself too seriously.
+- **The board can beat the script.** Do not just draw what the script says. A joke with no words wins.
 
-## Writing Nio
-- Thoughts in (parentheses), spoken lines sparingly: he thinks, then says the one thing out loud.
-- Voice: young, quick, expressive; Black Gen Z cadence, never caricature: "nah", "aight", "ain't this…", "who is out
-  here…". Clean except light words. He narrates nothing; he reacts.
-- He pivots away from anything sensitive with something sweeter or bigger (dismissal engine).
+## Before a board is called finished
 
-## Writing Maya
-- Bright, sweet delivery; the chaos is in what she does (she already said yes for both of you).
-
-## Episode checklist (before render)
-- One-sentence premise · escalation ladder of 4+ steps · a laugh/gasp at least every 5 s · a glitch beat · a weird
-  character · a mundane explanation planted · PXI used for real and shown, not said · cliffhanger (unless final part)
-  · room tone from frame 1 · every beat a new shot.
+- Every shot has one purpose, one named expression for each face in it, and something that moves.
+- No shot shows a wall, an empty room or a person waiting.
+- Every exchange of four lines or more has at least one reaction shot.
+- The picture joke, the hold, the smash cut and the place the music stops dead are each marked.
+- Read the board with the lines covered. Is it still funny, and can you still follow it?

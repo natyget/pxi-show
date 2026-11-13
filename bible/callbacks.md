@@ -1,5 +1,18 @@
 # Callbacks and plants (open threads to pay off)
 
+**The rule (founder, Nov 11):** one episode in three pays off a joke from at least five episodes earlier.
+"That is how lore is built." Every episode leaves at least one plant here: a background detail, a line, a
+character who can come back. PLAN marks which episode pays off which plant. Until five episodes exist, plant and
+do not force a payoff.
+
+## Live plants
+
+| Planted | Where | Pay off |
+|---|---|---|
+| (none yet) | | |
+
+## Parked (from before Nov 10; not canon unless the founder brings them back)
+
 | Planted | Where | Pay off |
 |---|---|---|
 | The album "nio being nio" (1 person, owner shown as "?") | Ep 1 | Part 2: it's Maya's album; she adds every photo of him she or her friends take ("you're my favourite subject, you look confused in all of them"). |
@@ -9,6 +22,3 @@
 | Rooftop party flyer on the laundromat board | Ep 1 (background) | Shows up again in Part 2 when he notices it was there all along. |
 | The cooking show on the laundromat TV ("like it owes us money") | Ep 1 | Recurring background show; the chef appears in a later episode as a weird character. |
 | The night market across from his window | Pilot (retired) | Becomes its own Discover-led episode: "there's nothing to do" while it's a block away. |
-
-Note, Nov 10: everything above is from before Nio became PXI's maker (`bible/story.md`, section 8). It is parked, not
-canon, unless the founder brings it back.

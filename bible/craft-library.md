@@ -64,8 +64,27 @@ one of them is why a device reads as a mistake.
   Nobody else reacts. On the cut back, the room tone returns.
 
 ### The take and the hold
-- A locked frame on a face. Nothing moves but the eyes or a blink. Room tone only. 8 to 12 frames longer than
-  is comfortable, then a hard cut.
+- A locked frame on a face that is doing something: deciding, enjoying it, dying inside. The eyes, the lids or
+  the mouth move. Room tone only. 8 to 12 frames longer than is comfortable, then a hard cut. One or two an
+  episode. A hold on a wall, a room or a face with nothing happening on it is dead air and is cut.
+
+### The Kevin (unconfirmed: use only if the script declares one)
+- **Way in:** none. He is in the first wide shot of the room, small, still, off the centre, and nobody looks
+  at him. A viewer who rewinds finds him there from frame one.
+- **Picture:** lit and drawn exactly like everything else. No glow, no music sting, no zoom. He moves less
+  than anyone in the room.
+- **Sound:** nothing of his own until he speaks. One flat line.
+- **Way out:** he gets involved, and the glitch button takes him. Never an explanation.
+- **Never:** a reveal shot with a sound effect; anyone asking who he is twice; more than one in an episode.
+
+### Glitch button (unconfirmed: use only if the script declares one)
+- The last three seconds of an episode. The picture breaks in one of three declared ways: the colours split
+  (red and blue pull apart), the frame slices into horizontal bands that slide, or the subject dissolves into
+  pixels. One of them, not all three.
+- **Sound:** a short burst of digital static and a cut to silence, or to the tag.
+- It lands on the weirdest image or on the Kevin. Nothing is resolved after it.
+- It is written in the script header and the intent ledger. A glitch anywhere else in an episode is a defect
+  unless the ledger declares it.
 
 ### The turn or reveal
 - Cut to the thing before the reaction, hold it for the reading time, then the face. One sound: either a
@@ -85,6 +104,10 @@ The second pilot build was "too fast and something hard to follow". These are fl
 - **Speech:** no more than about 2.3 words a second, and never two people talking over a piece of text the
   viewer is meant to read.
 - **Geography first:** a new place opens on a shot that shows where everyone is before any close-up.
+- **Nothing dead.** Every shot has something to watch: a face changing, something moving, a detail to find, a
+  line landing. The founder, Nov 11: "weird long pauses and shots of just the people or just the wall ... will
+  kill retention." No shot of an empty room, a wall or a person waiting. No gap between lines unless it is the
+  one marked hold. These floors stop a cut being too fast; they are never a reason to leave air in it.
 - **The stopwatch test:** the reviewer says, for each 10 seconds, what just happened. If it cannot, that
   stretch is too fast or too crowded.
 
@@ -127,6 +150,10 @@ Nio's skin tone differed between the two pilot reels. A character is one person 
 
 ## Look
 
+The look is being redesigned in its own thread and none is chosen yet (founder, Nov 11: "unique and nice instead of this animal cross
+sound look and feel ... a little cool and artisitc", and the current one feels "a little foggy"). What follows
+still holds for any look.
+
 The founder wants a high-quality pixel look, not a low-quality one: "smooth curve looks when it comes to the
 curvature but still pixel effect and not cylynder for fingers."
 
@@ -138,13 +165,30 @@ curvature but still pixel effect and not cylynder for fingers."
 - Close-ups get a finer pixel size than wides, so faces are never blocky.
 - The final file is exported at full size and high bitrate. Softness or blockiness from compression is a defect.
 
+## Faces and bodies that act
+
+The founder, Nov 11: "the facial expression are gone and gumball is expressive this guy feels robotic", and
+"the heads bounce up and down and it has an animal cross feel". Full rules are in `bible/director.md`.
+
+- Every line has a named expression, and the face changes **before** the line starts.
+- A character's face changes at least once every two seconds they are on screen, and Nio shows at least three
+  clearly different faces an episode.
+- No idle bob. A head or a body never moves up and down on a loop. A character who is not acting holds a
+  pose and blinks. Movement is from one strong pose to the next, fast, with a settle.
+- Eyelids are drawn over the eye, always. A lid that shows behind the white of the eye is a defect.
+
 ## Voices
 
-- Only the voices the founder approved, made with the approved tools and settings recorded in
-  `bible/characters.md`. There is no fallback voice. If the approved voice cannot be produced in this session,
+- **PXI is said "pixie".** Founder, Nov 11: "pxi is pronounced pixie". In every spoken line the voice says
+  "pixie", so the text sent to the voice tool is written `pixie`. Everywhere it is read (subtitles, screens,
+  covers, captions) it stays `PXI`. It is never spelled out as letters aloud.
+
+- Only the voices the founder approved: the Qwen3-TTS designed voices for Nio and Maya, made exactly as
+  recorded in `bible/characters.md`, with an acting note on every line. There is no fallback voice. If the approved voice cannot be produced in this session,
   the stage stops as `BLOCKED`. A placeholder or robotic voice never goes into a cut that anyone sees.
 - The only effect on a voice is the one written down for that character. Reverb is for flashbacks. Anything
-  that makes a voice sound bubbly, metallic or underwater is a defect.
+  that makes a voice sound bubbly, metallic or underwater is a defect. The one exception is the show's
+  walkie-talkie colour, which the founder picked by ear on Nov 11 (see `bible/characters.md`, Treatment).
 - Every new batch of lines is compared by ear with the approved reference before it is used.
 
 ## Thumbnails
@@ -170,3 +214,21 @@ The entries above are the standard conventions of film and animation editing as 
 shaped by the founder's notes. A short look at published guides on flashbacks found the same core advice: mark
 the start and the end clearly, change the visual tone (grain, design, costume), keep it brief and tied to the
 present story. Entries are corrected when a release shows that a treatment did not read.
+
+## Continuity in the engine (founder, Nov 13)
+
+- **One world, one hand.** Every hand, thumb and phone on screen is drawn by the engine, from the same rig as the
+  body. A phone insert is a shot of his hand holding the phone (the engine's hand), never a flat drawing over a
+  screenshot. No insert may use a hand, a person or a face drawn any other way.
+- **Crowds are people.** Background characters come from the cast and the background set (each with their own head
+  shape, hair, build, clothes and face), never silhouettes, blocks or blur standing in for people.
+- **A reflection or a photo is a shot.** A face seen in glasses, a mirror or a photo is the scene rendered from that
+  point of view, then mapped onto the surface. Never a head pasted into a frame.
+- **The filter is the app's.** A photo taken in the world (with flash or not) is the scene rendered through the PXI
+  filter's look, so a viewer sees the filter working in their world. Map the app's filters before the first photo.
+- **Mouths speak.** Talking uses mouth shapes for the sounds (open, wide, round, closed on b, p, m, teeth, tongue),
+  timed to the voice, never one shape flapping up and down to the chin.
+- **Places.** Each story goes where it happens (rooftops, clubs, a speakeasy, a game bar, a classroom, outdoors).
+  A bedroom stands in for nowhere else.
+- **Drunk Nio dances sillier.** His dance vocabulary grows with the night (founder: "if we can have him do more
+  silly ones when he's drunk that sould be tuff").

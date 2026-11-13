@@ -1,0 +1,42 @@
+{
+  "_about": "The one place the approved voice settings live. Source of truth for the descriptions is bible/characters.md; voice.py refuses to run if they differ.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "packages": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3"
+  },
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "seed": 7,
+  "language": "English",
+  "text_rules": {
+    "pxi_written_as": "pixie",
+    "refuse_patterns": [
+      "aight",
+      "ight",
+      "drawn-out nah"
+    ]
+  },
+  "treatment": {
+    "trim_silence": true,
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1,
+    "colour": "none"
+  },
+  "envelope_fps": 12,
+  "characters": {
+    "nio": "A 21-year-old Black American guy, light-skinned, lower-mid pitch, warm and a little husky, quick and animated like the lead of a cartoon comedy; confident, cocky, playful; big swings between deadpan and excited; casual Gen Z delivery.",
+    "maya": "A young woman around 20, bright, sweet and earnest voice, soft and clear, slightly higher pitch, gentle and kind, a little breathless when excited; sincere and literal, like the kind sidekick in a cartoon."
+  },
+  "refused_characters": {
+    "friend": "The best friend has no approved voice (bible/characters.md)."
+  }
+}

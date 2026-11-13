@@ -19,7 +19,7 @@ never the style. It is a detail nobody looked at. So every strange thing is eith
 Rules for a ledger entry:
 - It is **staged**: framed, held, or reacted to. An odd thing that flashes past unframed reads as a glitch.
 - It is **consistent**: the same in every shot it appears in.
-- It **costs or reveals** something. Strange for decoration is cut (`bible/humor.md`, the three tests).
+- It **costs or reveals** something. Strange for decoration is cut (`bible/humor.md`). A script may declare one unexplained thing (a Kevin), staged on purpose and written in the ledger.
 - A dream or a filler in a different look is one ledger entry for the whole piece, with the look named.
 
 At review, anything strange that is not in the ledger is a defect, even if it looks good. The reviewer never
@@ -94,3 +94,25 @@ found in an episode means the rig check was skipped, and the fix goes into the r
 - The show is plainly a cartoon. YouTube asks for an AI disclosure only when made or altered content looks
   realistic, and says clearly unrealistic animation does not need one. Check each platform's current rule at
   the first upload and once a quarter, and write the answer in `engine/playbook.md`.
+
+## 5. Nothing carried over (founder, Nov 13)
+
+"lets drop the repetitive stuff like the elbow ... every story needs to be new and not polluted by any inside jokes
+or lame humor like that." And: "what is the evidence talk just like the elbow ... these werid things need to stop".
+
+- **Every story starts empty.** No joke, word, image or bit is carried from an earlier draft, a rejected pilot, an
+  example in the bible or another thread's script. The examples in `bible/voice-and-dialogue.md` are for the sound
+  only and are never reused.
+- **Retired for good:** "evidence", "proof" and courtroom talk; the elbow (or any body part as "the only photo of
+  me"); "the actual guy"; a stranger who turns out to matter; Nio in no photos as a premise. A script that uses one
+  fails the lint.
+- **A callback is allowed only** when it is listed in `bible/callbacks.md` and the episode it pays off has
+  been posted. Anything else that repeats is pollution.
+- The writer checks the last three scripts in `episodes/` and the rejected premises, and changes any line, prop or
+  beat that echoes them.
+- **The slop list** (from the season plan, `episodes/season-1/series-plan.md`): the elbow; "evidence", "proof",
+  "pics or it didn't happen", "no photos of me"; "who is this", the man in the beanie, the guy who was there the
+  whole time, glitch endings by default; the old catchphrases "Yeah, what's up", "I'm just tired", "They left",
+  "This can't be real" (the founder's own "this guy can't be real", about a friend, stays); numbers as drama,
+  labels with dots, "Part 1"; filler formats with no joke in them; a party in his bedroom; Nio talking to himself
+  in different places; Nio explaining the app.

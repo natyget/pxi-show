@@ -10,7 +10,7 @@ subagent. The run itself renders, runs the checks and updates the state.
 1. Build the remaining S shots first, a scene at a time, drafting only the frames that changed. Then the L shots.
 2. Sound: room tone from frame 1, voices on their shots, music and effects synthesised in code as in
    `studio/anim/tools/`. No dead air, no clipping. A flat read of a line is re-performed, not kept.
-   Approved voices only, with only the effect written down for that character. No stand-in voice, ever.
+   Only the designed voices in `bible/characters.md`, made and treated the way it says. No stand-in voice, ever.
 3. Render the short cut: `engine/tools/render.sh final <Id> episodes/<id>/<id>-short.mp4`. Then the long cut
    when its shots are done.
 4. `engine/tools/render.sh sheet` for the contact sheets, saved in `episodes/<id>/`.
@@ -19,7 +19,9 @@ subagent. The run itself renders, runs the checks and updates the state.
    retells the plot from the contact sheet and subtitles alone (the sound-off test in `bible/story.md`). If its
    retelling does not match the Retell line in the script, the cut fails. It also runs the stopwatch test (what
    happened in each 10 seconds), says whether each device read as what it is (a flashback as a flashback), and
-   lists any on-screen text that is unneeded, unreadable or has stray characters.
+   lists any on-screen text that is unneeded, unreadable or has stray characters. It names every shot where
+   nothing happens, every pause that is not on an acting face, every bobbing head, and every line delivered
+   with a face that does not change.
 6. Fix what failed, re-render those frames, and run the reviewer once more on the fixed shots only.
 
 7. Compare the faces with the golden frames. Character colours come only from `Character.tsx`.

@@ -8,5 +8,5 @@
   is standing right there, holding up his sock. "...it's clean."
 - **Sat Nov 14** · the rooftop silent disco Maya signed them up for (not yet shown outside the photo).
 
-Note, Nov 10: everything above is from before Nio became PXI's maker (`bible/story.md`, section 8). It is parked, not
+Note, Nov 10: everything above is from before Nio became PXI's maker (`bible/story.md`, section 11). It is parked, not
 canon, unless the founder brings it back.

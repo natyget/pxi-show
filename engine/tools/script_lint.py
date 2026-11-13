@@ -4,6 +4,7 @@
 usage: python3 engine/tools/script_lint.py episodes/<id>/script.md [--target 55]
 
 Reads dialogue lines of the form `NAME: text` or `NAME (note): text` or `NAME *(note)*: text`.
+What we see is written in [square brackets] on its own line (older scripts use parentheses).
 Only the part of the file under a "## Script" heading is checked, if there is one. The "## Tag" section is
 not checked, because the tag is the one place where Nio may name PXI and ask the viewer to get it.
 Text the show itself puts on screen or on a cover is listed under "## Screen text" and checked for labels,
@@ -22,7 +23,10 @@ TOLERANCE = 0.15
 # Phrases the founder banned, plus the tells in .claude/skills/writers-room/tells.md that can be matched by text.
 BANNED = [
     (r"\bhold up\b", "founder: avoid 'hold up' out loud"),
-    (r"\bight\b", "founder: never 'ight'"),
+    (r"\ba?ight\b", "founder: never 'ight' or 'aight'"),
+    (r"\bna+h{2,}\b|\bnaa+h\b", "founder: no drawn-out 'nah'"),
+    (r"\bso (random|crazy|weird)\b", "someone acknowledges the joke"),
+    (r"\bcheaper than\b", "never compare fees"),
     (r"\bit'?s a short one\b", "founder's example of a forced non sequitur"),
     (r"\bliterally\b", "filler"),
     (r"\bvibes?\b", "filler"),
@@ -36,14 +40,28 @@ BANNED = [
     (r"\b(totally )?normal (person )?thing\b", "tidy self-narration"),
     (r"\bi guess we learned\b", "closing moral"),
     (r"\b(that'?s|this is) (so |really |kind of )?(weird|awkward|crazy|random|funny)\b", "someone acknowledges the joke"),
-    (r"\bdownload\b", "PXI is shown, never sold"),
+    (r"\b(evidence|proof)\b", "founder, Nov 13: retired, no evidence talk"),
+    (r"\belbows?\b", "founder, Nov 13: retired, no elbow jokes"),
+    (r"\bthe actual guy\b", "rejected pilot; never again"),
+    (r"\bpics or it didn'?t happen\b", "slop list"),
+    (r"\bno (photos|pics|pictures) of me\b", "slop list"),
+    (r"\bwho is this\b", "slop list"),
+    (r"\bbeanie\b", "slop list"),
+    (r"\byeah,? what'?s up\b", "slop list: old catchphrase"),
+    (r"\bi'?m just tired\b", "slop list: old catchphrase"),
+    (r"\bthey left\b", "slop list: old catchphrase"),
+    (r"\bthis can'?t be real\b", "slop list: old catchphrase (\"this guy can't be real\" is fine)"),
+    (r"\bpart (1|one)\b", "whole releases, never Part 1"),
     (r"\bapp store\b", "PXI is shown, never sold"),
     (r"\bcheck out pxi\b", "PXI is shown, never sold"),
 ]
 NOT_X_BUT_Y = re.compile(r"\b(it'?s|that'?s|this is) not\b[^.?!]*,\s*(it'?s|that'?s|this is)\b", re.I)
 LIST_OF_THREE = re.compile(r"\b[\w']+(?: [\w']+)?, [\w']+(?: [\w']+)?,? (?:and|or) [\w']+", re.I)
 LINE = re.compile(r"^\s*(?:[-*]\s+)?\**([A-Z][A-Z .'-]{1,24}?)\**\s*(?:\*?\([^)]*\)\*?)?\s*:\s*(.+)$")
-NOT_SPEAKERS = {"INSERT", "COLD OPEN", "BUTTON", "MONTAGE", "CUT", "STAMP", "TRUE THING", "PXI ENGINE", "SETS"}
+NOT_SPEAKERS = {"INSERT", "COLD OPEN", "BUTTON", "MONTAGE", "CUT", "STAMP", "TRUE THING", "PXI ENGINE", "SETS",
+                "HOOK", "SETUP", "ABSURD TURN", "ESCALATION", "EMOTIONAL HIT", "GLITCH BUTTON", "INT", "EXT",
+                "ORDINARY MOMENT", "ITCH", "THEORY", "TILT", "SET PIECE", "REAL SECOND", "OUT"}
+NARRATORS = {"NARRATOR", "VO", "V.O.", "VOICEOVER", "VOICE OVER"}
 
 
 def spoken(text):
@@ -82,7 +100,7 @@ def main():
             if said:
                 lines.append((m.group(1).strip(), said))
             continue
-        if s.startswith(("(", "*(", "-", "INSERT", "**")):
+        if s.startswith(("[", "(", "*(", "-", "INSERT", "**")):
             actions += 1
 
     fails, warns = [], []
@@ -104,6 +122,19 @@ def main():
     if not target * (1 - TOLERANCE) <= est <= target * (1 + TOLERANCE):
         warns.append(f"runtime estimate {est:.0f} s is outside {target:.0f} s ±15% (rough: words and action lines)")
 
+    if len(lines) >= 6 and len({w.upper() for w, _ in lines}) < 2:
+        fails.append("only one person speaks; an episode needs people talking to each other")
+    for w, _ in lines:
+        if w.upper() in NARRATORS:
+            fails.append(f"{w} speaks (no narrator, ever)")
+            break
+    faces = len(re.findall(r"\[[^\]]*\b(Nio|NIO)\b[^\]]*\]", body))
+    if "[" in body and faces < 3:
+        warns.append(f"only {faces} bracketed cues mention Nio; write his face changes (at least three)")
+
+    if "Logline:" in raw and not re.search(r"^Nio's game:\s*\S", raw, re.M):
+        fails.append("the header has no \"Nio's game:\" line (who he is playing with, the game, and when it stops)")
+
     pxi_said = 0
     for who, said in lines:
         low = said.lower()
@@ -116,7 +147,7 @@ def main():
             warns.append(f'{who}: "{said}" (looks like a list of three)')
         if "—" in said or said.count("...") + said.count("…") > 1:
             warns.append(f'{who}: "{said}" (dash or ellipsis used for timing; use a take)')
-        pxi_said += len(re.findall(r"\bpxi\b", low))
+        pxi_said += len(re.findall(r"\b(pxi|pixie)\b", low))
     if pxi_said > 1:
         fails.append(f"PXI is named aloud {pxi_said} times (at most once)")
     if sum(said.count("...") + said.count("…") for _, said in lines) > 2:

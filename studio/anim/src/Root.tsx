@@ -6,44 +6,42 @@ import { VrmTest } from './VrmTest';
 import { CharSheet } from './CharSheet';
 import { Pilot, PILOT_LEN, PhotoStill } from './Pilot';
 import { Ep1, EP1_LEN, Ep1Photo } from './Ep1';
-import { PilotNotMe, NOTME_LEN, NotMePhoto } from './PilotNotMe';
-import { PilotNoEvidence, NE_LEN, NoEvidencePhoto } from './PilotNoEvidence';
-import { WhatImBuilding, WIB_LEN, Thumb } from './WhatImBuilding';
-import { FaceTest } from './FaceTest';
-import { PilotNoPics, NP_LEN, NoPicsPhoto } from './PilotNoPics';
-import { PilotOnePhoto, PILOT1_LEN, PilotPhoto } from './PilotOnePhoto';
-import { LookScene, LookSheet, LookClip, CLIP_LEN } from './look/LookTest';
-import { LOOKS } from './look/Rig2D';
+import { PilotOnePhoto, PILOT1_LEN, PilotPhoto, pilot1Len } from './PilotOnePhoto';
+import type { Cut } from './lib/cut';
+import { TextCheckTest } from './TextCheckTest';
+import { withProbe } from './lib/TextProbe';
+
+import { N3Still, N3_DEFAULT, N3Shot, N3Cast, N3_CAST } from './nw3d/Scenes';
+import { NWHead, NWBody, NWHero, NWWide, NWSheet, NWClip, CLIP_LEN, NWShot, NWClip2, CLIP2_LEN } from './nw/Look';
 
 export const Root: React.FC = () => (
   <>
-    <Composition id="Sheet" component={Sheet} durationInFrames={1} fps={24} width={1080} height={1920} />
-    <Composition id="Demo" component={Demo} durationInFrames={DEMO_LEN} fps={24} width={1080} height={1920} />
-    <Composition id="VrmTest" component={VrmTest} durationInFrames={48} fps={24} width={1080} height={1920} />
-    <Composition id="CharSheet" component={CharSheet} durationInFrames={1} fps={24} width={1080} height={1920} />
-    <Composition id="Pilot" component={Pilot} durationInFrames={PILOT_LEN} fps={24} width={1080} height={1920} />
-    <Composition id="PhotoStill" component={PhotoStill} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'window' }} />
-    <Composition id="Ep1" component={Ep1} durationInFrames={EP1_LEN} fps={24} width={1080} height={1920} />
-    <Composition id="Ep1Photo" component={Ep1Photo} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'behind' }} />
-    <Composition id="PilotNotMe" component={PilotNotMe} durationInFrames={NOTME_LEN} fps={24} width={1080} height={1920} />
-    <Composition id="NotMePhoto" component={NotMePhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'bite' }} />
-    <Composition id="PilotNoEvidence" component={PilotNoEvidence} durationInFrames={NE_LEN} fps={24} width={1080} height={1920} />
-    <Composition id="NoEvidencePhoto" component={NoEvidencePhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'face' }} />
-    <Composition id="WhatImBuilding" component={WhatImBuilding} durationInFrames={WIB_LEN} fps={24} width={1080} height={1920} />
-    <Composition id="Thumb" component={Thumb} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'ne' as const }} />
-    <Composition id="PilotNoPics" component={PilotNoPics} durationInFrames={NP_LEN} fps={24} width={1080} height={1920} />
-    <Composition id="NoPicsPhoto" component={NoPicsPhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'fridge' }} />
-    <Composition id="FaceTest" component={FaceTest} durationInFrames={9} fps={24} width={1080} height={1920} />
-    <Composition id="PilotOnePhoto" component={PilotOnePhoto} durationInFrames={PILOT1_LEN} fps={24} width={1080} height={1920} />
-    <Composition id="PilotPhoto" component={PilotPhoto} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'thumb' }} />
-    <Composition id="LookAScene" component={LookScene} durationInFrames={1} fps={24} width={LOOKS.A.w} height={LOOKS.A.h} defaultProps={{ look: 'A' as const }} />
-    <Composition id="LookASheet" component={LookSheet} durationInFrames={1} fps={24} width={LOOKS.A.w} height={LOOKS.A.h} defaultProps={{ look: 'A' as const }} />
-    <Composition id="LookAClip" component={LookClip} durationInFrames={CLIP_LEN} fps={24} width={LOOKS.A.w} height={LOOKS.A.h} defaultProps={{ look: 'A' as const }} />
-    <Composition id="LookBScene" component={LookScene} durationInFrames={1} fps={24} width={LOOKS.B.w} height={LOOKS.B.h} defaultProps={{ look: 'B' as const }} />
-    <Composition id="LookBSheet" component={LookSheet} durationInFrames={1} fps={24} width={LOOKS.B.w} height={LOOKS.B.h} defaultProps={{ look: 'B' as const }} />
-    <Composition id="LookBClip" component={LookClip} durationInFrames={CLIP_LEN} fps={24} width={LOOKS.B.w} height={LOOKS.B.h} defaultProps={{ look: 'B' as const }} />
-    <Composition id="LookCScene" component={LookScene} durationInFrames={1} fps={24} width={LOOKS.C.w} height={LOOKS.C.h} defaultProps={{ look: 'C' as const }} />
-    <Composition id="LookCSheet" component={LookSheet} durationInFrames={1} fps={24} width={LOOKS.C.w} height={LOOKS.C.h} defaultProps={{ look: 'C' as const }} />
-    <Composition id="LookCClip" component={LookClip} durationInFrames={CLIP_LEN} fps={24} width={LOOKS.C.w} height={LOOKS.C.h} defaultProps={{ look: 'C' as const }} />
+    <Composition id="Sheet" component={withProbe(Sheet)} durationInFrames={1} fps={24} width={1080} height={1920} />
+    <Composition id="Demo" component={withProbe(Demo)} durationInFrames={DEMO_LEN} fps={24} width={1080} height={1920} />
+    <Composition id="VrmTest" component={withProbe(VrmTest)} durationInFrames={48} fps={24} width={1080} height={1920} />
+    <Composition id="CharSheet" component={withProbe(CharSheet)} durationInFrames={1} fps={24} width={1080} height={1920} />
+    <Composition id="Pilot" component={withProbe(Pilot)} durationInFrames={PILOT_LEN} fps={24} width={1080} height={1920} />
+    <Composition id="PhotoStill" component={withProbe(PhotoStill)} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'window' }} />
+    <Composition id="Ep1" component={withProbe(Ep1)} durationInFrames={EP1_LEN} fps={24} width={1080} height={1920} />
+    <Composition id="Ep1Photo" component={withProbe(Ep1Photo)} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'behind' }} />
+    <Composition id="PilotOnePhoto" component={withProbe(PilotOnePhoto)} durationInFrames={PILOT1_LEN} fps={24} width={1080} height={1920}
+      defaultProps={{ cut: 'long' as Cut }} calculateMetadata={({ props }) => ({ durationInFrames: pilot1Len(props.cut) })} />
+    <Composition id="PilotPhoto" component={withProbe(PilotPhoto)} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{ which: 'thumb' }} />
+    <Composition id="TextCheckTest" component={withProbe(TextCheckTest)} durationInFrames={96} fps={24} width={1080} height={1920} defaultProps={{ variant: 'good' }} />
+    <Composition id="N3Shot" component={N3Shot} durationInFrames={48} fps={24} width={180} height={320}
+      defaultProps={{ spec: { set: 'nioRoom', camera: 'wide', frames: 48, actors: [{ who: 'nio', at: 'rug', action: 'stand', face: 'deadpan', facing: 'camera' }] } }}
+      calculateMetadata={({ props }) => ({ durationInFrames: props.spec.frames })} />
+    <Composition id="N3Still" component={N3Still} durationInFrames={1} fps={24} width={180} height={320} defaultProps={N3_DEFAULT}
+      calculateMetadata={({ props }) => ({ width: props.w, height: props.h })} />
+    <Composition id="N3Cast" component={N3Cast} durationInFrames={1} fps={24} width={180} height={320} defaultProps={N3_CAST}
+      calculateMetadata={({ props }) => ({ width: props.w, height: props.h })} />
+    <Composition id="NWHead" component={NWHead} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWBody" component={NWBody} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWHero" component={NWHero} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWWide" component={NWWide} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWSheet" component={NWSheet} durationInFrames={1} fps={24} width={270} height={480} />
+    <Composition id="NWClip" component={NWClip} durationInFrames={CLIP_LEN} fps={24} width={270} height={480} />
+    <Composition id="NWShot" component={NWShot} durationInFrames={1} fps={24} width={270} height={480} defaultProps={{ shot: 'corner' }} />
+    <Composition id="NWClip2" component={NWClip2} durationInFrames={CLIP2_LEN} fps={24} width={270} height={480} />
   </>
 );

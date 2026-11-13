@@ -1,0 +1,7 @@
+[
+ {"set":"nioRoom","camera":"drone","frames":48,"actors":[{"who":"nio","at":"rug","action":"backflip","face":"evil","outfit":"tuxedo"}]},
+ {"set":"nioRoom","camera":"high","frames":12,"actors":[{"who":"nio","at":"door","to":"window","action":"walk","face":"smug"}]},
+ {"set":"nioRoom","camera":"wide","frames":48,"actors":[{"who":"nio","at":"bedEdge","action":"dance","face":"hyped"}]},
+ {"set":"nioRoom","camera":"close","frames":48,"actors":[{"who":"nio","at":"desk","action":"walk","face":"neutral"}]},
+ {"set":"nioRoom","camera":"wide","frames":48,"actors":[{"who":"maya","at":"rug","action":"stand","face":"neutral"}]}
+]

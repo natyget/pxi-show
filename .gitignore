@@ -1,1 +1,3 @@
 studio/voice/raw/
+episodes/nopics/*.mp4
+episodes/nopics/__pycache__/
