@@ -55,20 +55,30 @@ These came from earlier drafts and models and keep coming back. Any of them in a
 - Fortune cookies, bingo cards, tier lists and other filler formats with no joke in them.
 - A party in his bedroom. Nio talking to himself in different places. Nio explaining the app.
 - Any line, prop or bit from a previous episode, unless it is a deliberate, named callback.
+- Set-up and comeback pairs ("Eighty percent you regret this." "I've never regretted anything."). The
+  founder: "corny and witty, overly cliche."
+- A crowd of hundreds copying Nio, or any "the whole room joins in" ending. Three to five people, then a
+  picture.
+- Episodes that only have a clever line in them. Every episode has an impossible thing, a chase, a set
+  piece or a face doing something extreme. If people would swipe before the end, it is not done.
 
 **Freshness check:** before a script goes forward, the writer lists the last ten scripts' main props, places
 and jokes, and nothing in the new one may repeat them.
 
-## Season 1 slate (in posting order)
+## Season 1 slate (in posting order; founder's order, Nov 13)
+
+Plot from Regular Show, humor and people from Gumball, eerie from Adventure Time (`bible/three-shows.md`).
+Scripts for 1 to 3 are in `episodes-v2.md`. 4 to 6 are in `episodes.md` and are being rewritten to the same
+standard.
 
 | # | Title | Where | One line | PXI | Length |
 |---|---|---|---|---|---|
-| 1 | The Move | a club | Drunk Nio loses a contact lens on the dance floor and the whole club copies how he looks for it. | album the next morning; fourth wall | short |
-| 2 | Password | a speakeasy behind a laundromat | Nio tries to talk his way past a doorman with better and better passwords. | the event page | short |
-| 3 | On a Break | a rooftop | Nio's honest questions about "a break" break the couple's break. | the rooftop album | short |
-| 4 | Good Game | a game bar | Nio finally meets the only player who beats him. | the tournament on the map | short |
-| 5 | Potential | campus | A professor wants a word and Nio spends a day escaping it. | the map | short |
-| 6 | Tiger | a house party, the street, a car | Nio gets his lightweight friend home with no contacts in. | the album the next morning | LONG and a short cut |
+| 1 | Office Hours | campus | Nio skips office hours and finds out they are a place, and the people who skipped them are still in it. | the map | short, 60 s |
+| 2 | The Move | a basement club, his couch | Drunk Nio puts a contact back in off the club floor and gets an infection on the beat. | the flash photo and the album comments | short |
+| 3 | Lost and Found | a laundromat | The password to Theo's birthday is in the lost-and-found, which is a world. | the event page | short, and LONG |
+| 4 | On a Break | a rooftop | (being rewritten) | the album | short |
+| 5 | Good Game | a game bar | (being rewritten) | the map | short |
+| 6 | Tiger | a house party, the street, a car | Nio gets his lightweight friend home with no contacts in. | the album | LONG and a short cut |
 
 After these, the slate in `bible/world.md` and the stories the founder drops in chat.
 

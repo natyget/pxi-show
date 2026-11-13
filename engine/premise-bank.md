@@ -13,13 +13,13 @@ Format:
   From: R<n>, the slate in `bible/world.md`, or original
 ```
 
-## Season 1 (in posting order, Nov 13; scripts in `episodes/season-1/episodes.md`)
+## Season 1 (in posting order, Nov 13, second order; scripts in `episodes/season-1/episodes-v2.md` for 1 to 3 and `episodes.md` for 4 to 6)
 
-1. **The Move** (a club). Drunk Nio loses a contact lens on the dance floor and the whole club copies how he looks for it.
-2. **Password** (a speakeasy behind a laundromat). Nio tries to talk his way past a doorman with better and better passwords.
-3. **On a Break** (a rooftop). Nio's honest questions about "a break" break the couple's break.
-4. **Good Game** (a game bar). Nio finally meets the only player who beats him.
-5. **Potential** (campus). A professor wants a word and Nio spends a day escaping it.
+1. **Office Hours** (campus). Nio skips office hours and finds out they are a place, and the people who skipped them are still in it. Short, 60 s.
+2. **The Move** (a basement club, his couch). Drunk Nio puts a contact back in off the club floor and gets an infection on the beat.
+3. **Lost and Found** (a laundromat). The password to Theo's birthday is in the lost-and-found, which is a world. Short, and LONG.
+4. **On a Break** (a rooftop). Being rewritten.
+5. **Good Game** (a game bar). Being rewritten.
 6. **Tiger** (a house party, the street, a car; LONG plus a short cut, from R1). Nio gets his lightweight friend home with no contacts in.
 
 ## Premises

@@ -87,6 +87,11 @@ Nobody is the joke for where they are from, how they sound, their body or their 
   almost anything to leave the room before the lesson arrives, and she is very patient.
 - *Hook:* she can appear at the end of any corridor.
 
+**Professor Haverbrook ("Prof H").** *(New, Nov 13, from "Office Hours".)*
+- An enormous, soft man in a cardigan with tiny round glasses who speaks in a whisper the microphone turns into
+  thunder. He is desperate for his students to think he is cool, learns their slang from the internet and uses it
+  nearly right. Everyone on campus treats his office hours the way you treat a haunted house. He has no idea.
+
 **The ex.** She is in the first episodes and gone a few in. *Waiting on the founder for who she is and how it
 ends.* Until then she is written warmly and is never the villain. Most of the mess in the bedroom is hers.
 

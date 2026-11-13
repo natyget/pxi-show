@@ -3,20 +3,20 @@
 Every run reads this file first and updates it last. Keep it under 70 lines.
 
 phase: PILOT_LOCK
-episode: the-move
+episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Wait for the club set, the crowd and the phone-hand insert from the design thread; then build The Move (episodes/season-1/episodes.md). Build nothing else.
+next_action: Wait for the campus sets, Prof H and the phone-hand insert from the design thread; then build Office Hours (episodes/season-1/episodes-v2.md). Build nothing else.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 0
 
-## Next render: "The Move" (season 1, episode 1)
+## Next render: "Office Hours" (season 1, episode 1)
 
-Scripts: `episodes/season-1/episodes.md` (six, in posting order); plan: `episodes/season-1/series-plan.md`. "No
-Pics" is retired. The Move is built when the design thread delivers what the plan's last section lists: the club
-set, the friends and a reusable crowd, Nio's real hand on the phone, a phone-lens camera, the PXI flash and filter
-in the world, and mouth shapes from the audio. The cast (Maya, Sami, Theo, Imane) is approved. Voices still need
-huggingface.co allowed.
+Scripts: `episodes/season-1/episodes-v2.md` (1 Office Hours, 2 The Move, 3 Lost and Found) and `episodes.md` (4 to
+6, being rewritten); plan: `episodes/season-1/series-plan.md`. `the-move-board.md` is out of date. Office Hours is
+built when the design thread delivers the campus sets (lecture hall, the corridor to his office), Prof H, Nio's
+real hand on the phone and mouth shapes from the audio. The cast (Maya, Sami, Theo, Imane) is approved. Voices run
+in a new session, which has full network access.
 
 ## Learning and ads: paused (founder, Nov 13)
 
