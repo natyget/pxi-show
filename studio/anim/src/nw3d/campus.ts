@@ -15,6 +15,7 @@ export const CAMPUS_GLSL = `
 uniform vec4 uCampus; // x: the room (0 lecture hall, 1 corridor, 2 waiting room, 3 office, 4 outdoors), y: how far the
                       // door is open (0..1), z: world x of that door's centre, w: 0 the door is in the far wall, 1 in the
                       // near wall and it opens onto the sunny quad
+uniform vec4 uCampus2; // the corridor: x how open the door in the near wall is (Prof H's again), y the stairwell door, z its z
 uniform sampler2D uSign; uniform vec2 uSignSz; uniform vec4 uBs[NB]; // the sign atlas, its size, and each box's sign
 // rectangle (or the clock's hands: x 1 = it has hands, y the hour hand's angle, z the minute hand's, clockwise from 12)
 
@@ -35,22 +36,74 @@ vec3 quadView(vec2 q){
   if (abs(q.x + 0.16) < 0.035 && q.y < 1.2) return vec3(0.42, 0.3, 0.22);
   return mix(vec3(0.72, 0.87, 0.98), vec3(0.52, 0.74, 0.96), smoothstep(0.9, 2.0, q.y));
 }
+// the stairwell through its open door: concrete steps going down away from us, a rail, cold light
+vec3 stairView(vec2 q){
+  float st = floor((q.y - 0.05) / 0.17); vec3 c = vec3(0.56, 0.58, 0.6) * (0.86 + 0.05 * mod(st, 2.0));
+  if (q.y > 1.55) c = vec3(0.72, 0.74, 0.74);
+  if (abs(q.x - 0.28 + q.y * 0.1) < 0.025 && q.y > 0.7 && q.y < 1.75) c = vec3(0.2, 0.36, 0.28);
+  return c * (0.75 + 0.25 * smoothstep(0.0, 2.0, q.y));
+}
 void campusDoor(inout vec3 c, inout float em, vec2 q, float open, float fp){
   if (abs(q.x) > 0.52 || q.y > 2.12) return;
   c = vec3(0.24, 0.17, 0.15);
   if (abs(q.x) > 0.45 || q.y > 2.05) return;
   if (open > 0.01 && uCampus.w > 0.5){ c = quadView(q); em = 1.0; return; }
+  bool cor = uCampus.x > 0.5 && uCampus.x < 1.5;
   if (open > 0.01){ // the light inside, warm, brightest low down where it spills toward us
-    c = mix(vec3(1.0, 0.78, 0.45), vec3(0.93, 0.6, 0.32), smoothstep(0.2, 2.0, q.y)); em = 1.0; return; }
+    c = mix(vec3(1.0, 0.78, 0.45), vec3(0.93, 0.6, 0.32), smoothstep(0.2, 2.0, q.y)); em = 1.0;
+    if (cor){ // the corridor's doors: the leaf swung away into the lit office, so how open it is shows in the gap beside it
+      float a = open * 1.45, lw = 0.9 * cos(a), u = (0.45 - q.x) / max(lw, 1e-3), top = 2.05 - 0.12 * sin(a) * u;
+      if (u < 1.0 && q.y < top){ em = 0.0;
+        c = vec3(0.5, 0.33, 0.24) * mix(vec3(1.0), vec3(1.25, 1.0, 0.8), 0.5) * (0.9 + 0.08 * hash(vec2(floor(u * 6.0), 2.0)));
+        if (u > 0.21 && u < 0.79 && abs(q.y - 1.62) < 0.24){ c = vec3(0.95, 0.75, 0.5); em = 1.0; }
+        if (u > 1.0 - max(0.05, fp / max(lw, 0.05))) c = vec3(0.3, 0.2, 0.16); } } // its edge
+    return; }
   c = vec3(0.5, 0.33, 0.24) * (0.95 + 0.08 * hash(vec2(floor((q.x + 0.45) / 0.15), 2.0)));
   vec2 w = abs(vec2(q.x, q.y - 1.62)) - vec2(0.26, 0.24);
   if (max(w.x, w.y) < 0.0){ c = vec3(0.78, 0.8, 0.74); if (max(w.x, w.y) > -max(0.018, fp)) c = vec3(0.3, 0.22, 0.2); }
-  if (length(q - vec2(0.36, 1.02)) < max(0.032, fp * 1.1)) c = vec3(0.78, 0.66, 0.4);
+  if (length(q - vec2(cor ? -0.36 : 0.36, 1.02)) < max(0.032, fp * 1.1)) c = vec3(0.78, 0.66, 0.4); // the knob, away from the hinge
+}
+// THE PITCH (room 4), outdoors: everything past the fence and over it is the world, painted by the direction you look so
+// the sides of the box never show. The grass beyond, a line of trees with a roof or two, the evening sky warm at the bottom.
+vec3 pitchView(vec3 d){
+  float e = d.y / max(length(d.xz), 1e-3), a = atan(d.x, d.z);
+  if (e < -0.004) return vec3(0.36, 0.53, 0.27) * (0.92 + 0.1 * hash(floor(vec2(a * 60.0, e * 160.0))));
+  float tl = 0.03 + 0.035 * (0.5 + 0.5 * sin(a * 7.0 + 1.3)) + 0.012 * hash(vec2(floor(a * 30.0), 7.0)); // the tree line, lumpy
+  float rf = fract(a * 1.7 + 0.15) < 0.16 ? 0.085 : 0.0; // now and then a building over the trees
+  if (e < rf){ vec3 c = vec3(0.6, 0.36, 0.28) * (0.94 + 0.08 * hash(floor(vec2(a * 200.0, e * 300.0))));
+    vec2 wq = fract(vec2(a * 110.0, e * 70.0)); if (wq.x > 0.3 && wq.x < 0.7 && wq.y > 0.35 && wq.y < 0.75) c = hash(floor(vec2(a * 110.0, e * 70.0))) < 0.45 ? vec3(1.0, 0.82, 0.5) : vec3(0.32, 0.22, 0.22);
+    return c; }
+  if (e < tl) return vec3(0.2, 0.32, 0.2) * (0.85 + 0.22 * hash(floor(vec2(a * 90.0, e * 240.0))));
+  vec3 sky = mix(vec3(1.0, 0.8, 0.6), vec3(0.52, 0.68, 0.92), smoothstep(0.0, 0.6, e));
+  return mix(sky, vec3(1.0, 0.86, 0.66), 0.35 * smoothstep(0.6, 1.0, cos(a + 2.3)) * (1.0 - smoothstep(0.0, 0.4, e))); // warmer toward the low sun
+}
+// the cage: chain-link on posts over dark green kickboards, a gate in the left side; above it the open sky (em 2)
+vec3 pitchWall(vec3 p, int w, float fp, out float em){
+  vec3 d = p - uCamP; em = 0.0;
+  if (w == 2 || p.y > 4.06){ em = 2.0; return pitchView(d); }
+  float u = (w == 3 || w == 6) ? p.x : p.z; vec3 rail = vec3(0.34, 0.4, 0.37), wire = vec3(0.62, 0.64, 0.63);
+  bool gate = w == 5 && abs(p.z - uRoom0.z - 4.5) < 0.6;
+  if (p.y > 4.0) return rail; // the top rail
+  if (abs(fract(u / 2.5 + 0.5) - 0.5) * 2.5 < max(0.04, fp * 0.8) || (w == 5 && abs(abs(p.z - uRoom0.z - 4.5) - 0.62) < max(0.04, fp * 0.8))) return rail; // posts, and the gate's
+  if (!gate && p.y < 0.9){ vec3 c = vec3(0.2, 0.32, 0.26) * mott(p, 0.6); if (abs(p.y - 0.88) < max(0.02, fp * 0.7)) c = rail; return c; }
+  vec3 v = pitchView(d); float cell = 0.075, lw = fp / cell;
+  if (lw > 0.55){ em = 0.6; return mix(v, wire, 0.32); } // too far for single wires: a haze of them
+  vec2 g = vec2(u + p.y, u - p.y) / cell, f = abs(fract(g) - 0.5);
+  if (max(f.x, f.y) > 0.5 - max(0.06, lw * 0.5)) return wire;
+  em = 1.0; return v;
 }
 vec3 campusFloor(vec3 p, float fp, vec2 px, out float em){
   em = 0.0; float k = uCampus.x; vec3 c;
   if (k < 0.5) return vec3(0.243, 0.275, 0.345) * mott(p * 1.4, 2.2); // the lecture hall: blue carpet
+  if (k > 3.5){ // the pitch: turf in mown stripes, white lines (the edge, halfway, the centre circle, a D at each end)
+    vec2 q = vec2(uRoom0.x + uRoom.x - p.x, p.z - uRoom0.z), hf = uRoom.xz * 0.5; float lw = max(0.05, fp * 0.8);
+    c = vec3(0.31, 0.52, 0.25) * (mod(floor(q.y / 1.6), 2.0) < 0.5 ? 1.0 : 0.9) * mott(p * 2.0, 1.6);
+    vec2 r = abs(q - hf) - (hf - 0.5); bool inside = max(r.x, r.y) < 0.0;
+    if (abs(max(r.x, r.y)) < lw || (inside && abs(q.y - hf.y) < lw) || abs(length(q - hf) - 1.8) < lw || length(q - hf) < lw * 2.0
+      || (abs(length(q - vec2(hf.x, 0.5)) - 3.0) < lw && q.y > 0.5) || (abs(length(q - vec2(hf.x, uRoom.z - 0.5)) - 3.0) < lw && q.y < uRoom.z - 0.5)) c = vec3(0.9, 0.92, 0.88);
+    return c; }
   if (k > 2.5 && k < 3.5){ c = vec3(0.42, 0.24, 0.21) * mott(p * 1.4, 2.2); } // the office: old red-brown carpet
+  else if (k > 0.5 && k < 1.5) c = vinyl(p.xz, vec3(0.6, 0.58, 0.54), vec3(0.54, 0.52, 0.49), 0.3, fp); // the corridor
   else if (k > 1.5 && k < 2.5) c = vinyl(p.xz, vec3(0.53, 0.56, 0.55), vec3(0.47, 0.5, 0.5), 0.33, fp);
   else c = vinyl(p.xz, vec3(0.5, 0.48, 0.46), vec3(0.45, 0.43, 0.42), 0.33, fp);
   // the warm light from the open door, spilling across the floor toward us, in hard steps
@@ -59,10 +112,16 @@ vec3 campusFloor(vec3 p, float fp, vec2 px, out float em){
     float wedge = 0.44 + dz * 0.3 * o; float r = dz / ((sun ? 2.6 : 3.4) * o);
     if (dz > 0.0 && dx < wedge && r < 1.0){ float s = floor((1.0 - r) * 3.0 + 0.5 + (bayer(px) - 0.5) * 0.5) / 3.0;
       c = mix(c, sun ? c * vec3(2.1, 1.95, 1.55) + vec3(0.06, 0.05, 0.02) : c * vec3(1.85, 1.45, 0.95) + vec3(0.07, 0.04, 0.0), s); } }
+  // the corridor: the same warm light from the door at the near end
+  float o2 = uCampus2.x;
+  if (k > 0.5 && k < 1.5 && o2 > 0.01){ float dz = p.z - uRoom0.z, dx = abs(p.x - uCampus.z);
+    float wedge = 0.44 + dz * 0.3 * o2; float r = dz / (3.4 * o2);
+    if (dx < wedge && r < 1.0){ float s = floor((1.0 - r) * 3.0 + 0.5 + (bayer(px) - 0.5) * 0.5) / 3.0; c = mix(c, c * vec3(1.85, 1.45, 0.95) + vec3(0.07, 0.04, 0.0), s); } }
   return c;
 }
 vec3 campusWall(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
   em = 0.0; add = vec3(0.0); float k = uCampus.x;
+  if (k > 3.5) return pitchWall(p, w, fp, em);
   if (w == 2){ // a dropped ceiling: square tiles, with the fluorescent panels set in it
     vec2 q = p.xz; vec2 tf = fract(q / 0.6) * 0.6; vec3 c = vec3(0.74, 0.74, 0.7) * mott(p, 0.5);
     if (tf.x < max(0.012, fp * 0.7) || tf.y < max(0.012, fp * 0.7)) c *= 0.8;
@@ -71,6 +130,8 @@ vec3 campusWall(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
       for (int i = 0; i < 5; i++){ vec2 at = i < 4 ? vec2(i % 2 == 0 ? 2.2 : 6.2, i < 2 ? 3.0 : 6.5) : vec2(4.2, 8.8);
         vec2 d = abs(q - vec2(uRoom0.x + uRoom.x - at.x, at.y)) - vec2(0.3, 0.6);
         if (max(d.x, d.y) < 0.0){ c = max(d.x, d.y) > -max(0.03, fp) ? vec3(0.66, 0.66, 0.64) : vec3(0.96, 0.95, 0.88); em = 1.0; } } }
+    if (k > 0.5 && k < 1.5){ float zz = mod(q.y - uRoom0.z - 0.9, 1.8) - 0.9; vec2 d = abs(vec2(q.x - cx, zz)) - vec2(0.55, 0.08);
+      if (max(d.x, d.y) < 0.0){ c = max(d.x, d.y) > -max(0.02, fp) ? vec3(0.66, 0.66, 0.64) : vec3(0.94, 0.98, 0.95); em = 1.0; } }
     if (k > 2.5 && k < 3.5){ vec2 d = abs(q - vec2(cx, uRoom0.z + 1.65)) - vec2(0.3, 0.3);
       if (max(d.x, d.y) < 0.0){ c = max(d.x, d.y) > -max(0.03, fp) ? vec3(0.66, 0.66, 0.64) : vec3(0.96, 0.95, 0.88); em = 1.0; } }
     if (k > 1.5 && k < 2.5){ for (int i = 0; i < 2; i++){ vec2 d = abs(q - vec2(cx, 2.2 + 2.2 * float(i))) - vec2(0.3, 0.6);
@@ -89,13 +150,22 @@ vec3 campusWall(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
     if (min(g.x * 1.2, g.y * 0.9) < max(0.012, fp * 0.7)) c *= 0.82;
     return c; }
   // institutional paint: a darker band below the rail, a pale one above, a dark skirting. The office: wood below, cream above
-  bool off = k > 2.5 && k < 3.5;
-  vec3 lo = off ? vec3(0.44, 0.31, 0.23) : vec3(0.42, 0.52, 0.45), hi = off ? vec3(0.84, 0.78, 0.63) : vec3(0.76, 0.78, 0.66);
+  bool off = k > 2.5 && k < 3.5, cor = k > 0.5 && k < 1.5;
+  vec3 lo = off ? vec3(0.44, 0.31, 0.23) : cor ? vec3(0.4, 0.46, 0.55) : vec3(0.42, 0.52, 0.45), hi = off ? vec3(0.84, 0.78, 0.63) : cor ? vec3(0.83, 0.82, 0.76) : vec3(0.76, 0.78, 0.66);
   vec3 c = (uv.y < 1.0 ? lo : hi) * mott(p, 0.6);
   if (abs(uv.y - 1.0) < max(0.022, fp * 0.8)) c = vec3(0.34, 0.4, 0.36);
   if (uv.y < 0.1) c = vec3(0.24, 0.26, 0.25);
   if (off && uv.y < 1.0){ float sy = floor(uv.y / 0.14); float st = hash(vec2(sy, floor(uv.x / 0.8 + hash(vec2(sy, 5.0)) * 2.0))); c *= st > 0.84 ? 0.9 : st < 0.14 ? 1.08 : 1.0; }
   if ((w == 3 && uCampus.w < 0.5) || (w == 6 && uCampus.w > 0.5)) campusDoor(c, em, vec2((w == 6 ? -1.0 : 1.0) * (p.x - uCampus.z), p.y), uCampus.y, fp);
+  if (cor && w == 6) campusDoor(c, em, vec2(-(p.x - uCampus.z), p.y), uCampus2.x, fp); // the corridor: Prof H's door at this end too
+  if (cor && w == 4){ // the stairwell door: green, a wired window; open, the stairs going down
+    vec2 q = vec2(p.z - uCampus2.z, p.y);
+    if (abs(q.x) < 0.52 && q.y < 2.12){ c = vec3(0.24, 0.22, 0.2);
+      if (abs(q.x) < 0.45 && q.y < 2.05){
+        if (uCampus2.y > 0.01) c = stairView(vec2(q.x, q.y));
+        else { c = vec3(0.3, 0.5, 0.4); vec2 wq = abs(vec2(q.x, q.y - 1.5)) - vec2(0.14, 0.3);
+          if (max(wq.x, wq.y) < 0.0){ c = vec3(0.7, 0.76, 0.74); if (fract(q.x * 14.0 + q.y * 14.0) < 0.12 || fract(q.x * 14.0 - q.y * 14.0) < 0.12) c *= 0.8; }
+          if (abs(q.y - 1.0) < 0.03 && q.x > -0.38 && q.x < 0.3) c = vec3(0.7, 0.7, 0.66); } } } }
   return c;
 }
 // a sign on the front face of a box (mat 7): read from the atlas at the fineness this shot can hold
@@ -177,8 +247,9 @@ export const WAIT_CAMS: Record<string, Cam3> = {
   door: C([0.95, 1.12, 2.4], [1.5, 1.5, 5.8], 56), // from the seats up at the door: who comes out of it
   sign: C([1.5, 1.55, 4.1], [1.5, 2.3, 5.8], 34), // insert: NOW SERVING
   clock: C([2.1, 1.7, 4.6], [2.48, 2.0, 5.8], 30), // insert: the clock
+  ticket: C([0.98, 1.0, 3.8], [0.47, 0.62, 3.84], 24), // insert: Darnell's lap from in front: the lab report, the coffee ring, his ticket (seatL4)
 };
-export const WAIT_INSERTS = ['sign', 'clock']; // cameras on things, not people
+export const WAIT_INSERTS = ['sign', 'clock', 'ticket']; // cameras on things, not people
 export const WAIT_MARKS = {
   seatL3: { s: 0.47, z: 3.2, yaw: 270, seat: 0.455 },
   seatL4: { s: 0.47, z: 3.8, yaw: 270, seat: 0.455 }, seatL5: { s: 0.47, z: 4.4, yaw: 270, seat: 0.455 },
@@ -385,29 +456,127 @@ const officeLights = (o: OfficeOpts, f: number): Light[] => {
     ...(door > 0.01 ? [{ p: P3(OFF.door, 1.5, 0.3), r: 3.6 * door, col: [0.6, 0.56, 0.44] as V }] : [])];
 };
 
-export type CampusOpts = WaitOpts & HallOpts & OfficeOpts & { time?: number };
+// THE CORRIDOR: long and plain, and the same from both ends: Prof H's door at the end each way, wide open, warm light
+// pouring out of it, his plaque beside it. Classroom doors along both walls, a noticeboard, the green stairwell door
+// halfway along on the right with STAIRS over it, and fluorescent tubes the whole way. 2.4 wide, 2.7 high, 12 long.
+export const COR = { w: 2.4, h: 2.7, d: 12, stairZ: 6.0 };
+// door: how open Prof H's door at the far end is; door2: the one at the near end; stairs: the stairwell door (Nio
+// bursts through it). All keyed by frame, or a number.
+export type CorridorOpts = { door2?: Keyed; stairs?: Keyed };
+const corridorBoxes = (o: CorridorOpts, f: number): Box[] => {
+  const W = COR.w, D = COR.d, wood = '#80553e', bs: Box[] = [];
+  // classroom doors, shut, each with its number over it
+  const doors: [number, number, string][] = [[0, 3.4, 'door112'], [0, 8.6, 'door114'], [W, 2.6, 'door116'], [W, 9.4, 'door112']];
+  doors.forEach(([sw, z, sign], i) => { const side = sw === 0 ? 1 : -1, yaw = sw === 0 ? FACING.right : FACING.left;
+    bs.push(B(sw + side * 0.025, 1.025, z, 0.45, 1.025, 0.025, wood, 20 + i, { yaw, mat: 1 }));
+    bs.push(B(sw + side * 0.03, 2.3, z, 0.16, 0.08, 0.02, '#34383e', 30 + i, { yaw, mat: 7, sign })); });
+  // a noticeboard with a few papers on it, left wall
+  bs.push(B(0.02, 1.45, 6.0, 0.6, 0.42, 0.02, '#b08a5a', 40, { yaw: FACING.right, mat: 2 }));
+  ([[5.7, 1.55, 0.1, 0.13, '#f0ece0'], [6.15, 1.4, 0.12, 0.09, '#f2d36a'], [6.35, 1.62, 0.09, 0.12, '#bfe0f0'], [5.85, 1.2, 0.11, 0.08, '#f0ece0']] as [number, number, number, number, string][])
+    .forEach(([z, y, hw, hh, col], i) => bs.push(B(0.045, y, z, hw, hh, 0.004, col, 41 + i, { yaw: FACING.right })));
+  // STAIRS over the stairwell door; Prof H's plaque by his door at each end
+  bs.push(B(W - 0.03, 2.3, COR.stairZ, 0.2, 0.07, 0.02, '#246a44', 46, { yaw: FACING.left, mat: 7, sign: 'stairs', glow: true }));
+  bs.push(B(COR.w / 2 + 0.78, 1.45, D - 0.012, 0.16, 0.06, 0.01, '#b08c4a', 47, { yaw: FACING.us, mat: 7, sign: 'plaque' }));
+  bs.push(B(COR.w / 2 - 0.78, 1.45, 0.012, 0.16, 0.06, 0.01, '#b08c4a', 48, { yaw: FACING.away, mat: 7, sign: 'plaque' }));
+  // the stairwell door, burst open into the corridor on its hinge at the far side
+  const st = keyed(o.stairs, f, 0);
+  if (st > 0.01) { const a = st * 1.4, hz = COR.stairZ + 0.45, cz = hz - Math.cos(a) * 0.45, cs = W - Math.sin(a) * 0.45;
+    bs.push({ c: P3(cs, 1.025, cz), h: [0.022, 1.025, 0.45], col: '#4c7a62', obj: 49, yaw: (-a * 180) / Math.PI }); }
+  return bs;
+};
+export const CORRIDOR_CAMS: Record<string, Cam3> = {
+  long: C([1.2, 1.3, 0.35], [1.2, 1.2, 12], 24), // the long lens down the corridor to the open door at the far end
+  corner: C([1.2, 1.3, 11.65], [1.2, 1.2, 0], 24), // the same, from the other end: he walks in past the lens, the same door ahead of him
+  plaque: C([1.74, 1.43, 10.3], [1.98, 1.43, 12], 22), // insert: the plaque by the far door, the edge of the warm doorway beside it
+  nio: C([1.48, 1.44, 4.6], [1.2, 1.4, 6.0], 34), // close on Nio in the middle of the corridor, from in front
+  mcu: C([1.5, 1.38, 4.7], [1.2, 1.3, 6.0], 40), // Nio from the waist up, lit by his phone
+  stairs: C([0.4, 1.5, 2.0], [1.96, 1.25, 8.8], 50), // up the corridor past the stairwell door: him bursting out of it, the same open door beyond
+  wide: C([1.95, 2.05, 0.5], [0.85, 1.0, 7.0], 46), // high wide down the corridor: Nio at the middle, the cleaner mopping past
+  cleaner: C([0.95, 1.42, 2.2], [0.68, 1.28, 8.0], 38), // in front of the cleaner as she mops toward us, saying her line; Nio behind her on his phone
+  sprint: C([1.2, 1.25, 11.3], [1.2, 1.2, 6.0], 36), // from Prof H's door, back down the corridor, as he sprints at it and into the lens
+};
+export const CORRIDOR_INSERTS = ['plaque'];
+export const CORRIDOR_MARKS = {
+  door: { s: 1.2, z: 11.5, yaw: 0 }, // in Prof H's open door at the far end, behind the cameras there (a run ends here, into the lens)
+  far: { s: 1.2, z: 9.8, yaw: 180 }, // up the far end, facing back down the corridor
+  look: { s: 0.8, z: 7.4, yaw: 0 }, // a little way off the far door, to one side of it, looking at it (the long lens sees the door past him)
+  look2: { s: 1.6, z: 4.6, yaw: 180 }, // the same, mirrored at the other end: from the corner camera, the same picture again
+  mid: { s: 1.2, z: 6.0, yaw: 0 }, // the middle of the corridor, facing the far door
+  near: { s: 1.2, z: 0.5, yaw: 180 }, // right at the near end, behind the long lens (a walk away from the door ends here)
+  stairDoor: { s: 1.95, z: COR.stairZ, yaw: 90 }, // just out of the stairwell door, facing across
+  cleanerA: { s: 0.6, z: 8.6, yaw: 180 }, cleanerB: { s: 0.6, z: 4.6, yaw: 180 }, // the cleaner's way past, down the left side
+};
+const corridorLights = (o: CampusOpts, f: number): Light[] => [
+  ...[1.8, 4.5, 7.2, 9.9].map((z) => ({ p: P3(1.2, 2.55, z), r: 3.0, col: [0.4, 0.44, 0.42] as V })),
+  ...(keyed(o.door, f, 0.7) > 0.01 ? [{ p: P3(1.2, 1.3, COR.d - 0.25), r: 2.6 * keyed(o.door, f, 0.7) + 0.6, col: [0.75, 0.5, 0.24] as V, halo: 0.12 }] : []),
+  ...(keyed(o.door2, f, 0.7) > 0.01 ? [{ p: P3(1.2, 1.3, 0.25), r: 2.6 * keyed(o.door2, f, 0.7) + 0.6, col: [0.75, 0.5, 0.24] as V, halo: 0.12 }] : []),
+];
+
+// THE PITCH, at the end: the five-a-side cage behind the sports hall, 5:01 PM. Turf with white lines, chain-link all
+// round on dark green kickboards, a gate in the left side (Nio comes on through it), a goal with its net at each end, a
+// floodlight on in each far corner, the low sun off past the right fence. Theo's ball and two kit bags by the right fence.
+export const PITCH = { w: 10, h: 9, d: 16, gateZ: 4.5 };
+const pitchBoxes = (): Box[] => {
+  const W = PITCH.w, D = PITCH.d, gs = W / 2, gz = D - 0.5, white = '#eceee8', net = '#dfe2dc', bs: Box[] = [];
+  // a goal at each end: two posts and the bar, the frame running back along the ground, the net on its back, top and sides
+  [D - 0.5, 0.5].forEach((gz, e) => { const bk = e ? -1 : 1, o = 70 + e * 10, m = gz + bk * 0.225;
+    [-1.5, 1.5].forEach((dx, i) => { bs.push(B(gs + dx, 0.61, gz, 0.04, 0.61, 0.04, white, o + i)); bs.push(B(gs + dx, 0.02, m, 0.02, 0.02, 0.225, '#9a9c98', o + 2 + i)); });
+    bs.push(B(gs, 1.2, gz, 1.54, 0.04, 0.04, white, o + 4));
+    bs.push(B(gs, 0.6, gz + bk * 0.45, 1.5, 0.6, 0.01, net, o + 5, { mat: 10, noShadow: true }), B(gs, 1.2, m, 1.5, 0.01, 0.225, net, o + 6, { mat: 10, noShadow: true }));
+    [-1.5, 1.5].forEach((dx, i) => bs.push(B(gs + dx, 0.6, m, 0.01, 0.6, 0.225, net, o + 7 + i, { mat: 10, noShadow: true }))); });
+  // a floodlight in each far corner, on: a tall post and a bright head
+  [0.2, W - 0.2].forEach((ps, i) => { bs.push(B(ps, 3.6, D - 0.2, 0.05, 3.6, 0.05, '#4a524e', 90 + i));
+    bs.push(B(ps + (i ? -0.25 : 0.25), 7.25, D - 0.3, 0.32, 0.12, 0.06, '#f4f0dc', 92 + i, { glow: true, yaw: FACING.us })); });
+  // two kit bags by the right fence
+  bs.push(B(W - 0.35, 0.14, 9.2, 0.14, 0.14, 0.32, '#23262c', 94), B(W - 0.32, 0.12, 10.1, 0.12, 0.12, 0.28, '#7a2e30', 95));
+  return bs;
+};
+const pitchSofts = (): Soft[] => [{ prims: [{ a: P3(4.2, 0.11, 6.6), ra: 0.11, b: P3(4.2, 0.11, 6.6), rb: 0.11, g: 0, k: 0.004, c: '#f2f2ee' }], origin: P3(4.2, 0, 6.6) }]; // Theo's ball
+export const PITCH_CAMS: Record<string, Cam3> = {
+  wide: C([3.0, 2.0, 15.4], [2.8, 1.0, 5.0], 56), // up the pitch from by the far goal: the two of them, the gate on the right, the other goal, the evening sky
+  nio: C([4.05, 1.45, 6.62], [2.66, 1.38, 7.2], 44), // Nio from the waist up, from just beside Theo, almost on his eyeline: the flyer he holds up reads
+  theo: C([2.55, 1.5, 6.75], [4.1, 1.45, 7.0], 40), // Theo from the waist up, from beside Nio; it holds him when he steps back
+};
+export const PITCH_INSERTS: string[] = [];
+export const PITCH_MARKS = {
+  gate: { s: 0.5, z: PITCH.gateZ, yaw: 270 }, // just through the gate in the left fence, facing into the pitch
+  nio: { s: 2.7, z: 7.3, yaw: 258 }, // where Nio stops, facing Theo
+  theo: { s: 4.1, z: 7.0, yaw: 78 }, // Theo, by his ball, facing Nio
+  theoBack: { s: 4.54, z: 6.91, yaw: 78 }, // one step back from there, still facing him (the action stepBack)
+};
+export const PITCH_SOLIDS = [{ name: 'the far goal', s: [PITCH.w / 2 - 1.6, PITCH.w / 2 + 1.6], z: [PITCH.d - 0.6, PITCH.d] }, { name: 'the near goal', s: [PITCH.w / 2 - 1.6, PITCH.w / 2 + 1.6], z: [0, 0.6] }];
+const pitchLights = (): Light[] => [
+  { p: P3(40, 12, -14), r: 90, col: [1.0, 0.74, 0.46] }, // the low sun, off past the right fence (light 0: it casts the shadows); Nio faces into it
+  ...[0.45, PITCH.w - 0.45].map((s) => ({ p: P3(s, 7.0, PITCH.d - 0.45), r: 8, col: [0.42, 0.43, 0.4] as V, halo: 0.35 })),
+];
+
+export type CampusOpts = WaitOpts & HallOpts & OfficeOpts & CorridorOpts & { time?: number };
 export const CAMPUS_ROOMS = {
   waiting: { kind: 2, size: [WAIT.w, WAIT.h, WAIT.d] as V, cams: WAIT_CAMS },
   hall: { kind: 0, size: [HALL.w, HALL.h, HALL.d] as V, cams: HALL_CAMS },
   office: { kind: 3, size: [OFF.w, OFF.h, OFF.d] as V, cams: OFFICE_CAMS },
+  corridor: { kind: 1, size: [COR.w, COR.h, COR.d] as V, cams: CORRIDOR_CAMS },
+  pitch: { kind: 4, size: [PITCH.w, PITCH.h, PITCH.d] as V, cams: PITCH_CAMS },
 };
 export type CampusRoom = keyof typeof CAMPUS_ROOMS;
 // A shot in a campus room. acts: the cast, placed by (s, z) as anywhere else.
 export const campusShot = (room: CampusRoom, camA: CamArg, acts: Act[], o: CampusOpts = {}): Scene3 => {
-  const R = CAMPUS_ROOMS[room], hall = room === 'hall', office = room === 'office', f = (o.time ?? 0) * 24;
+  const R = CAMPUS_ROOMS[room], hall = room === 'hall', office = room === 'office', cor = room === 'corridor', pitch = room === 'pitch', f = (o.time ?? 0) * 24;
   // Prof H's hand goes wherever the flyer is this frame: its near edge, on his side
   const fp = office ? flyerAt(o, f) : undefined;
   const acts2 = acts.map((a) => (a.pose === 'slideFlyer' && fp ? { ...a, reachTo: add(fp, [0, 0, 0.13]) as V } : a));
   const ps = lensActs(camA, acts2).map((a) => pose(a)), cam = camOf(camA, ps);
-  const boxes = hall ? hallBoxes(o) : office ? officeBoxes(o, f) : waitBoxes(o, f), lights = hall ? hallLights() : office ? officeLights(o, f) : waitLights(o, f);
+  const boxes = hall ? hallBoxes(o) : office ? officeBoxes(o, f) : cor ? corridorBoxes(o, f) : pitch ? pitchBoxes() : waitBoxes(o, f);
+  const lights = hall ? hallLights() : office ? officeLights(o, f) : cor ? corridorLights(o, f) : pitch ? pitchLights() : waitLights(o, f);
   const look = ps.find((p, i) => acts[i].who?.id === 'nio')?.soft.head?.c ?? P3(seatS(0), 2.1, seatZ(4));
-  const door = hall ? 0 : keyed(o.door, f, 0), doorX = X(office ? OFF.door : WAIT.door);
+  const door = hall || pitch ? 0 : keyed(o.door, f, cor ? 0.7 : 0), doorX = X(office ? OFF.door : cor ? COR.w / 2 : WAIT.door);
   return {
     cam, room: R.size, room0: [X(R.size[0]), 0, 0], set: 3, time: o.time ?? 0,
-    campus: [R.kind, door, doorX, office ? 1 : 0],
-    amb: hall ? [0.3, 0.29, 0.31] : office ? [0.32, 0.29, 0.27] : [0.3, 0.34, 0.31], ambChar: hall ? [0.86, 0.84, 0.82] : office ? [0.88, 0.84, 0.8] : [0.84, 0.88, 0.84],
+    outdoor: pitch || undefined, campus: [R.kind, door, doorX, office ? 1 : 0], campus2: [cor ? keyed(o.door2, f, 0.7) : 0, cor ? keyed(o.stairs, f, 0) : 0, COR.stairZ, 0],
+    amb: hall ? [0.3, 0.29, 0.31] : office ? [0.32, 0.29, 0.27] : cor ? [0.3, 0.32, 0.32] : pitch ? [0.4, 0.42, 0.48] : [0.3, 0.34, 0.31],
+    ambChar: hall ? [0.86, 0.84, 0.82] : office ? [0.88, 0.84, 0.8] : pitch ? [0.86, 0.86, 0.9] : [0.84, 0.88, 0.84],
     crowd: hall ? hallCrowd(o, acts.map((a) => a.at as [number, number]), look, cam, f) : undefined,
-    boxes, softs: [...ps.map((p) => p.soft), ...(hall ? hallSofts(o) : office ? officeSofts() : [])], lights: [...lights, ...ps.flatMap((p) => p.lights)],
+    boxes, softs: [...ps.map((p) => p.soft), ...(hall ? hallSofts(o) : office ? officeSofts() : pitch ? pitchSofts() : [])], lights: [...lights, ...ps.flatMap((p) => p.lights)],
     props: [...ps.flatMap((p) => p.props), ...(hall ? hallProps(o, f) : [])], shadows: ps.flatMap((p) => p.shadows),
   };
 };

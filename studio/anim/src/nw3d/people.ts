@@ -89,4 +89,8 @@ export const CROWN = { ...npc('crown', 305, { skin: 1, hair: 4, style: 'long', t
 // OFFICE HOURS: the girl in the next row who takes her cap off when Prof H says Nio's name: a navy cap, a ponytail out
 // of the back of it, a teal top.
 export const CAP = { ...npc('cap', 512, { skin: 4, hair: 1, style: 'ponytail', top: 4, bottom: 1, shoes: 0, long: true, lashes: true, slight: true, height: 0.98 }), cap: '#2c3e66' };
-export const STRANGERS: Record<string, Character> = { girl: GIRL, girl2: GIRL2, girl3: GIRL3, dj: DJ, spinner: SPINNER, crown: CROWN, cap: CAP };
+// The cleaner in the corridor who mops past, unbothered: older, short grey curls close to the head (a bun read as a
+// hat from the front, and the lightest grey as a swim cap), a navy work tunic and trousers.
+const CL = npc('cleaner', 640, { skin: 7, hair: 9, style: 'afro', top: 8, bottom: 0, shoes: 1, long: true, lashes: true, slight: true, height: 0.96 });
+export const CLEANER: Character = { ...CL, hairA: '#a8a29b', hairB: '#8e8882', hair: puff(0, 0.12, -0.04, 0.185, 18, 0.07), head: { ...CL.head, curls: 1 }, wardrobe: { out: { ...CL.wardrobe.out, top: { ...CL.wardrobe.out.top!, color: '#2f3d5c', long: true, sleeve: 0.9 }, bottom: { ...CL.wardrobe.out.bottom!, color: '#2f3d5c', cuff: '#2f3d5c' } } } };
+export const STRANGERS: Record<string, Character> = { girl: GIRL, girl2: GIRL2, girl3: GIRL3, dj: DJ, spinner: SPINNER, crown: CROWN, cap: CAP, cleaner: CLEANER };

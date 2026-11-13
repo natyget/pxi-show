@@ -16,8 +16,8 @@ def cast(name, props, scale=3):
     subprocess.run([os.path.join(HERE, 'n3_cast.sh'), f, json.dumps(props), str(scale)], check=True)
     return Image.open(f).convert('RGB')
 
-def shot(spec, i, frame=12, scale=3):
-    raw = os.path.join(OUT, f'_shot{i}_raw.png'); fin = os.path.join(OUT, f'_shot{i}.png')
+def shot(spec, i, frame=12, scale=3, tag='shot'):
+    raw = os.path.join(OUT, f'_{tag}{i}_raw.png'); fin = os.path.join(OUT, f'_{tag}{i}.png') # tag: one sheet's own files, so two sheets can render at once
     subprocess.run(['npx', 'remotion', 'still', 'src/index.ts', 'N3Shot', raw, '--props=' + json.dumps({'spec': spec}), f'--frame={min(frame, spec["frames"] - 1)}',
                     '--gl=swangle', '--log=error', '--browser-executable=/opt/pw-browsers/chromium'], cwd=ANIM, check=True, stdout=subprocess.DEVNULL)
     subprocess.run(['python3', os.path.join(HERE, 'nw_finish.py'), 'still', raw, fin, str(scale)], check=True, stdout=subprocess.DEVNULL)
@@ -95,7 +95,8 @@ def lineup(out):
     sheet.save(out); print(out, sheet.size)
 
 def shots(specs, out, title, note, caps):
-    sp = json.load(open(specs)); ims = [shot(s, i, s.get('_frame', 12)) for i, s in enumerate(sp)] # _frame: which frame to show
+    tag = os.path.splitext(os.path.basename(out))[0]
+    sp = json.load(open(specs)); ims = [shot(s, i, s.get('_frame', 12), tag=tag) for i, s in enumerate(sp)] # _frame: which frame to show
     subprocess.run([os.path.join(HERE, 'n3_check.sh'), specs], check=True, stdout=subprocess.DEVNULL)
     cols = 3; w, h = ims[0].size; M, G = 70, 36; rows = (len(ims) + cols - 1) // cols
     W = 2 * M + cols * w + (cols - 1) * G; H = M + 170 + rows * (h + 70) + M

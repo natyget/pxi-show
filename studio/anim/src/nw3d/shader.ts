@@ -365,11 +365,15 @@ void main(){
   if (uSet > 2.5) base = wall == 1 ? campusFloor(p, pxw * t, px, em) : campusWall(p, wall, pxw * t, px, em, add);
   else if (uSet > 1.5) base = wall == 1 ? clubFloor(p, pxw * t, em) : clubWall(p, wall, pxw * t, px, em, add);
   else base = wall == 1 ? floorCol(p, pxw * t) : wallCol(p, wall, pxw * t, px, em, add);
+  if (em > 1.5){ em = 1.0; face = 7.0; } // the open sky over the pitch: one surface, so no ink where the box's sides meet
 
   int bi = -1; vec3 bln = vec3(0.0);
   for (int i = 0; i < NB; i++){ if (i >= uNB) break; vec3 bn; float a = uBm[i].x;
     vec3 lo = rotY(ro - uBc[i], -a), ld = rotY(rd, -a); float tb = boxHit(lo, ld, uBh[i], bn);
     if (tb > 0.0 && tb < t && uBcol[i].a > 7.5 && uBcol[i].a < 8.5 && length((lo + ld * tb).xy) > min(uBh[i].x, uBh[i].y)) continue; // the clock is round
+    if (tb > 0.0 && tb < t && uBcol[i].a > 9.5 && uBcol[i].a < 10.5){ // a net (mat 10): only its strings are there; far off, a dither of them
+      vec3 q = lo + ld * tb; vec2 g = abs(bn.x) > 0.5 ? q.zy : abs(bn.y) > 0.5 ? q.xz : q.xy; vec2 f = abs(fract(g / 0.09) - 0.5);
+      if (max(f.x, f.y) < 0.5 - min(max(0.07, pxw * tb / 0.09 * 0.6), 0.3)) continue; }
     if (tb > 0.0 && tb < t){ t = tb; bi = i; bln = bn; n = rotY(bn, a); base = uBcol[i].rgb; mat = uBcol[i].a; id = 10.0 + uBm[i].y; em = uBm[i].z; add = vec3(0.0); face = 10.0 + dot(abs(bn), vec3(1.0, 2.0, 3.0)); } }
   if (mat >= 0.0){ p = ro + rd * t; float fp = pxw * t;
     if (mat < 0.5) base *= mott(p, 1.0);
@@ -461,6 +465,7 @@ void main(){
   }
   oCol = vec4(col, 1.0);
   float dz = clamp(t / 16.0, 0.0, 0.99999) * 65535.0;
+  if (face > 6.5 && face < 7.5) dz = 0.99999 * 65535.0; // the sky is as far as anything goes, all of it
   oAux = vec4(id / 255.0, floor(dz / 256.0) / 255.0, mod(dz, 256.0) / 255.0, face / 255.0);
 }`;
 
@@ -468,7 +473,7 @@ void main(){
 // the set gets a softer line in its own darkened colour. The weight is a little uneven, like a drawn line.
 export const COMP_FRAG = `precision highp float;
 in vec2 vUv; out vec4 o;
-uniform sampler2D tCol; uniform sampler2D tAux; uniform vec2 uRes; uniform float uPxw;
+uniform sampler2D tCol; uniform sampler2D tAux; uniform vec2 uRes; uniform float uPxw; uniform float uGraze;
 const vec3 INK = vec3(0.07, 0.046, 0.045);
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 void rd(vec2 px, out float id, out float d, out float f){ vec4 a = texture(tAux, (px + 0.5) / uRes);
@@ -488,7 +493,7 @@ void main(){
       if (chr && me){ if (nd < d - 0.004 || (abs(nd - d) <= 0.004 && nid > id)) line = 2.0; }
       else if (nd < d - 0.01) line = max(line, chr ? 2.0 : 1.0);
     } else {
-      if (nd < d - (chr ? 0.05 : 0.12)) line = max(line, chr ? 2.0 : 1.0);
+      if (nd < d - (chr ? 0.05 : 0.12 + uGraze * d * d * 0.008)) line = max(line, chr ? 2.0 : 1.0); // outdoors, a far wall seen edge-on is not an edge
       else if (!chr && nf != f && nf > f) line = max(line, 0.5);
     }
   }

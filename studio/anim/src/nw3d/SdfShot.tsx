@@ -31,12 +31,12 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
       uSet: { value: 0 }, uRoom: { value: new THREE.Vector3() }, uRoom0: { value: new THREE.Vector3() },
       uClub: { value: new THREE.Vector4() }, uClubF: { value: new THREE.Vector4() }, uBo: f(16), uBd: f(16), uBk: f(16), uNBm: { value: 0 },
       uCw0: { value: new THREE.Vector4() }, uCw1: { value: new THREE.Vector4() }, uCw2: { value: new THREE.Vector4() }, uCw3: { value: new THREE.Vector4() }, uCw4: { value: new THREE.Vector4() }, uCw5: { value: new THREE.Vector4() }, uCw6: { value: new THREE.Vector4() }, uHole: f(32), uAmb: { value: new THREE.Vector3() }, uAmbC: { value: new THREE.Vector3() },
-      uCampus: { value: new THREE.Vector4() }, uSign: { value: null }, uSignSz: { value: new THREE.Vector2(1, 1) }, uBs: f(NB * 4),
+      uCampus: { value: new THREE.Vector4() }, uCampus2: { value: new THREE.Vector4() }, uSign: { value: null }, uSignSz: { value: new THREE.Vector2(1, 1) }, uBs: f(NB * 4),
     };
     const geo = new THREE.PlaneGeometry(2, 2);
     const sm = new THREE.RawShaderMaterial({ glslVersion: THREE.GLSL3, vertexShader: VERT, fragmentShader: SCENE_FRAG, uniforms: u, depthTest: false, depthWrite: false });
     const cm = new THREE.RawShaderMaterial({ glslVersion: THREE.GLSL3, vertexShader: VERT, fragmentShader: COMP_FRAG, depthTest: false, depthWrite: false,
-      uniforms: { tCol: { value: rt.textures[0] }, tAux: { value: rt.textures[1] }, uRes: { value: new THREE.Vector2(w, h) }, uPxw: { value: 0.003 } } });
+      uniforms: { tCol: { value: rt.textures[0] }, tAux: { value: rt.textures[1] }, uRes: { value: new THREE.Vector2(w, h) }, uPxw: { value: 0.003 }, uGraze: { value: 0 } } });
     const s1 = new THREE.Scene(); s1.add(new THREE.Mesh(geo, sm));
     const s2 = new THREE.Scene(); s2.add(new THREE.Mesh(geo, cm));
     return { rt, u, cm, s1, s2, cam: new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1) };
@@ -80,7 +80,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
   const F = norm(sub(sc.cam.at, sc.cam.pos)), Rt = norm(cross(F, sc.cam.up ?? [0, 1, 0])), Up = cross(Rt, F);
   u.uCamP.value.set(...sc.cam.pos); u.uCamF.value.set(...F); u.uCamR.value.set(...Rt); u.uCamU.value.set(...Up);
   u.uTan.value = Math.tan((sc.cam.fov * Math.PI) / 360); u.uTime.value = sc.time ?? 0; u.uSet.value = sc.studio ? 1 : sc.set ?? 0;
-  R.cm.uniforms.uPxw.value = (2 * u.uTan.value) / h;
+  R.cm.uniforms.uPxw.value = (2 * u.uTan.value) / h; R.cm.uniforms.uGraze.value = sc.outdoor ? 1 : 0;
 
   u.uFace.value.fill(0); u.uHn.value.fill(0);
   let pi = 0, hi = 0;
@@ -117,7 +117,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
     u.uBm.value.set([((b.yaw ?? 0) * Math.PI) / 180, b.obj, b.glow ? 1 : 0, b.noShadow || b.glow ? 1 : 0], i * 4);
     const rc = b.sign ? (SIGNS.rects as Record<string, number[]>)[b.sign] : undefined; if (b.sign && !rc) throw new Error('no sign ' + b.sign + ' in the atlas (tools/signs.py)');
     u.uBs.value.set(rc ?? b.clock ?? [0, 0, 0], i * 4); }
-  u.uSign.value = sig; u.uSignSz.value.set(SIGNS.size[0], SIGNS.size[1]); u.uCampus.value.set(...(sc.campus ?? [0, 0, 0, 0]));
+  u.uSign.value = sig; u.uSignSz.value.set(SIGNS.size[0], SIGNS.size[1]); u.uCampus.value.set(...(sc.campus ?? [0, 0, 0, 0])); u.uCampus2.value.set(...(sc.campus2 ?? [0, 0, 0, 0]));
   u.uNB.value = nb;
   const pr = (sc.props ?? []).slice(0, NO);
   pr.forEach((o, i) => { u.uOc.value.set(o.c, i * 3); u.uOx.value.set(o.x, i * 3); u.uOy.value.set(o.y, i * 3); u.uOz.value.set(o.z, i * 3); u.uOh.value.set(o.h, i * 3);

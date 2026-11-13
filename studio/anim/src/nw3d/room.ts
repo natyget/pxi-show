@@ -134,7 +134,7 @@ export const PARTY_AMB: V = [0.56, 0.52, 0.58], PARTY_AMB_CHAR: V = [0.97, 0.92,
 // ---- posing ----
 // pose: a named way of holding the arms (see HOLDS in world.ts). lift: stand on something this high (metres).
 export type Act = { who?: Character; clip: string; t: number; at: [number, number]; yaw: number; face: Face;
-  stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string;
+  stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; glow?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string;
   pose?: string; lift?: number;
   reachTo?: V; // a point in the world the hold's hand goes to (set by the set: Prof H's fingers on the flyer)
   thumb?: [number, number, number]; // where his thumb is on the glass: across and up it (-1..1), and how far lifted (0 pressed, 1 off)
@@ -244,7 +244,8 @@ export const pose = (a: Act) => {
     if (lens) { hands[1] = 'none'; phoneAt = { c: pc, x, y, z, eye: [0, 0, 0] }; }
     else if (ph > 0.6) {
       props.push({ c: pc, x, y, z, h: PHONE_H, col: '#241a1e', screen: '#a523ef' });
-      lights.push({ p: add(pc, mul(z, 0.05)), r: 0.2, col: [0.3, 0.12, 0.5] });
+      const g = a.glow ?? 0; // glow: the screen lights his face from below (0 the usual faint spill, 1 a face lit by it)
+      lights.push({ p: add(pc, mul(z, 0.05 + 0.1 * g)), r: 0.2 + 0.6 * g, col: [0.3 + 0.9 * g, 0.12 + 0.22 * g, 0.5 + 1.3 * g] });
       extra.push(...gripHand(pc, x, y, z, ch.skin, a.thumb)); hands[1] = 'none'; phoneAt = { c: pc, x, y, z, eye: [0, 0, 0] };
     }
   }
@@ -317,12 +318,37 @@ export const pose = (a: Act) => {
   }
   // the flyer held up in both hands at chest height, its face to whoever he shows it to
   if (nm === 'flyer') {
-    const pc = add(add(s.neckBase, mul(s.chestDir, -0.12)), mul(fwd, P.torsoR + 0.2)), z = norm(add(fwd, [0, 0.15, 0])), x0 = s.side, x = norm(sub(x0, mul(z, dot(x0, z)))), y = cross(z, x);
+    // the improv flyer held up beside his face in his right hand, its face toward whoever he is facing, turned in a touch
+    const up: V = [0, 1, 0], rt = mul(s.side, -1);
+    const pc = add(add(s.neckBase, mul(up, 0.12)), add(mul(fwd, P.torsoR + 0.17), mul(rt, 0.2)));
+    const z = norm(add(fwd, mul(rt, 0.22))), x0 = s.side, x = norm(sub(x0, mul(z, dot(x0, z)))), y = cross(z, x);
     props.push({ c: pc, x, y, z, h: [0.108, 0.14, 0.002], col: '#f6f3ea', sign: 'flyer' });
-    for (const i of [0, 1] as const) {
-      const edge = add(pc, add(mul(x, (i === 0 ? 1 : -1) * 0.112), add(mul(y, 0.07), mul(z, -0.012))));
-      s = reach(s, i, add(edge, mul(z, -0.03)), add(out(i), [0, -1, 0]), P, y, mul(z, 1)); hands[i] = 'fist';
-    }
+    // the hand at its bottom outer corner, the thumb on its face, clear of the words
+    s = reach(s, 1, add(pc, add(add(mul(x, -0.088), mul(y, -0.122)), mul(z, -0.025))), add(out(1), [0, -1, 0]), P, y, z); hands[1] = 'fist';
+  }
+  if (nm === 'ticket') {
+    // Darnell, sitting: the lab report on his knees, turned to whoever is in front of him, and on it, over its coffee
+    // ring, his ticket (4), his left hand beside it, the thumb on the ring. Both read the right way up from in front.
+    const o0 = ch.wardrobe[a.outfit ?? ch.outfit], w = o0.bottom ? P.legR + 0.03 + o0.bottom.width * 0.6 : P.legR;
+    const fh = norm([fwd[0], 0, fwd[2]]), rt = cross(fh, UP), y = mul(fh, -1), z = UP, x = cross(y, z); // y: the page's top, toward him
+    const rc = add(lerp(lerp(s.hip[0], s.kn[0], 0.7), lerp(s.hip[1], s.kn[1], 0.7), 0.5), [0, w + 0.012, 0]);
+    props.push({ c: rc, x, y, z, h: [0.105, 0.148, 0.002], col: '#f0ece0', sign: 'labReport' });
+    const tc = add(rc, add(add(mul(x, 0.035), mul(y, -0.027)), [0, 0.004, 0])); // the coffee ring on the page
+    props.push({ c: tc, x, y, z, h: [0.03, 0.04, 0.0015], col: '#eee2c4', sign: 'ticket4' });
+    s = reach(s, 0, add(tc, add(mul(rt, -0.085), add(mul(fh, -0.02), [0, 0.03, 0]))), add(out(0), [0, -1, 0]), P, norm(add(rt, mul(fh, 0.3))), UP); hands[0] = 'fist';
+  }
+  // a mop: both hands on the handle, the right low, the left high, the head on the floor ahead swinging side to side
+  // in time with the walk
+  if (nm === 'mop') {
+    const ft = lerp(s.an[0], s.an[1], 0.5), fh = norm([fwd[0], 0, fwd[2]]), sw = Math.sin(((a.t ?? 0) / 32) * 2 * Math.PI) * 0.2;
+    const head = add([ft[0], 0.03, ft[2]], add(mul(fh, 0.62), mul(out(1), 0.08 + sw))), top = add(add(s.hips, [0, 0.62, 0]), add(mul(fh, 0.1), mul(out(1), 0.12)));
+    const ax = norm(sub(top, head)), at = (k: number) => add(head, mul(sub(top, head), k));
+    s = reach(s, 1, at(0.52), add(out(1), [0, -1, 0]), P, ax, mul(out(1), -1)); s = reach(s, 0, at(0.86), add(out(0), [0, -1, 0]), P, ax, out(0)); hands[0] = 'fist'; hands[1] = 'fist';
+    extra.push({ a: head, ra: 0.013, b: add(top, mul(ax, 0.06)), rb: 0.013, g: G.shoe, k: 0.002, c: '#b8b2a8' });
+    const across = norm(cross(ax, fh));
+    for (let k = -3; k <= 3; k++) { const r0 = add(head, mul(across, k * 0.026));
+      extra.push({ a: r0, ra: 0.02, b: add([r0[0], 0.015, r0[2]], add(mul(fh, 0.07 + 0.02 * Math.abs(k)), mul(across, k * 0.025))), rb: 0.017, g: G.shoe, k: 0.02, c: '#d6d0c2' }); }
+    s = lookAt(s, add(head, [0, 0.3, 0]), 0.25, P);
   }
   // a pen in the right hand, its point on the desk in front of him
   if (nm === 'pen') {
