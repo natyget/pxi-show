@@ -68,16 +68,15 @@ and jokes, and nothing in the new one may repeat them.
 ## Season 1 slate (in posting order; founder's order, Nov 13)
 
 Plot from Regular Show, humor and people from Gumball, eerie from Adventure Time (`bible/three-shows.md`).
-Scripts for 1 to 3 are in `episodes-v2.md`. 4 to 6 are in `episodes.md` and are being rewritten to the same
-standard.
+All six scripts are in `episodes-v2.md` (Tiger points back to `episodes.md`). `episodes.md` is otherwise retired.
 
 | # | Title | Where | One line | PXI | Length |
 |---|---|---|---|---|---|
 | 1 | Office Hours | campus | Nio skips office hours and finds out they are a place, and the people who skipped them are still in it. | the map | short, 60 s |
 | 2 | The Move | a basement club, his couch | Drunk Nio puts a contact back in off the club floor and gets an infection on the beat. | the flash photo and the album comments | short |
 | 3 | Lost and Found | a laundromat | The password to Theo's birthday is in the lost-and-found, which is a world. | the event page | short, and LONG |
-| 4 | On a Break | a rooftop | (being rewritten) | the album | short |
-| 5 | Good Game | a game bar | (being rewritten) | the map | short |
+| 4 | On a Break | a rooftop | A couple's break comes with a referee, and Nio asks for a video review. | the album | short |
+| 5 | Good Game | a game bar | Nio finally meets the only player who beats him, and he has a bedtime. | the map | short |
 | 6 | Tiger | a house party, the street, a car | Nio gets his lightweight friend home with no contacts in. | the album | LONG and a short cut |
 
 After these, the slate in `bible/world.md` and the stories the founder drops in chat.

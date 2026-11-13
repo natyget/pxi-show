@@ -12,8 +12,8 @@ gate_failures: 0
 
 ## Next render: "Office Hours" (season 1, episode 1)
 
-Scripts: `episodes/season-1/episodes-v2.md` (1 Office Hours, 2 The Move, 3 Lost and Found) and `episodes.md` (4 to
-6, being rewritten); plan: `episodes/season-1/series-plan.md`. `the-move-board.md` is out of date. Office Hours is
+Scripts: `episodes/season-1/episodes-v2.md` (episodes 1 to 5) and `episodes.md` (Tiger,
+episode 6); plan: `episodes/season-1/series-plan.md`. `the-move-board.md` is out of date. Office Hours is
 built when the design thread delivers the campus sets (lecture hall, the corridor to his office), Prof H, Nio's
 real hand on the phone and mouth shapes from the audio. The cast (Maya, Sami, Theo, Imane) is approved. Voices run
 in a new session, which has full network access.

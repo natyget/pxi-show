@@ -2,7 +2,7 @@
 
 Rewritten after the founder's note of Nov 13 01:34. Plot from Regular Show, humor and people from Gumball,
 eerie from Adventure Time (`bible/three-shows.md`). These three replace The Move, Password and Potential in
-`episodes.md`. On a Break, Good Game and Tiger are being rewritten to the same standard next.
+`episodes.md`. All six are here.
 
 ---
 
@@ -49,7 +49,7 @@ fidget spinner, a girl in a flower crown, and DARNELL, beard to his belt, very c
 with a coffee ring on it. Above the inner door: NOW SERVING 3.]
 
 DARNELL: First time?
-NIO: I was literally leaving.
+NIO: I'm not even here.
 DARNELL (nodding, kind): Yeah. We all were.
 [Nio looks at the ticket in Darnell's hand. 4.]
 DARNELL (gently, like it's nothing): Did they ever drop the new GTA?
@@ -216,3 +216,122 @@ thank you" / Maya's therapy making it worse / "Bro's just a seven-by-seven" / "T
 Eerie: the cavern, the breathing, the giant made of lost things that only wants to be undone.
 Caption: the password was in the lost and found. We did not expect the lost and found to be that big.
 What did you lose that's down there?
+
+---
+
+## 4. On a Break
+
+Where: a rooftop at golden hour · Chore: hang out, say nothing about the couple · Dodge: Nio asks the one
+honest question · The impossible thing: a break has a referee, and he has been here the whole time · PXI: the
+rooftop album, used as the video replay · Eerie: the referee's last line · About 55 s
+
+```
+[EXT. ROOFTOP, GOLDEN HOUR. Folding chairs, string lights, a cooler. JULES and KAI sit two chairs apart,
+not looking at each other. Standing between them, arms folded, in a black-and-white striped shirt, whistle
+in his mouth: a REFEREE. Nobody looks at him.]
+
+MAYA (leaning in, delighted, quiet): They're on a break.
+NIO (looking straight at the referee): Okay. And who's he?
+MAYA: That's the break.
+[The referee nods at Nio, professionally.]
+
+[Kai reaches for the chips. Jules reaches for the chips. Their fingers touch.]
+[WHISTLE. The referee strides in and holds up a yellow card to both of them.]
+KAI: That was the chips!
+JULES (to the ref): He knows I like the salt and vinegar ones.
+[The referee writes it down.]
+
+NIO (honestly asking): How long is a break?
+REFEREE (without looking at him): Until it's over.
+NIO: Who decides when it's over?
+REFEREE (beat, eyes narrowing): ...Next question.
+
+[Jules laughs at something Kai says from two chairs away. WHISTLE. Second yellow. Kai's face drops.]
+REFEREE: Second yellow. That's a red. You're broken up.
+[Jules gasps. Kai stands up. Maya grabs Nio's arm and squeezes it like she's watching a penalty shootout.]
+MAYA (urgent): Do something.
+
+[Nio stands up and holds out his phone.]
+NIO: Ref. I want a review.
+[The referee stops. Considers it. Touches his ear like he's listening to someone. Nods.]
+
+[The PXI album "roof 🌇" comes up big on the phone. The referee leans in, Maya leans in, the whole roof
+crowds behind them like a match replay. Swipe: 6:12, Jules and Kai holding hands. Swipe: 6:31, sharing one
+drink with two straws. Swipe: 6:40, asleep on each other's shoulder. Swipe: 6:55, Kai feeding Jules a chip.]
+[The referee looks at the photos for a long time. He takes the whistle out of his mouth.]
+REFEREE (quietly): ...This was never a break.
+[He tears up both cards. Jules and Kai run at each other. The roof cheers. Maya cries into Nio's sleeve.]
+
+[Later. Lights on. Everyone gone. The referee sits on the edge of the roof, alone, looking at the city. Nio
+sits down next to him and offers him the chips.]
+REFEREE (taking one, not looking at him): Fourteen years. Nobody's ever finished one.
+[Hold. Room tone. A siren somewhere far off. He eats the chip.]
+```
+
+Laughs: the referee nobody looks at / "That's the break." / yellow card for the chips / "Until it's over."
+"...Next question." / Maya's penalty-shootout grip / "Ref. I want a review." / the album as the replay /
+"This was never a break."
+Eerie: the referee alone at the end, and how long he has been doing this.
+Caption: my friends went on a break and it came with a referee. Was it ever a break?
+
+---
+
+## 5. Good Game
+
+Where: a game bar · Chore: lose to mango_dad again · Dodge: Nio turns up in person to win the way adults win
+· The impossible thing: an eleven-year-old who is completely, eerily calm, and a bedtime that is a law of
+nature · PXI: the tournament on the map, the photo for his mum · About 55 s
+
+```
+[INT. NIO'S APARTMENT, NIGHT. On the TV: DEFEAT. The winner: mango_dad. Nio's PXI map: "Arcade Night Finals,
+tonight 8 pm." In the bracket: mango_dad.]
+NIO (standing, grabbing his jacket): Online he's got good wifi. In person it's just hands.
+
+[INT. GAME BAR. Neon. Nio walks in cracking his knuckles and sizes up every grown man in a dad shirt. He picks
+the biggest one and stares him down. The man is holding a baby.]
+HOST (on mic): Finals. Nio... and mango_dad.
+[Across from Nio sits a BOY, eleven, green hoodie, juice box. Behind him, his MUM, reading a book.]
+NIO: ...Hi.
+MANGO_DAD: Hi.
+
+[Round one. The boy wins one-handed, eating crackers with the other.]
+[Nio leans across. Trash talk, in full, the way he would do it to Theo.]
+NIO: Little man. Respectfully. Your bedtime's coming up and you're in your flop era.
+[The boy looks at him, totally calm, and drinks his juice through the straw until it makes the sound.]
+MANGO_DAD: You jump when you're scared.
+[Round two. Every time Nio's character takes a hit, Nio jumps in his seat. The bar starts going "OH" on every
+jump. He jumps. "OH." He jumps. "OH." The boy wins.]
+
+[Nio puts the controller down. Breathes. Holds out his hand, meaning it.]
+NIO: Good game.
+MANGO_DAD (shaking it): Good game.
+MUM (getting her phone out): Sorry. Would you take one of us?
+[Nio gets low, finds the light, waits for the boy to stop blinking. PXI flash. The photo comes up warm and
+lovely: the boy and his mum and a tiny trophy. The best photo anyone has taken in this bar.]
+MUM: Oh. That's beautiful.
+
+[The boy looks at his watch. 8:59. He stands up mid-sentence.]
+MANGO_DAD: Bedtime.
+[At 9:00 exactly, every screen in the bar goes dark at once. Silence. Neon hum. They walk out. The screens
+come back on.]
+
+[Nio, alone at the cabinet, picks up the controller and selects TRAINING MODE. Theo slides in beside him.]
+THEO: Did you win?
+NIO (eyes on the screen): He was eleven, bro.
+```
+
+Laughs: staring down the man holding a baby / the juice box reveal / "you're in your flop era" / the straw
+sound / the bar going "OH" every time he jumps / the beautiful photo / every screen dying at 9:00 /
+"He was eleven, bro."
+Eerie: how calm the boy is, and the screens.
+Caption: spent two years losing to mango_dad online. Finally met him. Who's the kid who always beats you?
+
+---
+
+## 6. Tiger
+
+The founder's own story (R1) and already the strongest thing we have. It stays as written in `episodes.md`,
+with two changes to bring it up to this standard: the three bathroom-door shots get the full set-piece
+treatment (the music swells like a heist every time the door opens and cuts dead every time it shuts), and
+the walk home is the eerie stretch: the street empty, the music in his earbuds small and far away, one shop
+light buzzing, and Nio laughing to himself once.
