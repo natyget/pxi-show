@@ -8,7 +8,7 @@ export type Cam3 = { pos: V; at: V; fov: number; up?: V }; // up: which way is u
 // A box in the room. yaw in degrees. `obj` groups boxes into one outlined object.
 // mat: 0 plain, 1 wood with grain, 2 flecked cloth, 3 curtain folds, 4 grooved boards
 export type Box = { c: V; h: V; col: string; obj: number; yaw?: number; glow?: boolean; noShadow?: boolean; mat?: number;
-  sign?: string; // mat 7: the front (+z) face shows this sign from the atlas (tools/signs.py)
+  sign?: string; // mat 7: the front (+z) face shows this sign from the atlas (tools/signs.py); mat 9: the top face, its top toward -z
   clock?: [number, number, number] }; // mat 8, a round wall clock: [has hands, hour hand angle, minute hand angle] (radians, clockwise from 12)
 // A prop that moves (a phone in a hand): centre, three unit axes, half sizes. The +z face is `screen` if given.
 export type Obb = { c: V; x: V; y: V; z: V; h: V; col: string; screen?: string };
@@ -22,8 +22,10 @@ export type CrowdSpec = {
   x0: number; z0: number; cw: number; cd: number; nx: number; nz: number; seed: number; fill: number; // the grid, and the share of cells with someone in
   dance: number; crouch: number; armsUp: number; headsUp: number; // 0..1 each
   clear: [number, number, number]; spread: number; // a circle nobody stands in (x, z, r); the crouch has spread this far from its centre
-  face: [number, number]; ring: number; faces: number; // the point they face; people this near the circle face it instead; 0 party, 1 laughing, 2 the floor, 3 chanting
-  holes: [number, number, number][]; // where the cast stand: x, z, r
+  face: [number, number]; ring: number; faces: number; // the point they face; people this near the circle face it instead; 0 party, 1 laughing, 2 the floor, 3 chanting, 4 a blank stare
+  holes: [number, number, number][]; // where the cast stand (and the camera, so no head fills the lens): x, z, r. At most 8
+  sit?: [number, number]; // sitting in rows: the rise of each row (+ up toward +z, - up toward -z), and seat height
+  turn?: number; lookAt?: V; // how far heads turn (0..1) to look at this point
 };
 // A cone of light from the rig, seen in the haze: origin, direction, how fast it spreads, strength, colour.
 export type Beam = { o: V; d: V; spread: number; k: number; col: V };

@@ -380,6 +380,7 @@ void main(){
     else if (mat < 6.5){ base = base.r > 0.5 ? neonB() : neonA(); em = 1.0; } // a neon strip in the club's mood: red over half = the second neon
     else if (mat < 7.5) base = signFace(base, rotY(p - uBc[bi], -uBm[bi].x), uBh[bi], bln, bi, fp);
     else if (mat < 8.5) base = clockFace(rotY(p - uBc[bi], -uBm[bi].x), uBh[bi], bi, fp);
+    else if (mat < 9.5) base = signTop(base, rotY(p - uBc[bi], -uBm[bi].x), uBh[bi], bln, bi, fp);
   }
   for (int i = 0; i < NO; i++){ if (i >= uNO) break; vec3 bn; vec3 d = ro - uOc[i];
     float tb = boxHit(vec3(dot(d, uOx[i]), dot(d, uOy[i]), dot(d, uOz[i])), vec3(dot(rd, uOx[i]), dot(rd, uOy[i]), dot(rd, uOz[i])), uOh[i], bn);

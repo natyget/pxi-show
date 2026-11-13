@@ -20,8 +20,10 @@ uniform vec4 uCw0;    // crowd grid: x0, z0, cell width, cell depth
 uniform vec4 uCw1;    // columns, rows, seed, fill (the share of cells with someone in; 0 = no crowd)
 uniform vec4 uCw2;    // dance, crouch, arms up, heads up (0..1 each)
 uniform vec4 uCw3;    // the cleared circle: x, z, radius; w: how far from its centre the crouch has spread
-uniform vec4 uCw4;    // the point everyone faces (x, z); z: people this near the circle face it instead; w: faces (0 party, 1 laughing, 2 the floor, 3 chanting)
-uniform vec4 uHole[6]; // more places nobody stands (where the cast are): x, z, radius
+uniform vec4 uCw4;    // the point everyone faces (x, z); z: people this near the circle face it instead; w: faces (0 party, 1 laughing, 2 the floor, 3 chanting, 4 a blank stare)
+uniform vec4 uHole[8]; // more places nobody stands (where the cast are): x, z, radius
+uniform vec4 uCw5;    // sitting in rows (a lecture hall): x 1 = sitting, y the rise of each row (+ up toward +z, - up toward -z), z seat height, w how far heads turn to the look point
+uniform vec4 uCw6;    // the look point: where everyone turns to look (x, y, z)
 
 ${arr('C_SKIN', SKINS)}
 ${arr('C_HAIRA', HAIRS.map((h) => h[0]))}
@@ -111,10 +113,11 @@ bool crowdAt(ivec2 c, out vec3 o){
   if (c.x < 0 || c.y < 0 || c.x >= int(uCw1.x) || c.y >= int(uCw1.y)) return false;
   vec2 cf = vec2(c) + uCw1.z * 17.0;
   if (hash(cf) > uCw1.w) return false;
-  float st = mod(float(c.y), 2.0) < 0.5 ? -0.22 : 0.22;
-  o = vec3(uCw0.x + (float(c.x) + 0.5 + st + (hash(cf + 3.1) - 0.5) * 0.36) * uCw0.z, 0.0, uCw0.y + (float(c.y) + 0.5 + (hash(cf + 5.3) - 0.5) * 0.3) * uCw0.w);
+  bool sit = uCw5.x > 0.5; float rise = uCw5.y, ry = rise >= 0.0 ? float(c.y) * rise : (uCw1.y - 1.0 - float(c.y)) * -rise;
+  float st = sit ? 0.0 : mod(float(c.y), 2.0) < 0.5 ? -0.22 : 0.22;
+  o = vec3(uCw0.x + (float(c.x) + 0.5 + st + (hash(cf + 3.1) - 0.5) * (sit ? 0.08 : 0.36)) * uCw0.z, sit ? ry : 0.0, uCw0.y + (float(c.y) + 0.5 + (sit ? 0.0 : (hash(cf + 5.3) - 0.5) * 0.3)) * uCw0.w);
   if (length(o.xz - uCw3.xy) < uCw3.z) return false;
-  for (int i = 0; i < 6; i++) if (uHole[i].z > 0.0 && length(o.xz - uHole[i].xy) < uHole[i].z) return false;
+  for (int i = 0; i < 8; i++) if (uHole[i].z > 0.0 && length(o.xz - uHole[i].xy) < uHole[i].z) return false;
   return true;
 }
 vec3 ikJ(vec3 a, vec3 c, float l1, float l2, vec3 pole){
@@ -184,8 +187,30 @@ void crowdPerson(ivec2 c, vec3 o, out Pp P){
   P.top = C_TOP[int(hash(cf + 79.1) * ${TOPS.length}.0)]; P.bot = C_BOT[int(hash(cf + 83.3) * ${BOTTOMS.length}.0)]; P.shoe = C_SHOE[int(hash(cf + 89.9) * ${SHOES.length}.0)];
   P.longS = hash(cf + 97.1) < 0.45; P.skirt = slight && hash(cf + 101.3) < 0.35;
   float fm = uCw4.w, fh = hash(cf + 103.7);
-  P.ex = fm > 2.5 ? 3 : fm > 1.5 ? 2 : fm > 0.5 ? 1 : (fh < 0.45 ? 0 : fh < 0.75 ? 1 : 3);
+  P.ex = fm > 3.5 ? 4 : fm > 2.5 ? 3 : fm > 1.5 ? 2 : fm > 0.5 ? 1 : (fh < 0.45 ? 0 : fh < 0.75 ? 1 : 3);
   P.look = (hash(cf + 107.9) - 0.5) * 1.4;
+  if (uCw5.x > 0.5){
+    // sitting in a row: on the seat, thighs forward, feet on the floor, hands on the desk in front. Turning to look at
+    // something, the shoulders turn part of the way and the head the rest, and the eyes stare straight out.
+    vec3 hp = o + vec3(0.0, uCw5.z + 0.085, 0.0) - F * 0.04, Fx = cross(UP, F);
+    P.hip = hp; P.hp0 = hp + R * hh; P.hp1 = hp - R * hh;
+    vec3 a0 = o + F * (thigh * 0.92) + R * 0.1 + vec3(0.0, 0.055, 0.0), a1 = o + F * (thigh * 0.92) - R * 0.1 + vec3(0.0, 0.055, 0.0);
+    P.an0 = ikE(P.hp0, a0, thigh, shin); P.an1 = ikE(P.hp1, a1, thigh, shin);
+    P.kn0 = ikJ(P.hp0, a0, thigh, shin, normalize(F + UP)); P.kn1 = ikJ(P.hp1, a1, thigh, shin, normalize(F + UP));
+    vec3 L = normalize(vec3(uCw6.x - o.x, 0.0, uCw6.z - o.z) + vec3(1e-4, 0.0, 0.0)); float th = atan(dot(L, Fx), dot(L, F)) * uCw5.w;
+    // the shoulders twist up to about 60 degrees, the head up to 140 in all: nobody turns like an owl
+    float ts = sign(th) * min(1.05, max(abs(th) * 0.4, abs(th) - 1.4)) + (h7 - 0.5) * 0.1 * (1.0 - uCw5.w); vec3 Fs = F * cos(ts) + Fx * sin(ts), Rs = -cross(UP, Fs);
+    P.nk = hp + normalize(UP - F * 0.06) * torso;
+    P.sh0 = P.nk - UP * 0.06 + Rs * shH; P.sh1 = P.nk - UP * 0.06 - Rs * shH;
+    vec3 d0 = hp + UP * 0.24 + F * 0.36 + R * 0.12, d1 = hp + UP * 0.24 + F * 0.36 - R * 0.12;
+    P.el0 = ikJ(P.sh0, d0, ua, fa, normalize(Rs - UP * 0.8)); P.wr0 = ikE(P.sh0, d0, ua, fa);
+    P.el1 = ikJ(P.sh1, d1, ua, fa, normalize(-Rs - UP * 0.8)); P.wr1 = ikE(P.sh1, d1, ua, fa);
+    float tH = clamp(th, -2.45, 2.45) + (h12 - 0.5) * 0.5 * (1.0 - uCw5.w); vec3 hf2 = F * cos(tH) + Fx * sin(tH);
+    float pit = 0.12 * (1.0 - uCw5.w) + (h11 - 0.5) * 0.12; hf2 = normalize(hf2 * cos(pit) - UP * sin(pit));
+    P.hF = hf2; P.hU = normalize(UP - hf2 * dot(UP, hf2)); P.hR = cross(P.hU, P.hF);
+    P.hc = P.nk + P.hU * (0.1 + 0.16 * P.hs);
+    P.look = mix(P.look, 0.0, uCw5.w); P.f = F;
+  }
 }
 float capd(vec3 p, vec3 a, vec3 b, float ra, float rb){ vec3 pa = p - a, ba = b - a; float h = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-6), 0.0, 1.0); return length(pa - ba * h) - mix(ra, rb, h); }
 vec3 cHeadQ(vec3 p, Pp P){ vec3 d = p - P.hc; return vec3(dot(d, P.hR), dot(d, P.hU), dot(d, P.hF)) / P.hs; }
@@ -264,9 +289,10 @@ vec3 crowdFace(vec3 col, vec3 q, Pp P, float px, out float fl){
     if (e.y > top + st * 0.55) continue;
     if (si >= 1.0 || e.y > top - st * 0.55){ col = INK; fl = 1.0; continue; }
     col = EYEW; fl = 2.0;
-    vec2 pr = max(vec2(0.145, 0.222) * (ex == 3 ? 0.85 : 1.0), vec2(px * 0.9)), lim = vec2(rx - st - pr.x * 0.55, max(ry - st - pr.y * 0.92, 0.0));
+    vec2 pr = max(vec2(0.145, 0.222) * (ex == 3 ? 0.85 : ex == 4 ? 0.7 : 1.0), vec2(px * 0.9)), lim = vec2(rx - st - pr.x * 0.55, max(ry - st - pr.y * 0.92, 0.0));
     vec2 d = (e - vec2(P.look * lim.x, (ex == 2 ? -0.9 : 0.0) * lim.y - 0.012)) / pr; if (dot(d, d) < 1.0){ col = vec3(0.06, 0.04, 0.042); fl = 1.0; }
   }
+  if (ex == 4) return col; // the stare: no mouth
   float w = ex == 0 ? 0.15 : ex == 1 ? 0.2 : ex == 2 ? 0.08 : 0.13, curve = ex == 0 ? 0.07 : ex == 2 ? 0.0 : 0.02, open = ex == 1 ? 0.2 : ex == 3 ? 0.25 : 0.0;
   vec2 m = uv - vec2(0.0, -0.8); float x = m.x / w, t = st * 0.62, yc = curve * 1.5 * (x * x - 0.4);
   if (open < 0.03){ if (abs(x) < 1.0 && abs(m.y - yc) < t * 0.75){ col = INK; fl = 1.0; } return col; }
@@ -280,7 +306,7 @@ void crowdTry(ivec2 c, vec3 ro, vec3 rd, inout float best, inout Pp HP, inout bo
   vec2 oc = ro.xz - o.xz; float a = dot(rd.xz, rd.xz), t0, t1;
   if (a < 1e-8){ if (dot(oc, oc) > 0.25) return; t0 = 0.0; t1 = 1e3; }
   else { float b = dot(oc, rd.xz), cc = dot(oc, oc) - 0.25, disc = b * b - a * cc; if (disc < 0.0) return; float sq = sqrt(disc); t0 = (-b - sq) / a; t1 = (-b + sq) / a; }
-  if (abs(rd.y) > 1e-5){ float ya = -ro.y / rd.y, yb = (2.25 - ro.y) / rd.y; t0 = max(t0, min(ya, yb)); t1 = min(t1, max(ya, yb)); }
+  if (abs(rd.y) > 1e-5){ float ya = (o.y - ro.y) / rd.y, yb = (o.y + 2.25 - ro.y) / rd.y; t0 = max(t0, min(ya, yb)); t1 = min(t1, max(ya, yb)); }
   t0 = max(t0, 0.0); t1 = min(t1, best); if (t0 >= t1) return;
   Pp P; crowdPerson(c, o, P); float t = t0; int g;
   for (int i = 0; i < 64; i++){ float d = crowdSD(ro + rd * t, P, g); if (d < 0.0015 * t){ best = t; HP = P; found = true; return; } t += d * 0.9; if (t > t1) return; }
@@ -291,7 +317,8 @@ float crowdHit(vec3 ro, vec3 rd, float tmax, out Pp HP){
   if (uCw1.w <= 0.0) return -1.0;
   vec2 g0 = uCw0.xy, cs = uCw0.zw, n = uCw1.xy;
   vec3 rdd = vec3(abs(rd.x) < 1e-6 ? 1e-6 : rd.x, abs(rd.y) < 1e-6 ? 1e-6 : rd.y, abs(rd.z) < 1e-6 ? 1e-6 : rd.z);
-  vec3 ta3 = (vec3(g0.x - 0.7, 0.0, g0.y - 0.7) - ro) / rdd, tb3 = (vec3(g0.x + n.x * cs.x + 0.7, 2.25, g0.y + n.y * cs.y + 0.7) - ro) / rdd;
+  float ytop = 2.25 + (uCw5.x > 0.5 ? abs(uCw5.y) * n.y : 0.0);
+  vec3 ta3 = (vec3(g0.x - 0.7, 0.0, g0.y - 0.7) - ro) / rdd, tb3 = (vec3(g0.x + n.x * cs.x + 0.7, ytop, g0.y + n.y * cs.y + 0.7) - ro) / rdd;
   vec3 tn = min(ta3, tb3), tf = max(ta3, tb3);
   float ta = max(max(tn.x, tn.y), max(tn.z, 0.0)), tb = min(min(tf.x, tf.y), min(tf.z, tmax));
   if (ta >= tb) return -1.0;
@@ -308,7 +335,7 @@ float crowdHit(vec3 ro, vec3 rd, float tmax, out Pp HP){
 }
 // the soft dark patch on the floor under each of them
 float crowdShade(vec3 p, float by){
-  if (uCw1.w <= 0.0) return 1.0;
+  if (uCw1.w <= 0.0 || uCw5.x > 0.5) return 1.0;
   ivec2 c = ivec2(floor((p.xz - uCw0.xy) / uCw0.zw)); float s = 1.0;
   for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++){ vec3 o; if (crowdAt(c + ivec2(dx, dy), o)){ float e = length(p.xz - o.xz) / 0.27; if (e + (by - 0.5) * 0.3 < 1.0) s = 0.5; } }
   return s; }

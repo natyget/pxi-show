@@ -30,7 +30,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
       uScr: { value: null }, uScrOn: { value: new THREE.Vector3(-1, 360, 0) },
       uSet: { value: 0 }, uRoom: { value: new THREE.Vector3() }, uRoom0: { value: new THREE.Vector3() },
       uClub: { value: new THREE.Vector4() }, uClubF: { value: new THREE.Vector4() }, uBo: f(16), uBd: f(16), uBk: f(16), uNBm: { value: 0 },
-      uCw0: { value: new THREE.Vector4() }, uCw1: { value: new THREE.Vector4() }, uCw2: { value: new THREE.Vector4() }, uCw3: { value: new THREE.Vector4() }, uCw4: { value: new THREE.Vector4() }, uHole: f(24), uAmb: { value: new THREE.Vector3() }, uAmbC: { value: new THREE.Vector3() },
+      uCw0: { value: new THREE.Vector4() }, uCw1: { value: new THREE.Vector4() }, uCw2: { value: new THREE.Vector4() }, uCw3: { value: new THREE.Vector4() }, uCw4: { value: new THREE.Vector4() }, uCw5: { value: new THREE.Vector4() }, uCw6: { value: new THREE.Vector4() }, uHole: f(32), uAmb: { value: new THREE.Vector3() }, uAmbC: { value: new THREE.Vector3() },
       uCampus: { value: new THREE.Vector4() }, uSign: { value: null }, uSignSz: { value: new THREE.Vector2(1, 1) }, uBs: f(NB * 4),
     };
     const geo = new THREE.PlaneGeometry(2, 2);
@@ -136,7 +136,8 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
   const cw = sc.crowd; u.uHole.value.fill(0);
   if (cw) {
     u.uCw0.value.set(cw.x0, cw.z0, cw.cw, cw.cd); u.uCw1.value.set(cw.nx, cw.nz, cw.seed, cw.fill); u.uCw2.value.set(cw.dance, cw.crouch, cw.armsUp, cw.headsUp);
-    u.uCw3.value.set(...cw.clear, cw.spread); u.uCw4.value.set(...cw.face, cw.ring, cw.faces); cw.holes.slice(0, 6).forEach((h, i) => u.uHole.value.set([...h, 0], i * 4));
+    u.uCw3.value.set(...cw.clear, cw.spread); u.uCw4.value.set(...cw.face, cw.ring, cw.faces); cw.holes.slice(0, 8).forEach((h, i) => u.uHole.value.set([...h, 0], i * 4));
+    u.uCw5.value.set(cw.sit ? 1 : 0, cw.sit?.[0] ?? 0, cw.sit?.[1] ?? 0, cw.turn ?? 0); u.uCw6.value.set(...(cw.lookAt ?? [0, 0, 0]), 0);
   } else u.uCw1.value.set(0, 0, 0, 0); u.uAmb.value.set(...sc.amb); u.uAmbC.value.set(...sc.ambChar);
 
   useLayoutEffect(() => { invalidate(); });

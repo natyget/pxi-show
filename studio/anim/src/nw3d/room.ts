@@ -180,6 +180,18 @@ export const gripHand = (pc: V, x: V, y: V, z: V, skin: string, th: [number, num
 };
 // Where the phone's lenses and his eyes are, for the cameras that look through them (see phoneCam).
 export type PhoneAt = { c: V; x: V; y: V; z: V; eye: V };
+// The hair under a cap: every lock above the cap's band is pulled inside its dome (k = 1), and springs back as the cap
+// comes off (k down to 0). Locks below the band, a ponytail out of the back, are left as they are.
+const underCap = (hair: number[][], k: number): number[][] => k <= 0 ? hair : hair.map((b) => {
+  const o = [...b];
+  for (let j = 0; j < b.length; j += 4) {
+    const x = b[j], y = b[j + 1] - 0.04, z = b[j + 2], r = b[j + 3], d = Math.hypot(x, y, z), Rm = 0.205;
+    if (y < 0 || d + r <= Rm) continue;
+    const r2 = Math.max(0.012, Math.min(r, Rm * 0.45)), d2 = Math.min(d, Rm - r2), f = d > 1e-6 ? d2 / d : 1;
+    o[j] = x + (x * f - x) * k; o[j + 1] = b[j + 1] + (y * f - y) * k; o[j + 2] = z + (z * f - z) * k; o[j + 3] = r + (r2 - r) * k;
+  }
+  return o;
+});
 export const pose = (a: Act) => {
   const ch = a.who ?? NIO_CHAR, P = ch.body, nm = a.pose ?? '';
   let s: Skel = place(solve(sampleClip(a.clip, a.t), P, { stance: a.stance ?? 1, arms: a.arms ?? 1, upright: a.upright ?? 0, seat: a.seat }), [X(a.at[0]), a.at[1]], a.yaw);
@@ -262,13 +274,38 @@ export const pose = (a: Act) => {
   }
   if (nm === 'spinner') {
     // a fidget spinner on the right fingertips in front of the belly, spinning: three lobes round a hub
-    const c = add(add(s.hips, mul(s.chestDir, 0.16)), add(mul(fwd, P.torsoR + 0.16), mul(out(1), 0.06)));
+    // high enough, and the head bowed only a little, that his face stays to the room: his eyes do the looking down
+    const c = add(add(s.hips, mul(s.chestDir, 0.24)), add(mul(fwd, P.torsoR + 0.17), mul(out(1), 0.06)));
     s = reach(s, 1, add(c, add(mul(fwd, -0.06), [0, -0.025, 0])), add(out(1), [0, -1, 0]), P, fwd, UP); hands[1] = 'fist';
-    s = lookAt(s, c, 0.5, P);
+    s = lookAt(s, c, 0.2, P);
     const sx = norm(cross(UP, fwd)), sp = (a.t ?? 0) * 0.9;
     extra.push({ a: c, ra: 0.012, b: c, rb: 0.012, g: G.shoe, k: 0.004, c: '#d8d4cc' });
     for (let k = 0; k < 3; k++) { const ang = sp + (k * 2 * Math.PI) / 3, q = add(c, add(mul(sx, Math.cos(ang) * 0.03), mul(fwd, Math.sin(ang) * 0.03)));
       extra.push({ a: c, ra: 0.01, b: q, rb: 0.016, g: G.shoe, k: 0.008, c: '#2f8fc4', sq: 2.5 }); }
+  }
+  // the cap comes off: still for 12 frames, then both hands lift it off the head and bring it down to the chest, crown
+  // out, brim down, slowly, like at a funeral; the head bows a little as it lands
+  let capAt: { c: V; up: V; fw: V; off: number } | undefined;
+  if (nm === 'capOff' && ch.cap) {
+    const t = a.t ?? 0, u = Math.min(1, Math.max(0, (t - 12) / 30)), e = u * u * (3 - 2 * u), hIn = Math.min(1, Math.max(0, (t - 4) / 8));
+    // first straight up off the head, then turning as it comes down in front of her to the chest
+    const c0 = add(s.headC, mul(s.headUp, 0.04)), cUp = add(c0, add(mul(UP, 0.13), mul(fwd, 0.04))), c1 = add(add(s.neckBase, mul(s.chestDir, -0.22)), mul(fwd, P.torsoR + 0.12));
+    const e1 = Math.min(1, e / 0.35), e2 = Math.max(0, (e - 0.35) / 0.65), c = e2 > 0 ? lerp(cUp, c1, e2) : lerp(c0, cUp, e1);
+    const up = norm(lerp(s.headUp, fwd, e2)), f0 = norm(lerp(s.headFw, mul(UP, -1), e2)), fw = norm(sub(f0, mul(up, dot(f0, up))));
+    capAt = { c, up, fw, off: Math.min(1, e / 0.3) };
+    const sd = norm(cross(up, fw));
+    for (const i of [0, 1] as const) {
+      const grip = add(c, add(mul(sd, (i === 0 ? 1 : -1) * 0.205), mul(up, 0.04)));
+      s = reach(s, i, lerp(s.wr[i], grip, hIn), add(out(i), [0, -0.7, 0]), P, mul(sd, i === 0 ? -1 : 1), up);
+    }
+    if (e > 0.5) s = lookAt(s, add(c1, mul(fwd, 0.4)), 0.35 * (e - 0.5) * 2, P);
+  }
+  // a pen in the right hand, its point on the desk in front of him
+  if (nm === 'pen') {
+    const w = A(1, 0.32, -0.03, -0.08);
+    s = reach(s, 1, w, add(out(1), [0, -1, 0]), P, norm(add(fwd, [0, -0.5, 0])), UP); hands[1] = 'fist';
+    const tip = add(s.wr[1], mul(norm(add(fwd, [0, -0.3, 0])), P.hand * 0.75));
+    extra.push({ a: add(tip, add(mul(UP, 0.045), mul(fwd, -0.03))), ra: 0.0075, b: add(tip, add(mul(UP, -0.055), mul(fwd, 0.035))), rb: 0.006, g: G.shoe, k: 0.003, c: '#2c3f8f' });
   }
   if (nm === 'sweep') {
     // crouched, both hands flat on the floor in front, slow circles, one each way (the move in The Move). The circle
@@ -314,8 +351,10 @@ export const pose = (a: Act) => {
     // the front of the body to the belt, narrowing to a point. Hair, so one surface with the hair on his head.
     const w = hk.width ?? 1, ck = hk.chin ?? 1, at = (x: number, y: number, z: number): V => add(s.headC, add(mul(s.headRt, x), add(mul(s.headUp, y), mul(s.headFw, z))));
     const bf = norm(cross(s.side, s.chestDir)), bd = (c: V, r: number, c2: V, r2: number) => prims.push({ a: c, ra: r, b: c2, rb: r2, g: G.hair, k: 0.03, c: ch.beard!, tex: 1 });
-    for (const sd of [1, -1]) bd(at(sd * 0.165 * w, -0.08, 0.03), 0.045, at(sd * 0.1 * w, -0.2 * ck, 0.09), 0.06);
-    const chin = at(0, -0.235 * ck, 0.08), r0 = P.torsoR + 0.025;
+    // the jaw lines run down the sides of the face and stop outside the mouth's corners; the chin mass starts below
+    // the lowest the mouth opens, so every word shows
+    for (const sd of [1, -1]) bd(at(sd * 0.168 * w, -0.08, 0.02), 0.042, at(sd * 0.125 * w, -0.235 * ck, 0.055), 0.05);
+    const chin = at(0, -0.3 * ck, 0.045), r0 = P.torsoR + 0.025;
     const p1 = add(add(s.neckBase, mul(s.chestDir, -0.1)), mul(bf, r0 + 0.04)), p2 = add(add(s.hips, mul(s.chestDir, 0.2)), mul(bf, r0 + 0.035));
     const p3 = add(add(s.hips, mul(s.chestDir, 0.02)), mul(bf, r0 + 0.03));
     bd(chin, 0.075, p1, 0.07); bd(p1, 0.07, p2, 0.058); bd(p2, 0.058, p3, 0.026);
@@ -329,8 +368,19 @@ export const pose = (a: Act) => {
       const leaf = k % 3 === 2; prims.push({ a: c, ra: leaf ? 0.022 : 0.036, b: c, rb: leaf ? 0.022 : 0.036, g: G.shoe, k: 0.006, c: leaf ? '#5d8a4a' : ch.crown[k % ch.crown.length] });
     }
   }
+  if (ch.cap) {
+    // a baseball cap: a dome cut flat at its base, sitting a little proud of the head, and a stiff curved brim (a fan
+    // of thin rods, so it stays a plate whichever way the cap is turned). On the head, or wherever capOff has it.
+    const w = hk.width ?? 1, at0 = capAt ?? { c: add(s.headC, mul(s.headUp, 0.04)), up: s.headUp, fw: s.headFw, off: 0 };
+    const sd = norm(cross(at0.up, at0.fw)), at = (x: number, y: number, z: number): V => add(at0.c, add(mul(sd, x * w), add(mul(at0.up, y), mul(at0.fw, z))));
+    prims.push({ a: at(0, 0, 0), ra: 0.214, b: at(0, 0.004, 0), rb: 0.214, g: G.shoe, k: 0.004, c: ch.cap, cutA: true });
+    prims.push({ a: at(0, 0.228, 0.0), ra: 0.016, b: at(0, 0.228, 0.0), rb: 0.016, g: G.shoe, k: 0.006, c: ch.cap }); // the button
+    for (let k = -4; k <= 4; k++) { const x = k * 0.022;
+      prims.push({ a: at(x, 0.012, 0.15 - Math.abs(k) * 0.01), ra: 0.014, b: at(x * 1.2, 0.002 - Math.abs(k) * 0.005, 0.29 - k * k * 0.004), rb: 0.014, g: G.shoe, k: 0.018, c: ch.cap }); }
+  }
   const soft: Soft = { character: true, origin: s.hips, prims,
-    head: { c: s.headC, rt: s.headRt, up: s.headUp, fw: s.headFw, face: a.face, skin: ch.skin, hairA: ch.hairA, hairB: ch.hairB, blobs: ch.hair,
+    head: { c: s.headC, rt: s.headRt, up: s.headUp, fw: s.headFw, face: a.face, skin: ch.skin, hairA: ch.hairA, hairB: ch.hairB,
+      blobs: ch.cap ? underCap(ch.hair, 1 - (capAt?.off ?? 0)) : ch.hair,
       build: [hk.lashes ?? 0, hk.width ?? 1, hk.chin ?? 1, hk.curls ?? 0, hk.eyes ?? 1] } };
   const mid = lerp(s.an[0], s.an[1], 0.5);
   const shadows = a.seat === undefined ? [[mid[0], mid[2], 0.2, 0.3]] : [];

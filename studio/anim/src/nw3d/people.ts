@@ -86,4 +86,7 @@ export const DJ = npc('dj', 12, { skin: 5, hair: 0, style: 'crop', top: 6, botto
 export const SPINNER = npc('spinner', 211, { skin: 3, hair: 0, style: 'buzz', top: 13, bottom: 0, shoes: 2, long: false, lashes: false, slight: false, height: 0.97 });
 export const CROWN = { ...npc('crown', 305, { skin: 1, hair: 4, style: 'long', top: 10, bottom: 4, shoes: 4, long: true, lashes: true, slight: true, height: 1.0 }),
   crown: ['#f0a6c0', '#f6d36a', '#ffffff', '#c58ad8'] };
-export const STRANGERS: Record<string, Character> = { girl: GIRL, girl2: GIRL2, girl3: GIRL3, dj: DJ, spinner: SPINNER, crown: CROWN };
+// OFFICE HOURS: the girl in the next row who takes her cap off when Prof H says Nio's name: a navy cap, a ponytail out
+// of the back of it, a teal top.
+export const CAP = { ...npc('cap', 512, { skin: 4, hair: 1, style: 'ponytail', top: 4, bottom: 1, shoes: 0, long: true, lashes: true, slight: true, height: 0.98 }), cap: '#2c3e66' };
+export const STRANGERS: Record<string, Character> = { girl: GIRL, girl2: GIRL2, girl3: GIRL3, dj: DJ, spinner: SPINNER, crown: CROWN, cap: CAP };
