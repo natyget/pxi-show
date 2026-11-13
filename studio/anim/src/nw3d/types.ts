@@ -4,7 +4,7 @@ import { Prim } from './rig';
 import { Face } from './face';
 
 export const PW = 180, PH = 320; // native pixels, upright. Shown at 6x: 1080x1920.
-export type Cam3 = { pos: V; at: V; fov: number };
+export type Cam3 = { pos: V; at: V; fov: number; up?: V }; // up: which way is up in the picture (default: the world's up)
 // A box in the room. yaw in degrees. `obj` groups boxes into one outlined object.
 // mat: 0 plain, 1 wood with grain, 2 flecked cloth, 3 curtain folds, 4 grooved boards
 export type Box = { c: V; h: V; col: string; obj: number; yaw?: number; glow?: boolean; noShadow?: boolean; mat?: number };

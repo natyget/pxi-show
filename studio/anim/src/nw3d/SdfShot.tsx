@@ -57,7 +57,7 @@ const Pass: React.FC<{ scene: Scene3; w: number; h: number }> = ({ scene, w, h }
 
   // uniforms are set during render so the very first frame is already right
   const u = R.u, sc = scene;
-  const F = norm(sub(sc.cam.at, sc.cam.pos)), Rt = norm(cross(F, [0, 1, 0])), Up = cross(Rt, F);
+  const F = norm(sub(sc.cam.at, sc.cam.pos)), Rt = norm(cross(F, sc.cam.up ?? [0, 1, 0])), Up = cross(Rt, F);
   u.uCamP.value.set(...sc.cam.pos); u.uCamF.value.set(...F); u.uCamR.value.set(...Rt); u.uCamU.value.set(...Up);
   u.uTan.value = Math.tan((sc.cam.fov * Math.PI) / 360); u.uTime.value = sc.time ?? 0; u.uSet.value = sc.studio ? 1 : 0;
   R.cm.uniforms.uPxw.value = (2 * u.uTan.value) / h;

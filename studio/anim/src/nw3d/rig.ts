@@ -163,7 +163,7 @@ export type Outfit = {
 };
 // How a hand is shaped. open: the mitten and thumb. fist: a round fist. point: a fist with the first finger out along
 // the hand.
-export type Hand = 'open' | 'fist' | 'point';
+export type Hand = 'open' | 'fist' | 'point' | 'none'; // none: the pose draws its own hand (holding a phone)
 export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?: 0 | 1, hands: [Hand?, Hand?] = []): Prim[] => {
   const out: Prim[] = [];
   const cap = (a: V, ra: number, b: V, rb: number, g: number, c: string, k = 0.03, x: Partial<Prim> = {}) => out.push({ a, ra, b, rb, g, k, c, ...x });
@@ -181,13 +181,13 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?:
     cap(s.el[i], P.armR, s.wr[i], P.armR - 0.002, ga, skin, 0.03);
     const hs = hands[i] ?? 'open';
     if (hs === 'open') cap(s.wr[i], 0.027, s.tip[i], 0.024, ga, skin, 0.02); // the hand: one mitten and a thumb, one surface with the arm
-    else {
+    else if (hs !== 'none') {
       // a fist: short and round. A pointing hand adds the first finger, straight out along the hand.
       const hd = norm(sub(s.tip[i], s.wr[i])), fist = add(s.wr[i], mul(hd, 0.04));
       cap(s.wr[i], 0.027, fist, 0.03, ga, skin, 0.02);
       if (hs === 'point') cap(add(fist, mul(hd, 0.01)), 0.012, add(fist, mul(hd, 0.075)), 0.0095, ga, skin, 0.008);
     }
-    cap(lerp(s.wr[i], s.tip[i], 0.2), 0.014, s.thumb[i], 0.012, ga, skin, 0.012);
+    if (hs !== 'none') cap(lerp(s.wr[i], s.tip[i], 0.2), 0.014, s.thumb[i], 0.012, ga, skin, 0.012);
     cap(s.hip[i], P.legR + 0.008, s.kn[i], P.legR, G.skin, skin, 0.04);
     cap(s.kn[i], P.legR, s.an[i], P.legR - 0.006, G.skin, skin, 0.04);
     if (!o.shoes) cap(add(s.an[i], [0, -P.ankle + 0.035, 0]), 0.032, [s.toe[i][0], Math.max(0.03, s.toe[i][1]), s.toe[i][2]], 0.028, G.skin, skin, 0.03);
