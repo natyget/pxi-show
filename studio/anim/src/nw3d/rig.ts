@@ -101,7 +101,7 @@ export const solve = (m: Mocap, P: Props = NIO, o: SolveOpts = {}): Skel => {
 const PTS = ['hips', 'neckBase', 'headC'] as const;
 const PAIRS = ['sh', 'el', 'wr', 'tip', 'thumb', 'hip', 'kn', 'an', 'toe'] as const;
 const DIRS = ['chestDir', 'side', 'headUp', 'headFw', 'headRt'] as const;
-function shift(s: any, d: V) {
+export function shift(s: any, d: V) {
   PTS.forEach((k) => { s[k] = add(s[k], d); });
   PAIRS.forEach((k) => { s[k] = [add(s[k][0], d), add(s[k][1], d)]; });
 }
@@ -154,11 +154,17 @@ export const G = { skin: 0, top: 1, bottom: 2, shoe: 3, hair: 4, legL: 5, legR: 
 // tex: 0 flat, 1 soft blocky texture, 2 strong flecks. em: 0..1 how much it glows. sq: >1 flattens it vertically.
 export type Prim = { a: V; ra: number; b: V; rb: number; g: number; k: number; c: string; cutA?: boolean; cutB?: boolean; sq?: number; tex?: number; em?: number };
 export type Outfit = {
-  top?: { color: string; loose: number; sleeve: number } | null; // sleeve: how far down the upper arm it reaches, 0..1
-  bottom?: { color: string; cuff: string; width: number } | null; // width: 0 slim .. 0.06 very wide
+  // sleeve: how far down the upper arm a short sleeve reaches, 0..1. long: sleeves to the wrist, set in at the shoulder
+  // (their own surface, so the seam is inked), in sleeveColor if given. collar and trim (ribbed hem and cuffs): colours.
+  // cuffs: the band at the end of a long sleeve (a shirt under a vest has cuffs in the shirt's colour, not the vest's trim).
+  top?: { color: string; loose: number; sleeve: number; long?: boolean; sleeveColor?: string; collar?: string; trim?: string; cuffs?: string } | null;
+  bottom?: { color: string; cuff: string; width: number; check?: boolean } | null; // width: 0 slim .. 0.06 very wide. check: a fine check you have to squint at
   shoes?: { color: string } | null;
 };
-export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?: 0 | 1): Prim[] => {
+// How a hand is shaped. open: the mitten and thumb. fist: a round fist. point: a fist with the first finger out along
+// the hand.
+export type Hand = 'open' | 'fist' | 'point';
+export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?: 0 | 1, hands: [Hand?, Hand?] = []): Prim[] => {
   const out: Prim[] = [];
   const cap = (a: V, ra: number, b: V, rb: number, g: number, c: string, k = 0.03, x: Partial<Prim> = {}) => out.push({ a, ra, b, rb, g, k, c, ...x });
   const top = o.top, bot = o.bottom;
@@ -173,7 +179,14 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?:
     cap(s.sh[i], P.armR + 0.004, s.el[i], P.armR, G.skin, skin, 0.03);
     const ga = frontArm === i ? G.skinB : G.skin;
     cap(s.el[i], P.armR, s.wr[i], P.armR - 0.002, ga, skin, 0.03);
-    cap(s.wr[i], 0.027, s.tip[i], 0.024, ga, skin, 0.02); // the hand: one mitten and a thumb, one surface with the arm
+    const hs = hands[i] ?? 'open';
+    if (hs === 'open') cap(s.wr[i], 0.027, s.tip[i], 0.024, ga, skin, 0.02); // the hand: one mitten and a thumb, one surface with the arm
+    else {
+      // a fist: short and round. A pointing hand adds the first finger, straight out along the hand.
+      const hd = norm(sub(s.tip[i], s.wr[i])), fist = add(s.wr[i], mul(hd, 0.04));
+      cap(s.wr[i], 0.027, fist, 0.03, ga, skin, 0.02);
+      if (hs === 'point') cap(add(fist, mul(hd, 0.01)), 0.012, add(fist, mul(hd, 0.075)), 0.0095, ga, skin, 0.008);
+    }
     cap(lerp(s.wr[i], s.tip[i], 0.2), 0.014, s.thumb[i], 0.012, ga, skin, 0.012);
     cap(s.hip[i], P.legR + 0.008, s.kn[i], P.legR, G.skin, skin, 0.04);
     cap(s.kn[i], P.legR, s.an[i], P.legR - 0.006, G.skin, skin, 0.04);
@@ -182,9 +195,23 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?:
   // THE TEE: a boxy tube over the torso with an open hem, and two wide short sleeves that stand off the arms
   if (top) {
     const l = top.loose, hem = add(s.hips, mul(s.chestDir, -0.075));
-    cap(hem, P.torsoR + l + 0.052, chest, P.torsoR + l + 0.008, G.top, top.color, 0.05, { cutA: true, tex: 1 });
-    cap(s.sh[0], 0.046 + l, s.sh[1], 0.046 + l, G.top, top.color, 0.05, { tex: 1 });
-    for (let i = 0; i < 2; i++) cap(s.sh[i], P.armR + 0.03 + l * 0.5, lerp(s.sh[i], s.el[i], top.sleeve), P.armR + 0.042 + l * 0.5, G.top, top.color, 0.04, { cutB: true, tex: 1 });
+    const fl = top.long ? 0.034 : 0.052; // a tee flares at the hem; a jacket or a vest hangs straighter, so the arms stay clear of it
+    cap(hem, P.torsoR + l + fl, chest, P.torsoR + l + 0.008, G.top, top.color, 0.05, { cutA: true, tex: 1 });
+    const shR = top.long ? 0.036 + l * 0.5 : 0.046 + l; // under long sleeves the shoulders stay narrow, so the sleeve is set in at the shoulder
+    cap(s.sh[0], shR, s.sh[1], shR, G.top, top.color, 0.05, { tex: 1 });
+    if (!top.long) for (let i = 0; i < 2; i++) cap(s.sh[i], P.armR + 0.03 + l * 0.5, lerp(s.sh[i], s.el[i], top.sleeve), P.armR + 0.042 + l * 0.5, G.top, top.color, 0.04, { cutB: true, tex: 1 });
+    else for (let i = 0; i < 2; i++) {
+      // long sleeves: one soft tube from the shoulder to the wrist, bending at the elbow, ending in a cuff
+      const sc = top.sleeveColor ?? top.color, cf = lerp(s.el[i], s.wr[i], 0.93);
+      cap(lerp(s.sh[i], s.el[i], 0.05), P.armR + 0.026 + l * 0.5, s.el[i], P.armR + 0.022 + l * 0.4, G.skinB, sc, 0.02, { tex: 1 });
+      cap(s.el[i], P.armR + 0.022 + l * 0.4, cf, P.armR + 0.017 + l * 0.3, G.skinB, sc, 0.02, { cutB: true, tex: 1 });
+      cap(lerp(s.el[i], s.wr[i], 0.8), P.armR + 0.019 + l * 0.3, cf, P.armR + 0.019 + l * 0.3, G.skinB, top.cuffs ?? top.trim ?? sc, 0.004, { cutA: true, cutB: true, tex: 1 });
+    }
+    if (top.trim) cap(hem, P.torsoR + l + fl + 0.002, lerp(hem, chest, 0.13), P.torsoR + l + fl - 0.002, G.top, top.trim, 0.004, { cutA: true, cutB: true, tex: 1 });
+    if (top.collar) for (const sd of [1, -1]) {
+      const fwd = norm(cross(s.side, s.chestDir));
+      cap(add(s.neckBase, add(mul(s.side, sd * 0.06), mul(fwd, -0.01))), 0.02, add(s.neckBase, add(mul(s.side, sd * 0.016), add(mul(fwd, 0.062), mul(s.chestDir, 0.03)))), 0.017, top.long ? G.skinB : G.top, top.collar, 0.01, { tex: 1 }); // under long sleeves the collar is the shirt's, inked
+    }
   }
   // THE TROUSERS: wide in the thigh and wider at the hem, which sits on the shoe. Each leg is its own surface.
   if (bot) {
@@ -196,8 +223,9 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?:
       const r0 = P.legR + 0.022 + w * 0.18, r1 = P.legR + 0.03 + w * 0.6, r2 = P.legR + 0.036 + w * 0.95;
       const down = norm(sub(s.an[i], s.kn[i]));
       const hem = add(add(s.an[i], mul(down, P.ankle - 0.028)), mul(s.side, (i === 0 ? 1 : -1) * w * 0.45)); // on the shoe, pushed outward
-      cap(s.hip[i], r0, s.kn[i], r1, g, bot.color, 0.04, { tex: 1 });
-      cap(s.kn[i], r1, hem, r2, g, bot.color, 0.04, { cutB: true, tex: 1 });
+      const tx = bot.check ? 3 : 1;
+      cap(s.hip[i], r0, s.kn[i], r1, g, bot.color, 0.04, { tex: tx });
+      cap(s.kn[i], r1, hem, r2, g, bot.color, 0.04, { cutB: true, tex: tx });
       cap(lerp(s.kn[i], hem, 0.88), r2 + 0.004, hem, r2 + 0.006, g, bot.cuff, 0.002, { cutA: true, cutB: true, tex: 1 });
     }
   }

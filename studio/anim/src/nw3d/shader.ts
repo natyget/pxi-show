@@ -6,7 +6,7 @@
 //    no seams and a garment is a single piece that wraps it
 //  - a face is painted on the head from numbers: big simple eyes, off-centre pupils, a small mouth
 //  - the outline pass inks one pixel wherever a nearer thing begins, with a slightly uneven weight
-export const NP = 96, NC = 10, NHD = 2, NHB = 80, NB = 72, NO = 4, NL = 8, FS = 36;
+export const NP = 320, NC = 16, NHD = 5, NHB = 80, NB = 80, NO = 6, NL = 12, FS = 36, NSH = 8;
 
 export const VERT = `in vec3 position; out vec2 vUv; void main(){ vUv = position.xy * 0.5 + 0.5; gl_Position = vec4(position.xy, 0.0, 1.0); }`;
 
@@ -21,16 +21,18 @@ layout(location = 1) out vec4 oAux;
 #define NB ${NB}
 #define NO ${NO}
 #define NL ${NL}
+#define NSH ${NSH}
 uniform vec2 uRes; uniform vec3 uCamP, uCamR, uCamU, uCamF; uniform float uTan; uniform float uTime;
 uniform vec4 uA[NP]; uniform vec4 uB[NP]; uniform vec4 uM[NP]; uniform vec4 uC[NP];
 uniform vec4 uCl[NC]; uniform vec4 uCr[NC]; uniform vec3 uCo[NC]; uniform int uNC;
 uniform vec3 uHc[NHD]; uniform vec3 uHr[NHD]; uniform vec3 uHu[NHD]; uniform vec3 uHf[NHD];
+uniform vec4 uHk[NHD]; // each head's build: x lashes, y face width, z chin length, w hair: 0 locks, 1 curls
 uniform vec3 uSkin[NHD]; uniform vec3 uHairA[NHD]; uniform vec3 uHairB[NHD]; uniform vec4 uHb[NHD * NHB]; uniform int uHn[NHD]; uniform vec4 uFace[NHD * 9];
 uniform vec3 uBc[NB]; uniform vec3 uBh[NB]; uniform vec4 uBcol[NB]; uniform vec4 uBm[NB]; uniform int uNB;
 uniform vec3 uOc[NO]; uniform vec3 uOx[NO]; uniform vec3 uOy[NO]; uniform vec3 uOz[NO]; uniform vec3 uOh[NO]; uniform vec3 uOcol[NO]; uniform vec3 uOem[NO]; uniform int uNO;
 uniform sampler2D uScr; uniform vec3 uScrOn;   // a picture for the lit face of one hand prop (a phone screen): x = which prop (-1 none), y = picture width in pixels
 uniform vec4 uL[NL]; uniform vec4 uLc[NL]; uniform int uNL;
-uniform vec4 uSh[4]; uniform vec3 uRoom; uniform vec3 uAmb; uniform vec3 uAmbC; uniform float uSet;
+uniform vec4 uSh[NSH]; uniform vec3 uRoom; uniform vec3 uAmb; uniform vec3 uAmbC; uniform float uSet;
 
 const vec3 INK = vec3(0.07, 0.046, 0.045);
 const vec3 WHITE = vec3(0.96, 0.925, 0.88);
@@ -56,12 +58,14 @@ float prim(vec3 p, int i){
 
 // ---- the head, in its own space: x to the character's left, y up, z out of the face ----
 vec3 headQ(vec3 p, int h){ vec3 d = p - uHc[h]; return vec3(dot(d, uHr[h]), dot(d, uHu[h]) / F(h, 31), dot(d, uHf[h])); }
-float sdSkull(vec3 q){
-  // a round head, full and wide in the cheeks, with a soft flat chin; two small round ears
+float sdSkull(vec3 q, int h){
+  // a round head, full and wide in the cheeks, with a soft flat chin; two small round ears. Each character sets how
+  // wide the face is (a rounder face) and how far down the chin comes (a longer face).
+  vec4 k = uHk[h]; vec3 e = vec3(abs(q.x) - 0.218 * k.y, q.y + 0.09, q.z + 0.005);
+  q.x /= k.y;
   float d = length(q * vec3(0.97, 1.03, 1.0)) - 0.2;
-  vec3 c = vec3(abs(q.x) - 0.07, q.y + 0.082, q.z - 0.028);
-  d = smin(d, length(c * vec3(1.0, 1.12, 1.0)) - 0.132, 0.06);
-  vec3 e = vec3(abs(q.x) - 0.218, q.y + 0.09, q.z + 0.005);
+  vec3 c = vec3(abs(q.x) - 0.07, q.y + 0.082 * k.z, q.z - 0.028);
+  d = smin(d, length(c * vec3(1.0, 1.12 / k.z, 1.0)) - 0.132, 0.06);
   d = min(d, (length(e * vec3(1.3, 1.0, 1.5)) - 0.054) / 1.5);
   return d * 0.95;
 }
@@ -80,6 +84,10 @@ float sdHair(vec3 q, int h){
 vec3 hairCol(vec3 q, int h){
   float n = hash3(floor(q / 0.027)); float m = hash3(floor(q / 0.05) + 7.0);
   vec3 c = uHairA[h] * (m > 0.72 ? 1.07 : m < 0.2 ? 0.94 : 1.0); // soft blotches, barely there
+  if (uHk[h].w > 0.5){ // curls: small tight coils, each a dark crescent with a lit edge
+    vec3 cq = q / 0.024; vec3 ci = floor(cq); vec3 cf = fract(cq) - 0.5; float r = length(cf.xy + (hash3(ci) - 0.5) * 0.3);
+    if (r > 0.26 && r < 0.46 && cf.y < 0.12) c = uHairB[h]; else if (r < 0.2 && hash3(ci + 3.0) > 0.55) c = uHairA[h] * 1.16;
+    return c; }
   if (q.y < -0.065 + (n - 0.5) * 0.06 || n > 0.965) c = uHairB[h];
   // a few short light strokes in one patch, up on the lit side
   vec2 sd = vec2(q.x * 0.8 + q.y * 0.6, q.y * 0.8 - q.x * 0.6);
@@ -94,7 +102,7 @@ float mapD(vec3 p, int c){
   int i0 = int(uCr[c].x), i1 = int(uCr[c].y), h = int(uCr[c].z);
   float g[8]; for (int j = 0; j < 8; j++) g[j] = 1e3;
   for (int i = i0; i < i1; i++){ int gi = int(uM[i].x); g[gi] = smin(g[gi], prim(p, i), uM[i].y); }
-  if (h >= 0){ vec3 q = headQ(p, h); if (dot(q, q) < 0.24){ g[0] = smin(g[0], sdSkull(q), 0.015); g[4] = min(g[4], sdHair(q, h)); } else g[0] = min(g[0], length(q) - 0.46); }
+  if (h >= 0){ vec3 q = headQ(p, h); if (dot(q, q) < 0.24){ g[0] = smin(g[0], sdSkull(q, h), 0.015); g[4] = min(g[4], sdHair(q, h)); } else g[0] = min(g[0], length(q) - 0.46); }
   float d = g[0]; for (int j = 1; j < 8; j++) d = min(d, g[j]);
   return d;
 }
@@ -107,7 +115,7 @@ float mapC(vec3 p, int c, out int grp, out vec4 col){
     g[gi] = smin(g[gi], d, uM[i].y); if (d < best[gi]){ best[gi] = d; bc[gi] = uC[i]; }
   }
   if (h >= 0){ vec3 q = headQ(p, h); if (dot(q, q) < 0.24){
-    float hs = sdSkull(q); if (hs < best[0]){ best[0] = hs; bc[0] = vec4(uSkin[h], 0.0); } g[0] = smin(g[0], hs, 0.015);
+    float hs = sdSkull(q, h); if (hs < best[0]){ best[0] = hs; bc[0] = vec4(uSkin[h], 0.0); } g[0] = smin(g[0], hs, 0.015);
     float hh = sdHair(q, h); if (hh < g[4]){ g[4] = hh; bc[4] = vec4(hairCol(q, h), 0.0); } } }
   float d = 1e3; grp = 0;
   for (int j = 0; j < 8; j++){ if (g[j] < d){ d = g[j]; grp = j; } }
@@ -165,6 +173,11 @@ void drawEye(inout vec3 col, inout float fl, vec2 uv, float sg, int h, int o, fl
     float yy = amp * (1.0 - xx * xx) - (arc > 0.0 ? ry * 0.3 : -ry * 0.02);
     float sl = -2.0 * amp * xx / rw; // the stroke keeps its weight where the curve is steep
     if (abs(xx) < 1.0 && abs(e.y - yy) < st * 0.56 * sqrt(1.0 + sl * sl)){ col = INK; fl = 1.0; } return; }
+  if (uHk[h].x > 0.5){ // lashes: two short heavy flicks off the outer top corner, riding the lid
+    float lt = min(ry * (2.0 * open - 1.0), ry * 0.92);
+    for (int k = 0; k < 2; k++){ vec2 a0 = vec2(sg * rx * (0.62 + 0.3 * float(k)), lt - ry * 0.08 * float(k));
+      vec2 dir = normalize(vec2(sg * (0.55 + 0.35 * float(k)), 0.8 - 0.3 * float(k))); vec2 w = e - a0; float tt = clamp(dot(w, dir), 0.0, 0.13);
+      if (length(w - dir * tt) < st * 0.5){ col = INK; fl = 1.0; return; } } }
   vec2 a = abs(e) / vec2(rx, ry); if (pow(a.x, 3.6) + pow(a.y, 3.6) >= 1.0) return;
   vec2 b = abs(e) / vec2(rx - st, ry - st); float si = pow(b.x, 3.6) + pow(b.y, 3.6);
   float top = ry * (2.0 * open - 1.0) + slope * e.x * sg, bot = -ry * (1.0 - 2.0 * low);
@@ -217,7 +230,7 @@ vec3 paintFace(vec3 col, vec3 q, int h, float px, vec2 fpx, out float fl){
   if (F(h, 30) > 0.01 && uv.y > 0.05 - 0.1 * ck) col = mix(col, vec3(0.42, 0.34, 0.45), 0.55 * F(h, 30));
   float bl = F(h, 29);
   if (bl > 0.01){ vec2 c = (vec2(abs(uv.x), uv.y) - vec2(0.6, -0.72)) * vec2(1.0, 1.7);
-    if (length(c) < 0.19){ col = mix(col, vec3(0.78, 0.44, 0.46), 0.6 * min(bl, 1.0));
+    if (length(c) < 0.19){ col = mix(col, col * vec3(1.16, 0.8, 0.84) + vec3(0.05, 0.0, 0.0), 0.65 * min(bl, 1.0));
       if (bl > 1.5 && fract((uv.x * 0.9 + uv.y * 0.45) / 0.1) < max(0.3, px * 4.0) && abs(c.y) < 0.1 && length(c) < 0.15){ col = mix(col, INK, 0.75); fl = 1.0; } } }
   if (F(h, 32) > 0.01){ // tears: a stream down from each eye
     for (float sg = -1.0; sg <= 1.0; sg += 2.0){ vec2 ec = eyeC(sg); float tx = abs(uv.x - ec.x + 0.02 * sin(uv.y * 14.0));
@@ -376,7 +389,9 @@ void main(){
   if (hc >= 0){ p = ro + rd * t; int g; vec4 c4; mapC(p, hc, g, c4); n = softN(p, hc); base = c4.rgb; add = vec3(0.0); face = 0.0;
     float tex = floor(c4.a); em = fract(c4.a) * 1.0102; chr = uCr[hc].w > 0.5; int h = int(uCr[hc].z);
     id = chr ? 100.0 + float(hc) * 8.0 + float(g) : 60.0 + float(hc) * 4.0 + float(min(g, 3));
-    if (tex > 0.5) base *= mott((p - uCo[hc]) * (tex > 1.5 ? 1.4 : 1.0), tex > 1.5 ? 2.4 : 1.0);
+    if (tex > 0.5 && tex < 2.5) base *= mott((p - uCo[hc]) * (tex > 1.5 ? 1.4 : 1.0), tex > 1.5 ? 2.4 : 1.0);
+    if (tex > 2.5 && tex < 3.5){ vec3 cp = (p - uCo[hc]) / 0.032; vec3 cf = abs(fract(cp) - 0.5);   // a fine check
+      base *= mott(p - uCo[hc], 1.0) * ((cf.x < 0.12 || cf.y < 0.12 || cf.z < 0.12) ? 0.88 : 1.0); }
     if (h >= 0 && g == 0){ vec3 q = headQ(p, h);
       if (dot(q, q) < 0.085){ face = max(face, 0.6);
         if (q.z > 0.05 && q.y > -0.02 && sdHair(q + vec3(0.0, 0.018, 0.0), h) < 0.008) base *= vec3(0.9, 0.83, 0.85); // the shade the hair throws on the forehead
@@ -395,7 +410,7 @@ void main(){
   } else {
     col = base * (uAmb + roomLight(p, n, px, 8.0));
     if (em > 0.0) col = mix(col, base, em);
-    if (id < 1.5 && wall == 1) for (int i = 0; i < 4; i++){ if (uSh[i].w <= 0.0) continue; float e = length(p.xz - uSh[i].xy) / uSh[i].z; if (e + (by - 0.5) * 0.35 < 1.0) col *= 1.0 - uSh[i].w; }
+    if (id < 1.5 && wall == 1) for (int i = 0; i < NSH; i++){ if (uSh[i].w <= 0.0) continue; float e = length(p.xz - uSh[i].xy) / uSh[i].z; if (e + (by - 0.5) * 0.35 < 1.0) col *= 1.0 - uSh[i].w; }
   }
   col += add;
   // halos: a lamp glows in the air around it
