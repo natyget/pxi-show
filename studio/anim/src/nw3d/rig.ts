@@ -38,6 +38,8 @@ export type Props = {
   ankle: number; shin: number; thigh: number; hipHalf: number; torso: number; neck: number; headR: number;
   shoulderHalf: number; upperArm: number; foreArm: number; hand: number; foot: number;
   armR: number; legR: number; torsoR: number;
+  belly?: number; // extra round at the belly (a big soft body), metres
+  handK?: number; // how much bigger the hands are than Nio's (1 = his)
 };
 export const NIO: Props = {
   ankle: 0.06, shin: 0.32, thigh: 0.34, hipHalf: 0.072, torso: 0.4, neck: 0.125, headR: 0.2,
@@ -157,7 +159,7 @@ export type Outfit = {
   // sleeve: how far down the upper arm a short sleeve reaches, 0..1. long: sleeves to the wrist, set in at the shoulder
   // (their own surface, so the seam is inked), in sleeveColor if given. collar and trim (ribbed hem and cuffs): colours.
   // cuffs: the band at the end of a long sleeve (a shirt under a vest has cuffs in the shirt's colour, not the vest's trim).
-  top?: { color: string; loose: number; sleeve: number; long?: boolean; sleeveColor?: string; collar?: string; trim?: string; cuffs?: string } | null;
+  top?: { color: string; loose: number; sleeve: number; long?: boolean; sleeveColor?: string; collar?: string; trim?: string; cuffs?: string; open?: string } | null; // open: worn open over a shirt this colour (a cardigan)
   bottom?: { color: string; cuff: string; width: number; check?: boolean } | null; // width: 0 slim .. 0.06 very wide. check: a fine check you have to squint at
   shoes?: { color: string } | null;
 };
@@ -168,10 +170,11 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?:
   const out: Prim[] = [];
   const cap = (a: V, ra: number, b: V, rb: number, g: number, c: string, k = 0.03, x: Partial<Prim> = {}) => out.push({ a, ra, b, rb, g, k, c, ...x });
   const top = o.top, bot = o.bottom;
-  const chest = sub(s.neckBase, mul(s.chestDir, 0.1));
-  const belly = add(s.hips, mul(s.chestDir, 0.06));
+  // a big body sits lower round the head, so the shoulders come up to the jaw and there is no neck to speak of
+  const chest = sub(s.neckBase, mul(s.chestDir, Math.max(0.1, P.torsoR * 1.12)));
+  const belly = add(s.hips, mul(s.chestDir, 0.06)), bR = P.torsoR - 0.02 + (P.belly ?? 0), hk = P.handK ?? 1;
   // THE BODY
-  cap(belly, P.torsoR - 0.02, chest, P.torsoR, G.skin, skin, 0.06);
+  cap(belly, bR, chest, P.torsoR, G.skin, skin, 0.06);
   cap(s.sh[0], 0.042, s.sh[1], 0.042, G.skin, skin, 0.06);
   cap(s.hip[0], P.legR + 0.022, s.hip[1], P.legR + 0.022, G.skin, skin, 0.05);
   cap(sub(s.neckBase, mul(s.chestDir, 0.03)), 0.04, add(s.neckBase, mul(s.headUp, P.neck + 0.03)), 0.037, G.skin, skin, 0.03);
@@ -180,14 +183,14 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?:
     const ga = frontArm === i ? G.skinB : G.skin;
     cap(s.el[i], P.armR, s.wr[i], P.armR - 0.002, ga, skin, 0.03);
     const hs = hands[i] ?? 'open';
-    if (hs === 'open') cap(s.wr[i], 0.027, s.tip[i], 0.024, ga, skin, 0.02); // the hand: one mitten and a thumb, one surface with the arm
+    if (hs === 'open') cap(s.wr[i], 0.027 * hk, s.tip[i], 0.024 * hk, ga, skin, 0.02); // the hand: one mitten and a thumb, one surface with the arm
     else if (hs !== 'none') {
       // a fist: short and round. A pointing hand adds the first finger, straight out along the hand.
-      const hd = norm(sub(s.tip[i], s.wr[i])), fist = add(s.wr[i], mul(hd, 0.04));
-      cap(s.wr[i], 0.027, fist, 0.03, ga, skin, 0.02);
-      if (hs === 'point') cap(add(fist, mul(hd, 0.01)), 0.012, add(fist, mul(hd, 0.075)), 0.0095, ga, skin, 0.008);
+      const hd = norm(sub(s.tip[i], s.wr[i])), fist = add(s.wr[i], mul(hd, 0.04 * hk));
+      cap(s.wr[i], 0.027 * hk, fist, 0.03 * hk, ga, skin, 0.02);
+      if (hs === 'point') cap(add(fist, mul(hd, 0.01 * hk)), 0.012 * hk, add(fist, mul(hd, 0.075 * hk)), 0.0095 * hk, ga, skin, 0.008);
     }
-    if (hs !== 'none') cap(lerp(s.wr[i], s.tip[i], 0.2), 0.014, s.thumb[i], 0.012, ga, skin, 0.012);
+    if (hs !== 'none') cap(lerp(s.wr[i], s.tip[i], 0.2), 0.014 * hk, s.thumb[i], 0.012 * hk, ga, skin, 0.012);
     cap(s.hip[i], P.legR + 0.008, s.kn[i], P.legR, G.skin, skin, 0.04);
     cap(s.kn[i], P.legR, s.an[i], P.legR - 0.006, G.skin, skin, 0.04);
     if (!o.shoes) cap(add(s.an[i], [0, -P.ankle + 0.035, 0]), 0.032, [s.toe[i][0], Math.max(0.03, s.toe[i][1]), s.toe[i][2]], 0.028, G.skin, skin, 0.03);
@@ -196,7 +199,25 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?:
   if (top) {
     const l = top.loose, hem = add(s.hips, mul(s.chestDir, -0.075));
     const fl = top.long ? 0.034 : 0.052; // a tee flares at the hem; a jacket or a vest hangs straighter, so the arms stay clear of it
-    cap(hem, P.torsoR + l + fl, chest, P.torsoR + l + 0.008, G.top, top.color, 0.05, { cutA: true, tex: 1 });
+    const big = P.belly !== undefined, fwd = norm(cross(s.side, s.chestDir));
+    const hemR = big ? bR + l + 0.012 : bR + 0.02 + l + fl; // a big man's cardigan hangs straight over the belly, no flare
+    cap(hem, hemR, chest, P.torsoR + l + 0.008, G.top, top.color, 0.05, { cutA: true, tex: 1 });
+    // the belly: one soft ball, low and a little forward, so the body is a pear and not a box
+    const bc = add(add(s.hips, mul(s.chestDir, 0.17)), mul(fwd, 0.035)), bb = bR + l + 0.03;
+    if (big) cap(bc, bb, bc, bb, G.top, top.color, 0.08, { tex: 1 });
+    if (top.open) {
+      // an open cardigan: a narrow band of the shirt down the front, from the collar to the hem, riding the curve of the
+      // body (its own surface, so the two edges are inked). Flat: a shirt is not knitted. The band follows the front of
+      // the body, found by walking up it.
+      const R = 0.07, cR = P.torsoR + l + 0.008, L0 = dot(sub(chest, hem), s.chestDir), N = 16, pts: V[] = [];
+      for (let k = 0; k <= N; k++) {
+        const h = -0.01 + (L0 + cR * 0.8) * (k / N); // height along the body from the hem
+        let r = h <= L0 ? hemR + (cR - hemR) * (h / L0) : Math.sqrt(Math.max(cR * cR - (h - L0) * (h - L0), 0));
+        if (big) { const hb = dot(sub(bc, hem), s.chestDir), dz = h - hb; if (Math.abs(dz) < bb) r = Math.max(r, 0.035 + Math.sqrt(bb * bb - dz * dz)); }
+        pts.push(add(add(hem, mul(s.chestDir, h)), mul(fwd, r + (big ? 0.016 : 0.008) - R)));
+      }
+      for (let k = 0; k < N; k++) cap(pts[k], R, pts[k + 1], R, G.skinB, top.open, 0.02, k === 0 ? { cutA: true } : {});
+    }
     const shR = top.long ? 0.036 + l * 0.5 : 0.046 + l; // under long sleeves the shoulders stay narrow, so the sleeve is set in at the shoulder
     cap(s.sh[0], shR, s.sh[1], shR, G.top, top.color, 0.05, { tex: 1 });
     if (!top.long) for (let i = 0; i < 2; i++) cap(s.sh[i], P.armR + 0.03 + l * 0.5, lerp(s.sh[i], s.el[i], top.sleeve), P.armR + 0.042 + l * 0.5, G.top, top.color, 0.04, { cutB: true, tex: 1 });
@@ -207,7 +228,7 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?:
       cap(s.el[i], P.armR + 0.022 + l * 0.4, cf, P.armR + 0.017 + l * 0.3, G.skinB, sc, 0.02, { cutB: true, tex: 1 });
       cap(lerp(s.el[i], s.wr[i], 0.8), P.armR + 0.019 + l * 0.3, cf, P.armR + 0.019 + l * 0.3, G.skinB, top.cuffs ?? top.trim ?? sc, 0.004, { cutA: true, cutB: true, tex: 1 });
     }
-    if (top.trim) cap(hem, P.torsoR + l + fl + 0.002, lerp(hem, chest, 0.13), P.torsoR + l + fl - 0.002, G.top, top.trim, 0.004, { cutA: true, cutB: true, tex: 1 });
+    if (top.trim) cap(hem, hemR + 0.002, lerp(hem, chest, 0.13), hemR - 0.002, G.top, top.trim, 0.004, { cutA: true, cutB: true, tex: 1 });
     if (top.collar) for (const sd of [1, -1]) {
       const fwd = norm(cross(s.side, s.chestDir));
       cap(add(s.neckBase, add(mul(s.side, sd * 0.06), mul(fwd, -0.01))), 0.02, add(s.neckBase, add(mul(s.side, sd * 0.016), add(mul(fwd, 0.062), mul(s.chestDir, 0.03)))), 0.017, top.long ? G.skinB : G.top, top.collar, 0.01, { tex: 1 }); // under long sleeves the collar is the shirt's, inked
@@ -217,7 +238,9 @@ export const buildBody = (s: Skel, P: Props, skin: string, o: Outfit, frontArm?:
   if (bot) {
     const w = bot.width;
     cap(s.hip[0], 0.05 + w * 0.1, s.hip[1], 0.05 + w * 0.1, G.bottom, bot.color, 0.05, { tex: 1 });
-    cap(add(s.hips, mul(s.chestDir, -0.03)), 0.098, add(s.hips, mul(s.chestDir, 0.045)), 0.094, G.bottom, bot.color, 0.03, { cutA: true, cutB: true, tex: 1 }); // the waistband
+    cap(add(s.hips, mul(s.chestDir, -0.03)), Math.max(0.098, bR + 0.012), add(s.hips, mul(s.chestDir, 0.045)), Math.max(0.094, bR + 0.008), G.bottom, bot.color, 0.03, { cutA: true, cutB: true, tex: 1 }); // the waistband
+    // under a big belly the trousers are one round seat, and the legs come out of it
+    if (bR > 0.12) cap(add(s.hips, mul(s.chestDir, -0.02)), bR + 0.004, add(s.hips, mul(s.chestDir, 0.04)), bR + 0.004, G.bottom, bot.color, 0.04, { tex: 1 });
     for (let i = 0; i < 2; i++) {
       const g = i === 0 ? G.legL : G.legR;
       const r0 = P.legR + 0.022 + w * 0.18, r1 = P.legR + 0.03 + w * 0.6, r2 = P.legR + 0.036 + w * 0.95;

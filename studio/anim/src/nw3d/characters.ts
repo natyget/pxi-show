@@ -9,8 +9,11 @@ export type Character = {
   wardrobe: Record<string, Outfit>; outfit: string; restFace: string;
   // the head's build. lashes: 1 draws two flicks off each eye. width: how wide the face is (1 = Nio). chin: how far down
   // the chin comes (1 = Nio). curls: 1 gives the hair a tight coiled texture instead of locks.
-  head?: { lashes?: number; width?: number; chin?: number; curls?: number };
+  // eyes: how big the eyes are (1 = Nio). glasses: small round glasses with a wire frame this colour.
+  head?: { lashes?: number; width?: number; chin?: number; curls?: number; eyes?: number; glasses?: string };
   earrings?: string; // small hoops, this colour
+  beard?: string; // a long beard, this colour, from the jaw down to the belt
+  crown?: string[]; // a crown of small flowers round the head, in these colours
 };
 
 // Hair is built from soft lumps (L) for the mass and tapered locks (T, fat root to thin tip) for the fringe and flicks.
@@ -148,4 +151,42 @@ export const IMANE_CHAR: Character = {
   wardrobe: { party: { top: { color: '#7a3b47', loose: 0.022, sleeve: 0.8, long: true },
     bottom: { color: '#7f93ab', cuff: '#8a9db3', width: 0.035 }, shoes: { color: '#2b2427' } } },
   outfit: 'party', restFace: 'suspicious',
+};
+
+// PROFESSOR HAVERBROOK ("Prof H"), Office Hours. Enormous and soft: a head taller than Nio and nearly twice as wide, one
+// round body from the jaw to the knees with no neck to speak of, big soft hands. A wide face with small eyes behind tiny
+// round wire glasses. Soft ash-brown hair, combed neatly to one side. A camel cardigan worn open over a pale blue
+// collared shirt, brown cords, brown shoes. He fills a doorway sideways.
+export const PROF_H: Props = { ...NIO, ankle: 0.07, shin: 0.43, thigh: 0.43, hipHalf: 0.115, torso: 0.66, neck: 0.1,
+  shoulderHalf: 0.27, upperArm: 0.33, foreArm: 0.3, hand: 0.09, foot: 0.19, armR: 0.042, legR: 0.062, torsoR: 0.2, belly: 0.06, handK: 1.45 };
+export const PROF_H_CHAR: Character = {
+  id: 'profH', body: PROF_H, skin: '#e2b49a', hairA: '#857262', hairB: '#665649',
+  hair: [
+    // the mass: full and soft at the back and over the ears, a little wider than his face
+    L(0.03, 0.15, -0.05, 0.15), L(-0.09, 0.14, -0.02, 0.135), L(0.09, 0.13, -0.02, 0.13), L(0, 0.09, -0.13, 0.15),
+    L(0.21, 0.04, -0.06, 0.085), L(-0.21, 0.05, -0.06, 0.085), L(0.15, -0.01, -0.14, 0.09), L(-0.15, 0.0, -0.14, 0.09), L(0, -0.03, -0.17, 0.1),
+    T(0.225, 0.0, -0.04, 0.06, 0.255, -0.06, -0.02, 0.03), T(-0.225, 0.005, -0.04, 0.06, -0.26, -0.05, -0.02, 0.03),
+    // a side parting high on his right; from it the hair is combed across his forehead in one soft wave that dips low
+    // over his left brow and curls up at the temple
+    L(-0.15, 0.16, 0.05, 0.07), T(-0.11, 0.2, 0.09, 0.06, -0.17, 0.14, 0.12, 0.045),
+    T(-0.07, 0.205, 0.1, 0.06, 0.05, 0.15, 0.16, 0.055), T(0.05, 0.15, 0.16, 0.055, 0.15, 0.085, 0.15, 0.045),
+    T(0.15, 0.085, 0.15, 0.045, 0.205, 0.075, 0.095, 0.026), T(-0.01, 0.19, 0.14, 0.05, 0.1, 0.12, 0.17, 0.03),
+  ],
+  head: { width: 1.24, chin: 1.12, eyes: 0.55, glasses: '#7a6040' },
+  wardrobe: { lecture: { top: { color: '#a8834f', loose: 0.03, sleeve: 0.8, long: true, trim: '#94723f', open: '#c5cfd8' },
+    bottom: { color: '#5c4a3e', cuff: '#54443a', width: 0.05 }, shoes: { color: '#3b2a24' } } },
+  outfit: 'lecture', restFace: 'neutral',
+};
+
+// DARNELL, Office Hours: the one who has waited longest. Tall, thin and very calm, deep brown skin, a short black fade
+// and a black beard down to his belt. A faded sage hoodie, grey joggers, old white trainers.
+export const DARNELL: Props = { ...NIO, shin: 0.34, thigh: 0.36, torso: 0.42, shoulderHalf: 0.125, torsoR: 0.08, armR: 0.019, legR: 0.028 };
+export const DARNELL_CHAR: Character = {
+  id: 'darnell', body: DARNELL, skin: '#74472f', hairA: '#1e1517', hairB: '#130d0f',
+  // a short fade: close to the head, a crisp line across the forehead, nothing standing up
+  hair: [L(0, 0.1, -0.035, 0.14), L(0.06, 0.1, 0.02, 0.125), L(-0.06, 0.1, 0.02, 0.125), L(0, 0.06, -0.1, 0.14)],
+  head: { width: 0.96, chin: 1.08 }, beard: '#1e1517',
+  wardrobe: { out: { top: { color: '#7d8c78', loose: 0.03, sleeve: 0.8, long: true, trim: '#6f7d6a' },
+    bottom: { color: '#6a6a70', cuff: '#606066', width: 0.04 }, shoes: { color: '#d8d2c4' } } },
+  outfit: 'out', restFace: 'deadpan',
 };

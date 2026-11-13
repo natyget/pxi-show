@@ -260,6 +260,16 @@ export const pose = (a: Act) => {
     s = reach(s, i, wr, add(out(i), [0, -1, 0]), P, norm(add(mul(fwd, 0.8), mul(out(i), -0.6))), norm(add(UP, mul(out(i), -0.5))));
     extra.push(...cup(c));
   }
+  if (nm === 'spinner') {
+    // a fidget spinner on the right fingertips in front of the belly, spinning: three lobes round a hub
+    const c = add(add(s.hips, mul(s.chestDir, 0.16)), add(mul(fwd, P.torsoR + 0.16), mul(out(1), 0.06)));
+    s = reach(s, 1, add(c, add(mul(fwd, -0.06), [0, -0.025, 0])), add(out(1), [0, -1, 0]), P, fwd, UP); hands[1] = 'fist';
+    s = lookAt(s, c, 0.5, P);
+    const sx = norm(cross(UP, fwd)), sp = (a.t ?? 0) * 0.9;
+    extra.push({ a: c, ra: 0.012, b: c, rb: 0.012, g: G.shoe, k: 0.004, c: '#d8d4cc' });
+    for (let k = 0; k < 3; k++) { const ang = sp + (k * 2 * Math.PI) / 3, q = add(c, add(mul(sx, Math.cos(ang) * 0.03), mul(fwd, Math.sin(ang) * 0.03)));
+      extra.push({ a: c, ra: 0.01, b: q, rb: 0.016, g: G.shoe, k: 0.008, c: '#2f8fc4', sq: 2.5 }); }
+  }
   if (nm === 'sweep') {
     // crouched, both hands flat on the floor in front, slow circles, one each way (the move in The Move). The circle
     // keeps the club's beat: one round every two beats at 124 a minute.
@@ -285,9 +295,43 @@ export const pose = (a: Act) => {
     for (let k = 0; k < N; k++) { const a0 = (k / N) * 6.283, a1 = ((k + 1) / N) * 6.283;
       prims.push({ a: at(cx, cy + Math.cos(a0) * R, -0.005 + Math.sin(a0) * R), ra: 0.0062, b: at(cx, cy + Math.cos(a1) * R, -0.005 + Math.sin(a1) * R), rb: 0.0062, g: G.shoe, k: 0.004, c: ch.earrings }); }
   }
+  if (hk.glasses) {
+    // small round glasses: a wire ring round each eye just off the face, a bridge, and an arm back to each ear. Its own
+    // surface, so it is inked.
+    const w = hk.width ?? 1, at = (x: number, y: number, z: number): V => add(s.headC, add(mul(s.headRt, x), add(mul(s.headUp, y), mul(s.headFw, z))));
+    const R = 0.045 * (hk.eyes ?? 1) / 0.55, cy = -0.058, cz = 0.196, N = 12, t = 0.0035, wire = (a: V, b: V) => prims.push({ a, ra: t, b, rb: t, g: G.shoe, k: 0.003, c: hk.glasses! });
+    for (const sd of [1, -1]) {
+      const cx = sd * 0.083;
+      for (let k = 0; k < N; k++) { const a0 = (k / N) * 6.283, a1 = ((k + 1) / N) * 6.283;
+        wire(at(cx + Math.cos(a0) * R, cy + Math.sin(a0) * R, cz - 0.012 * Math.abs(Math.cos(a0))), at(cx + Math.cos(a1) * R, cy + Math.sin(a1) * R, cz - 0.012 * Math.abs(Math.cos(a1)))); }
+      const ox = cx + sd * R;
+      wire(at(ox, cy + 0.008, cz - 0.012), at(sd * 0.212 * w, cy + 0.004, 0.13)); wire(at(sd * 0.212 * w, cy + 0.004, 0.13), at(sd * 0.226 * w, cy - 0.01, 0.0));
+    }
+    wire(at(0.083 - R, cy + 0.01, cz - 0.006), at(0, cy + 0.022, cz + 0.004)); wire(at(0, cy + 0.022, cz + 0.004), at(-0.083 + R, cy + 0.01, cz - 0.006));
+  }
+  if (ch.beard) {
+    // a long beard: full along the jaw and under the chin (the mouth stays clear), then one soft mass that hangs down
+    // the front of the body to the belt, narrowing to a point. Hair, so one surface with the hair on his head.
+    const w = hk.width ?? 1, ck = hk.chin ?? 1, at = (x: number, y: number, z: number): V => add(s.headC, add(mul(s.headRt, x), add(mul(s.headUp, y), mul(s.headFw, z))));
+    const bf = norm(cross(s.side, s.chestDir)), bd = (c: V, r: number, c2: V, r2: number) => prims.push({ a: c, ra: r, b: c2, rb: r2, g: G.hair, k: 0.03, c: ch.beard!, tex: 1 });
+    for (const sd of [1, -1]) bd(at(sd * 0.165 * w, -0.08, 0.03), 0.045, at(sd * 0.1 * w, -0.2 * ck, 0.09), 0.06);
+    const chin = at(0, -0.235 * ck, 0.08), r0 = P.torsoR + 0.025;
+    const p1 = add(add(s.neckBase, mul(s.chestDir, -0.1)), mul(bf, r0 + 0.04)), p2 = add(add(s.hips, mul(s.chestDir, 0.2)), mul(bf, r0 + 0.035));
+    const p3 = add(add(s.hips, mul(s.chestDir, 0.02)), mul(bf, r0 + 0.03));
+    bd(chin, 0.075, p1, 0.07); bd(p1, 0.07, p2, 0.058); bd(p2, 0.058, p3, 0.026);
+  }
+  if (ch.crown) {
+    // a crown of small flowers, round the head at the top of the forehead, each its own colour, with a few leaves
+    const at = (x: number, y: number, z: number): V => add(s.headC, add(mul(s.headRt, x), add(mul(s.headUp, y), mul(s.headFw, z))));
+    const N = 12, w = hk.width ?? 1;
+    for (let k = 0; k < N; k++) {
+      const a0 = (k / N) * 6.283, c = at(Math.sin(a0) * 0.235 * w, 0.2 - 0.04 * Math.cos(a0), Math.cos(a0) * 0.215 - 0.03);
+      const leaf = k % 3 === 2; prims.push({ a: c, ra: leaf ? 0.022 : 0.036, b: c, rb: leaf ? 0.022 : 0.036, g: G.shoe, k: 0.006, c: leaf ? '#5d8a4a' : ch.crown[k % ch.crown.length] });
+    }
+  }
   const soft: Soft = { character: true, origin: s.hips, prims,
     head: { c: s.headC, rt: s.headRt, up: s.headUp, fw: s.headFw, face: a.face, skin: ch.skin, hairA: ch.hairA, hairB: ch.hairB, blobs: ch.hair,
-      build: [hk.lashes ?? 0, hk.width ?? 1, hk.chin ?? 1, hk.curls ?? 0] } };
+      build: [hk.lashes ?? 0, hk.width ?? 1, hk.chin ?? 1, hk.curls ?? 0, hk.eyes ?? 1] } };
   const mid = lerp(s.an[0], s.an[1], 0.5);
   const shadows = a.seat === undefined ? [[mid[0], mid[2], 0.2, 0.3]] : [];
   if (phoneAt) phoneAt.eye = add(s.headC, add(mul(s.headFw, P.headR * 1.35), mul(s.headUp, P.headR * 0.12))); // just in front of his eyes
