@@ -166,5 +166,19 @@
 "sub": "You're coming to improv Thursday.",
 "dur": 1.701,
 "text": "you're coming to improv thursday"
+},
+"oh_25": {
+"file": "vo/oh_25.wav",
+"who": "profh",
+"sub": "Nio. Office hours. Today.",
+"dur": 3.796,
+"text": "Nio. Office hours. Today."
+},
+"oh_26": {
+"file": "vo/oh_26.wav",
+"who": "nio",
+"sub": "Game's at five.",
+"dur": 1.087,
+"text": "Game's at five."
 }
 }

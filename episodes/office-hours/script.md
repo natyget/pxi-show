@@ -11,18 +11,19 @@ he is cool, learns their slang from the internet and uses it nearly right. Every
 office hours the way you treat a haunted house. He has no idea.
 
 ```
-[INT. LECTURE HALL, 4:40 PM. PROF H closes his laptop. His whisper fills the room through the mic.]
-PROF H: Great sesh, fam. Real ones come to office hours.
-[He looks straight at Nio.]
-PROF H: Nio. Today.
+[INT. LECTURE HALL, 4:55 PM. Under the desks, NIO and THEO are already in football kit, boots laced. Nio
+has a ball between his feet. The wall clock reads 4:55. PROF H closes his laptop. His whisper fills the room
+through the mic.]
+PROF H: Nio. Office hours. Today.
 
 [Thirty heads turn. A girl in the next row slowly takes her cap off, like at a funeral.]
-THEO (barely moving his lips): Bro's not coming back.
-NIO (packing up, easy): It says hours. Plural. That's a suggestion.
-THEO: Darnell said that.
+NIO (low, nodding at the clock): Game's at five.
+THEO (eyes on the seat beside him): That's what Darnell said.
+[The seat beside Theo. Empty. A name card on the desk: DARNELL. A water bottle, a planner, a thick layer of
+dust.]
 NIO: Who's Darnell?
-[Theo looks at the seat beside him. Empty. On it: a water bottle, a 2019 planner, and a layer of dust.]
-NIO (beat): ...Pickup's at five.
+THEO (barely moving his lips): Bro's not coming back.
+[Nio looks at the dust. At the clock: 4:56. He scoops up the ball and slides out the side door.]
 
 [INT. CORRIDOR. Fluorescent hum. At the far end, a door, wide open, warm light pouring out. The plaque:
 "PROF. HAVERBROOK. MY DOOR IS ALWAYS OPEN 🙂". Nio turns the other way. Walks. Turns a corner. The same
@@ -55,24 +56,21 @@ PROF H: Nio! Come in, come in.
 [INT. OFFICE. Tiny. Prof H folded behind the desk. A HANG IN THERE cat poster. A bobblehead of himself.]
 PROF H: So. I wanted a word.
 [Hold. Room tone. Nio, sweating.]
-[Prof H slides a flyer across the desk. Hand-drawn. "PROF H'S IMPROV NIGHT. THURSDAY. BRING A FRIEND. OR
-YOURSELF."]
+[Prof H slides a flyer across the desk. Hand-drawn. "PROF H · IMPROV · THURSDAY".]
 PROF H (very small): Would you come?
 [Nio looks at the flyer. At Prof H. Prof H's lip is going. A long beat.]
 NIO: ...Sure.
-PROF H (a whisper, a tear): Nobody's ever said yes.
+[A single tear rolls down Prof H's face.]
 
 [Behind Nio, the door swings open onto the sunny quad. In the waiting room the clock has hands. NOW SERVING
 4. Darnell stands, squints at the sun, and walks out into it, beard first.]
 PROF H: Same time next week?
 [Nio is already gone. The door clicks shut by itself.]
 
-[EXT. FIVE-A-SIDE PITCH, 5:01 PM. Nio jogs on, hair wrecked.]
+[EXT. FIVE-A-SIDE PITCH, 5:01 PM. Nio jogs on, hair wrecked, ball under his arm.]
 THEO: Where were you?
-NIO: Office hours.
-[Theo takes one step back. Nio holds up the flyer.]
-NIO: You're coming to improv Thursday.
-[Theo goes white.]
+[Nio says nothing. He holds up the flyer.]
+[Theo looks at it. Goes white. Takes one step back.]
 ```
 
 Laughs: the cap off like a funeral / the dusty seat / "I did not RSVP to that" / "Just go in, baby. It's

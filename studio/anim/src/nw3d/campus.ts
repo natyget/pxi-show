@@ -292,7 +292,8 @@ export const keyed = (k: Keyed | undefined, frame: number, dflt: number): number
 };
 // laptop: how open Prof H's laptop is (1 open .. 0 shut). turn: how far every student's head has come round to stare at
 // Nio (0 .. 1). crowd: how full the rows are (0 .. 1, null for empty). dusty: the empty seat by Theo, with its dust.
-export type HallOpts = { laptop?: Keyed; turn?: Keyed; crowd?: number | null; dusty?: boolean };
+// clock: the wall clock's hands [hour, minute] in radians clockwise from 12 (4:55 is [2.574, 5.76]). ball: Nio's football on his desk.
+export type HallOpts = { laptop?: Keyed; turn?: Keyed; crowd?: number | null; dusty?: boolean; clock?: [number, number]; ball?: boolean };
 export const hallBoxes = (o: HallOpts = {}): Box[] => {
   const bs: Box[] = [], cs = (HALL.seats[0] + HALL.seats[1]) / 2, ch = (HALL.seats[1] - HALL.seats[0]) / 2;
   for (let r = 1; r <= HALL.rows; r++) {
@@ -313,8 +314,11 @@ export const hallBoxes = (o: HallOpts = {}): Box[] => {
   if (o.dusty ?? true) {
     // the empty seat on Theo's left: a water bottle and the 2019 planner, under dust
     const sz = seatZ(4), sy = rowY(4) + 0.46, ss = seatS(2);
-    bs.push(B(ss + 0.06, sy + 0.012, sz + 0.02, 0.11, 0.012, 0.15, '#4a5c70', 66, { yaw: 8, mat: 9, sign: 'planner' }));
+    bs.push(B(ss + 0.1, sy + 0.012, sz - 0.06, 0.11, 0.012, 0.15, '#4a5c70', 66, { yaw: 8, mat: 9, sign: 'planner' }));
+    bs.push(B(ss + 0.0, sy + 0.008, sz + 0.17, 0.12, 0.008, 0.05, '#f0ece0', 67, { yaw: -5, mat: 9, sign: 'nameDarnell' })); // his name card, under the same dust
   }
+  // the wall clock, high on the front wall right of the screen, where the whole room can watch it
+  bs.push(B(6.75, 3.0, HALL.d - 0.03, 0.3, 0.3, 0.025, '#e8e4da', 68, { yaw: FACING.us, mat: 8, clock: o.clock ? [1, o.clock[0], o.clock[1]] : [1, 2.574, 5.76], noShadow: true }));
   return bs;
 };
 // the laptop's lid (open 1 .. shut 0) and the gooseneck mic, and the water bottle on the dusty seat
@@ -332,6 +336,13 @@ const hallSofts = (o: HallOpts): Soft[] => {
   const out: Soft[] = [{ prims, origin: neck[0] }];
   if (o.dusty ?? true) { const b = P3(seatS(2) - 0.12, rowY(4) + 0.46, seatZ(4) - 0.05);
     out.push({ prims: [{ a: b, ra: 0.034, b: [b[0], b[1] + 0.2, b[2]], rb: 0.034, g: 0, k: 0.01, c: '#9fc4d6' }, { a: [b[0], b[1] + 0.2, b[2]], ra: 0.02, b: [b[0], b[1] + 0.24, b[2]], rb: 0.018, g: 1, k: 0.005, c: '#3f7ea0' }], origin: b }); }
+  if (o.ball) { // Nio's football on the desk, on the aisle side of him: white, with dark patches
+    const c = P3(seatS(0) + 0.2, rowY(4) + 0.785 + 0.1, rowZ(4) - 0.16), r = 0.1;
+    // small dark pentagons spread evenly over it (a dozen, the points of an icosahedron), so it reads as a football, not a face
+    const g = (1 + Math.sqrt(5)) / 2, n = Math.hypot(1, g);
+    const pts: V[] = [[0, 1, g], [0, -1, g], [0, 1, -g], [0, -1, -g], [1, g, 0], [-1, g, 0], [1, -g, 0], [-1, -g, 0], [g, 0, 1], [-g, 0, 1], [g, 0, -1], [-g, 0, -1]];
+    const patch = (d: V) => { const q: V = [c[0] + (d[0] / n) * r * 0.97, c[1] + (d[1] / n) * r * 0.97, c[2] + (d[2] / n) * r * 0.97]; return { a: q, ra: 0.022, b: q, rb: 0.022, g: 1, k: 0.002, c: '#26232a' }; };
+    out.push({ prims: [{ a: c, ra: r, b: c, rb: r, g: 0, k: 0.01, c: '#f2f0ea' }, ...pts.map(patch)], origin: c }); }
   return out;
 };
 // cam: nobody sits where the camera is, so no head fills the lens
@@ -357,8 +368,9 @@ export const HALL_CAMS: Record<string, Cam3> = {
   nio: C([7.5, 2.64, 5.65], [6.58, 2.32, 3.9], 34), // Nio in his seat, from the aisle steps
   theo: C([5.55, 2.64, 5.45], [5.94, 2.34, 3.9], 34), // Theo in his seat, from the row in front
   seat: C([5.36, 2.74, 4.3], [5.3, 1.67, 3.88], 34), // insert: the empty seat on Theo's left, from over the desk
+  clock: C([7.3, 2.7, 4.8], [6.75, 3.0, HALL.d - 0.05], 9), // insert: the wall clock, from Nio's side of the room, over the heads
 };
-export const HALL_INSERTS = ['seat'];
+export const HALL_INSERTS = ['seat', 'clock'];
 export const HALL_MARKS = {
   lectern: { s: HALL.lectern.s, z: 9.05, yaw: 180, who: 'profH' }, // behind the lectern, facing the room
   nio: { s: seatS(0), z: seatZ(4), yaw: 0, seat: rowY(4) + 0.46 }, // row 4, the aisle seat

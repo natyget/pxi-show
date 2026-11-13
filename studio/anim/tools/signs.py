@@ -106,11 +106,22 @@ def lab_report():
 
 def planner():
     W, H = 220, 300; im = Image.new('RGBA', (W, H), (74, 92, 112, 255)); d = ImageDraw.Draw(im)
-    d.rectangle([0, 0, 22, H], fill=(52, 64, 80)); centred(d, W / 2 + 10, 110, '2019', font(64), (214, 196, 140)); centred(d, W / 2 + 10, 186, 'PLANNER', font(26), (214, 196, 140))
+    d.rectangle([0, 0, 22, H], fill=(52, 64, 80)); d.rectangle([60, 120, 180, 150], outline=(214, 196, 140), width=4)  # a plain cover, a label box nobody filled in
+    return dusty(im)
+
+
+def dusty(im):
     # dust: a pale grey film, thicker at the top edge
-    dust = Image.new('RGBA', (W, H), (0, 0, 0, 0)); dd = ImageDraw.Draw(dust)
+    W, H = im.size; dust = Image.new('RGBA', (W, H), (0, 0, 0, 0)); dd = ImageDraw.Draw(dust)
     for k in range(H): dd.line([(0, k), (W, k)], fill=(206, 200, 190, int(130 - 70 * k / H)))
     return Image.alpha_composite(im, dust)
+
+
+def name_card(name):
+    # a folded paper name card on the desk, the name in marker, under the same dust as the planner
+    W, H = 360, 150; im = Image.new('RGBA', (W, H), (240, 236, 224, 255)); d = ImageDraw.Draw(im)
+    d.rectangle([0, 0, W - 1, H - 1], outline=(190, 182, 166), width=4); centred(d, W / 2, 34, name, font(72), (36, 40, 52))
+    return dusty(im)
 
 
 def stairs():
@@ -141,16 +152,15 @@ def slide():
 def flyer():
     # Prof H's flyer, drawn by hand in markers on printer paper: every line a little crooked, the words in his colours
     W, H = 300, 400; im = Image.new('RGBA', (W, H), (246, 243, 234, 255)); d = ImageDraw.Draw(im)
-    lines = [("PROF H'S", 34, (44, 86, 170), -3), ('IMPROV', 62, (206, 52, 52), 2), ('NIGHT', 54, (206, 52, 52), -2),
-             ('THURSDAY', 40, (34, 30, 34), 1), ('BRING A FRIEND.', 30, (34, 30, 34), -1), ('OR YOURSELF.', 24, (34, 30, 34), 2)]
-    y = 26
+    lines = [('PROF H', 44, (44, 86, 170), -3), ('IMPROV', 72, (206, 52, 52), 2), ('THURSDAY', 46, (34, 30, 34), 1)]
+    y = 60
     for text, px, col, rot in lines:
         f = font(px); w = int(d.textlength(text, font=f)) + 12; layer = Image.new('RGBA', (w, px + 16), (0, 0, 0, 0))
         ImageDraw.Draw(layer).text((6, 2), text, font=f, fill=col); layer = layer.rotate(rot, resample=Image.BICUBIC, expand=True)
-        im.alpha_composite(layer, (int(W / 2 - layer.width / 2), y)); y += px + 18 + (8 if text == 'NIGHT' else 0)
-    # a wobbly underline under NIGHT, and two hand-drawn stars
-    pts = [(70 + k * 16, 226 + (3 if k % 2 else -2)) for k in range(11)]; d.line(pts, fill=(206, 52, 52), width=5)
-    for cx, cy, r in ((34, 50, 16), (270, 228, 14)):
+        im.alpha_composite(layer, (int(W / 2 - layer.width / 2), y)); y += px + 40 + (14 if text == 'IMPROV' else 0)
+    # a wobbly underline under IMPROV, and two hand-drawn stars
+    pts = [(60 + k * 18, 252 + (3 if k % 2 else -2)) for k in range(11)]; d.line(pts, fill=(206, 52, 52), width=5)
+    for cx, cy, r in ((34, 50, 16), (268, 330, 14)):
         star = [(cx + r * math.cos(math.pi / 2 + k * math.pi * 0.8), cy - r * math.sin(math.pi / 2 + k * math.pi * 0.8)) for k in range(6)]
         d.line(star, fill=(232, 170, 40), width=4)
     return im
@@ -159,7 +169,7 @@ def flyer():
 place('nowServing3', now_serving(3)); place('nowServing4', now_serving(4)); place('plaque', plaque()); place('takeNumber', take_a_number())
 place('hangInThere', hang_in_there()); place('labReport', lab_report()); place('planner', planner()); place('stairs', stairs())
 place('door114', door_number('B114')); place('door116', door_number('B116')); place('door112', door_number('B112'))
-place('ticket4', ticket(4)); place('ticket5', ticket(5)); place('slide', slide()); place('flyer', flyer())
+place('nameDarnell', name_card('DARNELL')); place('ticket4', ticket(4)); place('ticket5', ticket(5)); place('slide', slide()); place('flyer', flyer())
 used = cur[1] + cur[2]
 out = atlas.crop((0, 0, SIZE, 1 << max(8, math.ceil(math.log2(used)))))
 # the atlas is cropped to a power of two high; the rects are made relative to the cropped height

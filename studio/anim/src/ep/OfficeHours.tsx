@@ -48,16 +48,19 @@ const L = (key: string, who: string, at: number): Line => ({ key, who, at });
 
 export const SHOTS: Shot[] = [
   // THE LECTURE HALL. Prof H at the lectern; Nio row 4 aisle, Theo on his left, the cap girl in front of Nio.
-  sh(1, 94, 'S', H('low', [prof('charm')], { laptop: [[0, 1], [8, 0]] }), [L('oh_01', 'profH', 12)], [['laptop', 6, 0.8]]),
-  sh(2, 36, 'S', H('profH', [{ ...prof('hyped'), look: 'camera' }]), [L('oh_02', 'profH', 4)]),
-  sh(3, 36, 'S', { ...H('rows', [seat('nio', 'deadpan'), seat('theo', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]] }), push: 0.5 }),
-  sh(4, 48, 'S', H('capGirl', [{ who: 'cap', at: 'capGirl', action: 'sit', face: 'real', hold: 'capOff' }, seat('nio', 'suspicious')], { turn: 1 })),
-  sh(5, 36, 'S', H('two', [seat('nio', 'deadpan'), { ...seat('theo', 'uneasy', true), hold: 'pen', mouth: 0.5, gaze: [0.6, 0] }]), [L('oh_03', 'theo', 2)]),
-  sh(6, 74, 'S', H('nio', [seat('nio', 'smug', true)]), [L('oh_04', 'nio', 4)], [['zip', 104, 0.6]]),
-  sh(7, 36, 'S', H('theo', [{ ...seat('theo', 'deadInside', true), hold: 'pen' }]), [L('oh_05', 'theo', 2)]),
-  sh(8, 30, 'S', H('nio', [seat('nio', 'suspicious', true)]), [L('oh_06', 'nio', 2)]),
-  sh(9, 48, 'S', { ...H('seat', []), push: 0.12 }),
-  sh(10, 44, 'S', H('nio', [seat('nio', [[0, 'uneasy'], [12, 'deadpan']], true)]), [L('oh_07', 'nio', 12)]),
+  // 4:55 PM. Nio's football on his desk, the clock on the front wall. Prof H shuts the laptop and whispers into the mic.
+  sh(1, 30, 'S', H('low', [prof('charm')], { laptop: [[0, 1], [8, 0]] }), undefined, [['laptop', 6, 0.8]]),
+  sh(2, 36, 'S', H('profH', [{ ...prof('hyped'), look: 'camera' }]), [L('oh_25', 'profH', 4)]),
+  sh(3, 36, 'S', { ...H('rows', [seat('nio', 'deadpan'), seat('theo', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]], ball: true }), push: 0.5 }),
+  sh(4, 48, 'S', H('capGirl', [{ who: 'cap', at: 'capGirl', action: 'sit', face: 'real', hold: 'capOff' }, seat('nio', 'suspicious')], { turn: 1, ball: true })),
+  sh(4.5, 30, 'S', H('clock', [], { clock: [2.574, 5.76], turn: 1 })), // insert: 4:55
+  sh(6, 40, 'S', H('nio', [seat('nio', 'smug', true)], { ball: true, turn: 1 }), [L('oh_26', 'nio', 4)]),
+  sh(7, 36, 'S', H('theo', [{ ...seat('theo', 'deadInside', true), hold: 'pen' }], { turn: 1 }), [L('oh_05', 'theo', 2)]),
+  sh(9, 48, 'S', { ...H('seat', [], { turn: 1 }), push: 0.12 }), // insert: the dusty seat, his planner, his name card
+  sh(8, 30, 'S', H('nio', [seat('nio', 'suspicious', true)], { ball: true, turn: 1 }), [L('oh_06', 'nio', 2)]),
+  sh(5, 36, 'S', H('two', [seat('nio', 'uneasy'), { ...seat('theo', 'deadInside', true), hold: 'pen', mouth: 0.5, gaze: [0.6, 0] }], { ball: true, turn: 1 }), [L('oh_03', 'theo', 2)]),
+  sh(9.5, 24, 'S', H('clock', [], { clock: [2.583, 5.864], turn: 1 })), // insert: 4:56
+  sh(10, 36, 'S', H('nio', [seat('nio', [[0, 'uneasy'], [12, 'deadpan']])], { ball: true, turn: 1 }), undefined, [['zip', 14, 0.6]]),
   // THE CORRIDOR. It loops: the same door, a little more open each time.
   sh(11, 60, 'S', (f) => ({ ...C('long', [f < 26 ? { ...cnio('look', 'deadpan'), facing: 'far', back: true } : { ...cnio('look', 'deadpan'), facing: 'near' }], { door: 0.7 }), push: 0.4 })),
   sh(12, 80, 'S', { ...C('plaque', [], { door: [[0, 0.7], [79, 0.78]] }), push: 0.15 }),
@@ -89,7 +92,7 @@ export const SHOTS: Shot[] = [
   sh(32, 80, 'S', O('flyer', [{ ...oprof('neutral'), hold: 'slideFlyer' }], { flyer: [[6, 0], [34, 1]] }), undefined, [['paper', 6, 0.7]]),
   sh(33, 52, 'S', O('profH', [oprof('real', true)], { flyer: 1 }), [L('oh_18', 'profH', 8)]),
   sh(34, 60, 'S', O('nio', [onio([[0, 'uneasy'], [24, 'sheepish']], true)], { flyer: 1 }), [L('oh_19', 'nio', 26)]),
-  sh(34.5, 48, 'S', O('profH', [oprof('crushed', true)], { flyer: 1 }), [L('oh_20', 'profH', 4)]),
+  sh(34.5, 40, 'S', O('profH', [oprof('crushed')], { flyer: 1 })), // nobody has ever said yes: his face says it
   // Same angle as 20: the clock has hands, NOW SERVING 4, the door open, and Darnell walks out into the light.
   sh(35, 48, 'S', W('aisle', 48, [{ who: 'darnell', at: 'middle', to: 'doorway', action: 'walk', face: 'charm', back: true }, ...waiters(false)],
     { serving: 4, clock: [2.6, 0.1], door: 1 })),
@@ -98,10 +101,10 @@ export const SHOTS: Shot[] = [
   // THE PITCH, 5:01 PM. Bright and normal after the eerie.
   sh(38, 40, 'S', P('wide', [{ who: 'nio', at: 'gate', to: 'nio', action: 'jog', face: 'deadpan' }, { who: 'theo', at: 'theo', action: 'stand', face: 'suspicious' }]),
     [L('oh_22', 'theo', 14)], [['grass', 0, 0.4], ['grass', 8, 0.4], ['grass', 16, 0.4], ['grass', 24, 0.4]]),
-  sh(39, 30, 'S', P('nio', [{ who: 'nio', at: 'nio', action: 'talk', face: 'deadInside' }]), [L('oh_23', 'nio', 2)]),
-  sh(40, 13, 'S', P('theo', [{ who: 'theo', at: 'theo', to: 'theoBack', action: 'stepBack', face: 'shock' }])),
-  sh(41, 56, 'S', P('nio', [{ who: 'nio', at: 'nio', action: 'talk', face: [[0, 'deadpan'], [40, 'smug']], hold: 'flyer' }]), [L('oh_24', 'nio', 6)]),
-  sh(42, 30, 'S', P('theo', [{ who: 'theo', at: 'theoBack', action: 'stand', face: 'shock', pale: [[0, 0], [14, 1]] }])),
+  sh(41, 48, 'S', P('nio', [{ who: 'nio', at: 'nio', action: 'stand', face: [[0, 'deadInside'], [30, 'smug']], hold: 'flyer' }])), // no answer: he holds up the flyer
+  sh(42, 26, 'S', P('theo', [{ who: 'theo', at: 'theo', action: 'stand', face: 'shock', pale: [[2, 0], [16, 0.6]] }]), undefined, [['drain', 0, 0.8]]),
+  sh(40, 13, 'S', P('theo', [{ who: 'theo', at: 'theo', to: 'theoBack', action: 'stepBack', face: 'shock', pale: 0.6 }])),
+  sh(40.5, 18, 'S', P('theo', [{ who: 'theo', at: 'theoBack', action: 'stand', face: 'shock', pale: 0.6 }])), // and holds there
 ];
 
 // A shot is never shorter than its lines: the last line ends at least 6 frames before the cut.

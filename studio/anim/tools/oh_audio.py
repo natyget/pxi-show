@@ -117,6 +117,9 @@ def paper():
     d = 0.6; t = t_(d); return band(R.normal(0, 1, len(t)), 1200, 8000) * np.hanning(len(t)) * 0.5
 def click():
     t = t_(0.12); return band(R.normal(0, 1, len(t)), 800, 5000) * np.exp(-t * 60) + 0.4 * np.sin(2 * np.pi * 300 * t) * np.exp(-t * 50)
+def drain():  # the colour leaving Theo's face: a slide whistle falling an octave and a half, slowing as it goes
+    d = 0.9; t = t_(d); f = 1400 * 2 ** (-1.6 * (1 - (1 - t / d) ** 2))
+    return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.minimum(1, t * 40) * np.minimum(1, (d - t) * 12) * (1 + 0.01 * np.sin(2 * np.pi * 6 * t))
 def grass():
     t = t_(0.2); return band(R.normal(0, 1, len(t)), 400, 3000) * np.exp(-t * 20)
 
@@ -124,5 +127,5 @@ if __name__ == '__main__':
     save('oh_theme.wav', theme(48), 0.8)
     save('oh_hall.wav', hall(90), 0.6); save('oh_hum.wav', hum(90), 0.5); save('oh_office.wav', office(90), 0.5); save('oh_pitch.wav', pitch(90), 0.6)
     for name, f in [('laptop', laptop), ('zip', zipper), ('bang', bang), ('tap', tap), ('mop', mop), ('whoosh', whoosh), ('hit', hit),
-                    ('creak', creak), ('paper', paper), ('click', click), ('grass', grass)]:
+                    ('creak', creak), ('paper', paper), ('click', click), ('grass', grass), ('drain', drain)]:
         save(f'oh_{name}.wav', f())
