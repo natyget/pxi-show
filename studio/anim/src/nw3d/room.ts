@@ -4,6 +4,7 @@ import { Skel, Prim, Hand, sampleClip, solve, place, reach, lookAt, buildBody, s
 import { Face } from './face';
 import { Scene3, Box, Obb, Cam3, Soft, Light } from './types';
 import { Character, NIO_CHAR } from './characters';
+import { Perf, Gesture } from './acting';
 
 // ---- the room (metres): 3.8 wide, 2.6 high, 4.4 deep. The window wall is z = 4.4. ----
 // Positions are written as (s, y, z): s is the distance from the wall on the LEFT of the picture when you face
@@ -136,6 +137,8 @@ export const PARTY_AMB: V = [0.56, 0.52, 0.58], PARTY_AMB_CHAR: V = [0.97, 0.92,
 export type Act = { who?: Character; clip: string; t: number; at: [number, number]; yaw: number; face: Face;
   stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; glow?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string;
   pose?: string; lift?: number;
+  clipT?: number; // the clip frame the body is drawn from, when it differs from the shot's time (a held pose: see acting.ts)
+  perf?: Perf; // the acting pass for this frame (acting.ts): lean, head, shoulders, the hands' gesture
   reachTo?: V; // a point in the world the hold's hand goes to (set by the set: Prof H's fingers on the flyer)
   thumb?: [number, number, number]; // where his thumb is on the glass: across and up it (-1..1), and how far lifted (0 pressed, 1 off)
   lens?: boolean }; // set by the selfie camera: this is the picture his own phone takes (see phoneCam) // where his thumb is on the glass: across and up it (-1..1), and how far lifted (0 pressed, 1 off)
@@ -201,15 +204,45 @@ const underCap = (hair: number[][], k: number): number[][] => k <= 0 ? hair : ha
 });
 export const pose = (a: Act) => {
   const ch = a.who ?? NIO_CHAR, P = ch.body, nm = a.pose ?? '';
-  let s: Skel = place(solve(sampleClip(a.clip, a.t), P, { stance: a.stance ?? 1, arms: a.arms ?? 1, upright: a.upright ?? 0, seat: a.seat }), [X(a.at[0]), a.at[1]], a.yaw);
+  let s: Skel = place(solve(sampleClip(a.clip, a.clipT ?? a.t), P, { stance: a.stance ?? 1, arms: a.arms ?? 1, upright: a.upright ?? 0, seat: a.seat }), [X(a.at[0]), a.at[1]], a.yaw);
   if (a.lift) { s = { ...s, sh: [...s.sh], el: [...s.el], wr: [...s.wr], tip: [...s.tip], thumb: [...s.thumb], hip: [...s.hip], kn: [...s.kn], an: [...s.an], toe: [...s.toe] } as Skel; shift(s, [0, a.lift, 0]); }
   const props: Obb[] = []; const lights: Light[] = []; const extra: Prim[] = []; const hands: [Hand?, Hand?] = []; let phoneAt: PhoneAt | undefined;
   if (a.look) s = lookAt(s, a.look, a.lookAmt ?? 1, P);
   const fwd = norm(cross(s.side, s.chestDir)), UP: V = [0, 1, 0];
+  const pf = a.perf;
+  if (pf) {
+    // THE ACTING PASS (acting.ts). The attitude first, so every hold below attaches to the body as it now sits.
+    if (pf.lean) s = leanFwd(s, pf.lean);
+    if (pf.shoulders) { const d: V = [0, pf.shoulders, 0], up2 = (q: [V, V]): [V, V] => [add(q[0], d), add(q[1], d)];
+      s = { ...s, sh: up2(s.sh), el: up2(s.el), wr: up2(s.wr), tip: up2(s.tip), thumb: up2(s.thumb) }; }
+  }
   const out = (i: 0 | 1) => mul(s.side, i === 0 ? 1 : -1); // away from the body, on that side. 0 is his left, 1 his right.
   const A = (i: 0 | 1, f: number, u: number, o: number): V => add(s.sh[i], add(mul(fwd, f), add(mul(UP, u), mul(out(i), o)))); // from that shoulder
   // a straight arm from that shoulder in a direction (forward, up, out), whatever the arm's length
   const straight = (i: 0 | 1, f: number, u: number, o: number): V => add(s.sh[i], mul(norm(add(mul(fwd, f), add(mul(UP, u), mul(out(i), o)))), (P.upperArm + P.foreArm) * 1.02));
+  if (pf && pf.hands && !nm && !a.crossed && !(a.phone ?? 0)) {
+    // the hands: a blend from the last gesture to this one. amt overshoots past 1 and settles, the cartoon snap.
+    const f2 = norm(cross(s.side, s.chestDir)), o2 = (i: 0 | 1) => mul(s.side, i === 0 ? 1 : -1);
+    const At = (i: 0 | 1, f: number, u: number, o: number): V => add(s.sh[i], add(mul(f2, f), add(mul(UP, u), mul(o2(i), o))));
+    const down = (i: 0 | 1) => add(o2(i), [0, -1, 0]);
+    const gest = (g: Gesture): [Skel, [Hand?, Hand?]] => {
+      let b = s; const h: [Hand?, Hand?] = [];
+      if (g === 'offer') b = reach(b, 1, At(1, 0.3, -0.2, 0.1), down(1), P, norm(add(f2, mul(o2(1), 0.4))), o2(1));
+      if (g === 'palms') for (const i of [0, 1] as const) b = reach(b, i, At(i, 0.26, -0.06, 0.16), down(i), P, UP, f2);
+      if (g === 'shrug') for (const i of [0, 1] as const) b = reach(b, i, At(i, 0.16, -0.28, 0.22), down(i), P, norm(add(o2(i), mul(f2, 0.5))), UP);
+      if (g === 'chest') b = reach(b, 1, add(add(s.neckBase, mul(s.chestDir, -0.17)), add(mul(f2, P.torsoR + 0.05), mul(s.side, 0.0))), down(1), P, s.side, UP);
+      if (g === 'dismiss') b = reach(b, 1, At(1, 0.2, 0.0, 0.18), down(1), P, norm(add(UP, mul(o2(1), 0.3))), mul(f2, -1));
+      if (g === 'fists') { for (const i of [0, 1] as const) b = reach(b, i, At(i, 0.24, -0.1, 0.08), down(i), P, UP, f2); h[0] = 'fist'; h[1] = 'fist'; }
+      if (g === 'chin') { b = reach(b, 1, add(s.headC, add(mul(s.headUp, -0.3), mul(s.headFw, 0.1))), down(1), P, UP, mul(s.side, 1)); h[1] = 'fist'; }
+      if (g === 'neck') b = reach(b, 1, add(s.neckBase, add(mul(UP, 0.0), add(mul(f2, -0.07), mul(o2(1), 0.07)))), add(o2(1), [0, 0.5, 0]), P, norm(add(mul(o2(1), -1), UP)), f2);
+      if (g === 'point') { b = reach(b, 1, At(1, 0.42, 0.08, 0.04), down(1), P, norm(add(f2, [0, 0.12, 0])), UP); h[1] = 'point'; }
+      return [b, h];
+    };
+    const [sa, ha] = gest(pf.from), [sb, hb] = pf.from === pf.to ? [sa, ha] : gest(pf.to), k = pf.from === pf.to ? 1 : pf.amt;
+    const m: any = { ...s };
+    (['el', 'wr', 'tip', 'thumb'] as const).forEach((q) => { m[q] = [lerp(sa[q][0], sb[q][0], k), lerp(sa[q][1], sb[q][1], k)]; });
+    s = m; const hh = k >= 0.5 ? hb : ha; hands[0] = hh[0]; hands[1] = hh[1];
+  }
   const crossed = a.crossed || nm === 'arms-crossed';
   if (crossed) {
     // Folded arms, placed by hand: both elbows forward of the ribs, both forearms level across the chest. His left
@@ -370,6 +403,11 @@ export const pose = (a: Act) => {
   if (nm === 'asleep') {
     // asleep sitting up: the head drops forward and rolls onto one shoulder
     const fw = rot(s.headFw, s.headRt, 0.26), up = rot(rot(s.headUp, s.headRt, 0.26), fw, -0.52), rt = cross(up, fw);
+    s = { ...s, headUp: up, headFw: fw, headRt: rt, headC: add(s.neckBase, mul(up, P.neck + P.headR * 0.8)) };
+  }
+  if (pf && (pf.nod || pf.tilt)) {
+    // the head: a nod (chin down) and a tilt, last, on top of whatever the holds did with it
+    const fw = rot(s.headFw, s.headRt, pf.nod), up0 = rot(s.headUp, s.headRt, pf.nod), up = rot(up0, fw, pf.tilt), rt = cross(up, fw);
     s = { ...s, headUp: up, headFw: fw, headRt: rt, headC: add(s.neckBase, mul(up, P.neck + P.headR * 0.8)) };
   }
   const o = ch.wardrobe[a.outfit ?? ch.outfit];

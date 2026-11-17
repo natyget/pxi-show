@@ -8,6 +8,7 @@ import { V, sub, norm, cross, dot } from './vec';
 import { clipLength } from './rig';
 import { Face, FACES, gaze } from './face';
 import { lips, Cues } from '../lips/mouths';
+import { perform, actFace, Accents, ActSpec } from './acting';
 import { Scene3, Cam3 } from './types';
 import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_H_CHAR, DARNELL_CHAR } from './characters';
 import { STRANGERS } from './people';
@@ -117,16 +118,17 @@ SETS.corridor = { room: CAMPUS_ROOMS.corridor.size, campus: 'corridor', cameras:
 SETS.pitch = { room: CAMPUS_ROOMS.pitch.size, campus: 'pitch', cameras: CAMPUS_ROOMS.pitch.cams, inserts: PITCH_INSERTS, marks: PITCH_MARKS, solids: PITCH_SOLIDS };
 
 // What a body can do. Each is real human motion fitted to the character. speed: metres per second it must travel.
-export type Action = { clip: string; loop: boolean; stance: number; arms: number; upright: number; seat?: boolean; speed?: number; back?: boolean }; // back: travels backwards (the clip run in reverse, facing away from where he goes)
+export type Action = { rest?: [string, number]; // a held pose (acting.ts): the body is this clip frame, still, and the acting pass moves it
+  clip: string; loop: boolean; stance: number; arms: number; upright: number; seat?: boolean; speed?: number; back?: boolean }; // back: travels backwards (the clip run in reverse, facing away from where he goes)
 export const ACTIONS: Record<string, Action> = {
-  stand: { clip: 'Idle_Loop', loop: true, stance: 0.5, arms: 0.35, upright: 0.85 },
-  talk: { clip: 'Idle_Talking_Loop', loop: true, stance: 0.5, arms: 0.8, upright: 0.7 },
+  stand: { rest: ['Idle_Loop', 0], clip: 'Idle_Loop', loop: true, stance: 0.5, arms: 0.35, upright: 0.85 },
+  talk: { rest: ['Idle_Loop', 0], clip: 'Idle_Talking_Loop', loop: true, stance: 0.5, arms: 0.8, upright: 0.7 },
   walk: { clip: 'Walk_Loop', loop: true, stance: 1, arms: 1, upright: 0.3, speed: 1.0 },
   jog: { clip: 'Jog_Fwd_Loop', loop: true, stance: 1, arms: 1, upright: 0.2, speed: 2.4 },
   sprint: { clip: 'Sprint_Loop', loop: true, stance: 1, arms: 1, upright: 0.1, speed: 4.6 },
   stepBack: { clip: 'Walk_Loop', loop: true, stance: 1, arms: 0.6, upright: 0.4, speed: 0.8, back: true }, // a step or two backwards, still facing the way he was
-  sit: { clip: 'Sitting_Idle_Loop', loop: true, stance: 1, arms: 1, upright: 0.3, seat: true },
-  sitTalk: { clip: 'Sitting_Talking_Loop', loop: true, stance: 1, arms: 1, upright: 0.3, seat: true },
+  sit: { rest: ['Sitting_Idle_Loop', 0], clip: 'Sitting_Idle_Loop', loop: true, stance: 1, arms: 1, upright: 0.3, seat: true },
+  sitTalk: { rest: ['Sitting_Idle_Loop', 0], clip: 'Sitting_Talking_Loop', loop: true, stance: 1, arms: 1, upright: 0.3, seat: true },
   dance: { clip: 'Dance_Loop', loop: true, stance: 1, arms: 1, upright: 0 },
   crouch: { clip: 'Crouch_Idle_Loop', loop: true, stance: 1, arms: 1, upright: 0.55 },
   pickUp: { clip: 'PickUp_Table', loop: false, stance: 0.8, arms: 1, upright: 0 },
@@ -154,6 +156,9 @@ export type ActorSpec = {
   back?: true; // say so when the shot means to show his back. Otherwise his face must be visible.
   speak?: [number, Cues][]; // the lines he says: [the frame the line starts, its mouth cues from engine/tools/lipsync.py]
   mouth?: number; // mouth size for this character (1 = Nio)
+  acc?: [number, Accents][]; // the stressed beats of his lines (engine/tools/accents.py), same starts as speak
+  heard?: [number, Accents][]; // the other people's lines in this shot, so he can listen
+  act?: ActSpec; // the acting pass (acting.ts). false: the old looping clip. Left out: on for sit, sitTalk, stand and talk
   glow?: number; // with hold 'phone': how much the screen lights his face from below, 0 to 1 (left out, the usual faint spill)
   pale?: Keyed; // goes white (Theo, at the end): 0 his own skin, 1 drained white. A number, or [frame, value] keys that ease between
 };
@@ -304,7 +309,11 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
     else if (!m2 && a.facing) yaw = yawTo({ s, z }, set.marks[a.facing].s, set.marks[a.facing].z);
     let face: Face = FACES[faceAt(a.face, frame)]; if (a.gaze) face = gaze(face, a.gaze[0], a.gaze[1]);
     face = speaking(face, a.speak, frame, a.mouth);
-    return { who: paled(ch, keyed(a.pale, frame, 0)), clip: act.clip, t: act.back ? clipLength(act.clip) * 20 - t : act.loop ? t : Math.min(t, clipLength(act.clip) - 1), at: [s, z], yaw, face, outfit: a.outfit,
+    const acting = act.rest && a.act !== false;
+    const perf = acting ? perform({ who: a.who, frames: spec.frames, frame, faces: typeof a.face === 'string' ? [[0, a.face]] : a.face,
+      speak: a.speak, acc: a.acc, heard: a.heard, holding: !!a.hold, act: a.act }) : undefined;
+    if (perf) face = actFace(face, perf);
+    return { perf, clipT: acting ? act.rest![1] : undefined, who: paled(ch, keyed(a.pale, frame, 0)), clip: acting ? act.rest![0] : act.clip, t: act.back ? clipLength(act.clip) * 20 - t : act.loop ? t : Math.min(t, clipLength(act.clip) - 1), at: [s, z], yaw, face, outfit: a.outfit,
       stance: act.stance, arms: act.arms, upright: act.upright, seat: act.seat ? m.seat : undefined,
       phone: a.hold === 'phone' ? 1 : 0, glow: a.glow, crossed: a.hold === 'arms-crossed', look: a.look === 'camera' ? cam.pos : undefined, lookAmt: 0.7,
       pose: a.hold, lift: m.on, thumb: spec.thumb && a === spec.actors[0] ? [...spec.thumb].reverse().find(([at]) => frame >= at)?.[1] ?? spec.thumb[0][1] : undefined };

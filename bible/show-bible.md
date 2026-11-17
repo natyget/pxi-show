@@ -25,6 +25,7 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 | Plot machines taken from how Gumball builds episodes | `bible/gumball-lens.md` |
 | Devices, pacing, text, look, voices, covers | `bible/craft-library.md` |
 | Directing and acting | `bible/director.md` |
+| How a line is performed (body, head, blinks, listening) | `bible/acting.md` |
 | Declared strangeness and the accident check | `bible/anti-slop.md`, `bible/qa-checklist.md` |
 | The app's real features and screens | `bible/pxi-product.md` |
 | The founder's real stories | `engine/real-stories.md`, `engine/story-intake.md` |
@@ -375,3 +376,9 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - What this changed: voices B are approved for Prof H, Theo, Darnell and the cleaner (`bible/characters.md`,
     "Approved voices beyond Nio and Maya"). The Office Hours script goes back to the writer: no HTN, no mogging,
     no borrowed slang terms; Gumball-style dialogue and a Regular Show plot.
+- **Nov 17, 3:41 AM (UTC), on the Office Hours v3 cut, word for word (the animation part; the rest of the message is
+  recorded by the writing and render threads):**
+  - "the animations at certain points are still off. we need to find a open source repo for that. something that teaches claude not to animate legs in chairs etc and sync flow natural conversation flow with movements of character and talk and what face expression goes with that etc. we need to build this and you dont know how to orb  have directive its hard hut you really need to try and learn online if theres anything like that for you so it can help you achieve it
+    i think its more about making the animation feel like real cartoon shows the only missing part. video generation models have no issue with things like this most of the tome. there must be something your missing that i think a skill will teach you so load it as me to load or find a public repo so the writer room animators and voice over all work well for perfect cartoon show delivery"
+  - What this changed: `bible/acting.md` and the engine's acting pass (`studio/anim/src/nw3d/acting.ts`,
+    `engine/tools/accents.py`). Seated and standing characters no longer run looping game clips.

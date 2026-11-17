@@ -12,12 +12,15 @@ import { Cues } from '../lips/mouths';
 import { Fonts, Sub } from '../lib/Pixel';
 import VO from '../vo_oh.json';
 import LIPS from '../lips/oh.json';
+import ACC from '../lips/oh_accents.json';
+import { Accents } from '../nw3d/acting';
 
 type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
 type Shot = { n: number; frames: number; cut: 'S' | 'L'; spec: ShotSpec | ((f: number) => ShotSpec) | null; say?: Line[]; sfx?: [string, number, number?][]; res?: number };
 type VoLine = { file: string; who: string; sub: string; dur: number };
 const vo = VO as unknown as Record<string, VoLine>;
 const lips = LIPS as unknown as Record<string, Cues>;
+const acc = ACC as unknown as Record<string, Accents>;
 
 // The waiting room: Nio by the way in (L3), Darnell beside him (L4), the spinner boy and the flower-crown girl across (R4, R5).
 const W = (camera: string, frames: number, actors: ShotSpec['actors'], campus: ShotSpec['campus'] = { serving: 3, clock: null }): ShotSpec =>
@@ -116,7 +119,7 @@ const lenOf = (s: Shot) => Math.max(s.frames, ...(s.say ?? []).map((l) => l.at +
 const PLACE = (n: number) => n <= 10 ? 'hall' : n <= 19 ? 'corridor' : n <= 29 || n === 35 ? 'waiting' : n <= 37 ? 'office' : 'pitch';
 const BEDS: Record<string, [string, number][]> = { hall: [['oh_hall', 0.35]], corridor: [['oh_hum', 0.25]], waiting: [['oh_hum', 0.3]], office: [['oh_office', 0.3]], pitch: [['oh_pitch', 0.35]] };
 
-export type OHProps = { cut: 'short' | 'long'; only?: number[]; subs?: boolean };
+export type OHProps = { cut: 'short' | 'long'; only?: number[]; subs?: boolean; acting?: boolean }; // acting false: the old looping clips (for a before/after)
 export const timeline = (p: OHProps) => {
   let at = 0;
   return SHOTS.filter((s) => (p.cut === 'long' || s.cut === 'S') && (!p.only || p.only.includes(s.n))).map((s) => { const r = { ...s, frames: lenOf(s), from: at }; at += r.frames; return r; });
@@ -133,13 +136,16 @@ const runs = (shots: (Shot & { from: number })[], key: (s: Shot) => string): [st
 
 const withScreen = (sc: ReturnType<typeof buildShot>, screen?: string) => (screen ? { ...sc, screenTex: staticFile(`pxi-ui/screens/${screen}.png`) } : sc);
 
-const ShotView: React.FC<{ shot: Shot }> = ({ shot }) => {
+const ShotView: React.FC<{ shot: Shot; acting?: boolean }> = ({ shot, acting }) => {
+  const p = { acting };
   const f = useCurrentFrame();
   if (!shot.spec) return <AbsoluteFill style={{ background: '#2a2628', color: '#8a8488', fontFamily: 'Pixelify', fontSize: 64, alignItems: 'center', justifyContent: 'center' }}>{`shot ${shot.n}: set not built`}</AbsoluteFill>;
   const base = typeof shot.spec === 'function' ? shot.spec(f) : shot.spec;
   const spec: ShotSpec = { ...base, frames: shot.frames, actors: base.actors.map((a) => {
     const mine = (shot.say ?? []).filter((l) => l.who === a.who && lips[l.key]);
-    return mine.length ? { ...a, speak: mine.map((l) => [l.at, lips[l.key]] as [number, Cues]) } : a;
+    const theirs = (shot.say ?? []).filter((l) => l.who !== a.who && acc[l.key]).map((l) => [l.at, acc[l.key]] as [number, Accents]);
+    const b = { ...a, act: p.acting === false ? (false as const) : a.act, heard: theirs };
+    return mine.length ? { ...b, speak: mine.map((l) => [l.at, lips[l.key]] as [number, Cues]), acc: mine.filter((l) => acc[l.key]).map((l) => [l.at, acc[l.key]] as [number, Accents]) } : b;
   }) };
   const r = shot.res ?? 1;
   return <div style={{ position: 'absolute', left: 0, top: 0, width: PW * r, height: PH * r, transform: `scale(${1080 / (PW * r)})`, transformOrigin: '0 0', imageRendering: 'pixelated' }}>
@@ -154,7 +160,7 @@ export const OfficeHours: React.FC<OHProps> = (p) => {
       <Fonts />
       {shots.map((s) => (
         <Sequence key={s.n} from={s.from} durationInFrames={s.frames}>
-          <ShotView shot={s} />
+          <ShotView shot={s} acting={p.acting} />
           {(s.say ?? []).filter((l) => vo[l.key]).map((l) => (
             <Sequence key={l.key} from={l.at} durationInFrames={Math.ceil(vo[l.key].dur * 24) + 2} layout="none"><Audio src={staticFile(vo[l.key].file)} /></Sequence>
           ))}
