@@ -1,0 +1,8 @@
+Everything written on screen, in order. Times are seconds into a 32-second video.
+
+0.3 to 3.2   subtitle: I really can't handle a drink.
+3.3 to 6.5   subtitle: It's in your head. One sip.
+8.0 to 12.0   subtitle: I must say, this is a delightful gathering.
+13.5 to 16.3   subtitle: Good sir. Fetch me a carriage.
+18.8 to 21.3   subtitle: I shall duel the man who took my coat!
+22.7 to 24.9   subtitle: Sami. That's apple juice.

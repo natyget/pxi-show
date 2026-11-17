@@ -29,7 +29,7 @@ const shots: Shot[] = [
   { n: 10, frames: 34, spec: P('nio', [nio('suspicious', { hold: 'sniff', hand: 1 })]), sfx: [['sk_sniff', 6, 0.8]] },
   { n: 11, frames: 50, spec: P('nio', [nio('deadpan', { hold: 'cup' })]), say: [L('os_06', 'nio', 2)] },
   { n: 12, frames: 22, spec: P('samiClose', [sami('shock', W3)]), sfx: [['sk_gasp', 1, 0.8]] },
-  { n: 13, frames: 44, spec: P('sami', [{ ...sami('asleep', W3), action: 'faint' }]) },
+  { n: 13, frames: 20, spec: P('sami', [{ ...sami('asleep', W3), action: 'faint' }]) }, // cut as he leaves the bottom of the picture
   { n: 14, frames: 48, spec: { ...P('faint', [{ who: 'sami', at: 'chaise', action: 'lie', face: 'asleep', wear: W3 }], ['chaise']), push: 0.45 }, sfx: [['sk_flop', 0, 1]] },
   // the button: Nio looks at the cup, sips it, gets a bow tie, straightens it and keeps it
   { n: 15, frames: 18, spec: P('nio', [nio('suspicious', { hold: 'cup' })]) },

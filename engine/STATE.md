@@ -6,9 +6,9 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Office Hours is ON HOLD (founder, Nov 17): launch moves to short Key-and-Peele-style skits built with the acting pass. Do not voice, render or review Office Hours unless the founder asks. The last v5 cut is kept for the founder at project files office-hours/held/office-hours-v5.mp4 (not stranger-reviewed; fails the freeze check, 1.15 s pause at 34.5 s, class still stares). Open: the founder picks a voice medium (options A to F) for the skits.
+next_action: Launch skits in progress (episodes/launch-skits). One Sip is BLOCKED: it failed the stranger twice (Nov 17, v1 and v2; words in episodes/launch-skits/review/one-sip-2/stranger.md). The founder decides: watch it anyway, or send it back to the writers' room. Aux, Wave Back and Group Photo are rendering and get their own reviews. Office Hours stays ON HOLD (founder, Nov 17). The voice medium test is experiment E6 in engine/learning.md.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
-gate_failures: 0 (reset: founder sent Office Hours back for a rewrite, Nov 17)
+gate_failures: 2 (stranger, One Sip v1 and v2, Nov 17): BLOCKED for One Sip only
 
 ## Next render: "Office Hours" (season 1, episode 1)
 
