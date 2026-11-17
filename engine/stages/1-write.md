@@ -14,6 +14,12 @@ recipe), `bible/world.md`, `bible/gumball-style.md`, `bible/humor.md`, `bible/vo
 premise named in `STATE.md`. If the premise says `From: R<n>`, that story in `engine/real-stories.md`. For a
 holiday, its row in `engine/calendar.md`.
 
+**First, the founder's orders and funny log** (Nov 17). Read `engine/episode-orders.md` and `engine/funny-log.md`
+before anything else. If an order is open, the oldest one is this episode's premise, in place of the one in
+`STATE.md`: build it around every element it names, and mark it `DONE: <id>` when the script passes. Every script
+uses at least one funny-log entry not yet used, as a mechanism (why it is funny), never word for word, and marks it
+`USED BY: <id>`.
+
 **Do:** run the writers' room skill on that premise. Write one file, `episodes/<id>/script.md`:
 
 ```

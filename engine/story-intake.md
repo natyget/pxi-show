@@ -26,6 +26,16 @@ Do this in the same turn. It is small, and it needs no stage card.
    needed to make it work.
 5. Commit and push with the state, like any other change.
 
+## "funny:" and "order:" (founder, Nov 17)
+
+Two more prefixes are caught the same way, in any chat or thread, in the same turn:
+
+- **funny:** followed by anything the founder found funny. Append it to `engine/funny-log.md` under Entries, word
+  for word, with the date and a one-line note on why it works. Tell the founder in one line.
+- **order:** followed by what the next episode should have (a place, a person, a situation, a funny-log entry, a
+  tone, a holiday, a PXI feature). Append it to `engine/episode-orders.md` under Open orders, word for word, with
+  the date. The next WRITE run takes the oldest open order before the premise bank. Tell the founder in one line.
+
 ## Rules
 
 - Inspiration, never a transcript. Nobody real is recognisable.
