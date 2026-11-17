@@ -365,10 +365,12 @@ export const pose = (a: Act) => {
     const o0 = ch.wardrobe[a.outfit ?? ch.outfit], w = o0.bottom ? P.legR + 0.03 + o0.bottom.width * 0.6 : P.legR;
     const fh = norm([fwd[0], 0, fwd[2]]), rt = cross(fh, UP), y = mul(fh, -1), z = UP, x = cross(y, z); // y: the page's top, toward him
     const rc = add(lerp(lerp(s.hip[0], s.kn[0], 0.7), lerp(s.hip[1], s.kn[1], 0.7), 0.5), [0, w + 0.012, 0]);
-    props.push({ c: rc, x, y, z, h: [0.105, 0.148, 0.002], col: '#f0ece0', sign: 'labReport' });
-    const tc = add(rc, add(add(mul(x, 0.035), mul(y, -0.027)), [0, 0.004, 0])); // the coffee ring on the page
-    props.push({ c: tc, x, y, z, h: [0.03, 0.04, 0.0015], col: '#eee2c4', sign: 'ticket4' });
-    s = reach(s, 0, add(tc, add(mul(rt, -0.085), add(mul(fh, -0.02), [0, 0.03, 0]))), add(out(0), [0, -1, 0]), P, norm(add(rt, mul(fh, 0.3))), UP); hands[0] = 'fist';
+    // anyone but Darnell has just pulled a ticket: no report under it, and their number is a lot bigger (4,812)
+    const mine = ch.id !== 'darnell';
+    if (!mine) props.push({ c: rc, x, y, z, h: [0.105, 0.148, 0.002], col: '#f0ece0', sign: 'labReport' });
+    const tc = mine ? add(rc, [0, 0.004, 0]) : add(rc, add(add(mul(x, 0.035), mul(y, -0.027)), [0, 0.004, 0])); // the coffee ring on the page
+    props.push({ c: tc, x, y, z, h: mine ? [0.065, 0.04, 0.0015] : [0.03, 0.04, 0.0015], col: '#eee2c4', sign: mine ? 'ticket4812' : 'ticket4' });
+    s = reach(s, 0, add(tc, add(mul(rt, mine ? -0.15 : -0.085), add(mul(fh, -0.02), [0, 0.03, 0]))), add(out(0), [0, -1, 0]), P, norm(add(rt, mul(fh, 0.3))), UP); hands[0] = 'fist';
   }
   // a mop: both hands on the handle, the right low, the left high, the head on the floor ahead swinging side to side
   // in time with the walk

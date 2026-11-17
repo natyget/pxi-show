@@ -247,9 +247,12 @@ export const WAIT_CAMS: Record<string, Cam3> = {
   door: C([0.95, 1.12, 2.4], [1.5, 1.5, 5.8], 56), // from the seats up at the door: who comes out of it
   sign: C([1.5, 1.55, 4.1], [1.5, 2.3, 5.8], 34), // insert: NOW SERVING
   clock: C([2.1, 1.7, 4.6], [2.48, 2.0, 5.8], 30), // insert: the clock
+  three: C([2.9, 1.1, 3.8], [0.47, 0.95, 3.8], 76), // across the room: Nio, Darnell and Maya along the left row
+  maya: C([1.95, 1.2, 4.55], [0.47, 1.2, 4.4], 40), // Maya, sitting, from across
+  nioTicket: C([0.98, 1.08, 3.22], [0.52, 0.72, 3.22], 30), // insert: Nio's lap from in front: his ticket (seatL3)
   ticket: C([0.98, 1.0, 3.8], [0.47, 0.62, 3.84], 24), // insert: Darnell's lap from in front: the lab report, the coffee ring, his ticket (seatL4)
 };
-export const WAIT_INSERTS = ['sign', 'clock', 'ticket']; // cameras on things, not people
+export const WAIT_INSERTS = ['sign', 'clock', 'ticket', 'nioTicket']; // cameras on things, not people
 export const WAIT_MARKS = {
   seatL3: { s: 0.47, z: 3.2, yaw: 270, seat: 0.455 },
   seatL4: { s: 0.47, z: 3.8, yaw: 270, seat: 0.455 }, seatL5: { s: 0.47, z: 4.4, yaw: 270, seat: 0.455 },
@@ -336,6 +339,10 @@ const hallSofts = (o: HallOpts): Soft[] => {
   const out: Soft[] = [{ prims, origin: neck[0] }];
   if (o.dusty ?? true) { const b = P3(seatS(2) - 0.12, rowY(4) + 0.46, seatZ(4) - 0.05);
     out.push({ prims: [{ a: b, ra: 0.034, b: [b[0], b[1] + 0.2, b[2]], rb: 0.034, g: 0, k: 0.01, c: '#9fc4d6' }, { a: [b[0], b[1] + 0.2, b[2]], ra: 0.02, b: [b[0], b[1] + 0.24, b[2]], rb: 0.018, g: 1, k: 0.005, c: '#3f7ea0' }], origin: b }); }
+  if (o.dusty ?? true) { // a cobweb from the back of the dusty seat to the edge of the desk
+    const ss = seatS(2), y0 = rowY(4), z0 = seatZ(4), w = (a: V, b: V) => ({ a, ra: 0.005, b, rb: 0.005, g: 0, k: 0.001, c: '#e2e2dc' });
+    const hub = P3(ss - 0.18, y0 + 0.72, z0 + 0.12), ends = [P3(ss - 0.28, y0 + 0.66, z0 - 0.22), P3(ss - 0.3, y0 + 0.78, rowZ(4) - 0.25), P3(ss - 0.05, y0 + 0.78, rowZ(4) - 0.26), P3(ss - 0.32, y0 + 0.48, z0 - 0.05), P3(ss + 0.02, y0 + 0.5, z0 + 0.05)];
+    out.push({ prims: [...ends.map((e) => w(hub, e)), w(ends[0], ends[1]), w(ends[1], ends[2]), w(ends[3], ends[4])], origin: hub }); }
   if (o.ball) { // Nio's football on the desk, on the aisle side of him: white, with dark patches
     const c = P3(seatS(0) + 0.2, rowY(4) + 0.785 + 0.1, rowZ(4) - 0.16), r = 0.1;
     // small dark pentagons spread evenly over it (a dozen, the points of an icosahedron), so it reads as a football, not a face
@@ -366,7 +373,9 @@ export const HALL_CAMS: Record<string, Cam3> = {
   capGirl: C([7.2, 2.14, 6.3], [6.52, 2.14, 4.4], 46), // from the aisle: the cap girl in row 3, Nio behind her in row 4
   two: C([7.75, 2.64, 5.6], [6.3, 2.29, 3.9], 50), // Nio and Theo, from the aisle steps
   nio: C([7.5, 2.64, 5.65], [6.58, 2.32, 3.9], 34), // Nio in his seat, from the aisle steps
-  theo: C([5.55, 2.64, 5.45], [5.94, 2.34, 3.9], 34), // Theo in his seat, from the row in front
+  maya: C([5.55, 2.64, 5.45], [5.94, 2.34, 3.9], 34), // Maya in her seat, from the row in front
+  theo: C([4.27, 2.64, 5.45], [4.66, 2.34, 3.9], 34), // Theo in his seat, from the row in front
+  theoSeat: C([4.85, 2.75, 5.9], [4.9, 2.05, 3.9], 58), // Theo and the dusty seat beside him, from the row in front
   seat: C([5.36, 2.74, 4.3], [5.3, 1.67, 3.88], 34), // insert: the empty seat on Theo's left, from over the desk
   clock: C([7.3, 2.7, 4.8], [6.75, 3.0, HALL.d - 0.05], 9), // insert: the wall clock, from Nio's side of the room, over the heads
 };
@@ -374,7 +383,8 @@ export const HALL_INSERTS = ['seat', 'clock'];
 export const HALL_MARKS = {
   lectern: { s: HALL.lectern.s, z: 9.05, yaw: 180, who: 'profH' }, // behind the lectern, facing the room
   nio: { s: seatS(0), z: seatZ(4), yaw: 0, seat: rowY(4) + 0.46 }, // row 4, the aisle seat
-  theo: { s: seatS(1), z: seatZ(4), yaw: 0, seat: rowY(4) + 0.46 }, // on Nio's left
+  maya: { s: seatS(1), z: seatZ(4), yaw: 0, seat: rowY(4) + 0.46 }, // on Nio's left
+  theo: { s: seatS(3), z: seatZ(4), yaw: 0, seat: rowY(4) + 0.46 }, // past the dusty seat: it is the seat beside him
   capGirl: { s: seatS(0) - 0.08, z: seatZ(3), yaw: 0, seat: rowY(3) + 0.46 }, // row 3, in front of Nio
 };
 export const HALL_SOLIDS = [{ name: 'the lectern', s: [3.8, 4.6] as [number, number], z: [8.2, 8.8] as [number, number] }];
@@ -446,7 +456,9 @@ const officeSofts = (): Soft[] => {
     { a: m(bx - 0.016, t + 0.12, bz - 0.036), ra: 0.008, b: m(bx - 0.016, t + 0.12, bz - 0.036), rb: 0.008, g: 4, k: 0.002, c: '#3a2c22' },
     { a: m(bx + 0.016, t + 0.12, bz - 0.036), ra: 0.008, b: m(bx + 0.016, t + 0.12, bz - 0.036), rb: 0.008, g: 4, k: 0.002, c: '#3a2c22' },
   ], origin: m(bx, t, bz) };
-  return [lamp, mug, bob] as Soft[];
+  const candle = { prims: [{ a: m(1.6, t + 0.002, 2.3), ra: 0.028, b: m(1.6, t + 0.1, 2.3), rb: 0.028, g: 0, k: 0.004, c: '#efe6d2', cutA: true },
+    { a: m(1.6, t + 0.118, 2.3), ra: 0.011, b: m(1.6, t + 0.15, 2.3), rb: 0.004, g: 1, k: 0.006, c: '#ffd36a', em: 1 }], origin: m(1.6, t, 2.3) };
+  return [lamp, mug, bob, candle] as Soft[];
 };
 export const OFFICE_CAMS: Record<string, Cam3> = {
   wide: C([2.42, 2.05, 0.12], [1.22, 1.0, 2.3], 64), // from the corner by the door: Nio from behind in his chair, Prof H behind the desk, the poster
@@ -505,6 +517,7 @@ export const CORRIDOR_CAMS: Record<string, Cam3> = {
   stairs: C([0.4, 1.5, 2.0], [1.96, 1.25, 8.8], 50), // up the corridor past the stairwell door: him bursting out of it, the same open door beyond
   wide: C([1.95, 2.05, 0.5], [0.85, 1.0, 7.0], 46), // high wide down the corridor: Nio at the middle, the cleaner mopping past
   cleaner: C([0.95, 1.42, 2.2], [0.68, 1.28, 8.0], 38), // in front of the cleaner as she mops toward us, saying her line; Nio behind her on his phone
+  two: C([1.0, 1.42, 4.25], [1.0, 1.36, 6.0], 48), // Nio and Maya from in front, in the middle of the corridor
   sprint: C([1.2, 1.25, 11.3], [1.2, 1.2, 6.0], 36), // from Prof H's door, back down the corridor, as he sprints at it and into the lens
 };
 export const CORRIDOR_INSERTS = ['plaque'];
@@ -516,6 +529,8 @@ export const CORRIDOR_MARKS = {
   mid: { s: 1.2, z: 6.0, yaw: 0 }, // the middle of the corridor, facing the far door
   near: { s: 1.2, z: 0.5, yaw: 180 }, // right at the near end, behind the long lens (a walk away from the door ends here)
   stairDoor: { s: 1.95, z: COR.stairZ, yaw: 90 }, // just out of the stairwell door, facing across
+  mayaMid: { s: 0.78, z: 6.05, yaw: 0 }, mayaLook: { s: 1.25, z: 7.5, yaw: 0 }, // Maya, beside him in the middle, and beside him looking at the door
+  walkA: { s: 1.0, z: 1.6, yaw: 0 }, walkB: { s: 1.0, z: 5.6, yaw: 0 }, mayaA: { s: 1.55, z: 1.4, yaw: 0 }, mayaB: { s: 1.55, z: 5.4, yaw: 0 }, // the walk toward the door, side by side
   cleanerA: { s: 0.6, z: 8.6, yaw: 180 }, cleanerB: { s: 0.6, z: 4.6, yaw: 180 }, // the cleaner's way past, down the left side
 };
 const corridorLights = (o: CampusOpts, f: number): Light[] => [
@@ -528,6 +543,7 @@ const corridorLights = (o: CampusOpts, f: number): Light[] => [
 // round on dark green kickboards, a gate in the left side (Nio comes on through it), a goal with its net at each end, a
 // floodlight on in each far corner, the low sun off past the right fence. Theo's ball and two kit bags by the right fence.
 export const PITCH = { w: 10, h: 9, d: 16, gateZ: 4.5 };
+const PD = { s: 2.6, z: 5.2 }; // the door on the pitch
 const pitchBoxes = (): Box[] => {
   const W = PITCH.w, D = PITCH.d, gs = W / 2, gz = D - 0.5, white = '#eceee8', net = '#dfe2dc', bs: Box[] = [];
   // a goal at each end: two posts and the bar, the frame running back along the ground, the net on its back, top and sides
@@ -539,6 +555,11 @@ const pitchBoxes = (): Box[] => {
   // a floodlight in each far corner, on: a tall post and a bright head
   [0.2, W - 0.2].forEach((ps, i) => { bs.push(B(ps, 3.6, D - 0.2, 0.05, 3.6, 0.05, '#4a524e', 90 + i));
     bs.push(B(ps + (i ? -0.25 : 0.25), 7.25, D - 0.3, 0.32, 0.12, 0.06, '#f4f0dc', 92 + i, { glow: true, yaw: FACING.us })); });
+  // a door standing on its own in the middle of the grass: a frame, the office light filling it, the door swung wide
+  const ds = PD.s, dz = PD.z, wood = '#7a4e36';
+  bs.push(B(ds - 0.5, 1.07, dz, 0.05, 1.07, 0.07, wood, 96), B(ds + 0.5, 1.07, dz, 0.05, 1.07, 0.07, wood, 96), B(ds, 2.17, dz, 0.55, 0.05, 0.07, wood, 96));
+  bs.push(B(ds, 1.06, dz - 0.04, 0.45, 1.06, 0.012, '#f6d29a', 97, { glow: true, noShadow: true }));
+  bs.push(B(ds - 0.47, 1.04, dz + 0.46, 0.025, 1.02, 0.44, '#8a5a3e', 98)); // the door itself, open toward us on its hinge
   // two kit bags by the right fence
   bs.push(B(W - 0.35, 0.14, 9.2, 0.14, 0.14, 0.32, '#23262c', 94), B(W - 0.32, 0.12, 10.1, 0.12, 0.12, 0.28, '#7a2e30', 95));
   return bs;
@@ -547,14 +568,19 @@ const pitchSofts = (): Soft[] => [{ prims: [{ a: P3(4.2, 0.11, 6.6), ra: 0.11, b
 export const PITCH_CAMS: Record<string, Cam3> = {
   wide: C([3.0, 2.0, 15.4], [2.8, 1.0, 5.0], 56), // up the pitch from by the far goal: the two of them, the gate on the right, the other goal, the evening sky
   nio: C([4.05, 1.45, 6.62], [2.66, 1.38, 7.2], 44), // Nio from the waist up, from just beside Theo, almost on his eyeline: the flyer he holds up reads
-  theo: C([2.55, 1.5, 6.75], [4.1, 1.45, 7.0], 40), // Theo from the waist up, from beside Nio; it holds him when he steps back
+  theo: C([2.55, 1.5, 6.75], [4.1, 1.45, 7.0], 40),
+  door: C([3.3, 1.5, 9.8], [2.6, 1.0, 5.2], 46), // the door on the pitch, from up the pitch: who comes out of it
+  goal: C([5.0, 1.35, 5.2], [5.0, 0.95, 0.8], 36), // the near goal from the edge of the box: who is in it // Theo from the waist up, from beside Nio; it holds him when he steps back
 };
 export const PITCH_INSERTS: string[] = [];
 export const PITCH_MARKS = {
   gate: { s: 0.5, z: PITCH.gateZ, yaw: 270 }, // just through the gate in the left fence, facing into the pitch
   nio: { s: 2.7, z: 7.3, yaw: 258 }, // where Nio stops, facing Theo
   theo: { s: 4.1, z: 7.0, yaw: 78 }, // Theo, by his ball, facing Nio
-  theoBack: { s: 4.54, z: 6.91, yaw: 78 }, // one step back from there, still facing him (the action stepBack)
+  theoBack: { s: 4.54, z: 6.91, yaw: 78 },
+  door: { s: PD.s, z: PD.z + 0.25, yaw: 0 }, // just out of the door on the pitch, facing up the pitch
+  outA: { s: 3.35, z: 6.3, yaw: 0 }, out1: { s: 3.5, z: 8.4, yaw: 0 }, out2: { s: 1.7, z: 8.3, yaw: 0 }, out3: { s: 2.9, z: 9.1, yaw: 0 }, // where the waiting room ends up, squinting
+  goal: { s: PITCH.w / 2, z: 1.0, yaw: 0 }, // in the near goal, facing out // one step back from there, still facing him (the action stepBack)
 };
 export const PITCH_SOLIDS = [{ name: 'the far goal', s: [PITCH.w / 2 - 1.6, PITCH.w / 2 + 1.6], z: [PITCH.d - 0.6, PITCH.d] }, { name: 'the near goal', s: [PITCH.w / 2 - 1.6, PITCH.w / 2 + 1.6], z: [0, 0.6] }];
 const pitchLights = (): Light[] => [

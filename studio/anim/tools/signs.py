@@ -150,26 +150,46 @@ def slide():
 
 
 def flyer():
-    # Prof H's flyer, drawn by hand in markers on printer paper: every line a little crooked, the words in his colours
+    # Prof H's flyer, drawn by hand in markers on printer paper: IMPROV! across the top, a drawing of himself on a
+    # stage under a spotlight (a big round body, tiny round glasses, arms up), THURSDAY 7PM along the bottom
     W, H = 300, 400; im = Image.new('RGBA', (W, H), (246, 243, 234, 255)); d = ImageDraw.Draw(im)
-    lines = [('PROF H', 44, (44, 86, 170), -3), ('IMPROV', 72, (206, 52, 52), 2), ('THURSDAY', 46, (34, 30, 34), 1)]
-    y = 60
-    for text, px, col, rot in lines:
+    def hand(text, px, col, rot, y):
         f = font(px); w = int(d.textlength(text, font=f)) + 12; layer = Image.new('RGBA', (w, px + 16), (0, 0, 0, 0))
         ImageDraw.Draw(layer).text((6, 2), text, font=f, fill=col); layer = layer.rotate(rot, resample=Image.BICUBIC, expand=True)
-        im.alpha_composite(layer, (int(W / 2 - layer.width / 2), y)); y += px + 40 + (14 if text == 'IMPROV' else 0)
-    # a wobbly underline under IMPROV, and two hand-drawn stars
-    pts = [(60 + k * 18, 252 + (3 if k % 2 else -2)) for k in range(11)]; d.line(pts, fill=(206, 52, 52), width=5)
-    for cx, cy, r in ((34, 50, 16), (268, 330, 14)):
-        star = [(cx + r * math.cos(math.pi / 2 + k * math.pi * 0.8), cy - r * math.sin(math.pi / 2 + k * math.pi * 0.8)) for k in range(6)]
+        im.alpha_composite(layer, (int(W / 2 - layer.width / 2), y))
+    hand('IMPROV!', 64, (206, 52, 52), 3, 14)
+    # the spotlight: a pale yellow cone from the top right onto the stage
+    d.polygon([(250, 96), (270, 96), (230, 300), (90, 300)], fill=(250, 236, 160))
+    # the stage: a thick brown line, a little crooked, with a curtain swag at each side
+    d.line([(30, 302), (150, 298), (270, 303)], fill=(120, 74, 44), width=8)
+    d.polygon([(18, 96), (60, 96), (40, 300), (18, 300)], fill=(176, 40, 52)); d.polygon([(282, 96), (240, 96), (262, 300), (282, 300)], fill=(176, 40, 52))
+    # him: a big round camel body, a round head, ash hair, tiny glasses, a big smile, both arms up
+    k = (44, 40, 44)
+    d.ellipse([110, 186, 206, 296], fill=(196, 150, 92), outline=k, width=4)
+    d.ellipse([130, 130, 186, 186], fill=(240, 200, 168), outline=k, width=4)
+    d.arc([128, 124, 188, 160], 190, 350, fill=(150, 136, 120), width=10)
+    for cx in (148, 168): d.ellipse([cx - 8, 148, cx + 8, 164], outline=k, width=3)
+    d.line([(156, 156), (160, 156)], fill=k, width=3); d.arc([142, 160, 174, 178], 20, 160, fill=k, width=3)
+    d.line([(116, 214), (86, 160)], fill=k, width=5); d.line([(200, 214), (230, 160)], fill=k, width=5)
+    for cx, cy in ((84, 156), (232, 156)): d.ellipse([cx - 8, cy - 8, cx + 8, cy + 8], fill=(240, 200, 168), outline=k, width=3)
+    # two little stars, and the day along the bottom
+    for cx, cy, r in ((76, 116, 12), (214, 124, 10)):
+        star = [(cx + r * math.cos(math.pi / 2 + q * math.pi * 0.8), cy - r * math.sin(math.pi / 2 + q * math.pi * 0.8)) for q in range(6)]
         d.line(star, fill=(232, 170, 40), width=4)
+    hand('THURSDAY 7PM', 36, (34, 30, 34), -2, 322)
     return im
+
+
+def big_ticket(n):
+    # the ticket Nio pulls: the same paper as Darnell's, a lot more digits
+    t = f'{n:,}'; W, H = 260, 160; im = Image.new('RGBA', (W, H), (238, 226, 196, 255)); d = ImageDraw.Draw(im)
+    centred(d, W / 2, 34, t, font(76), (40, 32, 30)); d.line([(10, 8), (W - 10, 8)], fill=(170, 150, 120), width=3); return im
 
 
 place('nowServing3', now_serving(3)); place('nowServing4', now_serving(4)); place('plaque', plaque()); place('takeNumber', take_a_number())
 place('hangInThere', hang_in_there()); place('labReport', lab_report()); place('planner', planner()); place('stairs', stairs())
 place('door114', door_number('B114')); place('door116', door_number('B116')); place('door112', door_number('B112'))
-place('nameDarnell', name_card('DARNELL')); place('ticket4', ticket(4)); place('ticket5', ticket(5)); place('slide', slide()); place('flyer', flyer())
+place('nameDarnell', name_card('DARNELL')); place('ticket4', ticket(4)); place('ticket4812', big_ticket(4812)); place('ticket5', ticket(5)); place('slide', slide()); place('flyer', flyer())
 used = cur[1] + cur[2]
 out = atlas.crop((0, 0, SIZE, 1 << max(8, math.ceil(math.log2(used)))))
 # the atlas is cropped to a power of two high; the rects are made relative to the cropped height

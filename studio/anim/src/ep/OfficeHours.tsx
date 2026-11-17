@@ -16,7 +16,7 @@ import ACC from '../lips/oh_accents.json';
 import { Accents } from '../nw3d/acting';
 
 type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
-type Shot = { n: number; frames: number; cut: 'S' | 'L'; spec: ShotSpec | ((f: number) => ShotSpec) | null; say?: Line[]; sfx?: [string, number, number?][]; res?: number };
+type Shot = { n: number; frames: number; cut: 'S' | 'L'; spec: ShotSpec | ((f: number) => ShotSpec) | null; say?: Line[]; sfx?: [string, number, number?][]; res?: number; fx?: 'trailer' | 'card' };
 type VoLine = { file: string; who: string; sub: string; dur: number };
 const vo = VO as unknown as Record<string, VoLine>;
 const lips = LIPS as unknown as Record<string, Cues>;
@@ -44,71 +44,79 @@ const waiters = (spin = true): ShotSpec['actors'] => [
 const nioSit = (face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: 'nio', at: 'seatL3', action: talk ? 'sitTalk' : 'sit', face });
 const darnellSit = (face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: 'darnell', at: 'seatL4', action: talk ? 'sitTalk' : 'sit', face, hold: 'ticket' as const });
 
+const T452: [number, number] = [2.556, 5.445], T453: [number, number] = [2.565, 5.55], T454: [number, number] = [2.574, 5.655]; // the hall clock: 4:52, 4:53, 4:54
+const mayaSit = (face: ShotSpec['actors'][0]['face'], talk = false) => ({ who: 'maya', at: 'seatL5', action: talk ? 'sitTalk' : 'sit', face });
 const NONE = null; // a set the design thread has not delivered yet: the shot cannot be drawn, so no cut ships with it
 // res: draw this shot at that many times the show's pixels (only the phone insert, so the screen reads)
-const sh = (n: number, frames: number, cut: 'S' | 'L', spec: Shot['spec'], say?: Line[], sfx?: Shot['sfx'], res = 1): Shot => ({ n, frames, cut, spec, say, sfx, res });
+// fx: 'trailer' plays the shot as Nio's imagined film trailer (grainy, red, letterboxed); 'card' is the trailer's title card
+const sh = (n: number, frames: number, cut: 'S' | 'L', spec: Shot['spec'], say?: Line[], sfx?: Shot['sfx'], res = 1, fx?: 'trailer' | 'card'): Shot => ({ n, frames, cut, spec, say, sfx, res, fx });
 const L = (key: string, who: string, at: number): Line => ({ key, who, at });
 
 export const SHOTS: Shot[] = [
-  // THE LECTURE HALL. Prof H at the lectern; Nio row 4 aisle, Theo on his left, the cap girl in front of Nio.
-  // 4:55 PM. Nio's football on his desk, the clock on the front wall. Prof H shuts the laptop and whispers into the mic.
-  sh(1, 30, 'S', H('low', [prof('charm')], { laptop: [[0, 1], [8, 0]] }), undefined, [['laptop', 6, 0.8]]),
-  sh(2, 36, 'S', H('profH', [{ ...prof('hyped'), look: 'camera' }]), [L('oh_25', 'profH', 4)]),
-  sh(3, 36, 'S', { ...H('rows', [seat('nio', 'deadpan'), seat('theo', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]], ball: true }), push: 0.5 }),
-  sh(4, 48, 'S', H('capGirl', [{ who: 'cap', at: 'capGirl', action: 'sit', face: 'real', hold: 'capOff' }, seat('nio', 'suspicious')], { turn: 1, ball: true })),
-  // inserts: the clock. The minute hand jumps once while we look (4:54 to 4:55, then 4:55 to 4:56), and the camera creeps in
-  sh(4.5, 30, 'S', (f) => ({ ...H('clock', [], { clock: f < 12 ? [2.565, 5.655] : [2.574, 5.76], turn: 1 }), push: 0.25 }), undefined, [['click', 12, 0.35]]),
-  sh(6, 40, 'S', H('nio', [seat('nio', 'smug', true)], { ball: true, turn: 1 }), [L('oh_26', 'nio', 4)]),
-  sh(7, 36, 'S', H('theo', [{ ...seat('theo', 'deadInside', true), hold: 'pen' }], { turn: 1 }), [L('oh_05', 'theo', 2)]),
-  sh(9, 48, 'S', { ...H('seat', [], { turn: 1 }), push: 0.12 }), // insert: the dusty seat, his planner, his name card
-  sh(8, 30, 'S', H('nio', [seat('nio', 'suspicious', true)], { ball: true, turn: 1 }), [L('oh_06', 'nio', 2)]),
-  sh(5, 36, 'S', H('two', [seat('nio', 'uneasy'), { ...seat('theo', 'deadInside', true), hold: 'pen', mouth: 0.5, gaze: [0.6, 0] }], { ball: true, turn: 1 }), [L('oh_03', 'theo', 2)]),
-  sh(9.5, 24, 'S', (f) => ({ ...H('clock', [], { clock: f < 10 ? [2.574, 5.76] : [2.583, 5.864], turn: 1 }), push: 0.25 }), undefined, [['click', 10, 0.35]]),
-  sh(10, 36, 'S', H('nio', [seat('nio', [[0, 'uneasy'], [12, 'deadpan']])], { ball: true, turn: 1 }), undefined, [['zip', 14, 0.6]]),
-  // THE CORRIDOR. It loops: the same door, a little more open each time.
-  sh(11, 60, 'S', (f) => ({ ...C('long', [f < 26 ? { ...cnio('look', 'deadpan'), facing: 'far', back: true } : { ...cnio('look', 'deadpan'), facing: 'near' }], { door: 0.7 }), push: 0.4 })),
-  sh(12, 80, 'S', { ...C('plaque', [], { door: [[0, 0.7], [79, 0.78]] }), push: 0.15 }),
-  sh(13, 48, 'S', { ...C('corner', [{ ...cnio('look2', 'deadpan'), facing: 'near', back: true }], { door2: 0.95 }), push: 0.4 }),
-  sh(14, 29, 'L', C('nio', [{ ...cnio('mid', 'deadInside'), facing: 'camera' }]), [L('oh_08', 'nio', 6)]),
-  sh(15, 72, 'L', (f) => f < 36 ? C('stairs', [cnio('stairDoor', [[0, 'hyped'], [8, 'shock']])], { stairs: [[0, 0], [4, 1]] })
-    : C('long', [{ ...cnio('look', 'shock'), facing: 'far', back: true }], { door: 0.85 }), undefined, [['bang', 4, 0.8]]),
-  sh(16, 72, 'S', { ...C('mcu', [{ ...cnio('mid', 'deadpan'), facing: 'camera', hold: 'phone' }], { door: 0.85 }), phone: 'pov', screen: 'map-office-hours',
+  // THE LECTURE HALL, 4:52 PM. Nio on the aisle in his kit, his football on the desk; Maya on his left with her tabs; the
+  // dusty seat; Theo past it. Prof H shuts the laptop and whispers into the mic.
+  sh(1, 30, 'S', H('low', [prof('charm')], { laptop: [[0, 1], [8, 0]], clock: T452 }), undefined, [['laptop', 6, 0.8]]),
+  sh(2, 40, 'S', { ...H('profH', [{ ...prof('charm'), look: 'camera' }], { clock: T452 }), push: 0.3 }, [L('v5_01', 'profH', 4)]),
+  sh(3, 36, 'S', { ...H('rows', [seat('nio', 'deadpan'), seat('maya', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]], ball: true, clock: T452 }), push: 0.5 }),
+  sh(4, 30, 'S', H('two', [seat('nio', 'uneasy'), { ...seat('maya', 'hyped', true), gaze: [0.7, 0] }], { ball: true, turn: 1, clock: T452 }), [L('v5_02', 'maya', 2)]),
+  sh(5, 30, 'S', H('nio', [{ ...seat('nio', 'deadpan', true), gaze: [-0.6, 0] }], { ball: true, turn: 1, clock: T452 }), [L('v5_03', 'nio', 2)]),
+  sh(6, 20, 'S', (f) => ({ ...H('clock', [], { clock: f < 10 ? T452 : T453, turn: 1 }), push: 0.25 }), undefined, [['click', 10, 0.35]]), // insert: the clock
+  sh(7, 24, 'S', H('two', [{ ...seat('nio', 'deadpan'), gaze: [-0.5, 0] }, { ...seat('maya', 'laughing', true), gaze: [0.7, 0] }], { ball: true, turn: 1, clock: T453 }), [L('v5_04', 'maya', 2)]),
+  sh(8, 30, 'S', H('nio', [{ ...seat('nio', [[0, 'deadpan'], [70, 'smug']], true), gaze: [-0.5, 0] }], { ball: true, turn: 1, clock: T453 }), [L('v5_05', 'nio', 2)]),
+  sh(9, 30, 'S', H('maya', [{ ...seat('maya', 'deadInside', true), gaze: [0.7, 0] }], { turn: 1, clock: T453 }), [L('v5_06', 'maya', 2)]),
+  // NIO'S TRAILER: what he thinks office hours is, cut like a film trailer, grainy and red, in his own trailer voice
+  sh(10, 30, 'S', { ...C('long', [], { door: 0.7 }), push: 0.7 }, [L('v5_07', 'nio', 4)], [['hit', 0, 0.6]], 1, 'trailer'),
+  sh(11, 24, 'S', { ...W('clock', 24, []), push: 0.3 }, undefined, [['hit', 0, 0.5]], 1, 'trailer'),
+  sh(12, 30, 'S', { ...W('darnell', 30, [darnellSit('deadInside')]), push: 0.3 }, undefined, [['hit', 0, 0.5]], 1, 'trailer'),
+  sh(13, 30, 'S', null, [L('v5_08', 'nio', 4)], [['hit', 0, 0.8]], 1, 'card'),
+  sh(14, 30, 'S', H('maya', [{ ...seat('maya', 'suspicious', true), gaze: [0.8, 0] }], { turn: 1, clock: T454 }), [L('v5_09', 'maya', 6)]),
+  sh(15, 30, 'S', H('theo', [{ ...seat('theo', 'deadInside', true), hold: 'pen' }], { turn: 1, clock: T454 }), [L('oh_05', 'theo', 2)]),
+  sh(16, 30, 'S', H('nio', [seat('nio', 'suspicious', true)], { ball: true, turn: 1, clock: T454 }), [L('oh_06', 'nio', 2)]),
+  // Theo turns, slowly, to the seat beside him; then the seat itself: dust, a cobweb, his name card
+  sh(17, 36, 'S', (f) => { const u = Math.min(1, f / 30), e = u * u * (3 - 2 * u); return { ...H('theoSeat', [{ ...seat('theo', 'deadInside'), gaze: [-0.9 * e, -0.3 * e] as [number, number] }], { turn: 1, clock: T454 }), push: 0.2 }; }),
+  sh(18, 44, 'S', { ...H('seat', [], { turn: 1 }), push: 0.15 }),
+  sh(19, 30, 'S', H('nio', [seat('nio', [[0, 'uneasy'], [10, 'deadpan']], true)], { ball: true, turn: 1, clock: T454 }), [L('v5_10', 'nio', 6)], [['zip', 4, 0.6]]),
+  sh(20, 24, 'S', H('two', [seat('nio', 'deadpan'), { ...seat('maya', 'hyped', true), gaze: [0.7, 0.2] }], { ball: true, turn: 1, clock: T454 }), [L('v5_11', 'maya', 2)]),
+  // THE CORRIDOR. They walk at the door at the end; it never gets closer.
+  sh(21, 96, 'S', C('corner', [{ who: 'nio', at: 'walkA', to: 'walkB', action: 'walk', face: 'deadpan' }, { who: 'maya', at: 'mayaA', to: 'mayaB', action: 'walk', face: 'hyped' }], { door: 0.7, door2: 0.95 })),
+  sh(22, 60, 'S', { ...C('plaque', [], { door: [[0, 0.7], [59, 0.78]] }), push: 0.15 }),
+  sh(23, 48, 'S', { ...C('corner', [{ ...cnio('look2', 'deadpan'), facing: 'near', back: true }], { door2: 0.95 }), push: 0.4 }),
+  sh(24, 30, 'S', C('two', [{ ...cnio('mid', 'deadInside'), facing: 'camera' }, { who: 'maya', at: 'mayaMid', action: 'talk', face: 'hyped', facing: 'camera' }], { door: 0.85 }), [L('v5_12', 'maya', 4)]),
+  sh(25, 72, 'S', { ...C('mcu', [{ ...cnio('mid', 'deadpan'), facing: 'camera', hold: 'phone' }], { door: 0.85 }), phone: 'pov', screen: 'map-office-hours',
     thumb: [[0, [0.95, -0.95, 1]], [44, [0.95, -0.95, 1]], [50, [0.2, -0.6, 1]], [54, [0.2, -0.6, 0]], [62, [0.6, -0.9, 1]]] }, undefined, [['tap', 54, 0.9]], 2),
-  sh(17, 62, 'S', C('mcu', [{ ...cnio('mid', 'real'), facing: 'camera', hold: 'phone', glow: 1, gaze: [0, -0.8] }], { door: 0.85 }), [L('oh_09', 'nio', 6)]),
-  sh(18, 96, 'L', C('cleaner', [{ ...cnio('mid', 'uneasy'), facing: 'camera', hold: 'phone', gaze: [0.6, -0.2] }, { who: 'cleaner', at: 'cleanerA', to: 'cleanerB', action: 'walk', face: 'deadpan', hold: 'mop' }], { door: 0.85 }),
-    [L('oh_10', 'cleaner', 20)], [['mop', 0, 0.5], ['mop', 30, 0.5], ['mop', 60, 0.5]]),
-  sh(19, 29, 'S', C('sprint', [{ who: 'nio', at: 'mid', to: 'door', action: 'sprint', face: 'shock' }], { door: 0.9 }), undefined, [['whoosh', 14, 0.8]]),
-  // THE WAITING ROOM. The smash cut lands; silence but the hum; only the spinner and Nio's eyes move.
-  sh(20, 72, 'S', { ...W('aisle', 72, [nioSit('shock'), darnellSit('neutral'), ...waiters()]), push: 0.35 }, undefined, [['hit', 0, 0.9]]),
-  sh(21, 29, 'L', W('clock', 29, [])),
-  sh(22, 36, 'S', W('darnell', 36, [darnellSit('charm', true)]), [L('oh_11', 'darnell', 6)]),
-  sh(23, 44, 'S', W('nio', 44, [nioSit('smug', true)]), [L('oh_12', 'nio', 4)]),
-  sh(24, 44, 'S', W('two', 44, [nioSit('uneasy'), darnellSit('charm', true)]), [L('oh_13', 'darnell', 3)]),
-  sh(25, 36, 'S', { ...W('ticket', 36, [darnellSit('neutral')]), push: 0.2 }), // insert: Darnell's ticket, 4, his thumb on the coffee ring
-  sh(26, 72, 'S', W('darnell', 72, [darnellSit('real', true)]), [L('oh_14', 'darnell', 8)]),
-  sh(27, 60, 'S', W('nio', 60, [nioSit([[0, 'crushed'], [24, 'sheepish']], true)]), [L('oh_15', 'nio', 26)]),
-  sh(28, 29, 'L', W('darnell', 29, [darnellSit([[0, 'charm'], [14, 'neutral']])])),
-  sh(29, 56, 'S', (f) => W('door', 56, f < 6 ? [] : [{ who: 'profH', at: 'doorway', action: 'talk', face: 'laughing' }],
-    { serving: 3, clock: null, door: Math.min(1, f / 6) }), [L('oh_16', 'profH', 10)], [['creak', 0, 0.6]]),
-  // THE OFFICE. Nio in the visitor's chair, Prof H folded behind the desk, the door behind Nio.
-  sh(30, 52, 'S', O('wide', [{ ...onio('uneasy'), back: true }, oprof('real', true)]), [L('oh_17', 'profH', 10)]),
-  sh(31, 24, 'S', O('nio', [onio('uneasy')])),
-  sh(32, 80, 'S', O('flyer', [{ ...oprof('neutral'), hold: 'slideFlyer' }], { flyer: [[6, 0], [34, 1]] }), undefined, [['paper', 6, 0.7]]),
-  sh(33, 52, 'S', O('profH', [oprof('real', true)], { flyer: 1 }), [L('oh_18', 'profH', 8)]),
-  sh(34, 60, 'S', O('nio', [onio([[0, 'uneasy'], [24, 'sheepish']], true)], { flyer: 1 }), [L('oh_19', 'nio', 26)]),
-  sh(34.5, 40, 'S', O('profH', [oprof('crushed')], { flyer: 1 })), // nobody has ever said yes: his face says it
-  // Same angle as 20: the clock has hands, NOW SERVING 4, the door open, and Darnell walks out into the light.
-  sh(35, 48, 'S', W('aisle', 48, [{ who: 'darnell', at: 'middle', to: 'doorway', action: 'walk', face: 'charm', back: true }, ...waiters(false)],
-    { serving: 4, clock: [2.6, 0.1], door: 1 })),
-  sh(36, 44, 'S', O('door', [oprof('hyped', true)], { flyer: 1, door: 1 }), [L('oh_21', 'profH', 6)]),
-  sh(37, 36, 'L', O('wide', [oprof('charm')], { flyer: 1, door: [[0, 1], [20, 0]] }), undefined, [['click', 20, 0.8]]),
-  // THE PITCH, 5:01 PM. Bright and normal after the eerie.
-  sh(38, 40, 'S', P('wide', [{ who: 'nio', at: 'gate', to: 'nio', action: 'jog', face: 'deadpan' }, { who: 'theo', at: 'theo', action: 'stand', face: 'suspicious' }]),
-    [L('oh_22', 'theo', 14)], [['grass', 0, 0.4], ['grass', 8, 0.4], ['grass', 16, 0.4], ['grass', 24, 0.4]]),
-  sh(41, 48, 'S', P('nio', [{ who: 'nio', at: 'nio', action: 'stand', face: [[0, 'deadInside'], [30, 'smug']], hold: 'flyer' }])), // no answer: he holds up the flyer
-  sh(42, 26, 'S', P('theo', [{ who: 'theo', at: 'theo', action: 'stand', face: 'shock', pale: [[2, 0], [16, 0.6]] }]), undefined, [['drain', 0, 0.8]]),
-  sh(40, 13, 'S', P('theo', [{ who: 'theo', at: 'theo', to: 'theoBack', action: 'stepBack', face: 'shock', pale: 0.6 }])),
-  sh(40.5, 18, 'S', P('theo', [{ who: 'theo', at: 'theoBack', action: 'stand', face: 'shock', pale: 0.6 }])), // and holds there
+  sh(26, 30, 'S', C('mcu', [{ ...cnio('mid', 'shock'), facing: 'camera', hold: 'phone', glow: 1, gaze: [0, -0.4] }], { door: 0.85 }), [L('v5_13', 'nio', 4)]),
+  sh(27, 30, 'S', C('two', [{ ...cnio('mid', 'shock'), facing: 'camera' }, { who: 'maya', at: 'mayaMid', action: 'talk', face: 'charm', facing: 'camera' }], { door: 0.85 }), [L('v5_14', 'maya', 2)]),
+  sh(28, 96, 'S', C('cleaner', [{ ...cnio('mid', 'uneasy'), facing: 'camera', hold: 'phone', gaze: [0.6, -0.2] }, { who: 'cleaner', at: 'cleanerA', to: 'cleanerB', action: 'walk', face: 'deadpan', hold: 'mop' }], { door: 0.85 }),
+    [L('v5_15', 'cleaner', 6)], [['mop', 0, 0.5], ['mop', 30, 0.5], ['mop', 60, 0.5]]),
+  sh(29, 40, 'S', { ...C('plaque', [], { door: [[0, 0.78], [10, 1]] }), push: 0.2 }, undefined, [['creak', 0, 0.7]]),
+  sh(30, 29, 'S', C('sprint', [{ who: 'nio', at: 'mid', to: 'door', action: 'sprint', face: 'shock' }], { door: 1 }), undefined, [['whoosh', 14, 0.8]]),
+  // THE WAITING ROOM. Nio by the way in (L3), Darnell (L4), Maya beside Darnell (L5); the spinner boy and the girl opposite.
+  sh(31, 48, 'S', { ...W('aisle', 48, [nioSit('shock'), darnellSit('neutral'), mayaSit('hyped'), ...waiters()]), push: 0.35 }, undefined, [['hit', 0, 0.9]]),
+  sh(32, 30, 'S', W('three', 30, [nioSit('uneasy'), darnellSit('charm'), { ...mayaSit('hyped', true), gaze: [0.8, 0] }]), [L('v5_16', 'maya', 2)]),
+  sh(33, 30, 'S', W('darnell', 30, [darnellSit('charm', true)]), [L('v5_17', 'darnell', 4)]),
+  sh(34, 36, 'S', W('nio', 36, [nioSit([[0, 'deadInside'], [18, 'suspicious']])])),
+  sh(35, 36, 'S', { ...W('nioTicket', 36, [{ ...nioSit('deadpan'), hold: 'ticket' as const }]), push: 0.25 }, undefined, [['paper', 2, 0.6]]),
+  sh(36, 30, 'S', { ...W('sign', 30, []), push: 0.3 }),
+  sh(37, 30, 'S', W('nio', 30, [nioSit('deadpan', true)]), [L('v5_18', 'nio', 4)]),
+  sh(38, 48, 'S', (f) => W('darnell', 48, [darnellSit(f < 24 ? 'uneasy' : 'real', f >= 22)]), [L('v5_19', 'darnell', 22)]),
+  sh(39, 30, 'S', W('maya', 30, [mayaSit('charm', true)]), [L('v5_20', 'maya', 4)]),
+  sh(40, 52, 'S', (f) => W('door', 52, f < 6 ? [] : [{ who: 'profH', at: 'doorway', action: 'talk', face: 'laughing' }], { serving: 3, clock: null, door: Math.min(1, f / 6) }),
+    [L('v5_21', 'profH', 8)], [['creak', 0, 0.6]]),
+  sh(41, 40, 'S', W('aisle', 40, [nioSit('sheepish'), darnellSit('crushed'), { ...mayaSit('hyped'), hold: 'arm-up' as const }, { ...waiters(false)[0], face: 'rage' }, { ...waiters(false)[1], face: 'crushed' }], { serving: 3, clock: null, door: 1 })),
+  // THE OFFICE. Tiny. A candle. Prof H folded behind the desk.
+  sh(42, 40, 'S', O('wide', [{ ...onio('uneasy'), back: true }, oprof('charm')])),
+  sh(43, 72, 'S', O('flyer', [{ ...oprof('neutral'), hold: 'slideFlyer' }], { flyer: [[6, 0], [34, 1]] }), undefined, [['paper', 6, 0.7]]),
+  sh(44, 30, 'S', O('profH', [oprof('crushed', true)], { flyer: 1 }), [L('v5_22', 'profH', 4)]),
+  sh(45, 36, 'S', O('nio', [onio([[0, 'uneasy'], [20, 'real']])], { flyer: 1 })),
+  sh(46, 30, 'S', O('nio', [onio('real', true)], { flyer: 1 }), [L('v5_23', 'nio', 4)]),
+  sh(47, 30, 'S', O('profH', [oprof('hyped')], { flyer: 1 })),
+  sh(48, 44, 'S', O('wide', [{ ...onio('shock'), back: true }, oprof('hyped')], { flyer: 1, door: [[4, 0], [20, 1]] }), undefined, [['creak', 4, 0.7], ['whistle', 22, 0.8]]),
+  // THE PITCH, 5:00 PM. A door standing in the middle of the grass. Nio steps out of it.
+  sh(49, 50, 'S', P('door', [{ who: 'nio', at: 'door', to: 'nio', action: 'walk', face: 'deadpan' }]), undefined, [['grass', 10, 0.4], ['grass', 26, 0.4]]),
+  sh(50, 30, 'S', P('theo', [{ who: 'theo', at: 'theo', action: 'talk', face: 'shock' }]), [L('v5_24', 'theo', 6)]),
+  sh(51, 28, 'S', P('door', [{ who: 'maya', at: 'door', to: 'outA', action: 'walk', face: 'hyped' }, { who: 'nio', at: 'nio', action: 'stand', face: 'deadpan' }])),
+  sh(52, 44, 'S', { ...P('goal', [{ who: 'darnell', at: 'goal', action: 'stand', face: 'real' }]), push: 0.3 }),
+  sh(53, 40, 'S', P('nio', [{ who: 'nio', at: 'nio', action: 'talk', face: 'smug' }]), [L('v5_25', 'nio', 4)]),
 ];
 
 // A shot is never shorter than its lines: the last line ends at least 6 frames before the cut.
@@ -116,8 +124,8 @@ const lenOf = (s: Shot) => Math.max(s.frames, ...(s.say ?? []).map((l) => l.at +
 
 // Where each shot is, for the sound beds. The theme plays from the lecture hall through the corridor, stops dead on the
 // smash cut into the waiting room (20), and comes back on the pitch (38).
-const PLACE = (n: number) => n <= 10 ? 'hall' : n <= 19 ? 'corridor' : n <= 29 || n === 35 ? 'waiting' : n <= 37 ? 'office' : 'pitch';
-const BEDS: Record<string, [string, number][]> = { hall: [['oh_hall', 0.35]], corridor: [['oh_hum', 0.25]], waiting: [['oh_hum', 0.3]], office: [['oh_office', 0.3]], pitch: [['oh_pitch', 0.35]] };
+const PLACE = (s: Shot) => s.fx ? 'trailer' : !s.spec ? 'trailer' : ({ hall: 'hall', corridor: 'corridor', waiting: 'waiting', office: 'office', pitch: 'pitch' } as Record<string, string>)[(typeof s.spec === 'function' ? s.spec(0) : s.spec).set];
+const BEDS: Record<string, [string, number][]> = { hall: [['oh_hall', 0.35]], corridor: [['oh_hum', 0.25]], waiting: [['oh_hum', 0.3]], office: [['oh_office', 0.3]], pitch: [['oh_pitch', 0.35]], trailer: [] };
 
 export type OHProps = { cut: 'short' | 'long'; only?: number[]; subs?: boolean; acting?: boolean }; // acting false: the old looping clips (for a before/after)
 export const timeline = (p: OHProps) => {
@@ -136,9 +144,37 @@ const runs = (shots: (Shot & { from: number })[], key: (s: Shot) => string): [st
 
 const withScreen = (sc: ReturnType<typeof buildShot>, screen?: string) => (screen ? { ...sc, screenTex: staticFile(`pxi-ui/screens/${screen}.png`) } : sc);
 
+// Nio's imagined trailer: the shot in red and black, film grain that changes every frame, black bars top and bottom
+const Trailer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const f = useCurrentFrame();
+  return <AbsoluteFill style={{ background: '#000' }}>
+    <AbsoluteFill style={{ filter: 'grayscale(1) contrast(1.6) brightness(1.1)' }}>{children}</AbsoluteFill>
+    <AbsoluteFill style={{ background: '#d4161e', mixBlendMode: 'multiply' }} />
+    <AbsoluteFill style={{ opacity: 0.5, mixBlendMode: 'overlay' }}>
+      <svg width="1080" height="1920"><filter id={`g${f}`}><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed={f} /></filter><rect width="1080" height="1920" filter={`url(#g${f})`} /></svg>
+    </AbsoluteFill>
+    <AbsoluteFill style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 45%, rgba(0,0,0,0.75) 100%)' }} />
+    <div style={{ position: 'absolute', left: 0, top: 0, width: 1080, height: 300, background: '#000' }} />
+    <div style={{ position: 'absolute', left: 0, bottom: 0, width: 1080, height: 300, background: '#000' }} />
+  </AbsoluteFill>;
+};
+// the trailer's title card: black, the title in big red letters, the tag line under it
+const Card: React.FC = () => {
+  const f = useCurrentFrame(), a = Math.min(1, f / 6);
+  return <AbsoluteFill style={{ background: '#050203', alignItems: 'center', justifyContent: 'center', fontFamily: 'Pixelify', textAlign: 'center' }}>
+    <div style={{ opacity: a, transform: `scale(${1 + f * 0.002})` }}>
+      <div style={{ color: '#d8202a', fontSize: 150, letterSpacing: 8, lineHeight: 1.05 }}>OFFICE<br />HOURS</div>
+      <div style={{ color: '#e8d8c8', fontSize: 56, marginTop: 60, opacity: f > 40 ? 1 : 0 }}>NOW SHOWING.</div>
+      <div style={{ color: '#e8d8c8', fontSize: 56, marginTop: 10, opacity: f > 62 ? 1 : 0 }}>ALWAYS.</div>
+    </div>
+  </AbsoluteFill>;
+};
+
 const ShotView: React.FC<{ shot: Shot; acting?: boolean }> = ({ shot, acting }) => {
   const p = { acting };
   const f = useCurrentFrame();
+  if (shot.fx === 'card') return <Card />;
+  if (shot.fx === 'trailer') return <Trailer><ShotView shot={{ ...shot, fx: undefined }} acting={acting} /></Trailer>;
   if (!shot.spec) return <AbsoluteFill style={{ background: '#2a2628', color: '#8a8488', fontFamily: 'Pixelify', fontSize: 64, alignItems: 'center', justifyContent: 'center' }}>{`shot ${shot.n}: set not built`}</AbsoluteFill>;
   const base = typeof shot.spec === 'function' ? shot.spec(f) : shot.spec;
   const spec: ShotSpec = { ...base, frames: shot.frames, actors: base.actors.map((a) => {
@@ -166,7 +202,7 @@ export const OfficeHours: React.FC<OHProps> = (p) => {
           ))}
         </Sequence>
       ))}
-      {runs(shots, (s) => PLACE(s.n)).flatMap(([k, a, b]) => BEDS[k].map(([f, v]) => (
+      {runs(shots, (s) => PLACE(s)).flatMap(([k, a, b]) => BEDS[k].map(([f, v]) => (
         <Sequence key={`${k}${a}${f}`} from={a} durationInFrames={b - a} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} /></Sequence>)))}
       {/* no music (founder, Nov 17: "the background track songs need to go ... chat + sfx with no music is good") */}
       {shots.flatMap((s) => (s.sfx ?? []).map(([f, at, v], i) => (
