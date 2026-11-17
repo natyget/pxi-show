@@ -4,6 +4,7 @@ const SHOTS = timeline({ cut: 'long' });
 import { validate } from '../src/nw3d/world';
 let bad = 0;
 for (const s of SHOTS) {
+  if (!s.spec && (s as any).fx === 'card') continue; // the trailer's title card: no set
   if (!s.spec) { console.log(`${s.n}: not built`); continue; }
   for (const f of [0, Math.floor(s.frames / 2), s.frames - 1]) {
     const b = typeof s.spec === 'function' ? s.spec(f) : s.spec;

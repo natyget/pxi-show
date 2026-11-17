@@ -120,6 +120,12 @@ def click():
 def drain():  # the colour leaving Theo's face: a slide whistle falling an octave and a half, slowing as it goes
     d = 0.9; t = t_(d); f = 1400 * 2 ** (-1.6 * (1 - (1 - t / d) ** 2))
     return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.minimum(1, t * 40) * np.minimum(1, (d - t) * 12) * (1 + 0.01 * np.sin(2 * np.pi * 6 * t))
+def whistle_ref():  # a referee's whistle far off on the pitch: two short pea-whistle blasts
+    x = np.zeros(int(SR * 0.9))
+    for at, d in ((0.0, 0.18), (0.3, 0.45)):
+        t = t_(d); f = 2900 * (1 + 0.04 * np.sign(np.sin(2 * np.pi * 38 * t)))
+        place(x, np.sin(2 * np.pi * np.cumsum(f) / SR) * np.minimum(1, t * 80) * np.minimum(1, (d - t) * 60) * 0.8 + band(R.normal(0, 1, len(t)), 2500, 6000) * 0.08, at)
+    return x
 def grass():
     t = t_(0.2); return band(R.normal(0, 1, len(t)), 400, 3000) * np.exp(-t * 20)
 
@@ -127,5 +133,5 @@ if __name__ == '__main__':
     save('oh_theme.wav', theme(48), 0.8)
     save('oh_hall.wav', hall(90), 0.6); save('oh_hum.wav', hum(90), 0.5); save('oh_office.wav', office(90), 0.5); save('oh_pitch.wav', pitch(90), 0.6)
     for name, f in [('laptop', laptop), ('zip', zipper), ('bang', bang), ('tap', tap), ('mop', mop), ('whoosh', whoosh), ('hit', hit),
-                    ('creak', creak), ('paper', paper), ('click', click), ('grass', grass), ('drain', drain)]:
+                    ('creak', creak), ('paper', paper), ('click', click), ('grass', grass), ('drain', drain), ('whistle', whistle_ref)]:
         save(f'oh_{name}.wav', f())
