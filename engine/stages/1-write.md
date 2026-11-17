@@ -4,13 +4,21 @@
 followed by this card and the premise. It takes on that role and stays in it. Critics and the cold reader are
 **Haiku** subagents. The run itself only runs the lint, checks the gate and updates the state.
 
-**Read (the writer):** `bible/writers-room.md` first, then `bible/three-shows.md` (plot, humor, eerie and how they talk), then `bible/characters.md` (who they are; skip the voice
+**Read (the writer):** `bible/writers-room.md` first, then `bible/three-shows.md` (plot, humor, eerie and how they talk),
+**No slang in the early episodes** (founder, Nov 13, in `bible/three-shows.md`). Later, slang is used with confidence, never
+as a character's insecurity and never as the punchline. This wins over "he sounds 21" in `bible/voice-and-dialogue.md`. then `bible/characters.md` (who they are; skip the voice
 recipe), `bible/world.md`, `bible/gumball-style.md`, `bible/humor.md`, `bible/voice-and-dialogue.md`, `bible/story.md`,
 `bible/gumball-lens.md`,
 `bible/pxi-product.md`, `bible/callbacks.md`, `bible/timeline.md`, `engine/playbook.md`, `engine/formats.md`
 (the row for this format), `.claude/skills/writers-room/SKILL.md` with its `rubric.md` and `tells.md`, and the
 premise named in `STATE.md`. If the premise says `From: R<n>`, that story in `engine/real-stories.md`. For a
 holiday, its row in `engine/calendar.md`.
+
+**First, the founder's orders and funny log** (Nov 17). Read `engine/episode-orders.md` and `engine/funny-log.md`
+before anything else. If an order is open, the oldest one is this episode's premise, in place of the one in
+`STATE.md`: build it around every element it names, and mark it `DONE: <id>` when the script passes. Every script
+uses at least one funny-log entry not yet used, as a mechanism (why it is funny), never word for word, and marks it
+`USED BY: <id>`.
 
 **Do:** run the writers' room skill on that premise. Write one file, `episodes/<id>/script.md`:
 
@@ -78,6 +86,11 @@ Then:
 **Gate:** the cold read matches the header and quotes a laugh; lint has no FAIL; rubric 40/55 or more with no
 veto; the short cut stands alone. One more round with fresh critics is allowed. If it fails again, write
 `BLOCKED` in `STATE.md` with the critics' three weakest lines quoted, and stop.
+
+**What the founder sees** (founder, Nov 17): the founder does not read scripts. A story goes to the founder as a
+quick visual story sketch: rough drawn panels with the line under each, made from the script as a `SKITS`-style
+page (template: `episodes/skits/launch-skits.html`; each panel has a background, figures with who, x, face and
+arms, a caption and the lines) and published as an artifact. `script.md` stays internal.
 
 **Leave behind:** `script.md` only. Cut jokes go in `episodes/<id>/candy-bag.md`. No drafts.
 **Next:** stage 2.

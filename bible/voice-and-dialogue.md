@@ -20,7 +20,9 @@ We borrow craft from the shows we admire. Never lines, catchphrases or voices.
 - **He reacts first.** His face changes before he speaks, and often the face is the whole reply.
 - **He sounds 21, right now.** Easy, current, dropped words: "bro", "yo", "this my app". Slang the way a
   person uses it, a little, never stacked to sound young. Never "aight" or "ight", never a long
-  drawn-out "nah".
+  drawn-out "nah". **Founder, Nov 13: no slang terms in the early episodes** (no "cooked", "mog", "HTN" and
+  the like). The comedy comes from the situation and the faces. Later, a term is used with confidence, never
+  as insecurity or as the punchline (`bible/three-shows.md`).
 - **Normal volume with other people.** Size comes from speed, the face and the body. Capitals are for home,
   alone, or the rare moment he has to be heard across a room.
 - **No lectures, in or out.** He does not give advice either. If he helps, he does the thing.
@@ -33,7 +35,7 @@ We borrow craft from the shows we admire. Never lines, catchphrases or voices.
   who speaks it properly and answers in English.
 - **Every line carries a note for the face and the voice:** hyped, smug, leaking a laugh, wounded, honestly
   asking, quiet. A line with no note comes out flat, and flat is a defect.
-- **He does not pitch to the lens.** Inside the story he talks to people. The tag after the last joke is the
+- **He does not pitch to the lens.** Inside the story he talks to people. The tag after the glitch is the
   one place he talks to the viewer.
 
 ## Maya
@@ -149,6 +151,4 @@ NIO: Don't. You owe me shoes.
 
 ## Never
 
-Narrating what the picture shows. Telling someone what you both already know. Lists. A run-up ("okay, here's
-the thing", "honestly"). Tidy self-aware sentences about how he feels. Everyone agreeing. A kicker on every
-line. Words lifted from the founder's notes. The banned phrases in `engine/tools/script_lint.py`.
+Narrating what the picture shows. Telling someone what 

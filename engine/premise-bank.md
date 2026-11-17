@@ -13,6 +13,17 @@ Format:
   From: R<n>, the slate in `bible/world.md`, or original
 ```
 
+## Launch skits (founder, Nov 17; first, ahead of season 1)
+
+Short sketches, 25 to 35 s: one game, heightened every beat, out on a button (`bible/writers-room.md`, The skit
+shape). Panels and lines: `episodes/skits/launch-skits.html` (the SKITS data); storyboard:
+https://claude.ai/artifact/CiREPgxzi7Wbo4acicWJFY
+
+1. **Wave Back.** Nio waved at a guy who wasn't waving at him, and he will not admit it, whatever it costs.
+2. **Group Photo.** Everyone gives the photographer one more note, and the notes keep removing people from the photo.
+3. **Aux.** At this party, whatever is playing on the aux becomes real, and Nio has the aux.
+4. **One Sip.** Every sip makes Sami a hundred years more formal.
+
 ## Season 1 (in posting order, Nov 13, second order; scripts in `episodes/season-1/episodes-v2.md` for 1 to 5 and `episodes.md` for 6)
 
 1. **Office Hours** (campus). Nio skips office hours and finds out they are a place, and the people who skipped them are still in it. Short, 60 s.

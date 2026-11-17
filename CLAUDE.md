@@ -58,7 +58,8 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
   the video attached. Only stage 6, with the founder's approval recorded word for word, may schedule anything.
 - **A founder note is recorded the moment it arrives**, word for word, dated, under "Founder notes" in
   `bible/show-bible.md`. The newest note wins over every file here.
-- **A story the founder tells is banked the moment it arrives** (`engine/story-intake.md`).
+- **A story the founder tells is banked the moment it arrives** (`engine/story-intake.md`). So is anything after
+  "funny:" (into `engine/funny-log.md`) and "order:" (into `engine/episode-orders.md`, which WRITE takes first).
 
 ## Standing constraints (the founder's, from the first handoff; they hold everywhere)
 
@@ -100,6 +101,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 | `engine/stages/` | One card per stage |
 | `engine/premise-bank.md` | Approved and candidate premises |
 | `engine/real-stories.md`, `engine/story-intake.md` | The founder's real stories, and how one becomes a premise |
+| `engine/episode-orders.md`, `engine/funny-log.md` | Episodes the founder ordered by naming their parts (taken first), and what the founder found funny |
 | `engine/formats.md`, `engine/calendar.md` | The format menu and the holiday calendar |
 | `engine/captions.md` | How every caption is written so the release is found in search |
 | `engine/learning.md`, `engine/playbook.md` | The results ledger, and the one page of what is working now |
