@@ -3,15 +3,9 @@
 "who": "nio",
 "role": "dnio",
 "text": "Give me the aux.",
-"note": "Confident, holding out his hand, the hero arriving to save the party.",
-"out": "raw_ax_01.wav"
-},
-{
-"who": "theo",
-"role": "dtheo",
-"text": "You're on.",
-"note": "Quick, handing it over, a little doubtful.",
-"out": "raw_ax_02.wav"
+"note": "Confident, holding out his hand, the hero arriving to save the party. Say aux clearly, like 'ox'.",
+"out": "raw_ax_01.wav",
+"seed": 11
 },
 {
 "who": "nio",
@@ -28,38 +22,24 @@
 "out": "raw_ax_04.wav"
 },
 {
-"who": "maya",
-"role": "dmaya",
-"text": "Hello?",
-"note": "Answering a phone call, flat and normal.",
-"out": "raw_ax_05m.wav"
-},
-{
-"who": "sami",
-"role": "dsami",
-"text": "Hello?",
-"note": "Answering a phone call, flat and normal.",
-"out": "raw_ax_05s.wav"
-},
-{
-"who": "imane",
-"role": "dimane",
-"text": "Hello?",
-"note": "Answering a phone call, flat and normal.",
-"out": "raw_ax_05i.wav"
+"who": "theo",
+"role": "dtheo",
+"text": "This party's dead.",
+"note": "Flat, bored, slumped, certain, like calling a match.",
+"out": "raw_ax_07.wav"
 },
 {
 "who": "theo",
 "role": "dtheo",
-"text": "Hello?",
-"note": "Answering a phone call, flat and normal.",
-"out": "raw_ax_05t.wav"
+"text": "Best party of the year.",
+"note": "Soaked, dazed, completely sincere, quietly amazed.",
+"out": "raw_ax_08.wav"
 },
 {
 "who": "nio",
 "role": "dnio",
-"text": "Hello?",
-"note": "Small, quiet, confused, a long beat before it.",
-"out": "raw_ax_06.wav"
+"text": "I know.",
+"note": "A beat, then cool and smug, totally unbothered, as if he planned it.",
+"out": "raw_ax_09.wav"
 }
 ]

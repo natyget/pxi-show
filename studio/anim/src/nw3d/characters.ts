@@ -191,3 +191,39 @@ export const DARNELL_CHAR: Character = {
     bottom: { color: '#6a6a70', cuff: '#606066', width: 0.04 }, shoes: { color: '#d8d2c4' } } },
   outfit: 'out', restFace: 'deadpan',
 };
+
+// ---- WAVE BACK (launch skit, Nov 17): the stranger Nio waved at, his mum and his sister. New designs for the founder to
+// judge in the finished skit.
+// MARCUS. Tall and easy, deep brown skin, a close buzz cut, a teal hoodie, charcoal joggers, white trainers, a campus
+// lanyard round his neck (wear 'lanyard'): Nio reads his name off it.
+export const MARCUS: Props = { ...THEO, shin: 0.37, thigh: 0.38, torso: 0.41, shoulderHalf: 0.145 };
+export const MARCUS_CHAR: Character = {
+  id: 'marcus', body: MARCUS, skin: '#6e4630', hairA: '#141010', hairB: '#0c0a0a',
+  hair: [L(0, 0.125, -0.04, 0.13)],
+  head: { width: 1.02, chin: 1.08 },
+  wardrobe: { day: { top: { color: '#2a8f84', loose: 0.03, sleeve: 0.8, long: true, trim: '#22766d' },
+    bottom: { color: '#35363b', cuff: '#2c2d31', width: 0.06 }, shoes: { color: '#ece6da' } } },
+  outfit: 'day', restFace: 'neutral',
+};
+// HIS MUM. Warm and round, deep brown skin, hair up in a neat bun, gold hoops, a red dress with a cream collar.
+export const MUM: Props = { ...MAYA, torsoR: 0.1, shoulderHalf: 0.14, hipHalf: 0.085, legR: 0.034, armR: 0.022 };
+export const MUM_CHAR: Character = {
+  id: 'mum', body: MUM, skin: '#6a4230', hairA: '#1c1414', hairB: '#120d0d',
+  hair: [L(0, 0.15, -0.06, 0.135), L(0, 0.27, -0.13, 0.085)],
+  head: { lashes: 1, width: 1.1, chin: 0.98 }, earrings: '#c9a24c',
+  wardrobe: { home: { top: { color: '#b7413b', loose: 0.04, sleeve: 0.6, collar: '#efe2cc' },
+    bottom: { color: '#b7413b', cuff: '#a3372f', width: 0.09 }, shoes: { color: '#3a2a26' } } },
+  outfit: 'home', restFace: 'charm',
+};
+// HIS SISTER, the girl behind Nio on the quad. Deep brown skin like her brother, long braids past her shoulders, a
+// mustard-yellow jumper, dark jeans.
+export const SIS_CHAR: Character = {
+  id: 'sis', body: MAYA, skin: '#714a34', hairA: '#1e1616', hairB: '#140f0f',
+  hair: [L(0.05, 0.15, -0.03, 0.15), L(-0.05, 0.15, -0.03, 0.15), L(0, 0.11, -0.12, 0.15),
+    T(0.16, 0.06, -0.02, 0.06, 0.19, -0.32, -0.04, 0.045), T(-0.16, 0.06, -0.02, 0.06, -0.19, -0.32, -0.04, 0.045),
+    T(0.1, 0.04, -0.13, 0.07, 0.12, -0.34, -0.12, 0.05), T(-0.1, 0.04, -0.13, 0.07, -0.12, -0.34, -0.12, 0.05), T(0, 0.04, -0.17, 0.08, 0, -0.34, -0.15, 0.06)],
+  head: { lashes: 1, width: 1.0, chin: 0.98 },
+  wardrobe: { day: { top: { color: '#e2b23a', loose: 0.03, sleeve: 0.8, long: true, trim: '#c99a2a' },
+    bottom: { color: '#2e3346', cuff: '#2e3346', width: 0.04 }, shoes: { color: '#ece6da' } } },
+  outfit: 'day', restFace: 'neutral',
+};

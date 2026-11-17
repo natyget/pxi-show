@@ -116,8 +116,70 @@ vec3 roofWall(vec3 p, int w, float fp, out float em){
   vec2 f = fract(b); if (f.y < max(0.12, fp / 0.075 * 0.6) || f.x < max(0.04, fp / 0.22 * 0.6)) c = vec3(0.5, 0.45, 0.4);
   return c;
 }
+// THE QUAD (room 6, Wave Back): the campus lawn at midday. Open all round: past the grass, old brick buildings three or
+// four storeys high with white-framed windows, trees in front of them here and there, a clear blue sky with two clouds.
+vec3 quadView(vec3 d){
+  float e = d.y / max(length(d.xz), 1e-3), a = atan(d.x, d.z);
+  if (e < -0.004) return vec3(0.38, 0.58, 0.3) * (0.92 + 0.1 * hash(floor(vec2(a * 60.0, e * 160.0))));
+  float bi = floor(a * 2.2 + 0.3), bh = 0.15 + 0.07 * hash(vec2(bi, 11.0));
+  float ti = floor(a * 6.0), fx = fract(a * 6.0) - 0.5, th = (0.07 + 0.05 * hash(vec2(ti, 9.0))) * sqrt(max(0.0, 1.0 - fx * fx / 0.16)); // a tree: a round crown on a trunk
+  if (hash(vec2(ti, 4.0)) > 0.4 && (e < th * (0.92 + 0.08 * sin(fx * 60.0)) && e > th * 0.25 || abs(fx) < 0.025 && e < th)) return abs(fx) < 0.025 && e < th * 0.3 ? vec3(0.32, 0.22, 0.16) : vec3(0.22, 0.4, 0.21) * (0.85 + 0.2 * hash(floor(vec2(a * 90.0, e * 240.0))));
+  if (e < bh){ vec3 c = vec3(0.64, 0.36, 0.27) * (0.94 + 0.08 * hash(floor(vec2(a * 200.0, e * 300.0))));
+    vec2 wc = vec2(a * 36.0, e * 34.0), wq = fract(wc);
+    if (e > 0.02 && bh - e > 0.03 && wq.x > 0.28 && wq.x < 0.72 && wq.y > 0.25 && wq.y < 0.78)
+      c = (wq.x < 0.34 || wq.x > 0.66 || wq.y < 0.31 || wq.y > 0.72) ? vec3(0.92, 0.91, 0.86) : vec3(0.4, 0.5, 0.6) * (0.9 + 0.2 * hash(floor(wc)));
+    if (bh - e < 0.014) c = vec3(0.4, 0.38, 0.38); // the roof edge
+    return c; }
+  vec3 sky = mix(vec3(0.8, 0.9, 0.98), vec3(0.4, 0.62, 0.93), smoothstep(0.0, 0.7, e));
+  float cl = length(vec2((a - 0.6) * 1.4, (e - 0.42) * 3.0)), cl2 = length(vec2((a + 2.4) * 1.3, (e - 0.3) * 3.2));
+  if (min(cl, cl2) < 0.28 + 0.05 * sin(a * 40.0)) sky = vec3(0.97, 0.97, 0.95);
+  return sky;
+}
+// MUM'S DINING ROOM (room 7, Wave Back): mustard striped paper over cream panelling and a rail, wood floor, a red rug.
+// In the far wall: the window (left, the street at dusk, red curtains), a picture (middle), the doorway (right, the warm hall).
+vec3 dineWall(vec3 p, int w, float fp, out float em){
+  em = 0.0;
+  if (w == 2) return vec3(0.88, 0.84, 0.76) * mott(p, 0.5);
+  bool sideW = abs(p.x - uRoom0.x) < 0.02 || abs(p.x - uRoom0.x - uRoom.x) < 0.02;
+  float u = sideW ? p.z - uRoom0.z : uRoom0.x + uRoom.x - p.x; // along the wall (on the far wall: s)
+  bool far = p.z > uRoom0.z + uRoom.z - 0.03;
+  if (far){
+    vec2 wn = vec2(u - 0.95, p.y - 1.5), wd = abs(wn) - vec2(0.5, 0.55);
+    if (abs(wn.x) < 0.78 && abs(wn.x) > 0.5 && p.y > 0.75 && p.y < 2.2) return vec3(0.62, 0.16, 0.16) * (0.85 + 0.2 * step(0.5, fract(u / 0.07))); // the curtains, in folds
+    if (max(wd.x, wd.y) < 0.0){
+      if (max(wd.x, wd.y) > -max(0.04, fp) || abs(wn.x) < max(0.02, fp * 0.6) || abs(wn.y) < max(0.02, fp * 0.6)) return vec3(0.92, 0.9, 0.84);
+      em = 1.0; vec3 c = mix(vec3(0.95, 0.6, 0.45), vec3(0.24, 0.26, 0.5), smoothstep(-0.4, 0.5, wn.y)); // the dusk sky
+      if (wn.y < -0.2 + 0.18 * hash(vec2(floor(u / 0.16), 1.0))) c = vec3(0.16, 0.13, 0.18); // the houses over the road
+      if (length(wn - vec2(0.24, -0.06)) < 0.04) c = vec3(1.0, 0.85, 0.5); // a street light
+      return c; }
+    vec2 dn = vec2(u - 3.55, p.y), dd = abs(dn - vec2(0.0, 1.0)) - vec2(0.42, 1.05);
+    if (max(dd.x, dd.y) < 0.0){ if (max(dd.x, dd.y) > -max(0.06, fp)) return vec3(0.9, 0.88, 0.82); em = 1.0; return vec3(0.98, 0.78, 0.5) * (0.9 + 0.08 * hash(floor(p.yy / 0.3))); }
+    vec2 pf = abs(vec2(u - 2.1, p.y - 1.62)) - vec2(0.3, 0.22);
+    if (max(pf.x, pf.y) < 0.0){ if (max(pf.x, pf.y) > -max(0.035, fp)) return vec3(0.7, 0.55, 0.22); // a gilt frame: a hill and a sea
+      return p.y - 1.62 < 0.05 * sin((u - 2.1) * 7.0) - 0.04 ? vec3(0.36, 0.5, 0.3) : p.y - 1.62 < 0.0 ? vec3(0.3, 0.45, 0.6) : vec3(0.8, 0.84, 0.86); }
+  }
+  if (p.y < 0.1) return vec3(0.9, 0.88, 0.82); // the skirting
+  if (p.y < 0.88){ vec3 c = vec3(0.86, 0.82, 0.72) * mott(p, 0.4); vec2 pq = fract(vec2(u / 0.6, (p.y - 0.1) / 0.78)); if (pq.x < max(0.04, fp / 0.6) || pq.y < 0.06 || pq.y > 0.94) c *= 0.88; return c; }
+  if (p.y < 0.93) return vec3(0.6, 0.42, 0.28); // the rail
+  float st = fract(u / 0.2); vec3 c = st < 0.5 ? vec3(0.8, 0.64, 0.38) : vec3(0.86, 0.73, 0.48);
+  if (abs(st - 0.75) < 0.05 && fract(p.y / 0.24) < 0.2) c = vec3(0.66, 0.48, 0.3); // a little motif in the pale stripe
+  return c;
+}
 vec3 campusFloor(vec3 p, float fp, vec2 px, out float em){
   em = 0.0; float k = uCampus.x; vec3 c;
+  if (k > 6.5){ // Mum's: oak boards, and the red rug under the table
+    vec2 q = vec2(uRoom0.x + uRoom.x - p.x, p.z - uRoom0.z); float row = floor(q.x / 0.14), pl = floor((q.y + hash(vec2(row, 1.0)) * 1.2) / 1.2);
+    c = vec3(0.5, 0.33, 0.21) * (0.88 + 0.16 * hash(vec2(row, pl))) * mott(p * 2.0, 1.4);
+    if (fract(q.x / 0.14) * 0.14 < max(0.006, fp * 0.6) || fract((q.y + hash(vec2(row, 1.0)) * 1.2) / 1.2) * 1.2 < max(0.006, fp * 0.6)) c *= 0.72;
+    vec2 r = abs(q - vec2(2.0, 3.2)) - vec2(1.05, 1.45);
+    if (max(r.x, r.y) < 0.0){ c = vec3(0.5, 0.14, 0.14) * mott(p * 3.0, 1.2); if (max(r.x, r.y) > -0.12) c = vec3(0.78, 0.6, 0.3); else if (max(r.x, r.y) > -0.16) c = vec3(0.3, 0.1, 0.12); }
+    return c; }
+  if (k > 5.5){ // the quad: mown grass in stripes, a stone path along the left, another across the far end
+    vec2 q = vec2(uRoom0.x + uRoom.x - p.x, p.z - uRoom0.z);
+    c = vec3(0.36, 0.56, 0.27) * (mod(floor(q.x / 1.5), 2.0) < 0.5 ? 1.0 : 0.92) * mott(p * 2.0, 1.6);
+    if (abs(q.x - 2.3) < 0.75 || abs(q.y - 15.2) < 0.75){ vec2 g = fract(q / 0.5); c = vec3(0.74, 0.7, 0.62) * (0.92 + 0.1 * hash(floor(q / 0.5)));
+      if (g.x < max(0.04, fp * 1.5) || g.y < max(0.04, fp * 1.5)) c *= 0.8; }
+    return c; }
   if (k < 0.5) return vec3(0.243, 0.275, 0.345) * mott(p * 1.4, 2.2); // the lecture hall: blue carpet
   if (k > 4.5){ c = vec3(0.36, 0.34, 0.36) * mott(p * 3.0, 1.8) * (0.93 + 0.1 * hash(floor(p.xz / 0.05))); return c; } // the roof: grey felt and grit
   if (k > 3.5){ // the pitch: turf in mown stripes, white lines (the edge, halfway, the centre circle, a D at each end)
@@ -146,6 +208,8 @@ vec3 campusFloor(vec3 p, float fp, vec2 px, out float em){
 }
 vec3 campusWall(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
   em = 0.0; add = vec3(0.0); float k = uCampus.x;
+  if (k > 6.5) return dineWall(p, w, fp, em);
+  if (k > 5.5){ em = 2.0; return quadView(p - uCamP); }
   if (k > 4.5) return roofWall(p, w, fp, em);
   if (k > 3.5) return pitchWall(p, w, fp, em);
   if (w == 2){ // a dropped ceiling: square tiles, with the fluorescent panels set in it
@@ -647,7 +711,7 @@ export const ROOF_CAMS: Record<string, Cam3> = {
   chair: C([3.0, 0.7, 7.2], [4.0, 1.7, 9.1], 50), // Nio up on the chair, from below, the violet sky behind him
   nio: C([3.3, 1.45, 6.4], [4.0, 1.4, 9.1], 40), // Nio from where the three were
   whole: C([4.0, 2.2, 0.6], [4.0, 1.0, 7.0], 70), // the whole roof from the stair hut end
-  phone: C([4.0, 1.3, 10.55], [4.0, 1.45, 8.8], 64), // up from Nio's phone at the four faces round it
+  phone: C([4.0, 1.55, 10.85], [4.0, 1.45, 8.6], 60), // up from Nio's phone at the four faces round it
 };
 export const ROOF_MARKS = {
   nio: { s: 4.0, z: 4.0, yaw: 0 }, // taking the picture, facing up the roof at them
@@ -655,9 +719,81 @@ export const ROOF_MARKS = {
   nio2: { s: 4.0, z: 9.1, yaw: 180 }, // Theo's left side: the far end, his back to the sun
   chair: { s: ROOF_CHAIR.s, z: ROOF_CHAIR.z, yaw: 180, on: 0.46 }, // up on the chair
   theoOut: { s: 2.15, z: 6.4, yaw: 90 }, samiOut: { s: 5.85, z: 6.9, yaw: 270 }, mayaOut: { s: 5.85, z: 6.3, yaw: 270 }, // walked out of the picture
-  theoP: { s: 3.6, z: 8.7, yaw: 0 }, samiP: { s: 4.4, z: 8.7, yaw: 0 }, mayaP: { s: 4.0, z: 8.35, yaw: 0 }, // round Nio's phone
+  theoP: { s: 4.42, z: 8.75, yaw: 0 }, samiP: { s: 4.0, z: 8.3, yaw: 0 }, mayaP: { s: 3.58, z: 8.75, yaw: 0 }, // round Nio's phone
 };
 export const ROOF_SOLIDS = [{ name: 'the stair hut', s: [0, 1.8] as [number, number], z: [0.3, 2.1] as [number, number] }, { name: 'the air-con box', s: [6.4, 7.6] as [number, number], z: [1.6, 2.4] as [number, number] }];
+
+// THE QUAD (Wave Back): the campus lawn at midday, open all round. A stone path down the left and across the far end,
+// a tree on the right, a bench by the path, a lamp post. Nio in the middle; the man who waves at the far end; the girl in
+// yellow behind Nio, near us.
+export const QUAD = { w: 12, h: 10, d: 18 };
+const quadBoxes = (): Box[] => [
+  B(9.6, 1.5, 11.5, 0.16, 1.5, 0.16, '#5a4030', 120), // the tree's trunk
+  B(2.3, 0.42, 9.0, 0.24, 0.03, 0.85, '#8a6a48', 121), B(2.08, 0.7, 9.0, 0.025, 0.2, 0.85, '#8a6a48', 122), // the bench, its back to the path's far side
+  ...[8.3, 9.7].map((z, i) => B(2.3, 0.2, z, 0.22, 0.2, 0.03, '#2e3236', 123 + i)),
+  B(3.3, 1.6, 5.2, 0.04, 1.6, 0.04, '#2e3236', 125), B(3.3, 3.25, 5.2, 0.13, 0.09, 0.13, '#e8e4d0', 126), // the lamp post, off
+];
+const quadSofts = (): Soft[] => [{ prims: [[9.6, 3.9, 11.5, 1.35], [8.8, 3.4, 11.1, 0.95], [10.3, 3.5, 12.1, 1.0], [9.7, 4.6, 12.0, 0.9]].map(([s, y, z, r]) => ({ a: P3(s, y, z), ra: r, b: P3(s, y, z), rb: r, g: 0, k: 0.25, c: '#3f7a3a' })), origin: P3(9.6, 0, 11.5) }]; // the tree's crown
+const quadLights = (): Light[] => [
+  { p: P3(-30, 42, 2), r: 130, col: [1.0, 0.93, 0.8] }, // the midday sun, high and off to the left (light 0: the shadows)
+  { p: P3(6, 18, 34), r: 60, col: [0.3, 0.36, 0.46] }, // the blue sky
+];
+export const QUAD_CAMS: Record<string, Cam3> = {
+  wide: C([3.6, 1.5, 17.7], [6.0, 1.2, 8.0], 44), // from behind the man who waves: him, Nio facing us, the girl in yellow behind Nio
+  nio: C([5.6, 1.5, 9.6], [6.0, 1.3, 5.0], 40), // Nio from the front, the girl in yellow over his shoulder
+  nioClose: C([5.75, 1.5, 9.4], [6.0, 1.42, 7.0], 36), // Nio, waist up
+  marcus: C([5.15, 1.55, 11.0], [5.75, 1.38, 13.0], 40), // over Nio's shoulder at Marcus
+  nioM: C([5.5, 1.5, 14.9], [5.7, 1.35, 11.0], 40), // from behind Marcus at Nio (Marcus out of the picture)
+  walk: C([4.0, 1.45, 15.3], [5.8, 1.3, 10.6], 40), // Nio coming up the lawn at us
+  two: C([8.4, 1.45, 11.4], [5.6, 1.3, 12.6], 46), // the two of them, from the side
+};
+export const QUAD_MARKS = {
+  nio: { s: 6.0, z: 7.0, yaw: 0 }, // in the middle of the lawn, facing up it
+  marcus: { s: 5.6, z: 13.0, yaw: 180 }, // at the far end, facing down the lawn (toward his sister)
+  sis: { s: 5.5, z: 4.0, yaw: 0 }, // the girl in yellow, behind Nio, facing up the lawn
+  sisOff: { s: 7.9, z: 3.5, yaw: 270 }, // walking off to the right
+  nioMid: { s: 5.95, z: 9.5, yaw: 0 }, // on his way over
+  nioM: { s: 5.65, z: 12.05, yaw: 0 }, // where Nio stops, in Marcus's face
+};
+export const QUAD_SOLIDS = [{ name: 'the tree', s: [9.2, 10.0] as [number, number], z: [11.1, 11.9] as [number, number] }, { name: 'the bench', s: [2.0, 2.6] as [number, number], z: [8.1, 9.9] as [number, number] }];
+
+// MUM'S DINING ROOM (Wave Back): a table for four down the middle of the room. Mum at the head (the far end, facing us),
+// Nio on the left, Marcus across from him, the empty chair beside Marcus. The doorway at the far right.
+export const DINE = { w: 4.4, h: 2.6, d: 5.4 };
+const dineChair = (s: number, z: number, bk: [number, number], o: number): Box[] => [
+  B(s, 0.44, z, 0.21, 0.025, 0.21, '#6a4228', o), B(s + bk[0] * 0.2, 0.74, z + bk[1] * 0.2, bk[0] ? 0.02 : 0.2, 0.28, bk[1] ? 0.02 : 0.2, '#6a4228', o + 1),
+  ...[[-1, -1], [1, -1], [-1, 1], [1, 1]].map(([a, b], i) => B(s + a * 0.18, 0.21, z + b * 0.18, 0.018, 0.21, 0.018, '#5a3820', o + 2 + i)),
+];
+const dineBoxes = (): Box[] => [
+  B(2.0, 0.745, 3.2, 0.38, 0.025, 0.85, '#f2efe6', 130), // the table under a white cloth
+  ...[[-1, -1], [1, -1], [-1, 1], [1, 1]].map(([a, b], i) => B(2.0 + a * 0.32, 0.36, 3.2 + b * 0.78, 0.03, 0.36, 0.03, '#6a4228', 131 + i)),
+  ...dineChair(1.4, 3.0, [-1, 0], 140), ...dineChair(2.6, 3.0, [1, 0], 150), ...dineChair(2.6, 3.65, [1, 0], 160), ...dineChair(2.0, 4.35, [0, 1], 170),
+  ...[[1.74, 3.0], [2.26, 3.0], [2.26, 3.65], [2.0, 3.85]].map(([s, z], i) => B(s, 0.775, z, 0.13, 0.006, 0.13, '#fbfaf6', 180 + i)), // four plates
+  B(0.12, 0.45, 1.6, 0.12, 0.45, 0.5, '#5a3820', 186), B(0.12, 0.92, 1.6, 0.14, 0.02, 0.52, '#6a4228', 187), // a sideboard on the left wall
+  B(2.0, 2.25, 3.2, 0.01, 0.35, 0.01, '#2a2224', 188), B(2.0, 1.85, 3.2, 0.2, 0.07, 0.2, '#e9b860', 189, { glow: true }), // the lamp over the table
+];
+const dineSofts = (): Soft[] => [
+  { prims: [{ a: P3(1.95, 0.84, 3.3), ra: 0.11, b: P3(2.07, 0.84, 3.3), rb: 0.1, g: 0, k: 0.05, c: '#b87334' }], origin: P3(2.0, 0.77, 3.3) }, // the roast
+];
+const dineLights = (): Light[] => [
+  { p: P3(2.0, 1.75, 3.2), r: 4.5, col: [1.0, 0.8, 0.56] }, // the lamp over the table (light 0: the shadows)
+  { p: P3(0.95, 1.6, 5.2), r: 3.5, col: [0.24, 0.28, 0.44] }, // the dusk through the window
+  { p: P3(3.55, 1.4, 5.6), r: 3.0, col: [0.5, 0.36, 0.2] }, // the hall light through the door
+];
+export const DINE_CAMS: Record<string, Cam3> = {
+  wide: C([2.0, 1.6, 0.25], [2.1, 1.05, 3.6], 72), // down the table from the near end: Nio left, Marcus right, Mum at the head, the doorway
+  mum: C([2.05, 1.25, 2.55], [2.0, 1.18, 4.35], 40),
+  nio: C([3.15, 1.35, 2.15], [1.45, 1.12, 3.05], 42), // Nio, from behind Marcus's chair
+  marcus: C([0.85, 1.35, 2.15], [2.55, 1.12, 3.05], 42), // Marcus, from behind Nio's chair
+  end: C([4.2, 1.95, 0.2], [2.3, 1.1, 3.8], 66), // from the near right corner: Nio's face over Marcus's shoulder, Mum, the doorway
+  door: C([3.7, 1.35, 2.2], [3.55, 1.3, 4.8], 46), // the doorway, from along the right wall
+};
+export const DINE_MARKS = {
+  nio: { s: 1.45, z: 3.0, yaw: 270, seat: 0.455 }, marcus: { s: 2.55, z: 3.0, yaw: 90, seat: 0.455 }, mum: { s: 2.0, z: 4.3, yaw: 180, seat: 0.455 },
+  hall: { s: 3.55, z: 5.9, yaw: 180 }, // out in the hall
+  door: { s: 3.55, z: 4.85, yaw: 200 }, // in the doorway, facing the table
+};
+export const DINE_SOLIDS = [{ name: 'the table', s: [1.62, 2.38] as [number, number], z: [2.35, 4.05] as [number, number] }];
 
 export type CampusOpts = WaitOpts & HallOpts & OfficeOpts & CorridorOpts & RoofOpts & { time?: number };
 export const CAMPUS_ROOMS = {
@@ -667,26 +803,28 @@ export const CAMPUS_ROOMS = {
   corridor: { kind: 1, size: [COR.w, COR.h, COR.d] as V, cams: CORRIDOR_CAMS },
   pitch: { kind: 4, size: [PITCH.w, PITCH.h, PITCH.d] as V, cams: PITCH_CAMS },
   roof: { kind: 5, size: [ROOF.w, ROOF.h, ROOF.d] as V, cams: ROOF_CAMS },
+  quad: { kind: 6, size: [QUAD.w, QUAD.h, QUAD.d] as V, cams: QUAD_CAMS },
+  dining: { kind: 7, size: [DINE.w, DINE.h, DINE.d] as V, cams: DINE_CAMS },
 };
 export type CampusRoom = keyof typeof CAMPUS_ROOMS;
 // A shot in a campus room. acts: the cast, placed by (s, z) as anywhere else.
 export const campusShot = (room: CampusRoom, camA: CamArg, acts: Act[], o: CampusOpts = {}): Scene3 => {
-  const R = CAMPUS_ROOMS[room], hall = room === 'hall', office = room === 'office', cor = room === 'corridor', pitch = room === 'pitch', roof = room === 'roof', f = (o.time ?? 0) * 24;
+  const R = CAMPUS_ROOMS[room], hall = room === 'hall', office = room === 'office', cor = room === 'corridor', pitch = room === 'pitch', roof = room === 'roof', quad = room === 'quad', dine = room === 'dining', f = (o.time ?? 0) * 24;
   // Prof H's hand goes wherever the flyer is this frame: its near edge, on his side
   const fp = office ? flyerAt(o, f) : undefined;
   const acts2 = acts.map((a) => (a.pose === 'slideFlyer' && fp ? { ...a, reachTo: add(fp, [0, 0, 0.13]) as V } : a));
   const ps = lensActs(camA, acts2).map((a) => pose(a)), cam = camOf(camA, ps);
-  const boxes = roof ? roofBoxes(o) : hall ? hallBoxes(o) : office ? officeBoxes(o, f) : cor ? corridorBoxes(o, f) : pitch ? pitchBoxes() : waitBoxes(o, f);
-  const lights = roof ? roofLights() : hall ? hallLights() : office ? officeLights(o, f) : cor ? corridorLights(o, f) : pitch ? pitchLights() : waitLights(o, f);
+  const boxes = quad ? quadBoxes() : dine ? dineBoxes() : roof ? roofBoxes(o) : hall ? hallBoxes(o) : office ? officeBoxes(o, f) : cor ? corridorBoxes(o, f) : pitch ? pitchBoxes() : waitBoxes(o, f);
+  const lights = quad ? quadLights() : dine ? dineLights() : roof ? roofLights() : hall ? hallLights() : office ? officeLights(o, f) : cor ? corridorLights(o, f) : pitch ? pitchLights() : waitLights(o, f);
   const look = ps.find((p, i) => acts[i].who?.id === 'nio')?.soft.head?.c ?? P3(seatS(0), 2.1, seatZ(4));
-  const door = hall || pitch || roof ? 0 : keyed(o.door, f, cor ? 0.7 : 0), doorX = X(office ? OFF.door : cor ? COR.w / 2 : WAIT.door);
+  const door = hall || pitch || roof || quad || dine ? 0 : keyed(o.door, f, cor ? 0.7 : 0), doorX = X(office ? OFF.door : cor ? COR.w / 2 : WAIT.door);
   return {
     cam, room: R.size, room0: [X(R.size[0]), 0, 0], set: 3, time: o.time ?? 0,
-    outdoor: pitch || roof || undefined, campus: [R.kind, door, doorX, office ? 1 : 0], campus2: [cor ? keyed(o.door2, f, 0.7) : 0, cor ? keyed(o.stairs, f, 0) : 0, COR.stairZ, 0],
-    amb: roof ? [0.46, 0.36, 0.44] : hall ? [0.3, 0.29, 0.31] : office ? [0.32, 0.29, 0.27] : cor ? [0.3, 0.32, 0.32] : pitch ? [0.4, 0.42, 0.48] : [0.3, 0.34, 0.31],
-    ambChar: roof ? [0.96, 0.84, 0.86] : hall ? [0.86, 0.84, 0.82] : office ? [0.88, 0.84, 0.8] : pitch ? [0.86, 0.86, 0.9] : [0.84, 0.88, 0.84],
+    outdoor: pitch || roof || quad || undefined, campus: [R.kind, door, doorX, office ? 1 : 0], campus2: [cor ? keyed(o.door2, f, 0.7) : 0, cor ? keyed(o.stairs, f, 0) : 0, COR.stairZ, 0],
+    amb: quad ? [0.46, 0.48, 0.52] : dine ? [0.34, 0.29, 0.25] : roof ? [0.46, 0.36, 0.44] : hall ? [0.3, 0.29, 0.31] : office ? [0.32, 0.29, 0.27] : cor ? [0.3, 0.32, 0.32] : pitch ? [0.4, 0.42, 0.48] : [0.3, 0.34, 0.31],
+    ambChar: quad ? [0.92, 0.92, 0.94] : dine ? [0.92, 0.84, 0.76] : roof ? [0.96, 0.84, 0.86] : hall ? [0.86, 0.84, 0.82] : office ? [0.88, 0.84, 0.8] : pitch ? [0.86, 0.86, 0.9] : [0.84, 0.88, 0.84],
     crowd: hall ? hallCrowd(o, acts.map((a) => a.at as [number, number]), look, cam, f) : undefined,
-    boxes, softs: [...ps.map((p) => p.soft), ...(hall ? hallSofts(o) : office ? officeSofts() : pitch ? pitchSofts() : [])], lights: [...lights, ...ps.flatMap((p) => p.lights)],
+    boxes, softs: [...ps.map((p) => p.soft), ...(quad ? quadSofts() : dine ? dineSofts() : hall ? hallSofts(o) : office ? officeSofts() : pitch ? pitchSofts() : [])], lights: [...lights, ...ps.flatMap((p) => p.lights)],
     props: [...ps.flatMap((p) => p.props), ...(hall ? hallProps(o, f) : [])], shadows: ps.flatMap((p) => p.shadows),
   };
 };

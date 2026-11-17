@@ -462,7 +462,32 @@ def roof_album(photo=os.path.join(ANIM, 'out', 'os', 'r3.png')):
     s.disc(292, 643, 51, PURPLE); s.icon('Add01Icon', 24, 317, 668, WHITE)
     return s.im
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album}
+def sunday_dinner(joined=False):
+    """Wave Back: the family's Sunday dinner event, from an invite (app/event/[id].tsx, EventDetailsBody.tsx: the title,
+    the venue in purple, DATE and TIME; EventSections.tsx: N MEMBERS and WHO'S GOING; EventFooter.tsx: an invite shows
+    Deny and Join, and once joined the green JOINED chip)."""
+    s = Screen(bg=hexc('1C1C1C'))
+    s.status()
+    s.icon('ArrowLeft01Icon', 24, 26, 80, WHITE)
+    s.text(180, 190, 'SUNDAY', 'display', pt(40), WHITE, align='c'); s.text(180, 238, 'DINNER', 'display', pt(40), WHITE, align='c')
+    s.text(180, 286, "MUM'S HOUSE", 'display', pt(18), PURPLE, align='c')
+    for cx, lab, val in ((120, 'DATE', 'SUN 23 NOV'), (240, 'TIME', '6:00 PM')):
+        s.text(cx, 340, lab, 800, pt(10), white(0.45, hexc('1C1C1C')), ls=2, align='c'); s.text(cx, 362, val, 'display', pt(16), WHITE, align='c')
+    s.text(180, 430, ('5' if joined else '4') + ' MEMBERS', 900, pt(11), WHITE, ls=2, align='c')
+    for i in range(5 if joined else 4):
+        x = 180 - (5 if joined else 4) * 18 + i * 36
+        if joined and i == 4: s.avatar(pic('avatar', 32, 32), x, 448, 32)
+        else: s.avatar(nobody(32), x, 448, 32)
+    s.text(180, 500, "WHO\u2019S GOING", 800, pt(10), white(0.45, hexc('1C1C1C')), ls=2, align='c')
+    if joined:
+        s.box(20, 690, 340, 738, G2E, r=24); s.d.line([(143, 714), (148, 719), (157, 709)], fill=hexc('32D74B'), width=2)  # Tick02Icon, drawn by hand (the icon set is not in this repo)
+        s.text(196, 714, 'JOINED', 900, pt(12), WHITE, ls=2, align='c')
+    else:
+        s.box(20, 690, 172, 738, G2E, r=24); s.text(96, 714, 'Deny', 800, pt(14), WHITE, align='c')
+        s.box(188, 690, 340, 738, PURPLE, r=24); s.text(264, 714, 'Join', 800, pt(14), WHITE, align='c')
+    return s.im
+
+SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True)}
 if __name__ == '__main__':
     name = sys.argv[1]
     for n in (SCREENS if name == 'all' else [name]):

@@ -1,8 +1,44 @@
 [
-{"who":"sami","role":"dsami","text":"I really can't handle a drink.","note":"Polite, a little nervous, apologetic, holding a cup he does not want. Say every word clearly.","out":"raw_os_01.wav"},
-{"who":"nio","role":"dnio","text":"One sip. It's mild.","note":"Easy, warm, a little sly, totally relaxed, talking his friend into it.","out":"raw_os_02.wav"},
-{"who":"sami","role":"dsami","text":"I must say, this is a delightful gathering.","note":"Suddenly very proper and posh, pleased with himself, like a gentleman at a garden party.","out":"raw_os_03.wav"},
-{"who":"sami","role":"dsami","text":"Good sir. Fetch me a carriage.","note":"Grand old-fashioned aristocrat, haughty and slow, giving an order to a servant.","out":"raw_os_04.wav"},
-{"who":"sami","role":"dsami","text":"I shall duel the man who took my coat!","note":"Outraged Victorian lord, loud and theatrical, pointing at the room.","out":"raw_os_05.wav"},
-{"who":"nio","role":"dnio","text":"Sami. It's apple juice. I poured it.","note":"Flat, calm, dry, after sniffing the cup; three short sentences with small pauses.","out":"raw_os_06.wav"}
+{
+"who": "sami",
+"role": "dsami",
+"text": "I really can't handle a drink.",
+"note": "Polite, a little nervous, apologetic, holding a cup he does not want. Say every word clearly.",
+"out": "raw_os_01.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "It's in your head. One sip.",
+"note": "Easy, warm, teasing, sure he is right, holding the cup out to his friend.",
+"out": "raw_os_02.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "I must say, this is a delightful gathering.",
+"note": "Suddenly very proper and posh, pleased with himself, like a gentleman at a garden party.",
+"out": "raw_os_03.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Good sir. Fetch me a carriage.",
+"note": "Grand old-fashioned aristocrat, haughty and slow, giving an order to a servant.",
+"out": "raw_os_04.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "I shall duel the man who took my coat!",
+"note": "Outraged Victorian lord, loud and theatrical, pointing at the room.",
+"out": "raw_os_05.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Sami. That's apple juice.",
+"note": "Flat, calm, dry, after sniffing the cup, a tiny pause after Sami.",
+"out": "raw_os_06.wav"
+}
 ]

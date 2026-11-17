@@ -308,6 +308,9 @@ export const pose = (a: Act) => {
     lights.push({ p: add(pc, [0, 0.07, 0]), r: 0.2, col: [0.3, 0.12, 0.5] }); phoneAt = { c: pc, x, y, z, eye: [0, 0, 0] };
   }
   if (nm === 'arm-up') { s = reach(s, 1, straight(1, 0.06, 0.47, 0.2), add(out(1), mul(fwd, -0.4)), P, UP, fwd); hands[1] = 'fist'; }
+  if (nm === 'wave') { // the hand up by the head, open, the palm out, rocking side to side about twice a second
+    const i = (a.hand ?? 1) as 0 | 1, sw = Math.sin((a.t / 24) * Math.PI * 4.4) * 0.07;
+    s = reach(s, i, A(i, 0.2, 0.36, 0.36 + sw), add(out(i), [0, -1, 0]), P, norm(add(UP, mul(out(i), sw * 3))), fwd); hands[i] = 'open'; }
   if (nm === 'arms-up') for (const i of [0, 1] as const) s = reach(s, i, straight(i, 0.08, 0.44, 0.3), add(out(i), [0, -0.4, 0]), P, norm(add(UP, mul(out(i), 0.5))), fwd);
   // pointing: the right arm straight out in front, a little high, the first finger out
   if (nm === 'point') { s = reach(s, 1, A(1, 0.42, 0.08, 0.04), add(out(1), [0, -1, 0]), P, norm(add(fwd, [0, 0.12, 0])), UP); hands[1] = 'point'; }
@@ -489,8 +492,7 @@ export const pose = (a: Act) => {
       const R = 0.052, cx = -0.083, cy = -0.058, cz = 0.205, N = 12, t = 0.0045;
       for (let k = 0; k < N; k++) { const a0 = (k / N) * 6.283, a1 = ((k + 1) / N) * 6.283;
         pr(at(cx + Math.cos(a0) * R, cy + Math.sin(a0) * R, cz), t, at(cx + Math.cos(a1) * R, cy + Math.sin(a1) * R, cz), t, '#d4a72c'); }
-      const p0 = at(cx - R, cy, cz - 0.01), p1 = at(-0.215 * w, -0.12, 0.08), p2 = add(s.neckBase, add(mul(s.side, -0.08), mul(fwd, P.torsoR + 0.02)));
-      pr(p0, 0.0028, p1, 0.0028, '#d4a72c'); pr(p1, 0.0028, p2, 0.0028, '#d4a72c');
+      // no chain: a chain across the face read as a straw (stranger review, Nov 17)
     }
     if (w0 === 'bowtie') {
       // a burgundy bow tie at the collar: a knot and two wings
@@ -500,9 +502,22 @@ export const pose = (a: Act) => {
         pr(add(k0, mul(sd, d * 0.012)), 0.012, add(tip, [0, 0.016, 0]), 0.024, '#7a1c2c', { sq: 1.6 });
         pr(add(k0, mul(sd, d * 0.012)), 0.012, add(tip, [0, -0.016, 0]), 0.024, '#7a1c2c', { sq: 1.6 }); }
     }
+    if (w0 === 'lanyard') {
+      // a thin dark-blue strap round the back of the neck, down to a white card on the chest
+      const n0 = s.neckBase, card = add(add(s.neckBase, mul(s.chestDir, -0.2)), mul(fwd, P.torsoR + 0.025));
+      for (const d of [1, -1]) pr(add(n0, add(mul(s.side, d * 0.06), mul(fwd, 0.03))), 0.006, add(card, add(mul(s.side, d * 0.02), [0, 0.04, 0])), 0.006, '#2a3a6a');
+      pr(add(card, [0, 0.02, 0]), 0.03, add(card, [0, -0.02, 0]), 0.03, '#f4f1ea', { sq: 0.4 });
+    }
+    if (w0 === 'partyhat') {
+      // a striped paper cone, tilted a little, a pompom on top
+      const base = at(0.04, 0.2, 0.0), tip = at(0.1, 0.52, 0.02), cols = ['#e05a8a', '#f2c94c', '#e05a8a', '#f2c94c'];
+      for (let k = 0; k < 4; k++) { const t0 = k / 4, t1 = (k + 1) / 4, p0 = add(base, mul(sub(tip, base), t0)), p1 = add(base, mul(sub(tip, base), t1));
+        pr(p0, 0.11 * (1 - t0) + 0.006, p1, 0.11 * (1 - t1) + 0.006, cols[k], { cutA: true }); }
+      pr(tip, 0.03, tip, 0.03, '#fbf6ee');
+    }
     if (w0 === 'sideburns') {
       // huge Victorian mutton chops: from each temple down the cheek to the jaw, the mouth left clear
-      for (const d of [1, -1]) prims.push({ a: at(d * 0.2 * w, -0.0, 0.03), ra: 0.04, b: at(d * 0.175 * w, -0.2, 0.1), rb: 0.07, g: G.hair, k: 0.03, c: ch.hairA, tex: 1 });
+      for (const d of [1, -1]) prims.push({ a: at(d * 0.215 * w, -0.02, 0.02), ra: 0.035, b: at(d * 0.2 * w, -0.17, 0.07), rb: 0.055, g: G.shoe, k: 0.02, c: '#6b4a32', tex: 1 }); // a ginger-brown, so they read as whiskers and not his hair
     }
   }
   if (ch.cap) {
@@ -560,15 +575,24 @@ export const studioShot = (camA: CamArg, acts: Act[]): Scene3 => {
 // dress: 'party' for the night of the party. flash: a photo taken with the flash on, so every face is lit from the lens.
 // THE FAINTING COUCH (One Sip): a burgundy velvet chaise longue, the raised end at its left (low s), gold feet.
 // cx, cz: the middle of its seat; it runs along s. It appears from nowhere, so it is drawn only when a shot asks for it.
-export const chaise = (cs: number, cz: number): Soft => {
+export const chaise = (cs: number, cz: number, lift = 0): Soft => {
   const V0 = '#8a1f2e', V1 = '#6e1724', gold = '#c9a227', y = 0.36, half = 0.78;
-  const p = (s0: number, y0: number, z0: number): V => P3(cs + s0, y0, cz + z0);
+  const p = (s0: number, y0: number, z0: number): V => P3(cs + s0, y0 + lift, cz + z0);
   return { origin: p(0, y, 0), prims: [
     cp(p(-half, y, 0), 0.17, p(half, y, 0), 0.17, 1, V0, 0.05, { sq: 1.9, tex: 2 }), // the seat, a long fat cushion
     cp(p(-half - 0.02, y + 0.12, 0), 0.15, p(-half + 0.05, y + 0.42, 0.0), 0.16, 1, V0, 0.08, { tex: 2 }), // the raised end
     cp(p(-half + 0.05, y + 0.42, -0.14), 0.07, p(-half + 0.05, y + 0.42, 0.14), 0.07, 1, V1, 0.03, { tex: 2 }), // its scroll
     cp(p(-half + 0.1, y + 0.18, 0.16), 0.07, p(0.25, y + 0.1, 0.16), 0.06, 1, V1, 0.05, { tex: 2 }), // the low back along the far side
     ...[[-half + 0.08, -0.12], [-half + 0.08, 0.12], [half - 0.08, -0.12], [half - 0.08, 0.12]].map(([a0, b0]) => cp(p(a0, 0.02, b0), 0.03, p(a0, y - 0.12, b0), 0.024, 0, gold, 0.01)),
+  ] };
+};
+// a birthday cake nobody brought (Aux): two pink tiers, white icing drips, lit candles. cs, cz: where it stands; y: on what.
+export const cake = (cs: number, cz: number, y: number): Soft => {
+  const p = (s0: number, y0: number, z0: number): V => P3(cs + s0, y + y0, cz + z0);
+  return { origin: p(0, 0.1, 0), prims: [
+    cp(p(0, 0, 0), 0.17, p(0, 0.1, 0), 0.17, 0, '#f2a7c3', 0.01, { cutA: true, cutB: true }), cp(p(0, 0.1, 0), 0.172, p(0, 0.115, 0), 0.172, 0, '#fbf6ee', 0.01, { cutA: true, cutB: true }),
+    cp(p(0, 0.115, 0), 0.11, p(0, 0.2, 0), 0.11, 0, '#f2a7c3', 0.01, { cutA: true, cutB: true }), cp(p(0, 0.2, 0), 0.112, p(0, 0.212, 0), 0.112, 0, '#fbf6ee', 0.01, { cutA: true, cutB: true }),
+    ...[-0.05, 0, 0.05].flatMap((d, i) => [cp(p(d, 0.212, (i - 1) * 0.03), 0.008, p(d, 0.27, (i - 1) * 0.03), 0.008, 0, '#7ec4e8', 0.002), cp(p(d, 0.285, (i - 1) * 0.03), 0.012, p(d, 0.29, (i - 1) * 0.03), 0.008, 0, '#ffd27a', 0.002, { em: 1 })]),
   ] };
 };
 export const shot = (camA: CamArg, acts: Act[], time = 0, dress?: string, flash?: boolean, extras: Soft[] = []): Scene3 => {

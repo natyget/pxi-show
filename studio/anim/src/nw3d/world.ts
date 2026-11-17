@@ -10,13 +10,13 @@ import { Face, FACES, gaze } from './face';
 import { lips, Cues } from '../lips/mouths';
 import { perform, actFace, Accents, ActSpec } from './acting';
 import { Scene3, Cam3 } from './types';
-import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_H_CHAR, DARNELL_CHAR } from './characters';
+import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_H_CHAR, DARNELL_CHAR, MARCUS_CHAR, MUM_CHAR, SIS_CHAR } from './characters';
 import { STRANGERS } from './people';
 import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
-import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS, CORRIDOR_MARKS, CORRIDOR_INSERTS, PITCH_MARKS, PITCH_INSERTS, PITCH_SOLIDS, ROOF_MARKS, ROOF_SOLIDS, Keyed, keyed } from './campus';
-import { Act, shot, CAMS, ROOM, X, C, CamArg, chaise } from './room';
+import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS, CORRIDOR_MARKS, CORRIDOR_INSERTS, PITCH_MARKS, PITCH_INSERTS, PITCH_SOLIDS, ROOF_MARKS, ROOF_SOLIDS, QUAD_MARKS, QUAD_SOLIDS, DINE_MARKS, DINE_SOLIDS, Keyed, keyed } from './campus';
+import { Act, shot, CAMS, ROOM, X, C, CamArg, chaise, cake } from './room';
 
-export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, ...STRANGERS };
+export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, marcus: MARCUS_CHAR, mum: MUM_CHAR, sis: SIS_CHAR, ...STRANGERS };
 
 // A place a character can be. s and z as in room.ts. yaw: the way he faces there by default. seat: sit height.
 // on: stand on top of something this high (the desk, the bed). A place with `on` may be inside a piece of furniture.
@@ -91,7 +91,12 @@ SETS.partyLive = {
   ...SETS.party, flash: false,
   marks: { ...SETS.party.marks,
     samiL: { s: 1.7, z: 2.35, yaw: 90 }, nioR: { s: 2.4, z: 2.4, yaw: 270 },
-    chaise: { s: 1.95, z: 2.3, yaw: 270, on: 0.3 }, // lying on the fainting couch, his feet at this end (the couch runs on toward the door wall)
+    chaise: { s: 1.95, z: 2.3, yaw: 270, on: 0.3 },
+    // AUX: the guests across the rug, Nio by the desk with his phone; the same four up by the ceiling; a queue facing the door
+    g1: { s: 1.1, z: 2.7, yaw: 160 }, g2: { s: 1.7, z: 2.9, yaw: 175 }, g3: { s: 2.3, z: 2.85, yaw: 190 }, g4: { s: 2.9, z: 2.5, yaw: 210 },
+    nioD: { s: 2.75, z: 1.45, yaw: 20 },
+    f1: { s: 1.1, z: 2.7, yaw: 160, on: 0.95 }, f2: { s: 1.7, z: 2.9, yaw: 175, on: 1.05 }, f3: { s: 2.3, z: 2.85, yaw: 190, on: 0.9 }, f4: { s: 2.9, z: 2.5, yaw: 210, on: 1.0 },
+    q1: { s: 0.8, z: 1.6, yaw: 180 }, q2: { s: 1.0, z: 2.1, yaw: 180 }, q3: { s: 1.2, z: 2.6, yaw: 180 }, q4: { s: 1.4, z: 3.05, yaw: 180 },
   },
   cameras: { ...SETS.party.cameras,
     two: C([2.1, 1.25, 0.15], [2.03, 1.1, 2.4], 60), // the two of them, side on, from the door end
@@ -99,7 +104,11 @@ SETS.partyLive = {
     nio: C([1.45, 1.38, 0.8], [2.4, 1.28, 2.4], 40), // Nio, from Sami's side
     sami: C([2.65, 1.38, 0.8], [1.7, 1.28, 2.35], 40), // Sami, from Nio's side
     samiClose: C([2.5, 1.45, 1.1], [1.7, 1.4, 2.35], 40), // Sami's head and shoulders, for the pieces arriving
-    faint: C([1.6, 1.5, 0.55], [0.95, 0.6, 2.3], 60), // the couch, and whoever is on it
+    auxWide: C([3.45, 1.95, 0.2], [2.0, 1.1, 2.3], 80), // the whole room from the desk corner, up high
+    auxNio: C([0.3, 1.45, 2.0], [2.75, 1.38, 1.45], 40), // Nio by the desk, from across the room
+    auxUp: C([0.3, 1.2, 0.2], [1.9, 2.0, 2.7], 64), // up at the ceiling
+    queue: C([0.6, 1.95, 0.2], [1.05, 1.25, 2.2], 44), // the queue, from by the door, down the line of faces
+        faint: C([1.55, 1.45, 0.85], [0.95, 0.6, 2.3], 60), // the couch, and whoever is on it
   },
 };
 // THE CLUB (club.ts), first used in The Move: a packed floor round a circle the crowd clears for Nio, the DJ booth up
@@ -136,6 +145,9 @@ SETS.pitch = { room: CAMPUS_ROOMS.pitch.size, campus: 'pitch', cameras: CAMPUS_R
 
 // THE ROOF (Group Photo): a flat roof at sunset; the folding chair when a shot's campus.chair says so.
 SETS.roof = { room: CAMPUS_ROOMS.roof.size, campus: 'roof', cameras: CAMPUS_ROOMS.roof.cams, inserts: ['sunset'], marks: ROOF_MARKS, solids: ROOF_SOLIDS };
+// THE QUAD and MUM'S DINING ROOM (Wave Back).
+SETS.quad = { room: CAMPUS_ROOMS.quad.size, campus: 'quad', cameras: CAMPUS_ROOMS.quad.cams, marks: QUAD_MARKS, solids: QUAD_SOLIDS };
+SETS.dining = { room: CAMPUS_ROOMS.dining.size, campus: 'dining', cameras: CAMPUS_ROOMS.dining.cams, marks: DINE_MARKS, solids: DINE_SOLIDS };
 
 // What a body can do. Each is real human motion fitted to the character. speed: metres per second it must travel.
 export type Action = { rest?: [string, number]; // a held pose (acting.ts): the body is this clip frame, still, and the acting pass moves it
@@ -164,11 +176,12 @@ export const ACTIONS: Record<string, Action> = {
 //  asleep: sitting, the head dropped onto one shoulder (use the face "asleep").
 //  photo: the phone up at eye height, taking a picture. sweep: crouched, both hands circling flat on the floor (with the action crouch).
 //  Office Hours: spinner (sitting, a fidget spinner at the knees), capOff (the cap girl takes hers off), pen (sitting, writing),
+//  wave: a hand up by the head, open, waving side to side (hand: 0 his left, 1 his right; sitting or standing).
 //  slideFlyer (Prof H pushes the flyer across his desk), flyer (the flyer held up beside his face, toward whoever he faces),
 //  mop (the cleaner, walking), ticket (Darnell, sitting: the lab report on his knees, his ticket 4 on it under his left hand).
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff'] as const;
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave'] as const;
 // Costume pieces worn over the outfit (One Sip). A shot may change them at a frame: wear: [[0, []], [12, ['bowtie']]].
-export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns'];
+export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'partyhat', 'lanyard'];
 const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer', 'ticket'], TRAVEL_HOLDS = ['phone', 'cup', 'mop'];
 
 export type ActorSpec = {
@@ -267,7 +280,7 @@ export const validate = (spec: ShotSpec): string[] => {
   if (!cam) e.push(`There is no camera "${spec.camera}" in ${spec.set}. Cameras: ${names(set.cameras)}.`);
   if (!(spec.frames >= 1 && spec.frames <= 24 * 30)) e.push('frames must be between 1 and 720 (30 seconds).');
   if (!spec.actors || spec.actors.length > 5) e.push('A shot holds at most five characters.');
-  for (const p of spec.props ?? []) if (p !== 'chaise' || !SETS[spec.set]?.marks.chaise) e.push(`No prop "${p}" in ${spec.set}.`);
+  for (const p of spec.props ?? []) if (!['chaise', 'chaiseUp', 'cake'].includes(p) || !SETS[spec.set]?.marks.chaise) e.push(`No prop "${p}" in ${spec.set}.`);
   const spots: { who: string; s: number; z: number }[] = [];
   (spec.actors ?? []).forEach((a) => {
     const ch = CHARACTERS[a.who];
@@ -356,5 +369,5 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
   });
   const camP: CamArg = spec.phone ? [spec.phone, 0] : cam;
   if (set.campus) { const sc = campusShot(set.campus, camP, acts, { ...spec.campus, time: frame / 24 }); return sc; } // the screen picture (spec.screen) is set by the composition, which knows where public/ is
-  return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash, (spec.props ?? []).map((p) => { const m = set.marks.chaise; return chaise(m.s - 0.85, m.z); }));
+  return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash, (spec.props ?? []).map((p) => { const m = set.marks.chaise; return p === 'cake' ? cake(3.35, 1.3, 0.745) : chaise(m.s - 0.85, m.z, p === 'chaiseUp' ? 1.55 : 0); }));
 };

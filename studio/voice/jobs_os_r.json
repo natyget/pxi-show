@@ -1,0 +1,7 @@
+[
+{"who":"nio","role":"dnio","text":"It's in your head. One sip.","note":"Easy, warm, teasing, sure he is right, holding the cup out to his friend.","out":"raw_os_02.wav"},
+{"who":"theo","role":"dtheo","text":"This party's dead.","note":"Flat, bored, slumped, certain, like calling a match.","out":"raw_ax_07.wav"},
+{"who":"theo","role":"dtheo","text":"Best party of the year.","note":"Soaked, dazed, completely sincere, quietly amazed.","out":"raw_ax_08.wav"},
+{"who":"nio","role":"dnio","text":"I know.","note":"A beat, then cool and smug, totally unbothered, as if he planned it.","out":"raw_ax_09.wav"},
+{"who":"nio","role":"dnio","text":"Give me the aux.","note":"Confident, holding out his hand, the hero arriving to save the party. Say aux clearly, like 'ox'.","out":"raw_ax_01.wav","seed":11}
+]
