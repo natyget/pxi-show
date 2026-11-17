@@ -382,3 +382,9 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     i think its more about making the animation feel like real cartoon shows the only missing part. video generation models have no issue with things like this most of the tome. there must be something your missing that i think a skill will teach you so load it as me to load or find a public repo so the writer room animators and voice over all work well for perfect cartoon show delivery"
   - What this changed: `bible/acting.md` and the engine's acting pass (`studio/anim/src/nw3d/acting.ts`,
     `engine/tools/accents.py`). Seated and standing characters no longer run looping game clips.
+- **Nov 17, 8:19 AM (UTC), on the acting pass, word for word:**
+  - "the acting pass was amazing. i think we should make it law and keep improving it if possible
+    why was the whole class staring tho?"
+  - What this changed: the acting pass is a rule in `CLAUDE.md`, the build card and the QA checklist, and the engine
+    refuses a shot without it. The lecture hall crowd turns to stare only when Prof H calls Nio, and turns back
+    while Maya answers (background people look only while the scene gives them a reason).
