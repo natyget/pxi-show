@@ -16,6 +16,7 @@
 //  7. The attitude (lean, tilt, shoulders) comes from the face; the gesture (hands) from the face too, unless the board
 //     names one. Deadpan and dead-inside faces get no hands at all: stillness is the joke.
 //  8. A character holding something (a phone, a ticket, a pen) keeps his hands on it; he acts with the head and body.
+// 10. The face stays readable. A head never drops so far that the camera loses the eyes: the face does the sadness.
 // Everything moves on twos, like drawn animation.
 import { Face } from './face';
 import { Cues } from '../lips/mouths';
@@ -27,16 +28,16 @@ export type Attitude = { lean: number; nod: number; tilt: number; shoulders: num
 export const ATTITUDE: Record<string, Attitude> = {
   neutral:    { lean: 0.03, nod: 0, tilt: 0, shoulders: 0, g: 'offer' },
   deadpan:    { lean: 0, nod: 0.02, tilt: 0, shoulders: -0.005, g: 'rest' },
-  deadInside: { lean: 0.1, nod: 0.12, tilt: 0.05, shoulders: -0.02, g: 'rest' },
+  deadInside: { lean: 0.06, nod: 0.07, tilt: 0.05, shoulders: -0.02, g: 'rest' },
   smug:       { lean: -0.16, nod: -0.1, tilt: 0.1, shoulders: 0, g: 'dismiss' },
   hyped:      { lean: 0.16, nod: -0.06, tilt: 0, shoulders: 0.02, g: 'fists' },
   shock:      { lean: -0.2, nod: -0.08, tilt: 0, shoulders: 0.04, g: 'palms' },
   uneasy:     { lean: -0.06, nod: 0.06, tilt: -0.08, shoulders: 0.03, g: 'neck' },
-  crushed:    { lean: 0.22, nod: 0.24, tilt: 0.06, shoulders: -0.03, g: 'rest' },
+  crushed:    { lean: 0.1, nod: 0.1, tilt: 0.06, shoulders: -0.03, g: 'rest' },
   suspicious: { lean: 0.1, nod: 0.05, tilt: -0.12, shoulders: 0, g: 'chin' },
   laughing:   { lean: -0.18, nod: -0.16, tilt: 0.08, shoulders: 0.02, g: 'chest' },
   rage:       { lean: 0.2, nod: 0.06, tilt: 0, shoulders: 0.035, g: 'fists' },
-  sheepish:   { lean: 0.04, nod: 0.1, tilt: 0.1, shoulders: 0.025, g: 'neck' },
+  sheepish:   { lean: 0.04, nod: 0.06, tilt: 0.1, shoulders: 0.025, g: 'neck' },
   charm:      { lean: 0.06, nod: -0.03, tilt: 0.12, shoulders: 0, g: 'offer' },
   real:       { lean: 0.08, nod: 0.06, tilt: 0.04, shoulders: 0, g: 'chest' },
   asleep:     { lean: 0, nod: 0, tilt: 0, shoulders: 0, g: 'rest' },
