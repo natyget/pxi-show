@@ -115,7 +115,6 @@ const lenOf = (s: Shot) => Math.max(s.frames, ...(s.say ?? []).map((l) => l.at +
 // smash cut into the waiting room (20), and comes back on the pitch (38).
 const PLACE = (n: number) => n <= 10 ? 'hall' : n <= 19 ? 'corridor' : n <= 29 || n === 35 ? 'waiting' : n <= 37 ? 'office' : 'pitch';
 const BEDS: Record<string, [string, number][]> = { hall: [['oh_hall', 0.35]], corridor: [['oh_hum', 0.25]], waiting: [['oh_hum', 0.3]], office: [['oh_office', 0.3]], pitch: [['oh_pitch', 0.35]] };
-const MUSIC = (n: number) => n <= 19 || n >= 38;
 
 export type OHProps = { cut: 'short' | 'long'; only?: number[]; subs?: boolean };
 export const timeline = (p: OHProps) => {
@@ -163,8 +162,7 @@ export const OfficeHours: React.FC<OHProps> = (p) => {
       ))}
       {runs(shots, (s) => PLACE(s.n)).flatMap(([k, a, b]) => BEDS[k].map(([f, v]) => (
         <Sequence key={`${k}${a}${f}`} from={a} durationInFrames={b - a} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} /></Sequence>)))}
-      {runs(shots, (s) => (MUSIC(s.n) ? 'm' : '')).filter(([k]) => k).map(([, a, b]) => (
-        <Sequence key={`m${a}`} from={a} durationInFrames={b - a} layout="none"><Audio src={staticFile('sfx/oh_theme.wav')} volume={(f) => ((shots.find((s) => s.from <= a + f && a + f < s.from + s.frames)?.say?.length ?? 0) ? 0.1 : 0.2)} /></Sequence>))}
+      {/* no music (founder, Nov 17: "the background track songs need to go ... chat + sfx with no music is good") */}
       {shots.flatMap((s) => (s.sfx ?? []).map(([f, at, v], i) => (
         <Sequence key={`${s.n}fx${i}`} from={s.from + at} layout="none"><Audio src={staticFile(`sfx/oh_${f}.wav`)} volume={v ?? 1} /></Sequence>)))}
       {shots.flatMap((s) => (s.say ?? []).filter((l) => vo[l.key]).map((l) => {
