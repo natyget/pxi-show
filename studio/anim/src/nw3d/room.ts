@@ -137,6 +137,8 @@ export const PARTY_AMB: V = [0.56, 0.52, 0.58], PARTY_AMB_CHAR: V = [0.97, 0.92,
 export type Act = { who?: Character; clip: string; t: number; at: [number, number]; yaw: number; face: Face;
   stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; glow?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string;
   pose?: string; lift?: number;
+  hand?: number; // which hand a sip or sniff uses (0 his left, 1 his right): the one away from the camera keeps the face clear
+  wear?: string[]; // costume pieces on top of the outfit (WEAR in world.ts): bowtie, monocle, tophat, sideburns
   clipT?: number; // the clip frame the body is drawn from, when it differs from the shot's time (a held pose: see acting.ts)
   perf?: Perf; // the acting pass for this frame (acting.ts): lean, head, shoulders, the hands' gesture
   reachTo?: V; // a point in the world the hold's hand goes to (set by the set: Prof H's fingers on the flyer)
@@ -152,6 +154,11 @@ const leanFwd = (s: Skel, a: number): Skel => {
 };
 // The party cup: red, a little wider at the top, a cream rim and something dark in it. Its own surface, so it is inked
 // where the hand meets it.
+// the same cup along any axis (bottom to rim), for a cup at the lips
+const cupAx = (c: V, ax: V): Prim[] => [
+  { a: add(c, mul(ax, -0.055)), ra: 0.03, b: add(c, mul(ax, 0.05)), rb: 0.037, g: G.shoe, k: 0.004, c: '#b4473c', cutA: true, cutB: true, tex: 1 },
+  { a: add(c, mul(ax, 0.047)), ra: 0.0385, b: add(c, mul(ax, 0.057)), rb: 0.0385, g: G.shoe, k: 0.002, c: '#e6d9c0', cutA: true, cutB: true },
+];
 const cup = (c: V): Prim[] => [
   { a: add(c, [0, -0.055, 0]), ra: 0.03, b: add(c, [0, 0.05, 0]), rb: 0.037, g: G.shoe, k: 0.004, c: '#b4473c', cutA: true, cutB: true, tex: 1 },
   { a: add(c, [0, 0.047, 0]), ra: 0.0385, b: add(c, [0, 0.057, 0]), rb: 0.0385, g: G.shoe, k: 0.002, c: '#e6d9c0', cutA: true, cutB: true },
@@ -313,6 +320,15 @@ export const pose = (a: Act) => {
     s = reach(s, i, wr, add(out(i), [0, -1, 0]), P, norm(add(mul(fwd, 0.8), mul(out(i), -0.6))), norm(add(UP, mul(out(i), -0.5))));
     extra.push(...cup(c));
   }
+  if (nm === 'sip' || nm === 'sniff') {
+    // the party cup at the face in his left hand. sip: tipped up, the rim on his lips. sniff: nearly upright, under his nose.
+    const ang = nm === 'sip' ? 1.15 : 0.35, ax = norm(add(mul(s.headFw, -Math.sin(ang)), mul(s.headUp, Math.cos(ang))));
+    const lip = add(s.headC, add(mul(s.headFw, P.headR * 1.02), mul(s.headUp, nm === 'sip' ? -P.headR * 0.78 : -P.headR * 0.95)));
+    const c = sub(lip, mul(ax, 0.06));
+    const i = (a.hand ?? 1) as 0 | 1, wr = add(c, add(mul(out(i), 0.05), add(mul(ax, -0.045), [0, -0.03, 0])));
+    s = reach(s, i, wr, add(out(i), [0, -1.4, 0]), P, norm(add(mul(s.headFw, 0.3), mul(out(i), -0.9))), ax);
+    extra.push(...cupAx(c, ax));
+  }
   if (nm === 'spinner') {
     // a fidget spinner on the right fingertips in front of the belly, spinning: three lobes round a hub
     // high enough, and the head bowed only a little, that his face stays to the room: his eyes do the looking down
@@ -458,6 +474,37 @@ export const pose = (a: Act) => {
       const leaf = k % 3 === 2; prims.push({ a: c, ra: leaf ? 0.022 : 0.036, b: c, rb: leaf ? 0.022 : 0.036, g: G.shoe, k: 0.006, c: leaf ? '#5d8a4a' : ch.crown[k % ch.crown.length] });
     }
   }
+  for (const w0 of a.wear ?? []) {
+    // costume pieces (One Sip): each its own surface, so it is inked. at(): the head's own frame, as for the glasses.
+    const w = hk.width ?? 1, at = (x: number, y: number, z: number): V => add(s.headC, add(mul(s.headRt, x), add(mul(s.headUp, y), mul(s.headFw, z))));
+    const pr = (a0: V, ra: number, b0: V, rb: number, c: string, x: Partial<Prim> = {}) => prims.push({ a: a0, ra, b: b0, rb, g: G.shoe, k: 0.004, c, ...x });
+    if (w0 === 'tophat') {
+      // a tall black top hat with a burgundy band, sitting square on the crown, the brim curled a little at the sides
+      pr(at(0, 0.215, -0.01), 0.27 * w, at(0, 0.228, -0.01), 0.27 * w, '#1c1a20', { cutA: true, cutB: true });
+      pr(at(0, 0.225, -0.01), 0.165, at(0, 0.56, -0.01), 0.175, '#1c1a20', { cutA: true, cutB: true });
+      pr(at(0, 0.235, -0.01), 0.172, at(0, 0.3, -0.01), 0.172, '#7a1c2c', { cutA: true, cutB: true });
+    }
+    if (w0 === 'monocle') {
+      // a gold ring round his right eye, and a fine chain from it down to the collar
+      const R = 0.052, cx = -0.083, cy = -0.058, cz = 0.205, N = 12, t = 0.0045;
+      for (let k = 0; k < N; k++) { const a0 = (k / N) * 6.283, a1 = ((k + 1) / N) * 6.283;
+        pr(at(cx + Math.cos(a0) * R, cy + Math.sin(a0) * R, cz), t, at(cx + Math.cos(a1) * R, cy + Math.sin(a1) * R, cz), t, '#d4a72c'); }
+      const p0 = at(cx - R, cy, cz - 0.01), p1 = at(-0.215 * w, -0.12, 0.08), p2 = add(s.neckBase, add(mul(s.side, -0.08), mul(fwd, P.torsoR + 0.02)));
+      pr(p0, 0.0028, p1, 0.0028, '#d4a72c'); pr(p1, 0.0028, p2, 0.0028, '#d4a72c');
+    }
+    if (w0 === 'bowtie') {
+      // a burgundy bow tie at the collar: a knot and two wings
+      const k0 = add(s.neckBase, add(mul(fwd, P.torsoR * 0.72 + 0.03), [0, -0.005, 0])), sd = s.side;
+      pr(k0, 0.017, k0, 0.017, '#7a1c2c');
+      for (const d of [1, -1]) { const tip = add(k0, mul(sd, d * 0.075));
+        pr(add(k0, mul(sd, d * 0.012)), 0.012, add(tip, [0, 0.016, 0]), 0.024, '#7a1c2c', { sq: 1.6 });
+        pr(add(k0, mul(sd, d * 0.012)), 0.012, add(tip, [0, -0.016, 0]), 0.024, '#7a1c2c', { sq: 1.6 }); }
+    }
+    if (w0 === 'sideburns') {
+      // huge Victorian mutton chops: from each temple down the cheek to the jaw, the mouth left clear
+      for (const d of [1, -1]) prims.push({ a: at(d * 0.2 * w, -0.0, 0.03), ra: 0.04, b: at(d * 0.175 * w, -0.2, 0.1), rb: 0.07, g: G.hair, k: 0.03, c: ch.hairA, tex: 1 });
+    }
+  }
   if (ch.cap) {
     // a baseball cap: a dome cut flat at its base, sitting a little proud of the head, and a stiff curved brim (a fan
     // of thin rods, so it stays a plate whichever way the cap is turned). On the head, or wherever capOff has it.
@@ -511,11 +558,24 @@ export const studioShot = (camA: CamArg, acts: Act[]): Scene3 => {
     props: ps.flatMap((p) => p.props), shadows: ps.flatMap((p) => p.shadows) };
 };
 // dress: 'party' for the night of the party. flash: a photo taken with the flash on, so every face is lit from the lens.
-export const shot = (camA: CamArg, acts: Act[], time = 0, dress?: string, flash?: boolean): Scene3 => {
+// THE FAINTING COUCH (One Sip): a burgundy velvet chaise longue, the raised end at its left (low s), gold feet.
+// cx, cz: the middle of its seat; it runs along s. It appears from nowhere, so it is drawn only when a shot asks for it.
+export const chaise = (cs: number, cz: number): Soft => {
+  const V0 = '#8a1f2e', V1 = '#6e1724', gold = '#c9a227', y = 0.36, half = 0.78;
+  const p = (s0: number, y0: number, z0: number): V => P3(cs + s0, y0, cz + z0);
+  return { origin: p(0, y, 0), prims: [
+    cp(p(-half, y, 0), 0.17, p(half, y, 0), 0.17, 1, V0, 0.05, { sq: 1.9, tex: 2 }), // the seat, a long fat cushion
+    cp(p(-half - 0.02, y + 0.12, 0), 0.15, p(-half + 0.05, y + 0.42, 0.0), 0.16, 1, V0, 0.08, { tex: 2 }), // the raised end
+    cp(p(-half + 0.05, y + 0.42, -0.14), 0.07, p(-half + 0.05, y + 0.42, 0.14), 0.07, 1, V1, 0.03, { tex: 2 }), // its scroll
+    cp(p(-half + 0.1, y + 0.18, 0.16), 0.07, p(0.25, y + 0.1, 0.16), 0.06, 1, V1, 0.05, { tex: 2 }), // the low back along the far side
+    ...[[-half + 0.08, -0.12], [-half + 0.08, 0.12], [half - 0.08, -0.12], [half - 0.08, 0.12]].map(([a0, b0]) => cp(p(a0, 0.02, b0), 0.03, p(a0, y - 0.12, b0), 0.024, 0, gold, 0.01)),
+  ] };
+};
+export const shot = (camA: CamArg, acts: Act[], time = 0, dress?: string, flash?: boolean, extras: Soft[] = []): Scene3 => {
   const ps = lensActs(camA, acts).map(pose), party = dress === 'party', cam = camOf(camA, ps);
   const fl: Light[] = flash ? [{ p: cam.pos, r: 2.4, col: [0.42, 0.42, 0.44] }] : [];
   return { cam, room: ROOM, amb: party ? PARTY_AMB : AMB, ambChar: party ? PARTY_AMB_CHAR : AMB_CHAR, boxes: party ? PARTY_BOXES : ROOM_BOXES, time,
-    softs: [...ps.map((p) => p.soft), ...(party ? PARTY_SOFTS : ROOM_SOFTS)], lights: [...(party ? PARTY_LIGHTS : ROOM_LIGHTS), ...fl, ...ps.flatMap((p) => p.lights)],
+    softs: [...ps.map((p) => p.soft), ...(party ? PARTY_SOFTS : ROOM_SOFTS), ...extras], lights: [...(party ? PARTY_LIGHTS : ROOM_LIGHTS), ...fl, ...ps.flatMap((p) => p.lights)],
     props: ps.flatMap((p) => p.props), shadows: ps.flatMap((p) => p.shadows) };
 };
 

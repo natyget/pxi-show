@@ -1,5 +1,6 @@
 import React from 'react';
 import { Composition } from 'remotion';
+import { Skit, skitLength } from './ep/Skit';
 import { Sheet } from './Sheet';
 import { Demo, DEMO_LEN } from './Demo';
 import { VrmTest } from './VrmTest';
@@ -47,6 +48,8 @@ export const Root: React.FC = () => (
     <Composition id="NWClip2" component={NWClip2} durationInFrames={CLIP2_LEN} fps={24} width={270} height={480} />
     <Composition id="OfficeHours" component={OfficeHours} durationInFrames={1706} fps={24} width={1080} height={1920} defaultProps={{ cut: 'short' as const }}
       calculateMetadata={({ props }) => ({ durationInFrames: ohLength(props) })} />
+    <Composition id="Skit" component={Skit} durationInFrames={600} fps={24} width={1080} height={1920} defaultProps={{ skit: 'one-sip' }}
+      calculateMetadata={({ props }) => ({ durationInFrames: skitLength(props) })} />
     <Composition id="LipTest" component={LipTest} durationInFrames={60} fps={24} width={180} height={320} defaultProps={LIP_DEFAULT}
       calculateMetadata={({ props }) => ({ durationInFrames: lipLen(props) })} />
   </>

@@ -1,0 +1,58 @@
+[
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Sorry, do I know you?",
+"note": "Friendly but confused, polite, a stranger walked up to him.",
+"out": "raw_wb_01.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Marcus. Come on.",
+"note": "Warm, easy, totally sure, like greeting an old friend, a little hurt he even asked.",
+"out": "raw_wb_02.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "I think you mixed me up with someone.",
+"note": "Kind, gently offering a way out, a small awkward laugh in the voice.",
+"out": "raw_wb_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Is your mum still doing Sunday dinner?",
+"note": "Casual, confident, cheeky, as if he has been many times.",
+"out": "raw_wb_04.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "She is, yeah.",
+"note": "Slow, thrown, a pause before it, confused but honest.",
+"out": "raw_wb_05.wav"
+},
+{
+"who": "mum",
+"role": "dmum",
+"text": "So how did you two meet?",
+"note": "Delighted, warm, loud, beaming at both boys across the dinner table.",
+"out": "raw_wb_06.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "He waved at me.",
+"note": "Calm, sweet, completely straight-faced, like it is a lovely story.",
+"out": "raw_wb_07.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "I did not.",
+"note": "Quick, flat, under his breath, firm.",
+"out": "raw_wb_08.wav"
+}
+]

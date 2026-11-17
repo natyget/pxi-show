@@ -92,9 +92,34 @@ vec3 pitchWall(vec3 p, int w, float fp, out float em){
   if (max(f.x, f.y) > 0.5 - max(0.06, lw * 0.5)) return wire;
   em = 1.0; return v;
 }
+// THE ROOF (room 5, Group Photo): a flat roof at sunset. A low brick parapet all round; over it the city, the sun low
+// and huge, the sky going from gold at the skyline to violet up high. Painted by the direction you look, like the pitch.
+vec3 roofView(vec3 d){
+  float e = d.y / max(length(d.xz), 1e-3), a = atan(d.x, d.z);
+  float sa = a - 0.0; // the sun sits straight up the roof (+z)
+  float sd = length(vec2(sa, e - 0.13));
+  if (sd < 0.075) return vec3(1.0, 0.86, 0.5);
+  float bh = 0.02 + 0.09 * hash(vec2(floor(a * 9.0), 3.0)) + 0.05 * hash(vec2(floor(a * 23.0), 5.0)); // the skyline, blocky
+  if (e < bh){ vec3 c = vec3(0.3, 0.2, 0.3) * (0.92 + 0.08 * hash(floor(vec2(a * 9.0, 1.0))));
+    vec2 wq = fract(vec2(a * 140.0, e * 90.0)); if (wq.x > 0.35 && wq.x < 0.65 && wq.y > 0.4 && wq.y < 0.7 && hash(floor(vec2(a * 140.0, e * 90.0))) < 0.3) c = vec3(1.0, 0.8, 0.45);
+    return c; }
+  vec3 sky = mix(vec3(1.0, 0.62, 0.32), vec3(0.94, 0.42, 0.42), smoothstep(0.05, 0.3, e));
+  sky = mix(sky, vec3(0.42, 0.3, 0.55), smoothstep(0.3, 0.9, e));
+  return sky + vec3(0.35, 0.22, 0.05) * exp(-sd * 6.0);
+}
+vec3 roofWall(vec3 p, int w, float fp, out float em){
+  em = 0.0;
+  if (w == 2 || p.y > 1.05){ em = 2.0; return roofView(p - uCamP); }
+  if (p.y > 0.95) return vec3(0.62, 0.56, 0.5) * mott(p, 1.0); // the coping stones
+  float u = (w == 3 || w == 6) ? p.x : p.z, row = floor(p.y / 0.075); vec2 b = vec2(u / 0.22 + mod(row, 2.0) * 0.5, p.y / 0.075);
+  vec3 c = vec3(0.55, 0.3, 0.24) * (0.9 + 0.12 * hash(floor(b)));
+  vec2 f = fract(b); if (f.y < max(0.12, fp / 0.075 * 0.6) || f.x < max(0.04, fp / 0.22 * 0.6)) c = vec3(0.5, 0.45, 0.4);
+  return c;
+}
 vec3 campusFloor(vec3 p, float fp, vec2 px, out float em){
   em = 0.0; float k = uCampus.x; vec3 c;
   if (k < 0.5) return vec3(0.243, 0.275, 0.345) * mott(p * 1.4, 2.2); // the lecture hall: blue carpet
+  if (k > 4.5){ c = vec3(0.36, 0.34, 0.36) * mott(p * 3.0, 1.8) * (0.93 + 0.1 * hash(floor(p.xz / 0.05))); return c; } // the roof: grey felt and grit
   if (k > 3.5){ // the pitch: turf in mown stripes, white lines (the edge, halfway, the centre circle, a D at each end)
     vec2 q = vec2(uRoom0.x + uRoom.x - p.x, p.z - uRoom0.z), hf = uRoom.xz * 0.5; float lw = max(0.05, fp * 0.8);
     c = vec3(0.31, 0.52, 0.25) * (mod(floor(q.y / 1.6), 2.0) < 0.5 ? 1.0 : 0.9) * mott(p * 2.0, 1.6);
@@ -121,6 +146,7 @@ vec3 campusFloor(vec3 p, float fp, vec2 px, out float em){
 }
 vec3 campusWall(vec3 p, int w, float fp, vec2 px, out float em, out vec3 add){
   em = 0.0; add = vec3(0.0); float k = uCampus.x;
+  if (k > 4.5) return roofWall(p, w, fp, em);
   if (k > 3.5) return pitchWall(p, w, fp, em);
   if (w == 2){ // a dropped ceiling: square tiles, with the fluorescent panels set in it
     vec2 q = p.xz; vec2 tf = fract(q / 0.6) * 0.6; vec3 c = vec3(0.74, 0.74, 0.7) * mott(p, 0.5);
@@ -588,31 +614,77 @@ const pitchLights = (): Light[] => [
   ...[0.45, PITCH.w - 0.45].map((s) => ({ p: P3(s, 7.0, PITCH.d - 0.45), r: 8, col: [0.42, 0.43, 0.4] as V, halo: 0.35 })),
 ];
 
-export type CampusOpts = WaitOpts & HallOpts & OfficeOpts & CorridorOpts & { time?: number };
+// THE ROOF (Group Photo): a flat roof at sunset, the sun low and huge straight up the roof (+z). The stair hut at the
+// near left, an air-conditioning box at the near right, and one folding chair (roof.chair: where it stands, or left out).
+export const ROOF = { w: 8, h: 7, d: 11 };
+export type RoofOpts = { chair?: boolean };
+const roofBoxes = (o: RoofOpts = {}): Box[] => {
+  const bs: Box[] = [
+    B(0.9, 1.15, 1.2, 0.85, 1.15, 0.9, '#8a7a70', 100), B(0.9, 2.33, 1.2, 0.95, 0.04, 1.0, '#5a5050', 101), // the stair hut and its lid
+    B(1.76, 1.0, 1.0, 0.012, 1.0, 0.42, '#5a4038', 102), // its door
+    B(7.0, 0.45, 2.0, 0.55, 0.45, 0.4, '#b8bcb8', 103), B(7.0, 0.92, 2.0, 0.3, 0.03, 0.3, '#6a6e6c', 104), // the air-con box
+  ];
+  if (o.chair) { const cs = ROOF_CHAIR.s, cz = ROOF_CHAIR.z, m = '#3a3e44', seat = '#c84a3a';
+    bs.push(B(cs, 0.44, cz, 0.22, 0.02, 0.21, seat, 105));
+    [[-0.19, -0.18], [0.19, -0.18], [-0.19, 0.18], [0.19, 0.18]].forEach(([a, b], i) => bs.push(B(cs + a, 0.21, cz + b, 0.015, 0.21, 0.015, m, 106 + i)));
+    bs.push(B(cs, 0.72, cz - 0.2, 0.22, 0.2, 0.015, seat, 110)); } // the back toward the near end
+  return bs;
+};
+export const ROOF_CHAIR = { s: 4.0, z: 9.1 };
+const roofLights = (): Light[] => [
+  { p: P3(4.0, 6, 80), r: 120, col: [1.0, 0.62, 0.36] }, // the sun, low, straight up the roof (light 0: the shadows)
+  { p: P3(4.0, 6, -6), r: 30, col: [0.22, 0.2, 0.34] }, // the violet sky behind us
+];
+export const ROOF_CAMS: Record<string, Cam3> = {
+  wide: C([5.0, 1.75, 2.3], [3.9, 1.2, 6.6], 52), // from behind Nio: the three in a line, the sun behind them
+  theo: C([3.85, 1.48, 4.3], [3.3, 1.42, 6.5], 40),
+  three: C([4.0, 1.4, 10.1], [4.0, 1.25, 6.5], 60), // the reverse: from where Nio ends up, the three facing into the sun
+  maya: C([4.3, 1.45, 8.6], [4.75, 1.42, 6.5], 40),
+  sami: C([3.7, 1.45, 8.6], [4.0, 1.42, 6.6], 40),
+  theoUp: C([3.9, 2.05, 8.9], [3.3, 1.3, 6.5], 46), // Theo, looking up at the camera on the chair
+  sunset: C([4.0, 1.95, 9.3], [4.0, 1.75, 12.0], 62), // turned round on the chair: the sun going down over the city (an insert)
+  pov: C([4.0, 2.0, 8.95], [4.0, 1.15, 6.5], 72), // Nio's phone up on the chair: the line, and the sunset behind us
+  chair: C([3.0, 0.7, 7.2], [4.0, 1.7, 9.1], 50), // Nio up on the chair, from below, the violet sky behind him
+  nio: C([3.3, 1.45, 6.4], [4.0, 1.4, 9.1], 40), // Nio from where the three were
+  whole: C([4.0, 2.2, 0.6], [4.0, 1.0, 7.0], 70), // the whole roof from the stair hut end
+  phone: C([4.0, 1.3, 10.55], [4.0, 1.45, 8.8], 64), // up from Nio's phone at the four faces round it
+};
+export const ROOF_MARKS = {
+  nio: { s: 4.0, z: 4.0, yaw: 0 }, // taking the picture, facing up the roof at them
+  theo: { s: 3.3, z: 6.5, yaw: 180 }, sami: { s: 4.0, z: 6.6, yaw: 180 }, maya: { s: 4.75, z: 6.5, yaw: 180 }, // the line, facing Nio
+  nio2: { s: 4.0, z: 9.1, yaw: 180 }, // Theo's left side: the far end, his back to the sun
+  chair: { s: ROOF_CHAIR.s, z: ROOF_CHAIR.z, yaw: 180, on: 0.46 }, // up on the chair
+  theoOut: { s: 2.15, z: 6.4, yaw: 90 }, samiOut: { s: 5.85, z: 6.9, yaw: 270 }, mayaOut: { s: 5.85, z: 6.3, yaw: 270 }, // walked out of the picture
+  theoP: { s: 3.6, z: 8.7, yaw: 0 }, samiP: { s: 4.4, z: 8.7, yaw: 0 }, mayaP: { s: 4.0, z: 8.35, yaw: 0 }, // round Nio's phone
+};
+export const ROOF_SOLIDS = [{ name: 'the stair hut', s: [0, 1.8] as [number, number], z: [0.3, 2.1] as [number, number] }, { name: 'the air-con box', s: [6.4, 7.6] as [number, number], z: [1.6, 2.4] as [number, number] }];
+
+export type CampusOpts = WaitOpts & HallOpts & OfficeOpts & CorridorOpts & RoofOpts & { time?: number };
 export const CAMPUS_ROOMS = {
   waiting: { kind: 2, size: [WAIT.w, WAIT.h, WAIT.d] as V, cams: WAIT_CAMS },
   hall: { kind: 0, size: [HALL.w, HALL.h, HALL.d] as V, cams: HALL_CAMS },
   office: { kind: 3, size: [OFF.w, OFF.h, OFF.d] as V, cams: OFFICE_CAMS },
   corridor: { kind: 1, size: [COR.w, COR.h, COR.d] as V, cams: CORRIDOR_CAMS },
   pitch: { kind: 4, size: [PITCH.w, PITCH.h, PITCH.d] as V, cams: PITCH_CAMS },
+  roof: { kind: 5, size: [ROOF.w, ROOF.h, ROOF.d] as V, cams: ROOF_CAMS },
 };
 export type CampusRoom = keyof typeof CAMPUS_ROOMS;
 // A shot in a campus room. acts: the cast, placed by (s, z) as anywhere else.
 export const campusShot = (room: CampusRoom, camA: CamArg, acts: Act[], o: CampusOpts = {}): Scene3 => {
-  const R = CAMPUS_ROOMS[room], hall = room === 'hall', office = room === 'office', cor = room === 'corridor', pitch = room === 'pitch', f = (o.time ?? 0) * 24;
+  const R = CAMPUS_ROOMS[room], hall = room === 'hall', office = room === 'office', cor = room === 'corridor', pitch = room === 'pitch', roof = room === 'roof', f = (o.time ?? 0) * 24;
   // Prof H's hand goes wherever the flyer is this frame: its near edge, on his side
   const fp = office ? flyerAt(o, f) : undefined;
   const acts2 = acts.map((a) => (a.pose === 'slideFlyer' && fp ? { ...a, reachTo: add(fp, [0, 0, 0.13]) as V } : a));
   const ps = lensActs(camA, acts2).map((a) => pose(a)), cam = camOf(camA, ps);
-  const boxes = hall ? hallBoxes(o) : office ? officeBoxes(o, f) : cor ? corridorBoxes(o, f) : pitch ? pitchBoxes() : waitBoxes(o, f);
-  const lights = hall ? hallLights() : office ? officeLights(o, f) : cor ? corridorLights(o, f) : pitch ? pitchLights() : waitLights(o, f);
+  const boxes = roof ? roofBoxes(o) : hall ? hallBoxes(o) : office ? officeBoxes(o, f) : cor ? corridorBoxes(o, f) : pitch ? pitchBoxes() : waitBoxes(o, f);
+  const lights = roof ? roofLights() : hall ? hallLights() : office ? officeLights(o, f) : cor ? corridorLights(o, f) : pitch ? pitchLights() : waitLights(o, f);
   const look = ps.find((p, i) => acts[i].who?.id === 'nio')?.soft.head?.c ?? P3(seatS(0), 2.1, seatZ(4));
-  const door = hall || pitch ? 0 : keyed(o.door, f, cor ? 0.7 : 0), doorX = X(office ? OFF.door : cor ? COR.w / 2 : WAIT.door);
+  const door = hall || pitch || roof ? 0 : keyed(o.door, f, cor ? 0.7 : 0), doorX = X(office ? OFF.door : cor ? COR.w / 2 : WAIT.door);
   return {
     cam, room: R.size, room0: [X(R.size[0]), 0, 0], set: 3, time: o.time ?? 0,
-    outdoor: pitch || undefined, campus: [R.kind, door, doorX, office ? 1 : 0], campus2: [cor ? keyed(o.door2, f, 0.7) : 0, cor ? keyed(o.stairs, f, 0) : 0, COR.stairZ, 0],
-    amb: hall ? [0.3, 0.29, 0.31] : office ? [0.32, 0.29, 0.27] : cor ? [0.3, 0.32, 0.32] : pitch ? [0.4, 0.42, 0.48] : [0.3, 0.34, 0.31],
-    ambChar: hall ? [0.86, 0.84, 0.82] : office ? [0.88, 0.84, 0.8] : pitch ? [0.86, 0.86, 0.9] : [0.84, 0.88, 0.84],
+    outdoor: pitch || roof || undefined, campus: [R.kind, door, doorX, office ? 1 : 0], campus2: [cor ? keyed(o.door2, f, 0.7) : 0, cor ? keyed(o.stairs, f, 0) : 0, COR.stairZ, 0],
+    amb: roof ? [0.46, 0.36, 0.44] : hall ? [0.3, 0.29, 0.31] : office ? [0.32, 0.29, 0.27] : cor ? [0.3, 0.32, 0.32] : pitch ? [0.4, 0.42, 0.48] : [0.3, 0.34, 0.31],
+    ambChar: roof ? [0.96, 0.84, 0.86] : hall ? [0.86, 0.84, 0.82] : office ? [0.88, 0.84, 0.8] : pitch ? [0.86, 0.86, 0.9] : [0.84, 0.88, 0.84],
     crowd: hall ? hallCrowd(o, acts.map((a) => a.at as [number, number]), look, cam, f) : undefined,
     boxes, softs: [...ps.map((p) => p.soft), ...(hall ? hallSofts(o) : office ? officeSofts() : pitch ? pitchSofts() : [])], lights: [...lights, ...ps.flatMap((p) => p.lights)],
     props: [...ps.flatMap((p) => p.props), ...(hall ? hallProps(o, f) : [])], shadows: ps.flatMap((p) => p.shadows),

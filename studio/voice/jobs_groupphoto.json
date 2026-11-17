@@ -1,0 +1,58 @@
+[
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay, everybody in.",
+"note": "Upbeat, easy, holding up his phone, organising friends for a photo.",
+"out": "raw_gp_01.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Get my left side.",
+"note": "Confident, matter of fact, like a model giving a note.",
+"out": "raw_gp_02.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "I can't open my eyes. Take it without me.",
+"note": "Polite, squinting in pain, very dignified about it.",
+"out": "raw_gp_03.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Higher. So the sun's behind you.",
+"note": "Bright, helpful, sure she has solved it.",
+"out": "raw_gp_04.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Not from above. I'm out.",
+"note": "Offended, quick, walking away.",
+"out": "raw_gp_05.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "One person isn't a group photo.",
+"note": "Thoughtful, sincere, noticing she is alone.",
+"out": "raw_gp_06.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "That's just a photo.",
+"note": "Simple, sweet, final, stepping away.",
+"out": "raw_gp_07.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "I look really good in that.",
+"note": "Proud, delighted, staring at the phone.",
+"out": "raw_gp_08.wav"
+}
+]

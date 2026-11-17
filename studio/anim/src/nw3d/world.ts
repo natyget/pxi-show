@@ -13,8 +13,8 @@ import { Scene3, Cam3 } from './types';
 import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_H_CHAR, DARNELL_CHAR } from './characters';
 import { STRANGERS } from './people';
 import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
-import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS, CORRIDOR_MARKS, CORRIDOR_INSERTS, PITCH_MARKS, PITCH_INSERTS, PITCH_SOLIDS, Keyed, keyed } from './campus';
-import { Act, shot, CAMS, ROOM, X, C, CamArg } from './room';
+import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS, CORRIDOR_MARKS, CORRIDOR_INSERTS, PITCH_MARKS, PITCH_INSERTS, PITCH_SOLIDS, ROOF_MARKS, ROOF_SOLIDS, Keyed, keyed } from './campus';
+import { Act, shot, CAMS, ROOM, X, C, CamArg, chaise } from './room';
 
 export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, ...STRANGERS };
 
@@ -85,6 +85,23 @@ SETS.party = {
   },
 };
 
+// THE PARTY, LIVE (One Sip): the same party room, seen as it happens (no flash). Nio and Sami on the rug, by the
+// desk and its cups; the fainting couch (ShotSpec.props 'chaise') appears behind Sami, between him and the window.
+SETS.partyLive = {
+  ...SETS.party, flash: false,
+  marks: { ...SETS.party.marks,
+    samiL: { s: 1.7, z: 2.35, yaw: 90 }, nioR: { s: 2.4, z: 2.4, yaw: 270 },
+    chaise: { s: 1.95, z: 2.3, yaw: 270, on: 0.3 }, // lying on the fainting couch, his feet at this end (the couch runs on toward the door wall)
+  },
+  cameras: { ...SETS.party.cameras,
+    two: C([2.1, 1.25, 0.15], [2.03, 1.1, 2.4], 60), // the two of them, side on, from the door end
+    twoS: C([3.0, 1.3, 0.55], [2.0, 1.12, 2.4], 58), // the two of them, favouring Sami's face (Nio's shoulder in the foreground)
+    nio: C([1.45, 1.38, 0.8], [2.4, 1.28, 2.4], 40), // Nio, from Sami's side
+    sami: C([2.65, 1.38, 0.8], [1.7, 1.28, 2.35], 40), // Sami, from Nio's side
+    samiClose: C([2.5, 1.45, 1.1], [1.7, 1.4, 2.35], 40), // Sami's head and shoulders, for the pieces arriving
+    faint: C([1.6, 1.5, 0.55], [0.95, 0.6, 2.3], 60), // the couch, and whoever is on it
+  },
+};
 // THE CLUB (club.ts), first used in The Move: a packed floor round a circle the crowd clears for Nio, the DJ booth up
 // against the far wall, the bar on the right. Marks are where The Move's board puts people.
 SETS.club = {
@@ -117,9 +134,12 @@ SETS.corridor = { room: CAMPUS_ROOMS.corridor.size, campus: 'corridor', cameras:
 // THE PITCH: the five-a-side cage at 5:01 PM, the low sun, the floodlights on. Nio comes on through the gate in the left fence.
 SETS.pitch = { room: CAMPUS_ROOMS.pitch.size, campus: 'pitch', cameras: CAMPUS_ROOMS.pitch.cams, inserts: PITCH_INSERTS, marks: PITCH_MARKS, solids: PITCH_SOLIDS };
 
+// THE ROOF (Group Photo): a flat roof at sunset; the folding chair when a shot's campus.chair says so.
+SETS.roof = { room: CAMPUS_ROOMS.roof.size, campus: 'roof', cameras: CAMPUS_ROOMS.roof.cams, inserts: ['sunset'], marks: ROOF_MARKS, solids: ROOF_SOLIDS };
+
 // What a body can do. Each is real human motion fitted to the character. speed: metres per second it must travel.
 export type Action = { rest?: [string, number]; // a held pose (acting.ts): the body is this clip frame, still, and the acting pass moves it
-  clip: string; loop: boolean; stance: number; arms: number; upright: number; seat?: boolean; speed?: number; back?: boolean }; // back: travels backwards (the clip run in reverse, facing away from where he goes)
+  clip: string; loop: boolean; stance: number; arms: number; upright: number; seat?: boolean; speed?: number; back?: boolean; from?: number }; // from: start this far into the clip (a non-looping clip clamps at its end) // back: travels backwards (the clip run in reverse, facing away from where he goes)
 export const ACTIONS: Record<string, Action> = {
   stand: { rest: ['Idle_Loop', 0], clip: 'Idle_Loop', loop: true, stance: 0.5, arms: 0.35, upright: 0.85 },
   talk: { rest: ['Idle_Loop', 0], clip: 'Idle_Talking_Loop', loop: true, stance: 0.5, arms: 0.8, upright: 0.7 },
@@ -133,6 +153,8 @@ export const ACTIONS: Record<string, Action> = {
   crouch: { clip: 'Crouch_Idle_Loop', loop: true, stance: 1, arms: 1, upright: 0.55 },
   pickUp: { clip: 'PickUp_Table', loop: false, stance: 0.8, arms: 1, upright: 0 },
   touch: { clip: 'Interact', loop: false, stance: 0.8, arms: 1, upright: 0.3 },
+  faint: { clip: 'Death01', loop: false, stance: 1, arms: 1, upright: 0 }, // falls backward, out cold (One Sip)
+  lie: { clip: 'Death01', loop: false, stance: 1, arms: 1, upright: 0, from: 999 }, // already lying where he fell
 };
 // What the hands are doing, over whatever the action does with the body.
 //  phone: reading it in one hand. selfie: at arm's length, up and out, looking into it. show-phone: held out at
@@ -144,7 +166,9 @@ export const ACTIONS: Record<string, Action> = {
 //  Office Hours: spinner (sitting, a fidget spinner at the knees), capOff (the cap girl takes hers off), pen (sitting, writing),
 //  slideFlyer (Prof H pushes the flyer across his desk), flyer (the flyer held up beside his face, toward whoever he faces),
 //  mop (the cleaner, walking), ticket (Darnell, sitting: the lab report on his knees, his ticket 4 on it under his left hand).
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket'] as const;
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff'] as const;
+// Costume pieces worn over the outfit (One Sip). A shot may change them at a frame: wear: [[0, []], [12, ['bowtie']]].
+export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns'];
 const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer', 'ticket'], TRAVEL_HOLDS = ['phone', 'cup', 'mop'];
 
 export type ActorSpec = {
@@ -161,6 +185,8 @@ export type ActorSpec = {
   act?: ActSpec; // the acting pass (acting.ts), the LAW for every shot (founder, Nov 17). Left out: on for sit, sitTalk, stand and talk
   compare?: true; // only a before/after comparison may turn the acting pass off (act: false), never a shot that ships
   glow?: number; // with hold 'phone': how much the screen lights his face from below, 0 to 1 (left out, the usual faint spill)
+  wear?: string[] | [number, string[]][];
+  hand?: 0 | 1; // the hand for a sip or a sniff
   pale?: Keyed; // goes white (Theo, at the end): 0 his own skin, 1 drained white. A number, or [frame, value] keys that ease between
 };
 // Talking: the mouth follows the voice line, shape by shape (src/lips/mouths.ts), over the face he has.
@@ -173,13 +199,15 @@ const speaking = (f: Face, lines: [number, Cues][] | undefined, frame: number, s
 // (public/pxi-ui/screens/<name>.png). thumb: where his thumb is on the glass, [frame, [across, up, lift]] keys.
 export type ShotSpec = { set: string; camera: string; frames: number; actors: ActorSpec[]; club?: ClubSpec; campus?: CampusOpts;
   phone?: 'insert' | 'pov'; screen?: string; thumb?: [number, [number, number, number]][];
-  push?: number }; // a slow push in: the camera moves this many metres toward what it looks at over the shot
+  push?: number; // a slow push in: the camera moves this many metres toward what it looks at over the shot
+  props?: string[] }; // things a shot adds to the set: "chaise", the fainting couch (at the set's chaise mark)
 
 const names = (o: object) => Object.keys(o).join(', ');
 // a colour part of the way to another (#rrggbb)
 const mixHex = (a: string, b: string, k: number) => '#' + [1, 3, 5].map((i) => Math.round(parseInt(a.slice(i, i + 2), 16) * (1 - k) + parseInt(b.slice(i, i + 2), 16) * k).toString(16).padStart(2, '0')).join('');
 // drained of colour: the skin (and the hands, which are skin) toward a cold white. Clothes and hair stay.
 const paled = (ch: Character, k: number): Character => (k > 0.001 ? { ...ch, skin: mixHex(ch.skin, '#eef0ee', k) } : ch);
+const wearAt = (w: ActorSpec['wear'], frame: number): string[] => !w || !w.length ? [] : typeof w[0] === 'string' ? (w as string[]) : ([...(w as [number, string[]][])].reverse().find(([at]) => frame >= at)?.[1] ?? []);
 const faceAt = (f: ActorSpec['face'], frame: number): string => typeof f === 'string' ? f : [...f].reverse().find(([at]) => frame >= at)?.[1] ?? f[0][1];
 const yawTo = (from: Mark | { s: number; z: number }, s: number, z: number) => (Math.atan2(-(s - from.s), z - from.z) * 180) / Math.PI;
 
@@ -239,6 +267,7 @@ export const validate = (spec: ShotSpec): string[] => {
   if (!cam) e.push(`There is no camera "${spec.camera}" in ${spec.set}. Cameras: ${names(set.cameras)}.`);
   if (!(spec.frames >= 1 && spec.frames <= 24 * 30)) e.push('frames must be between 1 and 720 (30 seconds).');
   if (!spec.actors || spec.actors.length > 5) e.push('A shot holds at most five characters.');
+  for (const p of spec.props ?? []) if (p !== 'chaise' || !SETS[spec.set]?.marks.chaise) e.push(`No prop "${p}" in ${spec.set}.`);
   const spots: { who: string; s: number; z: number }[] = [];
   (spec.actors ?? []).forEach((a) => {
     const ch = CHARACTERS[a.who];
@@ -254,6 +283,7 @@ export const validate = (spec: ShotSpec): string[] => {
     if (a.speak && (a.acc?.length ?? 0) < a.speak.length) e.push(`${a.who}: a line has no accents. Run engine/tools/accents.py on the voice manifest (bible/acting.md).`);
     if (a.hold && !HOLDS.includes(a.hold)) e.push(`${a.who} cannot hold "${a.hold}". Holds: ${HOLDS.join(', ')}.`);
     if (a.hold === 'capOff' && !ch.cap) e.push(`${a.who} has no cap to take off.`);
+    for (const w of (a.wear ?? []).flatMap((x) => (typeof x === 'string' ? [x] : x[1]))) if (!WEAR.includes(w)) e.push(`${a.who} cannot wear "${w}". Wear: ${WEAR.join(', ')}.`);
     const m = set.marks[a.at], m2 = a.to ? set.marks[a.to] : undefined;
     if (!m) { e.push(`There is no place "${a.at}" in ${spec.set}. Places: ${names(set.marks)}.`); return; }
     if (a.to && !m2) e.push(`There is no place "${a.to}" in ${spec.set}. Places: ${names(set.marks)}.`);
@@ -279,14 +309,17 @@ export const validate = (spec: ShotSpec): string[] => {
       const why = (name: string, f: Framing) => ({ in: '', out: `is not in the picture`, cut: `would be cut by the edge of the picture`, steep: `would be seen from too steep an angle to read his face`, near: `is too close to the lens` }[f]
         + ` from camera "${spec.camera}". Cameras that see "${name}": ${seenBy(set, set.marks[name], ch) || 'none'}.`);
       const low = (mk: Mark): Mark => (a.action === 'crouch' && mk.seat === undefined ? { ...mk, seat: 0.0 } : mk); // crouched, the head is down at a sitter's height
-      const f1 = framing(cam, low(m), ch), f2 = m2 ? framing(cam, low(m2), ch) : undefined;
+      // lying (lie, or the end of faint): he went over backwards, so his head is about 1.45 m behind the mark, just above what he lies on
+      const lying = (mk: Mark): Mark => { const r = (mk.yaw * Math.PI) / 180; return { ...mk, s: mk.s + Math.sin(r) * 1.45, z: mk.z - Math.cos(r) * 1.45, on: undefined, seat: (mk.on ?? 0) - 0.5 }; };
+      const lowL = (mk: Mark): Mark => (a.action === 'lie' ? lying(mk) : low(mk));
+      const f1 = framing(cam, lowL(m), ch), f2 = m2 ? framing(cam, lowL(m2), ch) : undefined;
       if (!f2) { if (f1 !== 'in') e.push(`${a.who} at "${a.at}" ${why(a.at, f1)}`); }
       else { if (f1 !== 'in' && f1 !== 'out') e.push(`${a.who} at "${a.at}" ${why(a.at, f1)}`); if (f2 !== 'in' && f2 !== 'out') e.push(`${a.who} at "${a.to}" ${why(a.to!, f2)}`);
         if (f1 === 'out' && f2 === 'out') e.push(`${a.who} is never in the picture from camera "${spec.camera}" on the way from ${a.at} to ${a.to}.`); }
       // his face: the camera must see it, unless the shot says it means his back
       const yaw = m2 ? (act.back ? yawTo(m2, m.s, m.z) : yawTo(m, m2.s, m2.z)) : a.facing === 'camera' ? undefined : a.facing && set.marks[a.facing] ? yawTo(m, set.marks[a.facing].s, set.marks[a.facing].z) : m.yaw;
       const end = m2 && f2 !== 'out' ? m2 : m; // where we see him last: a run that ends past the lens is judged where he is still in the picture
-      const seen = yaw === undefined || facesCamera(cam, end, yaw);
+      const seen = yaw === undefined || a.action === 'lie' || facesCamera(cam, end, yaw); // lying, his face is to the ceiling
       if (!seen && !a.back) e.push(`${a.who} would have his back to camera "${spec.camera}" at "${a.to ?? a.at}". Pick a camera in front of him, face him another way, or say "back": true if the shot means it.`);
       if (seen && a.back) e.push(`${a.who}: "back": true, but camera "${spec.camera}" sees his face at "${a.to ?? a.at}".`);
     }
@@ -316,12 +349,12 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
     const perf = acting ? perform({ who: a.who, frames: spec.frames, frame, faces: typeof a.face === 'string' ? [[0, a.face]] : a.face,
       speak: a.speak, acc: a.acc, heard: a.heard, holding: !!a.hold, act: a.act }) : undefined;
     if (perf) face = actFace(face, perf);
-    return { perf, clipT: acting ? act.rest![1] : undefined, who: paled(ch, keyed(a.pale, frame, 0)), clip: acting ? act.rest![0] : act.clip, t: act.back ? clipLength(act.clip) * 20 - t : act.loop ? t : Math.min(t, clipLength(act.clip) - 1), at: [s, z], yaw, face, outfit: a.outfit,
+    return { perf, clipT: acting ? act.rest![1] : undefined, who: paled(ch, keyed(a.pale, frame, 0)), clip: acting ? act.rest![0] : act.clip, t: act.back ? clipLength(act.clip) * 20 - t : act.loop ? t : Math.min(t + (act.from ?? 0), clipLength(act.clip) - 1), at: [s, z], yaw, face, outfit: a.outfit,
       stance: act.stance, arms: act.arms, upright: act.upright, seat: act.seat ? m.seat : undefined,
       phone: a.hold === 'phone' ? 1 : 0, glow: a.glow, crossed: a.hold === 'arms-crossed', look: a.look === 'camera' ? cam.pos : undefined, lookAmt: 0.7,
-      pose: a.hold, lift: m.on, thumb: spec.thumb && a === spec.actors[0] ? [...spec.thumb].reverse().find(([at]) => frame >= at)?.[1] ?? spec.thumb[0][1] : undefined };
+      pose: a.hold, lift: m.on, wear: wearAt(a.wear, frame), hand: a.hand, thumb: spec.thumb && a === spec.actors[0] ? [...spec.thumb].reverse().find(([at]) => frame >= at)?.[1] ?? spec.thumb[0][1] : undefined };
   });
   const camP: CamArg = spec.phone ? [spec.phone, 0] : cam;
   if (set.campus) { const sc = campusShot(set.campus, camP, acts, { ...spec.campus, time: frame / 24 }); return sc; } // the screen picture (spec.screen) is set by the composition, which knows where public/ is
-  return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash);
+  return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash, (spec.props ?? []).map((p) => { const m = set.marks.chaise; return chaise(m.s - 0.85, m.z); }));
 };

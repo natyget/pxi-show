@@ -16,6 +16,15 @@ VOICES = {
   "theo": "A 21-year-old guy, clear mid pitch, quick and confident, a sports commentator's certainty in a quiet voice, slightly nasal, playful.",
   "darnell": 'A gentle man in his thirties, warm mid voice, dreamy and peaceful, speaks slowly and friendly, like a monk who likes video games.',
   "cleaner": 'A brisk woman in her fifties, bright clear voice, quick and casual, a little amused, has seen it all.',
+  # Designed Nov 17 for the launch skits, from bible/world.md; the founder judges them by ear in the finished skits.
+  "sami": ("A 21-year-old guy, mid pitch, soft, precise and very polite, a tidy careful voice that pronounces every word; "
+           "earnest and a little prim, means everything he says, always sounds slightly overdressed."),
+  "marcus": ("A 21-year-old Black British guy, deep easy voice, friendly and relaxed, a little slow to react, "
+             "warm and sincere; laughs easily."),
+  "imane": ("A 20-year-old young woman, low calm alto, dry and level, unimpressed and sensible, the sanest person in the room; "
+            "short answers, a tiny hint of amusement."),
+  "mum": ("A warm Black British mum in her fifties, rich full voice, loud and loving, delighted by everyone, "
+          "talks to grown men like they are still twelve."),
   # Original designs for the pilot "No Pics" (Nov 11), written from the script's character notes.
   "dev": ("A 21-year-old guy on a video call from another city, relaxed low-mid voice, dry and unimpressed, talks while "
           "chewing, unhurried; sounds like a real best friend on the phone at midnight, not a performer."),

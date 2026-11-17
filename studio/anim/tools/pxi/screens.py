@@ -450,7 +450,19 @@ def discover_map(event='Office Hours', when='ALWAYS', venue='Haverbrook Hall', p
     tabbar(s, 0)
     return s.im
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock}
+def roof_album(photo=os.path.join(ANIM, 'out', 'os', 'r3.png')):
+    """Group Photo: the Roof album's gallery after the shoot. The same gallery as gallery() (AlbumMasonryGrid.tsx): the
+    viewer's one shot, the sunset with nobody in it, and nothing else."""
+    s = Screen()
+    im = Image.open(photo).convert('RGB'); w0, h0 = im.size; c = min(w0, h0)
+    sq = im.crop(((w0 - c) // 2, int(h0 * 0.12), (w0 - c) // 2 + c, int(h0 * 0.12) + c)).resize((116, 116), Image.LANCZOS)
+    s.photo(sq, 2, 162, 118, 278, r=pt(14))
+    s.disc(9, 245, 26, G1C); s.avatar(pic('avatar', 22, 22), 11, 247, 22)
+    s.box(0, 0, W, 158, BLACK); header(s, 'Roof'); switch(s, 'GALLERY')
+    s.disc(292, 643, 51, PURPLE); s.icon('Add01Icon', 24, 317, 668, WHITE)
+    return s.im
+
+SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album}
 if __name__ == '__main__':
     name = sys.argv[1]
     for n in (SCREENS if name == 'all' else [name]):

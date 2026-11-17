@@ -1,0 +1,65 @@
+[
+{
+"who": "nio",
+"role": "dnio",
+"text": "Give me the aux.",
+"note": "Confident, holding out his hand, the hero arriving to save the party.",
+"out": "raw_ax_01.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "You're on.",
+"note": "Quick, handing it over, a little doubtful.",
+"out": "raw_ax_02.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay. Something to bring them down.",
+"note": "Under his breath, scrolling his phone, calm under pressure.",
+"out": "raw_ax_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Something calm. Something adult.",
+"note": "Muttering to himself, scrolling fast, getting nervous.",
+"out": "raw_ax_04.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Hello?",
+"note": "Answering a phone call, flat and normal.",
+"out": "raw_ax_05m.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Hello?",
+"note": "Answering a phone call, flat and normal.",
+"out": "raw_ax_05s.wav"
+},
+{
+"who": "imane",
+"role": "dimane",
+"text": "Hello?",
+"note": "Answering a phone call, flat and normal.",
+"out": "raw_ax_05i.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Hello?",
+"note": "Answering a phone call, flat and normal.",
+"out": "raw_ax_05t.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Hello?",
+"note": "Small, quiet, confused, a long beat before it.",
+"out": "raw_ax_06.wav"
+}
+]
