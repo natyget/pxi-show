@@ -180,7 +180,7 @@ const ShotView: React.FC<{ shot: Shot; acting?: boolean }> = ({ shot, acting }) 
   const spec: ShotSpec = { ...base, frames: shot.frames, actors: base.actors.map((a) => {
     const mine = (shot.say ?? []).filter((l) => l.who === a.who && lips[l.key]);
     const theirs = (shot.say ?? []).filter((l) => l.who !== a.who && acc[l.key]).map((l) => [l.at, acc[l.key]] as [number, Accents]);
-    const b = { ...a, act: p.acting === false ? (false as const) : a.act, heard: theirs };
+    const b = p.acting === false ? { ...a, act: false as const, compare: true as const, heard: theirs } : { ...a, heard: theirs };
     return mine.length ? { ...b, speak: mine.map((l) => [l.at, lips[l.key]] as [number, Cues]), acc: mine.filter((l) => acc[l.key]).map((l) => [l.at, acc[l.key]] as [number, Accents]) } : b;
   }) };
   const r = shot.res ?? 1;

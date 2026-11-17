@@ -42,6 +42,9 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
   and big about himself. Never a goof, never stupid, never an NPC reading a plan. He is good-looking.
 - **People talk to each other** (`bible/voice-and-dialogue.md`), and **faces act** (`bible/director.md`): an
   expression for every line, no idle bobbing, no shot where nothing happens.
+- **The acting pass is law** (`bible/acting.md`, founder, Nov 17): held poses, never looping clips; still legs when
+  seated; one pose change per line on its key word; blinks on thought changes; listeners hold and react. The engine
+  refuses a shot without it, and every voice manifest gets `engine/tools/accents.py` before a render. Keep improving it.
 - **PXI is Nio's app and is never forced** (`bible/story.md`, section 4). It is shown and never sold. Screens
   are the real app 1:1 in the show's pixels (`bible/pxi-product.md`). Every release carries a PXI call to
   action in its own slot: the tag, the caption or the end frame (`engine/formats.md`), and every caption says

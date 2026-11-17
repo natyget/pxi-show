@@ -68,6 +68,12 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 - [ ] Nobody states a plan to the camera. No narrator.
 - [ ] Anything strange on purpose (a Kevin, a glitch) is in the intent ledger and staged as the craft library says.
 
+## Added after the founder's Office Hours review (Nov 17): the acting pass is law (`bible/acting.md`)
+- [ ] Nothing below the belt moves on anyone seated. Standing feet stay planted unless he travels.
+- [ ] Each line has one pose change, on its key word; the other stresses are head dips only. No hand moves for no reason.
+- [ ] Blinks fall on changes of face and thought; no two characters blink on the same frame.
+- [ ] Background people look where the scene gives them a reason to look, and stop when the reason is over.
+
 ## Log of defects found (date · episode · defect → fix)
 - Nov 9 · pilot · 3D eyeballs poked through on head turns → flat 2D faces.
 - Nov 9 · pilot · seam line on the side of heads → hair/face cut from the welded head mesh.

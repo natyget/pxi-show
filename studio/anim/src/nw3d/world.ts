@@ -158,7 +158,8 @@ export type ActorSpec = {
   mouth?: number; // mouth size for this character (1 = Nio)
   acc?: [number, Accents][]; // the stressed beats of his lines (engine/tools/accents.py), same starts as speak
   heard?: [number, Accents][]; // the other people's lines in this shot, so he can listen
-  act?: ActSpec; // the acting pass (acting.ts). false: the old looping clip. Left out: on for sit, sitTalk, stand and talk
+  act?: ActSpec; // the acting pass (acting.ts), the LAW for every shot (founder, Nov 17). Left out: on for sit, sitTalk, stand and talk
+  compare?: true; // only a before/after comparison may turn the acting pass off (act: false), never a shot that ships
   glow?: number; // with hold 'phone': how much the screen lights his face from below, 0 to 1 (left out, the usual faint spill)
   pale?: Keyed; // goes white (Theo, at the end): 0 his own skin, 1 drained white. A number, or [frame, value] keys that ease between
 };
@@ -249,6 +250,8 @@ export const validate = (spec: ShotSpec): string[] => {
     if (a.glow !== undefined && (a.hold !== 'phone' || !(a.glow >= 0 && a.glow <= 1))) e.push(`${a.who}: glow is for hold "phone", from 0 to 1.`);
     if (a.pale !== undefined && (typeof a.pale === 'number' ? [a.pale] : a.pale.map((k) => k[1])).some((v) => !(v >= 0 && v <= 1))) e.push(`${a.who}: pale runs from 0 to 1.`);
     if (a.gaze && a.gaze.some((g) => !(g >= -1 && g <= 1))) e.push(`${a.who}: gaze runs from -1 to 1.`);
+    if (a.act === false && !a.compare) e.push(`${a.who}: the acting pass is law (bible/acting.md). act: false is only for a before/after comparison.`);
+    if (a.speak && (a.acc?.length ?? 0) < a.speak.length) e.push(`${a.who}: a line has no accents. Run engine/tools/accents.py on the voice manifest (bible/acting.md).`);
     if (a.hold && !HOLDS.includes(a.hold)) e.push(`${a.who} cannot hold "${a.hold}". Holds: ${HOLDS.join(', ')}.`);
     if (a.hold === 'capOff' && !ch.cap) e.push(`${a.who} has no cap to take off.`);
     const m = set.marks[a.at], m2 = a.to ? set.marks[a.to] : undefined;
