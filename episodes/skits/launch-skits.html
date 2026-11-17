@@ -1,0 +1,196 @@
+<title>Nio World Launch Skits</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Gaegu:wght@400;700&display=swap">
+<style>
+/* Layout: a sketchbook — each skit is a row of hand-drawn 3:4 panels with the line under it */
+:root{
+  --paper:#f7f5ef; --ink:#23252b; --soft:#6c6f78; --line:#d9d6cc; --card:#ffffff; --pop:#e07a2e;
+  --hand:'Patrick Hand','Comic Sans MS',cursive; --head:'Gaegu','Patrick Hand',cursive;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#1c1d21;--ink:#ecebe6;--soft:#a5a7ad;--line:#34363c;--card:#26282d;--pop:#f0954a;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#1c1d21;--ink:#ecebe6;--soft:#a5a7ad;--line:#34363c;--card:#26282d;--pop:#f0954a;color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--hand);font-size:18px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+main{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+header h1{font-family:var(--head);font-weight:700;font-size:2.4rem;margin:0;text-wrap:balance}
+header p{color:var(--soft);margin:.3rem 0 0;max-width:60ch}
+section h2{font-family:var(--head);font-weight:700;font-size:1.9rem;margin:0}
+.game{color:var(--soft);margin:.2rem 0 1rem}
+.game b{color:var(--pop);font-weight:400}
+.strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.panel{display:flex;flex-direction:column;gap:6px;min-width:0}
+.frame{position:relative;background:var(--card);border-radius:4px;aspect-ratio:3/4;max-width:100%;overflow:hidden}
+.frame canvas{width:100%;height:100%;display:block}
+.num{position:absolute;left:8px;top:6px;font-size:.85rem;color:var(--soft)}
+.cap{font-size:1rem;color:var(--soft);line-height:1.25}
+.lines{display:flex;flex-direction:column;gap:2px;line-height:1.25}
+.lines span b{font-weight:400;color:var(--pop)}
+.time{font-size:.85rem;color:var(--soft);margin-left:.4rem}
+</style>
+<main>
+<header>
+  <h1>Nio World: launch skits</h1>
+  <p>Four short sketches, one joke each, pushed further every beat, ending on a button. Look at the panels; the line under each is what's said.</p>
+</header>
+<div id="skits"></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.js"></script>
+<script>
+const C={
+ nio:{skin:'#d8a27c',hair:'#1d1612',top:'#e07a2e',pants:'#3a3d44',hairStyle:'chunky',name:'Nio'},
+ maya:{skin:'#8d5a3d',hair:'#1a120d',top:'#2f7d4f',pants:'#2b2b30',hairStyle:'puff',name:'Maya'},
+ theo:{skin:'#c99a72',hair:'#4a3020',top:'#3c6fb5',pants:'#44403a',hairStyle:'flat',name:'Theo'},
+ sami:{skin:'#e3b58f',hair:'#2a1f18',top:'#6b4fa0',pants:'#6b4fa0',hairStyle:'side',name:'Sami'},
+ marcus:{skin:'#6e4630',hair:'#111',top:'#2a9d8f',pants:'#333',hairStyle:'buzz',name:'Marcus'},
+ mum:{skin:'#6e4630',hair:'#222',top:'#c0504d',pants:'#c0504d',hairStyle:'bun',name:'Mum'},
+ girl:{skin:'#f0c8a0',hair:'#8a5a2b',top:'#e9c46a',pants:'#264653',hairStyle:'long',name:''},
+ guest:{skin:'#b07a52',hair:'#222',top:'#8d99ae',pants:'#2b2d42',hairStyle:'flat',name:''},
+ guest2:{skin:'#f1d0b0',hair:'#c9a14a',top:'#e76f51',pants:'#2b2d42',hairStyle:'long',name:''},
+ sis:{skin:'#6e4630',hair:'#111',top:'#9b5de5',pants:'#333',hairStyle:'puff',name:''},
+};
+function ink(){return getComputedStyle(document.documentElement).getPropertyValue('--ink').trim()||'#222'}
+function bgs(rc,ctx,kind,W,H){
+  const o={stroke:ink(),roughness:1.4,strokeWidth:1.3};
+  const g=H*0.82;
+  if(kind==='quad'){rc.line(0,g,W,g,o);rc.rectangle(W*0.72,g-90,10,90,{...o,fill:'#7a5a3a',fillStyle:'solid'});rc.circle(W*0.75,g-110,70,{...o,fill:'#7fb069',fillStyle:'hachure'});rc.line(W*0.1,g,W*0.35,H,o);rc.line(W*0.3,g,W*0.6,H,o)}
+  if(kind==='party'){for(let i=0;i<7;i++){rc.circle(20+i*45,26+(i%2)*8,10,{...o,fill:['#e63946','#f4a261','#2a9d8f','#e9c46a'][i%4],fillStyle:'solid'})}rc.curve([[0,20],[W/2,40],[W,20]],o);rc.line(0,g,W,g,o);rc.rectangle(W-55,g-70,40,70,{...o,fill:'#333',fillStyle:'cross-hatch'})}
+  if(kind==='roof'){rc.rectangle(-5,H*0.45,W+10,H*0.4,{...o,fill:'#f4a261',fillStyle:'hachure',hachureGap:9});rc.line(0,g,W,g,o);rc.circle(W*0.8,H*0.35,46,{...o,fill:'#ffb703',fillStyle:'solid'});rc.rectangle(10,H*0.5,30,H*0.32,{...o});rc.rectangle(50,H*0.58,26,H*0.24,{...o})}
+  if(kind==='rain'){for(let i=0;i<40;i++){const x=Math.random()*W,y=Math.random()*g;rc.line(x,y,x-4,y+14,{...o,stroke:'#4c8bf5',strokeWidth:1})}rc.line(0,g,W,g,o)}
+  if(kind==='dinner'){rc.line(0,g,W,g,o);rc.rectangle(W*0.12,g-60,W*0.76,14,{...o,fill:'#b5835a',fillStyle:'solid'});rc.ellipse(W*0.5,g-66,46,14,{...o,fill:'#fff',fillStyle:'solid'});rc.rectangle(W*0.05,40,60,46,{...o})}
+  if(kind==='kitchen'){rc.line(0,g,W,g,o);rc.rectangle(W-70,g-150,58,150,{...o,fill:'#dfe7ec',fillStyle:'solid'});rc.line(W-70,g-95,W-12,g-95,o);rc.rectangle(10,g-60,90,60,{...o,fill:'#c8a27a',fillStyle:'hachure'})}
+  if(kind==='blank'){rc.line(0,g,W,g,o)}
+}
+function face(rc,ctx,x,y,r,f,o){
+  const e={...o,fill:ink(),fillStyle:'solid'};
+  const ey=y-r*0.1, ex=r*0.35;
+  if(f==='shock'){rc.circle(x-ex,ey,r*0.32,{...o});rc.circle(x+ex,ey,r*0.32,{...o});rc.circle(x-ex,ey,4,e);rc.circle(x+ex,ey,4,e);rc.ellipse(x,y+r*0.45,r*0.3,r*0.38,o);return}
+  if(f==='flat'||f==='smug'){rc.line(x-ex-5,ey,x-ex+5,ey,o);rc.line(x+ex-5,ey,x+ex+5,ey,o)}else if(f==='cry'||f==='closed'){rc.arc(x-ex,ey,10,8,0,Math.PI,false,o);rc.arc(x+ex,ey,10,8,0,Math.PI,false,o)}else{rc.circle(x-ex,ey,5,e);rc.circle(x+ex,ey,5,e)}
+  const my=y+r*0.42;
+  if(f==='smile'||f==='closed')rc.arc(x,my-4,r*0.6,r*0.4,0.2,Math.PI-0.2,false,o);
+  else if(f==='grin'){rc.arc(x,my-6,r*0.75,r*0.6,0,Math.PI,true,{...o,fill:'#fff',fillStyle:'solid'})}
+  else if(f==='sad'||f==='cry'){rc.arc(x,my+6,r*0.5,r*0.35,Math.PI+0.3,2*Math.PI-0.3,false,o);if(f==='cry'){rc.line(x-ex,ey+5,x-ex-2,ey+18,{...o,stroke:'#4c8bf5'});rc.line(x+ex,ey+5,x+ex+2,ey+18,{...o,stroke:'#4c8bf5'})}}
+  else if(f==='smug')rc.curve([[x-r*0.3,my],[x,my+2],[x+r*0.35,my-6]],o);
+  else rc.line(x-r*0.25,my,x+r*0.25,my,o);
+}
+function hair(rc,x,y,r,h,s,o){
+  const f={...o,fill:h,fillStyle:'solid'};
+  if(s==='chunky'){for(let i=-3;i<=3;i++)rc.circle(x+i*r*0.28,y-r*0.78+Math.abs(i)*3,r*0.55,f)}
+  else if(s==='puff'){rc.circle(x,y-r*1.15,r*1.1,f)}
+  else if(s==='long'){rc.arc(x,y-r*0.1,r*2.2,r*2.4,Math.PI,2*Math.PI,true,f);rc.rectangle(x-r*1.1,y-r*0.1,r*0.35,r*1.4,f);rc.rectangle(x+r*0.75,y-r*0.1,r*0.35,r*1.4,f)}
+  else if(s==='bun'){rc.circle(x,y-r*1.25,r*0.7,f);rc.arc(x,y-r*0.2,r*2.05,r*1.7,Math.PI,2*Math.PI,true,f)}
+  else if(s==='buzz'){rc.arc(x,y-r*0.15,r*2.0,r*1.6,Math.PI,2*Math.PI,true,f)}
+  else {rc.arc(x,y-r*0.15,r*2.1,r*1.8,Math.PI,2*Math.PI,true,f)}
+}
+function fig(rc,ctx,W,H,p){
+  const c=C[p.who],s=p.s||1,o={stroke:ink(),roughness:1.2,strokeWidth:1.4};
+  const g=H*0.82,x=p.x*W,y=g-(p.lift||0)*H;const r=17*s,bodyH=62*s,legH=46*s;
+  const top=y-legH-bodyH;
+  // legs
+  rc.line(x-8*s,y-legH,x-10*s,y,{...o,stroke:c.pants,strokeWidth:5*s});rc.line(x+8*s,y-legH,x+10*s,y,{...o,stroke:c.pants,strokeWidth:5*s});
+  // body
+  rc.rectangle(x-19*s,top,38*s,bodyH,{...o,fill:c.top,fillStyle:'solid'});
+  // arms
+  const sh=top+10*s,L=x-19*s,R=x+19*s,A=p.arms||'down';
+  const arm=(x1,y1,x2,y2)=>{rc.line(x1,y1,x2,y2,{...o,stroke:c.top,strokeWidth:6*s});rc.circle(x2,y2,8*s,{...o,fill:c.skin,fillStyle:'solid'})};
+  if(A==='wave'){arm(L,sh,L-14*s,sh+38*s);arm(R,sh,R+22*s,sh-38*s)}
+  else if(A==='phone'){arm(L,sh,L-12*s,sh+40*s);arm(R,sh,R+10*s,sh-18*s);rc.rectangle(R+4*s,sh-42*s,14*s,24*s,{...o,fill:'#222',fillStyle:'solid'})}
+  else if(A==='up'){arm(L,sh,L-20*s,sh-40*s);arm(R,sh,R+20*s,sh-40*s)}
+  else if(A==='point'){arm(L,sh,L-12*s,sh+40*s);arm(R,sh,R+40*s,sh+2*s)}
+  else if(A==='cup'){arm(L,sh,L-12*s,sh+40*s);arm(R,sh,R+14*s,sh+18*s);rc.rectangle(R+8*s,sh+4*s,13*s,17*s,{...o,fill:'#e63946',fillStyle:'solid'})}
+  else if(A==='hold'){arm(L,sh,x-4*s,sh+22*s);arm(R,sh,x+4*s,sh+22*s)}
+  else {arm(L,sh,L-10*s,sh+42*s);arm(R,sh,R+10*s,sh+42*s)}
+  // head
+  const hy=top-r*0.9;
+  if(p.who==='nio'||c.hairStyle==='puff'||c.hairStyle==='bun'||c.hairStyle==='long'||true)hair(rc,x,hy,r,c.hair,c.hairStyle,o);
+  rc.circle(x,hy,r*2,{...o,fill:c.skin,fillStyle:'solid'});
+  face(rc,ctx,x,hy,r,p.face||'neutral',o);
+  // extras
+  (p.extra||[]).forEach(e=>{
+    if(e==='hat'){rc.rectangle(x-12*s,hy-r*2.3,24*s,22*s,{...o,fill:'#111',fillStyle:'solid'});rc.line(x-20*s,hy-r*1.2,x+20*s,hy-r*1.2,{...o,strokeWidth:3})}
+    if(e==='bow'){rc.polygon([[x-9*s,top+3],[x,top+8],[x-9*s,top+13]],{...o,fill:'#111',fillStyle:'solid'});rc.polygon([[x+9*s,top+3],[x,top+8],[x+9*s,top+13]],{...o,fill:'#111',fillStyle:'solid'})}
+    if(e==='mono'){rc.circle(x+r*0.35,hy-r*0.1,r*0.6,{...o,strokeWidth:2})}
+    if(e==='chops'){rc.rectangle(x-r*0.95,hy,r*0.35,r*0.7,{...o,fill:'#8a5a2b',fillStyle:'solid'});rc.rectangle(x+r*0.6,hy,r*0.35,r*0.7,{...o,fill:'#8a5a2b',fillStyle:'solid'})}
+    if(e==='partyhat'){rc.polygon([[x-10*s,hy-r*0.8],[x+10*s,hy-r*0.8],[x,hy-r*2.4]],{...o,fill:'#f4a261',fillStyle:'zigzag'})}
+    if(e==='flip'){}
+  });
+  if(c.name&&p.label!==false){ctx.font=`${13*s}px Patrick Hand, cursive`;ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--soft');ctx.textAlign='center';ctx.fillText(c.name,x,y+16)}
+}
+function props(rc,ctx,W,H,list){
+  const o={stroke:ink(),roughness:1.3,strokeWidth:1.3};const g=H*0.82;
+  (list||[]).forEach(p=>{
+    if(p.t==='flash'){for(let i=0;i<10;i++){const a=i/10*Math.PI*2;rc.line(p.x*W+Math.cos(a)*14,p.y*H+Math.sin(a)*14,p.x*W+Math.cos(a)*40,p.y*H+Math.sin(a)*40,{...o,stroke:'#ffb703',strokeWidth:2.5})}}
+    if(p.t==='chair'){rc.rectangle(p.x*W-22,g-36,44,8,{...o,fill:'#b5835a',fillStyle:'solid'});rc.line(p.x*W-20,g-28,p.x*W-20,g,o);rc.line(p.x*W+20,g-28,p.x*W+20,g,o)}
+    if(p.t==='phonebig'){rc.rectangle(W*0.18,H*0.08,W*0.64,H*0.8,{...o,fill:'#111',fillStyle:'solid'});rc.rectangle(W*0.22,H*0.13,W*0.56,H*0.62,{...o,fill:p.fill||'#f4a261',fillStyle:'solid'});ctx.font='bold 15px Patrick Hand';ctx.fillStyle='#fff';ctx.textAlign='center';(p.text||'').split(': ').forEach((ln,k)=>ctx.fillText(ln,W*0.5,H*0.8+k*16))}
+    if(p.t==='couch'){rc.rectangle(p.x*W-60,g-40,120,40,{...o,fill:'#bc6c25',fillStyle:'hachure'});rc.rectangle(p.x*W-60,g-62,120,22,{...o,fill:'#bc6c25',fillStyle:'solid'})}
+    if(p.t==='couchup'){rc.rectangle(p.x*W-60,20,120,40,{...o,fill:'#bc6c25',fillStyle:'hachure'})}
+    if(p.t==='cake'){rc.rectangle(p.x*W-24,g-90,48,30,{...o,fill:'#ffc8dd',fillStyle:'solid'});rc.line(p.x*W,g-90,p.x*W,g-104,{...o,stroke:'#e63946',strokeWidth:2})}
+    if(p.t==='frame'){rc.rectangle(p.x*W-26,p.y*H-32,52,64,{...o,strokeWidth:3});ctx.font='11px Patrick Hand';ctx.fillStyle=ink();ctx.textAlign='center';ctx.fillText(p.text||'',p.x*W,p.y*H+48)}
+    if(p.t==='fainter'){rc.rectangle(p.x*W-70,g-30,140,30,{...o,fill:'#9b2226',fillStyle:'solid'});rc.curve([[p.x*W-70,g-30],[p.x*W-78,g-70],[p.x*W-55,g-50]],{...o,strokeWidth:3})}
+    if(p.t==='door'){rc.rectangle(p.x*W-24,g-110,48,110,{...o,fill:'#8d6748',fillStyle:'hachure'})}
+    if(p.t==='notes'){for(let i=0;i<3;i++){ctx.font='22px serif';ctx.fillStyle=ink();ctx.fillText('♪',p.x*W+i*22,p.y*H-i*10)}}
+    if(p.t==='q'){ctx.font='bold 26px Gaegu';ctx.fillStyle='#e63946';ctx.textAlign='center';ctx.fillText(p.text||'?',p.x*W,p.y*H)}
+  });
+}
+const SKITS=[
+{title:'Wave Back',time:'about 30 s',game:'Nio waved at a guy who wasn\'t waving at him, and <b>he will not admit it, whatever it costs</b>.',panels:[
+ {bg:'quad',figs:[{who:'marcus',x:.78,arms:'wave',face:'grin',s:.8},{who:'nio',x:.3,arms:'wave',face:'grin'}],cap:'Across the quad, a guy waves big. Nio waves back, bigger.'},
+ {bg:'quad',figs:[{who:'nio',x:.32,arms:'wave',face:'shock'},{who:'girl',x:.12,arms:'wave',face:'smile',s:.85}],cap:'A girl behind Nio is waving back too. It was for her.'},
+ {bg:'quad',figs:[{who:'marcus',x:.72,face:'flat'},{who:'nio',x:.32,arms:'point',face:'grin'}],cap:'He walks over.',lines:[['Marcus','Do I... know you?'],['Nio','(reading his lanyard) Marcus! How\'s your mum?']]},
+ {bg:'quad',figs:[{who:'marcus',x:.72,face:'smile'},{who:'nio',x:.32,face:'smile'}],cap:'Next day, same spot.',lines:[['Marcus','My mum says hi back. She wants you at Sunday dinner.'],['Nio','Wouldn\'t miss it.']]},
+ {bg:'dinner',figs:[{who:'mum',x:.22,face:'grin',arms:'hold'},{who:'nio',x:.5,face:'grin',s:.9},{who:'sis',x:.78,face:'smile',s:.8}],cap:'Sunday. Nio is at the family table. Plates are full.',lines:[['Mum','Look at you. So tall now!'],['Nio','Thanks, Auntie.']]},
+ {bg:'blank',figs:[],props:[{t:'phonebig',fill:'#2a9d8f',text:'Marcus family album: Nio in every photo'}],cap:'The family\'s shared album fills up. Nio in every photo. Nio in the middle of the Christmas card.'},
+ {bg:'dinner',figs:[{who:'marcus',x:.72,face:'shock'},{who:'nio',x:.32,face:'flat',arms:'hold'}],cap:'Button.',lines:[['Marcus','(quietly) Bro. Who ARE you?'],['Nio','Pass the rice.']]},
+]},
+{title:'Group Photo',time:'about 30 s',game:'Everyone gives the photographer one more note, and <b>the notes keep removing people from the photo</b>.',panels:[
+ {bg:'roof',figs:[{who:'theo',x:.18,s:.75,face:'smile'},{who:'maya',x:.38,s:.75,face:'grin'},{who:'sami',x:.58,s:.75,face:'neutral'},{who:'nio',x:.85,arms:'phone',face:'smile'}],cap:'Rooftop at sunset. Nio lines everyone up.',lines:[['Nio','Okay, everybody in.']]},
+ {bg:'roof',figs:[{who:'theo',x:.3,face:'smug',arms:'point'},{who:'nio',x:.75,arms:'phone',face:'flat'}],cap:'',lines:[['Theo','Get my left side.']]},
+ {bg:'roof',figs:[{who:'maya',x:.3,face:'shock',arms:'up'},{who:'nio',x:.75,arms:'phone',face:'flat',lift:.11}],props:[{t:'chair',x:.75}],cap:'Nio climbs on a chair.',lines:[['Maya','Not from below. Never from below.']]},
+ {bg:'roof',figs:[{who:'sami',x:.25,face:'flat'},{who:'theo',x:.05,face:'sad',s:.8}],cap:'One by one, they step out of frame.',lines:[['Sami','I would prefer not to be in it, thank you.'],['Someone','Actually me neither, I look tired.']]},
+ {bg:'roof',figs:[],props:[{t:'flash',x:.5,y:.3}],cap:'The frame: an empty rooftop and a sunset. Flash.'},
+ {bg:'blank',figs:[],props:[{t:'phonebig',fill:'#f4a261',text:'roof album: 1 photo, 0 people'}],cap:'It lands in the album. It is a beautiful photo of nobody.'},
+ {bg:'roof',figs:[{who:'theo',x:.25,arms:'phone',face:'grin'},{who:'maya',x:.5,face:'grin',s:.9},{who:'nio',x:.8,face:'flat'}],cap:'Button. Everyone crowds the phone.',lines:[['Everyone','Send me that.'],['Theo','I look good in that.']]},
+]},
+{title:'Aux',time:'about 35 s',game:'At this party, <b>whatever is playing on the aux becomes real</b>, and Nio has the aux.',panels:[
+ {bg:'party',figs:[{who:'theo',x:.3,face:'grin',arms:'point'},{who:'nio',x:.68,arms:'phone',face:'smug'}],cap:'Someone else\'s living room. Theo hands over the cable.',lines:[['Theo','You\'re on aux.']]},
+ {bg:'rain',figs:[{who:'guest',x:.25,face:'cry',s:.8},{who:'guest2',x:.5,face:'sad',s:.8},{who:'nio',x:.8,arms:'phone',face:'shock'}],props:[{t:'notes',x:.6,y:.25}],cap:'He plays one slow piano song. It starts raining. Indoors. Everyone sits down on the wet floor.'},
+ {bg:'party',figs:[{who:'guest',x:.25,face:'grin',arms:'up',lift:.55,s:.75},{who:'guest2',x:.55,face:'grin',arms:'up',lift:.6,s:.75},{who:'nio',x:.82,arms:'phone',face:'shock'}],props:[{t:'couchup',x:.4}],cap:'Skip. A hype track. Everyone is on the ceiling. So is the couch.'},
+ {bg:'party',figs:[{who:'guest',x:.2,face:'smile',extra:['partyhat'],s:.8},{who:'guest2',x:.45,face:'smile',extra:['partyhat'],s:.8},{who:'nio',x:.8,arms:'phone',face:'flat'}],props:[{t:'cake',x:.62}],cap:'Skip. A kids\' birthday song. Party hats. A cake nobody brought.'},
+ {bg:'party',figs:[{who:'guest',x:.2,face:'flat',s:.8},{who:'guest2',x:.4,face:'flat',s:.8},{who:'theo',x:.6,face:'flat',s:.8},{who:'nio',x:.85,arms:'phone',face:'shock'}],props:[{t:'door',x:.4}],cap:'Skip. Lift music. Everyone stands in a silent line, facing a door, waiting for their floor.'},
+ {bg:'party',figs:[{who:'guest',x:.18,arms:'phone',face:'flat',s:.8},{who:'guest2',x:.4,arms:'phone',face:'flat',s:.8},{who:'theo',x:.62,arms:'phone',face:'flat',s:.8},{who:'nio',x:.86,arms:'phone',face:'shock'}],cap:'Button. Nio\'s phone rings. Every person in the room takes out their phone at the same time.',lines:[['Everyone','Hello?'],['Nio','...Hello?']]},
+]},
+{title:'One Sip',time:'about 25 s',game:'Every sip makes Sami <b>a hundred years more formal</b>.',panels:[
+ {bg:'kitchen',figs:[{who:'sami',x:.45,arms:'cup',face:'smile'},{who:'nio',x:.15,face:'smile',s:.85}],cap:'Party kitchen. Someone hands Sami a red cup.',lines:[['Sami','Cheers.']]},
+ {bg:'kitchen',figs:[{who:'sami',x:.45,arms:'cup',face:'smug',extra:['bow']}],cap:'Sip. A bow tie.',lines:[['Sami','I must say, this is a delightful gathering.']]},
+ {bg:'kitchen',figs:[{who:'sami',x:.45,arms:'cup',face:'smug',extra:['bow','mono','hat']}],cap:'Sip. Monocle. Top hat.',lines:[['Sami','Good sir. Fetch me a carriage.']]},
+ {bg:'kitchen',figs:[{who:'sami',x:.45,arms:'point',face:'shock',extra:['bow','mono','hat','chops']}],cap:'Sip. Sideburns.',lines:[['Sami','I shall duel the man who took my coat!']]},
+ {bg:'kitchen',figs:[{who:'nio',x:.3,arms:'cup',face:'flat'},{who:'sami',x:.7,face:'neutral',extra:['bow','mono','hat','chops']}],cap:'Nio takes the cup and sniffs it.',lines:[['Nio','Sami. This is apple juice.']]},
+ {bg:'kitchen',figs:[{who:'sami',x:.55,face:'closed',lift:.04,extra:['bow','mono','hat','chops']},{who:'maya',x:.2,face:'sad',arms:'wave',s:.85}],props:[{t:'fainter',x:.55}],cap:'Button. Sami faints elegantly onto a fainting couch that was not there before. Maya fans him.'},
+]},
+];
+function render(){
+  const root=document.getElementById('skits');root.innerHTML='';
+  SKITS.forEach(sk=>{
+    const sec=document.createElement('section');
+    sec.innerHTML=`<h2>${sk.title}<span class="time">${sk.time}</span></h2><p class="game">The game: ${sk.game}</p>`;
+    const strip=document.createElement('div');strip.className='strip';
+    sk.panels.forEach((p,i)=>{
+      const el=document.createElement('div');el.className='panel';
+      const fr=document.createElement('div');fr.className='frame';
+      const cv=document.createElement('canvas');const W=300,H=400;cv.width=W*2;cv.height=H*2;
+      fr.appendChild(cv);const n=document.createElement('span');n.className='num';n.textContent=i+1;fr.appendChild(n);
+      el.appendChild(fr);
+      if(p.cap){const c=document.createElement('div');c.className='cap';c.textContent=p.cap;el.appendChild(c)}
+      if(p.lines){const l=document.createElement('div');l.className='lines';l.innerHTML=p.lines.map(([w,t])=>`<span><b>${w}:</b> ${t}</span>`).join('');el.appendChild(l)}
+      strip.appendChild(el);
+      const ctx=cv.getContext('2d');ctx.scale(2,2);
+      if(window.rough){const rc=rough.canvas(cv);
+        // seed so each redraw looks the same
+        Math.random=(s=>()=>((s=Math.imul(48271,s)%2147483647)/2147483647))(i*97+sk.title.length);
+        bgs(rc,ctx,p.bg,W,H);props(rc,ctx,W,H,p.props);(p.figs||[]).forEach(f=>fig(rc,ctx,W,H,f));}
+    });
+    sec.appendChild(strip);root.appendChild(sec);
+  });
+}
+const realRandom=Math.random;
+render();
+try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{Math.random=realRandom;render()})}catch(e){}
+</script>

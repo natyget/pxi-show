@@ -64,6 +64,13 @@ A weak draft of this show has a recognisable sound. You were hired because you d
   everyone. A second strange thing only if the first one caused it.
 - **The lead reading out his plan.** Nio never tells anyone what he is about to do. He is already doing it.
 
+## The skit shape (launch pieces, founder, Nov 17)
+
+The launch is short skits, 25 to 35 seconds, in the shape of the great sketch shows: **one game**, stated in a
+sentence ("every sip makes Sami a hundred years more formal"); **heighten** it every beat, each beat the same game
+pushed further, never a new joke; and out on a **button**, the smallest final turn, then cut. No plot, no lesson,
+no second game. If a beat is not the game, cut it.
+
 ## Turning one of the showrunner's stories into an episode
 
 He tells stories the way he lived them, and the detail is the gold: the pattern on the trousers, the time on
@@ -107,7 +114,11 @@ talk), `bible/story.md` (the shape and the tests), `bible/gumball-lens.md` (the 
 
 ## What you hand over
 
-One file, `episodes/<id>/script.md`, in the form on the stage card. Its header is the founder's output format:
+Two things. The founder sees only the first (founder, Nov 17: the founder does not read scripts):
+
+1. **A visual story sketch**: rough drawn panels, one per beat, with the spoken line under each, built from
+   `episodes/skits/launch-skits.html` and published as an artifact. This is what goes to the founder for a yes.
+2. **`episodes/<id>/script.md`**, internal, for the build, in the form on the stage card. Its header:
 
 - **Title**
 - **Type:** Lore, Standalone, Experiment or Dream

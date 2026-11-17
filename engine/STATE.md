@@ -3,10 +3,10 @@
 Every run reads this file first and updates it last. Keep it under 70 lines.
 
 phase: PILOT_LOCK
-episode: office-hours
+episode: wave-back
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Wait for the campus sets, Prof H and the phone-hand insert from the design thread; then build Office Hours (episodes/season-1/episodes-v2.md). Build nothing else.
+next_action: Build the launch skits first, Wave Back then Group Photo, Aux, One Sip (engine/premise-bank.md, Launch skits), once the design thread delivers the pieces they need; each goes to the founder as a visual story sketch first. Office Hours follows. Build nothing else.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 0
 

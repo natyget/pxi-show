@@ -87,5 +87,10 @@ Then:
 veto; the short cut stands alone. One more round with fresh critics is allowed. If it fails again, write
 `BLOCKED` in `STATE.md` with the critics' three weakest lines quoted, and stop.
 
+**What the founder sees** (founder, Nov 17): the founder does not read scripts. A story goes to the founder as a
+quick visual story sketch: rough drawn panels with the line under each, made from the script as a `SKITS`-style
+page (template: `episodes/skits/launch-skits.html`; each panel has a background, figures with who, x, face and
+arms, a caption and the lines) and published as an artifact. `script.md` stays internal.
+
 **Leave behind:** `script.md` only. Cut jokes go in `episodes/<id>/candy-bag.md`. No drafts.
 **Next:** stage 2.
