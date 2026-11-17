@@ -6,7 +6,7 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Office Hours goes back to the writers' room (founder chose it on Nov 17 after two stranger FAILs; notes in episodes/office-hours/review/stranger-2.md). The character thread rewrites; then re-voice the changed lines, re-render and run a fresh stranger. Everything built so far (sets, clock, ball, name card, flyer, 26 voiced lines) is reusable.
+next_action: Office Hours is ON HOLD (founder, Nov 17): launch moves to short Key-and-Peele-style skits built with the acting pass. Do not voice, render or review Office Hours unless the founder asks. The last v5 cut is kept for the founder at project files office-hours/held/office-hours-v5.mp4 (not stranger-reviewed; fails the freeze check, 1.15 s pause at 34.5 s, class still stares). Open: the founder picks a voice medium (options A to F) for the skits.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 0 (reset: founder sent Office Hours back for a rewrite, Nov 17)
 
@@ -69,6 +69,7 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
+- 2026-11-17 · office-hours · v5 re-voiced and cut (held, not reviewed); founder put the episode on hold for launch skits; acting pass is law.
 - 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.
 - 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.
 - 2026-11-12 · engine · learn scores follows, reads Supermetrics; promotion ladder (95% watchers, paused until yes); Nio-style format menu; posting waits on an approved episode.
