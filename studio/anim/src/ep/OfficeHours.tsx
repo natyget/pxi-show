@@ -58,7 +58,7 @@ export const SHOTS: Shot[] = [
   sh(1, 30, 'S', H('low', [prof('charm')], { laptop: [[0, 1], [8, 0]], clock: T452 }), undefined, [['laptop', 6, 0.8]]),
   sh(2, 40, 'S', { ...H('profH', [{ ...prof('charm'), look: 'camera' }], { clock: T452 }), push: 0.3 }, [L('v5_01', 'profH', 4)]),
   sh(3, 36, 'S', { ...H('rows', [seat('nio', 'deadpan'), seat('maya', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]], ball: true, clock: T452 }), push: 0.5 }),
-  sh(4, 30, 'S', H('two', [seat('nio', 'uneasy'), { ...seat('maya', 'hyped', true), gaze: [0.7, 0] }], { ball: true, turn: 1, clock: T452 }), [L('v5_02', 'maya', 2)]),
+  sh(4, 30, 'S', H('two', [seat('nio', 'uneasy'), { ...seat('maya', 'charm', true), gaze: [0.3, 0], act: { g: [[0, 'fists']] } } as any], { ball: true, turn: 1, clock: T452 }), [L('v5_02', 'maya', 2)]),
   sh(5, 30, 'S', H('nio', [{ ...seat('nio', 'deadpan', true), gaze: [-0.6, 0] }], { ball: true, turn: 1, clock: T452 }), [L('v5_03', 'nio', 2)]),
   sh(6, 20, 'S', (f) => ({ ...H('clock', [], { clock: f < 10 ? T452 : T453, turn: 1 }), push: 0.25 }), undefined, [['click', 10, 0.35]]), // insert: the clock
   sh(7, 24, 'S', H('two', [{ ...seat('nio', 'deadpan'), gaze: [-0.5, 0] }, { ...seat('maya', 'laughing', true), gaze: [0.7, 0] }], { ball: true, turn: 1, clock: T453 }), [L('v5_04', 'maya', 2)]),
