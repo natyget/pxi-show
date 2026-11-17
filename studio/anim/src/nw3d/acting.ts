@@ -28,18 +28,18 @@ export type Attitude = { lean: number; nod: number; tilt: number; shoulders: num
 export const ATTITUDE: Record<string, Attitude> = {
   neutral:    { lean: 0.03, nod: 0, tilt: 0, shoulders: 0, g: 'offer' },
   deadpan:    { lean: 0, nod: 0.02, tilt: 0, shoulders: -0.005, g: 'rest' },
-  deadInside: { lean: 0.06, nod: 0.07, tilt: 0.05, shoulders: -0.02, g: 'rest' },
+  deadInside: { lean: 0.06, nod: 0.04, tilt: 0.05, shoulders: -0.02, g: 'rest' },
   smug:       { lean: -0.16, nod: -0.1, tilt: 0.1, shoulders: 0, g: 'dismiss' },
   hyped:      { lean: 0.16, nod: -0.06, tilt: 0, shoulders: 0.02, g: 'fists' },
   shock:      { lean: -0.2, nod: -0.08, tilt: 0, shoulders: 0.04, g: 'palms' },
-  uneasy:     { lean: -0.06, nod: 0.06, tilt: -0.08, shoulders: 0.03, g: 'neck' },
-  crushed:    { lean: 0.1, nod: 0.1, tilt: 0.06, shoulders: -0.03, g: 'rest' },
-  suspicious: { lean: 0.1, nod: 0.05, tilt: -0.12, shoulders: 0, g: 'chin' },
+  uneasy:     { lean: -0.06, nod: 0.02, tilt: -0.08, shoulders: 0.03, g: 'neck' },
+  crushed:    { lean: 0.1, nod: 0.05, tilt: 0.06, shoulders: -0.03, g: 'rest' },
+  suspicious: { lean: 0.1, nod: 0.02, tilt: -0.12, shoulders: 0, g: 'chin' },
   laughing:   { lean: -0.18, nod: -0.16, tilt: 0.08, shoulders: 0.02, g: 'chest' },
   rage:       { lean: 0.2, nod: 0.06, tilt: 0, shoulders: 0.035, g: 'fists' },
-  sheepish:   { lean: 0.04, nod: 0.06, tilt: 0.1, shoulders: 0.025, g: 'neck' },
+  sheepish:   { lean: 0.04, nod: 0.03, tilt: 0.1, shoulders: 0.025, g: 'neck' },
   charm:      { lean: 0.06, nod: -0.03, tilt: 0.12, shoulders: 0, g: 'offer' },
-  real:       { lean: 0.08, nod: 0.06, tilt: 0.04, shoulders: 0, g: 'chest' },
+  real:       { lean: 0.08, nod: 0.02, tilt: 0.04, shoulders: 0, g: 'chest' },
   asleep:     { lean: 0, nod: 0, tilt: 0, shoulders: 0, g: 'rest' },
 };
 const QUIET = new Set(['deadpan', 'deadInside', 'asleep']); // no brow lifts, no hands: stillness is the joke
@@ -116,7 +116,7 @@ export const perform = (p: ActInput): Perf => {
     const t = f - (start + af);
     if (start + af === start + (a.main ?? -999) || s < 0.5) return;
     const d = t >= -2 && t < 0 ? (t + 2) / 2 : t >= 0 && t < 6 ? 1 - t / 6 : 0; // 2 frames in, 6 frames out
-    nod += 0.07 * s * d * (quiet ? 0.5 : 1);
+    nod += 0.05 * s * d * (quiet ? 0.5 : 1); // small: the show's cameras sit a little above the eyes, so a big dip hides them under the hair
     if (!quiet) brow += 0.025 * s * d;
   }));
   // a listener acknowledges the other line's key word: a small nod, 4 frames after it
@@ -130,7 +130,7 @@ export const perform = (p: ActInput): Perf => {
   const blinks: number[] = [];
   p.faces.slice(1).forEach(([at]) => blinks.push(at - 1)); // the face changes under the blink
   if (!still) beats.filter((b) => b.at > 0 && b.spoken).forEach((b) => blinks.push(b.at - 6)); // the head starts to move
-  (p.heard ?? []).forEach(([start, a]) => { if (a.main !== null) blinks.push(start + a.main + 2); }); // the other line lands
+  (p.heard ?? []).forEach(([start, a]) => { if (a.main !== null) blinks.push(start + a.main + 2 + (hash(p.who) % 4) * 2); }); // the other line lands (each listener a different frame later, so nobody blinks together)
   const idle = 30 + (hash(p.who) % 24); // one blink in a long hold, at a frame of his own
   if (p.frames > idle + 12 && !blinks.some((b) => Math.abs(b - idle) < 24)) blinks.push(idle);
   let blink = 0;
