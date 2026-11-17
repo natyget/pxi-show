@@ -180,5 +180,180 @@
 "sub": "Game's at five.",
 "dur": 1.087,
 "text": "Game's at five."
+},
+"v5_01": {
+"file": "vo/v5_01.wav",
+"who": "profh",
+"sub": "Nio! Can you swing by my office hours after class? It won't take a minute.",
+"dur": 5.564,
+"text": "Nio! Can you swing by my office hours after class? It won't take a minute."
+},
+"v5_02": {
+"file": "vo/v5_02.wav",
+"who": "maya",
+"sub": "He picked you. I go every week. He has a candle.",
+"dur": 4.868,
+"text": "He picked you. I go every week. He has a candle."
+},
+"v5_03": {
+"file": "vo/v5_03.wav",
+"who": "nio",
+"sub": "Maya. The final's at five. If I'm not on that pitch, we forfeit.",
+"dur": 4.809,
+"text": "Maya. The final's at five. If I'm not on that pitch, we forfeit."
+},
+"v5_04": {
+"file": "vo/v5_04.wav",
+"who": "maya",
+"sub": "It's one minute!",
+"dur": 0.977,
+"text": "It's one minute!"
+},
+"v5_05": {
+"file": "vo/v5_05.wav",
+"who": "nio",
+"sub": "That's how they get you. It's one minute, then you're forty, and it's still office hours.",
+"dur": 5.806,
+"text": "That's how they get you. It's one minute, then you're forty, and it's still office hours."
+},
+"v5_06": {
+"file": "vo/v5_06.wav",
+"who": "maya",
+"sub": "That's not a real thing.",
+"dur": 1.396,
+"text": "That's not a real thing."
+},
+"v5_07": {
+"file": "vo/v5_07.wav",
+"who": "nio",
+"sub": "In a world... where one minute... is forever.",
+"dur": 3.728,
+"text": "In a world... where one minute... is forever."
+},
+"v5_08": {
+"file": "vo/v5_08.wav",
+"who": "nio",
+"sub": "Office Hours. Now showing. Always.",
+"dur": 3.866,
+"text": "Office Hours. Now showing. Always."
+},
+"v5_09": {
+"file": "vo/v5_09.wav",
+"who": "maya",
+"sub": "Did you just do a trailer?",
+"dur": 2.269,
+"text": "Did you just do a trailer?"
+},
+"v5_10": {
+"file": "vo/v5_10.wav",
+"who": "nio",
+"sub": "I'm going out the back.",
+"dur": 1.399,
+"text": "I'm going out the back."
+},
+"v5_11": {
+"file": "vo/v5_11.wav",
+"who": "maya",
+"sub": "I'll come!",
+"dur": 0.941,
+"text": "I'll come!"
+},
+"v5_12": {
+"file": "vo/v5_12.wav",
+"who": "maya",
+"sub": "Oh, I love this hallway.",
+"dur": 1.824,
+"text": "Oh, I love this hallway."
+},
+"v5_13": {
+"file": "vo/v5_13.wav",
+"who": "nio",
+"sub": "It's the trailer. We're in the trailer.",
+"dur": 2.139,
+"text": "It's the trailer. We're in the trailer."
+},
+"v5_14": {
+"file": "vo/v5_14.wav",
+"who": "maya",
+"sub": "You're being dramatic.",
+"dur": 1.26,
+"text": "You're being dramatic."
+},
+"v5_15": {
+"file": "vo/v5_15.wav",
+"who": "cleaner",
+"sub": "Nobody goes past it, baby.",
+"dur": 1.663,
+"text": "Nobody goes past it, baby."
+},
+"v5_16": {
+"file": "vo/v5_16.wav",
+"who": "maya",
+"sub": "Darnell! How's the thesis?",
+"dur": 2.491,
+"text": "Darnell! How's the thesis?"
+},
+"v5_17": {
+"file": "vo/v5_17.wav",
+"who": "darnell",
+"sub": "Hey, Maya. I'm next.",
+"dur": 3.268,
+"text": "Hey, Maya. I'm next."
+},
+"v5_18": {
+"file": "vo/v5_18.wav",
+"who": "nio",
+"sub": "How long have you been next?",
+"dur": 1.495,
+"text": "How long have you been next?"
+},
+"v5_19": {
+"file": "vo/v5_19.wav",
+"who": "darnell",
+"sub": "Since freshman year.",
+"dur": 1.184,
+"text": "Since freshman year."
+},
+"v5_20": {
+"file": "vo/v5_20.wav",
+"who": "maya",
+"sub": "See? It moves.",
+"dur": 1.934,
+"text": "See? It moves."
+},
+"v5_21": {
+"file": "vo/v5_21.wav",
+"who": "profh",
+"sub": "Nio! Come on in!",
+"dur": 1.678,
+"text": "Nio! Come on in!"
+},
+"v5_22": {
+"file": "vo/v5_22.wav",
+"who": "profh",
+"sub": "Would you come? Be honest.",
+"dur": 2.636,
+"text": "Would you come? Be honest."
+},
+"v5_23": {
+"file": "vo/v5_23.wav",
+"who": "nio",
+"sub": "...Yeah. I'll come.",
+"dur": 1.739,
+"text": "...Yeah. I'll come."
+},
+"v5_24": {
+"file": "vo/v5_24.wav",
+"who": "theo",
+"sub": "...You made it.",
+"dur": 0.847,
+"text": "...You made it."
+},
+"v5_25": {
+"file": "vo/v5_25.wav",
+"who": "nio",
+"sub": "Darnell's in goal.",
+"dur": 1.368,
+"text": "Darnell's in goal."
 }
 }

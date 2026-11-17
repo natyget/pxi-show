@@ -1,0 +1,38 @@
+{
+  "key": "v5_20",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "versions": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3",
+    "torch": "2.8.0+cpu"
+  },
+  "seed": 7,
+  "language": "English",
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "character": "maya",
+  "description_sha256": "6bc1190a144cb3a7e01f8bfaa7c5f7c12f69b1596be3a5a643252db5197d7c74",
+  "note": "Sincere and encouraging, completely missing the point.",
+  "line": "See? It moves.",
+  "text_sent": "See? It moves.",
+  "treatment": {
+    "pitch": 0,
+    "trim_silence": true,
+    "colour": "walkie",
+    "walkie": "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8",
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1,
+    "pa_room": "Prof H's lecture-hall mic lines add bass=g=9:f=110 and a hall echo (the whisper made to boom by the room)"
+  },
+  "dur": 1.934,
+  "wav_sha256": "42d7f434743b46d82e72ed41fae5f588095750383bb24dbe9f7b846469fcf406",
+  "made_by": "studio/voice/audition_oh.py + treat_oh.py"
+}
