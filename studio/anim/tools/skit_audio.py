@@ -109,6 +109,18 @@ def dinner(d=12):  # Sunday dinner: a warm quiet room, a clock, knives and forks
         place(x, (np.sin(2 * np.pi * f0 * t) + 0.5 * np.sin(2 * np.pi * f0 * 1.51 * t)) * np.exp(-t * 28) * R.uniform(0.02, 0.06), at)
     return fade(x, 0.2, 0.3)
 
+def gulp():  # one big audible swallow: a wet click, then a low falling 'glunk'
+    x = np.zeros(int(SR * 0.5)); t = t_(0.03); place(x, band(R.normal(0, 1, len(t)), 1500, 5000) * np.exp(-t * 200) * 0.4, 0.0)
+    t = t_(0.22); place(x, np.sin(2 * np.pi * np.cumsum(260 - 160 * t / 0.22) / SR) * np.sin(np.pi * t / 0.22) ** 2 * 0.7, 0.05)
+    return x
+def wheeze():  # a juice box squeezed empty: air and a little liquid rattling up a straw, rising
+    t = t_(0.7); f = 700 + 900 * t / 0.7
+    x = band(R.normal(0, 1, len(t)), 500, 3000) * (0.5 + 0.5 * np.sin(2 * np.pi * np.cumsum(28 + 10 * t) / SR)) * np.sin(np.pi * t / 0.7) * 0.5
+    return x + 0.15 * np.sin(2 * np.pi * np.cumsum(f) / SR) * np.sin(np.pi * t / 0.7)
+def plink():  # a monocle dropping into a cup: a bright ring and a small splash
+    t = t_(0.6); x = (np.sin(2 * np.pi * 2650 * t) + 0.4 * np.sin(2 * np.pi * 4100 * t)) * np.exp(-t * 9) * 0.5
+    return x + band(R.normal(0, 1, len(t)), 1500, 6000) * np.exp(-((t - 0.04) / 0.03) ** 2) * 0.25
+
 if __name__ == '__main__':
     if len(sys.argv) > 1: save(sys.argv[1] + '.wav', globals()[sys.argv[1][3:]](), 0.5); sys.exit()
     save('sk_chatter.wav', chatter(40), 0.5)

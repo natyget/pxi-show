@@ -332,6 +332,20 @@ export const pose = (a: Act) => {
     s = reach(s, i, wr, add(out(i), [0, -1.4, 0]), P, norm(add(mul(s.headFw, 0.3), mul(out(i), -0.9))), ax);
     extra.push(...cupAx(c, ax));
   }
+  if (nm === 'juicebox' || nm === 'sipbox') {
+    // a kid's juice box with a bendy straw. juicebox: held up at shoulder height in his right hand, the front turned
+    // to whoever he shows it to. sipbox: at his lips, the straw in his mouth.
+    const i = 1 as 0 | 1, sip = nm === 'sipbox';
+    const lip = add(s.headC, add(mul(s.headFw, P.headR * 1.02), mul(s.headUp, -P.headR * 0.8)));
+    const pc = sip ? add(lip, add(mul(s.headFw, 0.07), [0, -0.1, 0])) : A(1, 0.42, 0.02, -0.04);
+    const z = sip ? norm(mul(s.side, -1)) : norm(add(fwd, [0, 0.12, 0])), x0 = s.side, x = sip ? norm(mul(s.headFw, -1)) : norm(sub(x0, mul(z, dot(x0, z)))), y = cross(z, x);
+    const H: V = [0.05, 0.075, 0.03];
+    props.push({ c: pc, x, y, z, h: H, col: '#f08a2a' });
+    const top = add(pc, mul(y, H[1])), knee = add(top, mul(y, 0.05)), tipS = sip ? lip : add(knee, add(mul(x, -0.03), mul(y, 0.012)));
+    extra.push({ a: add(top, mul(y, -0.01)), ra: 0.0045, b: knee, rb: 0.0045, g: G.shoe, k: 0.002, c: '#f4f1ea' }, { a: knee, ra: 0.0045, b: tipS, rb: 0.0045, g: G.shoe, k: 0.002, c: '#e85a8a' });
+    extra.push({ a: add(pc, add(mul(z, H[2] + 0.003), mul(y, -0.02))), ra: 0.012, b: add(pc, add(mul(z, H[2] + 0.003), mul(y, 0.03))), rb: 0.012, g: G.shoe, k: 0.002, c: '#fbf6ee' }); // a white stripe down the front
+    s = reach(s, i, add(pc, add(mul(x, sip ? 0 : 0.03), mul(y, -0.03))), add(out(i), [0, -1, 0]), P, y, sip ? norm(mul(out(i), -1)) : x); hands[i] = 'open';
+  }
   if (nm === 'spinner') {
     // a fidget spinner on the right fingertips in front of the belly, spinning: three lobes round a hub
     // high enough, and the head bowed only a little, that his face stays to the room: his eyes do the looking down
@@ -514,6 +528,11 @@ export const pose = (a: Act) => {
       for (let k = 0; k < 4; k++) { const t0 = k / 4, t1 = (k + 1) / 4, p0 = add(base, mul(sub(tip, base), t0)), p1 = add(base, mul(sub(tip, base), t1));
         pr(p0, 0.11 * (1 - t0) + 0.006, p1, 0.11 * (1 - t1) + 0.006, cols[k], { cutA: true }); }
       pr(tip, 0.03, tip, 0.03, '#fbf6ee');
+    }
+    if (w0 === 'moustache') {
+      // a curled Victorian moustache under the nose: two thick wings out from the middle, each ending in a small curl up
+      for (const d of [1, -1]) { pr(at(0, -0.112, 0.196), 0.014, at(d * 0.08, -0.118, 0.172), 0.011, '#2a1c14');
+        pr(at(d * 0.08, -0.118, 0.172), 0.011, at(d * 0.11, -0.088, 0.15), 0.007, '#2a1c14'); }
     }
     if (w0 === 'sideburns') {
       // huge Victorian mutton chops: from each temple down the cheek to the jaw, the mouth left clear

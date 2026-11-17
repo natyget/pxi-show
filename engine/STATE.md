@@ -6,7 +6,7 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Launch skits in progress (episodes/launch-skits). One Sip is BLOCKED: it failed the stranger twice (Nov 17, v1 and v2; words in episodes/launch-skits/review/one-sip-2/stranger.md). The founder decides: watch it anyway, or send it back to the writers' room. Aux, Wave Back and Group Photo are rendering and get their own reviews. Office Hours stays ON HOLD (founder, Nov 17). The voice medium test is experiment E6 in engine/learning.md.
+next_action: Launch skits in progress (episodes/launch-skits). One Sip is BLOCKED: it failed the stranger twice (Nov 17, v1 and v2; words in episodes/launch-skits/review/one-sip-2/stranger.md). Founder chose "Both" (Nov 17, 23:41): the v2 cut was sent to watch as is, and the writers' room rewrites the sip beat and the ending. Aux, Wave Back and Group Photo are rendering and get their own reviews. Office Hours stays ON HOLD (founder, Nov 17). The voice medium test is experiment E6 in engine/learning.md.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 2 (stranger, One Sip v1 and v2, Nov 17): BLOCKED for One Sip only
 

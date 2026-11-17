@@ -29,7 +29,7 @@ import ACC_WB from '../lips/wb_accents.json';
 
 export type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
 // img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. flash: a camera flash at this frame.
-export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; flash?: number; poof?: [number, number, number][]; rain?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
+export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; flash?: number; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
 export type SkitDef = { id: string; shots: Shot[]; beds: [string, number][] };
 type VoLine = { file: string; who: string; sub: string; dur: number };
 const vo = { ...VO_OS, ...VO_GP, ...VO_AX, ...VO_WB } as unknown as Record<string, VoLine>;
@@ -56,6 +56,10 @@ const Rain: React.FC = () => { const f = Math.floor(useCurrentFrame() / 2) * 2;
   return <><AbsoluteFill style={{ background: '#3a5a8a', mixBlendMode: 'multiply', opacity: 0.35 }} />
     <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}>{Array.from({ length: 140 }, (_, k) => { const x = (k * 137.5) % 1080, y = ((k * 263 + f * 70) % 2100) - 100;
       return <line key={k} x1={x} y1={y} x2={x - 10} y2={y + 70} stroke="#bcd6ff" strokeWidth={6} opacity={0.7} />; })}</svg></>; };
+// a monocle falling: a gold ring that drops from (x0, y0) to (x1, y1) in 7 frames, turning edge-on as it goes, then gone
+const Drop: React.FC<{ d: [number, number, number, number, number] }> = ({ d: [at, x0, y0, x1, y1] }) => { const f = useCurrentFrame() - at; if (f < 0 || f > 7) return null;
+  const k = (f / 7) ** 2, x = x0 + (x1 - x0) * k, y = y0 + (y1 - y0) * k;
+  return <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}><ellipse cx={x} cy={y} rx={62} ry={62 * Math.max(0.15, Math.cos(f * 0.5))} fill="none" stroke="#2a2024" strokeWidth={18} /><ellipse cx={x} cy={y} rx={62} ry={62 * Math.max(0.15, Math.cos(f * 0.5))} fill="none" stroke="#d4a72c" strokeWidth={9} /></svg>; };
 const Flash: React.FC<{ at: number }> = ({ at }) => { const f = useCurrentFrame() - at; return f < 0 || f > 8 ? null : <AbsoluteFill style={{ background: '#fff', opacity: 1 - f / 8 }} />; };
 const ShotView: React.FC<{ shot: Shot }> = ({ shot }) => {
   const f = useCurrentFrame();
@@ -81,6 +85,7 @@ export const Skit: React.FC<SkitProps> = (p) => {
         <Sequence key={s.n} from={s.from} durationInFrames={s.frames}>
           <ShotView shot={s} />
           {s.flash !== undefined ? <Flash at={s.flash} /> : null}
+          {s.drop ? <Drop d={s.drop} /> : null}
           {s.rain ? <Rain /> : null}
           {(s.poof ?? []).map(([at, x, y], i) => <Poof key={i} at={at} x={x} y={y} />)}
           {(s.say ?? []).filter((l) => vo[l.key]).map((l) => (
