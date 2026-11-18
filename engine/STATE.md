@@ -47,7 +47,7 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 - Old engine queue (founder, Nov 18, decision card: "Pull the dropped formats only"): 12 posts in rejected formats
   (fortune cookie, punch card, wristbands, advent, forum thread, clicker and pie chart on LinkedIn) were moved back
-  to drafts in Metricool on Nov 18. The other 22 keep posting through Dec 8 until Nio posts replace them.
+  to drafts in Metricool on Nov 18. The other 24 keep posting until Nio posts replace them.
 - Scripts are checked by the table read (`engine/script-reviewer.md`) before anything is drawn (founder, Nov 18).
 - Founder, Nov 18: "we need to start posting this week ideally". The weekly mix is in `engine/formats.md`.
 
@@ -71,7 +71,9 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Queue (two weeks of releases, written by PLAN once the pilot is approved)
 
-- (empty)
+- Campaign 1, proposed Nov 18, waiting on the founder: Nov 20 to Dec 3, two feed posts a day (12:30 and 18:30
+  Chicago) plus stories; legacy retires after Sun Nov 22. Plan: `/mnt/project-files/production-plan/first-campaign.html`.
+  Nothing is scheduled until the founder approves each piece.
 
 ## Run log (newest first, keep five)
 

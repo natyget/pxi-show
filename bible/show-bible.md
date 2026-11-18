@@ -363,3 +363,9 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "we need to start posting this week ideally so we can push content"
   - What this changed: `engine/script-reviewer.md` (the table read) replaces the ten questions, the Nio checks,
     the ten Gumball checks, the script tests and the rubric; `bible/qa-checklist.md` is visual only.
+- **Nov 18, 9:32 PM, word for word (campaign):**
+  - "were actually getting better and better tho we just really need more and more refining and creativity i
+    think we can start planning campaigns and replacing the engine by short video gifs and posts then slowly
+    refine the engine as we go we can haul the legacy system"
+  - What this changed: campaign 1 (Nov 20 to Dec 3) proposed in `engine/STATE.md`, Queue; the legacy queue retires
+    after Sun Nov 22 once approved.
