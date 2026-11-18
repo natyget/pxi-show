@@ -48,7 +48,14 @@ def write(name, x, peak=0.8):
 write('sk_boo', layer([1, 2, 3, 4, 5], 0.25))
 write('sk_gasp', layer([6, 7, 8, 9, 10], 0.06))
 write('sk_groan', layer([11, 12, 13, 14], 0.15))
-write('sk_cheer', layer([15, 16, 17, 18], 0.12))
+# a cheer of four voices alone is heard as a crying baby (audio check, Nov 18): twelve voices, a wider pitch spread and
+# more room, over a bed of the party chatter, so it reads as a room of people
+ch = layer([15, 16, 17, 18] * 3, 0.35, 220)
+wl = sum(shift(load(int(i)), rng.uniform(-80, 80)) for i in [])  # (placeholder, none)
+bed = np.zeros(len(ch)); t0 = 0
+for i in [19, 21, 23, 25, 20]:
+    x = shift(load(i), rng.uniform(-60, 60)) * 0.35; o = int(rng.uniform(0, 0.4) * SR); n = min(len(x), len(bed) - o); bed[o:o + n] += x[:n]
+write('sk_cheer', room(ch + bed, 0.3, 0.5))
 # walla: the eight chatter lines, each a few times, scattered over 70 s, dull and far, never two of the same at once
 dur = 70; out = np.zeros(dur * SR); lp = butter(2, 2600, 'low', fs=SR, output='sos')
 t = 0.3

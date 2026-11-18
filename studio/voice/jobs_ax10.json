@@ -18,7 +18,8 @@
 "role": "dnio",
 "text": "Give me the aux.",
 "note": "Confident, holding out his hand, sure he can fix it. Talk like a real person, casual and quick, natural, no long pauses between words.",
-"out": "raw_ax10_03.wav"
+"out": "raw_ax10_03.wav",
+"seed": 11
 },
 {
 "who": "theo",
@@ -88,7 +89,8 @@
 "role": "dguest3",
 "text": "Tell me you're doing another one.",
 "note": "Leaving, excited, begging. Talk like a real person, casual and quick, natural, no long pauses between words.",
-"out": "raw_ax10_13.wav"
+"out": "raw_ax10_13.wav",
+"seed": 11
 },
 {
 "who": "guest1",
@@ -102,7 +104,8 @@
 "role": "dguest2",
 "text": "Theo. Theo. Next weekend?",
 "note": "Grabbing his arm, eager. Talk like a real person, casual and quick, natural, no long pauses between words.",
-"out": "raw_ax10_15.wav"
+"out": "raw_ax10_15.wav",
+"seed": 11
 },
 {
 "who": "nio",

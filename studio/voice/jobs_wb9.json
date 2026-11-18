@@ -1,191 +1,193 @@
 [
- {
-  "who": "marcus",
-  "role": "dmarcus",
-  "text": "Hold on, I know him.",
-  "note": "To his friends, pleased, a little unsure. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_01.wav"
- },
- {
-  "who": "marcus",
-  "role": "dmarcus",
-  "text": "Camp, right?",
-  "note": "Friendly, hopeful, guessing. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_02.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "Camp. Yeah.",
-  "note": "A half-second hesitation, then committing. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_03.wav"
- },
- {
-  "who": "marcus",
-  "role": "dmarcus",
-  "text": "Lakeview?",
-  "note": "Quick, excited. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_04.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "Lakeview.",
-  "note": "Matching him, confident. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_05.wav"
- },
- {
-  "who": "marcus",
-  "role": "dmarcus",
-  "text": "Cabin Four?",
-  "note": "More excited. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_06.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "Four. Course.",
-  "note": "Smooth, playing along. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_07.wav"
- },
- {
-  "who": "marcus",
-  "role": "dmarcus",
-  "text": "We're doing a reunion dinner Sunday. You have to come.",
-  "note": "Warm, insistent, happy. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_08.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "Yeah. Okay.",
-  "note": "Trapped, quiet, polite. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_09.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "Maya. What do people do at camp?",
-  "note": "Flat on his back on the phone, deflated, flat tone. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_10.wav"
- },
- {
-  "who": "maya",
-  "role": "dmaya",
-  "text": "What?",
-  "note": "Confused, on the phone. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_11.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "Like, what did you actually do there?",
-  "note": "Deflated, serious. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_12.wav"
- },
- {
-  "who": "maya",
-  "role": "dmaya",
-  "text": "Why?",
-  "note": "Suspicious. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_13.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "I'm going to a camp reunion on Sunday.",
-  "note": "Flat, depressed. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_14.wav"
- },
- {
-  "who": "maya",
-  "role": "dmaya",
-  "text": "You never went to camp.",
-  "note": "Plain, a little amused. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_15.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "I know, Maya.",
-  "note": "Staring at the ceiling, defeated, quiet. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_16.wav"
- },
- {
-  "who": "tobi",
-  "role": "dtobi",
-  "text": "After food, Lakeview lap on the mower. Like old times!",
-  "note": "Loud, grinning, announcing to the table. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_17.wav"
- },
- {
-  "who": "camp1",
-  "role": "dcamp1",
-  "text": "Wait, where are you in these?",
-  "note": "Curious, friendly, looking at the photos. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_18.wav"
- },
- {
-  "who": "marcus",
-  "role": "dmarcus",
-  "text": "Do the face thing, it finds you.",
-  "note": "Helpful, easy. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_19.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "I was more behind the camera, you know.",
-  "note": "Stalling, casual, too quick. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_20.wav"
- },
- {
-  "who": "marcus",
-  "role": "dmarcus",
-  "text": "My mum took all the photos.",
-  "note": "Innocent, a bit puzzled. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_21.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "Your mum's great.",
-  "note": "A beat, then a weak stall, quiet. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_22.wav"
- },
- {
-  "who": "camp2",
-  "role": "dcamp2",
-  "text": "Hold on. You were Four?",
-  "note": "Squinting, slow, suspicious. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_23.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "Four.",
-  "note": "Small, trying to hold it. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_24.wav"
- },
- {
-  "who": "camp2",
-  "role": "dcamp2",
-  "text": "I was in Four.",
-  "note": "Slow, flat, certain. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_25.wav"
- },
- {
-  "who": "nio",
-  "role": "dnio",
-  "text": "Can I use your bathroom?",
-  "note": "Too polite, quick, getting out. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_26.wav"
- },
- {
-  "who": "marcus",
-  "role": "dmarcus",
-  "text": "Nio! Come see the bunk wall. Cabin Four's whole year is up there.",
-  "note": "Calling through a door, cheerful, loud. Talk like a real person, casual and quick, natural, no long pauses between words.",
-  "out": "raw_wb9_27.wav"
- }
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Hold on, I know him.",
+"note": "To his friends, pleased, a little unsure. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_01.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Camp, right?",
+"note": "Friendly, hopeful, guessing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_02.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Camp. Yeah.",
+"note": "A half-second hesitation, then committing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_03.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Lakeview?",
+"note": "Quick, excited. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_04.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Lakeview.",
+"note": "Matching him, confident. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_05.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Cabin. Four?",
+"note": "Hopeful, asking, both words clear: Cabin. Four? More excited. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_06.wav",
+"seed": 21
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Four. Course.",
+"note": "Smooth, playing along. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_07.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "We're doing a reunion dinner Sunday. You have to come.",
+"note": "Warm, insistent, happy. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_08.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Yeah. Okay.",
+"note": "Trapped, quiet, polite. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_09.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Maya. What do people do at camp?",
+"note": "Flat on his back on the phone, deflated, flat tone. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_10.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "What?",
+"note": "Confused, on the phone. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_11.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Like, what did you actually do there?",
+"note": "Deflated, serious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_12.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Why?",
+"note": "Suspicious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_13.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm going to a camp reunion on Sunday.",
+"note": "Flat, depressed. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_14.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "You never went to camp.",
+"note": "Plain, a little amused. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_15.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I know, Maya.",
+"note": "Staring at the ceiling, defeated, quiet. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_16.wav"
+},
+{
+"who": "tobi",
+"role": "dtobi",
+"text": "After food, Lakeview lap on the mower. Like old times!",
+"note": "Loud, grinning, announcing to the table. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_17.wav"
+},
+{
+"who": "camp1",
+"role": "dcamp1",
+"text": "Wait, where are you in these?",
+"note": "Curious, friendly, looking at the photos. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_18.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Do the face thing, it finds you.",
+"note": "Helpful, easy. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_19.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I was more behind the camera, you know.",
+"note": "Stalling, casual, too quick. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_20.wav",
+"seed": 11
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "My mum took all the photos.",
+"note": "Innocent, a bit puzzled. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_21.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Your mum's great.",
+"note": "A beat, then a weak stall, quiet. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_22.wav"
+},
+{
+"who": "camp2",
+"role": "dcamp2",
+"text": "Hold on. You were Four?",
+"note": "Squinting, slow, suspicious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_23.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Four.",
+"note": "Small, trying to hold it. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_24.wav"
+},
+{
+"who": "camp2",
+"role": "dcamp2",
+"text": "I was in Four.",
+"note": "Slow, flat, certain. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_25.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Can I use your bathroom?",
+"note": "Too polite, quick, getting out. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_26.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Nio! Come see the bunk wall. Cabin Four's whole year is up there.",
+"note": "Calling through a door, cheerful, loud. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_wb9_27.wav"
+}
 ]

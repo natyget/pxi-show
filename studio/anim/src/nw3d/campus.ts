@@ -1119,10 +1119,10 @@ export const THEO_CAMS: Record<string, Cam3> = {
   records: C([2.6, 1.5, 3.2], [0.0, 1.3, 4.2], 56), // the record wall
   door: C([3.2, 1.55, 3.2], [1.63, 1.3, 6.0], 70), // the front door
   doorTheo: C([2.8, 1.5, 6.0], [2.3, 1.3, 7.2], 40), // Theo at the door
-  sign: C([5.4, 1.6, 2.9], [6.5, 1.3, 3.3], 46), // the fire-exit sign and whoever reads it
+  sign: C([4.9, 1.75, 2.3], [6.6, 1.55, 3.3], 50), // the fire-exit sign and whoever reads it
   under: C([4.0, 0.55, 3.6], [5.0, 0.4, 5.6], 60), // low: under the island
   up: C([4.2, 1.35, 1.3], [4.2, 1.3, 4.17], 62), // the ceiling party (with theo.flip: the camera turned over)
-  upTwo: C([2.6, 1.35, 3.6], [4.0, 1.3, 3.85], 62), // Theo and Nio up there
+  upTwo: C([1.8, 1.35, 2.8], [4.0, 1.3, 3.85], 44), // Theo and Nio up there
   upNio: C([3.1, 1.4, 3.3], [4.0, 1.3, 3.6], 46),
   panic: C([6.8, 2.3, 0.9], [2.85, 1.3, 5.34], 72), // the rain: the whole room from the near right
   lunge: C([2.9, 1.55, 2.7], [3.82, 1.3, 4.45], 54), // Theo coming at Nio
@@ -1143,7 +1143,11 @@ const theoCrowd = (o: TheoOpts, cast: [number, number][], cam: Cam3): CrowdSpec 
   const fl = Math.hypot(cam.at[0] - cam.pos[0], cam.at[2] - cam.pos[2]) || 1;
   const lens: [number, number, number] = [cam.pos[0] + ((cam.at[0] - cam.pos[0]) / fl) * 0.4, cam.pos[2] + ((cam.at[2] - cam.pos[2]) / fl) * 0.4, 0.7];
   const fixed: [number, number, number][] = [[X(5.0), 5.6, 1.1], [X(3.0), 1.1, 1.05], [X(3.0), 2.2, 0.55], [X(1.5), 7.5, 0.6], [X(5.4), 7.6, 0.5]]; // the island, the sofa, the table, the door, the counter
-  const holes = [fixed[0], ...cast.map(([s, z]) => [X(s), z, 0.45] as [number, number, number]), lens, ...fixed.slice(1)].slice(0, 8);
+  // a clear lane from the lens toward what it looks at, so nobody's back fills the picture
+  const dx = (cam.at[0] - cam.pos[0]) / fl, dz = (cam.at[2] - cam.pos[2]) / fl;
+  const lane: [number, number, number][] = [0.6, 1.5, 2.4].map((d) => [cam.pos[0] + dx * d, cam.pos[2] + dz * d, 0.35 + d * 0.18]);
+  void lens;
+  const holes = [fixed[0], ...lane, ...cast.map(([s, z]) => [X(s), z, 0.45] as [number, number, number]), ...fixed.slice(1)].slice(0, 8);
   const face = pt.face ?? [4.0, 4.2];
   return { x0: X(THEO.w - 0.35), z0: 0.6, cw: 0.62, cd: 0.62, nx: 10, nz: 11, seed: 21, fill: pt.fill ?? 0.32,
     dance: pt.dance ?? 0, crouch: pt.crouch ?? 0, armsUp: pt.armsUp ?? 0, headsUp: pt.headsUp ?? 0, clear: [0, -99, 0], spread: 0,
