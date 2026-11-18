@@ -37,19 +37,19 @@ const shots: Shot[] = [
   { n: 12, frames: 30, spec: Q('marcus', [marcus('marcus', 'real', { facing: 'nioM', hold: 'show-phone' })]), say: [L('wb8_07', 'marcus', 2)], sfx: GRASS },
   { n: 13, frames: 30, spec: Q('nioM', [nio('nioM', [[0, 'deadpan'], [14, 'real']], { facing: 'marcus' })]), say: [L('wb8_08', 'nio', 12)], sfx: GRASS },
   // his own phone buzzes: Marcus invited you to Sunday Dinner. He taps Join.
-  { n: 14, frames: 40, img: 'pxi-ui/screens/invite.png', zoom: [1.5, 12], sfx: [['sk_ding', 2, 0.7]] },
+  { n: 14, frames: 40, img: 'pxi-ui/screens/invite.png', zoom: [1.2, 12], sfx: [['sk_ding', 2, 0.7]] },
   { n: 15, frames: 34, img: 'pxi-ui/screens/dinner.png', sfx: [['oh_tap', 26, 0.9]] },
   { n: 16, frames: 30, shake: [2], img: 'pxi-ui/screens/dinner2.png', sfx: [['sk_ding', 2, 0.6]] },
   // 4. Sunday dinner. He's relaxed now: he's good at this.
   { n: 17, frames: 30, spec: D('wide', [sitD('mum', 'mum', 'hyped', { facing: 'nio' }), sitD('nio', 'nio', 'charm'), sitD('marcus', 'marcus', 'charm')], 0.3), say: [L('wb8_09', 'mum', 4)], sfx: ROOM },
-  { n: 18, frames: 30, spec: D('nio', [sitD('nio', 'nio', 'charm', { facing: 'mum', act: { g: [[6, 'offer']] } })]), say: [L('wb8_10', 'nio', 2)], sfx: ROOM },
+  { n: 18, frames: 30, spec: D('nio', [sitD('nio', 'nio', 'charm', { gaze: [0.5, 0.1], act: { g: [[6, 'offer']] } })]), say: [L('wb8_10', 'nio', 2)], sfx: ROOM },
   // Marcus, moved, hand on his chest
   { n: 19, frames: 36, spec: D('marcus', [sitD('marcus', 'marcus', 'real', { facing: 'nio', act: { g: [[4, 'chest']] } })]), sfx: ROOM },
   // 5. the girl in yellow walks in. She's his sister. She stops.
   { n: 20, frames: 30, spec: D('door', [sis('door', [[0, 'neutral'], [8, 'suspicious']], { facing: 'nio' })], 0.25), say: [L('wb8_11', 'sis', 8)], sfx: ROOM },
   // everyone looks at Nio
   { n: 21, frames: 26, spec: D('wide', [sitD('mum', 'mum', 'neutral', { facing: 'nio' }), sitD('nio', 'nio', 'shock'), sitD('marcus', 'marcus', 'neutral'), sis('door', 'suspicious', { facing: 'nio' })]), sfx: ROOM },
-  { n: 22, frames: 30, spec: D('nio', [sitD('nio', 'nio', [[0, 'shock'], [10, 'charm']], { facing: 'door' })]), say: [L('wb8_12', 'nio', 10)], sfx: ROOM },
+  { n: 22, frames: 30, spec: D('nio', [sitD('nio', 'nio', [[0, 'shock'], [10, 'charm']], { gaze: [0.5, 0.1] })]), say: [L('wb8_12', 'nio', 10)], sfx: ROOM },
   { n: 23, frames: 30, spec: D('mum', [sitD('mum', 'mum', 'laughing', { facing: 'nio' })]), say: [L('wb8_13', 'mum', 2)], sfx: ROOM },
   // 6. button: she sits down slowly, eyes on Nio the whole time. Only she knows.
   { n: 24, frames: 54, spec: D('end', [sitD('mum', 'mum', 'charm', { facing: 'marcus' }), sitD('nio', 'nio', 'deadpan'), sitD('marcus', 'marcus', 'charm', { back: true }), sitD('sis', 'sisSeat', 'suspicious', { facing: 'nio' })], 0.2), sfx: ROOM },

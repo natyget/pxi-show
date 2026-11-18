@@ -52,7 +52,7 @@ const shots: Shot[] = [
   // 5. sip four, the biggest: the lampshade for a crown, up on the coffee table. The room boos.
   sipShot(21, DUKE, KING, [HEAD], 3),
   { n: 22, frames: 40, shake: [2], spec: P('kingWide', [st('sami', 'king', 'hyped', { wear: KING, hold: 'arms-up' }), st('theo', 'booT', 'rage', { facing: 'king', back: true, hold: 'arm-up' }), st('imane', 'booI', 'rage', { facing: 'king', back: true })], 0.25), say: [L('os8_16', 'sami', 4)], sfx: [['sk_boo', 20, 0.7]] },
-  { n: 23, frames: 26, spec: P('mayaK', [st('maya', 'booM', 'rage', { facing: 'king', act: { g: [[4, 'point']] } })], 0.06), say: [L('os8_17', 'maya', 2)] },
+  { n: 23, frames: 26, spec: P('mayaK', [st('maya', 'booM', 'rage', { facing: 'nioR', gaze: [-0.4, 0.2], act: { g: [[4, 'point']] } })], 0.06), say: [L('os8_17', 'maya', 2)] },
   // 6. Nio has had enough. He picks up the juice box, the same one, and just holds it up.
   { n: 24, frames: 34, spec: P('nioRev', [st('nio', 'nioK', [[0, 'deadpan'], [8, 'disgust']], { facing: 'king', hold: 'juicebox' })], 0.1), say: [L('os8_18', 'nio', 12)] },
   // Sami looks at it. The lampshade slides off.
