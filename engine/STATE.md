@@ -6,7 +6,7 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Launch skits in progress (episodes/launch-skits). One Sip is BLOCKED: it failed the stranger twice (Nov 17, v1 and v2; words in episodes/launch-skits/review/one-sip-2/stranger.md). Founder chose "Both" (Nov 17, 23:41): the v2 cut was sent to watch as is, and the writers' room rewrites the sip beat and the ending. Aux, Wave Back and Group Photo are rendering and get their own reviews. Office Hours stays ON HOLD (founder, Nov 17). The voice medium test is experiment E6 in engine/learning.md.
+next_action: Launch skits (episodes/launch-skits) are on hold for the writers' v7 sketch (Nov 18: every line loosened, PXI in each plot; One Sip ends on a PXI face-match screen, Aux ends on Theo scrolling the night's album). Render nothing until the founder OKs the sketch. Built and ready: the quad, Mum's dining room, Nio's living room (same look as his room), the shake and hit on big beats, slow pushes, the juice box, wave and moustache pieces. Office Hours stays ON HOLD. The voice medium test is experiment E6 in engine/learning.md.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: 2 (stranger, One Sip v1 and v2, Nov 17): BLOCKED for One Sip only
 
