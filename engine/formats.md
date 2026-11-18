@@ -23,6 +23,8 @@ After that, each format below posts only once the founder has approved one sampl
 | STORYLINE | An episode that moves the journey (the girl, the circle filling up, his thing becoming the place to be). Plays whole; ends on a real cliffhanger only when the story has one | Same as an episode | The full line | Tag and caption | High |
 | APP PROMO | Nio, as himself and as PXI's maker, showing one thing the app does by doing it, in a scene: the album filling at a party, the map on a bored Friday. Funny first. The source of the ads in `engine/promotion.md` | 15 to 30 s | Existing sets, phone screens from `bible/pxi-product.md` 1:1 | The piece is the ask, in his voice | Low |
 | TALK TO USERS | Nio answers a real comment or question from @pxi.app (quoted on screen as the comment), in character. Never a made-up comment, never a name or face of the person without their yes | 8 to 25 s, or a reply in the comments | Existing set, one shot | Caption, or the answer itself | Low |
+| EVENT MOMENT | Nio inside one real occasion a PXI album is made for (a birthday, a wedding, a baby shower, a graduation, a game day), one gag, with the album or camera doing something a guest would really do. Founder, Nov 18: "small content of nio wihtin those events will help" | 8 to 20 s, or a still | Existing rigs, one new prop at most, the album and camera screens 1:1 | Caption names the occasion and PXI's album | Low |
+| STORY | Instagram, Facebook and TikTok stories: a frame, a loop, a poll ("which one is you"), a "new episode" sticker, a reshared post. High volume, vertical, gone in a day | Image or up to 15 s | Cut from what the week already made | Link sticker to the app | Very low |
 
 ## Rules for every format
 
@@ -47,20 +49,19 @@ After that, each format below posts only once the founder has approved one sampl
 - Long cut: YouTube, and other platforms when the short cut has already won.
 - Each platform gets its own caption and cover. Nothing is cross-posted with another app's watermark.
 
-## A week in production
+## A week in production (founder, Nov 18: "we want to mass post decent quality content")
 
-The founder needs a post every day and at least one long video a week. A week is:
+About 30 pieces a week, from one episode or skit, one demo and the cheap formats cut from them:
 
-| Day | Release |
-|---|---|
-| 1 | EPISODE: the long cut on YouTube, the short cut everywhere |
-| 2 | LOOP or STILL from the episode |
-| 3 | FOURTH WALL: Nio to the viewer, usually the map |
-| 4 | STILL or carousel: a phone screen or an album from his world |
-| 5 | FILLER or TALK TO USERS |
-| 6 | LOOP or STILL from the episode |
-| 7 | A second short cut of the episode with a different hook, or a FOURTH WALL for the next one |
+| Per week | Pieces | Where |
+|---|---|---|
+| EPISODE or launch skit (the show) | 1 to 2 | Short cut on Reels, TikTok, Shorts, Facebook; long cut on YouTube |
+| APP PROMO or FOURTH WALL (Nio to the viewer: camera, Discover, albums) | 2 | Reels, TikTok, Shorts |
+| EVENT MOMENT | 2 | Reels, TikTok, Shorts |
+| FILLER or LOOP / GIF | 3 | Reels, TikTok, Shorts; the GIF to GIPHY |
+| STILL or carousel | 3 | Instagram and Facebook feed, TikTok photo mode, Pinterest |
+| STORY | 2 to 3 a day | Instagram, Facebook, TikTok stories |
 
-Five of the seven come from material the episode already made, which is what makes a daily post affordable.
-A holiday takes the episode slot for its week. LEARN changes the order and the mix. A day is left empty before
-a weak piece is posted.
+Two feed posts a day at most, never two of the same format back to back. Most of it is cut from material the
+episode already made, which is what makes the volume affordable. A holiday takes the episode slot for its week.
+LEARN changes the mix. A day is left empty before a weak piece is posted: volume never lowers a gate.

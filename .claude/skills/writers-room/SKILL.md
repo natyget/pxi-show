@@ -87,21 +87,19 @@ the principles win (founder, Nov 18). The only file left behind is `episodes/<id
 as a visual story sketch (template: `episodes/skits/launch-skits.html`). Lint with `engine/tools/script_lint.py`, but
 the lint never overrides principle 4: a line that sounds like a person beats a line that hits a word count.
 
-## Stage 2: Independent critique (separate subagents, each sees only the script and its own brief)
-Spawn the critics in parallel on the cheapest model. They score and quote lines; they never rewrite. In a scheduled
-run the Tells Auditor is replaced by `engine/tools/script_lint.py` plus one read of `tells.md` by the writer.
-1. **The Skeptic**: what's heard-before or predictable? Which beat did you see coming and when?
-2. **The Literal Viewer**: what confuses a literal-minded viewer ("wait, how did…")? Where does logic break?
-3. **The Nine-Year-Old**: at which second do I get bored? What made me actually laugh (circle it)?
-4. **The Tells Auditor**: run `tells.md` against every line; quote each hit.
-Agreement between critics is not independent confirmation; weigh specifics over consensus.
+## Stage 2: The table read
+
+The script goes to `engine/script-reviewer.md`: three cold readers (the cold reader, the ear, the room), each given
+only what that page says, each judging against the seven principles above. They quote lines; they never rewrite.
+Two strikes: a second FAIL stops the line. Agreement between readers is not independent confirmation; weigh the
+quoted lines over the verdicts.
 
 ## Stage 3: Punch-up
-- Fix only what was flagged. For each weak line write three alternatives; keep one only if it beats the original.
-  Top a joke at most twice. Cut jokes go in `episodes/<id>/room/candy-bag.md` for later.
+- Fix only what was quoted. For each weak line write three alternatives; keep one only if it beats the original.
+  Top a joke at most twice. Cut jokes go in `episodes/<id>/candy-bag.md` for later.
 - Then the read-aloud test: a guy at 2 a.m. telling his best friend what happened. Rewrite what sounds like a
   YouTuber.
-- Score with `rubric.md`. Ship at 40/55 or above with no veto; otherwise loop to stage 2 once with fresh critics.
+- Then a fresh table read.
 
 ## Stage 4: De-AI pass (preserve mode)
 - Audit table: each tell found → line → fix. Fix only what fired. Cutting is safe; additions must be justified.

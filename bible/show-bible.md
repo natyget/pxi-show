@@ -17,7 +17,7 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 |---|---|
 | The writer's role, workflow and output format | `bible/writers-room.md` |
 | Who Nio, Maya and the others are; looks; the locked voices and how a line is made | `bible/characters.md` |
-| The style handoff: how the show we study is written, with ten checks | `bible/gumball-style.md` |
+| The style handoff: how the show we study is written | `bible/gumball-style.md` |
 | Maya in depth, the friends, the places, the slate of stories | `bible/world.md` |
 | The humor engine, devices, the pause, the never list | `bible/humor.md` |
 | How they talk and what makes a conversation good | `bible/voice-and-dialogue.md` |
@@ -350,3 +350,16 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "i told the writer to fix some writing and sharpen the stories"
   - "i do not see why i need to add hugging face when access ro website all over are limitless and its full access.
     i cant even add hugging face since its full access"
+- **Nov 18, 1:33 AM, word for word:**
+  - "ok good now i have merged the thing necessary i need to now have a not only animation reviewer but also a
+    script dialogue and interaction the same way so thing look clean. check if there is any increasign egnines like
+    we said with the writer rules where you kept adding notes as rules and see if we can tidie anything up"
+  - "the goal is a cool funny nice series to follow that will have people interested and hooked but at the same
+    time we will have episodes where we demo product with nio. him being like you wanna find something to do this
+    weekend to the audience"
+  - "we want to mass post decent quality content so we can also reach mass audience get more followers downloads
+    etc. i think our camera and discovery page are top usables, thent he albums for birthdays weddings baby showrs
+    any events and i think small content of nio wihtin those events will help"
+  - "we need to start posting this week ideally so we can push content"
+  - What this changed: `engine/script-reviewer.md` (the table read) replaces the ten questions, the Nio checks,
+    the ten Gumball checks, the script tests and the rubric; `bible/qa-checklist.md` is visual only.

@@ -41,7 +41,7 @@ short cut of 35 to 60 seconds it is one of everything:
 A story that honestly needs two releases ends its first on a real cliffhanger and says "stay tuned". It is
 never labelled "Part 1", and each release still plays whole.
 
-The ten checks at the end of `bible/gumball-style.md` are the test of the build.
+The table read (`engine/script-reviewer.md`) is the test of the build.
 
 ## 3. Kinds of story (rotate them; never the same kind two episodes running)
 
@@ -117,14 +117,9 @@ One line each. If a line is hard to write, the premise is not ready.
 
 ## 6. The tests a script has to pass
 
-- **The cold read.** A reader who knows nothing reads only the short-cut script and says who this is, what he
-  wanted, what happened, what the strange thing was, what he felt at the end, and where they laughed. If they
-  cannot say what he wanted or what happened, it fails. If they cannot name a laugh, it fails.
-- **Sound off.** The same from the pictures and the subtitles alone. Most people meet the show muted.
-- **No homework.** It needs nothing from an earlier episode. Lore rewards followers and never punishes
-  strangers.
-- **No dead air.** Every shot has something to watch: a face changing, something moving, a detail to find.
-- **Ends somewhere new**, written into `bible/timeline.md`: a person he now knows, a place, an album, a plant.
+The table read (`engine/script-reviewer.md`) checks this, against the seven principles in `.claude/skills/writers-room/SKILL.md`. Two tests stay here because they are about the film, not the words: **sound off**
+(the story reads from the pictures and subtitles alone; the stranger checks it) and **no homework** (it needs
+nothing from an earlier episode). It **ends somewhere new**, written into `bible/timeline.md`.
 
 ## 7. The journey
 

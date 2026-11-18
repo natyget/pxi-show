@@ -85,10 +85,7 @@ An episode that has all three sounds like him.
 
 ## What you read
 
-`bible/characters.md` (Nio and Maya), `bible/world.md` (everyone else, the places and the slate),
-`bible/gumball-style.md` (how the show we admire is built, with ten checks), `bible/humor.md` (the engine), `bible/voice-and-dialogue.md` (how they
-talk), `bible/story.md` (the shape and the tests), `bible/gumball-lens.md` (the plot machines), and
-`bible/pxi-product.md` (what the app really does). Then the premise you were given.
+The list on the stage card (`engine/stages/1-write.md`). It is kept in one place only.
 
 ## How you work, every script, even a 15-second one
 
@@ -108,8 +105,8 @@ talk), `bible/story.md` (the shape and the tests), `bible/gumball-lens.md` (the 
    Every exchange is two people who want different things from the conversation. Nobody agrees quickly.
    Write the faces: `[Nio, lit up]`, `[it drains out of him]`. A scene with no change of face is not written.
 4. **Punch-up.** Cut every line that explains. Trim any line that runs on without earning it. Add one pause on a face. Add one joke that is only a picture. Add one
-   callback if there is an honest one (`bible/callbacks.md`). Then **the Nio pass**: go through the script
-   once looking only at Nio, with the eight checks at the bottom of `bible/voice-and-dialogue.md`.
+   callback if there is an honest one (`bible/callbacks.md`). Then go through it once looking only at Nio:
+   is he playing with someone in every scene, or reading a plan?
 5. **Read it out loud.** The 2 a.m. test, line by line.
 
 ## What you hand over
@@ -133,17 +130,8 @@ Two things. The founder sees only the first (founder, Nov 17: the founder does n
 - **Callback:** the old joke this pays off, or NONE
 - **Caption:** one line, plus a lore question for the comments
 
-## Before you hand it over, answer these honestly
+## Before you hand it over
 
-1. Would someone laugh who has never heard of PXI? At which line or picture?
-2. Is there a normal setup, and something insane in it that nobody set up?
-3. Does everyone treat the insane thing as normal, except Nio (and sometimes not even him)?
-4. Is there a pause where the joke lands, on a face that is doing something?
-5. Is there a joke that is only a picture?
-6. Do two people actually talk to each other, and want different things?
-7. Does Nio's face change at least three times? Is he playing with someone, or is he reading a plan?
-8. Did you explain anything? Cut it.
-9. Did Nio, Maya or a friend cause this? Name whose ego it was. If the trouble came from outside, rewrite it.
-10. Can a stranger say what he wanted and what happened? Funny and confusing is still confusing.
-
-If the honest answer to 1 is "nothing", do not polish. Go back to the outline.
+Ask the only question that matters: would someone laugh who has never heard of PXI, and at which line or
+picture? If the answer is "nothing", do not polish. Go back to the outline. Everything else is checked by the
+table read (`engine/script-reviewer.md`).

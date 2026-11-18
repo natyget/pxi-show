@@ -163,15 +163,6 @@ hands. Keep those. Borrow the engine: **ego, theory, escalation.**
   earbud comes out. Every voice line gets an acting note with a breath, a crack or a laugh in it where it
   fits. One silence an episode is planned in the script.
 
-## 9. What a draft must show (the checks this page adds)
+## 9. Checking a draft
 
-1. The premise is one ordinary noun, from a real embarrassment.
-2. Nio, Maya or a friend causes it. Name the ego.
-3. A confident wrong theory is spoken in the first quarter.
-4. Three "so" steps, each bigger. No "and then".
-5. A tilt in size or kind.
-6. One run from the lead, one sincere puncture from the kind one.
-7. One smash cut. One held face. One joke with no words.
-8. The music stops dead once.
-9. A trend, if there is one, walks in as a person.
-10. Out within three seconds of the peak. No lesson.
+The table read (`engine/script-reviewer.md`) checks this, against the seven principles in `.claude/skills/writers-room/SKILL.md`.

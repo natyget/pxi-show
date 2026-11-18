@@ -82,8 +82,8 @@ the plot machines are each one short file, and the WRITE stage gives the writer 
 
 **The style** (`bible/gumball-style.md`) is a handoff written from the source: interviews with the makers of
 the show we study, a storyboarding panel, and the plots of eighty episodes sorted by kind. It says where
-stories come from, how one is built, what makes the pair work, how they talk, pacing, trends and sound, and it
-ends in ten checks.
+stories come from, how one is built, what makes the pair work, how they talk, pacing, trends and sound. Every script is checked by the table read
+(`engine/script-reviewer.md`).
 
 **The shape** (`bible/story.md`). An ordinary moment already going; a small itch; a confident wrong theory;
 three steps each caused by the fix for the last; a tilt; a set piece; one real second; out fast. No lesson.
@@ -173,7 +173,7 @@ to do, what to leave behind and the gate that ends it. A run does one stage and 
 | Stage | Output | Gate |
 |---|---|---|
 | P PLAN (weekly) | The next two weeks of releases in `STATE.md`, from the calendar, the bank and the playbook | Every holiday in range has an owner and dates |
-| 1 WRITE | `script.md`: logline, the build, dialogue with faces, PXI moment, callback, tag, caption | Cold read matches and quotes a laugh, lint passes, rubric 40/55, no veto |
+| 1 WRITE | `script.md`: logline, the build, dialogue with faces, PXI moment, callback, tag, caption | The table read passes (`engine/script-reviewer.md`), lint passes |
 | 2 BOARD | `shots.md` with a named expression per face, the intent ledger, phone screens, voice lines | One purpose per shot, no dead shot; every screen cites its app source |
 | 3 PROOF | The hardest 8 to 10 seconds at full quality | Accident check clean, and the reviewer names the second a viewer laughs |
 | 4 BUILD | Short cut first, then the long cut; contact sheets | Has sound, reads with sound off, `bible/qa-checklist.md` and the accident check pass |

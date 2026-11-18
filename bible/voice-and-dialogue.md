@@ -105,17 +105,10 @@ FRIEND: You're a good...
 NIO: Don't. You owe me shoes.
 ```
 
-## The Nio checks (run on every script he is in)
+## Checking Nio
 
-1. **The game.** In each scene, who is he playing with, and what is the game? If there is none, he is
-   furniture. Give him one or cut the scene.
-2. **The question.** Does he ask at least one?
-3. **The leak.** Is there a moment we see he is enjoying it before the others do?
-4. **The dial.** Is his size right for who is watching? Capitals in public are a defect.
-5. **Mouth and hands.** Did he say something caring? Move it to an action.
-6. **The narration.** Does he describe what is on screen, state the problem flatly, or pitch a feature? Cut it.
-7. **Cover the names.** Could anyone else have said this line? Then it is not his yet.
-8. **Maya.** Is she sincere, and is she funnier for it? If she is trolling, it is the wrong character.
+The table read (`engine/script-reviewer.md`) checks this, against the seven principles in `.claude/skills/writers-room/SKILL.md`. Its "ear" asks whether he is playing with someone or reading a plan, and whether
+you can tell him from anyone else with the names covered. Write him so it can.
 
 ## The best friend (phone)
 

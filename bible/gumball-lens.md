@@ -48,15 +48,9 @@ the shape of a story. We never take a character, a line, a name, a design or a s
 | 21 | **The anthology** [The Night, The Uploads] | A run of very short pieces around one idea: everyone's dreams, clips on a phone. | The cheap formats: dreams, fillers, a scroll through an album. |
 | 22 | **The remote** [The Remote] | Two people want one small thing and go to war for it with full strategy. | Nio and Maya and the last charger. |
 
-## The filter (run any idea through it)
+## The filter
 
-1. Say it as one boring sentence. If the sentence is already exciting, it is too big. Make it smaller.
-2. Whose ego turns it into a problem? If it is not Nio's, Maya's or a friend's, find the ego.
-3. What is the furthest this could possibly go in thirty seconds? Go there, then take one step further.
-4. Who in the room is completely calm about it?
-5. Where is the picture nobody has seen before?
-6. What is the real feeling under it?
-7. What is the smallest possible last line?
+The premise tests are in `bible/story.md` section 5. They are kept in one place only.
 
 ## From the earlier research (still true)
 

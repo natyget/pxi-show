@@ -1,18 +1,17 @@
 # Stage 1: WRITE
 
 **Model:** delegate the writing to one **Opus** subagent. Its brief is `bible/writers-room.md`, word for word,
-followed by this card and the premise. It takes on that role and stays in it. Critics and the cold reader are
-**Haiku** subagents. The run itself only runs the lint, checks the gate and updates the state.
+followed by this card and the premise. It takes on that role and stays in it. The table read
+(`engine/script-reviewer.md`) is three **Haiku** subagents. The run itself only runs the lint, checks the gate and
+updates the state.
 
-**Read (the writer):** `bible/writers-room.md` first, then `bible/three-shows.md` (plot, humor, eerie and how they talk),
-**No slang in the early episodes** (founder, Nov 13, in `bible/three-shows.md`). Later, slang is used with confidence, never
-as a character's insecurity and never as the punchline. This wins over "he sounds 21" in `bible/voice-and-dialogue.md`. then `bible/characters.md` (who they are; skip the voice
-recipe), `bible/world.md`, `bible/gumball-style.md`, `bible/humor.md`, `bible/voice-and-dialogue.md`, `bible/story.md`,
-`bible/gumball-lens.md`,
-`bible/pxi-product.md`, `bible/callbacks.md`, `bible/timeline.md`, `engine/playbook.md`, `engine/formats.md`
-(the row for this format), `.claude/skills/writers-room/SKILL.md` with its `rubric.md` and `tells.md`, and the
-premise named in `STATE.md`. If the premise says `From: R<n>`, that story in `engine/real-stories.md`. For a
-holiday, its row in `engine/calendar.md`.
+**Read (the writer):** `.claude/skills/writers-room/SKILL.md` (the seven principles, which win over every other
+file) and its `tells.md`; then `bible/characters.md` (skip the voice recipe), `bible/voice-and-dialogue.md`,
+`bible/world.md`, `bible/three-shows.md`, `bible/gumball-style.md`, `bible/humor.md`, `bible/story.md` (sections
+2 to 4), `bible/pxi-product.md`, `bible/callbacks.md`, `bible/timeline.md`, `engine/playbook.md`, the row for this
+format in `engine/formats.md`, and the premise named in `STATE.md`. If the premise says `From: R<n>`, that story
+in `engine/real-stories.md`. For a holiday, its row in `engine/calendar.md`. No slang in the early episodes
+(founder, Nov 13, in `bible/three-shows.md`).
 
 **First, the founder's orders and funny log** (Nov 17). Read `engine/episode-orders.md` and `engine/funny-log.md`
 before anything else. If an order is open, the oldest one is this episode's premise, in place of the one in
@@ -72,20 +71,11 @@ Then:
    repeat them, unless it is a callback named in `bible/callbacks.md`.
 1. `python3 engine/tools/script_lint.py episodes/<id>/script.md` and fix every FAIL.
 2. Read the script with every `[LONG]` line removed. It must be complete, with its own opening and way out.
-3. **The cold read.** One Haiku subagent given only the short-cut Script section. It answers in a line each:
-   who is this, what did he want, what happened, what was the strange thing and did anyone mind, what did he
-   feel at the end, where did you laugh (quote it), would you send it and to whom. Compare with the header.
-   "Not sure" on what he wanted or what happened is a fail. No laugh quoted is a fail. Fix the script, not the
-   header.
-4. Three critics in parallel, each given only the Script section and its brief from the skill (Skeptic, Literal
-   Viewer, Nine-Year-Old). They quote lines and score. They do not rewrite.
-5. Punch-up by the writer, in role: fix only what was flagged, then the Nio pass (the eight checks at
-   the bottom of `bible/voice-and-dialogue.md`) and the ten questions at the end of `bible/writers-room.md` and the ten checks at the end of
-   `bible/gumball-style.md`. Score with `rubric.md`. Run the lint again.
+3. **The table read** (`engine/script-reviewer.md`): the cold reader, the ear and the room, in parallel.
+4. Punch-up by the writer, in role: fix only what the readers quoted. Run the lint again. Then a fresh table read.
 
-**Gate:** the cold read matches the header and quotes a laugh; lint has no FAIL; rubric 40/55 or more with no
-veto; the short cut stands alone. One more round with fresh critics is allowed. If it fails again, write
-`BLOCKED` in `STATE.md` with the critics' three weakest lines quoted, and stop.
+**Gate:** the table read passes, as `engine/script-reviewer.md` defines it, and the short cut stands alone. A
+second FAIL is `BLOCKED` in `STATE.md` with the readers' quoted lines, and the run stops.
 
 **What the founder sees** (founder, Nov 17): the founder does not read scripts. A story goes to the founder as a
 quick visual story sketch: rough drawn panels with the line under each, made from the script as a `SKITS`-style

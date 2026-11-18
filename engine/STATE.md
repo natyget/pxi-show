@@ -45,6 +45,12 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Decided
 
+- Old engine queue (founder, Nov 18, decision card: "Pull the dropped formats only"): 12 posts in rejected formats
+  (fortune cookie, punch card, wristbands, advent, forum thread, clicker and pie chart on LinkedIn) were moved back
+  to drafts in Metricool on Nov 18. The other 22 keep posting through Dec 8 until Nio posts replace them.
+- Scripts are checked by the table read (`engine/script-reviewer.md`) before anything is drawn (founder, Nov 18).
+- Founder, Nov 18: "we need to start posting this week ideally". The weekly mix is in `engine/formats.md`.
+
 - Ads (founder, Nov 12): $1 a day each, and the best performer gets more budget (`engine/promotion.md`).
 - Posts between episodes are gen-z funny and relatable; the uncanny ones are scratched (founder, Nov 12).
 - Voices (founder, restated Nov 11): the designed Qwen3-TTS voices for Nio and Maya, in `bible/characters.md`,
@@ -69,6 +75,7 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
+- 2026-11-18 · engine · table read added (script, dialogue, interaction gate); five script checklists and the rubric folded into it; week mix of about 30 pieces; 12 old posts back to drafts.
 - 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.
 - 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.
 - 2026-11-12 · engine · learn scores follows, reads Supermetrics; promotion ladder (95% watchers, paused until yes); Nio-style format menu; posting waits on an approved episode.
