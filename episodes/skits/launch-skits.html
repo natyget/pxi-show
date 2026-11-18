@@ -29,7 +29,7 @@ section h2{font-family:var(--head);font-weight:700;font-size:1.9rem;margin:0}
 <main>
 <header>
   <h1>Nio World: launch skits</h1>
-  <p>Four short sketches, one joke each, pushed further every beat, ending on a button. Look at the panels; the line under each is what's said.</p>
+  <p>Four short skits, written through the new room: something real, one absurd thing, every beat caused by the last, people talking like people, Nio making it worse, and PXI moving the plot in every one.</p>
 </header>
 <div id="skits"></div>
 </main>
@@ -42,6 +42,7 @@ const C={
  sami:{skin:'#e3b58f',hair:'#2a1f18',top:'#6b4fa0',pants:'#6b4fa0',hairStyle:'side',name:'Sami'},
  marcus:{skin:'#6e4630',hair:'#111',top:'#2a9d8f',pants:'#333',hairStyle:'buzz',name:'Marcus'},
  mum:{skin:'#6e4630',hair:'#222',top:'#c0504d',pants:'#c0504d',hairStyle:'bun',name:'Mum'},
+ imane:{skin:'#c68a5c',hair:'#1b1b1b',top:'#9b5de5',pants:'#22223b',hairStyle:'long',name:'Imane'},
  girl:{skin:'#f0c8a0',hair:'#8a5a2b',top:'#e9c46a',pants:'#264653',hairStyle:'long',name:''},
  guest:{skin:'#b07a52',hair:'#222',top:'#8d99ae',pants:'#2b2d42',hairStyle:'flat',name:''},
  guest2:{skin:'#f1d0b0',hair:'#c9a14a',top:'#e76f51',pants:'#2b2d42',hairStyle:'long',name:''},
@@ -52,6 +53,7 @@ function bgs(rc,ctx,kind,W,H){
   const o={stroke:ink(),roughness:1.4,strokeWidth:1.3};
   const g=H*0.82;
   if(kind==='quad'){rc.line(0,g,W,g,o);rc.rectangle(W*0.72,g-90,10,90,{...o,fill:'#7a5a3a',fillStyle:'solid'});rc.circle(W*0.75,g-110,70,{...o,fill:'#7fb069',fillStyle:'hachure'});rc.line(W*0.1,g,W*0.35,H,o);rc.line(W*0.3,g,W*0.6,H,o)}
+  if(kind==='living'){rc.line(0,g,W,g,o);rc.rectangle(30,40,60,44,{...o,fill:'#2a9d8f',fillStyle:'hachure'});rc.rectangle(W-110,46,50,60,{...o,fill:'#e9c46a',fillStyle:'hachure'});rc.line(W-30,g,W-30,g-120,o);rc.polygon([[W-46,g-120],[W-14,g-120],[W-22,g-145],[W-38,g-145]],{...o,fill:'#f4a261',fillStyle:'solid'});rc.rectangle(W*0.5-50,g-22,100,22,{...o,fill:'#8d6748',fillStyle:'solid'})}
   if(kind==='party'){for(let i=0;i<7;i++){rc.circle(20+i*45,26+(i%2)*8,10,{...o,fill:['#e63946','#f4a261','#2a9d8f','#e9c46a'][i%4],fillStyle:'solid'})}rc.curve([[0,20],[W/2,40],[W,20]],o);rc.line(0,g,W,g,o);rc.rectangle(W-55,g-70,40,70,{...o,fill:'#333',fillStyle:'cross-hatch'})}
   if(kind==='roof'){rc.rectangle(-5,H*0.45,W+10,H*0.4,{...o,fill:'#f4a261',fillStyle:'hachure',hachureGap:9});rc.line(0,g,W,g,o);rc.circle(W*0.8,H*0.35,46,{...o,fill:'#ffb703',fillStyle:'solid'});rc.rectangle(10,H*0.5,30,H*0.32,{...o});rc.rectangle(50,H*0.58,26,H*0.24,{...o})}
   if(kind==='rain'){for(let i=0;i<40;i++){const x=Math.random()*W,y=Math.random()*g;rc.line(x,y,x-4,y+14,{...o,stroke:'#4c8bf5',strokeWidth:1})}rc.line(0,g,W,g,o)}
@@ -109,6 +111,10 @@ function fig(rc,ctx,W,H,p){
     if(e==='bow'){rc.polygon([[x-9*s,top+3],[x,top+8],[x-9*s,top+13]],{...o,fill:'#111',fillStyle:'solid'});rc.polygon([[x+9*s,top+3],[x,top+8],[x+9*s,top+13]],{...o,fill:'#111',fillStyle:'solid'})}
     if(e==='mono'){rc.circle(x+r*0.35,hy-r*0.1,r*0.6,{...o,strokeWidth:2})}
     if(e==='chops'){rc.rectangle(x-r*0.95,hy,r*0.35,r*0.7,{...o,fill:'#8a5a2b',fillStyle:'solid'});rc.rectangle(x+r*0.6,hy,r*0.35,r*0.7,{...o,fill:'#8a5a2b',fillStyle:'solid'})}
+    if(e==='stache'){rc.curve([[x-r*0.7,hy+r*0.25],[x-r*0.3,hy+r*0.45],[x,hy+r*0.3],[x+r*0.3,hy+r*0.45],[x+r*0.7,hy+r*0.25]],{...o,stroke:'#3b2a1a',strokeWidth:5})}
+    if(e==='scarf'){rc.rectangle(x-12*s,top-2,24*s,9*s,{...o,fill:'#d62828',fillStyle:'solid'});rc.rectangle(x+4*s,top+5,7*s,22*s,{...o,fill:'#d62828',fillStyle:'solid'})}
+    if(e==='crown'){rc.polygon([[x-16*s,hy-r*0.85],[x+16*s,hy-r*0.85],[x+11*s,hy-r*1.9],[x-11*s,hy-r*1.9]],{...o,fill:'#f4a261',fillStyle:'solid'})}
+    if(e==='cowboy'){rc.ellipse(x,hy-r*0.9,r*3.2,r*0.6,{...o,fill:'#8a5a2b',fillStyle:'solid'});rc.rectangle(x-r*0.7,hy-r*1.9,r*1.4,r,{...o,fill:'#8a5a2b',fillStyle:'solid'})}
     if(e==='partyhat'){rc.polygon([[x-10*s,hy-r*0.8],[x+10*s,hy-r*0.8],[x,hy-r*2.4]],{...o,fill:'#f4a261',fillStyle:'zigzag'})}
     if(e==='flip'){}
   });
@@ -127,50 +133,56 @@ function props(rc,ctx,W,H,list){
     if(p.t==='fainter'){rc.rectangle(p.x*W-70,g-30,140,30,{...o,fill:'#9b2226',fillStyle:'solid'});rc.curve([[p.x*W-70,g-30],[p.x*W-78,g-70],[p.x*W-55,g-50]],{...o,strokeWidth:3})}
     if(p.t==='door'){rc.rectangle(p.x*W-24,g-110,48,110,{...o,fill:'#8d6748',fillStyle:'hachure'})}
     if(p.t==='notes'){for(let i=0;i<3;i++){ctx.font='22px serif';ctx.fillStyle=ink();ctx.fillText('♪',p.x*W+i*22,p.y*H-i*10)}}
+    if(p.t==='juicebox'){rc.rectangle(p.x*W-14,p.y*H-22,28,40,{...o,fill:'#8ac926',fillStyle:'solid'});rc.circle(p.x*W,p.y*H,14,{...o,fill:'#e63946',fillStyle:'solid'});rc.linearPath([[p.x*W+6,p.y*H-22],[p.x*W+6,p.y*H-38],[p.x*W+16,p.y*H-44]],{...o,strokeWidth:2.5})}
     if(p.t==='q'){ctx.font='bold 26px Gaegu';ctx.fillStyle='#e63946';ctx.textAlign='center';ctx.fillText(p.text||'?',p.x*W,p.y*H)}
   });
 }
 const SKITS=[
-{title:'Wave Back',time:'about 30 s',game:'Nio waved at a guy who wasn\'t waving at him, and <b>he will not admit it, whatever it costs</b>.',panels:[
- {bg:'quad',figs:[{who:'marcus',x:.78,arms:'wave',face:'grin',s:.8},{who:'nio',x:.3,arms:'wave',face:'grin'}],cap:'Across the quad, a guy waves big. Nio waves back, bigger.'},
- {bg:'quad',figs:[{who:'nio',x:.32,arms:'wave',face:'shock'},{who:'girl',x:.12,arms:'wave',face:'smile',s:.85}],cap:'A girl behind Nio is waving back too. It was for her.'},
- {bg:'quad',figs:[{who:'marcus',x:.72,face:'flat'},{who:'nio',x:.32,arms:'point',face:'grin'}],cap:'He walks over.',lines:[['Marcus','Do I... know you?'],['Nio','(reading his lanyard) Marcus! How\'s your mum?']]},
- {bg:'quad',figs:[{who:'marcus',x:.72,face:'smile'},{who:'nio',x:.32,face:'smile'}],cap:'Next day, same spot.',lines:[['Marcus','My mum says hi back. She wants you at Sunday dinner.'],['Nio','Wouldn\'t miss it.']]},
- {bg:'dinner',figs:[{who:'mum',x:.22,face:'grin',arms:'hold'},{who:'nio',x:.5,face:'grin',s:.9},{who:'sis',x:.78,face:'smile',s:.8}],cap:'Sunday. Nio is at the family table. Plates are full.',lines:[['Mum','Look at you. So tall now!'],['Nio','Thanks, Auntie.']]},
- {bg:'blank',figs:[],props:[{t:'phonebig',fill:'#2a9d8f',text:'Marcus family album: Nio in every photo'}],cap:'The family\'s shared album fills up. Nio in every photo. Nio in the middle of the Christmas card.'},
- {bg:'dinner',figs:[{who:'marcus',x:.72,face:'shock'},{who:'nio',x:.32,face:'flat',arms:'hold'}],cap:'Button.',lines:[['Marcus','(quietly) Bro. Who ARE you?'],['Nio','Pass the rice.']]},
+{title:'Wave Back',time:'about 30 s',pxi:'Invite link and event page: Marcus is too polite not to send it.',game:'Nio waved at a stranger who wasn\'t waving at him. <b>Every time he gets a way out, he refuses it, and it costs him more.</b>',read:'Nio waves back at a stranger by mistake and would rather join the man\'s family dinner than admit it.',panels:[
+ {bg:'quad',figs:[{who:'marcus',x:.78,arms:'wave',face:'grin',s:.8},{who:'nio',x:.4,arms:'wave',face:'grin'},{who:'sis',x:.12,face:'smile',s:.75}],cap:'The quad. Nio, looking good, walking alone. A guy across the grass waves big. Nio waves back, bigger. A girl in yellow stands behind him.'},
+ {bg:'quad',figs:[{who:'nio',x:.4,arms:'wave',face:'shock'},{who:'sis',x:.12,arms:'wave',face:'smile',s:.85}],cap:'But the girl in yellow waves back too. It was for her. She walks off. Nio\'s face: he will not be the guy who waved at nobody.'},
+ {bg:'quad',figs:[{who:'marcus',x:.72,face:'flat'},{who:'nio',x:.32,arms:'point',face:'grin'}],cap:'So he walks straight over like he meant it.',lines:[['Marcus','Sorry, do I know you?'],['Nio','(reads his lanyard) Marcus! Bro, come on. It\'s me.']]},
+ {bg:'quad',figs:[{who:'marcus',x:.72,face:'neutral',arms:'phone'},{who:'nio',x:.32,face:'smile'}],cap:'Marcus offers him the way out. Nio doesn\'t take it.',lines:[['Marcus','I think you\'ve got me mixed up with someone, man.'],['Nio','Is your mum still doing Sunday dinners or what?'],['Marcus','...Yeah, she is.'],['Nio','Send me the link.']]},
+ {bg:'blank',figs:[],props:[{t:'phonebig',fill:'#2a9d8f',text:'Sunday Dinner at Mum\'s: Going: Marcus, Nio'}],cap:'Marcus is too polite to say no. He sends the PXI invite. Nio taps Going before Marcus can lock his phone.'},
+ {bg:'dinner',figs:[{who:'mum',x:.22,face:'grin',arms:'hold'},{who:'nio',x:.5,face:'smile',s:.9},{who:'marcus',x:.78,face:'flat',s:.85}],cap:'Sunday. The last way out.',lines:[['Mum','So how did you two meet?'],['Nio','He waved at me.'],['Marcus','I did not wave at you.']]},
+ {bg:'dinner',figs:[{who:'sis',x:.75,arms:'wave',face:'smile',s:.85},{who:'nio',x:.35,arms:'wave',face:'flat',s:.9}],cap:'Button. Marcus\'s sister sits down. It\'s the girl in yellow. She waves at her brother. Nio waves back. Nobody says anything. Cut.'},
 ]},
-{title:'Group Photo',time:'about 30 s',game:'Everyone gives the photographer one more note, and <b>the notes keep removing people from the photo</b>.',panels:[
- {bg:'roof',figs:[{who:'theo',x:.18,s:.75,face:'smile'},{who:'maya',x:.38,s:.75,face:'grin'},{who:'sami',x:.58,s:.75,face:'neutral'},{who:'nio',x:.85,arms:'phone',face:'smile'}],cap:'Rooftop at sunset. Nio lines everyone up.',lines:[['Nio','Okay, everybody in.']]},
- {bg:'roof',figs:[{who:'theo',x:.3,face:'smug',arms:'point'},{who:'nio',x:.75,arms:'phone',face:'flat'}],cap:'',lines:[['Theo','Get my left side.']]},
- {bg:'roof',figs:[{who:'maya',x:.3,face:'shock',arms:'up'},{who:'nio',x:.75,arms:'phone',face:'flat',lift:.11}],props:[{t:'chair',x:.75}],cap:'Nio climbs on a chair.',lines:[['Maya','Not from below. Never from below.']]},
- {bg:'roof',figs:[{who:'sami',x:.25,face:'flat'},{who:'theo',x:.05,face:'sad',s:.8}],cap:'One by one, they step out of frame.',lines:[['Sami','I would prefer not to be in it, thank you.'],['Someone','Actually me neither, I look tired.']]},
- {bg:'roof',figs:[],props:[{t:'flash',x:.5,y:.3}],cap:'The frame: an empty rooftop and a sunset. Flash.'},
- {bg:'blank',figs:[],props:[{t:'phonebig',fill:'#f4a261',text:'roof album: 1 photo, 0 people'}],cap:'It lands in the album. It is a beautiful photo of nobody.'},
- {bg:'roof',figs:[{who:'theo',x:.25,arms:'phone',face:'grin'},{who:'maya',x:.5,face:'grin',s:.9},{who:'nio',x:.8,face:'flat'}],cap:'Button. Everyone crowds the phone.',lines:[['Everyone','Send me that.'],['Theo','I look good in that.']]},
+{title:'Group Photo',time:'about 30 s',pxi:'Shared album: the photo of nobody lands in it, and the button is them scrolling it.',game:'Nio fixes everyone\'s note to get one perfect group photo, and <b>every fix pushes the next person out of it</b>.',read:'Nio wants one perfect group photo, but every note he fixes pushes someone out, until it is a perfect photo of nobody.',panels:[
+ {bg:'roof',figs:[{who:'theo',x:.18,s:.75,face:'smile'},{who:'maya',x:.38,s:.75,face:'grin'},{who:'sami',x:.58,s:.75,face:'neutral'},{who:'nio',x:.85,arms:'phone',face:'smile'}],cap:'Rooftop at golden hour. Nio wants the one perfect group photo.',lines:[['Nio','Okay everybody get in, the light\'s perfect right now.']]},
+ {bg:'roof',figs:[{who:'theo',x:.3,face:'smug',arms:'point'},{who:'nio',x:.75,arms:'phone',face:'flat'}],cap:'Theo points at his own face.',lines:[['Theo','Wait, get my left side. My right side\'s not it today.']]},
+ {bg:'roof',figs:[{who:'sami',x:.3,face:'closed'},{who:'nio',x:.75,arms:'phone',face:'neutral'}],cap:'So Nio walks round to Theo\'s left. Now the sun is in everyone\'s eyes.',lines:[['Sami','Bro, I can\'t see anything. Just take it without me.']]},
+ {bg:'roof',figs:[{who:'maya',x:.3,face:'neutral',arms:'point'},{who:'nio',x:.75,arms:'phone',face:'flat',lift:.11}],props:[{t:'chair',x:.75}],cap:'Maya has the fix, so Nio climbs on a chair.',lines:[['Maya','Go higher, so the sun\'s behind you.']]},
+ {bg:'roof',figs:[{who:'theo',x:.3,face:'sad'},{who:'nio',x:.75,arms:'phone',face:'flat',lift:.11}],props:[{t:'chair',x:.75}],cap:'But from up there, Theo looks short.',lines:[['Theo','Nah, not from above. I look short. I\'m out.']]},
+ {bg:'roof',figs:[{who:'maya',x:.4,face:'flat'}],cap:'Which leaves Maya alone in the frame.',lines:[['Maya','Okay, one person isn\'t a group photo. That\'s just a photo of me.'],['Maya','(steps out)']]},
+ {bg:'blank',figs:[],props:[{t:'phonebig',fill:'#f4a261',text:'Rooftop: 1 photo: 0 people'}],cap:'Flash. It lands in the PXI shared album: a beautiful sunset with nobody in it.'},
+ {bg:'roof',figs:[{who:'theo',x:.25,arms:'phone',face:'grin'},{who:'maya',x:.5,face:'grin',s:.9},{who:'nio',x:.8,face:'flat'}],cap:'Button. They all crowd Theo\'s phone, scrolling the album.',lines:[['Theo','Yo. I look really good in this one.'],['Nio','(stares at him. Cut.)']]},
 ]},
-{title:'Aux',time:'about 35 s',game:'At this party, <b>whatever is playing on the aux becomes real</b>, and Nio has the aux.',panels:[
- {bg:'party',figs:[{who:'theo',x:.3,face:'grin',arms:'point'},{who:'nio',x:.68,arms:'phone',face:'smug'}],cap:'Someone else\'s living room. Theo hands over the cable.',lines:[['Theo','You\'re on aux.']]},
- {bg:'rain',figs:[{who:'guest',x:.25,face:'cry',s:.8},{who:'guest2',x:.5,face:'sad',s:.8},{who:'nio',x:.8,arms:'phone',face:'shock'}],props:[{t:'notes',x:.6,y:.25}],cap:'He plays one slow piano song. It starts raining. Indoors. Everyone sits down on the wet floor.'},
- {bg:'party',figs:[{who:'guest',x:.25,face:'grin',arms:'up',lift:.55,s:.75},{who:'guest2',x:.55,face:'grin',arms:'up',lift:.6,s:.75},{who:'nio',x:.82,arms:'phone',face:'shock'}],props:[{t:'couchup',x:.4}],cap:'Skip. A hype track. Everyone is on the ceiling. So is the couch.'},
- {bg:'party',figs:[{who:'guest',x:.2,face:'smile',extra:['partyhat'],s:.8},{who:'guest2',x:.45,face:'smile',extra:['partyhat'],s:.8},{who:'nio',x:.8,arms:'phone',face:'flat'}],props:[{t:'cake',x:.62}],cap:'Skip. A kids\' birthday song. Party hats. A cake nobody brought.'},
- {bg:'party',figs:[{who:'guest',x:.2,face:'flat',s:.8},{who:'guest2',x:.4,face:'flat',s:.8},{who:'theo',x:.6,face:'flat',s:.8},{who:'nio',x:.85,arms:'phone',face:'shock'}],props:[{t:'door',x:.4}],cap:'Skip. Lift music. Everyone stands in a silent line, facing a door, waiting for their floor.'},
- {bg:'party',figs:[{who:'guest',x:.18,arms:'phone',face:'flat',s:.8},{who:'guest2',x:.4,arms:'phone',face:'flat',s:.8},{who:'theo',x:.62,arms:'phone',face:'flat',s:.8},{who:'nio',x:.86,arms:'phone',face:'shock'}],cap:'Button. Nio\'s phone rings. Every person in the room takes out their phone at the same time.',lines:[['Everyone','Hello?'],['Nio','...Hello?']]},
+{title:'Aux',time:'about 35 s',pxi:'Camera into the shared album: the guests shoot every disaster, and the album is how Theo rates the night.',game:'At this party <b>whatever plays on the aux becomes real</b>, and every song Nio picks to fix the last one makes it worse.',read:'Nio takes the aux to save a dead party, every song comes true and each fix makes it worse, and when he finally stops, the album says it was the best party of the year.',panels:[
+ {bg:'party',figs:[{who:'theo',x:.3,face:'flat',arms:'point'},{who:'nio',x:.68,arms:'phone',face:'smug'}],cap:'Theo\'s living room. Six people. Nobody dancing. Nio wants to be the one who saves it.',lines:[['Theo','Bro, this party\'s dead.'],['Nio','Give me the aux. I got you.']]},
+ {bg:'rain',figs:[{who:'guest',x:.25,face:'cry',s:.8,arms:'phone'},{who:'guest2',x:.5,face:'sad',s:.8},{who:'nio',x:.8,arms:'phone',face:'shock'}],props:[{t:'notes',x:.6,y:.25}],cap:'He opens with a slow piano song, to set a mood. It starts raining. Indoors. Someone films it on the PXI camera.'},
+ {bg:'party',figs:[{who:'guest',x:.25,face:'grin',arms:'up',lift:.55,s:.75},{who:'guest2',x:.55,face:'grin',arms:'phone',lift:.6,s:.75},{who:'nio',x:.82,arms:'phone',face:'shock'}],props:[{t:'couchup',x:.4}],cap:'So he skips to something with energy. Now they are on the ceiling. So is the couch. Someone shoots it from up there.',lines:[['Nio','Okay, okay. Bring it down, bring it down.']]},
+ {bg:'party',figs:[{who:'guest',x:.2,face:'smile',extra:['partyhat'],s:.8},{who:'guest2',x:.45,face:'smile',extra:['partyhat'],s:.8},{who:'nio',x:.8,arms:'phone',face:'flat'}],props:[{t:'cake',x:.62}],cap:'The gentlest song he has is a kids\' birthday song. They float down in party hats. There is a cake nobody brought.',lines:[['Nio','Something calm. Something grown.']]},
+ {bg:'party',figs:[{who:'guest',x:.2,face:'flat',s:.8},{who:'guest2',x:.4,face:'flat',s:.8},{who:'theo',x:.6,face:'flat',s:.8},{who:'nio',x:.85,arms:'phone',face:'shock'}],props:[{t:'door',x:.4}],cap:'Lift music. Everyone stands in a silent line facing a door, waiting for their floor.'},
+ {bg:'party',figs:[{who:'guest',x:.2,face:'neutral',s:.8,extra:['partyhat']},{who:'guest2',x:.4,face:'neutral',s:.8,extra:['partyhat']},{who:'theo',x:.6,face:'neutral',s:.8},{who:'nio',x:.85,arms:'hold',face:'flat'}],props:[{t:'door',x:.4}],cap:'So Nio pulls the cable out. Silence. Everyone is themselves again: soaked, in party hats, by a door. Nio braces.'},
+ {bg:'blank',figs:[],props:[{t:'phonebig',fill:'#e76f51',text:'Theo\'s: 212 photos: rain, ceiling, cake'}],cap:'Theo scrolls the PXI album: rain indoors, the couch on the ceiling, the cake, the lift queue.'},
+ {bg:'party',figs:[{who:'theo',x:.3,face:'grin',arms:'phone'},{who:'nio',x:.78,arms:'hold',face:'smug'}],cap:'Button.',lines:[['Theo','Bro. Best party of the year.'],['Nio','(straightens his jacket) I know.']]},
 ]},
-{title:'One Sip',time:'about 25 s',game:'Every sip makes Sami <b>a hundred years more formal</b>.',panels:[
- {bg:'kitchen',figs:[{who:'sami',x:.45,arms:'cup',face:'smile'},{who:'nio',x:.15,face:'smile',s:.85}],cap:'Party kitchen. Someone hands Sami a red cup.',lines:[['Sami','Cheers.']]},
- {bg:'kitchen',figs:[{who:'sami',x:.45,arms:'cup',face:'smug',extra:['bow']}],cap:'Sip. A bow tie.',lines:[['Sami','I must say, this is a delightful gathering.']]},
- {bg:'kitchen',figs:[{who:'sami',x:.45,arms:'cup',face:'smug',extra:['bow','mono','hat']}],cap:'Sip. Monocle. Top hat.',lines:[['Sami','Good sir. Fetch me a carriage.']]},
- {bg:'kitchen',figs:[{who:'sami',x:.45,arms:'point',face:'shock',extra:['bow','mono','hat','chops']}],cap:'Sip. Sideburns.',lines:[['Sami','I shall duel the man who took my coat!']]},
- {bg:'kitchen',figs:[{who:'nio',x:.3,arms:'cup',face:'flat'},{who:'sami',x:.7,face:'neutral',extra:['bow','mono','hat','chops']}],cap:'Nio takes the cup and sniffs it.',lines:[['Nio','Sami. This is apple juice.']]},
- {bg:'kitchen',figs:[{who:'sami',x:.55,face:'closed',lift:.04,extra:['bow','mono','hat','chops']},{who:'maya',x:.2,face:'sad',arms:'wave',s:.85}],props:[{t:'fainter',x:.55}],cap:'Button. Sami faints elegantly onto a fainting couch that was not there before. Maya fans him.'},
+{title:'One Sip',time:'about 35 s',pxi:'Face match the next morning: "You might be in 41 photos", and Sami taps "Not me" on every one.',game:'Sami swears he can\'t handle a drink, and <b>every sip turns him into a worse guy to have at a party</b>, while Nio, the host, keeps covering for him.',read:'Nio tells Sami his lightweight thing is all in his head, Sami turns into a new nightmare guest with every sip of what turns out to be juice, and the next morning he denies every photo.',panels:[
+ {bg:'living',figs:[{who:'maya',x:.12,s:.75,face:'smile'},{who:'theo',x:.27,s:.75,face:'grin'},{who:'sami',x:.55,face:'neutral',arms:'up'},{who:'nio',x:.82,arms:'cup',face:'smile'}],cap:'Kickback in Nio\'s living room. Maya, Theo, Imane, two friends. Nio hands Sami a cup. Sami puts both palms up, refusing.',lines:[['Sami','Nah I\'m good, I can\'t handle drinks. I get crazy.'],['Nio','It\'s all in your head, gang. You gotta will it. One sip.']]},
+ {bg:'living',figs:[{who:'sami',x:.5,arms:'cup',face:'closed',s:1.2}],cap:'Sami sips. CAMERA: quick push-in, a short shake, a bass hit. Pop: a scarf and little glasses. He points at the speaker.',lines:[['Sami','Okay so actually, this song samples a jazz record from 1974. Most people don\'t know that.'],['Friend','...Okay?']]},
+ {bg:'living',figs:[{who:'sami',x:.4,arms:'point',face:'neutral',extra:['scarf']},{who:'nio',x:.8,face:'flat',arms:'cup'}],cap:'Nio, the host, covers for him.',lines:[['Nio','He\'s into music. That\'s just Sami.']]},
+ {bg:'living',figs:[{who:'imane',x:.2,face:'shock',s:.9},{who:'sami',x:.55,arms:'point',face:'grin',extra:['scarf']},{who:'nio',x:.85,face:'flat',s:.85}],cap:'Sip. Push-in, shake, hit. Now he\'s a life coach, cornering Imane by the fridge. The room groans. Someone takes a photo.',lines:[['Sami','Where do you see yourself in five years? \'Cause I see you in my mentorship program.'],['Nio','(to Imane) He\'s... networking.']]},
+ {bg:'living',figs:[{who:'theo',x:.25,face:'shock'},{who:'sami',x:.55,arms:'point',face:'smug',extra:['mono','hat','stache']},{who:'nio',x:.85,face:'shock',s:.85}],cap:'Sip. Bigger push, longer shake. Top hat, monocle. He slaps Theo with a glove. Gasps.',lines:[['Sami','Sir. You have touched my coat. I demand satisfaction.'],['Theo','Bro, this is my coat.'],['Nio','Theo, just give him the coat.']]},
+ {bg:'living',figs:[{who:'sami',x:.5,arms:'up',face:'grin',lift:.12,extra:['crown','stache']},{who:'maya',x:.15,face:'flat',arms:'point',s:.85},{who:'nio',x:.85,face:'shock',s:.85}],cap:'Sip. Biggest hit. He\'s on the coffee table, the lampshade on his head like a crown. Everyone boos.',lines:[['Sami','This apartment is my kingdom now. The bathroom is mine.'],['Maya','Sami. You need to leave.']]},
+ {bg:'living',figs:[{who:'nio',x:.45,arms:'hold',face:'flat',s:1.1}],props:[{t:'juicebox',x:.6,y:.6}],cap:'Nio has had enough. He holds up what he poured from: a kid\'s apple juice box. Close on his face, looking at his friend: pure disgust.',lines:[['Nio','Gang. It\'s a juice box. It came with a straw.']]},
+ {bg:'blank',figs:[],props:[{t:'phonebig',fill:'#8338ec',text:'You might be in 41 photos: IS THIS YOU?: [Not me]'}],cap:'Button. Next morning, in bed. PXI: "You might be in 41 photos." The king on the coffee table. Sami taps Not me. The life coach. Not me. The top hat. Not me. Cut.'},
 ]},
 ];
 function render(){
   const root=document.getElementById('skits');root.innerHTML='';
   SKITS.forEach(sk=>{
     const sec=document.createElement('section');
-    sec.innerHTML=`<h2>${sk.title}<span class="time">${sk.time}</span></h2><p class="game">The game: ${sk.game}</p>`;
+    sec.innerHTML=`<h2>${sk.title}<span class="time">${sk.time}</span></h2><p class="game">The game: ${sk.game}</p><p class="game"><i>In one sentence:</i> ${sk.read||''}</p><p class="game"><i>PXI in the plot:</i> ${sk.pxi||''}</p>`;
     const strip=document.createElement('div');strip.className='strip';
     sk.panels.forEach((p,i)=>{
       const el=document.createElement('div');el.className='panel';
