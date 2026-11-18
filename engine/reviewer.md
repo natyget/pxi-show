@@ -27,7 +27,8 @@ kind. If you are unsure, say "not sure", and that counts as a no.
    twice, or explains the joke.
 4. **Does anything sound like a machine or an advert wrote it?** Quote every piece of on-screen or cover text
    that a person would not actually say or write to a friend. Labels, slogans, clipped fragments, dramatic
-   number contrasts and words in capitals all count.
+   number contrasts and words in capitals all count. On each phone screen, say what you looked at first and
+   whether anything else on it is there for no reason.
 5. **Is it the same person?** Compare each character with the golden frames and with the last cover: skin tone,
    face, hair, clothes, proportions. Name any difference, however small.
 6. **Does anything look wrong or cheap?** Anything attached in the wrong place, blocky, blurry, floating, or

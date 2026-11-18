@@ -62,6 +62,9 @@ one of them is why a device reads as a mistake.
 - The phone fills most of the frame and is brighter than the room. One idea on the screen. Hold it for the
   reading time (below), with a small move or a highlight that takes the eye to the one thing that matters. The
   thumb enters only to tap. A soft interface sound on each change.
+- The screen is built around the one element the story needs, and nothing else competes with it (founder, Nov 18,
+  9:08 PM). An invite is a push from the friend, then the event's cover with its name and place, never a page of
+  members and labels. Anything in the app the story does not use stays off the screen or is cut by the framing.
 
 ### A list, a plan or a checklist on screen
 - The founder could not tell what the checklist was without narration. So: Nio says what it is as it appears,

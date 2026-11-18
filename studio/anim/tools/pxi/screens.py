@@ -489,6 +489,56 @@ def sunday_dinner(joined=False):
         s.box(188, 690, 340, 738, PURPLE, r=24); s.text(264, 714, 'Join', 800, pt(14), WHITE, align='c')
     return s.im
 
+def album_face(photo, name, venue, cw, ch):
+    """The album card face (src/components/album/AlbumCardFace.tsx): the cover photo at 3:4, a dark scrim over the top
+    half with the name in huge caps on the top third (7% padding, fitTitle), and a foot scrim with the venue."""
+    c = Screen(w=cw, h=ch, bg=hexc('111111'))
+    w, h = photo.size; k = min(w / cw, h / ch); pw, ph = round(cw * k), round(ch * k)
+    c.photo(photo.crop(((w - pw) // 2, (h - ph) // 2, (w - pw) // 2 + pw, (h - ph) // 2 + ph)).resize((cw, ch), Image.LANCZOS), 0, 0, cw, ch)
+    c.shade(0, 0, cw, ch // 2, 0.42, 0.0); c.shade(0, ch - round(ch * 0.32), cw, ch, 0.0, 0.5)
+    pad = round(cw * 0.07); px, lines = fit_title(name.upper().split(), cw - 2 * pad, ch * 0.34, round(cw * 0.195), round(cw * 0.085))
+    y = pad + round(px * 0.42)
+    for l in lines:
+        c.text(pad, y + 2, l, 'display', px, mix(hexc('111111'), BLACK, 0.5), ls=-1); c.text(pad, y, l, 'display', px, WHITE, ls=-1); y += round(px * 0.98)
+    c.text(pad, ch - pad - pt(10), venue, 800, pt(15), WHITE)
+    return c.im
+
+def dinner_cover(): return still('wb8_1150')
+
+def push_invite(who='Marcus', event="Sunday at Mum's"):
+    """Wave Back v8 (founder, Nov 18, 9:08 PM): the invite lands as a real PXI push on Nio's lock screen, from the
+    friend, with the event's cover as its picture (the phone's own notification, laid out as lock())."""
+    s = Screen(); s.photo(pic('lockwall', W, H), 0, 0, W, H)
+    s.shade(0, 0, W, 300, 0.45, 0.0); s.status('4:12')
+    s.text(180, 87, 'Wednesday, November 19', 600, 18, WHITE, align='c')
+    s.text(180, 141, '4:12', 700, 88, WHITE, ls=-1, align='c')
+    card, ink, grey = (233, 233, 236), (12, 12, 14), (128, 128, 134)
+    y = 359; s.box(11, y, 341, y + 59, card, r=20)
+    s.photo(app_icon(34), 22, y + 12, 56, y + 46, r=8)
+    s.text(66, y + 19, f'{who} invited you', 600, sysp(15), ink)
+    s.text(66, y + 37, f'to {event}', 400, sysp(15), ink)
+    s.text(284, y + 21, 'now', 400, sysp(13), grey, align='r')
+    s.photo(sq(dinner_cover(), 0.5, 0.45, 0.8).resize((38, 38), Image.LANCZOS), 293, y + 11, 331, y + 49, r=7)
+    s.box(119, 771, 241, 775, WHITE, r=2)
+    return s.im
+
+def invite_card(going=False, who='Marcus', event="Sunday at Mum's", venue="Mum's house \u00b7 Sun 6 PM"):
+    """Wave Back v8: the tap on the push opens the invite on the album card (AlbumInviteCard.tsx: "{name} invited you
+    to", the AlbumCardFace cover, RSVP in purple and Pass; once accepted the green "You're going" box). Framed on the
+    cover, its name and its place (founder, Nov 18, 9:08 PM): no member row, no who's going."""
+    s = Screen(); s.status('4:12')
+    _, x = s.text(30, 112, who, 800, sysp(17), WHITE); s.text(x, 112, ' invited you to', 500, sysp(17), white(0.55))
+    cw, ch = 300, 400
+    face = album_face(dinner_cover(), event, venue, cw, ch)
+    m = Image.new('L', (cw, ch), 0); ImageDraw.Draw(m).rounded_rectangle([0, 0, cw - 1, ch - 1], 18, fill=255)
+    s.im.paste(face, (30, 140), m)
+    if going:
+        s.box(30, 566, 330, 614, (21, 46, 27), r=14); s.text(180, 590, "You're going", 600, sysp(15), white(0.88), align='c')
+    else:
+        s.box(30, 566, 174, 614, PURPLE, r=24); s.text(102, 590, 'RSVP', 800, pt(14), WHITE, align='c')
+        s.box(186, 566, 330, 614, G2E, r=24); s.text(258, 590, 'Pass', 800, pt(14), WHITE, align='c')
+    return s.im
+
 def now_playing(title, art, bg):
     """Aux: what Nio puts on, on his own phone's music player (not PXI: a plain player, no brand). The song title is
     the cause of what happens next, so it is the one big thing on the screen (craft library, phone insert)."""
@@ -513,6 +563,18 @@ def invite_notif(who='Marcus', event='Sunday Dinner'):
     s.text(tx, cy + pt(10), event, 800, sysp(15), WHITE); s.text(tx, cy + pt(29), 'now', 600, pt(10), white(0.35), ls=0.2)
     s.disc(W - pt(36) - pt(10), cy - pt(5), pt(10), PURPLE)
     s.box(pt(20), top + pt(80), W - pt(20), top + pt(80) + 1, white(0.1))
+    # older rows under it (PhotoReactionCard.tsx), so his phone is his: friends reacting in his albums last week
+    s.text(pt(28), top + pt(104), 'EARLIER', 800, pt(12), hexc('8A8A8A'), ls=1.1)
+    for k, (name, em, album, still_name, when) in enumerate((('Maya', '\U0001F602', 'Roof', 'gp574', '2d'), ('Theo', '\U0001F525', 'Roof', 'gp700', '2d'), ('Sami', '\u2764\ufe0f', "Theo's party", 'ax142', '5d'))):
+        y0 = top + pt(118) + k * pt(80); cy2 = y0 + pt(40)
+        s.avatar(nobody(d), ix, cy2 - d // 2, d)
+        x = tx; _, x = s.text(x, cy2 - pt(9), name, 700, sysp(14), WHITE); _, x = s.text(x, cy2 - pt(9), ' reacted ', 500, sysp(14), white(0.42))
+        s.emoji(em, pt(15), x + pt(8), cy2 - pt(9)); x += pt(17)
+        s.text(x, cy2 - pt(9), ' in ', 500, sysp(14), white(0.42))
+        s.text(tx, cy2 + pt(9), album, 700, sysp(14), WHITE)
+        s.text(tx, cy2 + pt(28), when, 500, sysp(12), white(0.35))
+        t = pt(56); s.photo(sq(still(still_name), 0.5, 0.35, 0.7).resize((t, t), Image.NEAREST), W - pt(36) - t, cy2 - t // 2, W - pt(36), cy2 + t // 2, r=pt(10))
+        s.box(pt(20), y0 + pt(80), W - pt(20), y0 + pt(80) + 1, white(0.1))
     return s.im
 
 def roof_thread(hearts, comments):
@@ -658,7 +720,7 @@ def review_photo(name, cx, cy, k):
     x = min(max(0, round(cx * w - cw / 2)), w - cw); y = min(max(0, round(cy * h - ch / 2)), h - ch)
     return im.crop((x, y, x + cw, y + ch))
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album, 'invite': invite_notif, 'roof-thread-a': lambda: roof_thread(9, [('AMA.K', 'who took this')]), 'roof-thread-b': lambda: roof_thread(60, [('AMA.K', 'who took this'), ('KOFI', 'wallpaper')]), 'song-rain': lambda: now_playing('Rainy Day Piano', '\U0001F327', '3d5a80'), 'song-roof': lambda: now_playing('Through The Roof', '\U0001F680', 'c0392b'), 'song-bday': lambda: now_playing('Happy Birthday', '\U0001F382', 'e88cb0'), 'song-lift': lambda: now_playing('Lift Music', '\U0001F6D7', '8a8f98'),
+SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album, 'invite': invite_notif, 'push-invite': push_invite, 'invite-card': invite_card, 'invite-going': lambda: invite_card(True), 'roof-thread-a': lambda: roof_thread(9, [('AMA.K', 'who took this')]), 'roof-thread-b': lambda: roof_thread(60, [('AMA.K', 'who took this'), ('KOFI', 'wallpaper')]), 'song-rain': lambda: now_playing('Rainy Day Piano', '\U0001F327', '3d5a80'), 'song-roof': lambda: now_playing('Through The Roof', '\U0001F680', 'c0392b'), 'song-bday': lambda: now_playing('Happy Birthday', '\U0001F382', 'e88cb0'), 'song-lift': lambda: now_playing('Lift Music', '\U0001F6D7', '8a8f98'),
            'facematch': lambda: face_match(photo=sq(still('os8_700'), 0.5, 0.3, 0.5), reacts=[('Theo', '\U0001F602', 'os8_700'), ('Imane', '\U0001F480', 'os8_340'), ('Maya', '\U0001F62D', 'os8_505')]),
            'review-king': lambda: face_review(review_photo('os8_700', 0.5, 0.3, 0.5), 41, 94),
            'review-duke': lambda: face_review(review_photo('os8_505', 0.5, 0.3, 0.8), 40, 91),

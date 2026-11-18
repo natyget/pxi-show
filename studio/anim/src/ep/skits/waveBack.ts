@@ -36,10 +36,10 @@ const shots: Shot[] = [
   { n: 11, frames: 30, spec: Q('nioM', [nio('nioM', 'uneasy', { facing: 'marcus' })]), say: [L('wb8_06', 'nio', 2)], sfx: GRASS },
   { n: 12, frames: 30, spec: Q('marcus', [marcus('marcus', 'real', { facing: 'nioM', hold: 'show-phone' })]), say: [L('wb8_07', 'marcus', 2)], sfx: GRASS },
   { n: 13, frames: 30, spec: Q('nioM', [nio('nioM', [[0, 'deadpan'], [14, 'real']], { facing: 'marcus' })]), say: [L('wb8_08', 'nio', 12)], sfx: GRASS },
-  // his own phone buzzes: Marcus invited you to Sunday Dinner. He taps Join.
-  { n: 14, frames: 40, img: 'pxi-ui/screens/invite.png', zoom: [1.2, 12], sfx: [['sk_ding', 2, 0.7]] },
-  { n: 15, frames: 34, img: 'pxi-ui/screens/dinner.png', sfx: [['oh_tap', 26, 0.9]] },
-  { n: 16, frames: 30, shake: [2], img: 'pxi-ui/screens/dinner2.png', sfx: [['sk_ding', 2, 0.6]] },
+  // his own phone buzzes: a PXI push from Marcus. He taps it; the invite opens on the album card; he taps RSVP.
+  { n: 14, frames: 40, img: 'pxi-ui/screens/push-invite.png', zoom: [1.15, 50], sfx: [['sk_ding', 2, 0.7], ['oh_tap', 34, 0.9]] },
+  { n: 15, frames: 40, img: 'pxi-ui/screens/invite-card.png', sfx: [['oh_tap', 30, 0.9]] },
+  { n: 16, frames: 30, shake: [2], img: 'pxi-ui/screens/invite-going.png', sfx: [['sk_ding', 2, 0.6]] },
   // 4. Sunday dinner. He's relaxed now: he's good at this.
   { n: 17, frames: 30, spec: D('wide', [sitD('mum', 'mum', 'hyped', { facing: 'nio' }), sitD('nio', 'nio', 'charm'), sitD('marcus', 'marcus', 'charm')], 0.3), say: [L('wb8_09', 'mum', 4)], sfx: ROOM },
   { n: 18, frames: 30, spec: D('nio', [sitD('nio', 'nio', 'charm', { gaze: [0.5, 0.1], act: { g: [[6, 'offer']] } })]), say: [L('wb8_10', 'nio', 2)], sfx: ROOM },

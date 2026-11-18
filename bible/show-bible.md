@@ -413,3 +413,10 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     those scripts. Acting defaults: smug and charm no longer lift one brow or slide the pupils to the side; a character
     facing someone looks at them; a look into the lens is refused unless the script asks for it (`lens: true`). The
     stranger now names any face aimed at the viewer.
+- **Nov 18, 9:08 PM (UTC), on the first v8 cuts, word for word:**
+  - "are we working on antyhing of not becacuse i see a thread with First v8 cuts are up, Wave Back and One Sip, beside the v7 ones so you can compare. They haven't been through the stranger yet. I already caught a few things in them: Nio's back is to us on two dinner lines, Maya's back is to us on her lines, and the invite screen is mostly black. Those are fixed and re-rendering. Group Photo and Aux are rendering now. and the same exact videos you showed me as they are. so is it making something new or whats going on?
+    also when sami sends a link it would have been nice to get a notification from sami he click and it opens the album momdal and the album modal should focus on the album cover name and location not the mid section with who's going it look not nice and makes no sense
+    whats happeneing now as we speak and whats being done"
+  - What this changed: an invite in a skit lands as a real PXI push notification from the friend; the tap opens the
+    event modal framed on its cover, name and place, without the "who's going" section. Every app screen frames the
+    one element the story needs. Each new cut is posted on its own, never beside old ones.
