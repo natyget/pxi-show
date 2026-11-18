@@ -9,13 +9,15 @@ Five principles. Every failure so far broke one of them. When a new note arrives
 sharpen that principle. Never add a rule for a single note.
 
 1. **Story before jokes.** Write one sentence first: who wants what, what's in the way, what goes wrong. Every
-   beat follows the last with "so" or "but". A beat that needs "and then" gets cut. Jokes come out of the
+   beat follows the last with "so" or "but". A beat that needs "and then" gets cut. Everyone who enters, every
+   object that gets used and every change of angle or position has a reason we can see. Jokes come out of the
    story; never write a beat to deliver a joke.
 2. **Everyone takes it seriously.** The absurd thing is real to the people in it. The comedy is their sincere,
    reasonable logic about it (Gumball: "we can change the channel... on the TV"). Nobody explains the joke,
    announces it, sets up a punchline or winks.
 3. **Friends talk like friends.** Short lines, half-sentences, interruptions, reacting to what the other person
-   just said. Read every line aloud as that person, at that moment. Cut any line nobody would actually say.
+   just said. Before writing a line, ask: would a real person say this, here, right now? Read it aloud as them. Cut any line
+   nobody would actually say, and any stock construction ("I'm not being the ___ guy").
 4. **Show it, and act to each other.** The cause of every change is in the frame when it happens, and any
    reveal is planted in plain sight first. Write what Nio really feels in each beat (never smug or knowing).
    Characters look at each other, never the camera.

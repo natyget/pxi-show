@@ -12,6 +12,8 @@ does not go to the founder.
 - The contact sheets of the final render (at most four images) and the cover at thumb size.
 - The subtitles and every other piece of text that appears on screen, in order, with how long each is held.
 - The golden frames from `bible/style-lock.md`, and the cover of the last release.
+- `audio.txt`: what the sound is heard as every four seconds, by an audio classifier (`engine/tools/audio_tags.py`),
+  because the stranger cannot hear.
 - This page. Nothing else: no script header, no premise, no bible, no explanation of what it is meant to be.
 
 ## The brief, word for word
@@ -41,6 +43,9 @@ kind. If you are unsure, say "not sure", and that counts as a no.
     like a mistake, and anything that bobbed up and down. Do the people act toward each other, or toward you? Name
     any face that looks at you, smirks at you or raises a brow at you when nobody in the story is talking to you.
 11. **Did anyone sound like they were explaining a plan or selling something?** Quote it.
+12. **Does the sound fit the picture?** From `audio.txt`, say whether each stretch is heard as what the picture shows
+    (a party as music and chatter, a roof as wind, a line as speech). Any stretch heard as a siren, a horn, a buzz,
+    insects, static or anything that is not in the scene fails the piece.
 
 End with one line: **PASS** or **FAIL**, and the single most important thing to fix.
 

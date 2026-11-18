@@ -1,0 +1,135 @@
+[
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Nobody's dancing. Why is nobody dancing.",
+"note": "Flat, staring at the room, quietly hurt. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_01.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "That girl's reading the fire exit sign.",
+"note": "Leaning in, dry, pointing it out. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_02.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Give me the aux.",
+"note": "Confident, holding out his hand, sure he can fix it. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_03.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Just don't make it worse.",
+"note": "Hesitant, handing over his phone. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_04.wav"
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "How is it raining inside?",
+"note": "Shouting, panicked, half laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_05.wav"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Is the roof gone?",
+"note": "Screaming, panicked, looking up. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_06.wav"
+},
+{
+"who": "guest3",
+"role": "dguest3",
+"text": "My phone's not waterproof!",
+"note": "Panicked, shoving his phone up his shirt. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_07.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "No. No no no. My records.",
+"note": "Horror, turning to see his records soaked. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_08.wav"
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "This is the best night of my life.",
+"note": "Upside down, laughing hard, delighted. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_09.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Turn it off!",
+"note": "Shouting across the room, desperate. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_10.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm trying!",
+"note": "Shouting back, stabbing at his phone. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_11.wav"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Bro, that was insane.",
+"note": "Leaving, soaked, thrilled, gushing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_12.wav"
+},
+{
+"who": "guest3",
+"role": "dguest3",
+"text": "Tell me you're doing another one.",
+"note": "Leaving, excited, begging. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_13.wav"
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "My phone's dead and I don't even care.",
+"note": "Leaving, happy, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_14.wav"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Theo. Theo. Next weekend?",
+"note": "Grabbing his arm, eager. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_15.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "And that's why I'm always on aux.",
+"note": "Sniffing, grinning, wrapped in a blanket, proud. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_16.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Theo. Theo, he's not worth it.",
+"note": "Pulling at him, calm and firm. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_17.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Do it. Do it.",
+"note": "Wheezing while being throttled, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_18.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Stop talking.",
+"note": "Flat, to Nio, done with him. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax10_19.wav"
+}
+]

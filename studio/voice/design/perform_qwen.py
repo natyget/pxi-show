@@ -24,10 +24,18 @@ VOICES = {
   "imane": ("A 20-year-old young woman, low calm alto, dry and level, unimpressed and sensible, the sanest person in the room; "
             "short answers, a tiny hint of amusement."),
   # Designed Nov 18 for Wave Back v8 (Marcus's sister, the girl in yellow); the founder judges her by ear in the skit.
+  "tobi": ("A 22-year-old British guy, bright mid-high voice, loud and sporty, the friend who organises everything, "
+           "grinning, energetic, natural London accent."),
+  "camp1": ("A 21-year-old British young woman, clear mid voice, friendly and curious, quick, natural and casual."),
+  "camp2": ("A 22-year-old British guy, mid voice, calm and slow, a little suspicious, plain and natural, not deep."),
   "sis": ("A 19-year-old Black British young woman, clear mid voice, cool and observant, dry, sharp and unhurried; "
           "says little and means all of it."),
   "mum": ("A warm Black British mum in her fifties, rich full voice, loud and loving, delighted by everyone, "
           "talks to grown men like they are still twelve."),
+  # Designed Nov 18 for Aux v10: three guests at Theo's house party (founder judges them by ear in the skit)
+  "guest1": ("A 20-year-old guy at a house party, mid voice, loose and loud, laughs easily, easygoing American college kid, natural."),
+  "guest2": ("A 20-year-old young woman at a house party, bright mid voice, fast and excitable, natural American, a bit hoarse from shouting."),
+  "guest3": ("A 21-year-old guy at a house party, mid-low voice, flustered and quick, natural American, not deep."),
   # Original designs for the pilot "No Pics" (Nov 11), written from the script's character notes.
   "dev": ("A 21-year-old guy on a video call from another city, relaxed low-mid voice, dry and unimpressed, talks while "
           "chewing, unhurried; sounds like a real best friend on the phone at midnight, not a performer."),

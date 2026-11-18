@@ -13,7 +13,7 @@ import { Accents } from '../nw3d/acting';
 import { ONE_SIP } from './skits/oneSip';
 import { GROUP_PHOTO } from './skits/groupPhoto';
 import { AUX } from './skits/aux';
-import { WAVE_BACK } from './skits/waveBack';
+import { WAVE_BACK, WB_PICS } from './skits/waveBack';
 import VO_OS from '../vo_os.json';
 import LIPS_OS from '../lips/os.json';
 import ACC_OS from '../lips/os_accents.json';
@@ -30,14 +30,14 @@ import ACC_WB from '../lips/wb_accents.json';
 export type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
 // img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. zoom: [scale, the height
 // it zooms toward, percent from the top], for a screen whose point is one row. flash: a camera flash at this frame.
-export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; finder?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
+export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; finder?: boolean; tap?: [number, number, number, string?][]; say?: Line[]; sfx?: [string, number, number?][] };
 // beds: [sound, volume, the shot it stops at (optional: else it runs to the end)]
 export type SkitDef = { id: string; shots: Shot[]; beds: [string, number, number?][] };
 type VoLine = { file: string; who: string; sub: string; dur: number };
 const vo = { ...VO_OS, ...VO_GP, ...VO_AX, ...VO_WB } as unknown as Record<string, VoLine>;
 const lips = { ...LIPS_OS, ...LIPS_GP, ...LIPS_AX, ...LIPS_WB } as unknown as Record<string, Cues>;
 const acc = { ...ACC_OS, ...ACC_GP, ...ACC_AX, ...ACC_WB } as unknown as Record<string, Accents>;
-export const SKITS: Record<string, SkitDef> = { 'one-sip': ONE_SIP, 'group-photo': GROUP_PHOTO, aux: AUX, 'wave-back': WAVE_BACK };
+export const SKITS: Record<string, SkitDef> = { 'one-sip': ONE_SIP, 'group-photo': GROUP_PHOTO, aux: AUX, 'wave-back': WAVE_BACK, 'wb-pics': WB_PICS };
 
 // A shot is never shorter than its lines: the last line ends at least 6 frames before the cut.
 const lenOf = (s: Shot) => Math.max(s.frames, ...(s.say ?? []).map((l) => l.at + Math.ceil((vo[l.key]?.dur ?? 0) * 24) + 6));
@@ -67,6 +67,19 @@ const Drop: React.FC<{ d: [number, number, number, number, number] }> = ({ d: [a
   return <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}><ellipse cx={x} cy={y} rx={62} ry={62 * Math.max(0.15, Math.cos(f * 0.5))} fill="none" stroke="#2a2024" strokeWidth={18} /><ellipse cx={x} cy={y} rx={62} ry={62 * Math.max(0.15, Math.cos(f * 0.5))} fill="none" stroke="#d4a72c" strokeWidth={9} /></svg>; };
 // through Nio's phone: four white corner marks, so the viewer knows this frame is the photo being taken (the cause in
 // the picture: who is in the shot, and who is not). Plain marks, no app interface.
+// tap: a thumb comes in from the lower right, presses the point (x, y in frame pixels) on the frame given, and leaves
+// (craft library, phone insert: "the thumb enters only to tap"). The skin is the hand's owner's.
+const Thumb: React.FC<{ at: number; x: number; y: number; skin?: string }> = ({ at, x, y, skin = '#e3b48c' }) => {
+  const f = useCurrentFrame() - at; if (f < -9 || f > 9) return null;
+  const k = f < 0 ? (-f) / 9 : f < 3 ? 0 : (f - 3) / 6, e = k * k, dx = 260 * e, dy = 520 * e, press = f >= 0 && f < 3 ? 0.94 : 1;
+  const ring = f >= 0 && f < 8 ? f / 8 : -1;
+  return <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}>
+    {ring >= 0 ? <circle cx={x} cy={y} r={30 + 50 * ring} fill="none" stroke="white" strokeOpacity={0.6 * (1 - ring)} strokeWidth={6} /> : null}
+    <g transform={`translate(${x + dx} ${y + dy}) rotate(-24) scale(${press})`}>
+      <rect x={-62} y={-26} width={124} height={560} rx={62} fill={skin} stroke="#2a1a14" strokeWidth={8} />
+      <rect x={-40} y={-10} width={80} height={96} rx={36} fill="#f6dccb" stroke="#2a1a14" strokeWidth={5} opacity={0.9} />
+    </g></svg>;
+};
 const Finder: React.FC = () => <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}>{[[90, 260, 1, 1], [990, 260, -1, 1], [90, 1660, 1, -1], [990, 1660, -1, -1]].map(([x, y, a, b], k) =>
   <path key={k} d={`M ${x} ${y + b * 110} L ${x} ${y} L ${x + a * 110} ${y}`} fill="none" stroke="#fff" strokeWidth={12} strokeLinecap="round" opacity={0.9} />)}</svg>;
 const Flash: React.FC<{ at: number }> = ({ at }) => { const f = useCurrentFrame() - at; return f < 0 || f > 8 ? null : <AbsoluteFill style={{ background: '#fff', opacity: 1 - f / 8 }} />; };
@@ -101,6 +114,7 @@ export const Skit: React.FC<SkitProps> = (p) => {
         <Sequence key={s.n} from={s.from} durationInFrames={s.frames}>
           <Shake at={s.shake ?? []}><ShotView shot={s} /></Shake>
           {s.finder ? <Finder /> : null}
+          {(s.tap ?? []).map(([at, x, y, skin], i) => <Thumb key={'t' + i} at={at} x={x} y={y} skin={skin} />)}
           {s.flash !== undefined ? <Flash at={s.flash} /> : null}
           {s.drop ? <Drop d={s.drop} /> : null}
           {s.rain ? <Rain /> : null}

@@ -186,10 +186,28 @@ def big_ticket(n):
     centred(d, W / 2, 34, t, font(76), (40, 32, 30)); d.line([(10, 8), (W - 10, 8)], fill=(170, 150, 120), width=3); return im
 
 
+def lakeview():
+    # the old camp sign by the jetty: a weathered plank, carved letters
+    W, H = 520, 170; im = Image.new('RGBA', (W, H), (112, 74, 44, 255)); d = ImageDraw.Draw(im)
+    for y in range(0, H, 34): d.line([0, y, W, y], fill=(92, 60, 36), width=3)
+    d.rectangle([0, 0, W - 1, H - 1], outline=(70, 46, 28), width=8)
+    centred(d, W / 2, 20, 'LAKEVIEW', font(92), (244, 232, 200))
+    centred(d, W / 2, 124, 'SUMMER CAMP', font(30, False), (232, 214, 170))
+    return im
+
+
+def fire_exit():
+    W, H = 360, 150; im = Image.new('RGBA', (W, H), (30, 150, 80, 255)); d = ImageDraw.Draw(im)
+    d.rectangle([0, 0, W - 1, H - 1], outline=(240, 250, 240), width=6)
+    centred(d, W / 2, 34, 'FIRE EXIT', font(64), (250, 255, 250)); centred(d, W / 2, 104, '-->', font(30), (250, 255, 250))
+    return im
+
+
 place('nowServing3', now_serving(3)); place('nowServing4', now_serving(4)); place('plaque', plaque()); place('takeNumber', take_a_number())
 place('hangInThere', hang_in_there()); place('labReport', lab_report()); place('planner', planner()); place('stairs', stairs())
 place('door114', door_number('B114')); place('door116', door_number('B116')); place('door112', door_number('B112'))
 place('nameDarnell', name_card('DARNELL')); place('ticket4', ticket(4)); place('ticket4812', big_ticket(4812)); place('ticket5', ticket(5)); place('slide', slide()); place('flyer', flyer())
+place('lakeview', lakeview()); place('fireExit', fire_exit())
 used = cur[1] + cur[2]
 out = atlas.crop((0, 0, SIZE, 1 << max(8, math.ceil(math.log2(used)))))
 # the atlas is cropped to a power of two high; the rects are made relative to the cropped height

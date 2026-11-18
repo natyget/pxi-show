@@ -10,13 +10,14 @@ import { Face, FACES, gaze } from './face';
 import { lips, Cues } from '../lips/mouths';
 import { perform, actFace, Accents, ActSpec } from './acting';
 import { Scene3, Cam3 } from './types';
-import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_H_CHAR, DARNELL_CHAR, MARCUS_CHAR, MUM_CHAR, SIS_CHAR } from './characters';
+import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_H_CHAR, DARNELL_CHAR, MARCUS_CHAR, MUM_CHAR, SIS_CHAR, TOBI_CHAR, CAMP1_CHAR, CAMP2_CHAR, CAMP3_CHAR } from './characters';
 import { STRANGERS } from './people';
 import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
-import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS, CORRIDOR_MARKS, CORRIDOR_INSERTS, PITCH_MARKS, PITCH_INSERTS, PITCH_SOLIDS, ROOF_MARKS, ROOF_SOLIDS, QUAD_MARKS, QUAD_SOLIDS, DINE_MARKS, DINE_SOLIDS, Keyed, keyed } from './campus';
+import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS, CORRIDOR_MARKS, CORRIDOR_INSERTS, PITCH_MARKS, PITCH_INSERTS, PITCH_SOLIDS, ROOF_MARKS, ROOF_SOLIDS, QUAD_MARKS, QUAD_SOLIDS, DINE_MARKS, DINE_SOLIDS, GARDEN_MARKS, GARDEN_SOLIDS, BATH_MARKS, BATH_SOLIDS, THEO_MARKS, THEO_SOLIDS, PORCH_MARKS, Keyed, keyed } from './campus';
 import { Act, shot, CAMS, ROOM, X, C, CamArg, chaise, cake, sofa } from './room';
 
-export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, marcus: MARCUS_CHAR, mum: MUM_CHAR, sis: SIS_CHAR, ...STRANGERS };
+export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, marcus: MARCUS_CHAR, mum: MUM_CHAR, sis: SIS_CHAR, tobi: TOBI_CHAR, camp1: CAMP1_CHAR, camp2: CAMP2_CHAR, camp3: CAMP3_CHAR, ...STRANGERS,
+  guest1: STRANGERS.cap, guest2: STRANGERS.girl2, guest3: STRANGERS.spinner }; // Aux v10's three guests with lines
 
 // A place a character can be. s and z as in room.ts. yaw: the way he faces there by default. seat: sit height.
 // on: stand on top of something this high (the desk, the bed). A place with `on` may be inside a piece of furniture.
@@ -49,12 +50,14 @@ export const SETS: Record<string, SetDef> = {
       atDesk: C([1.25, 1.3, 0.45], [3.0, 1.05, 1.4], 42), // at the desk when he turns round from it
       screen: C([3.72, 1.12, 1.3], [2.8, 1.38, 1.3], 56), // from behind the laptop, when he is working at the desk
       atDoor: C([2.55, 1.35, 3.0], [1.05, 1.05, 0.6], 50), // the reverse angle: from the window end, back toward the door
+      rugLie: C([2.9, 0.9, 2.2], [2.0, 0.2, 3.4], 58), // down at him flat on his back on the rug
     },
     marks: {
       rug: { s: 2.0, z: 2.5, yaw: 180 }, rugLeft: { s: 1.55, z: 2.45, yaw: 180 }, rugRight: { s: 2.55, z: 2.45, yaw: 180 },
       bedEdge: { s: 1.6, z: 3.02, yaw: 180, seat: 0.47 }, window: { s: 2.55, z: 3.85, yaw: 0 },
       nightstand: { s: 1.0, z: 2.55, yaw: 90 }, dresser: { s: 2.8, z: 3.1, yaw: 270 }, desk: { s: 2.8, z: 1.3, yaw: 270 },
       door: { s: 0.9, z: 0.7, yaw: 0 }, // just inside the door, facing into the room
+      rugLie: { s: 2.0, z: 2.0, yaw: 180 }, // flat on his back on the rug, head toward the bed (Wave Back v9)
     },
     solids: [
       { name: 'the bed', s: [0.0, 2.14], z: [3.1, 4.4] }, { name: 'the nightstand', s: [0.06, 0.7], z: [2.52, 3.04] },
@@ -175,6 +178,12 @@ SETS.roof = { room: CAMPUS_ROOMS.roof.size, campus: 'roof', cameras: CAMPUS_ROOM
 // THE QUAD and MUM'S DINING ROOM (Wave Back).
 SETS.quad = { room: CAMPUS_ROOMS.quad.size, campus: 'quad', cameras: CAMPUS_ROOMS.quad.cams, marks: QUAD_MARKS, solids: QUAD_SOLIDS };
 SETS.dining = { room: CAMPUS_ROOMS.dining.size, campus: 'dining', cameras: CAMPUS_ROOMS.dining.cams, marks: DINE_MARKS, solids: DINE_SOLIDS };
+// Wave Back v9: Marcus's garden down to the camp lake (the shed, the mower's run), and his bathroom
+SETS.garden = { room: CAMPUS_ROOMS.garden.size, campus: 'garden', cameras: CAMPUS_ROOMS.garden.cams, marks: GARDEN_MARKS, solids: GARDEN_SOLIDS };
+// Aux v10: Theo's house and its front porch
+SETS.theoHouse = { room: CAMPUS_ROOMS.theoHouse.size, campus: 'theoHouse', cameras: CAMPUS_ROOMS.theoHouse.cams, marks: THEO_MARKS, solids: THEO_SOLIDS };
+SETS.porch = { room: CAMPUS_ROOMS.porch.size, campus: 'porch', cameras: CAMPUS_ROOMS.porch.cams, marks: PORCH_MARKS, solids: [] };
+SETS.bath = { room: CAMPUS_ROOMS.bath.size, campus: 'bath', cameras: CAMPUS_ROOMS.bath.cams, marks: BATH_MARKS, solids: BATH_SOLIDS };
 
 // What a body can do. Each is real human motion fitted to the character. speed: metres per second it must travel.
 export type Action = { rest?: [string, number]; // a held pose (acting.ts): the body is this clip frame, still, and the acting pass moves it
@@ -207,7 +216,7 @@ export const ACTIONS: Record<string, Action> = {
 //  wave: a hand up by the head, open, waving side to side (hand: 0 his left, 1 his right; sitting or standing).
 //  slideFlyer (Prof H pushes the flyer across his desk), flyer (the flyer held up beside his face, toward whoever he faces),
 //  mop (the cleaner, walking), ticket (Darnell, sitting: the lab report on his knees, his ticket 4 on it under his left hand).
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox'] as const;
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox', 'throttle', 'pizza'] as const;
 // Costume pieces worn over the outfit (One Sip). A shot may change them at a frame: wear: [[0, []], [12, ['bowtie']]].
 export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'moustache', 'partyhat', 'lanyard', 'scarf', 'glasses', 'lampshade', 'beret', 'headset'];
 const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer', 'ticket'], TRAVEL_HOLDS = ['phone', 'cup', 'mop'];

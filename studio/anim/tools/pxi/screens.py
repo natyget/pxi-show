@@ -539,7 +539,66 @@ def invite_card(going=False, who='Marcus', event="Sunday at Mum's", venue="Mum's
         s.box(186, 566, 330, 614, G2E, r=24); s.text(258, 590, 'Pass', 800, pt(14), WHITE, align='c')
     return s.im
 
-def now_playing(title, art, bg):
+def lock_push(notes, clock='9:14', date='Thursday, November 20', wall='lockwall'):
+    """A PXI push on the phone's lock screen (the phone's own layout, as lock()): newest on top, each card the app icon,
+    a bold first line, the body, the time and the picture. notes: (title, body, when, picture or None)."""
+    s = Screen(); s.photo(pic(wall, W, H) if isinstance(wall, str) else wall.resize((W, H), Image.LANCZOS), 0, 0, W, H)
+    s.shade(0, 0, W, 300, 0.45, 0.0); s.status(clock)
+    s.text(180, 87, date, 600, 18, WHITE, align='c')
+    s.text(180, 141, clock, 700, 88, WHITE, ls=-1, align='c')
+    card, ink, grey = (233, 233, 236), (12, 12, 14), (128, 128, 134)
+    for i, (title, body, when, im) in enumerate(notes):
+        y = 359 + i * 65
+        s.box(11, y, 341, y + 59, card, r=20)
+        s.photo(app_icon(34), 22, y + 12, 56, y + 46, r=8)
+        s.text(66, y + 19, title, 600, sysp(15), ink)
+        s.text(66, y + 37, body, 400, sysp(15), ink)
+        s.text(284 if im is not None else 330, y + 21, when, 400, sysp(13), grey, align='r')
+        if im is not None: s.photo(sq(im, 0.5, 0.45, 0.8).resize((38, 38), Image.LANCZOS), 293, y + 11, 331, y + 49, r=7)
+    s.box(119, 771, 241, 775, WHITE, r=2)
+    return s.im
+
+def event_details(title, cover_im, venue, date, time, visibility='PRIVATE', footer='guest'):
+    """The event modal exactly as the app shows it on open, unscrolled (src/components/album/AlbumDetailsModal.tsx with
+    EventDetailsBody.tsx and EventFooter.tsx, theme eventTheme.ts): an iOS page sheet (#1C1C1C) over black; the header
+    EVENT DETAILS (12.5pt, 800) with the close X; the title in purple display caps (FitTitle, up to 34pt, 2 lines) and
+    PRIVATE under it; the 3:4 cover with 40pt corners; the venue in purple display; DATE and TIME (purple 11pt labels,
+    white 24pt display values); and the sticky footer, [Deny | Join] for a guest or the green JOINED chip."""
+    SHEET, PURP = hexc('1C1C1C'), hexc('A523EF')
+    s = Screen(); s.status()
+    s.box(pt(10), pt(48), W - pt(10), pt(70), hexc('2a2a2c'), r=pt(10))            # the screen behind, pushed back
+    top = pt(56); s.box(0, top, W, H + pt(20), SHEET, r=pt(10))
+    hy = top + pt(22) + pt(8)
+    s.text(pt(20), hy, 'EVENT DETAILS', 800, pt(12.5), WHITE, ls=0.3); _x(s, W - pt(20) - pt(11), hy, pt(8), WHITE, 2)
+    y = hy + pt(14) + pt(6) + pt(8)
+    inner = W - 2 * pt(20)
+    px, lines = fit_title(title.upper().split(), inner, pt(34) * 2.2, pt(34), pt(20))
+    for l in lines:
+        y += round(px * 0.53)
+        s.text(W // 2, y + 2, l, 'display', px, mix(SHEET, BLACK, 0.6), ls=-1, align='c'); s.text(W // 2, y, l, 'display', px, PURP, ls=-1, align='c')
+        y += round(px * 0.53)
+    y += pt(6) + pt(6); s.text(W // 2, y, visibility, 800, pt(11), white(0.55, SHEET), ls=1.4, align='c'); y += pt(6)
+    y += pt(16); ch = round(inner * 4 / 3)
+    w0, h0 = cover_im.size; k = min(w0 / inner, h0 / ch); cw_, ch_ = round(inner * k), round(ch * k)
+    crop = cover_im.crop(((w0 - cw_) // 2, (h0 - ch_) // 2, (w0 - cw_) // 2 + cw_, (h0 - ch_) // 2 + ch_)).resize((inner, ch), Image.LANCZOS)
+    s.photo(crop, pt(20), y, pt(20) + inner, y + ch, r=pt(40)); y += ch
+    y += pt(26) + pt(10); s.text(W // 2, y + 2, venue.upper(), 'display', pt(20), mix(SHEET, BLACK, 0.6), ls=-0.3, align='c'); s.text(W // 2, y, venue.upper(), 'display', pt(20), PURP, ls=-0.3, align='c')
+    y += pt(10) + pt(22) + pt(6)
+    for cx, lab, val in ((W // 2 - pt(62), 'DATE', date), (W // 2 + pt(62), 'TIME', time)):
+        s.text(cx, y, lab, 800, pt(11), PURP, ls=1, align='c'); s.text(cx, y + pt(22), val, 'display', pt(24), WHITE, ls=-0.4, align='c')
+    # the sticky footer: a fade over the top padding, then solid
+    fy = H - (pt(44) + pt(48)) ; s.shade(0, fy - pt(44), W, fy - pt(26), 0.0, 1.0, SHEET); s.box(0, fy - pt(26), W, H, SHEET)
+    if footer == 'guest':
+        bw = (W - 2 * pt(18) - pt(14)) // 2
+        s.box(pt(18), fy, pt(18) + bw, fy + pt(48), hexc('4A4A4A'), r=pt(24)); s.text(pt(18) + bw // 2, fy + pt(24), 'Deny', 800, pt(16), WHITE, align='c')
+        s.box(W - pt(18) - bw, fy, W - pt(18), fy + pt(48), PURP, r=pt(24)); s.text(W - pt(18) - bw // 2, fy + pt(24), 'Join', 800, pt(16), WHITE, align='c')
+    else:
+        s.box(pt(18), fy, W - pt(18), fy + pt(48), (21, 46, 27), r=pt(24)); s.text(W // 2 + pt(12), fy + pt(24), 'JOINED', 900, pt(14), hexc('32D74B'), ls=1.6, align='c')
+        cx = W // 2 - pt(36); s.line(cx - 6, fy + pt(24), cx - 1, fy + pt(24) + 5, hexc('32D74B'), 2); s.line(cx - 1, fy + pt(24) + 5, cx + 8, fy + pt(24) - 5, hexc('32D74B'), 2)
+    s.box(119, 771, 241, 775, WHITE, r=2)
+    return s.im
+
+def now_playing(title, art, bg, wet=0):
     """Aux: what Nio puts on, on his own phone's music player (not PXI: a plain player, no brand). The song title is
     the cause of what happens next, so it is the one big thing on the screen (craft library, phone insert)."""
     s = Screen(bg=hexc('121212')); s.status()
@@ -548,6 +607,20 @@ def now_playing(title, art, bg):
     s.text(180, 450, title, 'display', pt(30), WHITE, align='c')
     s.box(40, 520, 320, 526, white(0.25, hexc('121212')), r=3); s.box(40, 520, 70, 526, WHITE, r=3); s.disc(64, 515, 16, WHITE)
     s.disc(150, 570, 60, WHITE); s.box(172, 586, 179, 614, hexc('121212')); s.box(184, 586, 191, 614, hexc('121212'))
+    for sx in (-1, 1):   # back and skip: two triangles and a bar each side of play
+        cx = 180 + sx * 92
+        for k in (0, 1):
+            tx = cx + sx * (k * 11 - 8)
+            s.d.polygon([(tx - sx * 9, 588), (tx - sx * 9, 612), (tx + sx * 9, 600)], fill=WHITE)
+        s.box(cx + sx * 14 - 2, 588, cx + sx * 14 + 2, 612, WHITE)
+    if wet:              # water on the glass: drops, each a dark rim, a lighter body and a bright glint
+        import random; r = random.Random(wet)
+        for _ in range(26 * wet):
+            x, y, rr = r.randint(10, 350), r.randint(60, 760), r.randint(5, 16)
+            box = [x - rr, y - rr * 1.15, x + rr, y + rr * 1.15]
+            under = s.im.getpixel((min(359, x), min(779, y)))
+            s.d.ellipse(box, fill=mix(under, (160, 190, 220), 0.35), outline=mix(under, (0, 0, 0), 0.4), width=2)
+            s.d.ellipse([x - rr * 0.5, y - rr * 0.75, x - rr * 0.1, y - rr * 0.3], fill=(240, 248, 255))
     return s.im
 
 def invite_notif(who='Marcus', event='Sunday Dinner'):
@@ -582,7 +655,7 @@ def roof_thread(hearts, comments):
     after the shot. One photo: the empty rooftop and a perfect sunset. The hearts on it climb; strangers in the album
     comment. The cause of Nio's last line, on screen."""
     s = Screen()
-    photo = sq(still('gp822'), 0.5, 0.62, 0.85).resize((300, 300), Image.LANCZOS)
+    photo = sq(still('gp8_930'), 0.5, 0.42, 0.75).resize((300, 300), Image.LANCZOS)
     s.photo(photo, 30, 170, 330, 470, r=14)
     s.avatar(pic('avatar', 27, 27), 42, 482, 27); s.text(78, 495, 'sunset', 500, sysp(15), WHITE)
     x = chip(s, 42, 520, '\u2764\ufe0f', str(hearts)); chip(s, x + 6, 520, '\U0001F525', str(max(1, hearts // 4)))
@@ -593,6 +666,36 @@ def roof_thread(hearts, comments):
         s.text(75, y + 13, name, 800, pt(10), hexc('9A9A9A'), ls=1); s.text(75, y + 32, text, 500, sysp(15), WHITE)
         s.avatar(nobody(29), 26, y + 16, 29); y += 60
     s.box(0, 0, W, 158, BLACK); header(s, 'Roof'); switch(s, 'THREAD')
+    return s.im
+
+def face_of(name, cx, cy, k, size):
+    """A neighbour's profile picture: a square crop of a launch-skit still, at the avatar's size."""
+    return sq(still(name), cx, cy, k).resize((size, size), Image.LANCZOS)
+
+PARKWAY = [('DENISE_3B', '3B here. beautiful', ('wb8_1150', 0.5, 0.42, 0.55)),
+           ('KWAME.O', 'is this OUR roof??', ('ax204', 0.2, 0.33, 0.28)),
+           ('LILY.W', 'new wallpaper', ('wb8_1150', 0.82, 0.24, 0.3)),
+           ('RAY_4F', 'who took this', None)]
+
+def parkway_thread(stage):
+    """Group Photo v9: the building's album (ThreadView, AlbumThreadMediaCard, AlbumReactionBar), "151 Parkway Residents".
+    Nio's sunset photo; neighbours pile in with every kind of reaction and comment, with their own profile pictures."""
+    s = Screen()
+    photo = sq(still('gp8_930'), 0.5, 0.42, 0.75).resize((250, 250), Image.LANCZOS)
+    s.photo(photo, 55, 168, 305, 418, r=14)
+    s.avatar(pic('avatar', 27, 27), 55, 430, 27); s.text(91, 443, 'sunset', 500, sysp(15), WHITE)
+    chips = [('\u2764\ufe0f', '9'), ('\U0001F525', '3')] if stage == 0 else [('\u2764\ufe0f', '64'), ('\U0001F60D', '23'), ('\U0001F525', '19'), ('\U0001F62E', '11'), ('\U0001F64C', '8')]
+    x = 30
+    for i, (em, n) in enumerate(chips):
+        if x > 280: break
+        x = chip(s, x, 466, em, n) + 6
+    y = 514
+    for name, text, face in PARKWAY[: (1 if stage == 0 else 4)]:
+        w = 24 + text_w(text, 500, sysp(15)) + 20
+        s.box(64, y, 64 + max(w, 120), y + 48, G1C, r=16, small=('bl', 5))
+        s.text(75, y + 13, name, 800, pt(10), hexc('9A9A9A'), ls=1); s.text(75, y + 32, text, 500, sysp(15), WHITE)
+        s.avatar(face_of(*face, 29) if face else nobody(29), 26, y + 16, 29); y += 60
+    s.box(0, 0, W, 158, BLACK); header(s, '151 Parkway Residents'); switch(s, 'THREAD')
     return s.im
 
 STILLS = os.path.join(ANIM, 'out', 'skit-stills')
@@ -720,7 +823,48 @@ def review_photo(name, cx, cy, k):
     x = min(max(0, round(cx * w - cw / 2)), w - cw); y = min(max(0, round(cy * h - ch / 2)), h - ch)
     return im.crop((x, y, x + cw, y + ch))
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album, 'invite': invite_notif, 'push-invite': push_invite, 'invite-card': invite_card, 'invite-going': lambda: invite_card(True), 'roof-thread-a': lambda: roof_thread(9, [('AMA.K', 'who took this')]), 'roof-thread-b': lambda: roof_thread(60, [('AMA.K', 'who took this'), ('KOFI', 'wallpaper')]), 'song-rain': lambda: now_playing('Rainy Day Piano', '\U0001F327', '3d5a80'), 'song-roof': lambda: now_playing('Through The Roof', '\U0001F680', 'c0392b'), 'song-bday': lambda: now_playing('Happy Birthday', '\U0001F382', 'e88cb0'), 'song-lift': lambda: now_playing('Lift Music', '\U0001F6D7', '8a8f98'),
+def camp_album(stage):
+    """Wave Back v9: the Lakeview Reunion album's gallery (app/album/[id].tsx, AlbumMasonryGrid.tsx). 'marcus': on
+    Marcus's phone, his own shots first, then "Everyone else". 'noshots': on Nio's, face matching finds nothing, so the
+    face empty state takes the top spot (renderFaceEmpty, compact): the FaceId icon, NO SHOTS OF YOU FOUND IN THIS ALBUM
+    YET, the line under it, RESCAN FOR ME. 'found': the one photo he's in, first, then everyone else."""
+    s = Screen()
+    jetty, sign, mower, garden, lake = still('wb9_jetty'), still('wb9_sign'), still('wb9_mower'), still('wb9_garden'), still('wb9_lake')
+    tiles = [(jetty, 0.5, 0.45, 0.8, '\U0001F525', '48'), (sign, 0.5, 0.5, 0.85, '\u2764\ufe0f', '41'), (mower, 0.5, 0.55, 0.8, '\U0001F602', '39'),
+             (garden, 0.5, 0.5, 0.9, '\U0001F60D', '33'), (jetty, 0.35, 0.4, 0.6, '\U0001FAF6', '30'), (sign, 0.6, 0.35, 0.6, '\U0001F525', '28'),
+             (mower, 0.4, 0.5, 0.55, '\U0001F602', '24'), (garden, 0.6, 0.6, 0.6, '\u2764\ufe0f', '22'), (jetty, 0.65, 0.5, 0.6, '\U0001F60D', '19'),
+             (sign, 0.4, 0.6, 0.6, '\U0001F64C', '17'), (mower, 0.6, 0.4, 0.6, '\U0001F525', '15'), (garden, 0.4, 0.4, 0.6, '\U0001FAF6', '12')]
+    def tile(t, i, y, av=None):
+        im, cx, cy, k, em, n = t; x = (i % 3) * 120
+        s.photo(sq(im, cx, cy, k).resize((116, 116), Image.LANCZOS), x + 2, y + 2, x + 118, y + 118, r=pt(14))
+        s.disc(x + 9, y + 85, 26, G1C); s.avatar(av if av is not None else nobody(22), x + 11, y + 87, 22)
+        w = 6 + 12 + 2 + text_w(n, 800, pt(10)) + 6; bx = x + 111 - w
+        for yy in range(y + 96, min(H, y + 111)):
+            for xx in range(bx, bx + w):
+                r = 7; c0 = min(max(xx, bx + r), bx + w - r - 1); c1 = min(max(yy, y + 96 + r), y + 110 - r)
+                if (xx - c0) ** 2 + (yy - c1) ** 2 <= r * r + 2: s.im.putpixel((xx, yy), mix(s.im.getpixel((xx, yy)), BLACK, 0.62))
+        s.emoji(em, 11, bx + 11, y + 103); s.text(bx + 19, y + 103, n, 800, pt(10), WHITE)
+    if stage == 'marcus':
+        for i in range(3): tile(tiles[i], i, 160)
+        s.text(pt(16), 307, 'Everyone else', 600, sysp(13), white(0.55))
+        for i in range(3, 12): tile(tiles[i], i, 324 + ((i - 3) // 3) * 120)
+    elif stage == 'noshots':
+        s.icon('FaceIdIcon', 40, 180, 196, white(0.4))
+        s.text(180, 238, 'NO SHOTS OF YOU FOUND', 'display', pt(18), WHITE, ls=1, align='c')
+        s.text(180, 260, 'IN THIS ALBUM YET', 'display', pt(18), WHITE, ls=1, align='c')
+        s.text(180, 288, "We'll let you know when you're", 400, sysp(14), hexc('9A9A9A'), align='c')
+        s.text(180, 308, 'spotted in new photos.', 400, sysp(14), hexc('9A9A9A'), align='c')
+        s.box(80, 330, 280, 378, PURPLE, r=24); s.text(180, 354, 'RESCAN FOR ME', 900, pt(13), WHITE, ls=2, align='c')
+        for i in range(9): tile(tiles[i], i, 404 + (i // 3) * 120)
+    else:
+        tile((lake, 0.5, 0.55, 0.5, '\U0001F602', '212'), 0, 160, pic('avatar', 22, 22))
+        s.text(pt(16), 307, 'Everyone else', 600, sysp(13), white(0.55))
+        for i in range(9): tile(tiles[i], i, 324 + (i // 3) * 120)
+    s.box(0, 0, W, 158, BLACK); header(s, 'Lakeview Reunion'); switch(s, 'GALLERY')
+    s.disc(292, 643, 51, PURPLE); s.icon('Add01Icon', 24, 317, 668, WHITE)
+    return s.im
+
+SCREENS = {'camp-album': lambda: camp_album('marcus'), 'camp-noshots': lambda: camp_album('noshots'), 'camp-found': lambda: camp_album('found'), 'push-lakeview': lambda: lock_push([('PXI', 'Marcus added you to Lakeview Reunion', 'now', still('wb9_jetty'))], '4:12', 'Thursday, November 20'), 'push-photo1': lambda: lock_push([('Lakeview Reunion', 'You might be in 1 photo', 'now', None)], '6:47', 'Sunday, November 23'), 'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album, 'invite': invite_notif, 'test-event': lambda: event_details('Lakeview Reunion', still('gp8_930'), "Marcus's place", 'SUN 23 NOV', '7:00 PM'), 'parkway-a': lambda: parkway_thread(0), 'parkway-b': lambda: parkway_thread(1), 'push-parkway': lambda: lock_push([('151 Parkway Residents', 'kwame.o: is this OUR roof??', 'now', None), ('151 Parkway Residents', 'denise_3b reacted to your photo', 'now', None), ('151 Parkway Residents', 'lily.w and 18 others reacted', '1m ago', None), ('151 Parkway Residents', 'ray_4f: who took this', '1m ago', None)], '7:48', 'Tuesday, November 18'), 'push-face41': lambda: lock_push([('PXI', 'You might be in 41 photos', 'now', still('os8_700'))], '9:14', 'Thursday, November 20', still('gp8_930').crop((48, 0, 491, 960))), 'push-invite': push_invite, 'invite-card': invite_card, 'invite-going': lambda: invite_card(True), 'roof-thread-a': lambda: roof_thread(9, [('AMA.K', 'who took this')]), 'roof-thread-b': lambda: roof_thread(60, [('AMA.K', 'who took this'), ('KOFI', 'wallpaper')]), 'song-rain': lambda: now_playing('Rainy Day Piano', '\U0001F327', '3d5a80'), 'song-rain-wet': lambda: now_playing('Rainy Day Piano', '\U0001F327', '3d5a80', 1), 'song-roof-wet': lambda: now_playing('Through The Roof', '\U0001F680', 'c0392b', 2), 'song-roof': lambda: now_playing('Through The Roof', '\U0001F680', 'c0392b'), 'song-bday': lambda: now_playing('Happy Birthday', '\U0001F382', 'e88cb0'), 'song-lift': lambda: now_playing('Lift Music', '\U0001F6D7', '8a8f98'),
            'facematch': lambda: face_match(photo=sq(still('os8_700'), 0.5, 0.3, 0.5), reacts=[('Theo', '\U0001F602', 'os8_700'), ('Imane', '\U0001F480', 'os8_340'), ('Maya', '\U0001F62D', 'os8_505')]),
            'review-king': lambda: face_review(review_photo('os8_700', 0.5, 0.3, 0.5), 41, 94),
            'review-duke': lambda: face_review(review_photo('os8_505', 0.5, 0.3, 0.8), 40, 91),

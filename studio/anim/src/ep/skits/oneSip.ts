@@ -37,7 +37,7 @@ const shots: Shot[] = [
   { n: 9, frames: 26, spec: P('mayaK', [st('maya', 'booM', 'deadpan', { facing: 'samiL' })], 0.06), say: [L('os8_06', 'maya', 2)] },
   { n: 10, frames: 30, spec: P('samiS', [st('sami', 'samiL', 'real', { wear: SNOB, facing: 'booM' })]), say: [L('os8_07', 'sami', 2)] },
   // 3. sip two: a headset mic. He's in front of Imane.
-  sipShot(11, SNOB, COACH, [FACE], 2),
+  sipShot(11, SNOB, COACH, [HEAD], 2),
   { n: 12, frames: 30, spec: P('coach', [st('sami', 'coachS', 'real', { facing: 'coachI', wear: COACH, act: { g: [[4, 'offer']] } })]), say: [L('os8_08', 'sami', 2)] },
   { n: 13, frames: 24, spec: P('imane', [st('imane', 'osImane', 'deadpan', { facing: 'coachS' })], 0.06), say: [L('os8_09', 'imane', 2)] },
   { n: 14, frames: 30, spec: P('coach', [st('sami', 'coachS', 'suspicious', { facing: 'coachI', wear: COACH })]), say: [L('os8_10', 'sami', 2)], sfx: [['sk_groan', 30, 0.6]] },
@@ -59,9 +59,11 @@ const shots: Shot[] = [
   { n: 25, frames: 44, spec: P('kingWide', [st('sami', 'king', [[0, 'shock'], [12, 'sheepish']], { wear: [[0, KING], [12, []]], gaze: [0.3, -0.3] })], 0.1), say: [L('os8_19', 'sami', 18)], sfx: [['sk_flop', 12, 0.7]] },
   // 7. tag: the next morning, crashed on the sofa. PXI: you might be in 41 photos. Not me. Not me. Not me.
   { n: 26, frames: 30, spec: P('couch', [{ who: 'sami', at: 'couch', action: 'sit', face: 'crushed', hold: 'phone' }], 0.1, undefined, 'livingDay'), sfx: [...MORNING, ['sk_ding', 14, 0.6]] },
-  { n: 27, frames: 40, img: 'pxi-ui/screens/facematch.png', zoom: [1.3, 15], sfx: [['oh_tap', 30, 0.8]] },
-  { n: 28, frames: 26, img: 'pxi-ui/screens/review-king.png', sfx: [['oh_tap', 18, 0.8]] },
-  { n: 29, frames: 22, img: 'pxi-ui/screens/review-duke.png', sfx: [['oh_tap', 14, 0.8]] },
-  { n: 30, frames: 24, img: 'pxi-ui/screens/review-snob.png', sfx: [['oh_tap', 12, 0.8]] },
+  { n: 27, frames: 40, img: 'pxi-ui/screens/push-face41.png', zoom: [1.12, 50], tap: [[30, 540, 955]], sfx: [['oh_tap', 30, 0.8]] },
+  { n: 28, frames: 26, img: 'pxi-ui/screens/review-king.png', tap: [[18, 357, 1419]], sfx: [['oh_tap', 18, 0.8]] },
+  { n: 29, frames: 22, img: 'pxi-ui/screens/review-duke.png', tap: [[14, 368, 1451]], sfx: [['oh_tap', 14, 0.8]] },
+  { n: 30, frames: 24, img: 'pxi-ui/screens/review-snob.png', tap: [[12, 368, 1451]], sfx: [['oh_tap', 12, 0.8]] },
+  // and his face: he remembers all of it
+  { n: 31, frames: 44, spec: P('couch', [{ who: 'sami', at: 'couch', action: 'sit', face: [[0, 'neutral'], [10, 'crushed']], hold: 'phone' }], 0.4, undefined, 'livingDay'), sfx: MORNING },
 ];
-export const ONE_SIP: SkitDef = { id: 'one-sip', shots, beds: [['sk_chatter', 0.35, 26]] };
+export const ONE_SIP: SkitDef = { id: 'one-sip', shots, beds: [['sk_party', 0.22, 26], ['sk_walla', 0.5, 26]] };

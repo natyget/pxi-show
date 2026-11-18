@@ -227,3 +227,44 @@ export const SIS_CHAR: Character = {
     bottom: { color: '#2e3346', cuff: '#2e3346', width: 0.04 }, shoes: { color: '#ece6da' } } },
   outfit: 'day', restFace: 'neutral',
 };
+
+// ---- WAVE BACK v9 (Nov 18): Marcus's camp friends. Each reads apart from the main cast at a glance: a hairstyle and a
+// top colour nobody else has.
+// TOBI, the one who organises everything. Medium height, sporty, light brown skin, a short high-top fade, a bright
+// orange track jacket, navy trackies, white trainers.
+export const TOBI_CHAR: Character = {
+  id: 'tobi', body: { ...THEO, shoulderHalf: 0.15 }, skin: '#8c5a3c', hairA: '#191212', hairB: '#100c0c',
+  hair: [L(0, 0.16, -0.03, 0.12), L(0, 0.22, -0.04, 0.1), L(0, 0.11, -0.11, 0.12)],
+  head: { width: 1.0, chin: 1.06 },
+  wardrobe: { day: { top: { color: '#e8762c', loose: 0.03, sleeve: 0.8, long: true, trim: '#f2f0ea' },
+    bottom: { color: '#263354', cuff: '#1f2a46', width: 0.05 }, shoes: { color: '#f2efe8' } } },
+  outfit: 'day', restFace: 'hyped',
+};
+// JADE, friendly and curious. Small, pale with freckles' warmth, a high red ponytail, a lilac fleece, grey jeans.
+export const CAMP1_CHAR: Character = {
+  id: 'camp1', body: { ...MAYA, shoulderHalf: 0.118 }, skin: '#f0c9a8', hairA: '#a2432a', hairB: '#7d321f',
+  hair: [L(0.06, 0.16, -0.02, 0.145), L(-0.06, 0.16, -0.02, 0.145), L(0, 0.12, -0.12, 0.145), T(0, 0.2, -0.14, 0.07, 0, 0.0, -0.26, 0.05)],
+  head: { lashes: 1, width: 0.98, chin: 1.0 },
+  wardrobe: { day: { top: { color: '#a98fd1', loose: 0.035, sleeve: 0.8, long: true, trim: '#9680bd' },
+    bottom: { color: '#8a8d94', cuff: '#7e8188', width: 0.04 }, shoes: { color: '#3a3236' } } },
+  outfit: 'day', restFace: 'charm',
+};
+// DEV, calm and slow, the one who was really in Cabin Four. Tall and lean, medium brown skin, black curls on top,
+// round glasses, a forest-green rugby shirt with a white collar, beige chinos.
+export const CAMP2_CHAR: Character = {
+  id: 'camp2', body: { ...MARCUS }, skin: '#9b6a48', hairA: '#141011', hairB: '#0d0a0b',
+  hair: [L(0.05, 0.17, 0.0, 0.12), L(-0.05, 0.17, -0.01, 0.12), L(0, 0.13, -0.1, 0.13)],
+  head: { width: 0.98, chin: 1.1, curls: 1, glasses: '#2a2422' },
+  wardrobe: { day: { top: { color: '#2f5b3a', loose: 0.03, sleeve: 0.8, long: true, collar: '#f2efe6' },
+    bottom: { color: '#cdb991', cuff: '#bfac86', width: 0.05 }, shoes: { color: '#5a4a3c' } } },
+  outfit: 'day', restFace: 'suspicious',
+};
+// PRIYA, at the end of the table. Medium brown skin, long straight black hair in a low ponytail, a sky-blue jumper.
+export const CAMP3_CHAR: Character = {
+  id: 'camp3', body: { ...MAYA }, skin: '#b07850', hairA: '#121011', hairB: '#0b0a0a',
+  hair: [L(0.06, 0.16, -0.02, 0.15), L(-0.06, 0.16, -0.02, 0.15), L(0, 0.12, -0.12, 0.15), T(0, 0.02, -0.17, 0.07, 0, -0.3, -0.16, 0.05)],
+  head: { lashes: 1, width: 1.0, chin: 1.0 },
+  wardrobe: { day: { top: { color: '#7fb3db', loose: 0.03, sleeve: 0.8, long: true, trim: '#6fa1c8' },
+    bottom: { color: '#3b3f4c', cuff: '#343844', width: 0.04 }, shoes: { color: '#efe9de' } } },
+  outfit: 'day', restFace: 'charm',
+};

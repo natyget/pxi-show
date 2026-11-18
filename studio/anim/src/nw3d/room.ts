@@ -404,6 +404,18 @@ export const pose = (a: Act) => {
     s = reach(s, 1, w, add(out(1), [0, -0.6, 0]), P, norm(add(fwd, [0, -0.25, 0])), mul(out(1), -1)); hands[1] = 'open';
     s = lookAt(s, a.reachTo, 0.3, P);
   }
+  // (Aux v10) both hands round the neck of whoever is in front of him, cartoon-style, leaning in
+  if (nm === 'throttle') {
+    s = leanFwd(s, 0.3); const up: V = [0, 1, 0];
+    for (const i of [0, 1] as const) { const w = add(add(s.neckBase, mul(up, 0.02)), add(mul(fwd, 0.42), mul(s.side, i === 0 ? 0.07 : -0.07)));
+      s = reach(s, i, w, add(out(i), [0, -0.5, 0]), P, mul(s.side, i === 0 ? -1 : 1), up); hands[i] = 'fist'; }
+  }
+  // (Aux v10) a flat pizza box held over her head against the rain
+  if (nm === 'pizza') {
+    const up: V = [0, 1, 0], pc = add(s.neckBase, add(mul(up, 0.42), mul(fwd, 0.05)));
+    props.push({ c: pc, x: s.side, y: up, z: fwd, h: [0.21, 0.025, 0.21], col: '#d8b88a' });
+    for (const i of [0, 1] as const) { s = reach(s, i, add(pc, add(mul(s.side, i === 0 ? 0.2 : -0.2), [0, -0.03, 0])), add(out(i), [0, -0.3, 0]), P, up, fwd); hands[i] = 'open'; }
+  }
   // the flyer held up in both hands at chest height, its face to whoever he shows it to
   if (nm === 'flyer') {
     // the improv flyer held up beside his face in his right hand, its face toward whoever he is facing, turned in a touch

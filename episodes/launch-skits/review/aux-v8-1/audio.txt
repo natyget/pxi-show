@@ -1,0 +1,14 @@
+What the sound is heard as, every 4 s (an audio classifier; the score is how sure it is).
+  0.0-  4.0s  Speech 0.60, Static 0.05
+  4.0-  8.0s  Speech 0.70, Music 0.51
+  8.0- 12.0s  Speech 0.51, Music 0.49, Rain on surface 0.27, Rain 0.21
+ 12.0- 16.0s  Speech 0.64, Music 0.55, Rain on surface 0.12, Raindrop 0.07
+ 16.0- 20.0s  Music 0.73, Speech 0.60, Gasp 0.13, Sigh 0.08
+ 20.0- 24.0s  Speech 0.84, Static 0.21, White noise 0.07, Spray 0.05   << sounds wrong: Static
+ 24.0- 28.0s  Speech 0.48, Ding 0.32, Music 0.27, Glockenspiel 0.07
+ 28.0- 32.0s  Speech 0.56, Ding 0.43, Music 0.27
+ 32.0- 36.0s  Speech 0.45, Sine wave 0.41, Music 0.19, Synthesizer 0.13   << sounds wrong: Sine wave
+ 36.0- 40.0s  Music 0.36, Ding 0.31, Ding-dong 0.07, Marimba, xylophone 0.05
+ 40.0- 44.0s  Ding 0.94, Clang 0.55, Speech 0.08
+ 44.0- 48.0s  Speech 0.77, Static 0.14, Spray 0.09   << sounds wrong: Static
+RESULT FLAG (3 stretches heard as something that does not belong)

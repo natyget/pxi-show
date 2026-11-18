@@ -1,0 +1,184 @@
+[
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "Booooo!",
+  "note": "A long, loud party boo at someone on a table, laughing a little. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_01.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Booooo!",
+  "note": "A long, loud party boo at someone on a table, laughing a little. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_02.wav"
+ },
+ {
+  "who": "imane",
+  "role": "dimane",
+  "text": "Booooo!",
+  "note": "A long, loud party boo at someone on a table, laughing a little. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_03.wav"
+ },
+ {
+  "who": "sami",
+  "role": "dsami",
+  "text": "Booooo!",
+  "note": "A long, loud party boo at someone on a table, laughing a little. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_04.wav"
+ },
+ {
+  "who": "marcus",
+  "role": "dmarcus",
+  "text": "Booooo!",
+  "note": "A long, loud party boo at someone on a table, laughing a little. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_05.wav"
+ },
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "Ohhh!",
+  "note": "A sharp shocked gasp, someone just got slapped at a party, hand over mouth. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_06.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Ohhh!",
+  "note": "A sharp shocked gasp, someone just got slapped at a party, hand over mouth. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_07.wav"
+ },
+ {
+  "who": "imane",
+  "role": "dimane",
+  "text": "Ohhh!",
+  "note": "A sharp shocked gasp, someone just got slapped at a party, hand over mouth. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_08.wav"
+ },
+ {
+  "who": "marcus",
+  "role": "dmarcus",
+  "text": "Ohhh!",
+  "note": "A sharp shocked gasp, someone just got slapped at a party, hand over mouth. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_09.wav"
+ },
+ {
+  "who": "sis",
+  "role": "dsis",
+  "text": "Ohhh!",
+  "note": "A sharp shocked gasp, someone just got slapped at a party, hand over mouth. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_10.wav"
+ },
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "Ughhh.",
+  "note": "A loud cringing groan at an awkward question, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_11.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Ughhh.",
+  "note": "A loud cringing groan at an awkward question, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_12.wav"
+ },
+ {
+  "who": "imane",
+  "role": "dimane",
+  "text": "Ughhh.",
+  "note": "A loud cringing groan at an awkward question, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_13.wav"
+ },
+ {
+  "who": "marcus",
+  "role": "dmarcus",
+  "text": "Ughhh.",
+  "note": "A loud cringing groan at an awkward question, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_14.wav"
+ },
+ {
+  "who": "tobi",
+  "role": "dtobi",
+  "text": "Ayyyy!",
+  "note": "A cheer at a dinner table, happy, arms up. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_15.wav"
+ },
+ {
+  "who": "camp1",
+  "role": "dcamp1",
+  "text": "Ayyyy!",
+  "note": "A cheer at a dinner table, happy, arms up. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_16.wav"
+ },
+ {
+  "who": "camp2",
+  "role": "dcamp2",
+  "text": "Ayyyy!",
+  "note": "A cheer at a dinner table, happy, arms up. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_17.wav"
+ },
+ {
+  "who": "marcus",
+  "role": "dmarcus",
+  "text": "Ayyyy!",
+  "note": "A cheer at a dinner table, happy, arms up. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_18.wav"
+ },
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "No, wait, she actually said that?",
+  "note": "Background party chatter, chatting to a friend over music, relaxed, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_19.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Bro, I swear, it was right there.",
+  "note": "Background party chatter, chatting to a friend over music, relaxed, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_20.wav"
+ },
+ {
+  "who": "imane",
+  "role": "dimane",
+  "text": "Can someone pass me a cup?",
+  "note": "Background party chatter, chatting to a friend over music, relaxed, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_21.wav"
+ },
+ {
+  "who": "marcus",
+  "role": "dmarcus",
+  "text": "Nah, nah, play the other one.",
+  "note": "Background party chatter, chatting to a friend over music, relaxed, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_22.wav"
+ },
+ {
+  "who": "sis",
+  "role": "dsis",
+  "text": "Who's this? I like this.",
+  "note": "Background party chatter, chatting to a friend over music, relaxed, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_23.wav"
+ },
+ {
+  "who": "tobi",
+  "role": "dtobi",
+  "text": "Okay, okay, okay, listen.",
+  "note": "Background party chatter, chatting to a friend over music, relaxed, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_24.wav"
+ },
+ {
+  "who": "camp1",
+  "role": "dcamp1",
+  "text": "That's so funny, oh my god.",
+  "note": "Background party chatter, chatting to a friend over music, relaxed, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_25.wav"
+ },
+ {
+  "who": "camp2",
+  "role": "dcamp2",
+  "text": "I'm not even joking.",
+  "note": "Background party chatter, chatting to a friend over music, relaxed, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_crowd_26.wav"
+ }
+]
