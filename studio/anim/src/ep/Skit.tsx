@@ -55,9 +55,12 @@ const Poof: React.FC<{ at: number; x: number; y: number }> = ({ at, x, y }) => {
     return <circle key={k} cx={x + Math.cos(a) * r * 0.7} cy={y + Math.sin(a) * r * 0.55} r={r * 0.42} fill="#fbf6ee" stroke="#2a2024" strokeWidth={8} />; })}</svg>; };
 // indoor rain: streaks falling on twos, the room a little bluer
 const Rain: React.FC = () => { const f = Math.floor(useCurrentFrame() / 2) * 2;
-  return <><AbsoluteFill style={{ background: '#3a5a8a', mixBlendMode: 'multiply', opacity: 0.35 }} />
-    <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}>{Array.from({ length: 140 }, (_, k) => { const x = (k * 137.5) % 1080, y = ((k * 263 + f * 70) % 2100) - 100;
-      return <line key={k} x1={x} y1={y} x2={x - 10} y2={y + 70} stroke="#bcd6ff" strokeWidth={6} opacity={0.7} />; })}</svg></>; };
+  // (stranger, Nov 18: short thick white dashes read as a glitch; thin, long, blue, many, with splashes on the floor reads as rain)
+  return <><AbsoluteFill style={{ background: '#2f5590', mixBlendMode: 'multiply', opacity: 0.45 }} />
+    <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}>{Array.from({ length: 260 }, (_, k) => { const x = (k * 137.5) % 1080, y = ((k * 263 + f * 90) % 2200) - 200;
+      return <line key={k} x1={x} y1={y} x2={x - 14} y2={y + 150} stroke="#9fc2ff" strokeWidth={3} opacity={0.6} />; })}
+    {Array.from({ length: 40 }, (_, k) => { const x = (k * 211.3 + f * 37) % 1080, y = 1500 + ((k * 97) % 380), r = 10 + ((k + f) % 6) * 6;
+      return <ellipse key={'s' + k} cx={x} cy={y} rx={r} ry={r * 0.3} fill="none" stroke="#9fc2ff" strokeWidth={3} opacity={0.5} />; })}</svg></>; };
 // a monocle falling: a gold ring that drops from (x0, y0) to (x1, y1) in 7 frames, turning edge-on as it goes, then gone
 const Drop: React.FC<{ d: [number, number, number, number, number] }> = ({ d: [at, x0, y0, x1, y1] }) => { const f = useCurrentFrame() - at; if (f < 0 || f > 7) return null;
   const k = (f / 7) ** 2, x = x0 + (x1 - x0) * k, y = y0 + (y1 - y0) * k;
