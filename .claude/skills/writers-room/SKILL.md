@@ -71,3 +71,12 @@ Agreement between critics is not independent confirmation; weigh specifics over 
   detail, insert, button) and one dominant subject/action. Locked-off camera, at most one move.
 - Each line's seconds fit its shot. Track continuity: who sits where, what's in which hand, eyelines, screen direction.
 - A shot list that just restates the script is a fail: say what the camera does for the joke.
+- **The cause is in the picture.** For every change in the story, the shot that holds it shows what set it off,
+  who it is aimed at and who is speaking, at the moment it happens: the sip on screen before the pop, the song
+  as a thing you can see before the room changes, the wave and its real target in one frame, the speaker in the
+  shot with their line. Sound and dialogue may add to it, never carry it alone. A reveal (the juice box) is
+  planted once in plain sight before it pays off. Test before rendering: sound off, one frame per beat, can a
+  stranger say what caused each change? (Launch skits, Nov 18: all four failed the stranger twice on this.)
+
+## Lessons (one per failure pattern; merge into the stage it belongs to, do not add one-off rules)
+- The cause is in the picture (stage 7). Every launch skit failed on a trigger that was heard or implied, not seen.

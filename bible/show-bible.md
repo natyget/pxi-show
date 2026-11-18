@@ -400,3 +400,8 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - What this changed: One Sip is held for another rewrite. For every skit: the living room and bathroom of Nio's
     apartment share the bedroom's look; a gesture must match its line; no dead pauses; a slight push and a shake
     with a sound hit on big beats; never end on a character looking at the camera.
+- **Nov 18, 6:10 PM (UTC), on the launch skits failing the stranger twice, word for word:**
+  - "rework them to show the cause and ensure that each time you rework you are learning and improving because over time we should be able to one shot this by learning fro our mistakes. but also show me the cuts while you do that i want to watch what we have and if we improved our work"
+  - What this changed: all four launch skits are reworked so what sets off each joke is in the picture. After every
+    rework the reason it failed becomes one general principle, merged into the writers' room skill and the reviewer
+    checklist (no one-off rules). Every cut goes to the founder's files as it is made, old beside new.

@@ -22,7 +22,7 @@ kind. If you are unsure, say "not sure", and that counts as a no.
 
 1. **What is this?** In one sentence, what did you just watch?
 2. **Does it make sense?** Who is this person, what does he want, and what happened? Point to the first moment
-   you were lost.
+   you were lost. For each thing that changes, say what you saw cause it, and who said each line.
 3. **Is anything over-explained?** Quote any text or line that tells you what you can already see, says it
    twice, or explains the joke.
 4. **Does anything sound like a machine or an advert wrote it?** Quote every piece of on-screen or cover text
