@@ -23,6 +23,9 @@ VOICES = {
              "warm and sincere; laughs easily."),
   "imane": ("A 20-year-old young woman, low calm alto, dry and level, unimpressed and sensible, the sanest person in the room; "
             "short answers, a tiny hint of amusement."),
+  # Designed Nov 18 for Wave Back v8 (Marcus's sister, the girl in yellow); the founder judges her by ear in the skit.
+  "sis": ("A 19-year-old Black British young woman, clear mid voice, cool and observant, dry, sharp and unhurried; "
+          "says little and means all of it."),
   "mum": ("A warm Black British mum in her fifties, rich full voice, loud and loving, delighted by everyone, "
           "talks to grown men like they are still twelve."),
   # Original designs for the pilot "No Pics" (Nov 11), written from the script's character notes.

@@ -1,0 +1,94 @@
+[
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Ayyy. Bro.",
+  "note": "Easy and warm, greeting a friend he definitely knows. Covering, but smooth. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_01.wav"
+ },
+ {
+  "who": "marcus",
+  "role": "dmarcus",
+  "text": "Hey... man. Was it... the summer program?",
+  "note": "Friendly, unsure, trying hard to place him, squinting. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_02.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Summer program. Yeah.",
+  "note": "A tiny hesitation, then agreeing like it's obvious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_03.wav"
+ },
+ {
+  "who": "marcus",
+  "role": "dmarcus",
+  "text": "I knew it!",
+  "note": "Delighted, relieved, warm. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_04.wav"
+ },
+ {
+  "who": "marcus",
+  "role": "dmarcus",
+  "text": "You gotta come Sunday. My mum's cooking.",
+  "note": "Excited, generous, holding out his phone. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_05.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Oh, I can't, I've got a\u2014",
+  "note": "Polite excuse, quick, getting cut off. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_06.wav"
+ },
+ {
+  "who": "marcus",
+  "role": "dmarcus",
+  "text": "She does like four courses.",
+  "note": "Simple, sincere, a little proud. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_07.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Where do I put my at?",
+  "note": "After a beat, giving in to the food, matter of fact. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_08.wav",
+  "sub": "Where do I put my @?"
+ },
+ {
+  "who": "mum",
+  "role": "dmum",
+  "text": "So you did the coding camp with Marcus!",
+  "note": "Loud, delighted, beaming at the table. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_09.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Coding camp. He was the best one there, honestly.",
+  "note": "Relaxed and generous, he's good at this, warm compliment. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_10.wav"
+ },
+ {
+  "who": "sis",
+  "role": "dsis",
+  "text": "Wait. You're the guy who waved at me.",
+  "note": "Stopping in the doorway, flat and certain, a little suspicious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_11.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Small world.",
+  "note": "Caught, a beat, then smooth and easy. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_12.wav"
+ },
+ {
+  "who": "mum",
+  "role": "dmum",
+  "text": "So small!",
+  "note": "Thrilled, laughing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_wb8_13.wav"
+ }
+]

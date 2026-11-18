@@ -754,6 +754,7 @@ export const QUAD_MARKS = {
   marcus: { s: 5.6, z: 13.0, yaw: 180 }, // at the far end, facing down the lawn (toward his sister)
   sis: { s: 5.5, z: 4.0, yaw: 0 }, // the girl in yellow, behind Nio, facing up the lawn
   sisOff: { s: 7.9, z: 3.5, yaw: 270 }, // walking off to the right
+  sisFar: { s: 11.0, z: 3.0, yaw: 270 }, // jogging right off the lawn (v8)
   nioMid: { s: 5.9, z: 10.5, yaw: 0 }, // on his way over
   nioM: { s: 5.65, z: 12.05, yaw: 0 }, // where Nio stops, in Marcus's face
 };
@@ -794,6 +795,7 @@ export const DINE_MARKS = {
   nio: { s: 1.45, z: 3.0, yaw: 270, seat: 0.455 }, marcus: { s: 2.55, z: 3.0, yaw: 90, seat: 0.455 }, mum: { s: 2.0, z: 4.3, yaw: 180, seat: 0.455 },
   hall: { s: 3.55, z: 5.9, yaw: 180 }, // out in the hall
   door: { s: 3.55, z: 4.85, yaw: 200 }, // in the doorway, facing the table
+  sisSeat: { s: 2.6, z: 3.65, yaw: 90, seat: 0.455 }, // the empty chair beside Marcus, facing Nio's side
 };
 export const DINE_SOLIDS = [{ name: 'the table', s: [1.62, 2.38] as [number, number], z: [2.35, 4.05] as [number, number] }];
 

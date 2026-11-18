@@ -1,45 +1,56 @@
-// GROUP PHOTO. The game: Nio sincerely fixes each person's note, and every fix pushes the next person out of the photo.
-// A roof at sunset. Final lines from the writers' room (Nov 17). Voice medium F (clean, no effect). The album is PXI's own
-// gallery screen (tools/pxi/screens.py roof). Nobody in the background.
+// GROUP PHOTO v8 (writers' room, Nov 18: /mnt/project-files/nio-soul/skits/v8/scripts.md). Model: The Remote, everyone
+// wants the same thing at once, each for themselves, against a clock. Nio wants one perfect group photo before the
+// sunset goes; every fix is for someone's own face, so one by one they leave the frame, and the photo of nobody does
+// better than any photo with them in it. Voice medium F (clean). Eyes on each other; the phone's view has corner marks.
 import { ShotSpec } from '../../nw3d/world';
 import type { SkitDef, Shot, Line } from '../Skit';
 
 type A = ShotSpec['actors'][0];
-// a slow push on every shot, so no held shot reads as a freeze
-const R = (camera: string, actors: A[], chair = false, push = 0.3): ShotSpec => ({ set: 'roof', camera, frames: 1, actors, campus: { chair }, push });
+const R = (camera: string, actors: A[], chair = false, push = 0.2): ShotSpec => ({ set: 'roof', camera, frames: 1, actors, campus: { chair }, push });
 const L = (key: string, who: string, at: number): Line => ({ key, who, at });
 const at = (who: string, mark: string, face: A['face'], x: Partial<A> = {}): A => ({ who, at: mark, action: 'stand', face, ...x });
 const shots: Shot[] = [
-  // the line, the sun behind them; Nio with his phone up
-  { n: 1, frames: 30, spec: R('whole', [at('nio', 'nio', 'hyped', { hold: 'photo', back: true }), at('theo', 'theo', 'smug'), at('sami', 'sami', 'neutral'), at('maya', 'maya', 'hyped')], false, 0.7), },
-  { n: 2, frames: 40, spec: R('nioA', [at('nio', 'nio', 'hyped', { hold: 'photo', facing: 'sami' })]), say: [L('gp_01', 'nio', 2)] },
-  { n: 3, frames: 40, spec: R('theo', [at('theo', 'theo', 'smug', { facing: 'nio', act: { g: [[0, 'dismiss']] } })]), say: [L('gp_02', 'theo', 2)] },
-  // so Nio goes round to Theo's left, phone up: now they face into the sun (stranger, Nov 18: show the photographer
-  // in the middle, so every line has someone it is said to)
-  { n: 4, frames: 30, spec: R('nio', [at('nio', 'nio2', 'charm', { hold: 'photo', facing: 'sami' })]) },
-  { n: 5, frames: 34, spec: R('three', [at('theo', 'theo', 'smug', { facing: 'nio2' }), at('sami', 'sami', 'suspicious', { facing: 'nio2', gaze: [0, 0.4] }), at('maya', 'maya', 'uneasy', { facing: 'nio2' })]) },
-  { n: 6, frames: 50, spec: R('sami', [at('sami', 'sami', 'suspicious', { facing: 'nio2' })]), say: [L('gp_03', 'sami', 4)] },
-  { n: 7, frames: 46, spec: R('three', [at('theo', 'theo', 'deadInside', { facing: 'nio2' }), { who: 'sami', at: 'sami', to: 'samiOut', action: 'walk', face: 'neutral' }, at('maya', 'maya', 'uneasy', { facing: 'nio2' })]) },
-  { n: 8, frames: 40, spec: R('maya', [at('maya', 'maya', 'hyped', { facing: 'nio2', act: { g: [[0, 'point']] } })]), say: [L('gp_04', 'maya', 2)] },
-  // so he climbs on a chair
-  { n: 9, frames: 34, spec: R('chair', [at('nio', 'chair', 'deadpan', { hold: 'photo' })], true, 0.35), sfx: [['oh_creak', 2, 0.5]] },
-  { n: 10, frames: 40, spec: R('theoUp', [at('theo', 'theo', 'suspicious', { facing: 'nio2', gaze: [0, 0.6] })], true), say: [L('gp_05', 'theo', 4)] },
-  { n: 11, frames: 32, finder: true, spec: R('pov', [{ who: 'theo', at: 'theo', to: 'theoOut', action: 'walk', face: 'deadpan', back: true }, at('maya', 'maya', 'neutral', { facing: 'nio2', gaze: [0, 0.5] })], true) },
-  { n: 12, frames: 30, spec: R('chair', [at('nio', 'chair', 'uneasy', { hold: 'photo' })], true, 0.25) },
-  // Maya, the last one in the picture, says it to him through his phone (stranger, Nov 18: her line read as his until
-  // we saw she is the only one in the photo), and goes
-  { n: 13, frames: 84, finder: true, spec: R('povM', [at('maya', 'maya', 'real', { facing: 'nio2', gaze: [0, 0.5] })], true, 0.15), say: [L('gp_06', 'maya', 4)] },
-  { n: 14, frames: 30, finder: true, spec: R('pov', [{ who: 'maya', at: 'maya', to: 'mayaOut', action: 'walk', face: 'neutral', back: true }], true) },
-  // alone on the chair, he turns round to the sunset. Flash.
-  { n: 15, frames: 28, spec: R('chair', [at('nio', 'chair', 'deadpan', { hold: 'photo' })], true, 0.2) },
-  { n: 16, frames: 34, finder: true, shake: [12], spec: R('sunset', [], true, 0.2), flash: 12, sfx: [['shutter', 12, 0.9]] },
-  // the album: the sunset with nobody in it, and every try before it (the cause of the last line is in the picture)
-  { n: 17, frames: 52, img: 'pxi-ui/screens/roof-album.png' },
-  // later: all four crowd round Theo's phone, scrolling the album. Theo, who says the last line, holds the phone front
-  // and centre (own check, Nov 18: Nio in front hid the speaker)
-  { n: 18, frames: 50, spec: R('phone', [at('theo', 'nio2', 'hyped', { facing: 'camera', gaze: [0, -0.4], hold: 'phone' }), at('nio', 'theoP', 'deadpan', { gaze: [-0.5, -0.4] }), at('maya', 'mayaP', 'charm', { gaze: [0.5, -0.4] }), at('sami', 'samiB', 'neutral', { gaze: [0.3, -0.4] })]), say: [L('gp_08', 'theo', 6)] },
-  // the one he means: the try where he is walking out of it, half his back
-  { n: 19, frames: 36, img: 'pxi-ui/screens/roof-album.png', zoom: [2.6, 30], sfx: [['oh_tap', 4, 0.7]] },
-  { n: 20, frames: 40, spec: R('phone', [at('theo', 'nio2', 'hyped', { facing: 'camera', gaze: [0, -0.4], hold: 'phone' }), at('nio', 'theoP', 'deadpan', { gaze: [-0.9, 0.1] }), at('maya', 'mayaP', 'charm', { gaze: [0.5, -0.4] }), at('sami', 'samiB', 'neutral', { gaze: [0.3, -0.4] })], false, 0.25) },
+  // 1. the roof, sun almost down; Nio, phone up on the PXI camera, rushing them in
+  { n: 1, frames: 30, spec: R('whole', [at('nio', 'nio', 'hyped', { hold: 'photo', back: true }), at('theo', 'theo', 'neutral'), at('sami', 'sami', 'neutral'), at('maya', 'maya', 'charm')], false, 0.6) },
+  { n: 2, frames: 30, spec: R('nioA', [at('nio', 'nio', 'hyped', { hold: 'photo', facing: 'sami' })]), say: [L('gp8_01', 'nio', 2)] },
+  // 2. Theo, for his own face
+  { n: 3, frames: 30, spec: R('theo', [at('theo', 'theo', 'neutral', { facing: 'nio', act: { g: [[2, 'point']] } })]), say: [L('gp8_02', 'theo', 2)] },
+  { n: 4, frames: 26, spec: R('nioA', [at('nio', 'nio', 'uneasy', { hold: 'photo', facing: 'theo' })]), say: [L('gp8_03', 'nio', 2)] },
+  { n: 5, frames: 24, spec: R('theo', [at('theo', 'theo', 'deadpan', { facing: 'nio' })]), say: [L('gp8_04', 'theo', 2)] },
+  // so Nio walks round: now the sun is right in their faces
+  { n: 6, frames: 30, spec: R('nio', [at('nio', 'nio2', 'charm', { hold: 'photo', facing: 'sami' })]) },
+  { n: 7, frames: 30, spec: R('three', [at('theo', 'theo', 'suspicious', { facing: 'nio2' }), at('sami', 'sami', 'suspicious', { facing: 'nio2' }), at('maya', 'maya', 'suspicious', { facing: 'nio2' })]) },
+  // 3. Sami
+  { n: 8, frames: 30, spec: R('sami', [at('sami', 'sami', 'suspicious', { facing: 'nio2' })]), say: [L('gp8_05', 'sami', 2)] },
+  { n: 9, frames: 30, spec: R('nio', [at('nio', 'nio2', 'hyped', { hold: 'photo', facing: 'sami' })]), say: [L('gp8_06', 'nio', 2)] },
+  { n: 10, frames: 30, spec: R('sami', [at('sami', 'sami', 'deadpan', { facing: 'nio2', act: { g: [[4, 'palms']] } })]), say: [L('gp8_07', 'sami', 2)] },
+  { n: 11, frames: 40, finder: true, spec: R('pov', [at('theo', 'theo', 'neutral', { facing: 'nio2', gaze: [0, 0.5] }), { who: 'sami', at: 'sami', to: 'samiOut', action: 'walk', face: 'neutral' }, at('maya', 'maya', 'neutral', { facing: 'nio2', gaze: [0, 0.5] })], false, 0.1) },
+  // 4. Maya: go up. So he climbs onto a chair.
+  { n: 12, frames: 24, spec: R('maya', [at('maya', 'maya', 'charm', { facing: 'nio2', act: { g: [[2, 'point']] } })]), say: [L('gp8_08', 'maya', 2)] },
+  { n: 13, frames: 30, spec: R('chair', [at('nio', 'chair', 'real', { hold: 'photo' })], true, 0.3), sfx: [['oh_creak', 2, 0.5]] },
+  { n: 14, frames: 30, spec: R('theoUp', [at('theo', 'theo', 'suspicious', { facing: 'nio2', gaze: [0, 0.6] })], true), say: [L('gp8_09', 'theo', 2)] },
+  { n: 15, frames: 30, spec: R('chair', [at('nio', 'chair', 'uneasy', { hold: 'photo' })], true, 0.15), say: [L('gp8_10', 'nio', 2)] },
+  { n: 16, frames: 30, spec: R('theoUp', [at('theo', 'theo', 'sheepish', { facing: 'nio2', gaze: [0, 0.6] })], true), say: [L('gp8_11', 'theo', 2)] },
+  { n: 17, frames: 30, spec: R('chair', [at('nio', 'chair', 'deadpan', { hold: 'photo' })], true, 0.1), say: [L('gp8_12', 'nio', 2)] },
+  // Theo, hurt, steps out
+  { n: 18, frames: 36, finder: true, spec: R('pov', [{ who: 'theo', at: 'theo', to: 'theoOut', action: 'walk', face: 'crushed', back: true }, at('maya', 'maya', 'neutral', { facing: 'nio2', gaze: [0, 0.5] })], true, 0.1) },
+  // 5. Maya alone in the frame: looks left, looks right, shrugs, walks out. No line.
+  { n: 19, frames: 20, finder: true, spec: R('povM', [at('maya', 'maya', 'neutral', { facing: 'nio2', gaze: [-0.9, 0] })], true, 0.05) },
+  { n: 20, frames: 20, finder: true, spec: R('povM', [at('maya', 'maya', 'neutral', { facing: 'nio2', gaze: [0.9, 0] })], true, 0.05) },
+  { n: 21, frames: 26, finder: true, spec: R('povM', [at('maya', 'maya', 'deadpan', { facing: 'nio2', gaze: [0, 0.5], act: { g: [[2, 'shrug']] } })], true, 0.05) },
+  { n: 22, frames: 30, finder: true, spec: R('pov', [{ who: 'maya', at: 'maya', to: 'mayaOut', action: 'walk', face: 'neutral', back: true }], true, 0.05) },
+  { n: 23, frames: 30, spec: R('chair', [at('nio', 'chair', 'shock', { hold: 'photo' })], true, 0.2), say: [L('gp8_13', 'nio', 2)] },
+  // the sun touches the edge; he takes it anyway. Flash.
+  { n: 24, frames: 34, finder: true, shake: [14], spec: R('sunset', [], true, 0.15), flash: 14, sfx: [['shutter', 14, 0.9]] },
+  // 6. the PXI album: hearts start popping on it, strangers comment
+  { n: 25, frames: 30, img: 'pxi-ui/screens/roof-thread-a.png', sfx: [['sk_ding', 6, 0.5]] },
+  { n: 26, frames: 30, img: 'pxi-ui/screens/roof-thread-b.png', sfx: [['sk_ding', 2, 0.5], ['sk_ding', 10, 0.4], ['sk_ding', 18, 0.4]] },
+  { n: 27, frames: 30, spec: R('nio', [at('nio', 'nio2', 'hyped', { hold: 'phone', facing: 'maya', act: { g: [[4, 'offer']] } })]), say: [L('gp8_14', 'nio', 2)] },
+  { n: 28, frames: 30, spec: R('maya', [at('maya', 'maya', 'charm', { facing: 'nio2', hold: 'show-phone' })]), say: [L('gp8_15', 'maya', 2)] },
+  // 7. he looks at the photo, at his friends, at the photo. Pockets his phone. Pride wins.
+  { n: 29, frames: 20, spec: R('nio', [at('nio', 'nio2', 'neutral', { hold: 'phone', facing: 'maya', gaze: [0, -0.6] })], false, 0.08) },
+  { n: 30, frames: 16, spec: R('nio', [at('nio', 'nio2', 'neutral', { hold: 'phone', facing: 'maya' })], false, 0.08) },
+  { n: 31, frames: 16, spec: R('nio', [at('nio', 'nio2', 'neutral', { hold: 'phone', facing: 'maya', gaze: [0, -0.6] })], false, 0.08) },
+  { n: 32, frames: 30, spec: R('nio', [at('nio', 'nio2', [[0, 'real'], [12, 'charm']], { facing: 'maya' })], false, 0.1), say: [L('gp8_16', 'nio', 6)] },
 ];
 export const GROUP_PHOTO: SkitDef = { id: 'group-photo', shots, beds: [['sk_wind', 0.3]] };

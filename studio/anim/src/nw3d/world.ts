@@ -117,6 +117,9 @@ SETS.partyLive = {
     queue2: C([0.7, 1.45, 0.35], [1.5, 1.3, 2.1], 36), // the queue from the front, down the line of faces
     theoQ: C([2.6, 1.45, 1.65], [1.8, 1.45, 2.8], 36), // Theo at the back of the queue, turned to Nio
     queueN: C([3.6, 1.45, 3.55], [1.5, 1.3, 2.1], 60), // the queue turned to Nio, from the window corner
+    // AUX v8: singles for the lines (fitted with out/camfit2)
+    theoG: C([2.5, 1.45, 1.05], [2.9, 1.4, 2.5], 40), // Theo at the party, from by the door
+    imaneG: C([2.3, 1.45, 1.35], [2.3, 1.4, 2.85], 40), // Imane at the party
     queue: C([0.6, 1.95, 0.2], [1.05, 1.25, 2.2], 44), // the queue, from by the door, down the line of faces
     // ONE SIP v7 (fitted with out/camfit2: every face in, every face seen)
     kick: C([2.3, 1.65, 0.15], [2.05, 1.3, 2.4], 48), // the two of them on the rug, both faces
@@ -206,7 +209,7 @@ export const ACTIONS: Record<string, Action> = {
 //  mop (the cleaner, walking), ticket (Darnell, sitting: the lab report on his knees, his ticket 4 on it under his left hand).
 export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox'] as const;
 // Costume pieces worn over the outfit (One Sip). A shot may change them at a frame: wear: [[0, []], [12, ['bowtie']]].
-export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'moustache', 'partyhat', 'lanyard', 'scarf', 'glasses', 'lampshade'];
+export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'moustache', 'partyhat', 'lanyard', 'scarf', 'glasses', 'lampshade', 'beret', 'headset'];
 const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer', 'ticket'], TRAVEL_HOLDS = ['phone', 'cup', 'mop'];
 
 export type ActorSpec = {

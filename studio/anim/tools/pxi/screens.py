@@ -500,6 +500,39 @@ def now_playing(title, art, bg):
     s.disc(150, 570, 60, WHITE); s.box(172, 586, 179, 614, hexc('121212')); s.box(184, 586, 191, 614, hexc('121212'))
     return s.im
 
+def invite_notif(who='Marcus', event='Sunday Dinner'):
+    """Wave Back v8: Nio's phone the second Marcus adds him (app/notifications.tsx, the album/event invite row: avatar,
+    "{name} invited you to", the event in bold, "now"). The cause of the dinner, on screen."""
+    s = Screen(); s.status('4:12')
+    hy = pt(74)
+    s.text(pt(20), hy, 'NOTIFICATIONS', 'display', pt(13), WHITE, ls=0.4); _x(s, W - pt(31), hy, pt(7), WHITE, 2)
+    s.text(pt(28), pt(126), 'NEW', 800, pt(12), hexc('8A8A8A'), ls=1.1)
+    top = pt(140); cy = top + pt(40); ix = pt(36); d = pt(48); tx = ix + d + pt(16)
+    s.avatar(nobody(d), ix, cy - d // 2, d)
+    _, x = s.text(tx, cy - pt(10), who, 700, sysp(15), WHITE); s.text(x, cy - pt(10), ' invited you to', 500, sysp(15), white(0.55))
+    s.text(tx, cy + pt(10), event, 800, sysp(15), WHITE); s.text(tx, cy + pt(29), 'now', 600, pt(10), white(0.35), ls=0.2)
+    s.disc(W - pt(36) - pt(10), cy - pt(5), pt(10), PURPLE)
+    s.box(pt(20), top + pt(80), W - pt(20), top + pt(80) + 1, white(0.1))
+    return s.im
+
+def roof_thread(hearts, comments):
+    """Group Photo v8: the Roof album's thread (as thread(): ThreadView, AlbumThreadMediaCard, AlbumReactionBar) the minute
+    after the shot. One photo: the empty rooftop and a perfect sunset. The hearts on it climb; strangers in the album
+    comment. The cause of Nio's last line, on screen."""
+    s = Screen()
+    photo = sq(still('gp822'), 0.5, 0.62, 0.85).resize((300, 300), Image.LANCZOS)
+    s.photo(photo, 30, 170, 330, 470, r=14)
+    s.avatar(pic('avatar', 27, 27), 42, 482, 27); s.text(78, 495, 'sunset', 500, sysp(15), WHITE)
+    x = chip(s, 42, 520, '\u2764\ufe0f', str(hearts)); chip(s, x + 6, 520, '\U0001F525', str(max(1, hearts // 4)))
+    y = 572
+    for name, text in comments:
+        w = 24 + text_w(text, 500, sysp(15)) + 20
+        s.box(64, y, 64 + max(w, 120), y + 48, G1C, r=16, small=('bl', 5))
+        s.text(75, y + 13, name, 800, pt(10), hexc('9A9A9A'), ls=1); s.text(75, y + 32, text, 500, sysp(15), WHITE)
+        s.avatar(nobody(29), 26, y + 16, 29); y += 60
+    s.box(0, 0, W, 158, BLACK); header(s, 'Roof'); switch(s, 'THREAD')
+    return s.im
+
 STILLS = os.path.join(ANIM, 'out', 'skit-stills')
 def still(name, box=None):
     """A frame of a launch skit, rendered by the engine (out/skit-stills/<name>.png), optionally cropped to a box given
@@ -625,11 +658,11 @@ def review_photo(name, cx, cy, k):
     x = min(max(0, round(cx * w - cw / 2)), w - cw); y = min(max(0, round(cy * h - ch / 2)), h - ch)
     return im.crop((x, y, x + cw, y + ch))
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album, 'song-rain': lambda: now_playing('Rainy Day Piano', '\U0001F327', '3d5a80'), 'song-roof': lambda: now_playing('Through The Roof', '\U0001F680', 'c0392b'), 'song-bday': lambda: now_playing('Happy Birthday', '\U0001F382', 'e88cb0'), 'song-lift': lambda: now_playing('Lift Music', '\U0001F6D7', '8a8f98'),
-           'facematch': lambda: face_match(photo=sq(still('os1180'), 0.5, 0.25, 0.5), reacts=[('Theo', '\U0001F602', 'os1180'), ('Imane', '\U0001F480', 'os612'), ('Maya', '\U0001F62D', 'os904')]),
-           'review-king': lambda: face_review(review_photo('os1180', 0.47, 0.38, 0.5), 41, 94),
-           'review-coach': lambda: face_review(review_photo('os612', 0.45, 0.4, 0.8), 40, 91),
-           'review-duke': lambda: face_review(review_photo('os904', 0.5, 0.35, 0.8), 39, 88)}
+SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album, 'invite': invite_notif, 'roof-thread-a': lambda: roof_thread(9, [('AMA.K', 'who took this')]), 'roof-thread-b': lambda: roof_thread(60, [('AMA.K', 'who took this'), ('KOFI', 'wallpaper')]), 'song-rain': lambda: now_playing('Rainy Day Piano', '\U0001F327', '3d5a80'), 'song-roof': lambda: now_playing('Through The Roof', '\U0001F680', 'c0392b'), 'song-bday': lambda: now_playing('Happy Birthday', '\U0001F382', 'e88cb0'), 'song-lift': lambda: now_playing('Lift Music', '\U0001F6D7', '8a8f98'),
+           'facematch': lambda: face_match(photo=sq(still('os8_700'), 0.5, 0.3, 0.5), reacts=[('Theo', '\U0001F602', 'os8_700'), ('Imane', '\U0001F480', 'os8_340'), ('Maya', '\U0001F62D', 'os8_505')]),
+           'review-king': lambda: face_review(review_photo('os8_700', 0.5, 0.3, 0.5), 41, 94),
+           'review-duke': lambda: face_review(review_photo('os8_505', 0.5, 0.3, 0.8), 40, 91),
+           'review-snob': lambda: face_review(review_photo('os8_205', 0.5, 0.3, 0.8), 39, 88)}
 if __name__ == '__main__':
     name = sys.argv[1]
     for n in (SCREENS if name == 'all' else [name]):

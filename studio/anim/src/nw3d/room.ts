@@ -571,6 +571,19 @@ export const pose = (a: Act) => {
       pr(base, 0.25 * w, top, 0.13, '#efe2c2', { cutA: true, cutB: true });
       pr(at(-0.03, 0.17, 0.0), 0.255 * w, at(-0.031, 0.185, 0.0), 0.255 * w, '#c79a3a', { cutA: true, cutB: true });
     }
+    if (w0 === 'beret') {
+      // the music snob's beret (One Sip v8): a soft black disc pulled to one side of the crown, a tiny stalk on top
+      pr(at(0.05, 0.215, -0.01), 0.21 * w, at(0.07, 0.25, -0.01), 0.2 * w, '#1c1a20', { cutA: true, cutB: true });
+      pr(at(0.07, 0.255, -0.01), 0.012, at(0.07, 0.29, -0.01), 0.008, '#1c1a20');
+    }
+    if (w0 === 'headset') {
+      // the life coach's headset mic (One Sip v8): a thin band over the head to the right ear, a boom to the mouth corner
+      const N = 8, ear = at(-0.225 * w, -0.03, 0.0);
+      for (let k = 0; k < N; k++) { const a0 = (k / N) * Math.PI, a1 = ((k + 1) / N) * Math.PI, q = (a: number) => at(Math.cos(a) * 0.235 * w, Math.sin(a) * 0.26 - 0.02, 0.0);
+        pr(q(a0), 0.006, q(a1), 0.006, '#2a2a30'); }
+      pr(ear, 0.03, ear, 0.03, '#2a2a30');
+      pr(ear, 0.005, at(-0.07, -0.13, 0.19), 0.005, '#2a2a30'); pr(at(-0.07, -0.13, 0.19), 0.016, at(-0.07, -0.13, 0.19), 0.016, '#2a2a30');
+    }
     if (w0 === 'sideburns') {
       // huge Victorian mutton chops: from each temple down the cheek to the jaw, the mouth left clear
       for (const d of [1, -1]) prims.push({ a: at(d * 0.215 * w, -0.02, 0.02), ra: 0.035, b: at(d * 0.2 * w, -0.17, 0.07), rb: 0.055, g: G.shoe, k: 0.02, c: '#6b4a32', tex: 1 }); // a ginger-brown, so they read as whiskers and not his hair

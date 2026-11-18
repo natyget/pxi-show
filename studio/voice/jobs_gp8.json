@@ -1,0 +1,114 @@
+[
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Light's going, light's going. Everyone in, quick.",
+  "note": "Urgent and excited, rushing his friends. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_01.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Hold on, get my left side.",
+  "note": "Casual, vain, serious about it. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_02.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Your left or my left?",
+  "note": "Quick, practical, in a hurry. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_03.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "My left.",
+  "note": "Obvious, a little impatient. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_04.wav"
+ },
+ {
+  "who": "sami",
+  "role": "dsami",
+  "text": "I can't see anything.",
+  "note": "Squinting into the sun, mild complaint. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_05.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Close your eyes, it's fine, it's artistic.",
+  "note": "Fast, persuasive, a bit desperate. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_06.wav"
+ },
+ {
+  "who": "sami",
+  "role": "dsami",
+  "text": "I'm not being the closed-eyes guy.",
+  "note": "Firm, polite, already stepping away. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_07.wav"
+ },
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "Go up.",
+  "note": "Helpful, simple suggestion. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_08.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Nah, not from up there.",
+  "note": "Dismissive, shaking his head. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_09.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "What's wrong with up here?",
+  "note": "Genuinely confused, standing on a chair. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_10.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Up there I look short.",
+  "note": "Matter of fact, a little self-conscious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_11.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "You are short.",
+  "note": "Flat, honest, no malice, quick. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_12.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "No, stay, stay\u2014",
+  "note": "Desperate, pleading, cut off. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_13.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Okay, one more, everyone back in, we've got like thirty seconds\u2014",
+  "note": "Rushed, trying to rally everyone, talking fast. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_14.wav"
+ },
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "Nio. It's got sixty hearts.",
+  "note": "Calm, holding up her phone, a little amused. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_15.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Yeah, we're good.",
+  "note": "A beat, then quietly proud, letting it go. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp8_16.wav"
+ }
+]

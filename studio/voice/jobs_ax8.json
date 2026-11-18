@@ -1,0 +1,107 @@
+[
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Bro. It's dying.",
+  "note": "Quiet, worried, embarrassed about his own party. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_01.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Give me the aux.",
+  "note": "Confident, calm, he's got this. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_02.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Please.",
+  "note": "Relieved, handing it over, almost begging. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_03.wav"
+ },
+ {
+  "who": "imane",
+  "role": "dimane",
+  "text": "Is it... raining?",
+  "note": "Puzzled, looking up, calm. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_04.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "That's my ceiling.",
+  "note": "Flat, looking up at his ceiling, dismayed. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_05.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Okay. Nope.",
+  "note": "Focused, quick, not panicking yet. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_06.wav"
+ },
+ {
+  "who": "sami",
+  "role": "dsami",
+  "text": "Nio.",
+  "note": "Calm, upside down, very patient. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_07.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "I know.",
+  "note": "Quick, focused, already fixing it. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_08.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "My deposit, bro.",
+  "note": "Sad, resigned, floating on the ceiling. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_09.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Something soft.",
+  "note": "Muttering to himself, scrolling. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_10.wav"
+ },
+ {
+  "who": "imane",
+  "role": "dimane",
+  "text": "Whose birthday is it?",
+  "note": "Soft, genuinely curious, gentle. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_11.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Calm. Something calm.",
+  "note": "Muttering, trying to fix it. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_12.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Going down?",
+  "note": "Polite, in a queue, like in a lift. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_13.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Bro. People are asking when the next one is.",
+  "note": "Slow, amazed, reading his phone. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_14.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Tell them I'm on aux.",
+  "note": "A breath, then straight-faced and cool. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_ax8_15.wav"
+ }
+]

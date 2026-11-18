@@ -1,50 +1,57 @@
-// WAVE BACK. The game: Nio waved at a stranger who wasn't waving at him, and every time he gets a way out he refuses it,
-// and it costs him more. The quad, then Mum's dining room on Sunday. Writers' room v3 (Nov 17): the girl in yellow is
-// behind Nio from the first frame. Voice medium A (walkie). Marcus and Mum are new voice designs.
+// WAVE BACK v8 (writers' room, Nov 18: /mnt/project-files/nio-soul/skits/v8/scripts.md). Model: The Money, a stand held
+// at rising cost until one fact beats it. Nio waves back at a stranger by mistake; rather than be the guy who waved at
+// nobody he plays along, the stranger invents their history for him and invites him to dinner, and the girl he actually
+// waved at walks in. Every cause on screen; eyes on each other; no look to camera. Voice medium A (walkie).
 import { ShotSpec } from '../../nw3d/world';
 import type { SkitDef, Shot, Line } from '../Skit';
 
 type A = ShotSpec['actors'][0];
-const Q = (camera: string, actors: A[]): ShotSpec => ({ set: 'quad', camera, frames: 1, actors });
-const D = (camera: string, actors: A[]): ShotSpec => ({ set: 'dining', camera, frames: 1, actors });
+const Q = (camera: string, actors: A[], push = 0.15): ShotSpec => ({ set: 'quad', camera, frames: 1, actors, push });
+const D = (camera: string, actors: A[], push = 0.12): ShotSpec => ({ set: 'dining', camera, frames: 1, actors, push });
 const L = (key: string, who: string, at: number): Line => ({ key, who, at });
 const LAN = ['lanyard'];
 const marcus = (at: string, face: A['face'], x: Partial<A> = {}): A => ({ who: 'marcus', at, action: 'stand', face, wear: LAN, ...x });
 const sis = (at: string, face: A['face'], x: Partial<A> = {}): A => ({ who: 'sis', at, action: 'stand', face, ...x });
 const nio = (at: string, face: A['face'], x: Partial<A> = {}): A => ({ who: 'nio', at, action: 'stand', face, ...x });
+const sitD = (who: string, at: string, face: A['face'], x: Partial<A> = {}): A => ({ who, at, action: 'sit', face, ...x });
 const GRASS: [string, number, number?][] = [['sk_quad', 0, 0.6]];
 const ROOM: [string, number, number?][] = [['sk_dinner', 0, 0.7]];
 const shots: Shot[] = [
-  // the quad. A guy across the grass waves big, straight at us: at Nio (stranger, Nov 18: the wide from behind him left
-  // the viewer unsure who waved at whom)
-  { n: 1, frames: 40, spec: { ...Q('marcus', [marcus('marcus', 'hyped', { hold: 'wave' })]), push: 0.25 }, sfx: GRASS },
-  // Nio waves back, bigger, and we see what he cannot: the girl in yellow behind him, waving too (the cause in the
-  // picture, stranger round 2, Nov 18: the viewer must see the wave's real target in the same frame as his wave)
-  { n: 2, frames: 44, spec: { ...Q('nio', [nio('nio', 'hyped', { hold: 'wave' }), sis('sis', 'charm', { hold: 'wave', facing: 'marcus' })]), push: 0.2 }, sfx: GRASS },
-  // he looks back over his shoulder and sees her. It was for her.
-  { n: 3, frames: 40, shake: [12], spec: Q('nio', [nio('nio', [[0, 'hyped'], [10, 'shock']], { hold: 'wave', gaze: [-0.9, 0] }), sis('sis', 'charm', { hold: 'wave', facing: 'marcus' })]), sfx: GRASS },
-  // she walks off. He cannot be the guy who waved at nobody.
-  { n: 4, frames: 56, spec: Q('nio', [nio('nio', [[0, 'sheepish'], [24, 'smug']]), { who: 'sis', at: 'sis', to: 'sisOff', action: 'walk', face: 'neutral' }]), sfx: GRASS },
-  { n: 5, frames: 48, spec: Q('walk', [{ who: 'nio', at: 'nioMid', to: 'nioM', action: 'walk', face: 'smug' }]), sfx: GRASS },
-  { n: 6, frames: 30, spec: Q('marcus', [marcus('marcus', 'uneasy')]), say: [L('wb_01', 'marcus', 2)], sfx: GRASS },
-  // he reads the lanyard
-  { n: 7, frames: 30, spec: Q('nioM', [nio('nioM', [[0, 'suspicious'], [12, 'charm']], { gaze: [0, -0.5], facing: 'marcus' })]), say: [L('wb_02', 'nio', 4)], sfx: GRASS },
-  // Marcus offers him the exit
-  { n: 8, frames: 30, spec: Q('marcus', [marcus('marcus', 'sheepish')]), say: [L('wb_03', 'marcus', 2)], sfx: GRASS },
-  { n: 9, frames: 30, spec: Q('nioM', [nio('nioM', 'charm', { facing: 'marcus' })]), say: [L('wb_04', 'nio', 2)], sfx: GRASS },
-  { n: 10, frames: 30, spec: Q('marcus', [marcus('marcus', 'deadInside', { hold: 'phone' })]), say: [L('wb_05', 'marcus', 4)], sfx: GRASS },
-  // he does not take the exit
-  { n: 11, frames: 44, spec: Q('nioM', [nio('nioM', 'smug', { facing: 'marcus' })]), say: [L('wb_09', 'nio', 2)], sfx: GRASS },
-  // so Nio taps Join on the family's PXI event before Marcus can lock his phone
-  { n: 12, frames: 34, img: 'pxi-ui/screens/dinner.png', sfx: [['oh_tap', 26, 0.9]] },
-  { n: 13, frames: 30, shake: [2], img: 'pxi-ui/screens/dinner2.png', sfx: [['sk_ding', 2, 0.6]] },
-  // Sunday. One last way out.
-  { n: 14, frames: 54, spec: { ...D('wide', [{ who: 'mum', at: 'mum', action: 'sit', face: 'hyped' }, { who: 'nio', at: 'nio', action: 'sit', face: 'charm' }, { who: 'marcus', at: 'marcus', action: 'sit', face: 'deadInside' }]), push: 0.45 }, say: [L('wb_06', 'mum', 10)], sfx: ROOM },
-  { n: 15, frames: 30, spec: D('nio', [{ who: 'nio', at: 'nio', action: 'sit', face: 'smug' }]), say: [L('wb_07', 'nio', 4)], sfx: ROOM },
-  { n: 16, frames: 34, spec: D('marcus', [{ who: 'marcus', at: 'marcus', action: 'sit', face: 'deadpan' }]), say: [L('wb_08', 'marcus', 4)], sfx: ROOM },
-  // button: his sister comes in. It's the girl from the quad. She waves at her brother. Nio waves back. Nobody says anything.
-  { n: 17, frames: 40, spec: { ...D('door', [sis('door', 'charm', { hold: 'wave' })]), push: 0.3 }, sfx: ROOM },
-  { n: 18, frames: 40, spec: { ...D('nio', [{ who: 'nio', at: 'nio', action: 'sit', face: 'deadpan', hold: 'wave', hand: 0 }]), push: 0.25 }, sfx: ROOM },
-  { n: 19, frames: 36, spec: { ...D('wide', [{ who: 'mum', at: 'mum', action: 'sit', face: 'neutral' }, { who: 'nio', at: 'nio', action: 'sit', face: 'deadpan', hold: 'wave', hand: 0 }, { who: 'marcus', at: 'marcus', action: 'sit', face: 'deadInside' }, sis('door', 'uneasy', { facing: 'nio' })]), push: 0.35 }, sfx: ROOM },
+  // 1. a guy across the grass waves big, straight up the lawn
+  { n: 1, frames: 36, spec: Q('marcus', [marcus('marcus', 'hyped', { hold: 'wave' })], 0.25), sfx: GRASS },
+  // Nio waves back, bigger; in the same frame the girl in yellow behind him is waving too (the wave's real target)
+  { n: 2, frames: 44, spec: Q('nio', [nio('nio', 'hyped', { hold: 'wave', facing: 'marcus' }), sis('sis', 'charm', { hold: 'wave', facing: 'marcus' })], 0.2), sfx: GRASS },
+  // 2. she jogs off, still waving; his hand is still up. Mortified, then he decides.
+  { n: 3, frames: 56, spec: Q('nio', [nio('nio', [[0, 'shock'], [22, 'sheepish'], [40, 'real']], { hold: 'wave', facing: 'marcus' }), { who: 'sis', at: 'sis', to: 'sisFar', action: 'jog', face: 'charm' }]), sfx: GRASS },
+  // Marcus is still looking at him
+  { n: 4, frames: 30, spec: Q('marcus', [marcus('marcus', 'neutral', { facing: 'nio' })]), sfx: GRASS },
+  // so he walks over like he meant it
+  { n: 5, frames: 48, spec: Q('walk', [{ who: 'nio', at: 'nioMid', to: 'nioM', action: 'walk', face: 'charm' }]), sfx: GRASS },
+  { n: 6, frames: 30, spec: Q('nioM', [nio('nioM', 'charm', { facing: 'marcus' })]), say: [L('wb8_01', 'nio', 2)], sfx: GRASS },
+  { n: 7, frames: 30, spec: Q('marcus', [marcus('marcus', [[0, 'neutral'], [14, 'suspicious']], { facing: 'nioM' })]), say: [L('wb8_02', 'marcus', 2)], sfx: GRASS },
+  { n: 8, frames: 30, spec: Q('nioM', [nio('nioM', [[0, 'uneasy'], [12, 'charm']], { facing: 'marcus' })]), say: [L('wb8_03', 'nio', 8)], sfx: GRASS },
+  { n: 9, frames: 30, spec: Q('marcus', [marcus('marcus', 'hyped', { facing: 'nioM', act: { g: [[2, 'point']] } })]), say: [L('wb8_04', 'marcus', 2)], sfx: GRASS },
+  // 3. so happy he holds out his phone: his mum's event
+  { n: 10, frames: 30, spec: Q('marcus', [marcus('marcus', 'charm', { facing: 'nioM', hold: 'show-phone' })]), say: [L('wb8_05', 'marcus', 2)], sfx: GRASS },
+  { n: 11, frames: 30, spec: Q('nioM', [nio('nioM', 'uneasy', { facing: 'marcus' })]), say: [L('wb8_06', 'nio', 2)], sfx: GRASS },
+  { n: 12, frames: 30, spec: Q('marcus', [marcus('marcus', 'real', { facing: 'nioM', hold: 'show-phone' })]), say: [L('wb8_07', 'marcus', 2)], sfx: GRASS },
+  { n: 13, frames: 30, spec: Q('nioM', [nio('nioM', [[0, 'deadpan'], [14, 'real']], { facing: 'marcus' })]), say: [L('wb8_08', 'nio', 12)], sfx: GRASS },
+  // his own phone buzzes: Marcus invited you to Sunday Dinner. He taps Join.
+  { n: 14, frames: 40, img: 'pxi-ui/screens/invite.png', zoom: [1.5, 12], sfx: [['sk_ding', 2, 0.7]] },
+  { n: 15, frames: 34, img: 'pxi-ui/screens/dinner.png', sfx: [['oh_tap', 26, 0.9]] },
+  { n: 16, frames: 30, shake: [2], img: 'pxi-ui/screens/dinner2.png', sfx: [['sk_ding', 2, 0.6]] },
+  // 4. Sunday dinner. He's relaxed now: he's good at this.
+  { n: 17, frames: 30, spec: D('wide', [sitD('mum', 'mum', 'hyped', { facing: 'nio' }), sitD('nio', 'nio', 'charm'), sitD('marcus', 'marcus', 'charm')], 0.3), say: [L('wb8_09', 'mum', 4)], sfx: ROOM },
+  { n: 18, frames: 30, spec: D('nio', [sitD('nio', 'nio', 'charm', { facing: 'mum', act: { g: [[6, 'offer']] } })]), say: [L('wb8_10', 'nio', 2)], sfx: ROOM },
+  // Marcus, moved, hand on his chest
+  { n: 19, frames: 36, spec: D('marcus', [sitD('marcus', 'marcus', 'real', { facing: 'nio', act: { g: [[4, 'chest']] } })]), sfx: ROOM },
+  // 5. the girl in yellow walks in. She's his sister. She stops.
+  { n: 20, frames: 30, spec: D('door', [sis('door', [[0, 'neutral'], [8, 'suspicious']], { facing: 'nio' })], 0.25), say: [L('wb8_11', 'sis', 8)], sfx: ROOM },
+  // everyone looks at Nio
+  { n: 21, frames: 26, spec: D('wide', [sitD('mum', 'mum', 'neutral', { facing: 'nio' }), sitD('nio', 'nio', 'shock'), sitD('marcus', 'marcus', 'neutral'), sis('door', 'suspicious', { facing: 'nio' })]), sfx: ROOM },
+  { n: 22, frames: 30, spec: D('nio', [sitD('nio', 'nio', [[0, 'shock'], [10, 'charm']], { facing: 'door' })]), say: [L('wb8_12', 'nio', 10)], sfx: ROOM },
+  { n: 23, frames: 30, spec: D('mum', [sitD('mum', 'mum', 'laughing', { facing: 'nio' })]), say: [L('wb8_13', 'mum', 2)], sfx: ROOM },
+  // 6. button: she sits down slowly, eyes on Nio the whole time. Only she knows.
+  { n: 24, frames: 54, spec: D('end', [sitD('mum', 'mum', 'charm', { facing: 'marcus' }), sitD('nio', 'nio', 'deadpan'), sitD('marcus', 'marcus', 'charm', { back: true }), sitD('sis', 'sisSeat', 'suspicious', { facing: 'nio' })], 0.2), sfx: ROOM },
 ];
 export const WAVE_BACK: SkitDef = { id: 'wave-back', shots, beds: [] };
