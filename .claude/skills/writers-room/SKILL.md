@@ -48,6 +48,29 @@ below. When a new note arrives, find which principle it breaks and sharpen that 
 - **The button.** The last beat turns the rule back on itself or on Nio, using something already on screen, and
   then we cut.
 
+## What the Gumball transcripts show (studied Nov 18: The Remote, The Money)
+
+Eight moves, in our words. Use them as tools, not a checklist.
+
+1. **A big belief, undercut at once.** The lead opens with a confident speech about who he is, and his very next
+   line breaks it. That's his want and his flaw in the first ten seconds.
+2. **Everyone wants the same thing.** Put three selfish people after one remote, one seat, one photo. The
+   collision makes the plot, and nobody needs to be the villain.
+3. **Confident wrong logic, said plainly.** Characters defend absurd choices with calm, rational-sounding reasons
+   ("it's healthier, it has holes in it"). This is the dialogue engine. Nobody winks; they believe it.
+4. **Make the figure of speech literal.** "Without money you're nothing" becomes the family losing their colour
+   and their animation. Find the phrase in the premise, then make it physically true.
+5. **Small action, epic genre.** Getting off the sofa is shot like a space mission. Give a tiny task the cutaway
+   of a huge genre, played straight.
+6. **The quiet one plants things in plain sight.** Throwaway lines early are the plan, revealed at the end in a
+   quick replay. Plant every payoff in the first third.
+7. **Threes that get worse.** A repeated beat (headlights flashing past the window) shows a worse state each time.
+8. **Lines swing in length.** A long, passionate rant, then a two-word answer that kills it ("Do you know what
+   that means?" "No." "Then yes."). People admit fault casually ("Probably going too far.").
+
+Endings: the lead gives the grand speech, someone shows him the one fact that beats it, he stares, and we cut
+straight to the consequence. No aftermath, no lesson.
+
 ## Stage 1: Write (skit 25 to 40 s, episode 45 to 60 s)
 
 1. Write the one-sentence premise and the rule.
