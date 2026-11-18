@@ -538,7 +538,7 @@ def _scanface(s, cx, cy, r, col):
     s.box(cx - 4, cy - 4, cx - 2, cy - 2, col); s.box(cx + 2, cy - 4, cx + 4, cy - 2, col)
     s.d.arc([cx - 5, cy - 3, cx + 5, cy + 5], 20, 160, fill=col, width=2)
 
-def face_match(album="Nio's kickback", n=41, photo=None):
+def face_match(album="Nio's kickback", n=41, photo=None, reacts=None):
     """One Sip's button: the notifications screen (app/notifications.tsx: SheetHeader "Notifications" in small caps with
     the close X, the section label, rows flat on black with a hairline) with the opt-in face-match row
     (src/components/notifications/FaceMatchCard.tsx: the purple gradient ring with ScanFace, "You might be in N photos",
@@ -562,6 +562,17 @@ def face_match(album="Nio's kickback", n=41, photo=None):
     if photo is not None:
         t = pt(56); s.photo(photo.resize((t, t), Image.NEAREST), W - pt(36) - t, cy - t // 2, W - pt(36), cy + t // 2, r=pt(10))
     s.box(pt(20), top + pt(80), W - pt(20), top + pt(80) + 1, white(0.1))
+    # the night's other rows under it (PhotoReactionCard.tsx: avatar, "{name} reacted {emoji} in {album}", the time)
+    for k, (name, em, still_name) in enumerate(reacts or []):
+        y0 = top + pt(80) + k * pt(80); cy2 = y0 + pt(40)
+        s.avatar(nobody(d), ix, cy2 - d // 2, d)
+        x = tx; _, x = s.text(x, cy2 - pt(9), name, 700, sysp(14), WHITE); _, x = s.text(x, cy2 - pt(9), ' reacted ', 500, sysp(14), white(0.42))
+        s.emoji(em, pt(15), x + pt(8), cy2 - pt(9)); x += pt(17)
+        _, x = s.text(x, cy2 - pt(9), ' in ', 500, sysp(14), white(0.42))
+        s.text(tx, cy2 + pt(9), album, 700, sysp(14), WHITE)
+        s.text(tx, cy2 + pt(28), '8 hours ago', 500, sysp(12), white(0.35))
+        t = pt(56); s.photo(sq(still(still_name), 0.5, 0.35, 0.7).resize((t, t), Image.NEAREST), W - pt(36) - t, cy2 - t // 2, W - pt(36), cy2 + t // 2, r=pt(10))
+        s.box(pt(20), y0 + pt(80), W - pt(20), y0 + pt(80) + 1, white(0.1))
     return s.im
 
 def face_review(photo, left=41, match=94):
@@ -602,7 +613,7 @@ def review_photo(name, cx, cy, k):
     return im.crop((x, y, x + cw, y + ch))
 
 SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album,
-           'facematch': lambda: face_match(photo=sq(still('os1180'), 0.5, 0.25, 0.5)),
+           'facematch': lambda: face_match(photo=sq(still('os1180'), 0.5, 0.25, 0.5), reacts=[('Theo', '\U0001F602', 'os1180'), ('Imane', '\U0001F480', 'os612'), ('Maya', '\U0001F62D', 'os904')]),
            'review-king': lambda: face_review(review_photo('os1180', 0.47, 0.38, 0.5), 41, 94),
            'review-coach': lambda: face_review(review_photo('os612', 0.45, 0.4, 0.8), 40, 91),
            'review-duke': lambda: face_review(review_photo('os904', 0.5, 0.35, 0.8), 39, 88)}

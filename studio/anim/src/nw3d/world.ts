@@ -103,7 +103,7 @@ SETS.partyLive = {
     duelT: { s: 2.15, z: 1.8, yaw: 270 }, duelS: { s: 2.6, z: 2.2, yaw: 90 }, duelM: { s: 2.05, z: 2.85, yaw: 190 }, duelI: { s: 2.95, z: 2.8, yaw: 200 },
     king: { s: 1.6, z: 3.38, yaw: 180, on: 0.36 }, booM: { s: 0.95, z: 3.0, yaw: 90 }, booT: { s: 2.0, z: 2.3, yaw: 330 }, booI: { s: 1.25, z: 2.25, yaw: 20 }, booG: { s: 0.9, z: 2.5, yaw: 60 },
     nioK: { s: 2.55, z: 1.85, yaw: 320 }, couch: { s: 1.15, z: 3.72, yaw: 180, seat: 0.45 },
-    q1: { s: 0.8, z: 1.6, yaw: 180 }, q2: { s: 1.0, z: 2.1, yaw: 180 }, q3: { s: 1.2, z: 2.6, yaw: 180 }, q4: { s: 1.4, z: 3.05, yaw: 180 },
+    q1: { s: 1.2, z: 1.45, yaw: 195 }, q2: { s: 1.4, z: 1.9, yaw: 195 }, q3: { s: 1.6, z: 2.35, yaw: 195 }, q4: { s: 1.8, z: 2.8, yaw: 195 },
   },
   cameras: { ...SETS.party.cameras,
     two: C([2.1, 1.25, 0.15], [2.03, 1.1, 2.4], 60), // the two of them, side on, from the door end
@@ -114,6 +114,9 @@ SETS.partyLive = {
     auxWide: C([3.6, 1.7, 0.1], [2.1, 1.1, 2.4], 80), // the whole room from the desk corner, up high
     auxNio: C([0.3, 1.45, 2.3], [3.15, 1.38, 1.98], 40), // Nio by the desk, from across the room
     auxUp: C([0.3, 1.2, 0.2], [1.9, 2.0, 2.7], 64), // up at the ceiling
+    queue2: C([0.7, 1.45, 0.35], [1.5, 1.3, 2.1], 36), // the queue from the front, down the line of faces
+    theoQ: C([2.6, 1.45, 1.65], [1.8, 1.45, 2.8], 36), // Theo at the back of the queue, turned to Nio
+    queueN: C([3.6, 1.45, 3.55], [1.5, 1.3, 2.1], 60), // the queue turned to Nio, from the window corner
     queue: C([0.6, 1.95, 0.2], [1.05, 1.25, 2.2], 44), // the queue, from by the door, down the line of faces
     // ONE SIP v7 (fitted with out/camfit2: every face in, every face seen)
     kick: C([2.3, 1.65, 0.15], [2.05, 1.3, 2.4], 48), // the two of them on the rug, both faces
@@ -122,8 +125,9 @@ SETS.partyLive = {
     duel: C([1.2, 1.5, 1.05], [2.55, 1.35, 2.15], 44), // the duel: Sami, from where Theo stands
     duel2: C([3.4, 1.65, 3.05], [2.4, 1.35, 2.0], 36), // the duel: Theo, over Sami's shoulder
     kingWide: C([1.6, 1.25, 0.25], [1.6, 1.5, 2.9], 56), // low on the rug, up at the coffee table, two of them booing in front
+    samiS: C([0.5, 1.5, 1.45], [1.7, 1.4, 2.35], 40), // Sami at the rug, from where Imane stands
     coachI: C([3.2, 1.45, 0.85], [1.0, 1.3, 2.2], 36), // Imane cornered, a friend behind taking a photo
-    mayaK: C([2.2, 1.45, 2.15], [0.95, 1.4, 3.0], 40), // Maya, from the king's side
+    mayaK: C([1.9, 1.5, 4.05], [0.95, 1.4, 3.0], 40), // Maya, from behind the king's table
     nioRev: C([1.8, 1.45, 3.15], [2.55, 1.3, 1.85], 44), // Nio, from the coffee table end
     couch: C([1.15, 1.45, 1.9], [1.15, 1.05, 3.72], 40), // whoever is on the sofa
         faint: C([1.55, 1.45, 0.85], [0.95, 0.6, 2.3], 60), // the couch, and whoever is on it

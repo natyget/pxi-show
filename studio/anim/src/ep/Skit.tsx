@@ -28,8 +28,9 @@ import LIPS_WB from '../lips/wb.json';
 import ACC_WB from '../lips/wb_accents.json';
 
 export type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
-// img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. flash: a camera flash at this frame.
-export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
+// img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. zoom: [scale, the height
+// it zooms toward, percent from the top], for a screen whose point is one row. flash: a camera flash at this frame.
+export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
 // beds: [sound, volume, the shot it stops at (optional: else it runs to the end)]
 export type SkitDef = { id: string; shots: Shot[]; beds: [string, number, number?][] };
 type VoLine = { file: string; who: string; sub: string; dur: number };
@@ -71,7 +72,7 @@ const Shake: React.FC<{ at: number[]; children: React.ReactNode }> = ({ at, chil
   return <AbsoluteFill style={{ transform: `translate(${x}px, ${y}px) scale(${1 + 0.04 * k})` }}>{children}</AbsoluteFill>; };
 const ShotView: React.FC<{ shot: Shot }> = ({ shot }) => {
   const f = useCurrentFrame();
-  if (shot.img) return <AbsoluteFill style={{ background: '#000' }}><img src={staticFile(shot.img)} style={{ position: 'absolute', left: (1080 - 886) / 2, top: 0, width: 886, height: 1920, imageRendering: 'pixelated', transform: `scale(${1 + 0.06 * f / shot.frames})` }} /></AbsoluteFill>;
+  if (shot.img) return <AbsoluteFill style={{ background: '#000' }}><img src={staticFile(shot.img)} style={{ position: 'absolute', left: (1080 - 886) / 2, top: 0, width: 886, height: 1920, imageRendering: 'pixelated', transform: `scale(${(shot.zoom?.[0] ?? 1) * (1 + 0.06 * f / shot.frames)})`, transformOrigin: `50% ${shot.zoom?.[1] ?? 50}%` }} /></AbsoluteFill>;
   const base = typeof shot.spec === 'function' ? shot.spec(f) : shot.spec!;
   const spec: ShotSpec = { ...base, frames: shot.frames, actors: base.actors.map((a) => {
     const mine = (shot.say ?? []).filter((l) => l.who === a.who && lips[l.key]);

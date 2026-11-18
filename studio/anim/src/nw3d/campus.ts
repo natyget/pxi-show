@@ -710,6 +710,7 @@ export const ROOF_CAMS: Record<string, Cam3> = {
   pov: C([4.0, 2.0, 8.95], [4.0, 1.15, 6.5], 72), // Nio's phone up on the chair: the line, and the sunset behind us
   chair: C([3.0, 0.7, 7.2], [4.0, 1.7, 9.1], 50), // Nio up on the chair, from below, the violet sky behind him
   nio: C([3.3, 1.45, 6.4], [4.0, 1.4, 9.1], 40), // Nio from where the three were
+  nioA: C([3.6, 1.5, 6.1], [4.0, 1.42, 4.0], 40), // Nio at the start, phone up, from the line
   whole: C([4.0, 2.2, 0.6], [4.0, 1.0, 7.0], 70), // the whole roof from the stair hut end
   phone: C([4.0, 1.55, 10.85], [4.0, 1.45, 8.6], 60), // up from Nio's phone at the four faces round it
 };

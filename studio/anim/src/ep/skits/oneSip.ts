@@ -28,7 +28,7 @@ const shots: Shot[] = [
   { n: 3, frames: 40, spec: P('nio', [st('nio', 'nioR', [[0, 'charm'], [30, 'smug']], { facing: 'samiL', hold: 'cup-point' })]), say: [L('os_02', 'nio', 2)] },
   // sip one: a scarf and little glasses. He points at the speaker.
   sipShot(4, [], SNOB, [NECK, FACE], 1),
-  { n: 5, frames: 40, spec: P('sami', [st('sami', 'samiL', 'smug', { facing: 'osImane', wear: SNOB, act: { g: [[4, 'point']] } })]), say: [L('os_03', 'sami', 2)] },
+  { n: 5, frames: 40, spec: P('samiS', [st('sami', 'samiL', 'smug', { facing: 'osImane', wear: SNOB, act: { g: [[4, 'point']] } })]), say: [L('os_03', 'sami', 2)] },
   { n: 6, frames: 26, spec: P('imane', [st('imane', 'osImane', [[0, 'neutral'], [6, 'suspicious']], { facing: 'samiL' })]), say: [L('os_04', 'imane', 6)] },
   // Nio, the host, covers for him
   { n: 7, frames: 34, spec: P('nio', [st('nio', 'nioR', 'charm', { facing: 'osImane', act: { g: [[4, 'offer']] } })]), say: [L('os_05', 'nio', 2)] },
@@ -50,7 +50,7 @@ const shots: Shot[] = [
   { n: 19, frames: 60, spec: P('nioRev', [st('nio', 'nioK', [[0, 'deadpan'], [10, 'disgust']], { facing: 'king', hold: 'juicebox' })], 0.1), say: [L('os_13', 'nio', 12)], sfx: [['sk_wheeze', 6, 0.6]] },
   // the next morning: Sami crashed on the sofa, his phone. PXI: you might be in 41 photos. Not me. Not me. Not me.
   { n: 20, frames: 36, spec: P('couch', [{ who: 'sami', at: 'couch', action: 'sit', face: 'crushed', hold: 'phone', wear: ['lanyard'] }], 0.1, undefined, 'livingDay'), sfx: [...MORNING, ['sk_ding', 18, 0.6]] },
-  { n: 21, frames: 40, img: 'pxi-ui/screens/facematch.png', sfx: [['oh_tap', 30, 0.8]] },
+  { n: 21, frames: 40, img: 'pxi-ui/screens/facematch.png', zoom: [1.3, 15], sfx: [['oh_tap', 30, 0.8]] },
   { n: 22, frames: 30, img: 'pxi-ui/screens/review-king.png', sfx: [['oh_tap', 22, 0.8]] },
   { n: 23, frames: 22, img: 'pxi-ui/screens/review-coach.png', sfx: [['oh_tap', 14, 0.8]] },
   { n: 24, frames: 24, img: 'pxi-ui/screens/review-duke.png', sfx: [['oh_tap', 12, 0.8]] },
