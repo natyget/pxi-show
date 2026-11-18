@@ -16,7 +16,7 @@ const HEAD: [number, number] = [500, 520], FACE: [number, number] = [500, 860], 
 // the sip, by Nio, at the rug: cup up, gulp, then the new persona pops on at frame 16 with a hit. k: how big this one is.
 // the change lands at frame C: before it, a clear look at Sami as he was, sipping; after it, a clear hold on the new
 // persona (stranger, Nov 18: too short a shot read as a different person, not the same guy changing)
-const C = 22;
+const C = 26;
 const sipShot = (n: number, from: string[], to: string[], poof: [number, number][], k: number): Shot => ({ n, frames: 46 + 4 * k,
   shake: k === 1 ? [C] : k === 2 ? [C, C + 8] : [C, C + 6, C + 12], poof: poof.map(([x, y]) => [C, x, y] as [number, number, number]),
   spec: (f) => P('samiClose', [st('sami', 'samiL', f < C ? 'uneasy' : 'smug', { facing: 'nioR', wear: f < C ? from : to, hold: f < C ? 'sip' : 'cup', hand: 0 })], Math.min(0.1 + 0.05 * k, 0.22)),
@@ -28,7 +28,9 @@ const shots: Shot[] = [
   { n: 1, frames: 30, spec: P('auxWide', [st('nio', 'nioR', 'charm', { facing: 'samiL', hold: 'cup-point', back: true }), st('sami', 'samiL', 'neutral', { facing: 'nioR' }), st('maya', 'g1', 'laughing', { facing: 'g3', hold: 'cup' }), st('imane', 'g3', 'charm', { facing: 'g1' }), st('theo', 'g4', 'hyped')], 0.3) },
   // Nio hands Sami a cup; Sami puts both palms up.
   { n: 2, frames: 50, spec: P('twoS', [st('nio', 'nioR', 'charm', { facing: 'samiL', hold: 'cup-point' }), st('sami', 'samiL', 'uneasy', { facing: 'nioR', act: { g: [[6, 'palms']] } })]), say: [L('os_01', 'sami', 6)] },
-  { n: 3, frames: 40, spec: P('nio', [st('nio', 'nioR', [[0, 'charm'], [30, 'smug']], { facing: 'samiL', hold: 'cup-point' })]), say: [L('os_02', 'nio', 2)] },
+  // the plant, in plain sight (stranger, Nov 18: the juice box must be seen before it pays off): what Nio is pouring
+  // from as he talks him into it is a kid's juice box
+  { n: 3, frames: 40, spec: P('nio', [st('nio', 'nioR', [[0, 'charm'], [30, 'smug']], { facing: 'samiL', hold: 'juicebox', hand: 1 })]), say: [L('os_02', 'nio', 2)] },
   // sip one: a scarf and little glasses. He points at the speaker.
   sipShot(4, [], SNOB, [NECK, FACE], 1),
   { n: 5, frames: 40, spec: P('samiS', [st('sami', 'samiL', 'smug', { facing: 'osImane', wear: SNOB, act: { g: [[4, 'point']] } })]), say: [L('os_03', 'sami', 2)] },

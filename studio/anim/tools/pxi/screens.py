@@ -489,6 +489,17 @@ def sunday_dinner(joined=False):
         s.box(188, 690, 340, 738, PURPLE, r=24); s.text(264, 714, 'Join', 800, pt(14), WHITE, align='c')
     return s.im
 
+def now_playing(title, art, bg):
+    """Aux: what Nio puts on, on his own phone's music player (not PXI: a plain player, no brand). The song title is
+    the cause of what happens next, so it is the one big thing on the screen (craft library, phone insert)."""
+    s = Screen(bg=hexc('121212')); s.status()
+    s.text(180, 92, 'NOW PLAYING', 800, pt(11), white(0.5, hexc('121212')), ls=2, align='c')
+    s.box(50, 130, 310, 390, hexc(bg), r=24); s.emoji(art, 150, 180, 260)
+    s.text(180, 450, title, 'display', pt(30), WHITE, align='c')
+    s.box(40, 520, 320, 526, white(0.25, hexc('121212')), r=3); s.box(40, 520, 70, 526, WHITE, r=3); s.disc(64, 515, 16, WHITE)
+    s.disc(150, 570, 60, WHITE); s.box(172, 586, 179, 614, hexc('121212')); s.box(184, 586, 191, 614, hexc('121212'))
+    return s.im
+
 STILLS = os.path.join(ANIM, 'out', 'skit-stills')
 def still(name, box=None):
     """A frame of a launch skit, rendered by the engine (out/skit-stills/<name>.png), optionally cropped to a box given
@@ -614,7 +625,7 @@ def review_photo(name, cx, cy, k):
     x = min(max(0, round(cx * w - cw / 2)), w - cw); y = min(max(0, round(cy * h - ch / 2)), h - ch)
     return im.crop((x, y, x + cw, y + ch))
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album,
+SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album, 'song-rain': lambda: now_playing('Rainy Day Piano', '\U0001F327', '3d5a80'), 'song-roof': lambda: now_playing('Through The Roof', '\U0001F680', 'c0392b'), 'song-bday': lambda: now_playing('Happy Birthday', '\U0001F382', 'e88cb0'), 'song-lift': lambda: now_playing('Lift Music', '\U0001F6D7', '8a8f98'),
            'facematch': lambda: face_match(photo=sq(still('os1180'), 0.5, 0.25, 0.5), reacts=[('Theo', '\U0001F602', 'os1180'), ('Imane', '\U0001F480', 'os612'), ('Maya', '\U0001F62D', 'os904')]),
            'review-king': lambda: face_review(review_photo('os1180', 0.47, 0.38, 0.5), 41, 94),
            'review-coach': lambda: face_review(review_photo('os612', 0.45, 0.4, 0.8), 40, 91),
