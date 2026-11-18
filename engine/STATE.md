@@ -6,9 +6,9 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Launch skits (episodes/launch-skits) are on hold for the writers' v7 sketch (Nov 18: every line loosened, PXI in each plot; One Sip ends on a PXI face-match screen, Aux ends on Theo scrolling the night's album). Render nothing until the founder OKs the sketch. Built and ready: the quad, Mum's dining room, Nio's living room (same look as his room), the shake and hit on big beats, slow pushes, the juice box, wave and moustache pieces. Office Hours stays ON HOLD. The voice medium test is experiment E6 in engine/learning.md.
+next_action: Launch skits v7 (sketch approved by the founder, Nov 18) voiced and rendering: Wave Back, Group Photo, Aux and One Sip (rebuilt in the living room, the persona sips, the juice box, the PXI face-match button). Next: av and dead checks, then the stranger on each; the ones that pass go to the founder. Office Hours stays ON HOLD. The voice medium test is experiment E6 in engine/learning.md.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
-gate_failures: 2 (stranger, One Sip v1 and v2, Nov 17): BLOCKED for One Sip only
+gate_failures: 0 for v7 (One Sip v1 and v2 failed the stranger on Nov 17; the founder chose a rewrite, now v7)
 
 ## Next render: "Office Hours" (season 1, episode 1)
 
@@ -69,6 +69,7 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
+- 2026-11-18 · launch-skits · v7 approved; 35 lines voiced; One Sip rebuilt; new face-match, review and album screens; rendering all four.
 - 2026-11-17 · office-hours · v5 re-voiced and cut (held, not reviewed); founder put the episode on hold for launch skits; acting pass is law.
 - 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.
 - 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.

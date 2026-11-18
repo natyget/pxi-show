@@ -2,43 +2,92 @@
 {
 "who": "sami",
 "role": "dsami",
-"text": "I really can't handle a drink.",
-"note": "Polite, a little nervous, apologetic, holding a cup he does not want. Say every word clearly.",
+"text": "Nah I'm good, I can't handle drinks. I get crazy.",
+"note": "Refusing, palms up, half laughing, a bit nervous. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_os_01.wav"
 },
 {
 "who": "nio",
 "role": "dnio",
-"text": "Sami. It's in your head. One sip.",
-"note": "Easy, warm, teasing, sure he is right, a tiny pause after Sami, holding the cup out to his friend.",
+"text": "It's all in your head, gang. You gotta will it. One sip.",
+"note": "Easy, teasing, hyping his friend up. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_os_02.wav"
 },
 {
 "who": "sami",
 "role": "dsami",
-"text": "I must say, this is a delightful gathering.",
-"note": "Suddenly very proper and posh, pleased with himself, like a gentleman at a garden party.",
+"text": "Okay so actually, this song samples a jazz record from 1974. Most people don't know that.",
+"note": "Suddenly a music snob, smug, pointing at the speaker. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_os_03.wav"
 },
 {
-"who": "sami",
-"role": "dsami",
-"text": "Good sir. Fetch me a carriage.",
-"note": "Grand old-fashioned aristocrat, haughty and slow, giving an order to a servant.",
+"who": "imane",
+"role": "dimane",
+"text": "Okay?",
+"note": "Flat, unimpressed, one word. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_os_04.wav"
-},
-{
-"who": "sami",
-"role": "dsami",
-"text": "I shall duel the man who took my coat!",
-"note": "Outraged Victorian lord, loud and theatrical, pointing at the room.",
-"out": "raw_os_05.wav"
 },
 {
 "who": "nio",
 "role": "dnio",
-"text": "Sami. That's apple juice.",
-"note": "Flat, calm, dry, after sniffing the cup, a tiny pause after Sami.",
+"text": "He's into music. That's just Sami.",
+"note": "The host covering for his friend, quick and a little awkward. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_05.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Where do you see yourself in five years? 'Cause I see you in my mentorship program.",
+"note": "An intense life coach, leaning in too close. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_os_06.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "He's networking.",
+"note": "Quietly to Imane, a small pause before networking, embarrassed. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_07.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Sir. You have touched my coat. I demand satisfaction.",
+"note": "A furious Victorian gentleman, very posh. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_08.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Bro, this is my coat.",
+"note": "Baffled, holding his own coat. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_09.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Theo, just give him the coat.",
+"note": "Tired host, keeping the peace. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_10.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "This apartment is my kingdom now. The bathroom is mine.",
+"note": "A mad king, standing on a table, booming. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_11.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Sami. You need to leave.",
+"note": "Firm, fed up, final. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_12.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Gang. It's a juice box. It came with a straw.",
+"note": "Disgusted, flat, holding it up, a beat after gang. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_13.wav"
 }
 ]

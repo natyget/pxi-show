@@ -33,6 +33,8 @@ export const FACES: Record<string, Face> = {
   charm: F({ open: 0.66, low: 0.08, px: 0.4 }, {}, { w: 0.12, curve: 0.06 }, { browR: B({ y: 0.07, rot: -4, bend: 1 }) }),
   real: F({ open: 0.96, ps: 0.85, px: 0.25, py: -0.15 }, { rot: -9, y: -0.01 }, { w: 0.05 }),
   asleep: F({ arc: -1 }, {}, {}),
+  // pure disgust (One Sip, at a grown man drunk on apple juice): a squint, brows hard down, the lip curled up on one side
+  disgust: F({ open: 0.5, low: 0.3, tilt: 8, px: 0.9 }, { y: -0.035, rot: 14, bend: 0 }, { w: 0.13, curve: -0.045, open: 0.05, teeth: 1, skew: -1 }, { gloom: 0.4 }),
 };
 export const gaze = (f: Face, px: number, py: number): Face => ({ ...f, eyeL: { ...f.eyeL, px, py }, eyeR: { ...f.eyeR, px, py } });
 export const blink = (f: Face): Face => ({ ...f, eyeL: { ...f.eyeL, arc: -1 }, eyeR: { ...f.eyeR, arc: -1 } });

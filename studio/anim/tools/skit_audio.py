@@ -121,6 +121,18 @@ def plink():  # a monocle dropping into a cup: a bright ring and a small splash
     t = t_(0.6); x = (np.sin(2 * np.pi * 2650 * t) + 0.4 * np.sin(2 * np.pi * 4100 * t)) * np.exp(-t * 9) * 0.5
     return x + band(R.normal(0, 1, len(t)), 1500, 6000) * np.exp(-((t - 0.04) / 0.03) ** 2) * 0.25
 
+def crowd(d, f0s, fall, lo, hi):  # a few voices on one vowel: each a buzzy tone, pitch falling by 'fall', through a vowel band
+    x = np.zeros(int(SR * (d + 0.3)))
+    for f0 in f0s:
+        at = R.uniform(0, 0.15); t = t_(d * R.uniform(0.8, 1.0)); f = f0 * (1 - fall * t / t[-1]) * (1 + 0.01 * np.sin(2 * np.pi * 5 * t))
+        ph = 2 * np.pi * np.cumsum(f) / SR; v = sum(np.sin(k * ph) / k for k in range(1, 9))
+        place(x, band(v, lo, hi) * np.sin(np.pi * t / t[-1]) ** 0.6 * 0.2, at)
+    return x
+def boo():  # a room booing: five voices on a long low 'ooo'
+    return crowd(1.6, [110, 135, 160, 190, 220], 0.12, 200, 900)
+def groan():  # a room groaning: a short falling 'uhh'
+    return crowd(0.9, [120, 150, 185, 230], 0.25, 250, 1400)
+
 def hit():  # a big-beat hit: a low boom with a short whoosh into it
     t = t_(0.8); x = np.sin(2 * np.pi * np.cumsum(90 * np.exp(-t * 4) + 38) / SR) * np.exp(-t * 6) * 0.9
     return x + band(R.normal(0, 1, len(t)), 300, 3000) * np.exp(-t * 30) * 0.3

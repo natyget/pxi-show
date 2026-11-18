@@ -2,57 +2,50 @@
 {
 "who": "nio",
 "role": "dnio",
-"text": "Okay, everybody in.",
-"note": "Upbeat, easy, holding up his phone, organising friends for a photo.",
+"text": "Okay everybody get in, the light's perfect right now.",
+"note": "Excited, quick, phone up. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_gp_01.wav"
 },
 {
 "who": "theo",
 "role": "dtheo",
-"text": "Get my left side.",
-"note": "Confident, matter of fact, like a model giving a note.",
+"text": "Wait, get my left side. My right side's not it today.",
+"note": "Vain, serious about it, pointing at his own face. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_gp_02.wav"
 },
 {
 "who": "sami",
 "role": "dsami",
-"text": "I can't open my eyes. Take it without me.",
-"note": "Polite, squinting in pain, very dignified about it.",
+"text": "Bro, I can't see anything. Just take it without me.",
+"note": "Squinting into the sun, giving up. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_gp_03.wav"
 },
 {
 "who": "maya",
 "role": "dmaya",
-"text": "Higher. So the sun's behind you.",
-"note": "Bright, helpful, sure she has solved it.",
+"text": "Go higher, so the sun's behind you.",
+"note": "Helpful, sure she has the fix. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_gp_04.wav"
 },
 {
 "who": "theo",
 "role": "dtheo",
-"text": "Not from above. I'm out.",
-"note": "Offended, quick, walking away.",
+"text": "Nah, not from above. I look short. I'm out.",
+"note": "Offended, walking off. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_gp_05.wav"
 },
 {
 "who": "maya",
 "role": "dmaya",
-"text": "One person isn't a group photo.",
-"note": "Thoughtful, sincere, noticing she is alone.",
+"text": "Okay, one person isn't a group photo. That's just a photo of me.",
+"note": "Dry, reasonable, then stepping out. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_gp_06.wav"
-},
-{
-"who": "maya",
-"role": "dmaya",
-"text": "That's just a photo.",
-"note": "Simple, sweet, final, stepping away.",
-"out": "raw_gp_07.wav"
 },
 {
 "who": "theo",
 "role": "dtheo",
-"text": "I look really good in that.",
-"note": "Proud, delighted, staring at the phone.",
+"text": "Yo. I look really good in this one.",
+"note": "Delighted with himself, scrolling. Talk like a real person, casual and quick, no long pauses between words.",
 "out": "raw_gp_08.wav"
 }
 ]

@@ -30,7 +30,8 @@ import ACC_WB from '../lips/wb_accents.json';
 export type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
 // img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. flash: a camera flash at this frame.
 export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
-export type SkitDef = { id: string; shots: Shot[]; beds: [string, number][] };
+// beds: [sound, volume, the shot it stops at (optional: else it runs to the end)]
+export type SkitDef = { id: string; shots: Shot[]; beds: [string, number, number?][] };
 type VoLine = { file: string; who: string; sub: string; dur: number };
 const vo = { ...VO_OS, ...VO_GP, ...VO_AX, ...VO_WB } as unknown as Record<string, VoLine>;
 const lips = { ...LIPS_OS, ...LIPS_GP, ...LIPS_AX, ...LIPS_WB } as unknown as Record<string, Cues>;
@@ -101,7 +102,7 @@ export const Skit: React.FC<SkitProps> = (p) => {
         </Sequence>
       ))}
       {/* no music (founder, Nov 17): beds are room sound only */}
-      {def.beds.map(([f, v]) => <Sequence key={f} from={0} durationInFrames={total} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} /></Sequence>)}
+      {def.beds.map(([f, v, until]) => <Sequence key={f} from={0} durationInFrames={until ? shots.find((s) => s.n === until)?.from ?? total : total} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} /></Sequence>)}
       {shots.flatMap((s) => (s.shake ?? []).map((at, i) => <Sequence key={`${s.n}hit${i}`} from={s.from + at} layout="none"><Audio src={staticFile('sfx/sk_hit.wav')} volume={0.8} /></Sequence>))}
       {shots.flatMap((s) => (s.sfx ?? []).map(([f, at, v], i) => (
         <Sequence key={`${s.n}fx${i}`} from={s.from + at} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v ?? 1} /></Sequence>)))}

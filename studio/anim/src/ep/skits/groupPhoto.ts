@@ -22,14 +22,13 @@ const shots: Shot[] = [
   { n: 7, frames: 34, spec: R('chair', [at('nio', 'chair', 'deadpan', { hold: 'photo' })], true, 0.35), sfx: [['oh_creak', 2, 0.5]] },
   { n: 8, frames: 40, spec: R('theoUp', [at('theo', 'theo', 'suspicious', { facing: 'nio2', gaze: [0, 0.6] })], true), say: [L('gp_05', 'theo', 4)] },
   { n: 9, frames: 32, spec: R('pov', [{ who: 'theo', at: 'theo', to: 'theoOut', action: 'walk', face: 'deadpan', back: true }, at('maya', 'maya', 'neutral', { facing: 'nio2', gaze: [0, 0.5] })], true) },
-  { n: 10, frames: 40, spec: R('pov', [at('maya', 'maya', 'real', { facing: 'nio2', gaze: [0, 0.5] })], true, 0.5), say: [L('gp_06', 'maya', 4)] },
-  { n: 11, frames: 40, spec: R('pov', [at('maya', 'maya', 'charm', { facing: 'nio2', gaze: [0, 0.5] })], true, 0.5), say: [L('gp_07', 'maya', 2)] },
-  { n: 12, frames: 30, spec: R('pov', [{ who: 'maya', at: 'maya', to: 'mayaOut', action: 'walk', face: 'neutral', back: true }], true) },
+  { n: 10, frames: 84, spec: R('pov', [at('maya', 'maya', 'real', { facing: 'nio2', gaze: [0, 0.5] })], true, 0.5), say: [L('gp_06', 'maya', 4)] },
+  { n: 11, frames: 30, spec: R('pov', [{ who: 'maya', at: 'maya', to: 'mayaOut', action: 'walk', face: 'neutral', back: true }], true) },
   // he turns round on the chair. Flash.
-  { n: 13, frames: 40, shake: [14], spec: R('sunset', [], true, 0.2), flash: 14, sfx: [['shutter', 14, 0.9]] },
-  { n: 14, frames: 52, img: 'pxi-ui/screens/roof-album.png' },
+  { n: 12, frames: 40, shake: [14], spec: R('sunset', [], true, 0.2), flash: 14, sfx: [['shutter', 14, 0.9]] },
+  { n: 13, frames: 52, img: 'pxi-ui/screens/roof-album.png' },
   // all four round the phone
-  { n: 15, frames: 50, spec: R('phone', [at('nio', 'nio2', 'deadpan', { facing: 'camera', gaze: [0, -0.4] }), at('theo', 'theoP', 'hyped', { gaze: [0, -0.4] }), at('maya', 'mayaP', 'charm', { gaze: [0, -0.4] }), at('sami', 'samiP', 'neutral', { gaze: [0, -0.4] })]), say: [L('gp_08', 'theo', 6)] },
-  { n: 16, frames: 44, spec: R('phone', [at('nio', 'nio2', 'deadpan', { facing: 'camera', gaze: [-0.9, 0.1] }), at('theo', 'theoP', 'hyped', { gaze: [0, -0.4] }), at('maya', 'mayaP', 'charm', { gaze: [0, -0.4] }), at('sami', 'samiP', 'neutral', { gaze: [0, -0.4] })], false, 0.25) },
+  { n: 14, frames: 50, spec: R('phone', [at('nio', 'nio2', 'deadpan', { facing: 'camera', gaze: [0, -0.4] }), at('theo', 'theoP', 'hyped', { gaze: [0, -0.4] }), at('maya', 'mayaP', 'charm', { gaze: [0, -0.4] }), at('sami', 'samiP', 'neutral', { gaze: [0, -0.4] })]), say: [L('gp_08', 'theo', 6)] },
+  { n: 15, frames: 44, spec: R('phone', [at('nio', 'nio2', 'deadpan', { facing: 'camera', gaze: [-0.9, 0.1] }), at('theo', 'theoP', 'hyped', { gaze: [0, -0.4] }), at('maya', 'mayaP', 'charm', { gaze: [0, -0.4] }), at('sami', 'samiP', 'neutral', { gaze: [0, -0.4] })], false, 0.25) },
 ];
 export const GROUP_PHOTO: SkitDef = { id: 'group-photo', shots, beds: [['sk_wind', 0.3]] };

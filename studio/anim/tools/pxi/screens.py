@@ -487,7 +487,125 @@ def sunday_dinner(joined=False):
         s.box(188, 690, 340, 738, PURPLE, r=24); s.text(264, 714, 'Join', 800, pt(14), WHITE, align='c')
     return s.im
 
-SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True)}
+STILLS = os.path.join(ANIM, 'out', 'skit-stills')
+def still(name, box=None):
+    """A frame of a launch skit, rendered by the engine (out/skit-stills/<name>.png), optionally cropped to a box given
+    as fractions of the frame (x0, y0, x1, y1)."""
+    im = Image.open(os.path.join(STILLS, name + '.png')).convert('RGB')
+    if box: w, h = im.size; im = im.crop((round(box[0] * w), round(box[1] * h), round(box[2] * w), round(box[3] * h)))
+    return im
+def sq(im, cx=0.5, cy=0.5, k=1.0):
+    """A square from a picture: side k times its short edge, centred on (cx, cy) as fractions."""
+    w, h = im.size; c = round(min(w, h) * k); x = min(max(0, round(cx * w - c / 2)), w - c); y = min(max(0, round(cy * h - c / 2)), h - c)
+    return im.crop((x, y, x + c, y + c))
+
+def aux_album():
+    """Aux: Theo's party album the morning after, everyone's shots of the night (the same gallery as gallery():
+    AlbumMasonryGrid.tsx, YourNightControls.tsx): the rain indoors, the couch on the ceiling, the cake, the lift queue."""
+    s = Screen()
+    rain, up, cake, queue = still('ax142'), still('ax204'), still('ax376'), still('ax507')
+    tiles = [(up, 0.5, 0.45, 0.8, '\U0001F525', '212'), (rain, 0.5, 0.5, 0.9, '\U0001F62D', '187'), (cake, 0.5, 0.55, 0.85, '\U0001F382', '164'),
+             (queue, 0.5, 0.4, 0.8, '\U0001F610', '151'), (rain, 0.35, 0.6, 0.6, '☔', '140'), (up, 0.6, 0.3, 0.55, '\U0001F92F', '133'),
+             (cake, 0.4, 0.4, 0.6, '\U0001F973', '120'), (queue, 0.5, 0.7, 0.55, '\U0001F6D7', '96'), (up, 0.35, 0.6, 0.6, '\U0001F525', '91'),
+             (rain, 0.65, 0.35, 0.6, '\U0001F62D', '88'), (cake, 0.6, 0.65, 0.55, '\U0001F382', '74'), (queue, 0.4, 0.45, 0.6, '\U0001F610', '61'),
+             (up, 0.5, 0.75, 0.6, '\U0001F92F', '58'), (rain, 0.5, 0.3, 0.55, '☔', '52'), (cake, 0.5, 0.3, 0.6, '\U0001F973', '47')]
+    def tile(i, y, mine):
+        im, cx, cy, k, em, n = tiles[i]; x = (i % 3) * 120
+        s.photo(sq(im, cx, cy, k).resize((116, 116), Image.NEAREST), x + 2, y + 2, x + 118, y + 118, r=pt(14))
+        s.disc(x + 9, y + 85, 26, G1C); s.avatar(nobody(22), x + 11, y + 87, 22)
+        w = 6 + 12 + 2 + text_w(n, 800, pt(10)) + 6; bx = x + 111 - w
+        for yy in range(y + 96, min(H, y + 111)):
+            for xx in range(bx, bx + w):
+                r = 7; cx0 = min(max(xx, bx + r), bx + w - r - 1); cy0 = min(max(yy, y + 96 + r), y + 110 - r)
+                if (xx - cx0) ** 2 + (yy - cy0) ** 2 <= r * r + 2: s.im.putpixel((xx, yy), mix(s.im.getpixel((xx, yy)), BLACK, 0.62))
+        s.emoji(em, 11, bx + 11, y + 103); s.text(bx + 19, y + 103, n, 800, pt(10), WHITE)
+    for i in range(3): tile(i, 160, True)
+    s.text(pt(16), 307, 'Everyone else', 600, sysp(13), white(0.55))
+    for i in range(3, 15): tile(i, 324 + ((i - 3) // 3) * 120, False)
+    s.box(0, 0, W, 158, BLACK); header(s, "Theo's"); switch(s, 'GALLERY')
+    s.disc(292, 643, 51, PURPLE); s.icon('Add01Icon', 24, 317, 668, WHITE)
+    return s.im
+
+def _x(s, cx, cy, r, col, w):
+    s.line(cx - r, cy - r, cx + r, cy + r, col, w); s.line(cx - r, cy + r, cx + r, cy - r, col, w)
+def _scanface(s, cx, cy, r, col):
+    """lucide ScanFace, by hand: four corner brackets, two eyes, a smile."""
+    a = r; b = round(r * 0.45)
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            x0, y0 = cx + sx * a, cy + sy * a
+            s.line(x0, y0, x0 - sx * b, y0, col, 2); s.line(x0, y0, x0, y0 - sy * b, col, 2)
+    s.box(cx - 4, cy - 4, cx - 2, cy - 2, col); s.box(cx + 2, cy - 4, cx + 4, cy - 2, col)
+    s.d.arc([cx - 5, cy - 3, cx + 5, cy + 5], 20, 160, fill=col, width=2)
+
+def face_match(album="Nio's kickback", n=41, photo=None):
+    """One Sip's button: the notifications screen (app/notifications.tsx: SheetHeader "Notifications" in small caps with
+    the close X, the section label, rows flat on black with a hairline) with the opt-in face-match row
+    (src/components/notifications/FaceMatchCard.tsx: the purple gradient ring with ScanFace, "You might be in N photos",
+    "Tap to review in {album}", the time from utils/notificationTime.ts, the 56-point thumbnail)."""
+    s = Screen(); s.status('9:14')
+    hy = pt(74)
+    s.text(pt(20), hy, 'NOTIFICATIONS', 'display', pt(13), WHITE, ls=0.4)
+    _x(s, W - pt(31), hy, pt(7), WHITE, 2)
+    s.text(pt(28), pt(126), 'NEW', 800, pt(12), hexc('8A8A8A'), ls=1.1)
+    top = pt(140); cy = top + pt(40); ix = pt(36); d = pt(48)
+    g = Image.new('RGB', (d, d)); gd = ImageDraw.Draw(g)
+    for k in range(2 * d):   # the gradient runs from the bottom-left (#A523EF) to the top-right (#552BCE)
+        t = k / (2 * d - 1); gd.line([(k, d), (k - d, 0)] if False else [(0, d - 1 - k), (k, d - 1)], fill=mix(hexc('A523EF'), hexc('552BCE'), t), width=2)
+    m = Image.new('L', (d, d), 0); ImageDraw.Draw(m).ellipse([0, 0, d - 1, d - 1], fill=255); s.im.paste(g, (ix, cy - d // 2), m)
+    di = pt(44); s.disc(ix + (d - di) // 2, cy - di // 2, di, BLACK)
+    _scanface(s, ix + d // 2, cy, pt(9), WHITE)
+    tx = ix + d + pt(16)
+    s.text(tx, cy - pt(17), f'You might be in {n} photos', 800, pt(14), WHITE)
+    s.text(tx, cy + pt(1), f'Tap to review in {album}', 500, sysp(13), white(0.6))
+    s.text(tx, cy + pt(18), '8 hours ago', 600, pt(10), white(0.35), ls=0.2)
+    if photo is not None:
+        t = pt(56); s.photo(photo.resize((t, t), Image.NEAREST), W - pt(36) - t, cy - t // 2, W - pt(36), cy + t // 2, r=pt(10))
+    s.box(pt(20), top + pt(80), W - pt(20), top + pt(80) + 1, white(0.1))
+    return s.im
+
+def face_review(photo, left=41, match=94):
+    """One Sip's button: app/face-review.tsx. "IS THIS YOU?" between the back chevron and an empty slot, "{N} to review"
+    with the match in fainter white, the 3:4 card (radius 24) on the face-focused photo with the TAP FOR FULL PHOTO
+    chip, the "Not me" (red) and "It's me" (green) pills, and the hint under them."""
+    s = Screen(); s.status('9:14')
+    hy = pt(79)
+    s.line(pt(40) - 4, hy, pt(40) + 3, hy - 7, WHITE, 2); s.line(pt(40) - 4, hy, pt(40) + 3, hy + 7, WHITE, 2)   # ChevronLeft
+    s.text(W // 2, hy, 'IS THIS YOU?', 900, pt(15), WHITE, ls=3, align='c')
+    a = f'{left} to review'; b = f'   {match}% match'; wa = text_w(a, 700, pt(12)); wb = text_w(b, 700, pt(12)); x0 = W // 2 - (wa + wb) // 2
+    s.text(x0, pt(108), a, 700, pt(12), white(0.5)); s.text(x0 + wa, pt(108), b, 700, pt(12), white(0.3))
+    cx0, cx1 = pt(20), W - pt(20); ct = pt(128); cb = ct + round((cx1 - cx0) * 4 / 3)
+    s.photo(photo, cx0, ct, cx1, cb, r=pt(24))
+    chip = 'TAP FOR FULL PHOTO'; cw = text_w(chip, 800, pt(10), 1.5) + 2 * pt(12); ch = pt(22)
+    s.box(W // 2 - cw // 2, cb - pt(12) - ch, W // 2 + cw // 2, cb - pt(12), mix(BLACK, BLACK, 0), r=ch // 2)
+    s.text(W // 2, cb - pt(12) - ch // 2, chip, 800, pt(10), white(0.85), ls=1.5, align='c')
+    by = cb + pt(18) + pt(26)
+    def pill(x, label, col, bg, icon):
+        w = pt(26) + pt(26) + pt(8) + text_w(label, 900, pt(15)) + pt(26)
+        s.box(x, by - pt(26), x + w, by + pt(26), bg, r=pt(26))
+        icon(x + pt(26) + pt(13), by, col); s.text(x + pt(26) + pt(26) + pt(8), by, label, 900, pt(15), col)
+        return w
+    no_w = pt(26) * 3 + pt(8) + text_w('Not me', 900, pt(15)); yes_w = pt(26) * 3 + pt(8) + text_w("It's me", 900, pt(15))
+    x = W // 2 - (no_w + pt(14) + yes_w) // 2
+    red, green = hexc('f87171'), hexc('34d399')
+    pill(x, 'Not me', red, mix(BLACK, red, 0.16), lambda cx, cy, c: _x(s, cx, cy, pt(8), c, 3))
+    pill(x + no_w + pt(14), "It's me", green, mix(BLACK, green, 0.16), lambda cx, cy, c: (s.line(cx - 8, cy, cx - 3, cy + 6, c, 3), s.line(cx - 3, cy + 6, cx + 9, cy - 7, c, 3)))
+    hy2 = by + pt(26) + pt(16) + pt(8)
+    s.text(W // 2, hy2, '"Not me" hides this photo from your matches', 500, sysp(12), white(0.4), align='c')
+    s.text(W // 2, hy2 + pt(17), 'everywhere and improves accuracy.', 500, sysp(12), white(0.4), align='c')
+    return s.im
+
+def review_photo(name, cx, cy, k):
+    """The face-focused view of a candidate (components/face/FaceFocusImage): the photo zoomed in on the face, 3:4."""
+    im = still(name); w, h = im.size; cw = round(w * k); ch = round(cw * 4 / 3)
+    x = min(max(0, round(cx * w - cw / 2)), w - cw); y = min(max(0, round(cy * h - ch / 2)), h - ch)
+    return im.crop((x, y, x + cw, y + ch))
+
+SCREENS = {'thread': thread, 'gallery': gallery, 'discover': discover, 'map': discover_map, 'camera': camera, 'passport': passport, 'lock': lock, 'roof': roof_album, 'dinner': sunday_dinner, 'dinner2': lambda: sunday_dinner(True), 'aux-album': aux_album,
+           'facematch': lambda: face_match(photo=sq(still('os1180'), 0.5, 0.25, 0.5)),
+           'review-king': lambda: face_review(review_photo('os1180', 0.47, 0.38, 0.5), 41, 94),
+           'review-coach': lambda: face_review(review_photo('os612', 0.45, 0.4, 0.8), 40, 91),
+           'review-duke': lambda: face_review(review_photo('os904', 0.5, 0.35, 0.8), 39, 88)}
 if __name__ == '__main__':
     name = sys.argv[1]
     for n in (SCREENS if name == 'all' else [name]):

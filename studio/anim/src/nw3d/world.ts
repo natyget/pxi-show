@@ -96,6 +96,13 @@ SETS.partyLive = {
     g1: { s: 1.1, z: 2.7, yaw: 160 }, g2: { s: 1.7, z: 2.9, yaw: 175 }, g3: { s: 2.3, z: 2.85, yaw: 190 }, g4: { s: 2.9, z: 2.5, yaw: 210 },
     nioD: { s: 3.15, z: 1.98, yaw: 20 },
     f1: { s: 1.1, z: 2.7, yaw: 160, on: 0.95 }, f2: { s: 1.7, z: 2.9, yaw: 175, on: 1.05 }, f3: { s: 2.3, z: 2.85, yaw: 190, on: 0.9 }, f4: { s: 2.9, z: 2.5, yaw: 210, on: 1.0 },
+    // ONE SIP v7 (Nov 18): the kickback round the rug; the life coach corners Imane by the wall; the duel by the desk; the
+    // king up on the coffee table with everyone round him; Nio under him; Sami the next morning, crashed on the sofa
+    osMaya: { s: 1.15, z: 3.0, yaw: 150 }, osTheo: { s: 1.65, z: 3.05, yaw: 210 }, osImane: { s: 1.15, z: 1.75, yaw: 40 }, osGirl: { s: 0.85, z: 2.6, yaw: 110 }, osCap: { s: 3.3, z: 2.2, yaw: 250 },
+    coachI: { s: 1.2, z: 1.85, yaw: 90 }, coachS: { s: 1.65, z: 2.2, yaw: 270 }, coachC: { s: 0.7, z: 2.6, yaw: 200 },
+    duelT: { s: 2.15, z: 1.8, yaw: 270 }, duelS: { s: 2.6, z: 2.2, yaw: 90 }, duelM: { s: 2.05, z: 2.85, yaw: 190 }, duelI: { s: 2.95, z: 2.8, yaw: 200 },
+    king: { s: 1.6, z: 3.38, yaw: 180, on: 0.36 }, booM: { s: 0.95, z: 3.0, yaw: 90 }, booT: { s: 2.0, z: 2.3, yaw: 330 }, booI: { s: 1.25, z: 2.25, yaw: 20 }, booG: { s: 0.9, z: 2.5, yaw: 60 },
+    nioK: { s: 2.55, z: 1.85, yaw: 320 }, couch: { s: 1.15, z: 3.72, yaw: 180, seat: 0.45 },
     q1: { s: 0.8, z: 1.6, yaw: 180 }, q2: { s: 1.0, z: 2.1, yaw: 180 }, q3: { s: 1.2, z: 2.6, yaw: 180 }, q4: { s: 1.4, z: 3.05, yaw: 180 },
   },
   cameras: { ...SETS.party.cameras,
@@ -108,9 +115,22 @@ SETS.partyLive = {
     auxNio: C([0.3, 1.45, 2.3], [3.15, 1.38, 1.98], 40), // Nio by the desk, from across the room
     auxUp: C([0.3, 1.2, 0.2], [1.9, 2.0, 2.7], 64), // up at the ceiling
     queue: C([0.6, 1.95, 0.2], [1.05, 1.25, 2.2], 44), // the queue, from by the door, down the line of faces
+    // ONE SIP v7 (fitted with out/camfit2: every face in, every face seen)
+    kick: C([2.3, 1.65, 0.15], [2.05, 1.3, 2.4], 48), // the two of them on the rug, both faces
+    imane: C([1.9, 1.45, 3.05], [1.15, 1.38, 1.75], 40), // Imane, from behind Sami's spot
+    coach: C([0.46, 1.6, 1.84], [1.6, 1.3, 2.15], 52), // the life coach, from where Imane stands
+    duel: C([1.2, 1.5, 1.05], [2.55, 1.35, 2.15], 44), // the duel: Sami, from where Theo stands
+    duel2: C([3.4, 1.65, 3.05], [2.4, 1.35, 2.0], 36), // the duel: Theo, over Sami's shoulder
+    kingWide: C([1.6, 1.25, 0.25], [1.6, 1.5, 2.9], 56), // low on the rug, up at the coffee table, two of them booing in front
+    coachI: C([3.2, 1.45, 0.85], [1.0, 1.3, 2.2], 36), // Imane cornered, a friend behind taking a photo
+    mayaK: C([2.2, 1.45, 2.15], [0.95, 1.4, 3.0], 40), // Maya, from the king's side
+    nioRev: C([1.8, 1.45, 3.15], [2.55, 1.3, 1.85], 44), // Nio, from the coffee table end
+    couch: C([1.15, 1.45, 1.9], [1.15, 1.05, 3.72], 40), // whoever is on the sofa
         faint: C([1.55, 1.45, 0.85], [0.95, 0.6, 2.3], 60), // the couch, and whoever is on it
   },
 };
+// THE LIVING ROOM THE MORNING AFTER (One Sip's button): the same room and places, in daylight
+SETS.livingDay = { ...SETS.partyLive, dress: 'livingDay' };
 // THE CLUB (club.ts), first used in The Move: a packed floor round a circle the crowd clears for Nio, the DJ booth up
 // against the far wall, the bar on the right. Marks are where The Move's board puts people.
 SETS.club = {
@@ -182,7 +202,7 @@ export const ACTIONS: Record<string, Action> = {
 //  mop (the cleaner, walking), ticket (Darnell, sitting: the lab report on his knees, his ticket 4 on it under his left hand).
 export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox'] as const;
 // Costume pieces worn over the outfit (One Sip). A shot may change them at a frame: wear: [[0, []], [12, ['bowtie']]].
-export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'moustache', 'partyhat', 'lanyard'];
+export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'moustache', 'partyhat', 'lanyard', 'scarf', 'glasses', 'lampshade'];
 const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer', 'ticket'], TRAVEL_HOLDS = ['phone', 'cup', 'mop'];
 
 export type ActorSpec = {
@@ -372,7 +392,7 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
   if (set.campus) { const sc = campusShot(set.campus, camP, acts, { ...spec.campus, time: frame / 24 }); return sc; } // the screen picture (spec.screen) is set by the composition, which knows where public/ is
   const props = spec.props ?? [], up = props.includes('chaiseUp');
   // in the living room the couch is the room's own sofa: on the floor, or (chaiseUp) up on the ceiling
-  const extras = props.filter((p) => !(set.dress === 'living' && p === 'chaiseUp')).map((p) => { const m = set.marks.chaise; return p === 'cake' ? cake(3.35, 1.3, 0.745) : chaise(m.s - 0.85, m.z, p === 'chaiseUp' ? 1.55 : 0); });
-  if (set.dress === 'living') extras.push(sofa(up ? 1.55 : 0));
+  const extras = props.filter((p) => !(set.dress?.startsWith('living') && p === 'chaiseUp')).map((p) => { const m = set.marks.chaise; return p === 'cake' ? cake(3.35, 1.3, 0.745) : chaise(m.s - 0.85, m.z, p === 'chaiseUp' ? 1.55 : 0); });
+  if (set.dress?.startsWith('living')) extras.push(sofa(up ? 1.55 : 0));
   return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash, extras);
 };

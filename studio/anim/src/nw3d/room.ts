@@ -477,11 +477,12 @@ export const pose = (a: Act) => {
     for (let k = 0; k < N; k++) { const a0 = (k / N) * 6.283, a1 = ((k + 1) / N) * 6.283;
       prims.push({ a: at(cx, cy + Math.cos(a0) * R, -0.005 + Math.sin(a0) * R), ra: 0.0062, b: at(cx, cy + Math.cos(a1) * R, -0.005 + Math.sin(a1) * R), rb: 0.0062, g: G.shoe, k: 0.004, c: ch.earrings }); }
   }
-  if (hk.glasses) {
-    // small round glasses: a wire ring round each eye just off the face, a bridge, and an arm back to each ear. Its own
+  const glassC = hk.glasses ?? ((a.wear ?? []).includes('glasses') ? '#1c1a20' : undefined);
+  if (glassC) {
+    // small round glasses (a character's own, or the music snob's wear 'glasses' in One Sip): a wire ring round each eye just off the face, a bridge, and an arm back to each ear. Its own
     // surface, so it is inked.
     const w = hk.width ?? 1, at = (x: number, y: number, z: number): V => add(s.headC, add(mul(s.headRt, x), add(mul(s.headUp, y), mul(s.headFw, z))));
-    const R = 0.045 * (hk.eyes ?? 1) / 0.55, cy = -0.058, cz = 0.196, N = 12, t = 0.0035, wire = (a: V, b: V) => prims.push({ a, ra: t, b, rb: t, g: G.shoe, k: 0.003, c: hk.glasses! });
+    const R = 0.045 * (hk.eyes ?? 1) / 0.55, cy = -0.058, cz = 0.196, N = 12, t = 0.0035, wire = (a: V, b: V) => prims.push({ a, ra: t, b, rb: t, g: G.shoe, k: 0.003, c: glassC });
     for (const sd of [1, -1]) {
       const cx = sd * 0.083;
       for (let k = 0; k < N; k++) { const a0 = (k / N) * 6.283, a1 = ((k + 1) / N) * 6.283;
@@ -555,6 +556,19 @@ export const pose = (a: Act) => {
       // a curled Victorian moustache under the nose: two thick wings out from the middle, each ending in a small curl up
       for (const d of [1, -1]) { pr(at(0, -0.112, 0.196), 0.014, at(d * 0.08, -0.118, 0.172), 0.011, '#2a1c14');
         pr(at(d * 0.08, -0.118, 0.172), 0.011, at(d * 0.11, -0.088, 0.15), 0.007, '#2a1c14'); }
+    }
+    if (w0 === 'scarf') {
+      // the music snob's long knitted scarf (One Sip): a thick loop round the neck, both ends hanging down the chest
+      const n0 = s.neckBase, f = mul(fwd, P.torsoR * 0.8 + 0.02);
+      for (let k = 0; k < 8; k++) { const a0 = (k / 8) * 6.283, a1 = ((k + 1) / 8) * 6.283, ring = (q: number) => add(n0, add(mul(s.side, Math.sin(q) * (P.torsoR + 0.04)), add(mul(fwd, Math.cos(q) * (P.torsoR * 0.8 + 0.03)), [0, 0.02, 0])));
+        pr(ring(a0), 0.032, ring(a1), 0.032, '#b8432f'); }
+      for (const d of [0.035, -0.04]) pr(add(n0, add(f, mul(s.side, d))), 0.028, add(add(s.neckBase, mul(s.chestDir, -0.34 + d)), add(f, mul(s.side, d * 1.4))), 0.026, d > 0 ? '#b8432f' : '#c9553f');
+    }
+    if (w0 === 'lampshade') {
+      // the king's crown (One Sip): the living room's lampshade, a pleated cream cone sitting on his head, tilted
+      const base = at(-0.03, 0.17, 0.0), top = at(-0.06, 0.42, -0.01);
+      pr(base, 0.25 * w, top, 0.13, '#efe2c2', { cutA: true, cutB: true });
+      pr(at(-0.03, 0.17, 0.0), 0.255 * w, at(-0.031, 0.185, 0.0), 0.255 * w, '#c79a3a', { cutA: true, cutB: true });
     }
     if (w0 === 'sideburns') {
       // huge Victorian mutton chops: from each temple down the cheek to the jaw, the mouth left clear
@@ -637,7 +651,7 @@ export const cake = (cs: number, cz: number, y: number): Soft => {
   ] };
 };
 export const shot = (camA: CamArg, acts: Act[], time = 0, dress?: string, flash?: boolean, extras: Soft[] = []): Scene3 => {
-  const ps = lensActs(camA, acts).map(pose), living = dress === 'living', party = dress === 'party' || living, cam = camOf(camA, ps);
+  const ps = lensActs(camA, acts).map(pose), living = dress === 'living' || dress === 'livingDay', party = dress === 'party' || dress === 'living', cam = camOf(camA, ps);
   const fl: Light[] = flash ? [{ p: cam.pos, r: 2.4, col: [0.42, 0.42, 0.44] }] : [];
   return { cam, room: ROOM, amb: party ? PARTY_AMB : AMB, ambChar: party ? PARTY_AMB_CHAR : AMB_CHAR, boxes: living ? LIVING_BOXES : party ? PARTY_BOXES : ROOM_BOXES, time,
     softs: [...ps.map((p) => p.soft), ...(living ? LIVING_SOFTS : party ? PARTY_SOFTS : ROOM_SOFTS), ...extras], lights: [...(party ? PARTY_LIGHTS : ROOM_LIGHTS), ...fl, ...ps.flatMap((p) => p.lights)],

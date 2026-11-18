@@ -37,6 +37,7 @@ export const ATTITUDE: Record<string, Attitude> = {
   suspicious: { lean: 0.1, nod: 0.02, tilt: -0.12, shoulders: 0, g: 'chin' },
   laughing:   { lean: -0.18, nod: -0.16, tilt: 0.08, shoulders: 0.02, g: 'chest' },
   rage:       { lean: 0.2, nod: 0.06, tilt: 0, shoulders: 0.035, g: 'fists' },
+  disgust:    { lean: -0.12, nod: 0.06, tilt: -0.1, shoulders: 0.02, g: 'rest' },
   sheepish:   { lean: 0.04, nod: 0.03, tilt: 0.1, shoulders: 0.025, g: 'neck' },
   charm:      { lean: 0.06, nod: -0.03, tilt: 0.12, shoulders: 0, g: 'offer' },
   real:       { lean: 0.08, nod: 0.02, tilt: 0.04, shoulders: 0, g: 'chest' },
