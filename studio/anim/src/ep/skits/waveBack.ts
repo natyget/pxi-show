@@ -18,14 +18,14 @@ const shots: Shot[] = [
   // the quad. A guy across the grass waves big, straight at us: at Nio (stranger, Nov 18: the wide from behind him left
   // the viewer unsure who waved at whom)
   { n: 1, frames: 40, spec: { ...Q('marcus', [marcus('marcus', 'hyped', { hold: 'wave' })]), push: 0.25 }, sfx: GRASS },
-  // Nio waves back, bigger
-  { n: 2, frames: 40, spec: Q('nioClose', [nio('nio', 'hyped', { hold: 'wave' })]), sfx: GRASS },
-  // but the girl in yellow behind him is waving too. It was for her.
-  { n: 3, frames: 50, shake: [20], spec: Q('nio', [nio('nio', [[0, 'hyped'], [20, 'shock']], { hold: 'wave' }), sis('sis', 'charm', { hold: 'wave', facing: 'marcus' })]), sfx: GRASS },
+  // Nio waves back, bigger, and we see what he cannot: the girl in yellow behind him, waving too (the cause in the
+  // picture, stranger round 2, Nov 18: the viewer must see the wave's real target in the same frame as his wave)
+  { n: 2, frames: 44, spec: { ...Q('nio', [nio('nio', 'hyped', { hold: 'wave' }), sis('sis', 'charm', { hold: 'wave', facing: 'marcus' })]), push: 0.2 }, sfx: GRASS },
+  // he looks back over his shoulder and sees her. It was for her.
+  { n: 3, frames: 40, shake: [12], spec: Q('nio', [nio('nio', [[0, 'hyped'], [10, 'shock']], { hold: 'wave', gaze: [-0.9, 0] }), sis('sis', 'charm', { hold: 'wave', facing: 'marcus' })]), sfx: GRASS },
   // she walks off. He cannot be the guy who waved at nobody.
   { n: 4, frames: 56, spec: Q('nio', [nio('nio', [[0, 'sheepish'], [24, 'smug']]), { who: 'sis', at: 'sis', to: 'sisOff', action: 'walk', face: 'neutral' }]), sfx: GRASS },
-  // so he walks straight over, as if he meant it
-  { n: 5, frames: 64, spec: Q('walk', [{ who: 'nio', at: 'nioMid', to: 'nioM', action: 'walk', face: 'smug' }]), sfx: GRASS },
+  { n: 5, frames: 48, spec: Q('walk', [{ who: 'nio', at: 'nioMid', to: 'nioM', action: 'walk', face: 'smug' }]), sfx: GRASS },
   { n: 6, frames: 30, spec: Q('marcus', [marcus('marcus', 'uneasy')]), say: [L('wb_01', 'marcus', 2)], sfx: GRASS },
   // he reads the lanyard
   { n: 7, frames: 30, spec: Q('nioM', [nio('nioM', [[0, 'suspicious'], [12, 'charm']], { gaze: [0, -0.5], facing: 'marcus' })]), say: [L('wb_02', 'nio', 4)], sfx: GRASS },

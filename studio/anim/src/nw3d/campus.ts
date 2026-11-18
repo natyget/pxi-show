@@ -753,7 +753,7 @@ export const QUAD_MARKS = {
   marcus: { s: 5.6, z: 13.0, yaw: 180 }, // at the far end, facing down the lawn (toward his sister)
   sis: { s: 5.5, z: 4.0, yaw: 0 }, // the girl in yellow, behind Nio, facing up the lawn
   sisOff: { s: 7.9, z: 3.5, yaw: 270 }, // walking off to the right
-  nioMid: { s: 5.95, z: 9.5, yaw: 0 }, // on his way over
+  nioMid: { s: 5.9, z: 10.5, yaw: 0 }, // on his way over
   nioM: { s: 5.65, z: 12.05, yaw: 0 }, // where Nio stops, in Marcus's face
 };
 export const QUAD_SOLIDS = [{ name: 'the tree', s: [9.2, 10.0] as [number, number], z: [11.1, 11.9] as [number, number] }, { name: 'the bench', s: [2.0, 2.6] as [number, number], z: [8.1, 9.9] as [number, number] }];
