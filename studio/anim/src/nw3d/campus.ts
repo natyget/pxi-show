@@ -712,7 +712,7 @@ export const ROOF_CAMS: Record<string, Cam3> = {
   nio: C([3.3, 1.45, 6.4], [4.0, 1.4, 9.1], 40), // Nio from where the three were
   nioA: C([3.6, 1.5, 6.1], [4.0, 1.42, 4.0], 40), // Nio at the start, phone up, from the line
   whole: C([4.0, 2.2, 0.6], [4.0, 1.0, 7.0], 70), // the whole roof from the stair hut end
-  phone: C([4.0, 1.55, 10.85], [4.0, 1.45, 8.6], 60), // up from Nio's phone at the four faces round it
+  phone: C([4.0, 1.6, 11.4], [4.0, 1.4, 8.6], 56), // up from Nio's phone at the four faces round it
 };
 export const ROOF_MARKS = {
   nio: { s: 4.0, z: 4.0, yaw: 0 }, // taking the picture, facing up the roof at them
@@ -720,7 +720,7 @@ export const ROOF_MARKS = {
   nio2: { s: 4.0, z: 9.1, yaw: 180 }, // Theo's left side: the far end, his back to the sun
   chair: { s: ROOF_CHAIR.s, z: ROOF_CHAIR.z, yaw: 180, on: 0.46 }, // up on the chair
   theoOut: { s: 2.15, z: 6.4, yaw: 90 }, samiOut: { s: 5.85, z: 6.9, yaw: 270 }, mayaOut: { s: 5.85, z: 6.3, yaw: 270 }, // walked out of the picture
-  theoP: { s: 4.42, z: 8.75, yaw: 0 }, samiP: { s: 4.0, z: 8.3, yaw: 0 }, mayaP: { s: 3.58, z: 8.75, yaw: 0 }, // round Nio's phone
+  theoP: { s: 4.42, z: 8.75, yaw: 0 }, samiP: { s: 4.0, z: 8.3, yaw: 0 }, mayaP: { s: 3.58, z: 8.75, yaw: 0 }, samiB: { s: 3.8, z: 8.2, yaw: 0 }, // round Nio's phone
 };
 export const ROOF_SOLIDS = [{ name: 'the stair hut', s: [0, 1.8] as [number, number], z: [0.3, 2.1] as [number, number] }, { name: 'the air-con box', s: [6.4, 7.6] as [number, number], z: [1.6, 2.4] as [number, number] }];
 

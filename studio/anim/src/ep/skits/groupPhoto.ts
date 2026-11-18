@@ -34,7 +34,8 @@ const shots: Shot[] = [
   { n: 16, frames: 34, shake: [12], spec: R('sunset', [], true, 0.2), flash: 12, sfx: [['shutter', 12, 0.9]] },
   { n: 17, frames: 52, img: 'pxi-ui/screens/roof-album.png' },
   // later: all four crowd round Theo's phone, scrolling the album
-  { n: 18, frames: 50, spec: R('phone', [at('nio', 'nio2', 'deadpan', { facing: 'camera', gaze: [0, -0.4] }), at('theo', 'theoP', 'hyped', { gaze: [0, -0.4], hold: 'phone' }), at('maya', 'mayaP', 'charm', { gaze: [0, -0.4] }), at('sami', 'samiP', 'neutral', { gaze: [0, -0.4] })]), say: [L('gp_08', 'theo', 6)] },
-  { n: 19, frames: 40, spec: R('phone', [at('nio', 'nio2', 'deadpan', { facing: 'camera', gaze: [-0.9, 0.1] }), at('theo', 'theoP', 'hyped', { gaze: [0, -0.4], hold: 'phone' }), at('maya', 'mayaP', 'charm', { gaze: [0, -0.4] }), at('sami', 'samiP', 'neutral', { gaze: [0, -0.4] })], false, 0.25) },
+  // Theo, who says the last line, holds the phone front and centre (own check, Nov 18: Nio in front hid the speaker)
+  { n: 18, frames: 50, spec: R('phone', [at('theo', 'nio2', 'hyped', { facing: 'camera', gaze: [0, -0.4], hold: 'phone' }), at('nio', 'theoP', 'deadpan', { gaze: [-0.5, -0.4] }), at('maya', 'mayaP', 'charm', { gaze: [0.5, -0.4] }), at('sami', 'samiB', 'neutral', { gaze: [0.3, -0.4] })]), say: [L('gp_08', 'theo', 6)] },
+  { n: 19, frames: 40, spec: R('phone', [at('theo', 'nio2', 'hyped', { facing: 'camera', gaze: [0, -0.4], hold: 'phone' }), at('nio', 'theoP', 'deadpan', { gaze: [-0.9, 0.1] }), at('maya', 'mayaP', 'charm', { gaze: [0.5, -0.4] }), at('sami', 'samiB', 'neutral', { gaze: [0.3, -0.4] })], false, 0.25) },
 ];
 export const GROUP_PHOTO: SkitDef = { id: 'group-photo', shots, beds: [['sk_wind', 0.3]] };
