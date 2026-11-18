@@ -1,82 +1,46 @@
 ---
 name: writers-room
-description: Write a PXI LABS episode (45–60 s animated short) through a staged writers' room - pitch, beat sheet, jokes, independent critique by isolated reader personas, punch-up, a de-AI pass, and a shot list. Use for every new episode or rewrite before anything is rendered.
+description: Write a Nio World skit or episode: story first, people who take the absurd thing seriously and talk like friends, every cause on screen, PXI in the plot. Use for every new story or rewrite before anything is drawn or rendered.
 ---
 
-# PXI LABS writers' room
+# Nio World writers' room
 
-Read first: `bible/writers-room.md`. It is the role you take on, and it and the other files on the stage card
-(`engine/stages/1-write.md`) win over anything below that disagrees with them. Run the stages in order. In a scheduled run the
-only file left behind is `episodes/<id>/script.md`; the shot list (stage 7) is made in the BOARD stage.
+Five principles. Every failure so far broke one of them. When a new note arrives, find which one it broke and
+sharpen that principle. Never add a rule for a single note.
 
-Sources this is built from (re-implemented in our own words; see CREDITS.md): sb-dev/narrative-production-skills,
-jtydhr88/screenwriting-skills (sitcom-comedy, dialogue), eternityspring/shuohao-skills, 0xhughs/director-skills,
-danjdewhurst/story-skills (reader-panel), ccf/humanize, shir-danishyar/humanize, blader/humanizer,
-ameenmo/humanize-skill, and the idea of isolated audience critics from talsraviv/comedy-writers-room (unlicensed: idea only).
+1. **Story before jokes.** Write one sentence first: who wants what, what's in the way, what goes wrong. Every
+   beat follows the last with "so" or "but". A beat that needs "and then" gets cut. Jokes come out of the
+   story; never write a beat to deliver a joke.
+2. **Everyone takes it seriously.** The absurd thing is real to the people in it. The comedy is their sincere,
+   reasonable logic about it (Gumball: "we can change the channel... on the TV"). Nobody explains the joke,
+   announces it, sets up a punchline or winks.
+3. **Friends talk like friends.** Short lines, half-sentences, interruptions, reacting to what the other person
+   just said. Read every line aloud as that person, at that moment. Cut any line nobody would actually say.
+4. **Show it, and act to each other.** The cause of every change is in the frame when it happens, and any
+   reveal is planted in plain sight first. Write what Nio really feels in each beat (never smug or knowing).
+   Characters look at each other, never the camera.
+5. **PXI moves the plot.** Someone uses a real feature from `bible/pxi-product.md` the way a person would, and
+   that use causes or pays off a beat. Never a logo, never sold.
 
-## Stage 1: Pitch
-- Write 6 loglines in the form "Nio wants X, but Y weird thing happens, and he responds by Z". They must differ
-  in *comic logic* (what's funny and why), not wording. Throw away the first two you thought of. Start from a
-  real story (`engine/real-stories.md`), the slate in `bible/world.md`, or a machine in `bible/gumball-lens.md`.
-- Each must be funny with PXI taken out. Then decide honestly whether PXI is its engine, a moment, or absent
-  (`bible/story.md`, section 4). Never bend the story to fit a feature.
-- **Premise-machine test:** could this premise make five more jokes without wordplay? If you have to force puns, the
-  premise is wrong. Keep the best two; lock one as APPROVED (an approved choice becomes a constraint, not a suggestion).
+Always: Nio is sharp, vain and certain, never a goof. Nothing from the slop list. Nothing sexual, no group as a
+punchline. It suits a 16-year-old.
 
-## Stage 2: Beat sheet
-- The build in `bible/story.md` section 2: an ordinary moment, the itch, the theory, three "so" steps, the
-  tilt, the set piece, the real second, out fast.
-- Each beat is *caused* by the one before and is *bigger*. Nio's own ego, trolling or inability to say no makes
-  it worse. Everyone else stays calm.
-- It is out within three seconds of the peak. No lesson, no epilogue, no inner acceptance.
-- A scene card per beat: want / obstacle / turn.
+## How to write one
 
-## Stage 3: Jokes and dialogue
-- Write punchlines first, then build the setup backwards. Setups are plausible, two-part (topic + complication) and
-  never hint at the punch. The punch word goes last. Don't talk past the joke.
-- One runner that returns twice; the last return is a reversal.
-- Mark every place a *take* (a face, a held silence) or a visual gag beats a line, and use the take.
-- Write the conversation before the jokes: two people who want different things, four to eight lines, status
-  changing hands (`bible/voice-and-dialogue.md`). Write every change of face in brackets.
-- Nio: quick and natural with a live face; trolls with questions; pivots. Maya: sweet, earnest, literal,
-  funny without trolling. The best friend: a real phone call.
-- Budget: 100–130 spoken words for 60 s, 60–80 for a 35 s short cut. Estimate runtime (≈2.3 words/s spoken,
-  ≈2.5 s per action beat, plus takes) and keep it within ±15% of the target.
-- Inner thoughts are allowed but rare and *for a reason*: thinking while someone else is in the room, or one glance to
-  the lens. Never narrate what the picture shows. Never have Nio state his plan to the camera.
+1. **Pick a Gumball model.** Name the episode whose structure you're borrowing (structure only, never lines or
+   characters). For example: The Remote, everyone after one thing at once, the quiet one planted it all; The
+   Money, a stand held at rising cost, or a saying made physically true.
+2. **The sentence.** Write it per principle 1.
+3. **Beats.** Four to seven, each with what Nio feels and what we see that causes it.
+4. **Lines.** Write the conversation, then read it aloud. Long and short lines mixed. The last line is the
+   smallest one that ends it.
+5. **Cold read.** A fresh subagent on Sonnet gets only the scripts (no premise, no notes) and answers: what
+   happened, where were you lost, which lines would nobody say, what's over-explained, what made you laugh,
+   which cause was only heard. Fix what it names and run one fresh reader again. Two fails stop the line.
+6. **Hand-off.** The founder sees a visual story sketch (template: `episodes/skits/launch-skits.html`), never a
+   script file. In a scheduled run the file left behind is `episodes/<id>/script.md`.
 
-## Stage 4: Independent critique (separate subagents, each sees only the script and its own brief)
-Spawn the critics in parallel on the cheapest model. They score and quote lines; they never rewrite. In a scheduled
-run the Tells Auditor is replaced by `engine/tools/script_lint.py` plus one read of `tells.md` by the writer.
-1. **The Skeptic**: what's heard-before or predictable? Which beat did you see coming and when?
-2. **The Literal Viewer**: what confuses a literal-minded viewer ("wait, how did…")? Where does logic break?
-3. **The Nine-Year-Old**: at which second do I get bored? What made me actually laugh (circle it)?
-4. **The Tells Auditor**: run `tells.md` against every line; quote each hit.
-Agreement between critics is not independent confirmation; weigh specifics over consensus.
+## Shot list (BOARD stage)
 
-## Stage 5: Punch-up
-- Fix only what was flagged. For each weak line write three alternatives; keep one only if it beats the original.
-  Top a joke at most twice. Cut jokes go in `episodes/<id>/room/candy-bag.md` for later.
-- Then the read-aloud test: a guy at 2 a.m. telling his best friend what happened. Rewrite what sounds like a
-  YouTuber.
-- Score with `rubric.md`. Ship at 40/55 or above with no veto; otherwise loop to stage 4 once with fresh critics.
-
-## Stage 6: De-AI pass (preserve mode)
-- Audit table: each tell found → line → fix. Fix only what fired. Cutting is safe; additions must be justified.
-- Then re-check: did line lengths get more uniform? (Humans vary; flattened rhythm fails.) Read every line aloud.
-- Say what's working, so a later edit doesn't kill it.
-
-## Stage 7: Shot list
-- 12–22 shots, 1–5 s each. Each shot claims specific beats, has one purpose (geography, emotion, reveal, action,
-  detail, insert, button) and one dominant subject/action. Locked-off camera, at most one move.
-- Each line's seconds fit its shot. Track continuity: who sits where, what's in which hand, eyelines, screen direction.
-- A shot list that just restates the script is a fail: say what the camera does for the joke.
-- **The cause is in the picture.** For every change in the story, the shot that holds it shows what set it off,
-  who it is aimed at and who is speaking, at the moment it happens: the sip on screen before the pop, the song
-  as a thing you can see before the room changes, the wave and its real target in one frame, the speaker in the
-  shot with their line. Sound and dialogue may add to it, never carry it alone. A reveal (the juice box) is
-  planted once in plain sight before it pays off. Test before rendering: sound off, one frame per beat, can a
-  stranger say what caused each change? (Launch skits, Nov 18: all four failed the stranger twice on this.)
-
-## Lessons (one per failure pattern; merge into the stage it belongs to, do not add one-off rules)
-- The cause is in the picture (stage 7). Every launch skit failed on a trigger that was heard or implied, not seen.
+12 to 22 shots, 1 to 5 s each, one purpose each. Each line's seconds fit its shot. Track who holds what, eyelines
+and screen direction. Test with the sound off: one frame per beat, can a stranger say what caused each change?
