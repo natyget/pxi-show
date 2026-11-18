@@ -14,10 +14,13 @@ const SNOB = ['scarf', 'glasses'], COACH = ['lanyard'], DUKE = ['tophat', 'monoc
 // where the new pieces land in the samiClose picture (1080 x 1920), for the puff
 const HEAD: [number, number] = [500, 520], FACE: [number, number] = [500, 860], NECK: [number, number] = [470, 1240];
 // the sip, by Nio, at the rug: cup up, gulp, then the new persona pops on at frame 16 with a hit. k: how big this one is.
-const sipShot = (n: number, from: string[], to: string[], poof: [number, number][], k: number): Shot => ({ n, frames: 30 + 4 * k,
-  shake: k === 1 ? [16] : k === 2 ? [16, 24] : [16, 22, 28], poof: poof.map(([x, y]) => [16, x, y] as [number, number, number]),
-  spec: (f) => P('samiClose', [st('sami', 'samiL', f < 16 ? 'uneasy' : 'smug', { facing: 'nioR', wear: f < 16 ? from : to, hold: f < 16 ? 'sip' : 'cup', hand: 0 })], 0.1 + 0.08 * k),
-  sfx: [['sk_sip', 3, 0.5], ['sk_gulp', 11, 0.9], ['sk_pop', 16, 0.9]] });
+// the change lands at frame C: before it, a clear look at Sami as he was, sipping; after it, a clear hold on the new
+// persona (stranger, Nov 18: too short a shot read as a different person, not the same guy changing)
+const C = 22;
+const sipShot = (n: number, from: string[], to: string[], poof: [number, number][], k: number): Shot => ({ n, frames: 46 + 4 * k,
+  shake: k === 1 ? [C] : k === 2 ? [C, C + 8] : [C, C + 6, C + 12], poof: poof.map(([x, y]) => [C, x, y] as [number, number, number]),
+  spec: (f) => P('samiClose', [st('sami', 'samiL', f < C ? 'uneasy' : 'smug', { facing: 'nioR', wear: f < C ? from : to, hold: f < C ? 'sip' : 'cup', hand: 0 })], Math.min(0.1 + 0.05 * k, 0.22)),
+  sfx: [['sk_sip', 6, 0.5], ['sk_gulp', 15, 0.9], ['sk_pop', C, 0.9]] });
 const MORNING: [string, number, number?][] = [['sk_quad', 0, 0.25]];
 
 const shots: Shot[] = [

@@ -490,7 +490,8 @@ export const pose = (a: Act) => {
       const ox = cx + sd * R;
       wire(at(ox, cy + 0.008, cz - 0.012), at(sd * 0.212 * w, cy + 0.004, 0.13)); wire(at(sd * 0.212 * w, cy + 0.004, 0.13), at(sd * 0.226 * w, cy - 0.01, 0.0));
     }
-    wire(at(0.083 - R, cy + 0.01, cz - 0.006), at(0, cy + 0.022, cz + 0.004)); wire(at(0, cy + 0.022, cz + 0.004), at(-0.083 + R, cy + 0.01, cz - 0.006));
+    // the bridge: one flat wire straight across between the rims (a peaked bridge inked as a dot on the forehead: stranger, Nov 18)
+    wire(at(0.083 - R, cy + 0.006, cz - 0.004), at(-0.083 + R, cy + 0.006, cz - 0.004));
   }
   if (ch.beard) {
     // a long beard: full along the jaw and under the chin (the mouth stays clear), then one soft mass that hangs down

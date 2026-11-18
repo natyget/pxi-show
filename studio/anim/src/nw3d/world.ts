@@ -127,7 +127,7 @@ SETS.partyLive = {
     kingWide: C([1.6, 1.25, 0.25], [1.6, 1.5, 2.9], 56), // low on the rug, up at the coffee table, two of them booing in front
     samiS: C([0.5, 1.5, 1.45], [1.7, 1.4, 2.35], 40), // Sami at the rug, from where Imane stands
     coachI: C([3.2, 1.45, 0.85], [1.0, 1.3, 2.2], 36), // Imane cornered, a friend behind taking a photo
-    mayaK: C([1.9, 1.5, 4.05], [0.95, 1.4, 3.0], 40), // Maya, from behind the king's table
+    mayaK: C([2.1, 1.5, 4.15], [0.95, 1.38, 3.0], 50), // Maya, from behind the king's table
     nioRev: C([1.8, 1.45, 3.15], [2.55, 1.3, 1.85], 44), // Nio, from the coffee table end
     couch: C([1.15, 1.45, 1.9], [1.15, 1.05, 3.72], 40), // whoever is on the sofa
         faint: C([1.55, 1.45, 0.85], [0.95, 0.6, 2.3], 60), // the couch, and whoever is on it

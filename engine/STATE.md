@@ -8,7 +8,7 @@ stage: 0
 stage_card: engine/stages/0-pilot-lock.md
 next_action: Launch skits v7 (sketch approved by the founder, Nov 18) voiced and rendering: Wave Back, Group Photo, Aux and One Sip (rebuilt in the living room, the persona sips, the juice box, the PXI face-match button). Wave Back is BLOCKED (failed the stranger twice, see gate_failures). Next for the other three: av and dead checks, then the stranger on each; the ones that pass go to the founder. Office Hours stays ON HOLD. The voice medium test is experiment E6 in engine/learning.md.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
-gate_failures: Wave Back 2 (BLOCKED, Nov 18): the stranger failed it twice; it still cannot tell who waved at whom from the opening shots, plus a floating object over the dinner table and a dead stretch from 5.5 to 10.4 s. No third try without a founder call. Group Photo 1, Aux 0, One Sip 0 for v7.
+gate_failures: Wave Back 2 (BLOCKED, Nov 18): the stranger failed it twice; it still cannot tell who waved at whom from the opening shots, plus a floating object over the dinner table and a dead stretch from 5.5 to 10.4 s. No third try without a founder call. Group Photo 1, Aux 0, One Sip 1 for v7.
 
 ## Next render: "Office Hours" (season 1, episode 1)
 
