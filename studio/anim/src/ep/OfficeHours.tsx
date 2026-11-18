@@ -56,7 +56,7 @@ export const SHOTS: Shot[] = [
   // THE LECTURE HALL, 4:52 PM. Nio on the aisle in his kit, his football on the desk; Maya on his left with her tabs; the
   // dusty seat; Theo past it. Prof H shuts the laptop and whispers into the mic.
   sh(1, 30, 'S', H('low', [prof('charm')], { laptop: [[0, 1], [8, 0]], clock: T452 }), undefined, [['laptop', 6, 0.8]]),
-  sh(2, 40, 'S', { ...H('profH', [{ ...prof('charm'), look: 'camera' }], { clock: T452 }), push: 0.3 }, [L('v5_01', 'profH', 4)]),
+  sh(2, 40, 'S', { ...H('profH', [{ ...prof('charm'), look: 'camera', lens: true }], { clock: T452 }), push: 0.3 }, [L('v5_01', 'profH', 4)]),
   sh(3, 36, 'S', { ...H('rows', [seat('nio', 'deadpan'), seat('maya', 'neutral'), seat('capGirl', 'neutral')], { turn: [[0, 0], [2, 1]], ball: true, clock: T452 }), push: 0.5 }),
   sh(4, 30, 'S', H('two', [seat('nio', 'uneasy'), { ...seat('maya', 'charm', true), gaze: [0.3, 0], act: { g: [[0, 'fists']] } } as any], { ball: true, turn: [[0, 1], [12, 0]], clock: T452 }), [L('v5_02', 'maya', 2)]),
   sh(5, 30, 'S', H('nio', [{ ...seat('nio', 'deadpan', true), gaze: [-0.6, 0] }], { ball: true, turn: 0, clock: T452 }), [L('v5_03', 'nio', 2)]),

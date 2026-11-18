@@ -405,3 +405,11 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - What this changed: all four launch skits are reworked so what sets off each joke is in the picture. After every
     rework the reason it failed becomes one general principle, merged into the writers' room skill and the reviewer
     checklist (no one-off rules). Every cut goes to the founder's files as it is made, old beside new.
+- **Nov 18, 6:22 PM (UTC), on the v7 launch skit cuts, word for word:**
+  - "men this some bullshit to be honest. everything seems uncanny why is the writer not making nice stuff. why dialogue always seem forced and corny and not naturaly. why nio always smirking and one eyebrow lifted looking at us or something he weridhe need to act natural
+    this is nothing like gumball writing idl what to tell you
+    so may uncanniness but to be honest we are at a way better spot than we were. we just need better stories consistancy and better logic flow and natural nice scripts"
+  - What this changed: the launch skits are rewritten from the ground up in the writers' thread; rendering waits for
+    those scripts. Acting defaults: smug and charm no longer lift one brow or slide the pupils to the side; a character
+    facing someone looks at them; a look into the lens is refused unless the script asks for it (`lens: true`). The
+    stranger now names any face aimed at the viewer.

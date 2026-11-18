@@ -34,6 +34,10 @@ A TV cartoon works the other way round: strong held poses, and a snap from one t
    his face is deadpan), and changes face only where the board says. The reaction shot is often the joke: give it
    its own face key.
 9. **A held prop keeps the hands.** Phone, ticket, pen, flyer: he acts with his head and body only.
+10. **They act toward each other, never toward us.** The resting face is neutral; a feeling comes from the beat, not
+    from a default smirk. The eyes are on whoever the character faces. A look into the lens is a choice the script
+    makes and the board marks (`lens: true`); the engine refuses any other (founder, Nov 18: "why nio always smirking
+    and one eyebrow lifted looking at us").
 
 ## What the board writes (`shots.md` and the episode file)
 

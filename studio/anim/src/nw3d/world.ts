@@ -214,7 +214,7 @@ export type ActorSpec = {
   at: string; to?: string; // marks of the set. `to` only with an action that travels
   facing?: string; // 'camera' or a mark to face. Left out: the mark's own facing, or the way he travels
   action: string; face: string | [number, string][]; // one face, or [frame, face] changes
-  gaze?: [number, number]; hold?: (typeof HOLDS)[number]; look?: 'camera';
+  gaze?: [number, number]; hold?: (typeof HOLDS)[number]; look?: 'camera'; lens?: boolean;
   back?: true; // say so when the shot means to show his back. Otherwise his face must be visible.
   speak?: [number, Cues][]; // the lines he says: [the frame the line starts, its mouth cues from engine/tools/lipsync.py]
   mouth?: number; // mouth size for this character (1 = Nio)
@@ -317,6 +317,9 @@ export const validate = (spec: ShotSpec): string[] => {
     if (a.glow !== undefined && (a.hold !== 'phone' || !(a.glow >= 0 && a.glow <= 1))) e.push(`${a.who}: glow is for hold "phone", from 0 to 1.`);
     if (a.pale !== undefined && (typeof a.pale === 'number' ? [a.pale] : a.pale.map((k) => k[1])).some((v) => !(v >= 0 && v <= 1))) e.push(`${a.who}: pale runs from 0 to 1.`);
     if (a.gaze && a.gaze.some((g) => !(g >= -1 && g <= 1))) e.push(`${a.who}: gaze runs from -1 to 1.`);
+    // a look into the lens is a choice the script makes, never a default (founder, Nov 18)
+    if (a.look === 'camera' && !a.lens) e.push(`${a.who} looks into the lens. Only a scripted look to the viewer may, with lens: true.`);
+    if (a.facing === 'camera' && !a.gaze && !a.lens) e.push(`${a.who} faces the camera with nothing to look at. Give a gaze (at a phone, at someone) or lens: true if the script calls for a look to us.`);
     if (a.act === false && !a.compare) e.push(`${a.who}: the acting pass is law (bible/acting.md). act: false is only for a before/after comparison.`);
     if (a.speak && (a.acc?.length ?? 0) < a.speak.length) e.push(`${a.who}: a line has no accents. Run engine/tools/accents.py on the voice manifest (bible/acting.md).`);
     if (a.hold && !HOLDS.includes(a.hold)) e.push(`${a.who} cannot hold "${a.hold}". Holds: ${HOLDS.join(', ')}.`);
@@ -381,7 +384,11 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
     let yaw = m2 ? (act.back ? yawTo(m2, m.s, m.z) : yawTo(m, m2.s, m2.z)) : m.yaw;
     if (!m2 && a.facing === 'camera') yaw = (Math.atan2(cam.pos[0] - X(s), cam.pos[2] - z) * 180) / Math.PI;
     else if (!m2 && a.facing) yaw = yawTo({ s, z }, set.marks[a.facing].s, set.marks[a.facing].z);
-    let face: Face = FACES[faceAt(a.face, frame)]; if (a.gaze) face = gaze(face, a.gaze[0], a.gaze[1]);
+    let face: Face = FACES[faceAt(a.face, frame)];
+    // eyes on the person he is facing (founder, Nov 18: characters act toward each other, not toward us): with a
+    // facing mark and no gaze given, the pupils come in from the side of the face to nearly centre
+    if (a.gaze) face = gaze(face, a.gaze[0], a.gaze[1]);
+    else if (a.facing && a.facing !== 'camera') face = gaze(face, face.eyeL.px * 0.25, face.eyeL.py);
     face = speaking(face, a.speak, frame, a.mouth);
     const acting = act.rest && a.act !== false;
     const perf = acting ? perform({ who: a.who, frames: spec.frames, frame, faces: typeof a.face === 'string' ? [[0, a.face]] : a.face,

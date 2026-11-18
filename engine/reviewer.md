@@ -37,7 +37,8 @@ kind. If you are unsure, say "not sure", and that counts as a no.
 9. **Did you laugh or smile?** At what, exactly? If nothing, say "nothing".
 10. **Was anyone alive?** Do the faces change, or do the people look like they are waiting for their turn?
     Name any stretch where nothing was happening, any shot of an empty room or a wall, any pause that felt
-    like a mistake, and anything that bobbed up and down.
+    like a mistake, and anything that bobbed up and down. Do the people act toward each other, or toward you? Name
+    any face that looks at you, smirks at you or raises a brow at you when nobody in the story is talking to you.
 11. **Did anyone sound like they were explaining a plan or selling something?** Quote it.
 
 End with one line: **PASS** or **FAIL**, and the single most important thing to fix.

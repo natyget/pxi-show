@@ -6,7 +6,7 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Launch skits v7 (sketch approved by the founder, Nov 18) voiced and rendering: Wave Back, Group Photo, Aux and One Sip (rebuilt in the living room, the persona sips, the juice box, the PXI face-match button). BLOCKED: all four failed the stranger twice (see gate_failures). Common cause: the thing that drives each joke (the song, the sip, who waved, who speaks) is heard or implied, not seen in the picture. Waiting on the founder's call (rework through the writers' room, or watch the cuts). Was: av and dead checks, then the stranger on each; the ones that pass go to the founder. Office Hours stays ON HOLD. The voice medium test is experiment E6 in engine/learning.md.
+next_action: Launch skits HOLD rendering (founder, Nov 18, 6:22 PM: writing and acting read uncanny). The writers' thread is rewriting all four from the ground up; this thread renders those scripts when they arrive. Acting defaults fixed (no one-brow smirk, eyes on the partner, lens looks refused unless scripted). Cause-on-screen rework of the v7 staging is in the code but unrendered. Office Hours stays ON HOLD.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
 gate_failures: Wave Back 2 (BLOCKED, Nov 18): the stranger failed it twice; it still cannot tell who waved at whom from the opening shots, plus a floating object over the dinner table and a dead stretch from 5.5 to 10.4 s. No third try without a founder call. Group Photo 2 (BLOCKED, Nov 18): the stranger failed it twice; it cannot tell who says the last two lines or who took the photo, and the album screen reads as a dead UI mock. Aux 2 (BLOCKED, Nov 18): the stranger failed it twice; it cannot see that each song causes the change. One Sip 2 (BLOCKED, Nov 18): the stranger failed it twice; it never sees the sip cause a persona, and the juice box reveal is not set up.
 
@@ -69,8 +69,8 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
+- 2026-11-18 · launch-skits · all four v7 cuts failed the stranger twice; founder: rework with the cause on screen, then hold for a ground-up rewrite; acting defaults fixed.
 - 2026-11-18 · launch-skits · v7 approved; 35 lines voiced; One Sip rebuilt; new face-match, review and album screens; rendering all four.
 - 2026-11-17 · office-hours · v5 re-voiced and cut (held, not reviewed); founder put the episode on hold for launch skits; acting pass is law.
 - 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.
 - 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.
-- 2026-11-12 · engine · learn scores follows, reads Supermetrics; promotion ladder (95% watchers, paused until yes); Nio-style format menu; posting waits on an approved episode.
