@@ -30,7 +30,7 @@ import ACC_WB from '../lips/wb_accents.json';
 export type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
 // img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. zoom: [scale, the height
 // it zooms toward, percent from the top], for a screen whose point is one row. flash: a camera flash at this frame.
-export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
+export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; finder?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
 // beds: [sound, volume, the shot it stops at (optional: else it runs to the end)]
 export type SkitDef = { id: string; shots: Shot[]; beds: [string, number, number?][] };
 type VoLine = { file: string; who: string; sub: string; dur: number };
@@ -65,6 +65,10 @@ const Rain: React.FC = () => { const f = Math.floor(useCurrentFrame() / 2) * 2;
 const Drop: React.FC<{ d: [number, number, number, number, number] }> = ({ d: [at, x0, y0, x1, y1] }) => { const f = useCurrentFrame() - at; if (f < 0 || f > 7) return null;
   const k = (f / 7) ** 2, x = x0 + (x1 - x0) * k, y = y0 + (y1 - y0) * k;
   return <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}><ellipse cx={x} cy={y} rx={62} ry={62 * Math.max(0.15, Math.cos(f * 0.5))} fill="none" stroke="#2a2024" strokeWidth={18} /><ellipse cx={x} cy={y} rx={62} ry={62 * Math.max(0.15, Math.cos(f * 0.5))} fill="none" stroke="#d4a72c" strokeWidth={9} /></svg>; };
+// through Nio's phone: four white corner marks, so the viewer knows this frame is the photo being taken (the cause in
+// the picture: who is in the shot, and who is not). Plain marks, no app interface.
+const Finder: React.FC = () => <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}>{[[90, 260, 1, 1], [990, 260, -1, 1], [90, 1660, 1, -1], [990, 1660, -1, -1]].map(([x, y, a, b], k) =>
+  <path key={k} d={`M ${x} ${y + b * 110} L ${x} ${y} L ${x + a * 110} ${y}`} fill="none" stroke="#fff" strokeWidth={12} strokeLinecap="round" opacity={0.9} />)}</svg>;
 const Flash: React.FC<{ at: number }> = ({ at }) => { const f = useCurrentFrame() - at; return f < 0 || f > 8 ? null : <AbsoluteFill style={{ background: '#fff', opacity: 1 - f / 8 }} />; };
 // a hit on a big beat (founder, Nov 18: "the camera zooming slighlty and shaking and vibrating with some sound"): the
 // picture jolts and shakes for 10 frames, a 4 percent punch-in easing back. shake: the frames it hits on (with sk_hit).
@@ -96,6 +100,7 @@ export const Skit: React.FC<SkitProps> = (p) => {
       {shots.map((s) => (
         <Sequence key={s.n} from={s.from} durationInFrames={s.frames}>
           <Shake at={s.shake ?? []}><ShotView shot={s} /></Shake>
+          {s.finder ? <Finder /> : null}
           {s.flash !== undefined ? <Flash at={s.flash} /> : null}
           {s.drop ? <Drop d={s.drop} /> : null}
           {s.rain ? <Rain /> : null}

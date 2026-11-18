@@ -707,6 +707,7 @@ export const ROOF_CAMS: Record<string, Cam3> = {
   sami: C([3.7, 1.45, 8.6], [4.0, 1.42, 6.6], 40),
   theoUp: C([3.9, 2.05, 8.9], [3.3, 1.3, 6.5], 46), // Theo, looking up at the camera on the chair
   sunset: C([4.0, 1.95, 9.3], [4.0, 1.75, 12.0], 62), // turned round on the chair: the sun going down over the city (an insert)
+  povM: C([4.0, 2.0, 8.95], [4.7, 1.2, 6.5], 56), // Nio's phone on the last one left in the picture: Maya
   pov: C([4.0, 2.0, 8.95], [4.0, 1.15, 6.5], 72), // Nio's phone up on the chair: the line, and the sunset behind us
   chair: C([3.0, 0.7, 7.2], [4.0, 1.7, 9.1], 50), // Nio up on the chair, from below, the violet sky behind him
   nio: C([3.3, 1.45, 6.4], [4.0, 1.4, 9.1], 40), // Nio from where the three were

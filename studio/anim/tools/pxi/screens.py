@@ -450,14 +450,16 @@ def discover_map(event='Office Hours', when='ALWAYS', venue='Haverbrook Hall', p
     tabbar(s, 0)
     return s.im
 
-def roof_album(photo=os.path.join(ANIM, 'out', 'os', 'r3.png')):
-    """Group Photo: the Roof album's gallery after the shoot. The same gallery as gallery() (AlbumMasonryGrid.tsx): the
-    viewer's one shot, the sunset with nobody in it, and nothing else."""
+def roof_album():
+    """Group Photo: the Roof album's gallery after the shoot (AlbumMasonryGrid.tsx, as gallery()). Every try is in it:
+    the sunset with nobody in it, Theo walking out of one, Maya alone, and the first one with three of them. The
+    centre tile is the one Theo means at the end, so the zoom in shot 19 lands on it (out/skit-stills/gp*.png)."""
     s = Screen()
-    im = Image.open(photo).convert('RGB'); w0, h0 = im.size; c = min(w0, h0)
-    sq = im.crop(((w0 - c) // 2, int(h0 * 0.12), (w0 - c) // 2 + c, int(h0 * 0.12) + c)).resize((116, 116), Image.LANCZOS)
-    s.photo(sq, 2, 162, 118, 278, r=pt(14))
-    s.disc(9, 245, 26, G1C); s.avatar(pic('avatar', 22, 22), 11, 247, 22)
+    tiles = [(still('gp822'), 0.5, 0.42, 0.62), (still('gp574'), 0.74, 0.47, 0.5), (still('gp700'), 0.5, 0.5, 0.62), (still('gp245'), 0.45, 0.5, 0.8)]
+    for i, (im, cx, cy, k) in enumerate(tiles):
+        x, y = (i % 3) * 120, 160 + (i // 3) * 120
+        s.photo(sq(im, cx, cy, k).resize((116, 116), Image.LANCZOS), x + 2, y + 2, x + 118, y + 118, r=pt(14))
+        s.disc(x + 9, y + 85, 26, G1C); s.avatar(pic('avatar', 22, 22), x + 11, y + 87, 22)
     s.box(0, 0, W, 158, BLACK); header(s, 'Roof'); switch(s, 'GALLERY')
     s.disc(292, 643, 51, PURPLE); s.icon('Add01Icon', 24, 317, 668, WHITE)
     return s.im
