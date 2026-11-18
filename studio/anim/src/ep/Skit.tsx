@@ -29,7 +29,7 @@ import ACC_WB from '../lips/wb_accents.json';
 
 export type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
 // img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. flash: a camera flash at this frame.
-export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; flash?: number; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
+export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; say?: Line[]; sfx?: [string, number, number?][] };
 export type SkitDef = { id: string; shots: Shot[]; beds: [string, number][] };
 type VoLine = { file: string; who: string; sub: string; dur: number };
 const vo = { ...VO_OS, ...VO_GP, ...VO_AX, ...VO_WB } as unknown as Record<string, VoLine>;
@@ -61,6 +61,13 @@ const Drop: React.FC<{ d: [number, number, number, number, number] }> = ({ d: [a
   const k = (f / 7) ** 2, x = x0 + (x1 - x0) * k, y = y0 + (y1 - y0) * k;
   return <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}><ellipse cx={x} cy={y} rx={62} ry={62 * Math.max(0.15, Math.cos(f * 0.5))} fill="none" stroke="#2a2024" strokeWidth={18} /><ellipse cx={x} cy={y} rx={62} ry={62 * Math.max(0.15, Math.cos(f * 0.5))} fill="none" stroke="#d4a72c" strokeWidth={9} /></svg>; };
 const Flash: React.FC<{ at: number }> = ({ at }) => { const f = useCurrentFrame() - at; return f < 0 || f > 8 ? null : <AbsoluteFill style={{ background: '#fff', opacity: 1 - f / 8 }} />; };
+// a hit on a big beat (founder, Nov 18: "the camera zooming slighlty and shaking and vibrating with some sound"): the
+// picture jolts and shakes for 10 frames, a 4 percent punch-in easing back. shake: the frames it hits on (with sk_hit).
+const Shake: React.FC<{ at: number[]; children: React.ReactNode }> = ({ at, children }) => { const f = useCurrentFrame();
+  const h = at.map((a) => f - a).filter((d) => d >= 0 && d < 10)[0];
+  if (h === undefined) return <>{children}</>;
+  const k = 1 - h / 10, x = Math.sin(h * 2.7) * 18 * k, y = Math.cos(h * 3.9) * 12 * k;
+  return <AbsoluteFill style={{ transform: `translate(${x}px, ${y}px) scale(${1 + 0.04 * k})` }}>{children}</AbsoluteFill>; };
 const ShotView: React.FC<{ shot: Shot }> = ({ shot }) => {
   const f = useCurrentFrame();
   if (shot.img) return <AbsoluteFill style={{ background: '#000' }}><img src={staticFile(shot.img)} style={{ position: 'absolute', left: (1080 - 886) / 2, top: 0, width: 886, height: 1920, imageRendering: 'pixelated', transform: `scale(${1 + 0.06 * f / shot.frames})` }} /></AbsoluteFill>;
@@ -83,7 +90,7 @@ export const Skit: React.FC<SkitProps> = (p) => {
       <Fonts />
       {shots.map((s) => (
         <Sequence key={s.n} from={s.from} durationInFrames={s.frames}>
-          <ShotView shot={s} />
+          <Shake at={s.shake ?? []}><ShotView shot={s} /></Shake>
           {s.flash !== undefined ? <Flash at={s.flash} /> : null}
           {s.drop ? <Drop d={s.drop} /> : null}
           {s.rain ? <Rain /> : null}
@@ -95,6 +102,7 @@ export const Skit: React.FC<SkitProps> = (p) => {
       ))}
       {/* no music (founder, Nov 17): beds are room sound only */}
       {def.beds.map(([f, v]) => <Sequence key={f} from={0} durationInFrames={total} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} /></Sequence>)}
+      {shots.flatMap((s) => (s.shake ?? []).map((at, i) => <Sequence key={`${s.n}hit${i}`} from={s.from + at} layout="none"><Audio src={staticFile('sfx/sk_hit.wav')} volume={0.8} /></Sequence>))}
       {shots.flatMap((s) => (s.sfx ?? []).map(([f, at, v], i) => (
         <Sequence key={`${s.n}fx${i}`} from={s.from + at} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v ?? 1} /></Sequence>)))}
       {shots.flatMap((s) => (s.say ?? []).filter((l) => vo[l.key]).map((l) => {

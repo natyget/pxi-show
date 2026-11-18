@@ -120,6 +120,28 @@ export const PARTY_SOFTS: Soft[] = [
     cp(P3(0.8, 0.6, 3.85), 0.09, P3(1.2, 0.6, 3.95), 0.08, 1, '#4d5f7a', 0.05, { sq: 2.2, tex: 2 }),
     cp(P3(1.05, 0.6, 3.6), 0.05, P3(1.3, 0.58, 3.45), 0.045, 1, '#4d5f7a', 0.05, { sq: 1.8, tex: 2 }) ] },
 ];
+// ---- the living room (founder, Nov 18: "his aparmnet got a bathroom and living room ... the apartment should look and
+// feel like the bedroom aesthetics wise"): the same walls, window, curtains, wood and lamps as his bedroom, with a sofa
+// under the window where the bed was, the dresser as a TV stand, no bed, no laptop, no laundry. Dressed for the party. ----
+const NOT_LIVING = new Set([1, 2, 3, 22, 26, 27, 39, 40, 52, 23, 24]);
+export const sofa = (lift = 0): Soft => {
+  const col = '#5f7464', dk = '#46584c', L = lift;
+  return { origin: P3(1.15, 0.3 + L, 3.85), prims: [
+    cp(P3(0.42, 0.17 + L, 3.86), 0.19, P3(1.88, 0.17 + L, 3.86), 0.19, 0, dk, 0.03, { sq: 1.3, tex: 2 }), // the base
+    cp(P3(0.45, 0.38 + L, 3.8), 0.2, P3(1.85, 0.38 + L, 3.8), 0.2, 1, col, 0.05, { sq: 1.9, tex: 2 }), // the seat cushions
+    cp(P3(0.45, 0.66 + L, 4.12), 0.16, P3(1.85, 0.66 + L, 4.12), 0.16, 1, col, 0.06, { tex: 2 }), // the back
+    ...[0.24, 2.06].map((s0) => cp(P3(s0, 0.42 + L, 3.62), 0.11, P3(s0, 0.44 + L, 4.12), 0.11, 1, dk, 0.04, { tex: 2 })), // the arms
+    cp(P3(0.62, 0.6 + L, 3.98), 0.11, P3(0.68, 0.64 + L, 4.0), 0.1, 1, '#b07a8a', 0.03, { sq: 1.4, tex: 2 }), // a cushion
+    cp(P3(1.7, 0.6 + L, 3.98), 0.1, P3(1.64, 0.64 + L, 4.0), 0.1, 1, '#c9a36b', 0.03, { sq: 1.4, tex: 2 }),
+  ] };
+};
+export const LIVING_BOXES: Box[] = [
+  ...PARTY_BOXES.filter((b) => !NOT_LIVING.has(b.obj)),
+  B(3.56, 1.16, 3.4, 0.03, 0.26, 0.42, '#2c2126', 24), B(3.527, 1.16, 3.4, 0.004, 0.235, 0.39, '#3d4a66', 23, { glow: true }), // the TV on the dresser
+  B(1.6, 0.34, 3.38, 0.4, 0.02, 0.15, WOOD, 53, { mat: 1 }), ...[[-0.36, -0.12], [0.36, -0.12], [-0.36, 0.12], [0.36, 0.12]].map(([a, b]) => B(1.6 + a, 0.16, 3.38 + b, 0.02, 0.16, 0.02, WOOD_D, 53)), // the coffee table, in front of the sofa
+  B(1.45, 0.38, 3.38, 0.14, 0.022, 0.14, '#c9a36b', 52, { yaw: 14 }), // the pizza box, on the coffee table
+];
+const LIVING_SOFTS: Soft[] = [...PARTY_SOFTS.filter((sf, i) => i >= 2 && sf !== PARTY_SOFTS[PARTY_SOFTS.length - 1]), { ...PARTY_SOFTS[PARTY_SOFTS.length - 1], prims: PARTY_SOFTS[PARTY_SOFTS.length - 1].prims.slice(0, -2) }];
 const CEIL = P3(1.9, 2.3, 2.2);
 export const PARTY_LIGHTS: Light[] = [
   ROOM_LIGHTS[0], // the bedside lamp stays light 0
@@ -615,10 +637,10 @@ export const cake = (cs: number, cz: number, y: number): Soft => {
   ] };
 };
 export const shot = (camA: CamArg, acts: Act[], time = 0, dress?: string, flash?: boolean, extras: Soft[] = []): Scene3 => {
-  const ps = lensActs(camA, acts).map(pose), party = dress === 'party', cam = camOf(camA, ps);
+  const ps = lensActs(camA, acts).map(pose), living = dress === 'living', party = dress === 'party' || living, cam = camOf(camA, ps);
   const fl: Light[] = flash ? [{ p: cam.pos, r: 2.4, col: [0.42, 0.42, 0.44] }] : [];
-  return { cam, room: ROOM, amb: party ? PARTY_AMB : AMB, ambChar: party ? PARTY_AMB_CHAR : AMB_CHAR, boxes: party ? PARTY_BOXES : ROOM_BOXES, time,
-    softs: [...ps.map((p) => p.soft), ...(party ? PARTY_SOFTS : ROOM_SOFTS), ...extras], lights: [...(party ? PARTY_LIGHTS : ROOM_LIGHTS), ...fl, ...ps.flatMap((p) => p.lights)],
+  return { cam, room: ROOM, amb: party ? PARTY_AMB : AMB, ambChar: party ? PARTY_AMB_CHAR : AMB_CHAR, boxes: living ? LIVING_BOXES : party ? PARTY_BOXES : ROOM_BOXES, time,
+    softs: [...ps.map((p) => p.soft), ...(living ? LIVING_SOFTS : party ? PARTY_SOFTS : ROOM_SOFTS), ...extras], lights: [...(party ? PARTY_LIGHTS : ROOM_LIGHTS), ...fl, ...ps.flatMap((p) => p.lights)],
     props: ps.flatMap((p) => p.props), shadows: ps.flatMap((p) => p.shadows) };
 };
 

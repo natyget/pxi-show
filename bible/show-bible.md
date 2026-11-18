@@ -388,3 +388,15 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - What this changed: the acting pass is a rule in `CLAUDE.md`, the build card and the QA checklist, and the engine
     refuses a shot without it. The lecture hall crowd turns to stare only when Prof H calls Nio, and turns back
     while Maya answers (background people look only while the scene gives them a reason).
+- **Nov 18, 0:30 AM (UTC), on the One Sip v2 cut, word for word:**
+  - "were on my laptop so it can use broswer now this is the go
+    ok. dont know whats beig done now but from the skit i can say that 
+
+    1. the setting is weird having them drink in his bedroom, his aparmnet got a bathroom and living room so they should be drinking in the bedroom, and the apartment should look and feel like the bedroom aesthetics wise
+    2. then he says delightful gathering but its only 2 of them which is also weird. he also says i cant handle a drink and his hands go backwards for some reason that should have been caught
+    3. its in your head, one sip is a weird line because it doesnt really sound like a person talking. i would have said its all in your head gang you gotta will it or something then the one sip takes to long to be said weird long pause, i think these are rules of nio not talking much making his speech weird. i dont know how we can fix all this but you really need to address the fact that weve being going at it and me telling you the writing and dialogue is really lacking
+    4. i think we can use more effects to make things feel lively and dramatic like the camera zooming slighlty and shaking and vibrating with some sound when he does each sip to feel and immerse viewrs. and it would have been funnier to have him act like differnt people and at some point even a black guy and even have people boo him for this and people gasping then a lady screams you need to leave
+    5. i liked that it was apple juice but why is nio looking at me and instead we dont get to see his disgust in his face that a guy acts like thatm then have his line be thats apple juice gang you doing to much and instead of him falling he throws himself off the window and we jsut cut to nio holidng his head courching panicking. but dont do this im just saying how the guy feinting and nio looking at us at the end is cliche and sooo corny. i dont want you to produce and pass corny shit so use the opportuntiy on my laptop to learn about gumball writing, ragular show like plots, clarence and uncle grandpa like unhingedness like take the best out of the CN shows ive mentioned centering everything around the world of gumbal and lets get it going"
+  - What this changed: One Sip is held for another rewrite. For every skit: the living room and bathroom of Nio's
+    apartment share the bedroom's look; a gesture must match its line; no dead pauses; a slight push and a shake
+    with a sound hit on big beats; never end on a character looking at the camera.

@@ -14,7 +14,7 @@ import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_
 import { STRANGERS } from './people';
 import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
 import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS, CORRIDOR_MARKS, CORRIDOR_INSERTS, PITCH_MARKS, PITCH_INSERTS, PITCH_SOLIDS, ROOF_MARKS, ROOF_SOLIDS, QUAD_MARKS, QUAD_SOLIDS, DINE_MARKS, DINE_SOLIDS, Keyed, keyed } from './campus';
-import { Act, shot, CAMS, ROOM, X, C, CamArg, chaise, cake } from './room';
+import { Act, shot, CAMS, ROOM, X, C, CamArg, chaise, cake, sofa } from './room';
 
 export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, marcus: MARCUS_CHAR, mum: MUM_CHAR, sis: SIS_CHAR, ...STRANGERS };
 
@@ -88,13 +88,13 @@ SETS.party = {
 // THE PARTY, LIVE (One Sip): the same party room, seen as it happens (no flash). Nio and Sami on the rug, by the
 // desk and its cups; the fainting couch (ShotSpec.props 'chaise') appears behind Sami, between him and the window.
 SETS.partyLive = {
-  ...SETS.party, flash: false,
+  ...SETS.party, flash: false, dress: 'living', // the living room of the same apartment (founder, Nov 18)
   marks: { ...SETS.party.marks,
     samiL: { s: 1.7, z: 2.35, yaw: 90 }, nioR: { s: 2.4, z: 2.4, yaw: 270 },
     chaise: { s: 1.95, z: 2.3, yaw: 270, on: 0.3 },
     // AUX: the guests across the rug, Nio by the desk with his phone; the same four up by the ceiling; a queue facing the door
     g1: { s: 1.1, z: 2.7, yaw: 160 }, g2: { s: 1.7, z: 2.9, yaw: 175 }, g3: { s: 2.3, z: 2.85, yaw: 190 }, g4: { s: 2.9, z: 2.5, yaw: 210 },
-    nioD: { s: 2.75, z: 1.45, yaw: 20 },
+    nioD: { s: 3.15, z: 1.98, yaw: 20 },
     f1: { s: 1.1, z: 2.7, yaw: 160, on: 0.95 }, f2: { s: 1.7, z: 2.9, yaw: 175, on: 1.05 }, f3: { s: 2.3, z: 2.85, yaw: 190, on: 0.9 }, f4: { s: 2.9, z: 2.5, yaw: 210, on: 1.0 },
     q1: { s: 0.8, z: 1.6, yaw: 180 }, q2: { s: 1.0, z: 2.1, yaw: 180 }, q3: { s: 1.2, z: 2.6, yaw: 180 }, q4: { s: 1.4, z: 3.05, yaw: 180 },
   },
@@ -104,8 +104,8 @@ SETS.partyLive = {
     nio: C([1.45, 1.38, 0.8], [2.4, 1.28, 2.4], 40), // Nio, from Sami's side
     sami: C([2.65, 1.38, 0.8], [1.7, 1.28, 2.35], 40), // Sami, from Nio's side
     samiClose: C([2.5, 1.45, 1.1], [1.7, 1.4, 2.35], 40), // Sami's head and shoulders, for the pieces arriving
-    auxWide: C([3.45, 1.95, 0.2], [2.0, 1.1, 2.3], 80), // the whole room from the desk corner, up high
-    auxNio: C([0.3, 1.45, 2.0], [2.75, 1.38, 1.45], 40), // Nio by the desk, from across the room
+    auxWide: C([3.6, 1.7, 0.1], [2.1, 1.1, 2.4], 80), // the whole room from the desk corner, up high
+    auxNio: C([0.3, 1.45, 2.3], [3.15, 1.38, 1.98], 40), // Nio by the desk, from across the room
     auxUp: C([0.3, 1.2, 0.2], [1.9, 2.0, 2.7], 64), // up at the ceiling
     queue: C([0.6, 1.95, 0.2], [1.05, 1.25, 2.2], 44), // the queue, from by the door, down the line of faces
         faint: C([1.55, 1.45, 0.85], [0.95, 0.6, 2.3], 60), // the couch, and whoever is on it
@@ -370,5 +370,9 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
   });
   const camP: CamArg = spec.phone ? [spec.phone, 0] : cam;
   if (set.campus) { const sc = campusShot(set.campus, camP, acts, { ...spec.campus, time: frame / 24 }); return sc; } // the screen picture (spec.screen) is set by the composition, which knows where public/ is
-  return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash, (spec.props ?? []).map((p) => { const m = set.marks.chaise; return p === 'cake' ? cake(3.35, 1.3, 0.745) : chaise(m.s - 0.85, m.z, p === 'chaiseUp' ? 1.55 : 0); }));
+  const props = spec.props ?? [], up = props.includes('chaiseUp');
+  // in the living room the couch is the room's own sofa: on the floor, or (chaiseUp) up on the ceiling
+  const extras = props.filter((p) => !(set.dress === 'living' && p === 'chaiseUp')).map((p) => { const m = set.marks.chaise; return p === 'cake' ? cake(3.35, 1.3, 0.745) : chaise(m.s - 0.85, m.z, p === 'chaiseUp' ? 1.55 : 0); });
+  if (set.dress === 'living') extras.push(sofa(up ? 1.55 : 0));
+  return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash, extras);
 };
