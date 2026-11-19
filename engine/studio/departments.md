@@ -21,6 +21,12 @@ This page is that. It replaces "one thread builds the whole skit, renders it, an
   effect alone: 18 of the 30 synthesised skit sounds are not heard as what they are. The put-back pop is heard as a
   beep, the mower as a helicopter, the splash as an explosion, the dinner bed as a ding, the roof wind as an
   eruption, the creak as a fart. Those are the exact stretches the stranger flagged.
+- **Eyelines were never checked** (founder, Nov 19, 7:55 PM: "the random guy talk to nio while looking and facing
+  the girl"). In Wave Back shot 6 Marcus faces a mark named for Nio, but Nio stands 5 m away and Sis stands half a
+  metre in front of Marcus on that line. The story check now finds who each line is said to (`to:` on the line, else
+  a name in it, else the next person who speaks), and fails a speaker who faces anywhere else, anyone standing nearer
+  in his eyeline, and a listener who faces away. Keys owns eyelines; a wrong guess of who a line is for is fixed by
+  writing `to:` on the line, never by turning the check off.
 - **Sound effects stacked.** Shot sounds play their whole file unless given a length, so a bed placed on every
   shot (Wave Back's quad and dinner, Aux's rain) restarts over itself. The story check now flags any effect that
   starts over itself and any moment with more than three effects: Wave Back's lake escape has up to eight at once,

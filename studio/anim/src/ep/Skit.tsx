@@ -27,7 +27,7 @@ import VO_WB from '../vo_wb.json';
 import LIPS_WB from '../lips/wb.json';
 import ACC_WB from '../lips/wb_accents.json';
 
-export type Line = { key: string; who: string; at: number; off?: string }; // at: the frame inside the shot where the line starts. off: the line is meant to be heard from someone not in the picture, and why (the story check refuses it otherwise)
+export type Line = { key: string; who: string; at: number; off?: string; to?: string }; // at: the frame inside the shot where the line starts. off: the line is meant to be heard from someone not in the picture, and why (the story check refuses it otherwise). to: who the line is said to, when it is not the next person who speaks
 // img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. zoom: [scale, the height
 // it zooms toward, percent from the top], for a screen whose point is one row. flash: a camera flash at this frame.
 export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean | [number, number][]; drip?: [number, number, number][]; finder?: boolean; tap?: [number, number, number, string?][]; hover?: [number, number, number]; say?: Line[]; sfx?: [string, number, number?, number?][] };

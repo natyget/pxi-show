@@ -199,3 +199,9 @@ and explosions), Group Photo 8 (stacked notification dings), One Sip 2, Aux 2. N
 a line or a face change, so the stranger's "nothing happening" is about what the picture shows, and is the motion
 reader's question. Blank faces (Aux v12: Theo at 10.6 s, Sami at 50.4 s and 60.4 s with no eyes) are a render
 defect the spec cannot see; the animatic and motion readers now name any face without eyes.
+
+## Eyelines (Nov 19, 7:55 PM, after the founder's note on Wave Back)
+
+The story check's eyeline column, on the cut files: Wave Back 3 (shots 6 and 8, Marcus talking to Nio with Sis in his
+eyeline, the founder's example; shot 24), One Sip 3, Group Photo 3, Aux 11. Some name the wrong listener because the
+board never said who a line is for; those get `to:` on the line, and the check then verifies the real eyeline.

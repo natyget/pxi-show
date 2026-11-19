@@ -136,6 +136,42 @@ fx.forEach((e, i) => {
   if (at > 3) hit('sound', e.n, e.a, `${at} effects play at once here. It piles into noise: keep three or fewer.`);
 });
 
+// 10. EYELINES. A line is said TO someone, and the picture shows it (founder, Nov 19, 7:55 PM: "the random guy talk to
+//     nio while looking and facing the girl"). Who it is said to: line.to, else a name in the line, else the next
+//     person who speaks, else the last. The speaker faces where that person actually stands (in this shot, or the
+//     nearest shot of the same set); nobody else stands in his eyeline; and the one spoken to, if in the picture,
+//     faces him back. Facing an empty mark "where Nio would be" is the defect, even if the mark has his name.
+const NAMES = Object.keys(SETS).length ? [...new Set(tl.flatMap((s) => (s.say ?? []).map((l) => l.who)))] : [];
+const allLines = tl.flatMap((s) => (s.say ?? []).map((l) => ({ s, l })));
+const whereIs = (who: string, set: string, from: number): { s: number; z: number } | undefined => {
+  let best: { d: number; m: { s: number; z: number } } | undefined;
+  for (const s of tl) { if (!s.spec) continue; const sp = specAt(s, Math.floor(s.frames / 2))!; if (sp.set !== set) continue;
+    const a = sp.actors.find((x) => x.who === who); if (!a) continue; const mk = SETS[set].marks[a.to ?? a.at]; const d = Math.abs(s.from - from);
+    if (mk && (!best || d < best.d)) best = { d, m: mk }; }
+  return best?.m;
+};
+const bearing = (from: { s: number; z: number }, to: { s: number; z: number }) => (Math.atan2(-(to.s - from.s), to.z - from.z) * 180) / Math.PI;
+const angle = (a: number, b: number) => Math.abs(((a - b + 540) % 360) - 180);
+allLines.forEach(({ s, l }, i) => {
+  if (!s.spec || l.off) return;
+  const sp = specAt(s, l.at)!, me = sp.actors.find((a) => a.who === l.who); if (!me || me.to) return;
+  const text = (vo[l.key]?.sub ?? '').toLowerCase();
+  const named = NAMES.find((n) => n !== l.who && new RegExp(`\\b${n}\\b`, 'i').test(text));
+  const next = allLines.slice(i + 1).find((x) => x.l.who !== l.who)?.l.who, prev = allLines.slice(0, i).reverse().find((x) => x.l.who !== l.who)?.l.who;
+  const to = l.to ?? named ?? next ?? prev; if (!to) return;
+  const set = SETS[sp.set], m = set.marks[me.at]; if (!m) return;
+  const them = sp.actors.find((a) => a.who === to), tm = them ? set.marks[them.to ?? them.at] : whereIs(to, sp.set, s.from + l.at);
+  if (!tm) return; // not in this place at all (a phone call): nothing to face
+  const face = me.facing && me.facing !== 'camera' && set.marks[me.facing] ? bearing(m, set.marks[me.facing]) : me.facing === 'camera' ? undefined : m.yaw;
+  const want = bearing(m, tm);
+  if (face !== undefined && angle(face, want) > 30) hit('eyeline', s.n, s.from + l.at, `${l.who} says ${sub(l.key)} to ${to}, but faces ${me.facing ? `"${me.facing}"` : 'his mark\'s way'}, ${Math.round(angle(face, want))}° away from where ${to} stands. Face ${to}'s place.`);
+  for (const o of sp.actors) { if (o === me || o.who === to || o.to) continue; const om = set.marks[o.at]; if (!om) continue;
+    const d = Math.hypot(om.s - m.s, om.z - m.z), dt = Math.hypot(tm.s - m.s, tm.z - m.z);
+    if (d < dt && angle(face ?? want, bearing(m, om)) < 22) hit('eyeline', s.n, s.from + l.at, `${l.who} says ${sub(l.key)} to ${to}, but ${o.who} stands in his eyeline, nearer: he reads as talking to ${o.who}.`); }
+  if (them && !them.back && them.facing !== 'camera') { const tf = them.facing && set.marks[them.facing] ? bearing(tm, set.marks[them.facing]) : tm.yaw ?? 0;
+    if (angle(tf, bearing(tm, m)) > 35 && !(them.hold && LOOKS_DOWN.includes(them.hold))) hit('eyeline', s.n, s.from + l.at, `${to} is spoken to by ${l.who} but faces away from him (${Math.round(angle(tf, bearing(tm, m)))}°). The one spoken to looks at the speaker.`); }
+});
+
 // 7. THE LOCK. A remake keeps every shot nobody asked to change (founder, Nov 19: "each remake is radically different").
 const fp = (s: (typeof tl)[0]) => createHash('sha1').update(JSON.stringify([s.img, s.frames, s.say, s.sfx, s.spec ? [0, Math.floor(s.frames / 2), s.frames - 1].map((f) => specAt(s, f)) : null])).digest('hex').slice(0, 12);
 const snap = opt('--snapshot'), lock = opt('--lock');
@@ -161,7 +197,7 @@ if (args.includes('--keys')) {
   }
   keys.sort((a, b) => a.f - b.f); console.log(JSON.stringify(keys)); process.exit(0);
 }
-const order = ['speaker', 'continuity', 'cast', 'lens', 'empty', 'repeat', 'dead', 'sound', 'lock'];
+const order = ['speaker', 'eyeline', 'continuity', 'cast', 'lens', 'empty', 'repeat', 'dead', 'sound', 'lock'];
 hits.sort((a, b) => order.indexOf(a.check) - order.indexOf(b.check) || a.t - b.t);
 if (args.includes('--json')) console.log(JSON.stringify(hits, null, 1));
 else { console.log(`Story check: ${skit}, ${tl.length} shots, ${T(tl.reduce((a, s) => a + s.frames, 0))} s`); for (const h of hits) console.log(`${h.check.padEnd(10)} shot ${String(h.shot).padEnd(4)} ${String(h.t).padStart(5)}s  ${h.msg}`); }
