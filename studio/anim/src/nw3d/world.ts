@@ -14,7 +14,7 @@ import { Character, NIO_CHAR, MAYA_CHAR, SAMI_CHAR, THEO_CHAR, IMANE_CHAR, PROF_
 import { STRANGERS } from './people';
 import { CLUB_W, CLUB_H, CLUB_D, CLUB_CAMS, ClubSpec, clubShot, clubAt } from './club';
 import { CAMPUS_ROOMS, CampusRoom, CampusOpts, campusShot, WAIT_MARKS, WAIT_SOLIDS, WAIT_INSERTS, HALL_MARKS, HALL_SOLIDS, HALL_INSERTS, OFFICE_MARKS, OFFICE_SOLIDS, OFFICE_INSERTS, CORRIDOR_MARKS, CORRIDOR_INSERTS, PITCH_MARKS, PITCH_INSERTS, PITCH_SOLIDS, ROOF_MARKS, ROOF_SOLIDS, QUAD_MARKS, QUAD_SOLIDS, DINE_MARKS, DINE_SOLIDS, GARDEN_MARKS, GARDEN_SOLIDS, BATH_MARKS, BATH_SOLIDS, THEO_MARKS, THEO_SOLIDS, PORCH_MARKS, Keyed, keyed } from './campus';
-import { Act, shot, CAMS, ROOM, X, C, CamArg, chaise, cake, sofa } from './room';
+import { Act, shot, CAMS, ROOM, X, C, CamArg, chaise, cake, sofa, hooks, floorLamp, blanket, blanketUp } from './room';
 
 export const CHARACTERS: Record<string, Character> = { nio: NIO_CHAR, maya: MAYA_CHAR, sami: SAMI_CHAR, theo: THEO_CHAR, imane: IMANE_CHAR, profH: PROF_H_CHAR, darnell: DARNELL_CHAR, marcus: MARCUS_CHAR, mum: MUM_CHAR, sis: SIS_CHAR, tobi: TOBI_CHAR, camp1: CAMP1_CHAR, camp2: CAMP2_CHAR, camp3: CAMP3_CHAR, ...STRANGERS,
   guest1: STRANGERS.cap, guest2: STRANGERS.girl2, guest3: STRANGERS.spinner }; // Aux v10's three guests with lines
@@ -106,6 +106,8 @@ SETS.partyLive = {
     duelT: { s: 2.15, z: 1.8, yaw: 270 }, duelS: { s: 2.6, z: 2.2, yaw: 90 }, duelM: { s: 2.05, z: 2.85, yaw: 190 }, duelI: { s: 2.95, z: 2.8, yaw: 200 },
     king: { s: 1.6, z: 3.38, yaw: 180, on: 0.36 }, booM: { s: 0.95, z: 3.0, yaw: 90 }, booT: { s: 2.0, z: 2.3, yaw: 330 }, booI: { s: 1.25, z: 2.25, yaw: 20 }, booG: { s: 0.9, z: 2.5, yaw: 60 },
     nioK: { s: 2.55, z: 1.85, yaw: 320 }, couch: { s: 1.15, z: 3.72, yaw: 180, seat: 0.45 },
+    // ONE SIP v10 (Nov 19): the coat hooks by the door, the floor lamp by the sofa, Imane and Sami on the sofa
+    hookS: { s: 0.55, z: 2.0, yaw: 90 }, lampS: { s: 2.75, z: 3.7, yaw: 120 }, couchI: { s: 0.7, z: 3.72, yaw: 180, seat: 0.45 }, couchS: { s: 1.12, z: 3.72, yaw: 180, seat: 0.45 },
     q1: { s: 1.2, z: 1.45, yaw: 195 }, q2: { s: 1.4, z: 1.9, yaw: 195 }, q3: { s: 1.6, z: 2.35, yaw: 195 }, q4: { s: 1.8, z: 2.8, yaw: 195 },
   },
   cameras: { ...SETS.party.cameras,
@@ -136,6 +138,7 @@ SETS.partyLive = {
     mayaK: C([2.1, 1.5, 1.85], [0.95, 1.38, 3.0], 50), // Maya, from the room side, facing her
     nioRev: C([1.8, 1.45, 3.15], [2.55, 1.3, 1.85], 44), // Nio, from the coffee table end
     couch: C([1.15, 1.45, 1.9], [1.15, 1.05, 3.72], 40), // whoever is on the sofa
+    hooksC: C([1.6, 1.5, 0.9], [0.35, 1.4, 2.05], 58), lampC: C([2.3, 1.5, 2.4], [2.75, 1.3, 3.7], 40), juiceP: C([1.3, 2.0, 4.0], [2.4, 1.25, 1.9], 52), filmW: C([3.0, 1.7, 0.2], [1.58, 1.3, 2.27], 90), sofa2: C([0.95, 1.25, 2.2], [0.91, 1.05, 3.72], 60), // (v10)
         faint: C([1.55, 1.45, 0.85], [0.95, 0.6, 2.3], 60), // the couch, and whoever is on it
   },
 };
@@ -216,9 +219,9 @@ export const ACTIONS: Record<string, Action> = {
 //  wave: a hand up by the head, open, waving side to side (hand: 0 his left, 1 his right; sitting or standing).
 //  slideFlyer (Prof H pushes the flyer across his desk), flyer (the flyer held up beside his face, toward whoever he faces),
 //  mop (the cleaner, walking), ticket (Darnell, sitting: the lab report on his knees, his ticket 4 on it under his left hand).
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox', 'throttle', 'pizza', 'foldChair', 'shade'] as const;
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox', 'throttle', 'pizza', 'foldChair', 'shade', 'duvet'] as const;
 // Costume pieces worn over the outfit (One Sip). A shot may change them at a frame: wear: [[0, []], [12, ['bowtie']]].
-export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'moustache', 'partyhat', 'lanyard', 'scarf', 'glasses', 'lampshade', 'beret', 'headset'];
+export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'moustache', 'partyhat', 'lanyard', 'scarf', 'glasses', 'lampshade', 'beret', 'headset', 'longcoat', 'glove'];
 const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer', 'ticket'], TRAVEL_HOLDS = ['phone', 'cup', 'mop', 'foldChair'];
 
 export type ActorSpec = {
@@ -318,7 +321,7 @@ export const validate = (spec: ShotSpec): string[] => {
   if (!cam) e.push(`There is no camera "${spec.camera}" in ${spec.set}. Cameras: ${names(set.cameras)}.`);
   if (!(spec.frames >= 1 && spec.frames <= 24 * 30)) e.push('frames must be between 1 and 720 (30 seconds).');
   if (!spec.actors || spec.actors.length > 5) e.push('A shot holds at most five characters.');
-  for (const p of spec.props ?? []) if (!['chaise', 'chaiseUp', 'cake'].includes(p) || !SETS[spec.set]?.marks.chaise) e.push(`No prop "${p}" in ${spec.set}.`);
+  for (const p of spec.props ?? []) if (!((['chaise', 'chaiseUp', 'cake', 'lamp', 'lampBare', 'blanket', 'blanketUp'].includes(p) || /^hooks[bc]*$/.test(p)) && SETS[spec.set]?.marks.chaise)) e.push(`No prop "${p}" in ${spec.set}.`);
   const spots: { who: string; s: number; z: number }[] = [];
   (spec.actors ?? []).forEach((a) => {
     const ch = CHARACTERS[a.who];
@@ -416,7 +419,7 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
   if (set.campus) { const sc = campusShot(set.campus, camP, acts, { ...spec.campus, time: frame / 24 }); return sc; } // the screen picture (spec.screen) is set by the composition, which knows where public/ is
   const props = spec.props ?? [], up = props.includes('chaiseUp');
   // in the living room the couch is the room's own sofa: on the floor, or (chaiseUp) up on the ceiling
-  const extras = props.filter((p) => !(set.dress?.startsWith('living') && p === 'chaiseUp')).map((p) => { const m = set.marks.chaise; return p === 'cake' ? cake(3.35, 1.3, 0.745) : chaise(m.s - 0.85, m.z, p === 'chaiseUp' ? 1.55 : 0); });
+  const extras = props.filter((p) => !(set.dress?.startsWith('living') && p === 'chaiseUp')).map((p) => { const m = set.marks.chaise; return p === 'blanket' ? blanket() : p === 'blanketUp' ? blanketUp() : p.startsWith('hooks') ? hooks(p.slice(5)) : p === 'lamp' || p === 'lampBare' ? floorLamp(p === 'lamp') : p === 'cake' ? cake(3.35, 1.3, 0.745) : chaise(m.s - 0.85, m.z, p === 'chaiseUp' ? 1.55 : 0); });
   if (set.dress?.startsWith('living')) extras.push(sofa(up ? 1.55 : 0));
   return set.club ? clubShot(cam, acts, clubAt(spec.club, frame)) : shot(cam, acts, frame / 24, set.dress, set.flash, extras);
 };

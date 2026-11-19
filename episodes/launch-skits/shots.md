@@ -60,3 +60,13 @@ Scripts: `nio-soul/skits/v9/scripts.md` and `nio-soul/skits/v9/aux.md` (writers'
 | Group Photo 33 to 38 | The roof fills: neighbours, a mum and two kids, Mrs. Okafor with her folding chair, a speaker, a crowd | The building comes up for the sunset | Each group comes out of the stair door first, then the wide |
 | Group Photo 37 | The three at the stair door turn back (there is no staircase set) | Their phones light up with the sunset on the way down | Three dings, their screens glow, they turn |
 | Group Photo 42 to 44 | The album fills with the neighbours' photos, his sunset at the top | Where the group photo ended up | The real gallery view, three beats, each with more photos |
+
+## One Sip v10 (writers' room, Nov 19, after the stranger failed v9)
+
+| Shot | What is strange | Why | How the viewer knows |
+|---|---|---|---|
+| One Sip 8, 18 | Sami takes Maya's beret, then Theo's long coat, off the hooks by the door | Each sip makes him a worse guest | The beret and the coat hang on the hooks in the shots before; he reaches up and they're on him |
+| One Sip 22 | A glove from the coat pocket, a slap | The duel ("Is it.") | The coat is on him first; the glove is in his hand at the slap |
+| One Sip 23, 27 | Guests filming him | Where the morning's photos come from | Phones up in the wide shots |
+| One Sip 26 | The shade off the floor lamp, worn like a crown | The king | The lamp by the sofa has its shade in every earlier shot; bare after |
+| One Sip 32 to 37 | The next morning on the sofa: the buzzing phone, the review screens, his thumb hovering, the duvet over his head | The night is in the party's album | The real face-review screen, the guests' own photos from the night |

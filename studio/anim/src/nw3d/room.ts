@@ -418,6 +418,12 @@ export const pose = (a: Act) => {
     props.push({ c: pc, x: s.side, y: up, z: fwd, h: [0.21, 0.025, 0.21], col: '#d8b88a' });
     for (const i of [0, 1] as const) { s = reach(s, i, add(pc, add(mul(s.side, i === 0 ? 0.2 : -0.2), [0, -0.03, 0])), add(out(i), [0, -0.3, 0]), P, up, fwd); hands[i] = 'open'; }
   }
+  // (One Sip v10) the duvet pulled up over his head: a big soft lump over the head and shoulders, his hands holding its edge
+  if (nm === 'duvet') {
+    const up: V = [0, 1, 0], pc = add(s.neckBase, add(mul(up, 0.06), mul(fwd, 0.06)));
+    props.push({ c: pc, x: s.side, y: up, z: fwd, h: [0.36, 0.34, 0.26], col: '#6f5169' });
+    for (const i of [0, 1] as const) { s = reach(s, i, add(pc, add(mul(s.side, i === 0 ? 0.16 : -0.16), add(mul(up, -0.2), mul(fwd, 0.2)))), add(out(i), [0, -0.5, 0]), P, up, fwd); hands[i] = 'fist'; }
+  }
   // (Group Photo v12) a flat hand up over his eyes against the sun, palm down, just above the brows
   if (nm === 'shade') {
     const up: V = [0, 1, 0], w = add(add(s.neckBase, mul(up, 0.27)), add(mul(fwd, 0.16), mul(s.side, -0.02)));
@@ -596,6 +602,19 @@ export const pose = (a: Act) => {
       pr(base, 0.25 * w, top, 0.13, '#efe2c2', { cutA: true, cutB: true });
       pr(at(-0.03, 0.17, 0.0), 0.255 * w, at(-0.031, 0.185, 0.0), 0.255 * w, '#c79a3a', { cutA: true, cutB: true });
     }
+    if (w0 === 'longcoat') {
+      // (One Sip v10) Theo's long camel coat off the hook, on Sami: over the torso, down past the knees, the sleeves to the wrists
+      const cc = '#a07a4e', r0 = P.torsoR + 0.035, knee = mul(add(s.kn[0], s.kn[1]), 0.5);
+      pr(add(s.neckBase, mul(s.chestDir, -0.02)), r0 - 0.01, s.hips, r0 + 0.01, cc);
+      pr(s.hips, r0 + 0.012, add(knee, [0, -0.08, 0]), r0 + 0.05, cc);
+      for (const i of [0, 1] as const) { pr(s.sh[i], 0.052, s.el[i], 0.048, cc); pr(s.el[i], 0.048, add(s.el[i], mul(sub(s.wr[i], s.el[i]), 0.85)), 0.046, cc); }
+      pr(add(s.neckBase, mul(s.side, 0.05)), 0.04, add(s.neckBase, mul(s.side, -0.05)), 0.04, '#8a6640'); // the collar
+    }
+    if (w0 === 'glove') {
+      // (One Sip v10) the glove from the coat pocket, held by its cuff in his right hand, the fingers hanging past the hand
+      const d = norm(sub(s.tip[1], s.wr[1]));
+      pr(s.wr[1], 0.03, add(s.tip[1], mul(d, 0.12)), 0.036, '#3a2a22');
+    }
     if (w0 === 'beret') {
       // the music snob's beret (One Sip v8): a soft black disc pulled to one side of the crown, a tiny stalk on top
       pr(at(0.05, 0.215, -0.01), 0.21 * w, at(0.07, 0.25, -0.01), 0.2 * w, '#1c1a20', { cutA: true, cutB: true });
@@ -669,6 +688,25 @@ export const studioShot = (camA: CamArg, acts: Act[]): Scene3 => {
 // dress: 'party' for the night of the party. flash: a photo taken with the flash on, so every face is lit from the lens.
 // THE FAINTING COUCH (One Sip): a burgundy velvet chaise longue, the raised end at its left (low s), gold feet.
 // cx, cz: the middle of its seat; it runs along s. It appears from nowhere, so it is drawn only when a shot asks for it.
+// (One Sip v10) the coat hooks on the wall by the door, and what hangs on them: Maya's black beret, Theo's long camel
+// coat. Each is in the room before Sami takes it. what: 'b' the beret, 'c' the coat.
+export const HOOKS = { s: 0.05, y: 1.62, z: 2.0 };
+export const hooks = (what: string): Soft => { const { s: hs, y, z } = HOOKS, p = (a: number, b: number, c: number) => P3(hs + a, y + b, z + c);
+  const prims = [cp(p(0.02, 0, -0.32), 0.022, p(0.02, 0, 0.32), 0.022, 0, '#6a4a34', 0.004), ...[-0.22, 0, 0.22].map((d) => cp(p(0.04, 0, d), 0.012, p(0.09, 0.03, d), 0.01, 0, '#2c2126', 0.002))];
+  if (what.includes('b')) prims.push(cp(p(0.1, -0.05, -0.22), 0.075, p(0.12, -0.12, -0.22), 0.07, 1, '#1c1a20', 0.01, { sq: 1.6 }));
+  if (what.includes('c')) prims.push(cp(p(0.11, -0.05, 0.0), 0.11, p(0.13, -0.42, 0.0), 0.14, 1, '#a07a4e', 0.03), cp(p(0.13, -0.42, 0.0), 0.14, p(0.13, -0.95, 0.0), 0.16, 1, '#a07a4e', 0.03));
+  return { origin: p(0.1, -0.3, 0), prims };
+};
+// (One Sip v10) the floor lamp by the sofa, its pleated cream shade (or bare, once Sami has it on his head)
+export const LAMP2 = { s: 2.3, z: 3.95 };
+export const floorLamp = (shade: boolean): Soft => { const b = P3(LAMP2.s, 0, LAMP2.z), q = (y: number) => add(b, [0, y, 0]) as V;
+  const prims = [cp(q(0.0), 0.13, q(0.03), 0.13, 0, '#2c2126', 0.004, { cutA: true, cutB: true }), cp(q(0.02), 0.014, q(1.42), 0.014, 0, '#2c2126', 0.004), cp(q(1.4), 0.05, q(1.47), 0.05, 1, '#fff2c8', 0.01, { em: 1 })];
+  if (shade) prims.push(cp(q(1.32), 0.25, q(1.57), 0.13, 1, '#efe2c2', 0.004, { cutA: true, cutB: true, em: 0.4 }), cp(q(1.32), 0.255, q(1.335), 0.255, 1, '#c79a3a', 0.004, { cutA: true, cutB: true }));
+  return { origin: q(0.8), prims };
+};
+// (One Sip v10) the duvet over Sami's lap on the sofa, the next morning
+export const blanketUp = (): Soft => ({ origin: P3(1.15, 0.85, 3.7), prims: [cp(P3(1.15, 0.5, 3.7), 0.34, P3(1.15, 1.02, 3.72), 0.27, 1, '#6f5169', 0.12, { tex: 2 }), cp(P3(0.85, 0.5, 3.5), 0.14, P3(1.45, 0.5, 3.5), 0.14, 1, '#6f5169', 0.06, { tex: 2 })] });
+export const blanket = (): Soft => ({ origin: P3(1.15, 0.6, 3.6), prims: [cp(P3(0.85, 0.58, 3.55), 0.13, P3(1.45, 0.58, 3.55), 0.13, 1, '#6f5169', 0.06, { sq: 1.5, tex: 2 }), cp(P3(0.9, 0.42, 3.38), 0.1, P3(1.4, 0.3, 3.36), 0.1, 1, '#6f5169', 0.05, { tex: 2 })] });
 export const chaise = (cs: number, cz: number, lift = 0): Soft => {
   const V0 = '#8a1f2e', V1 = '#6e1724', gold = '#c9a227', y = 0.36, half = 0.78;
   const p = (s0: number, y0: number, z0: number): V => P3(cs + s0, y0 + lift, cz + z0);

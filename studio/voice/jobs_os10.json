@@ -1,0 +1,121 @@
+[
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Is that juice?",
+"note": "Low whisper, curious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_01.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "He doesn't know that.",
+"note": "Low, sly, under his breath, certain he is about to prove a point. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os10_02.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Nah, I'm good. I can't. I get weird.",
+"note": "Polite, nervous, palms up, refusing. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "One sip. You'll be fine.",
+"note": "Easy, reassuring, friendly. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_04.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Wait, who's this? This is so underrated.",
+"note": "Sincere, suddenly passionate about music. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_05.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "It's on the radio.",
+"note": "Flat, deadpan, unimpressed. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os10_06.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Before it was on the radio though.",
+"note": "Earnest, a little superior. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_07.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Can I ask you something? Where do you see yourself in five years?",
+"note": "Earnest, like a life coach, leaning in. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_08.wav"
+},
+{
+"who": "imane",
+"role": "dimane",
+"text": "At this party?",
+"note": "Dry, unimpressed, short. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_09.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "He's fine, he's fine.",
+"note": "Quick, apologetic, covering for his friend. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_11.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Whose coat is this?",
+"note": "Haughty, like a duke, holding up a coat. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_12.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Mine.",
+"note": "Flat, short. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_13.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Is it.",
+"note": "Cold, posh, suspicious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_14.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay. Okay okay okay.",
+"note": "Alarmed, stepping in, trying to calm it down. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_15.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "This is my table now.",
+"note": "Grand, royal, standing on a table. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os8_16.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Off the table. Go home.",
+"note": "Fed up, firm, pointing, done with him. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os10_17.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "...So that's just me.",
+"note": "Quiet, slowly realising, small and embarrassed. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os10_19.wav"
+}
+]
