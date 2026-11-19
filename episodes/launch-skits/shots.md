@@ -47,3 +47,16 @@ Scripts: `nio-soul/skits/v9/scripts.md` and `nio-soul/skits/v9/aux.md` (writers'
 | Aux 16, 17 | A cake with candles on the island in front of one guy | "Happy Birthday" | Everyone in party hats, everyone turned to him |
 | Aux 20 | Everyone faces the front door, still | "Lift Music" | A ding, the door swings open |
 | Aux 23 to 30 | Theo throttling Nio on the porch | Rage-bait the founder asked for | Nio's line first; Maya and Sami pulling at Theo; Nio laughing "Do it" |
+
+## Group Photo v12 (writers' room, Nov 19, after the stranger failed v9)
+
+| Shot | What is strange | Why | How the viewer knows |
+|---|---|---|---|
+| Group Photo 1 to 22 | The sky is grey-violet with the sun behind a bank of cloud | The light is going: the itch, and the reveal is held back | Nio's first line says it |
+| Group Photo 5, 6 | Sami with a hand over his eyes | The sun is right in his eyes after the swap | His line says so |
+| Group Photo 16 | Theo walks off up on his tiptoes | The beat after "you're just short" | Nio's line just before; a steady angle, no follow |
+| Group Photo 24 | The sun drops under the cloud and the sky turns pink and gold | The light wins, right as he gives up | It changes on screen in one held shot after he turns round |
+| Group Photo 29 to 32 | A woman in a kitchen (Theo's house set, with the party off) | The cause on screen: his photo reaches the building | Her phone dings, the push with his sunset, she looks at her window, grabs a mug |
+| Group Photo 33 to 38 | The roof fills: neighbours, a mum and two kids, Mrs. Okafor with her folding chair, a speaker, a crowd | The building comes up for the sunset | Each group comes out of the stair door first, then the wide |
+| Group Photo 37 | The three at the stair door turn back (there is no staircase set) | Their phones light up with the sunset on the way down | Three dings, their screens glow, they turn |
+| Group Photo 42 to 44 | The album fills with the neighbours' photos, his sunset at the top | Where the group photo ended up | The real gallery view, three beats, each with more photos |

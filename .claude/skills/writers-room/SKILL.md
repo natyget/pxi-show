@@ -10,9 +10,11 @@ sharpen that principle. Never add a rule for a single note.
 
 1. **Story before jokes.** Write one sentence first: who wants what, what's in the way, what goes wrong. Every
    beat follows the last with "so" or "but". A beat that needs "and then" gets cut. Everyone who enters, every
-   object that gets used and every change of angle or position has a reason we can see. Jokes come out of the
+   object that gets used and every change of angle or position has a reason we can see, and every place fits
+   what happens there (a party needs a house full of people, not Nio's room). Jokes come out of the
    story; never write a beat to deliver a joke.
-2. **Everyone takes it seriously.** The absurd thing is real to the people in it. The comedy is their sincere,
+2. **Everyone takes it seriously.** The absurd thing is real to the people in it, so they react with real stakes:
+   they panic, ask questions, protect what they love. Never casual. The comedy is their sincere,
    reasonable logic about it (Gumball: "we can change the channel... on the TV"). Nobody explains the joke,
    announces it, sets up a punchline or winks.
 3. **Friends talk like friends.** Short lines, half-sentences, interruptions, reacting to what the other person
@@ -20,9 +22,13 @@ sharpen that principle. Never add a rule for a single note.
    nobody would actually say, and any stock construction ("I'm not being the ___ guy").
 4. **Show it, and act to each other.** The cause of every change is in the frame when it happens, and any
    reveal is planted in plain sight first. Write what Nio really feels in each beat (never smug or knowing).
-   Characters look at each other, never the camera.
-5. **PXI moves the plot.** Someone uses a real feature from `bible/pxi-product.md` the way a person would, and
-   that use causes or pays off a beat. Never a logo, never sold.
+   Characters look at each other, never the camera. The camera only moves for a story reason. Other characters
+   point things out to Nio; he doesn't stare at screens to tell us what happened.
+5. **A good story first, and PXI slips in.** Write a plot that would be good with no app in it. Then find the
+   moment the story itself makes something worth keeping (a crowd turns up, a party happens, a night goes wrong)
+   and let PXI catch it the way people really use it: a photo dropped in a shared album pulls the building onto
+   the roof, the gathering fills the album, we see the montage. The app can cause a beat or pay one off, but it
+   rides the story; it never interrupts it. No phone beat just for the product, no logo, never sold.
 
 Always: Nio is sharp, vain and certain, never a goof. Nothing from the slop list. Nothing sexual, no group as a
 punchline. It suits a 16-year-old.

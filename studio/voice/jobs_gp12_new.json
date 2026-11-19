@@ -1,0 +1,65 @@
+[
+{
+"who": "sami",
+"role": "dsami",
+"text": "Bro, the sun's right in my eyes.",
+"note": "Flat, hand over his face, annoyed. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Squint harder. It's giving mysterious.",
+"note": "Breezy, teasing, totally confident, a troll on purpose. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_04.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Get it from lower. Make me look tall.",
+"note": "Casual, a bit self-conscious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_05.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Ooh. Yeah. Now it's clean.",
+"note": "Pleased with the framing, eyes on his screen, not on her. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_09.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "...Clean.",
+"note": "Flat, quiet, offended, repeating his word back. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_10.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Wow.",
+"note": "Quiet, real, soft, awed by the sky, under his breath. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_13.wav"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Oh, it's stupid tonight. Look at that.",
+"note": "Delighted, warm, a neighbour stepping out onto the roof. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_14.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Your phone's going crazy.",
+"note": "Flat, a bit stunned, looking at the crowd. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_15.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Maybe the group photo was the friends we made along the way.",
+"note": "Completely deadpan, dry, not looking at his phone, a troll on purpose. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_16.wav"
+}
+]

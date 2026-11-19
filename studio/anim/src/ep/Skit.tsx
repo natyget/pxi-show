@@ -11,9 +11,9 @@ import { Cues } from '../lips/mouths';
 import { Fonts, Sub } from '../lib/Pixel';
 import { Accents } from '../nw3d/acting';
 import { ONE_SIP } from './skits/oneSip';
-import { GROUP_PHOTO } from './skits/groupPhoto';
 import { AUX } from './skits/aux';
 import { WAVE_BACK, WB_PICS } from './skits/waveBack';
+import { GROUP_PHOTO, GP_PICS, GP_TEST } from './skits/groupPhoto';
 import VO_OS from '../vo_os.json';
 import LIPS_OS from '../lips/os.json';
 import ACC_OS from '../lips/os_accents.json';
@@ -31,13 +31,13 @@ export type Line = { key: string; who: string; at: number }; // at: the frame in
 // img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. zoom: [scale, the height
 // it zooms toward, percent from the top], for a screen whose point is one row. flash: a camera flash at this frame.
 export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; finder?: boolean; tap?: [number, number, number, string?][]; say?: Line[]; sfx?: [string, number, number?][] };
-// beds: [sound, volume, the shot it stops at (optional: else it runs to the end)]
-export type SkitDef = { id: string; shots: Shot[]; beds: [string, number, number?][] };
+// beds: [sound, volume, the shot it stops at (optional: else it runs to the end), the shot it starts at (optional: else the start)]
+export type SkitDef = { id: string; shots: Shot[]; beds: [string, number, number?, number?][] };
 type VoLine = { file: string; who: string; sub: string; dur: number };
 const vo = { ...VO_OS, ...VO_GP, ...VO_AX, ...VO_WB } as unknown as Record<string, VoLine>;
 const lips = { ...LIPS_OS, ...LIPS_GP, ...LIPS_AX, ...LIPS_WB } as unknown as Record<string, Cues>;
 const acc = { ...ACC_OS, ...ACC_GP, ...ACC_AX, ...ACC_WB } as unknown as Record<string, Accents>;
-export const SKITS: Record<string, SkitDef> = { 'one-sip': ONE_SIP, 'group-photo': GROUP_PHOTO, aux: AUX, 'wave-back': WAVE_BACK, 'wb-pics': WB_PICS };
+export const SKITS: Record<string, SkitDef> = { 'one-sip': ONE_SIP, 'group-photo': GROUP_PHOTO, aux: AUX, 'wave-back': WAVE_BACK, 'wb-pics': WB_PICS, 'gp-pics': GP_PICS, 'gp-test': GP_TEST };
 
 // A shot is never shorter than its lines: the last line ends at least 6 frames before the cut.
 const lenOf = (s: Shot) => Math.max(s.frames, ...(s.say ?? []).map((l) => l.at + Math.ceil((vo[l.key]?.dur ?? 0) * 24) + 6));
@@ -125,7 +125,7 @@ export const Skit: React.FC<SkitProps> = (p) => {
         </Sequence>
       ))}
       {/* no music (founder, Nov 17): beds are room sound only */}
-      {def.beds.map(([f, v, until]) => <Sequence key={f} from={0} durationInFrames={until ? shots.find((s) => s.n === until)?.from ?? total : total} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} /></Sequence>)}
+      {def.beds.map(([f, v, until, start]) => { const a = start ? shots.find((s) => s.n === start)?.from ?? 0 : 0, b = until ? shots.find((s) => s.n === until)?.from ?? total : total; return <Sequence key={f} from={a} durationInFrames={Math.max(1, b - a)} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v} /></Sequence>; })}
       {shots.flatMap((s) => (s.shake ?? []).map((at, i) => <Sequence key={`${s.n}hit${i}`} from={s.from + at} layout="none"><Audio src={staticFile('sfx/sk_hit.wav')} volume={0.8} /></Sequence>))}
       {shots.flatMap((s) => (s.sfx ?? []).map(([f, at, v], i) => (
         <Sequence key={`${s.n}fx${i}`} from={s.from + at} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v ?? 1} /></Sequence>)))}

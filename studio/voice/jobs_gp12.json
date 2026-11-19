@@ -1,0 +1,107 @@
+[
+{
+"who": "nio",
+"role": "dnio",
+"text": "Light's going, light's going, everyone in.",
+"note": "In a rush, excited, holding up his phone. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp9_01.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Ugh, we're all backlit. Can we swap? I want the sun on my face.",
+"note": "Squinting at his screen, a little vain, bossy but sweet. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp10_02.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Lower.",
+"note": "Flat, sure of himself. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp9_06.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Bro, you're just short.",
+"note": "Gently, kind, matter-of-fact, a normal voice, not a punchline. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp9_07.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Whatever, man.",
+"note": "Shrugging it off, not hurt, walking away. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp9_08.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Maya. Maya! Come back, the light!",
+"note": "Calling after her, half panicking about the light, not about her. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp10_11.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Bro, the sun's right in my eyes.",
+"note": "Flat, hand over his face, annoyed. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Squint harder. It's giving mysterious.",
+"note": "Breezy, teasing, totally confident, a troll on purpose. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_04.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Get it from lower. Make me look tall.",
+"note": "Casual, a bit self-conscious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_05.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Ooh. Yeah. Now it's clean.",
+"note": "Pleased with the framing, eyes on his screen, not on her. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_09.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "...Clean.",
+"note": "Flat, quiet, offended, repeating his word back. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_10.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Wow.",
+"note": "Quiet, real, soft, awed by the sky, under his breath. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_13.wav"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Oh, it's stupid tonight. Look at that.",
+"note": "Delighted, warm, a neighbour stepping out onto the roof. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_14.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Your phone's going crazy.",
+"note": "Flat, a bit stunned, looking at the crowd. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_15.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Maybe the group photo was the friends we made along the way.",
+"note": "Completely deadpan, dry, not looking at his phone, a troll on purpose. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp12_16.wav"
+}
+]

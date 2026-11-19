@@ -216,10 +216,10 @@ export const ACTIONS: Record<string, Action> = {
 //  wave: a hand up by the head, open, waving side to side (hand: 0 his left, 1 his right; sitting or standing).
 //  slideFlyer (Prof H pushes the flyer across his desk), flyer (the flyer held up beside his face, toward whoever he faces),
 //  mop (the cleaner, walking), ticket (Darnell, sitting: the lab report on his knees, his ticket 4 on it under his left hand).
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox', 'throttle', 'pizza'] as const;
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox', 'throttle', 'pizza', 'foldChair', 'shade'] as const;
 // Costume pieces worn over the outfit (One Sip). A shot may change them at a frame: wear: [[0, []], [12, ['bowtie']]].
 export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'moustache', 'partyhat', 'lanyard', 'scarf', 'glasses', 'lampshade', 'beret', 'headset'];
-const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer', 'ticket'], TRAVEL_HOLDS = ['phone', 'cup', 'mop'];
+const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer', 'ticket'], TRAVEL_HOLDS = ['phone', 'cup', 'mop', 'foldChair'];
 
 export type ActorSpec = {
   who: string; outfit?: string;
@@ -237,6 +237,7 @@ export type ActorSpec = {
   glow?: number; // with hold 'phone': how much the screen lights his face from below, 0 to 1 (left out, the usual faint spill)
   wear?: string[] | [number, string[]][];
   hand?: 0 | 1; // the hand for a sip or a sniff
+  tiptoe?: number; // walks or stands up on his toes, this high (metres)
   pale?: Keyed; // goes white (Theo, at the end): 0 his own skin, 1 drained white. A number, or [frame, value] keys that ease between
 };
 // Talking: the mouth follows the voice line, shape by shape (src/lips/mouths.ts), over the face he has.
@@ -409,7 +410,7 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
     return { perf, clipT: acting ? act.rest![1] : undefined, who: paled(ch, keyed(a.pale, frame, 0)), clip: acting ? act.rest![0] : act.clip, t: act.back ? clipLength(act.clip) * 20 - t : act.loop ? t : Math.min(t + (act.from ?? 0), clipLength(act.clip) - 1), at: [s, z], yaw, face, outfit: a.outfit,
       stance: act.stance, arms: act.arms, upright: act.upright, seat: act.seat ? m.seat : undefined,
       phone: a.hold === 'phone' ? 1 : 0, glow: a.glow, crossed: a.hold === 'arms-crossed', look: a.look === 'camera' ? cam.pos : undefined, lookAmt: 0.7,
-      pose: a.hold, lift: m.on, wear: wearAt(a.wear, frame), hand: a.hand, thumb: spec.thumb && a === spec.actors[0] ? [...spec.thumb].reverse().find(([at]) => frame >= at)?.[1] ?? spec.thumb[0][1] : undefined };
+      pose: a.hold, lift: m.on, tiptoe: a.tiptoe, wear: wearAt(a.wear, frame), hand: a.hand, thumb: spec.thumb && a === spec.actors[0] ? [...spec.thumb].reverse().find(([at]) => frame >= at)?.[1] ?? spec.thumb[0][1] : undefined };
   });
   const camP: CamArg = spec.phone ? [spec.phone, 0] : cam;
   if (set.campus) { const sc = campusShot(set.campus, camP, acts, { ...spec.campus, time: frame / 24 }); return sc; } // the screen picture (spec.screen) is set by the composition, which knows where public/ is

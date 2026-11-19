@@ -1,0 +1,37 @@
+[
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Ugh, we're all backlit. Can we swap? I want the sun on my face.",
+"note": "Squinting at his screen, a little vain, bossy but sweet. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp10_02.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Ooh. That's nice. Way less going on now.",
+"note": "Pleased with himself, eyes on the screen, admiring the shot, not talking to her. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp10_09.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Wow.",
+"note": "Flat, quiet, hurt but cool, one word. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp10_10.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Maya. Maya! Come back, the light!",
+"note": "Calling after her, half panicking about the light, not about her. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp10_11.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay. I'm sorry. One more, the light's still\u2014",
+"note": "Apologetic, hopeful, quick, cut off. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_gp10_12.wav"
+}
+]

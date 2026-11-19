@@ -93,4 +93,16 @@ export const CAP = { ...npc('cap', 512, { skin: 4, hair: 1, style: 'ponytail', t
 // hat from the front, and the lightest grey as a swim cap), a navy work tunic and trousers.
 const CL = npc('cleaner', 640, { skin: 7, hair: 9, style: 'afro', top: 8, bottom: 0, shoes: 1, long: true, lashes: true, slight: true, height: 0.96 });
 export const CLEANER: Character = { ...CL, hairA: '#a8a29b', hairB: '#8e8882', hair: puff(0, 0.12, -0.04, 0.185, 18, 0.07), head: { ...CL.head, curls: 1 }, wardrobe: { out: { ...CL.wardrobe.out, top: { ...CL.wardrobe.out.top!, color: '#2f3d5c', long: true, sleeve: 0.9 }, bottom: { ...CL.wardrobe.out.bottom!, color: '#2f3d5c', cuff: '#2f3d5c' } } } };
-export const STRANGERS: Record<string, Character> = { girl: GIRL, girl2: GIRL2, girl3: GIRL3, dj: DJ, spinner: SPINNER, crown: CROWN, cap: CAP, cleaner: CLEANER };
+// (Group Photo v12) the building at 151 Parkway, out on the roof for the sunset. The neighbour with the mug is GIRL2's
+// face and voice (the kettle one, in her kitchen). MRS. OKAFOR from 3B: older, grey hair up in a bun, a long plum
+// cardigan, her own folding chair. A mum and her two kids (smaller bodies on the same rig, shorter torso), two more neighbours.
+const kid = (id: string, seed: number, over: NpcOver): Character => { const c = npc(id, seed, { slight: true, lashes: false, ...over }); return { ...c, body: { ...c.body, torso: c.body.torso * 0.72, shoulderHalf: c.body.shoulderHalf * 0.78, torsoR: c.body.torsoR * 0.82 } }; };
+const OK0 = npc('okafor', 303, { skin: 9, hair: 9, style: 'bun', top: 11, bottom: 6, shoes: 2, long: true, lashes: true, slight: true, height: 0.95 });
+export const OKAFOR: Character = { ...OK0, hairA: '#8e8882', hairB: '#6e6862' }; // grey, not white (white read as a cap)
+export const NB_MUM = npc('nbMum', 404, { skin: 4, hair: 1, style: 'twists', top: 3, bottom: 0, shoes: 0, long: true, lashes: true, slight: true, height: 1.0 });
+export const KID1 = kid('kid1', 405, { skin: 4, hair: 1, style: 'puff', top: 13, bottom: 0, shoes: 3, height: 0.6 });
+export const KID2 = kid('kid2', 406, { skin: 4, hair: 0, style: 'crop', top: 4, bottom: 3, shoes: 0, height: 0.55 });
+export const NB1 = npc('nb1', 407, { skin: 1, hair: 5, style: 'crop', top: 8, bottom: 2, shoes: 4, long: true, lashes: false, slight: false, height: 1.02 });
+export const NB2 = npc('nb2', 408, { skin: 6, hair: 0, style: 'buzz', top: 2, bottom: 1, shoes: 1, long: false, lashes: false, slight: false, height: 0.99 });
+export const STRANGERS: Record<string, Character> = { girl: GIRL, girl2: GIRL2, girl3: GIRL3, dj: DJ, spinner: SPINNER, crown: CROWN, cap: CAP, cleaner: CLEANER,
+  okafor: OKAFOR, nbMum: NB_MUM, kid1: KID1, kid2: KID2, nb1: NB1, nb2: NB2 };

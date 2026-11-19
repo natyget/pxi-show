@@ -159,6 +159,7 @@ export const PARTY_AMB: V = [0.56, 0.52, 0.58], PARTY_AMB_CHAR: V = [0.97, 0.92,
 export type Act = { who?: Character; clip: string; t: number; at: [number, number]; yaw: number; face: Face;
   stance?: number; arms?: number; upright?: number; seat?: number; phone?: number; glow?: number; hold?: number[]; crossed?: boolean; look?: V; lookAmt?: number; outfit?: string;
   pose?: string; lift?: number;
+  tiptoe?: number; // up on his toes this high (metres): the body rises, the toes stay on the floor (Theo walking off tall)
   hand?: number; // which hand a sip or sniff uses (0 his left, 1 his right): the one away from the camera keeps the face clear
   wear?: string[]; // costume pieces on top of the outfit (WEAR in world.ts): bowtie, monocle, tophat, sideburns
   clipT?: number; // the clip frame the body is drawn from, when it differs from the shot's time (a held pose: see acting.ts)
@@ -235,6 +236,7 @@ export const pose = (a: Act) => {
   const ch = a.who ?? NIO_CHAR, P = ch.body, nm = a.pose ?? '';
   let s: Skel = place(solve(sampleClip(a.clip, a.clipT ?? a.t), P, { stance: a.stance ?? 1, arms: a.arms ?? 1, upright: a.upright ?? 0, seat: a.seat }), [X(a.at[0]), a.at[1]], a.yaw);
   if (a.lift) { s = { ...s, sh: [...s.sh], el: [...s.el], wr: [...s.wr], tip: [...s.tip], thumb: [...s.thumb], hip: [...s.hip], kn: [...s.kn], an: [...s.an], toe: [...s.toe] } as Skel; shift(s, [0, a.lift, 0]); }
+  if (a.tiptoe) { const toe = s.toe.map((t) => [...t]); s = { ...s, sh: [...s.sh], el: [...s.el], wr: [...s.wr], tip: [...s.tip], thumb: [...s.thumb], hip: [...s.hip], kn: [...s.kn], an: [...s.an], toe: [...s.toe] } as Skel; shift(s, [0, a.tiptoe, 0]); s.toe = toe as typeof s.toe; }
   const props: Obb[] = []; const lights: Light[] = []; const extra: Prim[] = []; const hands: [Hand?, Hand?] = []; let phoneAt: PhoneAt | undefined;
   if (a.look) s = lookAt(s, a.look, a.lookAmt ?? 1, P);
   const fwd = norm(cross(s.side, s.chestDir)), UP: V = [0, 1, 0];
@@ -415,6 +417,17 @@ export const pose = (a: Act) => {
     const up: V = [0, 1, 0], pc = add(s.neckBase, add(mul(up, 0.42), mul(fwd, 0.05)));
     props.push({ c: pc, x: s.side, y: up, z: fwd, h: [0.21, 0.025, 0.21], col: '#d8b88a' });
     for (const i of [0, 1] as const) { s = reach(s, i, add(pc, add(mul(s.side, i === 0 ? 0.2 : -0.2), [0, -0.03, 0])), add(out(i), [0, -0.3, 0]), P, up, fwd); hands[i] = 'open'; }
+  }
+  // (Group Photo v12) a flat hand up over his eyes against the sun, palm down, just above the brows
+  if (nm === 'shade') {
+    const up: V = [0, 1, 0], w = add(add(s.neckBase, mul(up, 0.27)), add(mul(fwd, 0.16), mul(s.side, -0.02)));
+    s = reach(s, 1, w, add(out(1), [0, -0.3, 0]), P, mul(up, -1), mul(s.side, 1)); hands[1] = 'open';
+  }
+  // (Group Photo v12) a folded chair carried at her right side by its top edge, legs down
+  if (nm === 'foldChair') {
+    const up: V = [0, 1, 0], rt = mul(s.side, -1), pc = add(add(s.hip[1], mul(rt, 0.16)), add(mul(up, -0.08), mul(fwd, 0.04)));
+    props.push({ c: pc, x: s.side, y: up, z: fwd, h: [0.025, 0.42, 0.21], col: '#c84a3a' });
+    s = reach(s, 1, add(pc, mul(up, 0.4)), add(out(1), [0, -0.6, 0]), P, mul(s.side, -1), fwd); hands[1] = 'fist';
   }
   // the flyer held up in both hands at chest height, its face to whoever he shows it to
   if (nm === 'flyer') {
