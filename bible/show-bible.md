@@ -350,3 +350,6 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "i told the writer to fix some writing and sharpen the stories"
   - "i do not see why i need to add hugging face when access ro website all over are limitless and its full access.
     i cant even add hugging face since its full access"
+- **Nov 19, 4:56 PM CT, word for word (app demo posts):**
+  - "lets bump that number up ok maybe a little more because quality is good and now we just need quantity. also never forget the tip about how no designer will write out find o appstore when they can show the appstore icon, so the idea is we design for quick understanding not slop and over explanation. that also doesnt mean we never write text as when it was necessary we said free on the appstore icon top"
+  - Earlier the same day: no neon backgrounds; the end frame is the app icon, "Free", and the App Store and Google Play badges; no "Late Checkout" and no Nio-in-bedroom covers, use real event covers.

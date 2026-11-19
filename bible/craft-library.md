@@ -113,6 +113,11 @@ The second pilot build was "too fast and something hard to follow". These are fl
 
 ## Text on screen
 
+- **Show, don't spell it out (founder, Nov 19).** Design for understanding at a glance. If an icon, badge,
+  screen or picture can say it, use that and write nothing: the App Store and Google Play badges, never "find
+  us on the App Store". Write a word only when the picture cannot carry it, like "Free" above the badges. No
+  slogans, no explaining what the viewer can already see. Plain dark backgrounds, never neon glows. App
+  screens show real event covers (the poster set in pxispace.com `public/img/posters`), never "Late Checkout".
 - Text appears only when the picture cannot say it: a time or date that matters, a flashback stamp, a place
   name the first time, the tag.
 - **No standing label.** No pill, banner or title that stays on screen saying what the episode or the series is.
