@@ -1,0 +1,7 @@
+{"what-is-pxi":[
+ {"type":"raw","card":"<div style='position:absolute;inset:0;background:url(shout.png) center 30%/cover;image-rendering:pixelated'></div><div style='position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,0) 38%)'></div><div class='t' style='top:96px;font-size:96px'>what is PXI?</div><img src='pxi-icon.png' style='position:absolute;right:56px;top:96px;width:110px;height:110px;border-radius:26px'>"},
+ {"kicker":"1/4","text":"find something to do","img":"s/discover-wed.png"},
+ {"kicker":"2/4","text":"join the event","img":"s/friendsgiving-event.png"},
+ {"kicker":"3/4","text":"everyone shoots into one album","img":"s/friendsgiving-camera.png","ring":[[360,152,340,74]]},
+ {"kicker":"4/4","text":"every photo from every phone, in one place","img":"s/friendsgiving-gallery.png"},
+ {"type":"end"}]}
