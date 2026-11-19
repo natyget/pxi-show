@@ -78,3 +78,10 @@ demo clips and Nio stills on TikTok.
 | Wed Nov 25 17:00 | Night before Thanksgiving slideshow Reel | IG + FB |
 | Wed Nov 25 20:00 | Friend group dictionary (Nio) | TikTok |
 | Sat Nov 28 18:00 | Wedding slideshow Reel | IG + FB |
+
+**More volume (founder, Nov 19, 4:56 PM).** Added: baby shower carousel Fri Nov 27 17:00, graduation Sun Nov 29 12:00,
+game night Mon Nov 30 12:00, run club Tue Dec 1 12:00 (IG + FB, TikTok +5 min; `public/social/nio-week3/`). Clips cut
+from the demos (`public/social/nio-reels/`): flash lights-off TikTok Fri 20 21:00 and IG Reel Sat 21 20:00;
+Friendsgiving "none of the pics" TikTok Wed 25 10:00; Thanksgiving Day host slideshow TikTok 09:00, album clip IG Reel
+09:05 and TikTok 19:00; gallery scroll IG Reel Fri 27 19:00; tips slideshow TikTok Fri 27 20:00; birthday slideshow
+TikTok Sat 28 17:00.
