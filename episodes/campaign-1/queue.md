@@ -62,3 +62,19 @@ The flash-on carousel is dropped (replaced by this batch).
 Tue 17:00 Friendsgiving reel (IG/FB Reel off grid, TikTok, YouTube Short), Wed where to go the night before
 Thanksgiving (carousel), Thu family chat vs the Thanksgiving album (single), Fri tagged in new photos (single), Sat
 wedding photos (carousel). Stories: Tue tagged, Thu family chat. The Sat thread story is a draft.
+
+**Heavier posting (founder, Nov 19, 4:40 PM: "like these now its time to post heavy on tiktok n ig").** No new
+generation. Added from what exists: slideshow Reels cut from the carousels (IG + FB, off grid; `public/social/nio-reels/`),
+demo clips and Nio stills on TikTok.
+
+| When | Piece | Where |
+|---|---|---|
+| Sat Nov 21 20:00 | Flash-on loop clip | TikTok |
+| Sun Nov 22 12:00 | Tips slideshow Reel | IG + FB |
+| Sun Nov 22 20:00 | Sunday loop (Nio) | IG + FB Reel, TikTok 20:05 |
+| Mon Nov 23 12:00 | Gallery scroll clip | TikTok |
+| Mon Nov 23 20:00 | Birthday slideshow Reel | IG + FB |
+| Tue Nov 24 10:00 | Host Friendsgiving slideshow Reel | IG + FB |
+| Wed Nov 25 17:00 | Night before Thanksgiving slideshow Reel | IG + FB |
+| Wed Nov 25 20:00 | Friend group dictionary (Nio) | TikTok |
+| Sat Nov 28 18:00 | Wedding slideshow Reel | IG + FB |
