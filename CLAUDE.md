@@ -35,8 +35,8 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - **The studio checks every step** (`engine/studio/departments.md`, founder, Nov 19). Each department (Story, Board,
   Model, Keys, In-betweens, Voice, Sound, Finish) is a fresh agent with a small packet, one agent per scene for Keys
   and In-betweens, and never grades its own work. A gate checks each output before the next department starts:
-  `studio/anim/tools/story_check.ts` (who talks, who looks at us, what changed off screen, who is off model, empty
-  and repeated shots), `engine/tools/sound_check.py` (each sound heard as itself, alone), and blind readers on stills.
+  `studio/anim/tools/story_check.ts` (who talks, who looks at us, what changed off screen, who is off model, empty,
+  repeated and dead shots, stacked sounds), `engine/tools/sound_check.py` (each sound heard as itself, alone), and blind readers on stills.
   Each passed gate writes a lock; a remake changes only the shots a note names (`story_check --lock --allow`).
   When the stranger finds something every gate passed, a check for it is added to that gate in the same run.
 - **The stranger reviews every finished video and cover** (`engine/reviewer.md`): a reviewer who knows nothing,

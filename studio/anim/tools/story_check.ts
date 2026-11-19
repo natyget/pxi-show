@@ -111,6 +111,31 @@ for (const s of tl) {
   prevKey = key;
 }
 
+// 8. NO DEAD STRETCH. A shot over 3 s with no line, no face change, nobody travelling and nothing hitting is a long
+//    still shot with nothing happening (stranger, all four launch skits). Give it something that
+//    happens, or cut it under 3 s.
+for (const s of tl) {
+  if (!s.spec || s.frames <= 72 || (s.say ?? []).length || s.shake?.length || s.tap?.length || s.poof?.length) continue;
+  const faces = new Set<string>(); let moves = false;
+  for (let f = 0; f < s.frames; f += 2) { const sp = specAt(s, f)!; sp.actors.forEach((a) => { faces.add(a.who + faceAt(a.face, f)); if (a.to) moves = true; }); }
+  if (!moves && faces.size <= specAt(s, 0)!.actors.length) hit('dead', s.n, s.from, `${T(s.frames)} s with no line, no face change and nobody moving. Give it a reaction or cut it to under 3 s.`);
+}
+// 9. NO STACKED SOUND. The same effect over itself, or more than three effects at once, piles into static (Aux v12:
+//    the per-shot rain clips stacked). Every effect plays its whole file unless the shot gives it a length.
+const wavFrames = (k: string) => { try { const b = readFileSync(new URL(`../public/sfx/${k}.wav`, 'file://' + __filename).pathname);
+  let o = 12; while (o < b.length - 8) { const id = b.toString('ascii', o, o + 4), n = b.readUInt32LE(o + 4); if (id === 'fmt ') var rate = b.readUInt32LE(o + 16), ba = b.readUInt16LE(o + 20); if (id === 'data') return Math.ceil((n / (ba! || 1) / (rate! || 48000)) * 24); o += 8 + n + (n % 2); } } catch { /* no file */ } return 24; };
+const fx: { k: string; a: number; b: number; n: number }[] = [];
+for (const s of tl) {
+  for (const [k, at, , len] of s.sfx ?? []) fx.push({ k, a: s.from + at, b: s.from + at + (len ?? wavFrames(k)), n: s.n });
+  for (const at of s.shake ?? []) fx.push({ k: 'sk_hit', a: s.from + at, b: s.from + at + wavFrames('sk_hit'), n: s.n });
+}
+fx.forEach((e, i) => {
+  const same = fx.find((o, j) => j < i && o.k === e.k && o.b > e.a + 2);
+  if (same) hit('sound', e.n, e.a, `${e.k} starts over itself (it is still playing from shot ${same.n}). Give it a length, or play it once.`);
+  const at = fx.filter((o) => o.a <= e.a && o.b > e.a).length;
+  if (at > 3) hit('sound', e.n, e.a, `${at} effects play at once here. It piles into noise: keep three or fewer.`);
+});
+
 // 7. THE LOCK. A remake keeps every shot nobody asked to change (founder, Nov 19: "each remake is radically different").
 const fp = (s: (typeof tl)[0]) => createHash('sha1').update(JSON.stringify([s.img, s.frames, s.say, s.sfx, s.spec ? [0, Math.floor(s.frames / 2), s.frames - 1].map((f) => specAt(s, f)) : null])).digest('hex').slice(0, 12);
 const snap = opt('--snapshot'), lock = opt('--lock');
@@ -136,7 +161,7 @@ if (args.includes('--keys')) {
   }
   keys.sort((a, b) => a.f - b.f); console.log(JSON.stringify(keys)); process.exit(0);
 }
-const order = ['speaker', 'continuity', 'cast', 'lens', 'empty', 'repeat', 'lock'];
+const order = ['speaker', 'continuity', 'cast', 'lens', 'empty', 'repeat', 'dead', 'sound', 'lock'];
 hits.sort((a, b) => order.indexOf(a.check) - order.indexOf(b.check) || a.t - b.t);
 if (args.includes('--json')) console.log(JSON.stringify(hits, null, 1));
 else { console.log(`Story check: ${skit}, ${tl.length} shots, ${T(tl.reduce((a, s) => a + s.frames, 0))} s`); for (const h of hits) console.log(`${h.check.padEnd(10)} shot ${String(h.shot).padEnd(4)} ${String(h.t).padStart(5)}s  ${h.msg}`); }

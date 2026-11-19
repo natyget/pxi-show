@@ -21,6 +21,10 @@ This page is that. It replaces "one thread builds the whole skit, renders it, an
   effect alone: 18 of the 30 synthesised skit sounds are not heard as what they are. The put-back pop is heard as a
   beep, the mower as a helicopter, the splash as an explosion, the dinner bed as a ding, the roof wind as an
   eruption, the creak as a fart. Those are the exact stretches the stranger flagged.
+- **Sound effects stacked.** Shot sounds play their whole file unless given a length, so a bed placed on every
+  shot (Wave Back's quad and dinner, Aux's rain) restarts over itself. The story check now flags any effect that
+  starts over itself and any moment with more than three effects: Wave Back's lake escape has up to eight at once,
+  where the stranger heard a helicopter and explosions.
 - **Remakes were rewritten from scratch.** Nothing recorded which shots had passed, so each version changed
   everything. Now each passed gate writes a lock, and a remake may only change the shots a note names.
 - **Text cold reads passed scripts the videos then failed.** The script is read with the writer's intentions in the
@@ -54,7 +58,7 @@ hands out packets, runs every gate, writes the locks and `STATE.md`. It builds n
 | 1 | **Story** (writers' room) | skit | the skill `.claude/skills/writers-room/`, the premise | `script.md` and the **beat sheet**: per beat, who wants what, what causes it, and what is ON SCREEN that shows the cause | **Blind beat read**: a fresh reader gets only the on-screen column and says, per beat, who wants what and why it happened. Must match the want and cause columns |
 | 2 | **Board** | skit | the beat sheet, `bible/acting.md`, the world registries (names only: sets, cameras, marks, cast, holds, wear, sounds) | the shot list in code (`src/ep/skits/<skit>.ts`) with every line, face and sound placed, and the intent ledger | `skit_check` (world) and `story_check` both PASS. Every remaining hit is a deliberate choice written into the spec (`lens: true`, `back: true`, a line's `off: "why"`) and the ledger |
 | 3 | **Model** | new character, outfit or prop | the golden cast sheet, the new thing's spec | its entry in `characters.ts` / `people.ts` and a model sheet render beside the golden cast | **Blind model read**: "is anyone here from a different show? anything broken, glued on or blocky?" Pass adds it to `cast.json` |
-| 4 | **Keys** | scene | that scene's shots and beats only | the key poses: first frame, every face change, every line's key word; rendered as the **animatic** (one still per key with the subtitle under it, silent) | `story_check` on the scene, then the **blind animatic read**: a fresh reader gets only the stills and subtitles and says, per line, who says it and to whom, and per beat what caused it. Must match the beat sheet. Pass writes `lock/keys.json` |
+| 4 | **Keys** | scene | that scene's shots and beats only | the key poses: first frame, every face change, every line's key word; rendered as the **animatic** (one still per key with the subtitle under it, silent) | `story_check` on the scene, then the **blind animatic read** (it also names any face with no eyes: Aux v12 rendered Theo and Sami blank): a fresh reader gets only the stills and subtitles and says, per line, who says it and to whom, and per beat what caused it. Must match the beat sheet. Pass writes `lock/keys.json` |
 | 5 | **In-betweens** | scene, a different agent from its Keys | the scene's shots, the keys lock, `bible/acting.md` | timing between keys: holds, snaps, blinks, gestures, walks, the acting pass | `story_check --lock lock/keys.json` (no key may move), world check, `dead_check.sh` on the scene draft, and a **blind motion read** of the scene's half-size contact sheet: "is anyone stiff, bobbing, sliding, or broken?" |
 | 6 | **Voice** | skit | the lines, acting notes, `bible/characters.md` voice rows | takes, picked by tone | `voice_check.py`, `tone_check.py`, `accents.py` (key word lands), as now |
 | 7 | **Sound** | skit | the shot list, `sounds.json`, the scene drafts | beds and effects placed per shot | `sound_check.py` on every key used (each heard as itself, nothing on the bad list); every effect's `source` is on screen in its shot; `audio_tags.py` on each scene mix flags nothing; no bed under a line |
@@ -73,7 +77,7 @@ what it should have seen, and is never re-run with more context.
 > You are a viewer who has never seen this show. Here are [still frames with subtitles | a contact sheet | a model
 > sheet]. Answer plainly; "not sure" counts as no. (1) For each subtitle, who in the picture says it, and to whom?
 > (2) What does each person want? (3) For each thing that changes, what did you SEE cause it? (4) Is anyone looking
-> at you, broken, off-model, or doing nothing? (5) The first moment you were lost.
+> at you, broken, off-model, or doing nothing? Does every face have both eyes and a mouth (name any blank face)? (5) The first moment you were lost.
 
 Readers are cheap (stills, not video) and early (before the expensive parts). A failed animatic costs a few
 stills, not a full render and a stranger round.

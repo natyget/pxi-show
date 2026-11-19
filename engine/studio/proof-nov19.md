@@ -189,3 +189,13 @@ RESULT FAIL (18 of 30 sounds not heard as what they are)
 opening with their subtitles: Marcus's first line sits on Sis's hair (sheet in the project files,
 `studio-engine/wave-back-animatic-opening.jpg`). A blind reader given that sheet faces the same problem the
 stranger did, a full render and a stranger round earlier.
+
+## Added after the Aux v12 review (Nov 19, evening)
+
+Two more story-check columns: **sound** (an effect that starts over itself, or more than three at once) and **dead**
+(a shot over 3 s with no line, face change, travel or hit). On the cut files: Wave Back 45 sound hits (the quad and
+dinner beds restart every shot; up to eight effects at once from 56 to 61 s, where the stranger heard a helicopter
+and explosions), Group Photo 8 (stacked notification dings), One Sip 2, Aux 2. No dead hits: every long stretch has
+a line or a face change, so the stranger's "nothing happening" is about what the picture shows, and is the motion
+reader's question. Blank faces (Aux v12: Theo at 10.6 s, Sami at 50.4 s and 60.4 s with no eyes) are a render
+defect the spec cannot see; the animatic and motion readers now name any face without eyes.
