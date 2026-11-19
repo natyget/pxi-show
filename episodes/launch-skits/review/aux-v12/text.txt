@@ -1,0 +1,21 @@
+Everything written on screen, in order. Times are seconds into a 78-second video.
+
+0.2 to 2.8   subtitle: That girl's reading the fire exit sign.
+4.3 to 6.5   subtitle: She's been reading it for ten minutes.
+7.4 to 9.0   subtitle: Give me the aux.
+9.9 to 12.0   subtitle: Just don't make it worse.
+19.0 to 20.7   subtitle: It's raining inside!
+20.5 to 23.0   subtitle: My phone, my phone!
+24.7 to 26.0   subtitle: ...No.
+29.5 to 32.1   subtitle: Okay, okay, I'm stopping it.
+37.3 to 39.7   subtitle: Bro, film my feet.
+39.8 to 42.1   subtitle: Nio! Turn it off!
+42.1 to 43.3   subtitle: I'm trying!
+49.6 to 50.9   subtitle: Give me that.
+55.0 to 56.6   subtitle: I was on the ceiling.
+57.3 to 59.3   subtitle: My shoe's still up there.
+60.0 to 61.2   subtitle: Thank you.
+61.5 to 62.9   subtitle: Next weekend?
+70.1 to 72.0   subtitle: Same time next weekend?
+73.5 to 75.0   subtitle: He's not worth it.
+75.2 to 76.6   subtitle: Worth it.

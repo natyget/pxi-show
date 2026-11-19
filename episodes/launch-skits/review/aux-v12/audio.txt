@@ -1,0 +1,21 @@
+What the sound is heard as, every 4 s (an audio classifier; the score is how sure it is).
+  0.0-  4.0s  Speech 0.63, Music 0.54, Whip 0.07
+  4.0-  8.0s  Speech 0.62, Music 0.41, Whip 0.26, Burst, pop 0.05
+  8.0- 12.0s  Speech 0.68, Music 0.60, Sigh 0.42, Gasp 0.27
+ 12.0- 16.0s  Ding 0.61, Ping 0.13, Music 0.10, Clang 0.09
+ 16.0- 20.0s  Ding 0.32, Speech 0.24, Music 0.17, Rain on surface 0.16
+ 20.0- 24.0s  Speech 0.62, Rain on surface 0.32, Rain 0.16, Raindrop 0.14
+ 24.0- 28.0s  Rain on surface 0.44, Rain 0.37, Speech 0.30, Raindrop 0.29
+ 28.0- 32.0s  Speech 0.56, Explosion 0.17, Burst, pop 0.13, Rain on surface 0.08
+ 32.0- 36.0s  Music 0.64
+ 36.0- 40.0s  Speech 0.39, Music 0.36, Howl 0.15, Baby cry, infant cry 0.11
+ 40.0- 44.0s  Speech 0.77, Meow 0.10
+ 44.0- 48.0s  Ding 0.26, Music 0.22, Sound effect 0.16, Ringtone 0.11
+ 48.0- 52.0s  Speech 0.47, Music 0.42, Ding 0.23, Clang 0.06
+ 52.0- 56.0s  Speech 0.51, Music 0.47, Marimba, xylophone 0.14, Vibraphone 0.10
+ 56.0- 60.0s  Speech 0.52, Music 0.39, Vibraphone 0.23, Marimba, xylophone 0.16
+ 60.0- 64.0s  Ding 0.45, Speech 0.29, Music 0.20, Glockenspiel 0.10
+ 64.0- 68.0s  Ding 0.39, Sound effect 0.13, Beep, bleep 0.07, Clang 0.06
+ 68.0- 72.0s  Ding 0.57, Clang 0.19, Speech 0.09
+ 72.0- 76.0s  Speech 0.62, Groan 0.16, Sigh 0.13, Music 0.08
+RESULT PASS (0 stretches heard as something that does not belong)
