@@ -47,7 +47,8 @@ if __name__ == '__main__':
         for f in l['files']:
             m = M[f]; b = B[l['who']]; rate = syll(l['text']) / max(m['dur'], 0.2)
             v = ((m['db'] - b['db']) / 4, (m['pitch'] - b['pitch']) / 2, (m['range'] - b['range']) / 3, (m['bright'] - b['bright']) / 400, (rate - 4.5) / 1.5)
-            score = sum(a * c for a, c in zip(w, v)) - (2.0 if m['gap'] > 0.35 and len(l['text'].split()) <= 6 else 0) - (1.5 if rate < 2.2 else 0)
+            one = not any(c in l['text'].rstrip('.?!') for c in '.?!')  # one sentence: a gap inside it is broken rhythm
+            score = sum(a * c for a, c in zip(w, v)) - (3.0 if m['gap'] > 0.35 and one and len(l['text'].split()) <= 6 else 0) - (3.0 if rate < 2.2 else 0)
             flag = ' GAP' if m['gap'] > 0.35 else ''; flag += ' SLOW' if rate < 2.2 else ''
             print(f"{l['key']:10} {l['tone']:8} {f.split('/')[-1]:24} db {m['db']:6.1f} pitch {m['pitch']:5.1f} range {m['range']:4.1f} rate {rate:4.1f}/s gap {m['gap']:.2f} score {score:5.2f}{flag}")
             if best is None or score > best[0]: best = (score, f)
