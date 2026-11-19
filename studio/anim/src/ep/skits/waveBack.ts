@@ -59,7 +59,7 @@ const shots: Shot[] = [
   { n: 16, frames: 20, spec: { set: 'livingDay', camera: 'couch', frames: 1, actors: [sit('maya', 'couch', 'suspicious', { hold: 'phone' })], push: 0.08 }, say: [L('wb9_11', 'maya', 4)] },
   { n: 17, frames: 20, spec: { set: 'nioRoom', camera: 'bed', frames: 1, actors: [sit('nio', 'bedEdge', 'real', { hold: 'phone' })], push: 0.06 }, say: [L('wb9_12', 'nio', 2)] },
   { n: 18, frames: 20, spec: { set: 'livingDay', camera: 'couch', frames: 1, actors: [sit('maya', 'couch', 'suspicious', { hold: 'phone' })] }, say: [L('wb9_13', 'maya', 2)] },
-  { n: 19, frames: 20, spec: { set: 'nioRoom', camera: 'bed', frames: 1, actors: [sit('nio', 'bedEdge', 'neutral', { hold: 'phone' })] }, say: [L('wb9_14', 'nio', 2)] },
+  { n: 19, frames: 20, spec: { set: 'nioRoom', camera: 'bed', frames: 1, actors: [sit('nio', 'bedEdge', [[0, 'neutral'], [12, 'real'], [40, 'neutral']], { hold: 'phone' })], push: 0.14 }, say: [L('wb9_14', 'nio', 2)] },
   { n: 20, frames: 20, spec: { set: 'livingDay', camera: 'couch', frames: 1, actors: [sit('maya', 'couch', 'deadpan', { hold: 'phone' })], push: 0.1 }, say: [L('wb9_15', 'maya', 6)] },
   // he stares at the ceiling
   { n: 21, frames: 20, spec: { set: 'nioRoom', camera: 'bed', frames: 1, actors: [sit('nio', 'bedEdge', [[0, 'deadpan'], [14, 'real']], { gaze: [0, 0.7] })], push: 0.1 }, say: [L('wb9_16', 'nio', 12)] },
