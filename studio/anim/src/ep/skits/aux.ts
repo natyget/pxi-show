@@ -48,7 +48,7 @@ const shots: Shot[] = [
   { n: 5.4, frames: 40, shake: [16], spec: T('panic', [], { party: { ...DEAD, headsUp: 0.9 } }, 0.2), rain: [[0, 0.06], [16, 1]], sfx: [['sk_rain', 16, 0.45], ['sk_gasp', 18, 0.6]] },
   // Screams: phones up shirts, under the island, a pizza box over a head.
   { n: 6, frames: 56, shake: [2], spec: T('panic', [st('girl2', 'pizza', 'shock', { hold: 'pizza' }), st('guest3', 'shirt', 'shock', { hold: 'phone' }), st('cap', 'doorA', 'uneasy', { facing: 'gOutD' }), st('girl', 'doorB', 'shock', { back: true, facing: 'gOutD' })], { party: PANIC }, 0.3),
-    rain: true, say: [L('ax12_06', 'guest1', 2), L('ax12_07', 'guest2', 28)], sfx: RAIN },
+    rain: true, say: [L('ax12_06', 'guest1', 2), L('ax12_07', 'guest2', 38)], sfx: RAIN },
   // Theo turns and sees water running down his record wall. He freezes. Viewer: "his records. That's what he cares about."
   { n: 7, frames: 28, spec: T('records', [], { party: PANIC }, 0.2), rain: true, sfx: RAIN },
   { n: 7.5, frames: 40, spec: T('theo', [st('theo', 'theo', [[0, 'shock'], [14, 'deadInside']], { gaze: [-0.9, 0] })], { party: PANIC }, 0.06), rain: true, say: [L('ax12_08', 'theo', 16)], sfx: RAIN },
@@ -60,17 +60,17 @@ const shots: Shot[] = [
   { n: 8.6, frames: 22, spec: T('theo', [st('theo', 'theo', [[0, 'deadInside'], [8, 'rage']], { hold: 'records', facing: 'nioBack' })], { party: PANIC }, 0.1), rain: true, sfx: RAIN },
   // he drops the records and comes at Nio, arms out, shoving through; Nio sees him coming and backs up
   { n: 9, frames: 8, spec: T('lungeSide', [{ who: 'theo', at: 'theo', to: 'theoLunge', action: 'jog', face: 'rage', hold: 'throttle' }, st('nio', 'nioBack', [[0, 'uneasy'], [4, 'shock']], { hold: 'phone', facing: 'theoLunge' })], { party: { ...PANIC, fill: 0.1 } }, 0.1),
-    rain: true, say: [L('ax12_09', 'nio', 4)], sfx: [...RAIN, ['sk_splash', 1, 0.5]] },
+    rain: true, sfx: [...RAIN, ['sk_splash', 1, 0.5]] },
   // Theo's hands coming for his neck; Nio leaning away, talking fast
-  { n: 9.5, frames: 30, shake: [0], spec: T('ots', [st('theo', 'theoLunge', 'rage', { hold: 'throttle', facing: 'nioBack' }), st('nio', 'nioBack', 'shock', { hold: 'phone', facing: 'theoLunge' })], { party: { ...PANIC, fill: 0.1 } }, 0.18), rain: true, sfx: RAIN },
+  { n: 9.5, frames: 56, shake: [0], spec: T('ots', [st('theo', 'theoLunge', 'rage', { hold: 'throttle', facing: 'nioBack' }), st('nio', 'nioBack', 'shock', { hold: 'phone', facing: 'theoLunge' })], { party: { ...PANIC, fill: 0.1 } }, 0.18), rain: true, say: [L('ax12_09', 'nio', 2)], sfx: RAIN },
   // 3. a wet thumb goes for pause and slides onto skip: "Through The Roof"
   ...tapSkip(10, 'song-rain-wet', 'song-roof', 'sk_hype'),
   // the whole party lifts off the floor: Theo up there mid-lunge, hands an inch from Nio's neck, grabbing air. Screams.
   { n: 11, frames: 40, shake: [2], spec: T('upTwo', [st('theo', 'upTheo', 'rage', { hold: 'throttle', facing: 'upNio' }), st('nio', 'upNio', 'shock', { facing: 'upTheo', hold: 'phone' })], { flip: true, party: { ...PANIC, faces: 2 } }, 0.2), sfx: [['sk_gasp', 0, 0.6]] },
   // then one guy, upside down, starts laughing; then everyone is dancing on the ceiling
-  { n: 12, frames: 40, spec: T('up', [st('guest1', 'upGuy', 'laughing', { facing: 'upNio' })], { flip: true, party: UP }, 0.15), say: [L('ax12_10', 'guest1', 6)], sfx: [['sk_cheer', 20, 0.5]] },
+  { n: 12, frames: 56, spec: T('up', [st('guest1', 'upGuy', 'laughing', { facing: 'upNio' })], { flip: true, party: UP }, 0.15), say: [L('ax12_10', 'guest1', 6)], sfx: [['sk_cheer', 20, 0.5]] },
   // 4. Maya, hanging up there, shouts across to Nio
-  { n: 13, frames: 40, spec: T('up', [st('maya', 'upMaya', 'rage', { facing: 'upNio', act: { g: [[2, 'point']] } }), st('sami', 'upSami', 'uneasy', { facing: 'upNio' }), st('guest1', 'upGuy', 'laughing', { hold: 'photo' })], { flip: true, party: UP }, 0.1), say: [L('ax12_11', 'maya', 4)] },
+  { n: 13, frames: 52, spec: T('up', [st('maya', 'upMaya', 'rage', { facing: 'upNio', act: { g: [[2, 'point']] } }), st('sami', 'upSami', 'uneasy', { facing: 'upNio' }), st('guest1', 'upGuy', 'laughing', { hold: 'photo' })], { flip: true, party: UP }, 0.1), say: [L('ax12_11', 'maya', 4)] },
   { n: 14, frames: 26, spec: T('upNio', [st('nio', 'upNio', 'shock', { hold: 'phone', facing: 'upMaya' })], { flip: true, party: UP }, 0.1), say: [L('ax12_12', 'nio', 2)] },
   // water beads on the glass, the tap slides to skip: "Happy Birthday"
   ...tapSkip(15, 'song-roof-wet', 'song-bday', 'sk_birthday'),
@@ -84,8 +84,10 @@ const shots: Shot[] = [
   { n: 20, frames: 44, spec: (f) => T('wide', hosts({ theo: 'deadpan', maya: 'deadpan', sami: 'deadpan', nio: 'uneasy' }, { theo: { wear: HAT, facing: 'gOutD', back: true }, maya: { wear: HAT, facing: 'gOutD', back: true }, sami: { wear: HAT, facing: 'gOutD', back: true }, nio: { wear: HAT, facing: 'theo' } }),
     { party: LIFT, door: f < 26 ? 0 : Math.min(1, (f - 26) / 8) }, 0.25), sfx: [['sk_ding', 24, 0.5]] },
   // 6. the front door: guests leave one at a time, soaked, in party hats, thrilled. Theo nods at each, a dead face, eyes on Nio.
-  { n: 21, frames: 62, spec: T('door', [{ who: 'guest2', at: 'gOut1', to: 'gOutD', action: 'walk', face: 'hyped', wear: HAT, back: true }, { who: 'guest1', at: 'gOut2', to: 'gOutD', action: 'walk', face: 'laughing', wear: HAT, back: true }, st('theo', 'theoDoor', 'deadpan', { wear: HAT, facing: 'nioDoor' })], { door: 1, party: { fill: 0.08, faces: 1 } }, 0.1),
-    say: [L('ax12_14', 'guest2', 2), L('ax12_15', 'guest1', 30)] },
+  { n: 21, frames: 53, spec: T('door', [{ who: 'guest2', at: 'gOut1', to: 'gOutD', action: 'walk', face: 'hyped', wear: HAT, back: true }, st('theo', 'theoDoor', 'deadpan', { wear: HAT, facing: 'nioDoor' })], { door: 1, party: { fill: 0.08, faces: 1 } }, 0.1),
+    say: [L('ax12_14', 'guest2', 2)] },
+  { n: 21.5, frames: 61, spec: T('door', [{ who: 'guest1', at: 'gOut2', to: 'gOutD', action: 'walk', face: 'laughing', wear: HAT, back: true, act: { g: [[4, 'point']] } }, st('theo', 'theoDoor', 'deadpan', { wear: HAT, facing: 'nioDoor' })], { door: 1, party: { fill: 0.08, faces: 1 } }, 0.08),
+    say: [L('ax12_15', 'guest1', 4)] },
   // the cake guy, still in his hat, holds on to Theo: thank you. Theo's eyes stay on Nio.
   { n: 22, frames: 40, spec: T('doorHug', [st('theo', 'theoDoor', 'deadpan', { wear: HAT, facing: 'nioDoor' }), st('guest3', 'hugTheo', 'charm', { wear: HAT, facing: 'theoDoor', act: { g: [[0, 'palms']] } })], { door: 1, party: { fill: 0.06, faces: 1 } }, 0.1), say: [L('ax12_16', 'guest3', 8)] },
   { n: 22.5, frames: 34, spec: T('doorTheo', [st('theo', 'theoDoor', 'deadpan', { wear: HAT, facing: 'nioDoor' })], { door: 1, party: { fill: 0.06, faces: 1 } }, 0.06), say: [L('ax12_17', 'guest2', 4)] },

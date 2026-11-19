@@ -1,0 +1,254 @@
+[
+{
+"who": "theo",
+"role": "dtheo",
+"text": "She's been reading it for ten minutes.",
+"note": "Not even looking up, quietly hurt that his party is dead. Flat and dry, low and steady, no emotion at all, an even pace.",
+"out": "raw_ax12_03_t3.wav",
+"seed": 3,
+"sub": "She's been reading it for ten minutes."
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "She's been reading it for ten minutes.",
+"note": "Not even looking up, quietly hurt that his party is dead. Flat and dry, low and steady, no emotion at all, an even pace.",
+"out": "raw_ax12_03_t17.wav",
+"seed": 17,
+"sub": "She's been reading it for ten minutes."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Give me the aux.",
+"note": "Holding his hand out to his friend, certain he can fix the party. Easy and sure of himself, relaxed, a lazy little smile in the voice, unhurried.",
+"out": "raw_ax12_04_t3.wav",
+"seed": 3,
+"sub": "Give me the aux."
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Just don't make it worse.",
+"note": "Handing over his phone. Tired and resigned, a low sigh in the voice, quiet.",
+"out": "raw_ax12_05_t3.wav",
+"seed": 3,
+"sub": "Just don't make it worse."
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "It's raining inside!",
+"note": "Shrieking, looking up as rain pours from the ceiling. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax12_06_t3.wav",
+"seed": 3,
+"sub": "It's raining inside!"
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "It's raining inside!",
+"note": "Shrieking, looking up as rain pours from the ceiling. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax12_06_t17.wav",
+"seed": 17,
+"sub": "It's raining inside!"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "My phone, my phone!",
+"note": "Fast, shoving her phone up her shirt in a sudden downpour. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax12_07_t3.wav",
+"seed": 3,
+"sub": "My phone, my phone!"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "My phone, my phone!",
+"note": "Fast, shoving her phone up her shirt in a sudden downpour. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax12_07_t17.wav",
+"seed": 17,
+"sub": "My phone, my phone!"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "No.",
+"note": "Seeing water run down his record collection. Devastated, a quiet cracked half-whisper, the word catches in the throat.",
+"out": "raw_ax12_08_t3.wav",
+"seed": 3,
+"sub": "...No."
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "No.",
+"note": "Seeing water run down his record collection. Devastated, a quiet cracked half-whisper, the word catches in the throat.",
+"out": "raw_ax12_08_t17.wav",
+"seed": 17,
+"sub": "...No."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay, okay, I'm stopping it.",
+"note": "Backing away from his furious friend who is coming at him, quick and nervous. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax12_09_t3.wav",
+"seed": 3,
+"sub": "Okay, okay, I'm stopping it."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay, okay, I'm stopping it.",
+"note": "Backing away from his furious friend who is coming at him, quick and nervous. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax12_09_t17.wav",
+"seed": 17,
+"sub": "Okay, okay, I'm stopping it."
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "Bro, film my feet.",
+"note": "Upside down on the ceiling, to his friend. Laughing while talking, breathless with joy, loud and delighted.",
+"out": "raw_ax12_10_t3.wav",
+"seed": 3,
+"sub": "Bro, film my feet."
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "Bro, film my feet.",
+"note": "Upside down on the ceiling, to his friend. Laughing while talking, breathless with joy, loud and delighted.",
+"out": "raw_ax12_10_t17.wav",
+"seed": 17,
+"sub": "Bro, film my feet."
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Nio! Turn it off!",
+"note": "Hanging off a light fitting, across the room. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax12_11_t3.wav",
+"seed": 3,
+"sub": "Nio! Turn it off!"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Nio! Turn it off!",
+"note": "Hanging off a light fitting, across the room. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax12_11_t17.wav",
+"seed": 17,
+"sub": "Nio! Turn it off!"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm trying!",
+"note": "Jabbing at his wet phone screen. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax12_12_t3.wav",
+"seed": 3,
+"sub": "I'm trying!"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm trying!",
+"note": "Jabbing at his wet phone screen. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax12_12_t17.wav",
+"seed": 17,
+"sub": "I'm trying!"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Give me that.",
+"note": "Calm and done, taking a phone out of his friend's hand. Flat and dry, low and steady, no emotion at all, an even pace.",
+"out": "raw_ax12_13_t3.wav",
+"seed": 3,
+"sub": "Give me that."
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "I was on the ceiling.",
+"note": "Leaving a party, soaked, telling the host. Beaming, thrilled, a big grin in the voice, bright and quick.",
+"out": "raw_ax12_14_t3.wav",
+"seed": 3,
+"sub": "I was on the ceiling."
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "My shoe's still up there.",
+"note": "Pointing back inside as he leaves. Laughing while talking, breathless with joy, loud and delighted.",
+"out": "raw_ax12_15_t3.wav",
+"seed": 3,
+"sub": "My shoe's still up there."
+},
+{
+"who": "guest3",
+"role": "dguest3",
+"text": "Thank you.",
+"note": "Hugging the host, moved and quiet, almost tearful. Warm and earnest, genuinely kind, a small hopeful lift at the end.",
+"out": "raw_ax12_16_t3.wav",
+"seed": 3,
+"sub": "Thank you."
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Next weekend?",
+"note": "Walking backwards out the door, hopeful. Warm and earnest, genuinely kind, a small hopeful lift at the end.",
+"out": "raw_ax12_17_t3.wav",
+"seed": 3,
+"sub": "Next weekend?"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Same time next weekend?",
+"note": "To his furious friend, as if it were the kindest offer. Warm and earnest, genuinely kind, a small hopeful lift at the end.",
+"out": "raw_ax12_18_t3.wav",
+"seed": 3,
+"sub": "Same time next weekend?"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Same time next weekend?",
+"note": "To his furious friend, as if it were the kindest offer. Warm and earnest, genuinely kind, a small hopeful lift at the end.",
+"out": "raw_ax12_18_t17.wav",
+"seed": 17,
+"sub": "Same time next weekend?"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "He's not worth it.",
+"note": "Pulling her friend off by the arm. Straining to hold someone back, a little breathless, but calm and dry.",
+"out": "raw_ax12_19_t3.wav",
+"seed": 3,
+"sub": "He's not worth it."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Worth it.",
+"note": "While his friend throttles him, holding his phone up. Being choked: a strangled, breathy squeak, squeezed out, but grinning.",
+"out": "raw_ax12_20_t3.wav",
+"seed": 3,
+"sub": "Worth it."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Worth it.",
+"note": "While his friend throttles him, holding his phone up. Being choked: a strangled, breathy squeak, squeezed out, but grinning.",
+"out": "raw_ax12_20_t17.wav",
+"seed": 17,
+"sub": "Worth it."
+}
+]

@@ -28,7 +28,7 @@ def measure(f):
             'bright': float(np.median(cen)), 'gap': max(gaps or [0])}
 
 # what each tone wants, as signs on (loudness, pitch, range, brightness, speed) against the speaker's own baseline
-WANT = {'panic': (1, 1, 1, 1, 1), 'rage': (1, 0.5, 0.5, 1, 0.5), 'shout': (1, 1, 0, 1, 0.5), 'horror': (-0.5, 0, 0.5, -0.5, -0.5),
+WANT = {'panic': (1, 1, 1, 1, 1), 'rage': (1, 0.5, 0.5, 1, 0.5), 'shout': (1, 1, 0, 1, 0.5), 'horror': (-1.2, -0.5, 0.3, -0.6, -0.5),
         'deadpan': (-0.5, -0.5, -1, -0.5, 0), 'brag': (0, -0.3, 0.5, 0, -0.3), 'sincere': (-0.3, 0, 0.3, -0.3, 0),
         'laugh': (0.5, 1, 1, 0.5, 0.5), 'beam': (0.5, 0.5, 0.5, 0.3, 0), 'strained': (0.3, 0.3, 0, 0.3, 0), 'wheeze': (-0.5, 0.5, 0.5, -0.3, 0), 'plain': (0, 0, 0, 0, 0)}
 

@@ -6,8 +6,7 @@
 "text": "That girl's reading the fire exit sign.",
 "sub": "That girl's reading the fire exit sign.",
 "files": [
-"raw/raw_ax12_02_t3.wav",
-"raw/raw_ax12_02_t17.wav"
+"raw/raw_ax12_02_t3.wav"
 ]
 },
 {
@@ -18,8 +17,7 @@
 "sub": "She's been reading it for ten minutes.",
 "files": [
 "raw/raw_ax12_03_t3.wav",
-"raw/raw_ax12_03_t17.wav",
-"raw/raw_ax12_03_t41.wav"
+"raw/raw_ax12_03_t17.wav"
 ]
 },
 {
@@ -29,8 +27,7 @@
 "text": "Give me the aux.",
 "sub": "Give me the aux.",
 "files": [
-"raw/raw_ax12_04_t3.wav",
-"raw/raw_ax12_04_t17.wav"
+"raw/raw_ax12_04_t3.wav"
 ]
 },
 {
@@ -40,8 +37,7 @@
 "text": "Just don't make it worse.",
 "sub": "Just don't make it worse.",
 "files": [
-"raw/raw_ax12_05_t3.wav",
-"raw/raw_ax12_05_t17.wav"
+"raw/raw_ax12_05_t3.wav"
 ]
 },
 {
@@ -52,8 +48,7 @@
 "sub": "It's raining inside!",
 "files": [
 "raw/raw_ax12_06_t3.wav",
-"raw/raw_ax12_06_t17.wav",
-"raw/raw_ax12_06_t41.wav"
+"raw/raw_ax12_06_t17.wav"
 ]
 },
 {
@@ -65,7 +60,8 @@
 "files": [
 "raw/raw_ax12_07_t3.wav",
 "raw/raw_ax12_07_t17.wav",
-"raw/raw_ax12_07_t41.wav"
+"raw/raw_ax12_07_t59.wav",
+"raw/raw_ax12_07_t83.wav"
 ]
 },
 {
@@ -76,8 +72,7 @@
 "sub": "...No.",
 "files": [
 "raw/raw_ax12_08_t3.wav",
-"raw/raw_ax12_08_t17.wav",
-"raw/raw_ax12_08_t41.wav"
+"raw/raw_ax12_08_t17.wav"
 ]
 },
 {
@@ -88,8 +83,7 @@
 "sub": "Okay, okay, I'm stopping it.",
 "files": [
 "raw/raw_ax12_09_t3.wav",
-"raw/raw_ax12_09_t17.wav",
-"raw/raw_ax12_09_t41.wav"
+"raw/raw_ax12_09_t17.wav"
 ]
 },
 {
@@ -101,7 +95,7 @@
 "files": [
 "raw/raw_ax12_10_t3.wav",
 "raw/raw_ax12_10_t17.wav",
-"raw/raw_ax12_10_t41.wav"
+"raw/raw_ax12_10_t59.wav"
 ]
 },
 {
@@ -112,8 +106,7 @@
 "sub": "Nio! Turn it off!",
 "files": [
 "raw/raw_ax12_11_t3.wav",
-"raw/raw_ax12_11_t17.wav",
-"raw/raw_ax12_11_t41.wav"
+"raw/raw_ax12_11_t17.wav"
 ]
 },
 {
@@ -124,8 +117,7 @@
 "sub": "I'm trying!",
 "files": [
 "raw/raw_ax12_12_t3.wav",
-"raw/raw_ax12_12_t17.wav",
-"raw/raw_ax12_12_t41.wav"
+"raw/raw_ax12_12_t17.wav"
 ]
 },
 {
@@ -135,8 +127,7 @@
 "text": "Give me that.",
 "sub": "Give me that.",
 "files": [
-"raw/raw_ax12_13_t3.wav",
-"raw/raw_ax12_13_t17.wav"
+"raw/raw_ax12_13_t3.wav"
 ]
 },
 {
@@ -146,8 +137,7 @@
 "text": "I was on the ceiling.",
 "sub": "I was on the ceiling.",
 "files": [
-"raw/raw_ax12_14_t3.wav",
-"raw/raw_ax12_14_t17.wav"
+"raw/raw_ax12_14_t3.wav"
 ]
 },
 {
@@ -157,8 +147,7 @@
 "text": "My shoe's still up there.",
 "sub": "My shoe's still up there.",
 "files": [
-"raw/raw_ax12_15_t3.wav",
-"raw/raw_ax12_15_t17.wav"
+"raw/raw_ax12_15_t3.wav"
 ]
 },
 {
@@ -168,8 +157,7 @@
 "text": "Thank you.",
 "sub": "Thank you.",
 "files": [
-"raw/raw_ax12_16_t3.wav",
-"raw/raw_ax12_16_t17.wav"
+"raw/raw_ax12_16_t3.wav"
 ]
 },
 {
@@ -179,8 +167,7 @@
 "text": "Next weekend?",
 "sub": "Next weekend?",
 "files": [
-"raw/raw_ax12_17_t3.wav",
-"raw/raw_ax12_17_t17.wav"
+"raw/raw_ax12_17_t3.wav"
 ]
 },
 {
@@ -191,8 +178,7 @@
 "sub": "Same time next weekend?",
 "files": [
 "raw/raw_ax12_18_t3.wav",
-"raw/raw_ax12_18_t17.wav",
-"raw/raw_ax12_18_t41.wav"
+"raw/raw_ax12_18_t17.wav"
 ]
 },
 {
@@ -202,8 +188,7 @@
 "text": "He's not worth it.",
 "sub": "He's not worth it.",
 "files": [
-"raw/raw_ax12_19_t3.wav",
-"raw/raw_ax12_19_t17.wav"
+"raw/raw_ax12_19_t3.wav"
 ]
 },
 {
@@ -214,8 +199,7 @@
 "sub": "Worth it.",
 "files": [
 "raw/raw_ax12_20_t3.wav",
-"raw/raw_ax12_20_t17.wav",
-"raw/raw_ax12_20_t41.wav"
+"raw/raw_ax12_20_t17.wav"
 ]
 }
 ]
