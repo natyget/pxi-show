@@ -395,3 +395,7 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 - **Nov 19, 3:48 PM, word for word:**
   - "now make more of those in disovery how to discover events how to plan weddings birthdays parties how to how to things to do did you know you could showcasing like we did in the video and more start scheduling them and work slowly over the week were at 90% usage so lets not work unitl reset on monday for the scheduled generation lets use what we got now and make as many now and then schedule each one and then regroup monday"
   - What this changed: the how-to, tips and did-you-know batch is scheduled Nov 20 to 28. No new generation until Monday Nov 23; regroup then.
+- **Nov 19, 4:10 PM, word for word:**
+  - "stop with the late checkout idk why you keep doing that name and instead show covers that are real event covers not nio in bedroom
+    i like the content think of any niche event we can do ball picj up session wedding baby shower, graduation thanksgiving (this actually the best thing we should pump since its close with how to host and how to find bars and make moments and scrapbooks) video would be nice asdie from carousel, gifs, stories, still images, also be creative and make holiday current event centered content like news or any festival any event and moment needing stuff"
+  - What this changed: no "Late Checkout" event and no Nio's bedroom as an event cover; real event covers only. Thanksgiving is the push this week.

@@ -56,3 +56,9 @@ minutes later. Media in pxispace.com `public/social/nio-week2/`.
 | Sat Nov 28 12:00 | Did you know: every album has its own chat (single); story 19:00 |
 
 The flash-on carousel is dropped (replaced by this batch).
+
+**Replaced Nov 19, 4:20 PM (founder: real event covers, no "Late Checkout", Thanksgiving push).** Media now in
+`public/social/nio-week2b/`. Same slots, new pieces: Sun birthday (new covers), Mon host Friendsgiving (carousel),
+Tue 17:00 Friendsgiving reel (IG/FB Reel off grid, TikTok, YouTube Short), Wed where to go the night before
+Thanksgiving (carousel), Thu family chat vs the Thanksgiving album (single), Fri tagged in new photos (single), Sat
+wedding photos (carousel). Stories: Tue tagged, Thu family chat. The Sat thread story is a draft.
