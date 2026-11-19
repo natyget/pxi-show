@@ -1,0 +1,18 @@
+What the sound is heard as, every 4 s (an audio classifier; the score is how sure it is).
+  0.0-  4.0s  Speech 0.79, Male speech, man speaking 0.09, Vehicle 0.06
+  4.0-  8.0s  Speech 0.67
+  8.0- 12.0s  Speech 0.61, Music 0.09, Sound effect 0.08
+ 12.0- 16.0s  Speech 0.81, Male speech, man speaking 0.07, Sound effect 0.06
+ 16.0- 20.0s  Speech 0.66, Sound effect 0.05
+ 20.0- 24.0s  Speech 0.83, Explosion 0.06
+ 24.0- 28.0s  Speech 0.74, Music 0.05, Knock 0.05, Sound effect 0.05
+ 28.0- 32.0s  Speech 0.70, Sound effect 0.08, Sonar 0.06
+ 32.0- 36.0s  Speech 0.78
+ 36.0- 40.0s  Speech 0.69
+ 40.0- 44.0s  Speech 0.47, Owl 0.11, Hoot 0.07, Bird 0.05
+ 44.0- 48.0s  Speech 0.56, Music 0.15, Ding 0.13, Chime 0.09
+ 48.0- 52.0s  Ding 0.16, Chime 0.14, Speech 0.10, Music 0.06
+ 52.0- 56.0s  Speech 0.78, Gasp 0.35, Snort 0.06, Narration, monologue 0.06
+ 56.0- 60.0s  Speech 0.75
+ 60.0- 64.0s  Speech 0.38, Sound effect 0.06
+RESULT PASS (0 stretches heard as something that does not belong)

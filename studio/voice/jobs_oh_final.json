@@ -1,0 +1,359 @@
+[
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Great sesh, fam. Real ones come to office hours.",
+"note": "A soft, gentle whisper right into the mic, proud of saying fam; the room's PA makes it boom. Say 'real ones' clearly.",
+"out": "raw_oh_01.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Nio. Today.",
+"note": "Whispered, warm, delighted, into the mic. Clean read, exactly these words.",
+"out": "raw_oh_02.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Bro's not coming back.",
+"note": "Barely moving his lips, low, certain, like a funeral.",
+"out": "raw_oh_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "It says hours. Plural. That's a suggestion.",
+"note": "Easy, packing up, completely sure, a little amused.",
+"out": "raw_oh_04.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Darnell said that.",
+"note": "Flat, quiet, like a warning.",
+"out": "raw_oh_05.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Who's Darnell?",
+"note": "Light, curious.",
+"out": "raw_oh_06.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "...Pickup's at five.",
+"note": "A beat of unease, then brisk, changing the subject, leaving. Say every word clearly, including the last word, five.",
+"out": "raw_oh_07.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "No.",
+"note": "Flat, under his breath, refusing what he sees. Long cut only.",
+"out": "raw_oh_08.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I did not RSVP to that.",
+"note": "Quiet, betrayed, offended, stressing RSVP.",
+"out": "raw_oh_09.wav"
+},
+{
+"who": "cleaner",
+"role": "dcleaner",
+"text": "Just go in, baby. It's faster.",
+"note": "Warm older woman, unbothered, mopping, not looking up.",
+"out": "raw_oh_10.wav"
+},
+{
+"who": "darnell",
+"role": "ddarnell",
+"text": "First time?",
+"note": "Very calm, kind, slow, soft.",
+"out": "raw_oh_11.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm not even here.",
+"note": "Insisting, a little too fast, still sure he is leaving.",
+"out": "raw_oh_12.wav"
+},
+{
+"who": "darnell",
+"role": "ddarnell",
+"text": "Yeah. We all were.",
+"note": "Nodding, kind, completely at peace.",
+"out": "raw_oh_13.wav"
+},
+{
+"who": "darnell",
+"role": "ddarnell",
+"text": "Did they ever drop the new GTA?",
+"note": "Gentle, hopeful, like it's nothing.",
+"out": "raw_oh_14.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "...Not yet, bro.",
+"note": "Soft, kind, he cannot do it to him.",
+"out": "raw_oh_15.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Nio! Come in, come in.",
+"note": "Delighted, warm, still soft, no mic now.",
+"out": "raw_oh_16.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "So. I wanted a word.",
+"note": "Nervous, gentle, soft.",
+"out": "raw_oh_17.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Would you come?",
+"note": "Very small, hopeful and scared of the answer, his lip trembling.",
+"out": "raw_oh_18.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "...Sure.",
+"note": "Soft, a beat of giving in; he cannot say no to this man.",
+"out": "raw_oh_19.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Nobody's ever said yes.",
+"note": "A whisper, moved to tears, overwhelmed.",
+"out": "raw_oh_20.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Same time next week?",
+"note": "Hopeful, bright, soft.",
+"out": "raw_oh_21.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Where were you?",
+"note": "Normal, a bit annoyed, on the pitch.",
+"out": "raw_oh_22.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Office hours.",
+"note": "Flat, hollow, a man who has seen things.",
+"out": "raw_oh_23.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "You're coming to improv Thursday.",
+"note": "Flat and calm, passing the doom on to his friend, deadpan with the smallest smile.",
+"out": "raw_oh_24.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Nio. Office hours. Today.",
+"note": "A soft, gentle whisper right into the mic, warm and delighted, as if inviting him to a party; the room's PA makes it boom. Say every word clearly, including the last word, today.",
+"out": "raw_oh_25.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Game's at five.",
+"note": "Calm and low to his friend, a clear even read, and the last word, five, is said fully and clearly, not swallowed.",
+"out": "raw_oh_26.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Nio! Can you swing by my office hours after class? It won't take a minute.",
+"note": "Warm, booming whisper through a lecture-hall mic. Say the name exactly as NEE-oh, short and bright, not Neil.",
+"out": "raw_v5_01.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "He picked you. I go every week. He has a candle.",
+"note": "Gasping, thrilled and sincere, grabbing her friend's arm, whispering fast in class. Say candle clearly.",
+"out": "raw_v5_02.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Maya. The final's at five. If I'm not on that pitch, we forfeit.",
+"note": "Low and calm but firm, whispering in class. Every word clear; the word five is said fully and stressed.",
+"out": "raw_v5_03.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "It's one minute!",
+"note": "Bright and pleading, cheerful, a little too loud for class.",
+"out": "raw_v5_04.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "That's how they get you. It's one minute, then you're forty, and it's still office hours.",
+"note": "Deadpan, low and certain, a confident wrong theory delivered like common knowledge. Say forty clearly.",
+"out": "raw_v5_05.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "That's not a real thing.",
+"note": "Flat, amused, completely unbothered.",
+"out": "raw_v5_06.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "In a world... where one minute... is forever.",
+"note": "A deep, slow, dramatic movie trailer voice, very serious, long pauses between phrases.",
+"out": "raw_v5_07.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Office Hours. Now showing. Always.",
+"note": "A deep, slow, dramatic movie trailer voice, ominous, the last word always held.",
+"out": "raw_v5_08.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Did you just do a trailer?",
+"note": "Staring at him, flat and baffled, a dry question.",
+"out": "raw_v5_09.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm going out the back.",
+"note": "Brisk and decided, getting up, quietly. Start straight on the first word, I'm, with no sound before it.",
+"out": "raw_v5_10.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "I'll come!",
+"note": "Delighted, bouncing up, sincere.",
+"out": "raw_v5_11.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Oh, I love this hallway.",
+"note": "Dreamy and happy, sincere, like admiring a garden.",
+"out": "raw_v5_12.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "It's the trailer. We're in the trailer.",
+"note": "Rattled but deadpan, low and fast, staring at his phone.",
+"out": "raw_v5_13.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "You're being dramatic.",
+"note": "Light, kind and dismissive, skipping along.",
+"out": "raw_v5_14.wav"
+},
+{
+"who": "cleaner",
+"role": "dcleaner",
+"text": "Nobody goes past it, baby.",
+"note": "Calm and kind, not looking up from her mop, as if stating the weather.",
+"out": "raw_v5_15.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Darnell! How's the thesis?",
+"note": "Lighting up, warm and chatty, greeting an old friend in a coffee shop. Say Darnell clearly.",
+"out": "raw_v5_16.wav"
+},
+{
+"who": "darnell",
+"role": "ddarnell",
+"text": "Hey, Maya. I'm next.",
+"note": "Warm, slow and very calm, content.",
+"out": "raw_v5_17.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "How long have you been next?",
+"note": "Quiet, flat and slow, a deadpan question, already suspecting the answer.",
+"out": "raw_v5_18.wav"
+},
+{
+"who": "darnell",
+"role": "ddarnell",
+"text": "Since freshman year.",
+"note": "Gentle and peaceful after giving up counting, like it is completely normal. Say every word clearly.",
+"out": "raw_v5_19.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "See? It moves.",
+"note": "Sincere and encouraging, completely missing the point.",
+"out": "raw_v5_20.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Nio! Come on in!",
+"note": "Beaming, warm, delighted, in a doorway. Say the name Nio crisply, NEE-oh.",
+"out": "raw_v5_21.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Would you come? Be honest.",
+"note": "Very small and quiet, hopeful, almost a whisper, bracing for a no.",
+"out": "raw_v5_22.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "...Yeah. I'll come.",
+"note": "A soft beat, then kind and sincere, a small real moment.",
+"out": "raw_v5_23.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "...You made it.",
+"note": "Stunned and quiet, staring past his friend at something impossible.",
+"out": "raw_v5_24.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Darnell's in goal.",
+"note": "Calm, laid back, a little smug, dropping the ball for kick-off. Say every word clearly.",
+"out": "raw_v5_25.wav"
+}
+]

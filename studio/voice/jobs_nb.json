@@ -1,0 +1,133 @@
+[
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "I was the life of it.",
+  "sub": "i was the life of it.",
+  "note": "Lying on the floor, hoarse, proud, a slow grin in the voice.",
+  "out": "raw_nb_01.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "Pics or it didn't happen.",
+  "sub": "pics or it didn't happen.",
+  "note": "Mouth full of cereal, flat.",
+  "out": "raw_nb_02.wav"
+ },
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "You danced on the fridge for an hour. Nobody's posting that. Also you have my shoe.",
+  "sub": "you danced on the fridge for an hour. nobody's posting that. also you have my shoe.",
+  "note": "A voice note: fast, provoking, amused, moves on without a breath.",
+  "out": "raw_nb_03.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "You get anybody's number?",
+  "sub": "you get anybody's number?",
+  "note": "Casual.",
+  "out": "raw_nb_04.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Bro. The fridge has a light inside.",
+  "sub": "bro. the fridge has a light inside.",
+  "note": "Dead serious wonder, like sharing a secret.",
+  "out": "raw_nb_05.wav"
+ },
+ {
+  "who": "dev",
+  "role": "ddev",
+  "text": "Like when you open it?",
+  "sub": "like when you open it?",
+  "note": "Suddenly invested.",
+  "out": "raw_nb_06.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Every time.",
+  "sub": "every time.",
+  "note": "Quiet, certain.",
+  "out": "raw_nb_07.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "I was busy dancing.",
+  "sub": "i was busy dancing.",
+  "note": "Small, hurt, to himself.",
+  "out": "raw_nb_08.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "I'm just tired.",
+  "sub": "i'm just tired.",
+  "note": "Covering, a little too quick. Say only the words, no sigh or sound before them.",
+  "out": "raw_nb_09.wav"
+ },
+ {
+  "who": "beanie",
+  "role": "dbeanie",
+  "text": "Same.",
+  "sub": "same.",
+  "note": "From across the room, flat. Say only the one word.",
+  "out": "raw_nb_10.wav",
+  "seed": 9
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Who are you?",
+  "sub": "who are you?",
+  "note": "Not turning his head, calm, low.",
+  "out": "raw_nb_11.wav"
+ },
+ {
+  "who": "beanie",
+  "role": "dbeanie",
+  "text": "I'm 'who is this.'",
+  "sub": "i'm 'who is this.'",
+  "note": "Polite, as if it is his name.",
+  "out": "raw_nb_12.wav",
+  "seed": 9
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Anyway. This my app, yo.",
+  "sub": "anyway. this my app, yo.",
+  "note": "To camera, casual Gen Z, pivoting like nothing happened.",
+  "out": "raw_nb_13.wav"
+ },
+ {
+  "who": "beanie",
+  "role": "dbeanie",
+  "text": "It's free.",
+  "sub": "it's free.",
+  "note": "Flat, helpful.",
+  "out": "raw_nb_14.wav",
+  "seed": 9
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Saturday. My place.",
+  "sub": "saturday. my place.",
+  "note": "To camera, easy.",
+  "out": "raw_nb_15.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "I'll know if you're there.",
+  "sub": "i'll know if you're there.",
+  "note": "Slower, quiet, eerie, a half smile.",
+  "out": "raw_nb_16.wav"
+ }
+]

@@ -1,0 +1,72 @@
+[
+{
+"who": "theo",
+"role": "dtheo",
+"text": "She's been reading it for ten minutes.",
+"note": "Flat, dead, not even looking, quietly hurt. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_01.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "My records.",
+"note": "Horror, quiet, turning to see his record wall getting soaked. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_08.wav"
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "Bro, film my feet.",
+"note": "Upside down, laughing hard, to his friend, delighted. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_09.wav"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "I was on the ceiling.",
+"note": "Soaked, leaving, amazed, telling the host. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_12.wav"
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "My shoe's still up there.",
+"note": "Leaving, grinning, pointing back inside. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_13.wav"
+},
+{
+"who": "guest3",
+"role": "dguest3",
+"text": "Thank you.",
+"note": "Hugging the host, sincere, moved, almost tearful. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_14.wav"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Next weekend?",
+"note": "Leaving, hopeful, eager, backing out the door. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_15.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Same time next weekend?",
+"note": "Sincere, helpful, totally serious, turning to his friend. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_16.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "He's not worth it.",
+"note": "Grabbing her friend's arm, calm, dry, pulling him off. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_17.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Worth it.",
+"note": "Wheezing, being choked, grinning, holding his phone up. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_ax11_18.wav"
+}
+]

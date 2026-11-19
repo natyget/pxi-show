@@ -1,0 +1,45 @@
+[
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Bro, this party's dead.",
+"note": "Flat, bored, slumped. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_07.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Give me the aux. I got you.",
+"note": "Confident hero arriving. Say aux like 'ox'. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_01.wav",
+"seed": 11
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay, okay. Bring it down, bring it down.",
+"note": "Rattled but trying to stay cool, hands out. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Something calm. Something grown.",
+"note": "Muttering to himself, scrolling fast. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_04.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Bro. Best party of the year.",
+"note": "Soaked, amazed, completely sincere. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_08.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I know.",
+"note": "Cool and smug, like he planned it. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_09.wav"
+}
+]

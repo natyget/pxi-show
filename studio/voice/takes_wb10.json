@@ -1,0 +1,132 @@
+[
+{
+"key": "wb10_01",
+"who": "marcus",
+"tone": "plain",
+"text": "Wait. I know you. Lakeview? Cabin Four?",
+"files": [
+"raw/raw_wb10_01_t3.wav",
+"raw/raw_wb10_01_t17.wav"
+]
+},
+{
+"key": "wb10_02",
+"who": "nio",
+"tone": "brag",
+"text": "Four. Yeah.",
+"files": [
+"raw/raw_wb10_02_t3.wav",
+"raw/raw_wb10_02_t17.wav"
+]
+},
+{
+"key": "wb10_03",
+"who": "marcus",
+"tone": "beam",
+"text": "Reunion's Sunday. You're coming.",
+"files": [
+"raw/raw_wb10_03_t3.wav",
+"raw/raw_wb10_03_t17.wav"
+]
+},
+{
+"key": "wb10_04",
+"who": "nio",
+"tone": "deadpan",
+"text": "What do people do at camp?",
+"files": [
+"raw/raw_wb10_04_t3.wav",
+"raw/raw_wb10_04_t17.wav"
+]
+},
+{
+"key": "wb10_05",
+"who": "maya",
+"tone": "deadpan",
+"text": "You never went to camp.",
+"files": [
+"raw/raw_wb10_05_t3.wav",
+"raw/raw_wb10_05_t17.wav"
+]
+},
+{
+"key": "wb10_06",
+"who": "nio",
+"tone": "deadpan",
+"text": "I know.",
+"files": [
+"raw/raw_wb10_06_t3.wav",
+"raw/raw_wb10_06_t17.wav"
+]
+},
+{
+"key": "wb10_07",
+"who": "marcus",
+"tone": "shout",
+"text": "Guys! Nio! Cabin Four!",
+"files": [
+"raw/raw_wb10_07_t3.wav",
+"raw/raw_wb10_07_t17.wav"
+]
+},
+{
+"key": "wb10_08",
+"who": "tobi",
+"tone": "deadpan",
+"text": "I was in Four.",
+"files": [
+"raw/raw_wb10_08_t3.wav",
+"raw/raw_wb10_08_t17.wav"
+]
+},
+{
+"key": "wb10_09",
+"who": "nio",
+"tone": "brag",
+"text": "Big year.",
+"files": [
+"raw/raw_wb10_09_t3.wav",
+"raw/raw_wb10_09_t17.wav"
+]
+},
+{
+"key": "wb10_10",
+"who": "tobi",
+"tone": "deadpan",
+"text": "Find yourself.",
+"files": [
+"raw/raw_wb10_10_t3.wav",
+"raw/raw_wb10_10_t17.wav"
+]
+},
+{
+"key": "wb10_11",
+"who": "nio",
+"tone": "plain",
+"text": "Bathroom.",
+"files": [
+"raw/raw_wb10_11_t3.wav",
+"raw/raw_wb10_11_t17.wav"
+]
+},
+{
+"key": "wb10_12",
+"who": "tobi",
+"tone": "deadpan",
+"text": "Nio. Come out.",
+"files": [
+"raw/raw_wb10_12_t3.wav",
+"raw/raw_wb10_12_t17.wav"
+]
+},
+{
+"key": "wb10_13",
+"who": "nio",
+"tone": "sincere",
+"text": "That's a good photo.",
+"files": [
+"raw/raw_wb10_13_t3.wav",
+"raw/raw_wb10_13_t17.wav"
+]
+}
+]

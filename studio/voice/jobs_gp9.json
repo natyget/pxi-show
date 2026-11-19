@@ -1,0 +1,107 @@
+[
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Light's going, light's going, everyone in.",
+  "note": "In a rush, excited, holding up his phone. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_01.wav"
+ },
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "Wait, we're all just shadows. Swap. I want the gold on my face.",
+  "note": "Bossy but sweet, a little vain. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_02.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Just shut your eyes, nobody's gonna notice.",
+  "note": "Easy, offhand, trying to hurry them. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_03.wav"
+ },
+ {
+  "who": "sami",
+  "role": "dsami",
+  "text": "Nah, bro. I'm not wasting these.",
+  "note": "Low, serious, slow and smooth, a little proud of his own eyes. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_04.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Can you go a bit lower? Make me look tall.",
+  "note": "Casual, a bit self-conscious. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_05.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Lower.",
+  "note": "Flat, sure of himself. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_06.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Bro, you're just short.",
+  "note": "Gently, kind, matter-of-fact, a normal voice, not a punchline. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_07.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "Whatever, man.",
+  "note": "Shrugging it off, not hurt, walking away. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_08.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Honestly, it looks better with just you. Less going on.",
+  "note": "Sincere, trying to compliment, not realising it lands wrong. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_09.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Wait, that came out wrong. Maya. Maya!",
+  "note": "Panicking a little, calling after her. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_10.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Looks better anyway.",
+  "note": "Quiet, to himself, no attitude, a little shrug. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_11.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Okay. I'm sorry. One more group photo, the light's still\u2014",
+  "note": "Apologetic, hopeful, cut off. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_12.wav"
+ },
+ {
+  "who": "maya",
+  "role": "dmaya",
+  "text": "Your photo's blowing up.",
+  "note": "Flat, not looking up from her phone. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_13.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Maybe the real group photo was us, you know?",
+  "note": "Half sincere, half bluffing, soft. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_14.wav"
+ },
+ {
+  "who": "theo",
+  "role": "dtheo",
+  "text": "That's so corny. Bye.",
+  "note": "Dry, walking out, not looking up. Talk like a real person, casual and quick, natural, no long pauses between words.",
+  "out": "raw_gp9_15.wav"
+ }
+]

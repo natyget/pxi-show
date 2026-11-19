@@ -3,12 +3,12 @@
 Every run reads this file first and updates it last. Keep it under 70 lines.
 
 phase: PILOT_LOCK
-episode: wave-back
+episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Build the launch skits first, Wave Back then Group Photo, Aux, One Sip (engine/premise-bank.md, Launch skits), once the design thread delivers the pieces they need; each goes to the founder as a visual story sketch first. Office Hours follows. Build nothing else.
+next_action: Launch skits (Nov 19): render the sound-fixed Aux v12, post it, stranger round 2. One Sip, Group Photo and Wave Back are BLOCKED after its third and last try (below): it waits on the founder. Office Hours stays ON HOLD.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
-gate_failures: 0
+gate_failures: One Sip 3 (BLOCKED, Nov 19, after the founder allowed one more try): the stranger failed v9, v10 and v11. On v11 it cannot follow the story from the first line ("I can't. I get weird." plays over Theo, so who refuses is unclear), never sees what the sip does, reads the coat as a broken body and the lampshade as a hat, and hears the put-back pop as a beep. No fourth try without the founder. Group Photo 2 (BLOCKED, Nov 19): the stranger failed v9 and v12. On v12 it follows the roof until Maya leaves (about 44 s), then loses the thread: the neighbours arrive with no visible cause, "your phone's going crazy" has no cause on screen, the closing line reads as a stock moral, and the Parkway album reads as a product shot. Waits on the founder. Aux 1 (v10; v12 is round 2, re-rendering with the rain sound fixed). Wave Back 2 (BLOCKED, Nov 19): the stranger failed v9 and v10. On v10 it still cannot tell who says most lines (Marcus's first line plays over a back filling the frame, "Reunion's Sunday" is said off screen), never learns why Nio goes to a reunion for a camp he never attended, sees no cause for the lake, reads Marcus and Tobi as off-model because they are not in the golden cast, and hears the mower run as a helicopter and explosions. Waits on the founder.
 
 ## Next render: "Office Hours" (season 1, episode 1)
 
@@ -69,6 +69,8 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
-- 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.
-- 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.
-- 2026-11-12 · engine · learn scores follows, reads Supermetrics; promotion ladder (95% watchers, paused until yes); Nio-style format menu; posting waits on an approved episode.
+- 2026-11-19 · launch-skits · Aux v12 and One Sip v11 rendered and posted; Aux rain sound fixed (it stacked into static), re-render queued; One Sip v11 failed the third and last stranger round, BLOCKED; Wave Back v10 voiced and rendering; Group Photo v12 and Wave Back v10 failed stranger round 2, BLOCKED.
+- 2026-11-19 · launch-skits · founder note on Aux v10 (clean voices, intent on screen); voices clean everywhere, tone check, the viewer read; Aux v12 staged and voiced; One Sip v10 failed round 2, BLOCKED.
+- 2026-11-18 · launch-skits · all four v7 cuts failed the stranger twice; founder: rework with the cause on screen, then hold for a ground-up rewrite; acting defaults fixed.
+- 2026-11-18 · launch-skits · v7 approved; 35 lines voiced; One Sip rebuilt; new face-match, review and album screens; rendering all four.
+- 2026-11-17 · office-hours · v5 re-voiced and cut (held, not reviewed); founder put the episode on hold for launch skits; acting pass is law.

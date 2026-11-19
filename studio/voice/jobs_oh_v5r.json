@@ -1,0 +1,44 @@
+[
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Nio! Can you swing by my office hours after class? It won't take a minute.",
+"note": "Friendly and warm, a soft whisper right into the mic that the room's PA makes boom. Start with the name, two clear syllables, NEE-oh, then an easy ordinary question.",
+"out": "raw_v5_01t1.wav"
+},
+{
+"who": "profh",
+"role": "dprofh",
+"text": "Nio! Can you swing by my office hours after class? It won't take a minute.",
+"note": "Warm, booming whisper through a lecture-hall mic. Say the name exactly as NEE-oh, short and bright, not Neil.",
+"out": "raw_v5_01t2.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Maya. The final's at five. If I'm not on that pitch, we forfeit.",
+"note": "Low and calm but firm, whispering in class. Every word clear; the word five is said fully and stressed.",
+"out": "raw_v5_03t1.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Maya. The final's at five. If I'm not on that pitch, we forfeit.",
+"note": "Quiet and serious, laying out the stakes. Stress the number: the final's at FIVE. Then: if I'm not on that pitch, we forfeit.",
+"out": "raw_v5_03t2.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm going out the back.",
+"note": "Brisk and decided, getting up, quietly. Start straight on the first word, I'm, with no sound before it.",
+"out": "raw_v5_10t1.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm going out the back.",
+"note": "Short and quiet, standing up. Exactly these words and nothing before them.",
+"out": "raw_v5_10t2.wav"
+}
+]

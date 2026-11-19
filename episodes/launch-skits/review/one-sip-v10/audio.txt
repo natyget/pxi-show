@@ -1,0 +1,19 @@
+What the sound is heard as, every 4 s (an audio classifier; the score is how sure it is).
+  0.0-  4.0s  Music 0.43, Speech 0.42
+  4.0-  8.0s  Speech 0.43, Music 0.30, Whip 0.16
+  8.0- 12.0s  Speech 0.55, Music 0.42, Gasp 0.42, Sigh 0.11
+ 12.0- 16.0s  Speech 0.49, Music 0.45
+ 16.0- 20.0s  Speech 0.51, Music 0.45
+ 20.0- 24.0s  Speech 0.45, Music 0.32, Whip 0.18
+ 24.0- 28.0s  Music 0.44, Speech 0.44, Whip 0.06
+ 28.0- 32.0s  Speech 0.50, Music 0.41, Electronic music 0.06, Whip 0.05
+ 32.0- 36.0s  Speech 0.42, Music 0.40
+ 36.0- 40.0s  Speech 0.57, Music 0.55, Boing 0.06
+ 40.0- 44.0s  Speech 0.52, Music 0.42, Howl 0.06
+ 44.0- 48.0s  Speech 0.44, Music 0.41, Baby cry, infant cry 0.06, Whip 0.05
+ 48.0- 52.0s  Speech 0.56, Music 0.51, Boing 0.06
+ 52.0- 56.0s  Speech 0.47, Music 0.40, Electronic music 0.05
+ 56.0- 60.0s  Speech 0.54, Music 0.53
+ 60.0- 64.0s  Ding 0.20, Music 0.18, Ding-dong 0.08
+ 64.0- 68.0s  Chirp, tweet 0.11, Bird vocalization, bird call, bird song 0.08, Bird 0.08, Owl 0.06
+RESULT PASS (0 stretches heard as something that does not belong)

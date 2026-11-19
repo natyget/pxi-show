@@ -1,0 +1,191 @@
+[
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "It says hours. Plural. That's a suggestion.",
+  "note": "Easy, packing up, completely sure, a little amused.",
+  "out": "raw_oh_04.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Who's Darnell?",
+  "note": "Light, curious.",
+  "out": "raw_oh_06.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "...Pickup's at five.",
+  "note": "A beat of unease, then brisk, changing the subject, leaving. Say every word clearly, including the last word, five.",
+  "out": "raw_oh_07.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "No.",
+  "note": "Flat, under his breath, refusing what he sees. Long cut only.",
+  "out": "raw_oh_08.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "I did not RSVP to that.",
+  "note": "Quiet, betrayed, offended, stressing RSVP.",
+  "out": "raw_oh_09.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "I'm not even here.",
+  "note": "Insisting, a little too fast, still sure he is leaving.",
+  "out": "raw_oh_12.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "...Not yet, bro.",
+  "note": "Soft, kind, he cannot do it to him.",
+  "out": "raw_oh_15.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Prof. You're mogging the whole faculty. Everybody says it.",
+  "note": "Leaning in, fully committed, hyping him up, sincere and confident. Start right on the first word.",
+  "out": "raw_oh_19.wav"
+ },
+ {
+  "who": "nio",
+  "role": "dnio",
+  "text": "Office hours.",
+  "note": "Flat, hollow, a man who has seen things.",
+  "out": "raw_oh_23.wav"
+ },
+ {
+  "who": "profh_a",
+  "role": "dprofh",
+  "text": "Great sesh, fam. Real ones come to office hours.",
+  "note": "A soft, gentle whisper right into the mic, proud of saying fam; the room's PA makes it boom.",
+  "out": "raw_aud_profh_a_01.wav"
+ },
+ {
+  "who": "profh_a",
+  "role": "dprofh",
+  "text": "Do the students think I'm... HTN?",
+  "note": "Very small, scared of the answer, lip trembling; HTN said as letters.",
+  "out": "raw_aud_profh_a_18.wav"
+ },
+ {
+  "who": "theo_a",
+  "role": "dtheo",
+  "text": "You're cooked.",
+  "note": "Barely moving his lips, low, certain.",
+  "out": "raw_aud_theo_a_03.wav"
+ },
+ {
+  "who": "theo_a",
+  "role": "dtheo",
+  "text": "Where were you?",
+  "note": "Normal, a bit annoyed, on the pitch.",
+  "out": "raw_aud_theo_a_22.wav"
+ },
+ {
+  "who": "darnell_a",
+  "role": "ddarnell",
+  "text": "Did they ever drop the new GTA?",
+  "note": "Gentle, hopeful, like it's nothing.",
+  "out": "raw_aud_darnell_a_14.wav"
+ },
+ {
+  "who": "cleaner_a",
+  "role": "dcleaner",
+  "text": "Just go in, baby. It's faster.",
+  "note": "Warm older woman, unbothered, mopping, not looking up. Long cut only.",
+  "out": "raw_aud_cleaner_a_10.wav"
+ },
+ {
+  "who": "profh_b",
+  "role": "dprofh",
+  "text": "Great sesh, fam. Real ones come to office hours.",
+  "note": "A soft, gentle whisper right into the mic, proud of saying fam; the room's PA makes it boom.",
+  "out": "raw_aud_profh_b_01.wav"
+ },
+ {
+  "who": "profh_b",
+  "role": "dprofh",
+  "text": "Do the students think I'm... HTN?",
+  "note": "Very small, scared of the answer, lip trembling; HTN said as letters.",
+  "out": "raw_aud_profh_b_18.wav"
+ },
+ {
+  "who": "theo_b",
+  "role": "dtheo",
+  "text": "You're cooked.",
+  "note": "Barely moving his lips, low, certain.",
+  "out": "raw_aud_theo_b_03.wav"
+ },
+ {
+  "who": "theo_b",
+  "role": "dtheo",
+  "text": "Where were you?",
+  "note": "Normal, a bit annoyed, on the pitch.",
+  "out": "raw_aud_theo_b_22.wav"
+ },
+ {
+  "who": "darnell_b",
+  "role": "ddarnell",
+  "text": "Did they ever drop the new GTA?",
+  "note": "Gentle, hopeful, like it's nothing.",
+  "out": "raw_aud_darnell_b_14.wav"
+ },
+ {
+  "who": "cleaner_b",
+  "role": "dcleaner",
+  "text": "Just go in, baby. It's faster.",
+  "note": "Warm older woman, unbothered, mopping, not looking up. Long cut only.",
+  "out": "raw_aud_cleaner_b_10.wav"
+ },
+ {
+  "who": "profh_c",
+  "role": "dprofh",
+  "text": "Great sesh, fam. Real ones come to office hours.",
+  "note": "A soft, gentle whisper right into the mic, proud of saying fam; the room's PA makes it boom.",
+  "out": "raw_aud_profh_c_01.wav"
+ },
+ {
+  "who": "profh_c",
+  "role": "dprofh",
+  "text": "Do the students think I'm... HTN?",
+  "note": "Very small, scared of the answer, lip trembling; HTN said as letters.",
+  "out": "raw_aud_profh_c_18.wav"
+ },
+ {
+  "who": "theo_c",
+  "role": "dtheo",
+  "text": "You're cooked.",
+  "note": "Barely moving his lips, low, certain.",
+  "out": "raw_aud_theo_c_03.wav"
+ },
+ {
+  "who": "theo_c",
+  "role": "dtheo",
+  "text": "Where were you?",
+  "note": "Normal, a bit annoyed, on the pitch.",
+  "out": "raw_aud_theo_c_22.wav"
+ },
+ {
+  "who": "darnell_c",
+  "role": "ddarnell",
+  "text": "Did they ever drop the new GTA?",
+  "note": "Gentle, hopeful, like it's nothing.",
+  "out": "raw_aud_darnell_c_14.wav"
+ },
+ {
+  "who": "cleaner_c",
+  "role": "dcleaner",
+  "text": "Just go in, baby. It's faster.",
+  "note": "Warm older woman, unbothered, mopping, not looking up. Long cut only.",
+  "out": "raw_aud_cleaner_c_10.wav"
+ }
+]

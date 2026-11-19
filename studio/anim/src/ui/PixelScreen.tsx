@@ -11,7 +11,7 @@ function useAssets() {
   const [ready, setReady] = useState<{ icon: HTMLImageElement } | null>(null);
   const [handle] = useState(() => delayRender('pixel screen assets'));
   useEffect(() => {
-    const font = new FontFace('PixelifyCanvas', `url(${staticFile('PixelifySans.ttf')})`, { weight: '400 700' });
+    const font = new FontFace('PixelifyCanvas', `url(${staticFile('PixelifyB.ttf')})`, { weight: '400 700' });
     const icon = new Image(); icon.src = staticFile('pxi-app-icon.png');
     Promise.all([font.load().then((f) => document.fonts.add(f)), new Promise((r) => { icon.onload = r; })]).then(() => {
       setReady({ icon }); continueRender(handle);

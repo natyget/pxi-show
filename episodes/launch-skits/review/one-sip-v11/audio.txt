@@ -1,0 +1,17 @@
+What the sound is heard as, every 4 s (an audio classifier; the score is how sure it is).
+  0.0-  4.0s  Speech 0.52, Music 0.42
+  4.0-  8.0s  Speech 0.45, Music 0.33, Whip 0.16
+  8.0- 12.0s  Music 0.39, Speech 0.38, Electronic music 0.09, Techno 0.09
+ 12.0- 16.0s  Speech 0.52, Music 0.48, Sound effect 0.06
+ 16.0- 20.0s  Speech 0.56, Music 0.44
+ 20.0- 24.0s  Music 0.42, Speech 0.41, Baby cry, infant cry 0.06
+ 24.0- 28.0s  Music 0.36, Speech 0.34, Ding 0.07, Boing 0.06
+ 28.0- 32.0s  Speech 0.54, Music 0.38
+ 32.0- 36.0s  Music 0.36, Speech 0.35, Groan 0.05
+ 36.0- 40.0s  Music 0.45, Speech 0.44
+ 40.0- 44.0s  Speech 0.51, Music 0.45, Fart 0.05
+ 44.0- 48.0s  Speech 0.61, Music 0.55, Sound effect 0.07
+ 48.0- 52.0s  Sound effect 0.16, Beep, bleep 0.16, Plop 0.09, Ding 0.07   << sounds wrong: Beep, bleep
+ 52.0- 56.0s  Plop 0.65, Speech 0.48
+ 56.0- 58.7s  Speech 0.75, Male speech, man speaking 0.11, Speech synthesizer 0.08
+RESULT FLAG (1 stretch heard as something that does not belong)

@@ -1,0 +1,247 @@
+[
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Sorry, do I know you?",
+"note": "Polite, confused, a little wary. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_01.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Marcus! Bro, come on. It's me.",
+"note": "Warm, big, totally sure of himself, like greeting an old friend. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_02.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "I think you've got me mixed up with someone, man.",
+"note": "Polite, apologetic, offering him a way out. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Is your mum still doing Sunday dinners or what?",
+"note": "Breezy and familiar, as if he goes every week. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_04.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Yeah, she is.",
+"note": "Small beat first, then too polite to lie, a little defeated. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_05.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Send me the link.",
+"note": "Easy, confident, already decided. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_09.wav"
+},
+{
+"who": "mum",
+"role": "dmum",
+"text": "So how did you two meet?",
+"note": "Warm, delighted, a mum at Sunday dinner. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_06.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "He waved at me.",
+"note": "Calm, charming, completely straight. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_07.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "I did not wave at you.",
+"note": "Flat, tired, quietly firm. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_08.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay everybody get in, the light's perfect right now.",
+"note": "Excited, quick, phone up. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_01.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Wait, get my left side. My right side's not it today.",
+"note": "Vain, serious about it, pointing at his own face. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_02.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Bro, I can't see anything. Just take it without me.",
+"note": "Squinting into the sun, giving up. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_03.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Go higher, so the sun's behind you.",
+"note": "Helpful, sure she has the fix. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_04.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Nah, not from above. I look short. I'm out.",
+"note": "Offended, walking off. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_05.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Okay, one person isn't a group photo. That's just a photo of me.",
+"note": "Dry, reasonable, then stepping out. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_06.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Yo. I look really good in this one.",
+"note": "Delighted with himself, scrolling. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_08.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Bro, this party's dead.",
+"note": "Flat, bored, slumped. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_07.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Give me the aux. I got you.",
+"note": "Confident hero arriving. Say aux like 'ox'. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_01.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay, okay. Bring it down, bring it down.",
+"note": "Rattled but trying to stay cool, hands out. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Something calm. Something grown.",
+"note": "Muttering to himself, scrolling fast. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_04.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Bro. Best party of the year.",
+"note": "Soaked, amazed, completely sincere. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_08.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I know.",
+"note": "Cool and smug, like he planned it. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_ax_09.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Nah I'm good, I can't handle drinks. I get crazy.",
+"note": "Refusing, palms up, half laughing, a bit nervous. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_01.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "It's all in your head, gang. You gotta will it. One sip.",
+"note": "Easy, teasing, hyping his friend up. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_02.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Okay so actually, this song samples a jazz record from 1974. Most people don't know that.",
+"note": "Suddenly a music snob, smug, pointing at the speaker. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_03.wav"
+},
+{
+"who": "imane",
+"role": "dimane",
+"text": "Okay?",
+"note": "Flat, unimpressed, one word. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_04.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "He's into music. That's just Sami.",
+"note": "The host covering for his friend, quick and a little awkward. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_05.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Where do you see yourself in five years? 'Cause I see you in my mentorship program.",
+"note": "An intense life coach, leaning in too close. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_06.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "He's networking.",
+"note": "Quietly to Imane, a small pause before networking, embarrassed. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_07.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Sir. You have touched my coat. I demand satisfaction.",
+"note": "A furious Victorian gentleman, very posh. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_08.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Bro, this is my coat.",
+"note": "Baffled, holding his own coat. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_09.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Theo, just give him the coat.",
+"note": "Tired host, keeping the peace. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_10.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "This apartment is my kingdom now. The bathroom is mine.",
+"note": "A mad king, standing on a table, booming. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_11.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Sami. You need to leave.",
+"note": "Firm, fed up, final. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_12.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Gang. It's a juice box. It came with a straw.",
+"note": "Disgusted, flat, holding it up, a beat after gang. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_os_13.wav"
+}
+]

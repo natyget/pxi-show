@@ -1,0 +1,65 @@
+[
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Sorry, do I know you?",
+"note": "Polite, confused, a little wary. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_01.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Marcus! Bro, come on. It's me.",
+"note": "Warm, big, totally sure of himself, like greeting an old friend. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_02.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "I think you've got me mixed up with someone, man.",
+"note": "Polite, apologetic, offering him a way out. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Is your mum still doing Sunday dinners or what?",
+"note": "Breezy and familiar, as if he goes every week. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_04.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Yeah, she is.",
+"note": "Small beat first, then too polite to lie, a little defeated. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_05.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Send me the link.",
+"note": "Easy, confident, already decided. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_09.wav"
+},
+{
+"who": "mum",
+"role": "dmum",
+"text": "So how did you two meet?",
+"note": "Warm, delighted, a mum at Sunday dinner. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_06.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "He waved at me.",
+"note": "Calm, charming, completely straight. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_07.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "I did not wave at you.",
+"note": "Flat, tired, quietly firm. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_wb_08.wav"
+}
+]

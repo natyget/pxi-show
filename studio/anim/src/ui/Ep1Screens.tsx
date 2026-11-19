@@ -27,7 +27,7 @@ export type Ep1Tex = Record<string, THREE.Texture>;
 let cached: Promise<Ep1Tex> | null = null;
 
 async function build(): Promise<Ep1Tex> {
-  const f = new FontFace(FONT, `url(${staticFile('PixelifySans.ttf')})`, { weight: '400 700' }); await f.load(); document.fonts.add(f);
+  const f = new FontFace(FONT, `url(${staticFile('PixelifyB.ttf')})`, { weight: '400 700' }); await f.load(); document.fonts.add(f);
   const [icon, behind, sneeze, candle, asleep, wave, future, deleting] = await Promise.all(
     ['pxi-app-icon.png', 'photos/e1_behind.png', 'photos/e1_sneeze.png', 'photos/e1_candle.png', 'photos/e1_asleep.png', 'photos/e1_wave.png', 'photos/e1_future.png', 'photos/e1_deleting.png'].map(img));
   const out: Ep1Tex = {};

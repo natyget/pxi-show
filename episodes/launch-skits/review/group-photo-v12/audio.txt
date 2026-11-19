@@ -1,0 +1,23 @@
+What the sound is heard as, every 4 s (an audio classifier; the score is how sure it is).
+  0.0-  4.0s  Speech 0.79, Male speech, man speaking 0.10, Narration, monologue 0.06
+  4.0-  8.0s  Speech 0.70, Caw 0.33, Crow 0.16
+  8.0- 12.0s  Speech 0.82, Music 0.11, Static 0.09, Spray 0.05
+ 12.0- 16.0s  Speech 0.69, Spray 0.14, Static 0.09
+ 16.0- 20.0s  Speech 0.71, Static 0.08
+ 20.0- 24.0s  Speech 0.79
+ 24.0- 28.0s  Speech 0.80, Music 0.29, Male speech, man speaking 0.08
+ 28.0- 32.0s  Speech 0.76, Sigh 0.12, Gasp 0.09, Male speech, man speaking 0.05
+ 32.0- 36.0s  Speech 0.75, Explosion 0.07, Eruption 0.06, Sound effect 0.05
+ 36.0- 40.0s  Speech 0.75
+ 40.0- 44.0s  Speech 0.73
+ 44.0- 48.0s  Music 0.12, Hiss 0.12, Steam 0.05
+ 48.0- 52.0s  Speech 0.64, Music 0.24, Beep, bleep 0.06
+ 52.0- 56.0s  Ding 0.72, Clang 0.64, Doorbell 0.10
+ 56.0- 60.0s  Music 0.11, Sound effect 0.09, Ping 0.09, Speech 0.09
+ 60.0- 64.0s  Speech 0.65, Music 0.32
+ 64.0- 68.0s  Music 0.43, Speech 0.37
+ 68.0- 72.0s  Ding 0.57, Music 0.36, Clang 0.36, Speech 0.31
+ 72.0- 76.0s  Speech 0.53, Music 0.51, Electronic music 0.11, Techno 0.09
+ 76.0- 80.0s  Music 0.44, Speech 0.40, Whip 0.08, Electronic music 0.07
+ 80.0- 84.0s  Ding 0.38, Music 0.32, Speech 0.19, Clang 0.10
+RESULT PASS (0 stretches heard as something that does not belong)

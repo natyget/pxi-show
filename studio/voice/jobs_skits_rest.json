@@ -1,0 +1,177 @@
+[
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Sorry, do I know you?",
+"note": "Friendly but confused, polite, a stranger walked up to him.",
+"out": "raw_wb_01.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Marcus. Come on.",
+"note": "Warm, easy, totally sure, like greeting an old friend, a little hurt he even asked.",
+"out": "raw_wb_02.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "I think you mixed me up with someone.",
+"note": "Kind, gently offering a way out, a small awkward laugh in the voice.",
+"out": "raw_wb_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Is your mum still doing Sunday dinner?",
+"note": "Casual, confident, cheeky, as if he has been many times.",
+"out": "raw_wb_04.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "She is, yeah.",
+"note": "Slow, thrown, a pause before it, confused but honest.",
+"out": "raw_wb_05.wav"
+},
+{
+"who": "mum",
+"role": "dmum",
+"text": "So how did you two meet?",
+"note": "Delighted, warm, loud, beaming at both boys across the dinner table.",
+"out": "raw_wb_06.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "He waved at me.",
+"note": "Calm, sweet, completely straight-faced, like it is a lovely story.",
+"out": "raw_wb_07.wav"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "I did not.",
+"note": "Quick, flat, under his breath, firm.",
+"out": "raw_wb_08.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay, everybody in.",
+"note": "Upbeat, easy, holding up his phone, organising friends for a photo.",
+"out": "raw_gp_01.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Get my left side.",
+"note": "Confident, matter of fact, like a model giving a note.",
+"out": "raw_gp_02.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "I can't open my eyes. Take it without me.",
+"note": "Polite, squinting in pain, very dignified about it.",
+"out": "raw_gp_03.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Higher. So the sun's behind you.",
+"note": "Bright, helpful, sure she has solved it.",
+"out": "raw_gp_04.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Not from above. I'm out.",
+"note": "Offended, quick, walking away.",
+"out": "raw_gp_05.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "One person isn't a group photo.",
+"note": "Thoughtful, sincere, noticing she is alone.",
+"out": "raw_gp_06.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "That's just a photo.",
+"note": "Simple, sweet, final, stepping away.",
+"out": "raw_gp_07.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "I look really good in that.",
+"note": "Proud, delighted, staring at the phone.",
+"out": "raw_gp_08.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Give me the aux.",
+"note": "Confident, holding out his hand, the hero arriving to save the party.",
+"out": "raw_ax_01.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "You're on.",
+"note": "Quick, handing it over, a little doubtful.",
+"out": "raw_ax_02.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay. Something to bring them down.",
+"note": "Under his breath, scrolling his phone, calm under pressure.",
+"out": "raw_ax_03.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Something calm. Something adult.",
+"note": "Muttering to himself, scrolling fast, getting nervous.",
+"out": "raw_ax_04.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Hello?",
+"note": "Answering a phone call, flat and normal.",
+"out": "raw_ax_05m.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Hello?",
+"note": "Answering a phone call, flat and normal.",
+"out": "raw_ax_05s.wav"
+},
+{
+"who": "imane",
+"role": "dimane",
+"text": "Hello?",
+"note": "Answering a phone call, flat and normal.",
+"out": "raw_ax_05i.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Hello?",
+"note": "Answering a phone call, flat and normal.",
+"out": "raw_ax_05t.wav"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Hello?",
+"note": "Small, quiet, confused, a long beat before it.",
+"out": "raw_ax_06.wav"
+}
+]

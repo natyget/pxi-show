@@ -42,6 +42,9 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
   and big about himself. Never a goof, never stupid, never an NPC reading a plan. He is good-looking.
 - **People talk to each other** (`bible/voice-and-dialogue.md`), and **faces act** (`bible/director.md`): an
   expression for every line, no idle bobbing, no shot where nothing happens.
+- **The acting pass is law** (`bible/acting.md`, founder, Nov 17): held poses, never looping clips; still legs when
+  seated; one pose change per line on its key word; blinks on thought changes; listeners hold and react. The engine
+  refuses a shot without it, and every voice manifest gets `engine/tools/accents.py` before a render. Keep improving it.
 - **PXI is Nio's app and is never forced** (`bible/story.md`, section 4). It is shown and never sold. Screens
   are the real app 1:1 in the show's pixels (`bible/pxi-product.md`). Every release carries a PXI call to
   action in its own slot: the tag, the caption or the end frame (`engine/formats.md`), and every caption says
@@ -49,7 +52,8 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - **Nothing by accident** (`bible/anti-slop.md`). Every strange thing is declared in the intent ledger before
   it is built. Anything strange that is not in the ledger is a defect, however good it looks.
 - **Whole releases, never "Part 1".** No intro or outro unless the piece calls for one.
-- **Voices are locked:** the designed Qwen3-TTS voices in `bible/characters.md`, made exactly as written there.
+- **Voices are locked:** the designed Qwen3-TTS voices in `bible/characters.md`, made exactly as written there. Plain and clean, no
+  effect on any voice, each line read for its situation and checked with `engine/tools/tone_check.py` (founder, Nov 19).
   Character designs change only on a dated founder note.
 - **After the pilot is approved, `bible/style-lock.md` is the reference.** A difference from it is a defect.
 - **A gate that fails twice stops the line.** Write `BLOCKED` and the exact reason in `STATE.md`. Never lower a

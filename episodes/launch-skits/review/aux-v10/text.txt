@@ -1,0 +1,21 @@
+Everything written on screen, in order. Times are seconds into a 64-second video.
+
+0.3 to 3.5   subtitle: Nobody's dancing. Why is nobody dancing.
+3.6 to 6.3   subtitle: That girl's reading the fire exit sign.
+6.5 to 8.1   subtitle: Give me the aux.
+8.5 to 10.2   subtitle: Just don't make it worse.
+11.8 to 14.7   subtitle: How is it raining inside?
+12.3 to 13.7   subtitle: Is the roof gone?
+12.8 to 14.5   subtitle: My phone's not waterproof!
+14.8 to 18.4   subtitle: No. No no no. My records.
+24.1 to 28.1   subtitle: This is the best night of my life.
+28.3 to 29.5   subtitle: Turn it off!
+29.4 to 30.7   subtitle: I'm trying!
+40.5 to 42.4   subtitle: Bro, that was insane.
+41.2 to 43.0   subtitle: Tell me you're doing another one.
+43.1 to 45.6   subtitle: My phone's dead and I don't even care.
+43.9 to 47.3   subtitle: Theo. Theo. Next weekend?
+52.5 to 55.3   subtitle: And that's why I'm always on aux.
+55.5 to 59.2   subtitle: Theo. Theo, he's not worth it.
+59.2 to 61.0   subtitle: Do it. Do it.
+61.0 to 62.8   subtitle: Stop talking.

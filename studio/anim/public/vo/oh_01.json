@@ -1,0 +1,38 @@
+{
+  "key": "oh_01",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "versions": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3",
+    "torch": "2.8.0+cpu"
+  },
+  "seed": 7,
+  "language": "English",
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "character": "profh",
+  "description_sha256": "4daf0cf0ee8f4fc8bd58fd4c41ec42d1b4a0b79eb0f49ac3ca1bebe54d2f3b0b",
+  "note": "A soft, gentle whisper right into the mic, proud of saying fam; the room's PA makes it boom. Say 'real ones' clearly.",
+  "line": "Great sesh, fam. Real ones come to office hours.",
+  "text_sent": "Great sesh, fam. Real ones come to office hours.",
+  "treatment": {
+    "pitch": 0,
+    "trim_silence": true,
+    "colour": "walkie",
+    "walkie": "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8",
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1,
+    "pa_room": "Prof H's lecture-hall mic lines add bass=g=9:f=110 and a hall echo (the whisper made to boom by the room)"
+  },
+  "dur": 4.729,
+  "wav_sha256": "0957e940a1f87c65d6666eefecdd9babdf0ed805ba408330739e343ab9f41b4d",
+  "made_by": "studio/voice/audition_oh.py + treat_oh.py"
+}

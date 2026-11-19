@@ -6,7 +6,7 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { AbsoluteFill, useCurrentFrame, staticFile } from 'remotion';
 import * as THREE from 'three';
 
-export const LW = 135, LH = 240, SCALE = 8;
+export const LW = 270, LH = 480, SCALE = 4;
 
 export const Cam: React.FC<{ pos: [number, number, number]; at: [number, number, number]; fov?: number }> = ({ pos, at, fov = 35 }) => {
   const { camera, invalidate } = useThree();
@@ -89,14 +89,14 @@ export const PixelShot: React.FC<{ children: React.ReactNode; glitch?: number; b
 };
 
 /** Subtitles in a chunky pixel font with a hard ink outline, like the reference. */
-export const Sub: React.FC<{ text: string; y?: number; size?: number }> = ({ text, y = 1450, size = 84 }) => (
+export const Sub: React.FC<{ text: string; y?: number; size?: number; color?: string }> = ({ text, y = 1450, size = 84, color = '#fff' }) => (
   <div data-kind="sub" style={{ position: 'absolute', left: 60, right: 60, top: y, textAlign: 'center', fontFamily: 'Pixelify', fontWeight: 700, fontSize: size, fontVariantLigatures: 'none', fontFeatureSettings: '"liga" 0, "clig" 0',
-    color: '#fff', lineHeight: 1.05,
+    color, lineHeight: 1.05,
     textShadow: [[-6, 0], [6, 0], [0, -6], [0, 6], [-6, -6], [6, 6], [-6, 6], [6, -6], [0, 10]].map(([x, y2]) => `${x}px ${y2}px 0 #151216`).join(',') }}>
     {text.split(/([()*])/).map((part, i) => /^[()*]$/.test(part) ? <span key={i} style={{ fontFamily: 'DejaVu Sans Mono, monospace', fontWeight: 700 }}>{part}</span> : <React.Fragment key={i}>{part}</React.Fragment>)}
   </div>
 );
 
 export const Fonts: React.FC = () => (
-  <style>{`@font-face { font-family: 'Pixelify'; src: url(${staticFile('PixelifySans.ttf')}) format('truetype'); font-weight: 400 700; }`}</style>
+  <style>{`@font-face { font-family: 'Pixelify'; src: url(${staticFile('PixelifyR.ttf')}) format('truetype'); font-weight: 400 599; } @font-face { font-family: 'Pixelify'; src: url(${staticFile('PixelifyB.ttf')}) format('truetype'); font-weight: 600 900; }`}</style>
 );

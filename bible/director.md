@@ -31,6 +31,9 @@ The face is flat 2D on the head (lids, brows, pupils, mouth) and it carries the 
 
 ## Acting: bodies
 
+The engine performs these rules on every shot: `bible/acting.md` (still legs when seated, one pose change per
+line on its key word, head dips on the other stresses, blinks on thought changes, listeners hold).
+
 - **Pose to pose.** A strong, readable pose, a fast move (2 to 4 frames, with a squash or a smear), a settle,
   and a hold. That snap is the cartoon feel. Even, floaty motion is the farm-game feel.
 - **No idle loops.** Nothing bobs. A character who is listening holds a pose, blinks, and shifts weight once

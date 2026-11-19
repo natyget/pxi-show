@@ -1,0 +1,38 @@
+{
+  "key": "oh_10",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "versions": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3",
+    "torch": "2.8.0+cpu"
+  },
+  "seed": 7,
+  "language": "English",
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "character": "cleaner",
+  "description_sha256": "c3c9526413e42014c5f8f811241d2b04b2403c404f8c6c752bea796d3b09f136",
+  "note": "Warm older woman, unbothered, mopping, not looking up.",
+  "line": "Just go in, baby. It's faster.",
+  "text_sent": "Just go in, baby. It's faster.",
+  "treatment": {
+    "pitch": 0,
+    "trim_silence": true,
+    "colour": "walkie",
+    "walkie": "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8",
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1,
+    "pa_room": "Prof H's lecture-hall mic lines add bass=g=9:f=110 and a hall echo (the whisper made to boom by the room)"
+  },
+  "dur": 2.209,
+  "wav_sha256": "4df5224ee38a81f125eecca52d486a0bd8ffcc2102827ac75449bc5b681dde95",
+  "made_by": "studio/voice/audition_oh.py + treat_oh.py"
+}

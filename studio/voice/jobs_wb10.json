@@ -1,0 +1,236 @@
+[
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Wait. I know you. Lakeview? Cabin Four?",
+"note": "Calling across a lawn, warm, friendly but unsure, squinting at him. Natural, like a real person talking.",
+"out": "raw_wb10_01_t3.wav",
+"seed": 3,
+"sub": "Wait. I know you. Lakeview? Cabin Four?"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Wait. I know you. Lakeview? Cabin Four?",
+"note": "Calling across a lawn, warm, friendly but unsure, squinting at him. Natural, like a real person talking.",
+"out": "raw_wb10_01_t17.wav",
+"seed": 17,
+"sub": "Wait. I know you. Lakeview? Cabin Four?"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Four. Yeah.",
+"note": "Half a beat, then easy and smooth, covering. Easy and sure, relaxed, unhurried.",
+"out": "raw_wb10_02_t3.wav",
+"seed": 3,
+"sub": "...Four. Yeah."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Four. Yeah.",
+"note": "Half a beat, then easy and smooth, covering. Easy and sure, relaxed, unhurried.",
+"out": "raw_wb10_02_t17.wav",
+"seed": 17,
+"sub": "...Four. Yeah."
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Reunion's Sunday. You're coming.",
+"note": "Delighted, already tapping his phone. Beaming, thrilled, bright and quick.",
+"out": "raw_wb10_03_t3.wav",
+"seed": 3,
+"sub": "Reunion's Sunday. You're coming."
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Reunion's Sunday. You're coming.",
+"note": "Delighted, already tapping his phone. Beaming, thrilled, bright and quick.",
+"out": "raw_wb10_03_t17.wav",
+"seed": 17,
+"sub": "Reunion's Sunday. You're coming."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "What do people do at camp?",
+"note": "Flat, lying on his bed, to the ceiling, phone to his ear. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_04_t3.wav",
+"seed": 3,
+"sub": "What do people do at camp?"
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "What do people do at camp?",
+"note": "Flat, lying on his bed, to the ceiling, phone to his ear. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_04_t17.wav",
+"seed": 17,
+"sub": "What do people do at camp?"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "You never went to camp.",
+"note": "On the phone, a pause first, suspicious and dry. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_05_t3.wav",
+"seed": 3,
+"sub": "You never went to camp."
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "You never went to camp.",
+"note": "On the phone, a pause first, suspicious and dry. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_05_t17.wav",
+"seed": 17,
+"sub": "You never went to camp."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I know.",
+"note": "Closing his eyes, quiet, resigned. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_06_t3.wav",
+"seed": 3,
+"sub": "I know."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I know.",
+"note": "Closing his eyes, quiet, resigned. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_06_t17.wav",
+"seed": 17,
+"sub": "I know."
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Guys! Nio! Cabin Four!",
+"note": "Proud, steering his friend into the room, to the whole table. Loud and proud, over a room, bright.",
+"out": "raw_wb10_07_t3.wav",
+"seed": 3,
+"sub": "Guys! Nio! Cabin Four!"
+},
+{
+"who": "marcus",
+"role": "dmarcus",
+"text": "Guys! Nio! Cabin Four!",
+"note": "Proud, steering his friend into the room, to the whole table. Loud and proud, over a room, bright.",
+"out": "raw_wb10_07_t17.wav",
+"seed": 17,
+"sub": "Guys! Nio! Cabin Four!"
+},
+{
+"who": "tobi",
+"role": "dtobi",
+"text": "I was in Four.",
+"note": "Slow, low, he stops chewing, staring at him. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_08_t3.wav",
+"seed": 3,
+"sub": "...I was in Four."
+},
+{
+"who": "tobi",
+"role": "dtobi",
+"text": "I was in Four.",
+"note": "Slow, low, he stops chewing, staring at him. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_08_t17.wav",
+"seed": 17,
+"sub": "...I was in Four."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Big year.",
+"note": "Smiling, nodding, a beat too long, bluffing. Easy and sure, relaxed, unhurried.",
+"out": "raw_wb10_09_t3.wav",
+"seed": 3,
+"sub": "...Big year."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Big year.",
+"note": "Smiling, nodding, a beat too long, bluffing. Easy and sure, relaxed, unhurried.",
+"out": "raw_wb10_09_t17.wav",
+"seed": 17,
+"sub": "...Big year."
+},
+{
+"who": "tobi",
+"role": "dtobi",
+"text": "Find yourself.",
+"note": "Low and calm, sliding a phone across the table to him. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_10_t3.wav",
+"seed": 3,
+"sub": "Find yourself."
+},
+{
+"who": "tobi",
+"role": "dtobi",
+"text": "Find yourself.",
+"note": "Low and calm, sliding a phone across the table to him. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_10_t17.wav",
+"seed": 17,
+"sub": "Find yourself."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Bathroom.",
+"note": "Standing up, polite and quick. Natural, like a real person talking.",
+"out": "raw_wb10_11_t3.wav",
+"seed": 3,
+"sub": "Bathroom."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Bathroom.",
+"note": "Standing up, polite and quick. Natural, like a real person talking.",
+"out": "raw_wb10_11_t17.wav",
+"seed": 17,
+"sub": "Bathroom."
+},
+{
+"who": "tobi",
+"role": "dtobi",
+"text": "Nio. Come out.",
+"note": "Through a locked bathroom door, calm and heavy. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_12_t3.wav",
+"seed": 3,
+"sub": "Nio. Come out."
+},
+{
+"who": "tobi",
+"role": "dtobi",
+"text": "Nio. Come out.",
+"note": "Through a locked bathroom door, calm and heavy. Flat and dry, low and steady, an even pace.",
+"out": "raw_wb10_12_t17.wav",
+"seed": 17,
+"sub": "Nio. Come out."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "That's a good photo.",
+"note": "Soaked, sitting in a lake, quietly to himself, grudging, a little impressed. Quiet and soft, a small lift.",
+"out": "raw_wb10_13_t3.wav",
+"seed": 3,
+"sub": "...That's a good photo."
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "That's a good photo.",
+"note": "Soaked, sitting in a lake, quietly to himself, grudging, a little impressed. Quiet and soft, a small lift.",
+"out": "raw_wb10_13_t17.wav",
+"seed": 17,
+"sub": "...That's a good photo."
+}
+]

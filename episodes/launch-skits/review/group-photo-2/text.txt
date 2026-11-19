@@ -1,0 +1,9 @@
+Everything written on screen, in order. Times are seconds into a 42-second video.
+
+1.3 to 5.0   subtitle: Okay everybody get in, the light's perfect right now.
+5.0 to 8.1   subtitle: Wait, get my left side. My right side's not it today.
+10.9 to 13.9   subtitle: Bro, I can't see anything. Just take it without me.
+15.9 to 18.8   subtitle: Go higher, so the sun's behind you.
+20.3 to 23.8   subtitle: Nah, not from above. I look short. I'm out.
+26.5 to 31.6   subtitle: Okay, one person isn't a group photo. That's just a photo of me.
+37.8 to 40.0   subtitle: Yo. I look really good in this one.

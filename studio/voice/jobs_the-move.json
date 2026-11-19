@@ -1,0 +1,15 @@
+[
+ {"who": "theo", "role": "dtheo", "voice": "NOT APPROVED", "text": "Eighty percent you regret this tomorrow!", "note": "Shouting over loud club music, grinning, means it, a friend calling the odds while he films.", "out": "raw_tm_01.wav", "sub": "Eighty percent you regret this tomorrow."},
+ {"who": "nio", "role": "dnio", "text": "Theo. I have never regretted one thing in my life.", "note": "Delighted, mid-dance, a little drunk and completely sure, loud enough to be heard over the music, savoring \"never\".", "out": "raw_tm_02.wav"},
+ {"who": "nio", "role": "dnio", "text": "...Okay. One thing.", "note": "Deflated in one breath, quiet and honest, the music still going around him.", "out": "raw_tm_03.wav"},
+ {"who": "nio", "role": "dnio", "text": "You guys are helping.", "note": "Moved, quiet, sincere and a bit choked up, squinting at the floor.", "out": "raw_tm_04.wav"},
+ {"who": "girl", "role": "dgirl", "voice": "NOT APPROVED", "text": "What's it called?", "note": "Thrilled, leaning in over the music, like she has found the best thing in the club.", "out": "raw_tm_05.wav"},
+ {"who": "nio", "role": "dnio", "text": "I lost it.", "note": "Honest and flat, still looking at the floor, not a joke to him.", "out": "raw_tm_06.wav"},
+ {"who": "girl", "role": "dgirl", "voice": "NOT APPROVED", "text": "It's called I lost it!", "note": "Standing, arms up, shouting to the whole club, ecstatic.", "out": "raw_tm_07.wav", "sub": "IT'S CALLED \"I LOST IT\"!"},
+ {"who": "club", "role": "dclub", "voice": "NOT APPROVED", "text": "I lost it!", "note": "A crowd chanting back as one, on the beat. Several voices layered.", "out": "raw_tm_08.wav", "sub": "I LOST IT!"},
+ {"who": "maya", "role": "dmaya", "text": "It was on you.", "note": "Sincere and gentle, close, a small smile, she just found it.", "out": "raw_tm_09.wav"},
+ {"who": "nio", "role": "dnio", "text": "...I'm not gonna stop them.", "note": "Quiet, a little proud, deciding something, then a half smile on \"them\".", "out": "raw_tm_10.wav"},
+ {"who": "nio", "role": "dnio", "text": "That's a dance now.", "note": "Morning, hungover, deadly serious, low and dry, to the viewer.", "out": "raw_tm_11.wav"},
+ {"who": "nio", "role": "dnio", "text": "Theo took it. It's in my album.", "note": "Dry, holding up the phone, proud. Long cut only.", "out": "raw_tm_12.wav"},
+ {"who": "nio", "role": "dnio", "text": "This my app. Go download pixie.", "note": "Easy and charming, one brow up, holding the phone to the viewer.", "out": "raw_tm_13.wav", "sub": "This my app. Go download PXI."}
+]

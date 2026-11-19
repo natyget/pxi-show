@@ -1,0 +1,92 @@
+[
+{
+"key": "os11_01",
+"who": "sami",
+"tone": "plain",
+"text": "Nah, I'm good. I can't. I get weird.",
+"files": [
+"raw/raw_os11_01_t3.wav",
+"raw/raw_os11_01_t17.wav"
+]
+},
+{
+"key": "os11_02",
+"who": "nio",
+"tone": "brag",
+"text": "One sip. You'll be fine.",
+"files": [
+"raw/raw_os11_02_t3.wav",
+"raw/raw_os11_02_t17.wav"
+]
+},
+{
+"key": "os11_03",
+"who": "sami",
+"tone": "sincere",
+"text": "Your haircut. Who did that to you?",
+"files": [
+"raw/raw_os11_03_t3.wav",
+"raw/raw_os11_03_t17.wav"
+]
+},
+{
+"key": "os11_04",
+"who": "sami",
+"tone": "shout",
+"text": "Whose coat is this?",
+"files": [
+"raw/raw_os11_04_t3.wav",
+"raw/raw_os11_04_t17.wav"
+]
+},
+{
+"key": "os11_05",
+"who": "theo",
+"tone": "deadpan",
+"text": "Mine.",
+"files": [
+"raw/raw_os11_05_t3.wav",
+"raw/raw_os11_05_t17.wav"
+]
+},
+{
+"key": "os11_06",
+"who": "sami",
+"tone": "deadpan",
+"text": "Is it.",
+"files": [
+"raw/raw_os11_06_t3.wav",
+"raw/raw_os11_06_t17.wav"
+]
+},
+{
+"key": "os11_07",
+"who": "sami",
+"tone": "brag",
+"text": "This is my table now.",
+"files": [
+"raw/raw_os11_07_t3.wav",
+"raw/raw_os11_07_t17.wav"
+]
+},
+{
+"key": "os11_08",
+"who": "maya",
+"tone": "deadpan",
+"text": "Off the table. Go home.",
+"files": [
+"raw/raw_os11_08_t3.wav",
+"raw/raw_os11_08_t17.wav"
+]
+},
+{
+"key": "os11_09",
+"who": "sami",
+"tone": "sincere",
+"text": "Theo, I stand by the haircut.",
+"files": [
+"raw/raw_os11_09_t3.wav",
+"raw/raw_os11_09_t17.wav"
+]
+}
+]

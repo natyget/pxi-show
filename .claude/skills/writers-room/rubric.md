@@ -14,5 +14,6 @@
 
 **Veto**: "actually funny" below 3/5 from the Nine-Year-Old or the Skeptic.
 **Veto**: anything on the Never list in `bible/humor.md`; any line that makes Nio a goof, an NPC or a narrator.
-**Veto**: the cold read cannot say what he wanted or what happened, or cannot quote a laugh.
+**Veto**: the cold read cannot say what he wanted or what happened, or cannot quote a laugh. The cold read is also
+run on the shot list with the sound off: if any change has a cause that is only heard or implied, it is a veto.
 **Veto**: PXI forced in where it does not fit (`bible/story.md`, section 4).

@@ -1,0 +1,38 @@
+{
+  "key": "oh_02",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "versions": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3",
+    "torch": "2.8.0+cpu"
+  },
+  "seed": 7,
+  "language": "English",
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "character": "profh",
+  "description_sha256": "4daf0cf0ee8f4fc8bd58fd4c41ec42d1b4a0b79eb0f49ac3ca1bebe54d2f3b0b",
+  "note": "Whispered, warm, delighted, into the mic. Clean read, exactly these words.",
+  "line": "Nio. Today.",
+  "text_sent": "Nio. Today.",
+  "treatment": {
+    "pitch": 0,
+    "trim_silence": true,
+    "colour": "walkie",
+    "walkie": "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8",
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1,
+    "pa_room": "Prof H's lecture-hall mic lines add bass=g=9:f=110 and a hall echo (the whisper made to boom by the room)"
+  },
+  "dur": 2.314,
+  "wav_sha256": "b2f1511e553b799b2e2c35cee6c46647a65c5b53901318deb3fe5c57dc7c2708",
+  "made_by": "studio/voice/audition_oh.py + treat_oh.py"
+}

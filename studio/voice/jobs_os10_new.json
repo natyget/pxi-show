@@ -1,0 +1,30 @@
+[
+{
+"who": "nio",
+"role": "dnio",
+"text": "He doesn't know that.",
+"note": "Low, sly, under his breath, certain he is about to prove a point. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os10_02.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "It's on the radio.",
+"note": "Flat, deadpan, unimpressed. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os10_06.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Off the table. Go home.",
+"note": "Fed up, firm, pointing, done with him. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os10_17.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "...So that's just me.",
+"note": "Quiet, slowly realising, small and embarrassed. Talk like a real person, casual and quick, natural, no long pauses between words.",
+"out": "raw_os10_19.wav"
+}
+]

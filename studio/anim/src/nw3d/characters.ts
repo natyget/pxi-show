@@ -9,13 +9,17 @@ export type Character = {
   wardrobe: Record<string, Outfit>; outfit: string; restFace: string;
   // the head's build. lashes: 1 draws two flicks off each eye. width: how wide the face is (1 = Nio). chin: how far down
   // the chin comes (1 = Nio). curls: 1 gives the hair a tight coiled texture instead of locks.
-  head?: { lashes?: number; width?: number; chin?: number; curls?: number };
+  // eyes: how big the eyes are (1 = Nio). glasses: small round glasses with a wire frame this colour.
+  head?: { lashes?: number; width?: number; chin?: number; curls?: number; eyes?: number; glasses?: string };
   earrings?: string; // small hoops, this colour
+  beard?: string; // a long beard, this colour, from the jaw down to the belt
+  crown?: string[]; // a crown of small flowers round the head, in these colours
+  cap?: string; // a baseball cap, this colour (the hold 'capOff' takes it off)
 };
 
 // Hair is built from soft lumps (L) for the mass and tapered locks (T, fat root to thin tip) for the fringe and flicks.
-const L = (x: number, y: number, z: number, r: number) => [x, y, z, r, x, y, z, r];
-const T = (x: number, y: number, z: number, r: number, x2: number, y2: number, z2: number, r2: number) => [x, y, z, r, x2, y2, z2, r2];
+export const L = (x: number, y: number, z: number, r: number) => [x, y, z, r, x, y, z, r];
+export const T = (x: number, y: number, z: number, r: number, x2: number, y2: number, z2: number, r2: number) => [x, y, z, r, x2, y2, z2, r2];
 
 // NIO. Light brown skin. A soft chunky mop of dark brown hair: a lumpy mass a third bigger than his head, down over the
 // ears, with a zigzag fringe swept toward his left and one cowlick. Muted plum tee, wide dark trousers, cream shoes.
@@ -48,7 +52,7 @@ export const NIO_CHAR: Character = {
 };
 
 // A round puff of curls: one ball and a ring of lumps round it, so the outline is bumpy, not a circle.
-const puff = (cx: number, cy: number, cz: number, R: number, n: number, r: number): number[][] => {
+export const puff = (cx: number, cy: number, cz: number, R: number, n: number, r: number): number[][] => {
   const out = [L(cx, cy, cz, R)];
   for (let i = 0; i < n; i++) {
     const y = 1 - (2 * (i + 0.5)) / n, a = i * 2.39996, k = Math.sqrt(1 - y * y);
@@ -107,7 +111,7 @@ export const SAMI_CHAR: Character = {
 };
 
 // Short twists all over the top: little tapered locks standing out from the scalp, leaning up and back.
-const twists = (): number[][] => {
+export const twists = (): number[][] => {
   const out: number[][] = [L(0, 0.14, -0.04, 0.15)];
   for (let i = 0; i < 17; i++) {
     const y = 0.25 + 0.75 * (1 - i / 16), a = i * 2.39996, k = Math.sqrt(1 - y * y);
@@ -148,4 +152,119 @@ export const IMANE_CHAR: Character = {
   wardrobe: { party: { top: { color: '#7a3b47', loose: 0.022, sleeve: 0.8, long: true },
     bottom: { color: '#7f93ab', cuff: '#8a9db3', width: 0.035 }, shoes: { color: '#2b2427' } } },
   outfit: 'party', restFace: 'suspicious',
+};
+
+// PROFESSOR HAVERBROOK ("Prof H"), Office Hours. Enormous and soft: a head taller than Nio and nearly twice as wide, one
+// round body from the jaw to the knees with no neck to speak of, big soft hands. A wide face with small eyes behind tiny
+// round wire glasses. Soft ash-brown hair, combed neatly to one side. A camel cardigan worn open over a pale blue
+// collared shirt, brown cords, brown shoes. He fills a doorway sideways.
+export const PROF_H: Props = { ...NIO, ankle: 0.07, shin: 0.43, thigh: 0.43, hipHalf: 0.115, torso: 0.66, neck: 0.1,
+  shoulderHalf: 0.27, upperArm: 0.33, foreArm: 0.3, hand: 0.09, foot: 0.19, armR: 0.042, legR: 0.062, torsoR: 0.2, belly: 0.06, handK: 1.45 };
+export const PROF_H_CHAR: Character = {
+  id: 'profH', body: PROF_H, skin: '#e2b49a', hairA: '#857262', hairB: '#665649',
+  hair: [
+    // the mass: full and soft at the back and over the ears, a little wider than his face
+    L(0.03, 0.15, -0.05, 0.15), L(-0.09, 0.14, -0.02, 0.135), L(0.09, 0.13, -0.02, 0.13), L(0, 0.09, -0.13, 0.15),
+    L(0.21, 0.04, -0.06, 0.085), L(-0.21, 0.05, -0.06, 0.085), L(0.15, -0.01, -0.14, 0.09), L(-0.15, 0.0, -0.14, 0.09), L(0, -0.03, -0.17, 0.1),
+    T(0.225, 0.0, -0.04, 0.06, 0.255, -0.06, -0.02, 0.03), T(-0.225, 0.005, -0.04, 0.06, -0.26, -0.05, -0.02, 0.03),
+    // a side parting high on his right; from it the hair is combed across his forehead in one soft wave that dips low
+    // over his left brow and curls up at the temple
+    L(-0.15, 0.16, 0.05, 0.07), T(-0.11, 0.2, 0.09, 0.06, -0.17, 0.14, 0.12, 0.045),
+    T(-0.07, 0.205, 0.1, 0.06, 0.05, 0.15, 0.16, 0.055), T(0.05, 0.15, 0.16, 0.055, 0.15, 0.085, 0.15, 0.045),
+    T(0.15, 0.085, 0.15, 0.045, 0.205, 0.075, 0.095, 0.026), T(-0.01, 0.19, 0.14, 0.05, 0.1, 0.12, 0.17, 0.03),
+  ],
+  head: { width: 1.24, chin: 1.12, eyes: 0.55, glasses: '#7a6040' },
+  wardrobe: { lecture: { top: { color: '#a8834f', loose: 0.03, sleeve: 0.8, long: true, trim: '#94723f', open: '#c5cfd8' },
+    bottom: { color: '#5c4a3e', cuff: '#54443a', width: 0.05 }, shoes: { color: '#3b2a24' } } },
+  outfit: 'lecture', restFace: 'neutral',
+};
+
+// DARNELL, Office Hours: the one who has waited longest. Tall, thin and very calm, deep brown skin, a short black fade
+// and a black beard down to his belt. A faded sage hoodie, grey joggers, old white trainers.
+export const DARNELL: Props = { ...NIO, shin: 0.34, thigh: 0.36, torso: 0.42, shoulderHalf: 0.125, torsoR: 0.08, armR: 0.019, legR: 0.028 };
+export const DARNELL_CHAR: Character = {
+  id: 'darnell', body: DARNELL, skin: '#74472f', hairA: '#1e1517', hairB: '#130d0f',
+  // a short fade: close to the head, a crisp line across the forehead, nothing standing up
+  hair: [L(0, 0.1, -0.035, 0.14), L(0.06, 0.1, 0.02, 0.125), L(-0.06, 0.1, 0.02, 0.125), L(0, 0.06, -0.1, 0.14)],
+  head: { width: 0.96, chin: 1.08 }, beard: '#1e1517',
+  wardrobe: { out: { top: { color: '#7d8c78', loose: 0.03, sleeve: 0.8, long: true, trim: '#6f7d6a' },
+    bottom: { color: '#6a6a70', cuff: '#606066', width: 0.04 }, shoes: { color: '#d8d2c4' } } },
+  outfit: 'out', restFace: 'deadpan',
+};
+
+// ---- WAVE BACK (launch skit, Nov 17): the stranger Nio waved at, his mum and his sister. New designs for the founder to
+// judge in the finished skit.
+// MARCUS. Tall and easy, deep brown skin, a close buzz cut, a teal hoodie, charcoal joggers, white trainers, a campus
+// lanyard round his neck (wear 'lanyard'): Nio reads his name off it.
+export const MARCUS: Props = { ...THEO, shin: 0.37, thigh: 0.38, torso: 0.41, shoulderHalf: 0.145 };
+export const MARCUS_CHAR: Character = {
+  id: 'marcus', body: MARCUS, skin: '#6e4630', hairA: '#141010', hairB: '#0c0a0a', cap: '#c8322c', // (Wave Back v10) a red cap, always: the one face you can find in any shot
+  hair: [L(0, 0.125, -0.04, 0.13)],
+  head: { width: 1.02, chin: 1.08 },
+  wardrobe: { day: { top: { color: '#2a8f84', loose: 0.03, sleeve: 0.8, long: true, trim: '#22766d' },
+    bottom: { color: '#35363b', cuff: '#2c2d31', width: 0.06 }, shoes: { color: '#ece6da' } } },
+  outfit: 'day', restFace: 'neutral',
+};
+// HIS MUM. Warm and round, deep brown skin, hair up in a neat bun, gold hoops, a red dress with a cream collar.
+export const MUM: Props = { ...MAYA, torsoR: 0.1, shoulderHalf: 0.14, hipHalf: 0.085, legR: 0.034, armR: 0.022 };
+export const MUM_CHAR: Character = {
+  id: 'mum', body: MUM, skin: '#6a4230', hairA: '#1c1414', hairB: '#120d0d',
+  hair: [L(0, 0.15, -0.06, 0.135), L(0, 0.27, -0.13, 0.085)],
+  head: { lashes: 1, width: 1.1, chin: 0.98 }, earrings: '#c9a24c',
+  wardrobe: { home: { top: { color: '#b7413b', loose: 0.04, sleeve: 0.6, collar: '#efe2cc' },
+    bottom: { color: '#b7413b', cuff: '#a3372f', width: 0.09 }, shoes: { color: '#3a2a26' } } },
+  outfit: 'home', restFace: 'charm',
+};
+// HIS SISTER, the girl behind Nio on the quad. Deep brown skin like her brother, long braids past her shoulders, a
+// mustard-yellow jumper, dark jeans.
+export const SIS_CHAR: Character = {
+  id: 'sis', body: MAYA, skin: '#714a34', hairA: '#1e1616', hairB: '#140f0f',
+  hair: [L(0.05, 0.15, -0.03, 0.15), L(-0.05, 0.15, -0.03, 0.15), L(0, 0.11, -0.12, 0.15),
+    T(0.16, 0.06, -0.02, 0.06, 0.19, -0.32, -0.04, 0.045), T(-0.16, 0.06, -0.02, 0.06, -0.19, -0.32, -0.04, 0.045),
+    T(0.1, 0.04, -0.13, 0.07, 0.12, -0.34, -0.12, 0.05), T(-0.1, 0.04, -0.13, 0.07, -0.12, -0.34, -0.12, 0.05), T(0, 0.04, -0.17, 0.08, 0, -0.34, -0.15, 0.06)],
+  head: { lashes: 1, width: 1.0, chin: 0.98 },
+  wardrobe: { day: { top: { color: '#e2b23a', loose: 0.03, sleeve: 0.8, long: true, trim: '#c99a2a' },
+    bottom: { color: '#2e3346', cuff: '#2e3346', width: 0.04 }, shoes: { color: '#ece6da' } } },
+  outfit: 'day', restFace: 'neutral',
+};
+
+// ---- WAVE BACK v9 (Nov 18): Marcus's camp friends. Each reads apart from the main cast at a glance: a hairstyle and a
+// top colour nobody else has.
+// TOBI, the one who organises everything. Medium height, sporty, light brown skin, a short high-top fade, a bright
+// orange track jacket, navy trackies, white trainers.
+export const TOBI_CHAR: Character = {
+  id: 'tobi', body: { ...THEO, shoulderHalf: 0.175, torsoR: 0.125, armR: 0.03, legR: 0.038 }, skin: '#8c5a3c', hairA: '#191212', hairB: '#100c0c', beard: '#191212', // (Wave Back v10) big and bearded, the real Cabin Four
+  hair: [L(0, 0.16, -0.03, 0.12), L(0, 0.22, -0.04, 0.1), L(0, 0.11, -0.11, 0.12)],
+  head: { width: 1.0, chin: 1.06 },
+  wardrobe: { day: { top: { color: '#e8e4da', loose: 0.03, sleeve: 0.0, trim: '#d6d1c4' }, // a white tank top
+    bottom: { color: '#263354', cuff: '#1f2a46', width: 0.05 }, shoes: { color: '#f2efe8' } } },
+  outfit: 'day', restFace: 'neutral',
+};
+// JADE, friendly and curious. Small, pale with freckles' warmth, a high red ponytail, a lilac fleece, grey jeans.
+export const CAMP1_CHAR: Character = {
+  id: 'camp1', body: { ...MAYA, shoulderHalf: 0.118 }, skin: '#f0c9a8', hairA: '#a2432a', hairB: '#7d321f',
+  hair: [L(0.06, 0.16, -0.02, 0.145), L(-0.06, 0.16, -0.02, 0.145), L(0, 0.12, -0.12, 0.145), T(0, 0.2, -0.14, 0.07, 0, 0.0, -0.26, 0.05)],
+  head: { lashes: 1, width: 0.98, chin: 1.0 },
+  wardrobe: { day: { top: { color: '#a98fd1', loose: 0.035, sleeve: 0.8, long: true, trim: '#9680bd' },
+    bottom: { color: '#8a8d94', cuff: '#7e8188', width: 0.04 }, shoes: { color: '#3a3236' } } },
+  outfit: 'day', restFace: 'charm',
+};
+// DEV, calm and slow, the one who was really in Cabin Four. Tall and lean, medium brown skin, black curls on top,
+// round glasses, a forest-green rugby shirt with a white collar, beige chinos.
+export const CAMP2_CHAR: Character = {
+  id: 'camp2', body: { ...MARCUS }, skin: '#9b6a48', hairA: '#141011', hairB: '#0d0a0b',
+  hair: [L(0.05, 0.17, 0.0, 0.12), L(-0.05, 0.17, -0.01, 0.12), L(0, 0.13, -0.1, 0.13)],
+  head: { width: 0.98, chin: 1.1, curls: 1, glasses: '#2a2422' },
+  wardrobe: { day: { top: { color: '#2f5b3a', loose: 0.03, sleeve: 0.8, long: true, collar: '#f2efe6' },
+    bottom: { color: '#cdb991', cuff: '#bfac86', width: 0.05 }, shoes: { color: '#5a4a3c' } } },
+  outfit: 'day', restFace: 'suspicious',
+};
+// PRIYA, at the end of the table. Medium brown skin, long straight black hair in a low ponytail, a sky-blue jumper.
+export const CAMP3_CHAR: Character = {
+  id: 'camp3', body: { ...MAYA }, skin: '#b07850', hairA: '#121011', hairB: '#0b0a0a',
+  hair: [L(0.06, 0.16, -0.02, 0.15), L(-0.06, 0.16, -0.02, 0.15), L(0, 0.12, -0.12, 0.15), T(0, 0.02, -0.17, 0.07, 0, -0.3, -0.16, 0.05)],
+  head: { lashes: 1, width: 1.0, chin: 1.0 },
+  wardrobe: { day: { top: { color: '#7fb3db', loose: 0.03, sleeve: 0.8, long: true, trim: '#6fa1c8' },
+    bottom: { color: '#3b3f4c', cuff: '#343844', width: 0.04 }, shoes: { color: '#efe9de' } } },
+  outfit: 'day', restFace: 'charm',
 };

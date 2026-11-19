@@ -1,3 +1,4 @@
+# Superseded for the pilot reels: Naty rejected any walkie-talkie / bubbly colour (Nov 11). Use clean.py.
 # Voice treatment per role. Every voice gets the show's walkie-talkie colour; pitch moves make them younger/cartoonier.
 # Thoughts get a small "inside the head" echo. Output: treated wav + 12 fps mouth envelope, merged into audio.json.
 import subprocess, sys, json, numpy as np, soundfile as sf

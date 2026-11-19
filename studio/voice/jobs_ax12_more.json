@@ -1,0 +1,29 @@
+[
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "My phone, my phone!",
+"note": "Fast, shoving her phone up her shirt in a sudden downpour. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax12_07_t59.wav",
+"seed": 59,
+"sub": "My phone, my phone!"
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "My phone, my phone!",
+"note": "Fast, shoving her phone up her shirt in a sudden downpour. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax12_07_t83.wav",
+"seed": 83,
+"sub": "My phone, my phone!"
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "Bro, film my feet.",
+"note": "Upside down on the ceiling, to his friend. Laughing while talking, breathless with joy, loud and delighted.",
+"out": "raw_ax12_10_t59.wav",
+"seed": 59,
+"sub": "Bro, film my feet."
+}
+]

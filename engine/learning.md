@@ -70,6 +70,7 @@ is built paused and switched on only on the founder's recorded yes.
 | E3 | Call to action | Nio's tag · caption only · end frame | 0 | waiting | |
 | E4 | Long cut | YouTube only · every platform | 0 | waiting | |
 | E5 | Search line in the caption (`engine/captions.md`) | photos in one shared album · events near you on one map | 0 | waiting | |
+| E6 | Voice medium (`studio/voice/mediums.py`; founder, Nov 17: "test one every video to see which one performes better") | A walkie: Wave Back · B 1930s radio: One Sip · E warbly tape: Aux · F clean: Group Photo | 0 | waiting for the launch skits to post | |
 
 ## Ledger (newest first)
 

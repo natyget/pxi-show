@@ -20,7 +20,10 @@ const F = (e: Partial<Eye>, b: Partial<Brow>, m: Partial<Mouth>, x: Partial<Face
 export const FACES: Record<string, Face> = {
   neutral: F({}, {}, {}),
   deadpan: F({ open: 0.74 }, {}, {}),
-  smug: F({ open: 0.6, px: 0.95 }, { y: -0.015, rot: 5, bend: 0 }, { w: 0.055, curve: 0.025, skew: 1 }, { browR: B({ y: 0.085, rot: -4, bend: 1 }) }),
+  // smug and charm used to lift one brow and slide the pupils to the side: on Nio, in most shots, it read as a smirk
+  // with one eyebrow up, aimed at us (founder, Nov 18: "why nio always smirking and one eyebrow lifted looking at us").
+  // Now both brows move together and the eyes sit on whoever he is facing; the feeling is in the lids and the mouth.
+  smug: F({ open: 0.72, px: 0.3 }, { y: -0.005, rot: 3, bend: 0.2 }, { w: 0.05, curve: 0.02, skew: 0.4 }),
   hyped: F({ px: 0.55 }, { y: 0.04, bend: 0.9 }, { w: 0.2, curve: 0.05, open: 0.17, teeth: 1 }, { mark: 3 }),
   shock: F({ ps: 0.46, px: 0.6 }, { y: 0.03, bend: 0.6 }, { w: 0.05 }, { mark: 2 }),
   uneasy: F({ px: 0.85 }, { rot: -16, y: -0.015 }, {}, { mark: 1 }),
@@ -30,9 +33,11 @@ export const FACES: Record<string, Face> = {
   rage: F({ open: 0.66, low: 0.1, tilt: 20, ps: 0.85, px: 0.35 }, { y: -0.04, rot: 22, bend: 0 }, { w: 0.23, open: 0.3, teeth: 1, tongue: 1, curve: -0.02 }),
   sheepish: F({ open: 0.56, px: 0.95, py: -0.2 }, { rot: -12, y: -0.01 }, { w: 0.05 }, { blush: 2 }),
   deadInside: F({ open: 0.5, ps: 0.75, px: 0.15 }, { bend: 0 }, {}, { gloom: 1 }),
-  charm: F({ open: 0.66, low: 0.08, px: 0.4 }, {}, { w: 0.12, curve: 0.06 }, { browR: B({ y: 0.07, rot: -4, bend: 1 }) }),
+  charm: F({ open: 0.85, low: 0.06, px: 0.2 }, { y: 0.015, bend: 0.4 }, { w: 0.11, curve: 0.055 }),
   real: F({ open: 0.96, ps: 0.85, px: 0.25, py: -0.15 }, { rot: -9, y: -0.01 }, { w: 0.05 }),
   asleep: F({ arc: -1 }, {}, {}),
+  // pure disgust (One Sip, at a grown man drunk on apple juice): a squint, brows hard down, the lip curled up on one side
+  disgust: F({ open: 0.5, low: 0.3, tilt: 8, px: 0.9 }, { y: -0.035, rot: 14, bend: 0 }, { w: 0.13, curve: -0.045, open: 0.05, teeth: 1, skew: -1 }, { gloom: 0.4 }),
 };
 export const gaze = (f: Face, px: number, py: number): Face => ({ ...f, eyeL: { ...f.eyeL, px, py }, eyeR: { ...f.eyeR, px, py } });
 export const blink = (f: Face): Face => ({ ...f, eyeL: { ...f.eyeL, arc: -1 }, eyeR: { ...f.eyeR, arc: -1 } });

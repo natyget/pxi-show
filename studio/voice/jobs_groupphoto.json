@@ -1,0 +1,51 @@
+[
+{
+"who": "nio",
+"role": "dnio",
+"text": "Okay everybody get in, the light's perfect right now.",
+"note": "Excited, quick, phone up. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_01.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Wait, get my left side. My right side's not it today.",
+"note": "Vain, serious about it, pointing at his own face. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_02.wav"
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Bro, I can't see anything. Just take it without me.",
+"note": "Squinting into the sun, giving up. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_03.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Go higher, so the sun's behind you.",
+"note": "Helpful, sure she has the fix. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_04.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Nah, not from above. I look short. I'm out.",
+"note": "Offended, walking off. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_05.wav"
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Okay, one person isn't a group photo. That's just a photo of me.",
+"note": "Dry, reasonable, then stepping out. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_06.wav"
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Yo. I look really good in this one.",
+"note": "Delighted with himself, scrolling. Talk like a real person, casual and quick, no long pauses between words.",
+"out": "raw_gp_08.wav"
+}
+]

@@ -1,0 +1,19 @@
+[
+{"who":"profh","role":"dprofh","text":"Nio! Can you swing by my office hours after class? It won't take a minute.","note":"Friendly and warm, a soft whisper right into the mic that the room's PA makes boom. An easy, ordinary question. Say the name Nio crisply, NEE-oh.","out":"raw_v4_01.wav"},
+{"who":"theo","role":"dtheo","text":"Bro. The final's at five. If you're not on the pitch, we forfeit.","note":"Low, fast and panicking, whispering to his friend in class. Say every word clearly, including five and forfeit.","out":"raw_v4_02.wav"},
+{"who":"nio","role":"dnio","text":"Relax. It's one minute.","note":"Easy and unbothered, packing up his bag, a little amused at his friend's panic.","out":"raw_v4_03.wav"},
+{"who":"nio","role":"dnio","text":"...I'll be quick.","note":"A beat of unease after seeing something creepy, then brisk and decided. Say every word clearly.","out":"raw_v4_06.wav"},
+{"who":"nio","role":"dnio","text":"I'm not going in. I'm going past it.","note":"To himself, walking faster, quietly confident, a little rattled underneath.","out":"raw_v4_07.wav"},
+{"who":"cleaner","role":"dcleaner","text":"Nobody goes past it, baby.","note":"Calm and kind, not looking up from her mop, as if stating the weather.","out":"raw_v4_08.wav"},
+{"who":"darnell","role":"ddarnell","text":"Hey. Take a ticket.","note":"Kind, slow and very calm, a friendly welcome.","out":"raw_v4_09.wav"},
+{"who":"nio","role":"dnio","text":"What number are you?","note":"Casual and curious, looking at his ticket.","out":"raw_v4_10.wav"},
+{"who":"darnell","role":"ddarnell","text":"Four. I'm next.","note":"Proud and content, holding up his ticket. Say four clearly.","out":"raw_v4_11.wav"},
+{"who":"nio","role":"dnio","text":"How long have you been next?","note":"Flat, slow, a deadpan question, already suspecting the answer.","out":"raw_v4_12.wav"},
+{"who":"darnell","role":"ddarnell","text":"Since freshman year.","note":"Gentle and peaceful after giving up counting, like it is completely normal. Say every word clearly.","out":"raw_v4_13.wav"},
+{"who":"profh","role":"dprofh","text":"Nio! Come on in!","note":"Beaming, warm, delighted, in a doorway. Say the name Nio crisply, NEE-oh.","out":"raw_v4_14.wav"},
+{"who":"profh","role":"dprofh","text":"So. I wanted to ask you something.","note":"Nervous and gentle, a big shy man about to ask a favour.","out":"raw_v4_15.wav"},
+{"who":"profh","role":"dprofh","text":"Would you come? Be honest.","note":"Very small and quiet, hopeful, almost a whisper, bracing for a no.","out":"raw_v4_16.wav"},
+{"who":"nio","role":"dnio","text":"...Yeah. I'll come.","note":"A soft beat, then kind and sincere, a small real moment.","out":"raw_v4_17.wav"},
+{"who":"theo","role":"dtheo","text":"...You made it.","note":"Stunned and quiet, staring past his friend at something impossible.","out":"raw_v4_18.wav"},
+{"who":"nio","role":"dnio","text":"Darnell's in goal.","note":"Calm, laid back, a little smug, dropping the ball for kick-off. Say every word clearly.","out":"raw_v4_19.wav"}
+]

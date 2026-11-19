@@ -1,0 +1,11 @@
+Everything written on screen, in order. Times are seconds into a 40-second video.
+
+10.9 to 13.7   subtitle: Sorry, do I know you?
+13.8 to 16.3   subtitle: Marcus! Bro, come on. It's me.
+16.3 to 19.9   subtitle: I think you've got me mixed up with someone, man.
+20.0 to 23.2   subtitle: Is your mum still doing Sunday dinners or what?
+23.3 to 24.6   subtitle: Yeah, she is.
+24.6 to 25.8   subtitle: Send me the link.
+28.8 to 30.7   subtitle: So how did you two meet?
+30.8 to 32.2   subtitle: He waved at me.
+32.3 to 33.9   subtitle: I did not wave at you.

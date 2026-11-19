@@ -21,7 +21,10 @@
     ]
   },
   "treatment": {
+    "pitch": 0,
     "trim_silence": true,
+    "colour": "walkie",
+    "walkie": "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8",
     "loudnorm": {
       "I": -16,
       "TP": -1.5,
@@ -29,14 +32,19 @@
     },
     "sample_rate": 48000,
     "channels": 1,
-    "colour": "none"
+    "pa_room": "Prof H's lecture-hall mic lines add bass=g=9:f=110 and a hall echo (the whisper made to boom by the room)"
   },
   "envelope_fps": 12,
   "characters": {
     "nio": "A 21-year-old Black American guy, light-skinned, lower-mid pitch, warm and a little husky, quick and animated like the lead of a cartoon comedy; confident, cocky, playful; big swings between deadpan and excited; casual Gen Z delivery.",
-    "maya": "A young woman around 20, bright, sweet and earnest voice, soft and clear, slightly higher pitch, gentle and kind, a little breathless when excited; sincere and literal, like the kind sidekick in a cartoon."
+    "maya": "A young woman around 20, bright, sweet and earnest voice, soft and clear, slightly higher pitch, gentle and kind, a little breathless when excited; sincere and literal, like the kind sidekick in a cartoon.",
+    "profh": "A huge, gentle professor around sixty, hushed airy voice with a soft rasp, medium-low pitch, earnest and a little nervous, always talking like he is in a library.",
+    "theo": "A 21-year-old guy, clear mid pitch, quick and confident, a sports commentator's certainty in a quiet voice, slightly nasal, playful.",
+    "darnell": "A gentle man in his thirties, warm mid voice, dreamy and peaceful, speaks slowly and friendly, like a monk who likes video games.",
+    "cleaner": "A brisk woman in her fifties, bright clear voice, quick and casual, a little amused, has seen it all."
   },
   "refused_characters": {
     "friend": "The best friend has no approved voice (bible/characters.md)."
-  }
+  },
+  "_treatment_note": "Walkie colour per the founder's pick by ear, Nov 11 (bible/characters.md, Treatment). Chain in studio/voice/clean.py and treat_oh.py."
 }

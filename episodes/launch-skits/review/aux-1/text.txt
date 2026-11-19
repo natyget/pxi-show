@@ -1,0 +1,8 @@
+Everything written on screen, in order. Times are seconds into a 35-second video.
+
+0.2 to 2.0   subtitle: Bro, this party's dead.
+2.0 to 4.3   subtitle: Give me the aux. I got you.
+9.9 to 14.1   subtitle: Okay, okay. Bring it down, bring it down.
+16.8 to 19.5   subtitle: Something calm. Something grown.
+29.7 to 32.7   subtitle: Bro. Best party of the year.
+33.6 to 35.0   subtitle: I know.

@@ -49,12 +49,12 @@ export const Solid: React.FC<P> = ({ geo, mat, line = 0.012, children, ...g }) =
 const geos = new Map<string, THREE.BufferGeometry>();
 const memo = (k: string, f: () => THREE.BufferGeometry) => { if (!geos.has(k)) geos.set(k, f()); return geos.get(k)!; };
 export const rbox = (w: number, h: number, d: number, r = 0.02) =>
-  memo(`rb${w},${h},${d},${r}`, () => new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2.01, h / 2.01, d / 2.01)));
-export const sph = (r: number, ws = 24, hs = 16, t0 = 0, tl = Math.PI) =>
+  memo(`rb${w},${h},${d},${r}`, () => new RoundedBoxGeometry(w, h, d, 5, Math.min(r, w / 2.01, h / 2.01, d / 2.01)));
+export const sph = (r: number, ws = 36, hs = 24, t0 = 0, tl = Math.PI) =>
   memo(`s${r},${ws},${hs},${t0},${tl}`, () => new THREE.SphereGeometry(r, ws, hs, 0, Math.PI * 2, t0, tl));
-export const cap = (r: number, len: number) => memo(`c${r},${len}`, () => new THREE.CapsuleGeometry(r, len, 6, 14));
-export const cyl = (rt: number, rb: number, h: number, s = 20) => memo(`y${rt},${rb},${h},${s}`, () => new THREE.CylinderGeometry(rt, rb, h, s));
-export const disc = (r: number) => memo(`d${r}`, () => new THREE.CircleGeometry(r, 20));
+export const cap = (r: number, len: number) => memo(`c${r},${len}`, () => new THREE.CapsuleGeometry(r, len, 10, 24));
+export const cyl = (rt: number, rb: number, h: number, s = 32) => memo(`y${rt},${rb},${h},${s}`, () => new THREE.CylinderGeometry(rt, rb, h, s));
+export const disc = (r: number) => memo(`d${r}`, () => new THREE.CircleGeometry(r, 40));
 export const plane = (w: number, h: number) => memo(`p${w},${h}`, () => new THREE.PlaneGeometry(w, h));
 
 export const useCanvasTex = (w: number, h: number, draw: (c: CanvasRenderingContext2D) => void, deps: unknown[] = []) =>

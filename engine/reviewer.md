@@ -12,6 +12,8 @@ does not go to the founder.
 - The contact sheets of the final render (at most four images) and the cover at thumb size.
 - The subtitles and every other piece of text that appears on screen, in order, with how long each is held.
 - The golden frames from `bible/style-lock.md`, and the cover of the last release.
+- `audio.txt`: what the sound is heard as every four seconds, by an audio classifier (`engine/tools/audio_tags.py`),
+  because the stranger cannot hear.
 - This page. Nothing else: no script header, no premise, no bible, no explanation of what it is meant to be.
 
 ## The brief, word for word
@@ -22,12 +24,13 @@ kind. If you are unsure, say "not sure", and that counts as a no.
 
 1. **What is this?** In one sentence, what did you just watch?
 2. **Does it make sense?** Who is this person, what does he want, and what happened? Point to the first moment
-   you were lost.
+   you were lost. For each thing that changes, say what you saw cause it, and who said each line.
 3. **Is anything over-explained?** Quote any text or line that tells you what you can already see, says it
    twice, or explains the joke.
 4. **Does anything sound like a machine or an advert wrote it?** Quote every piece of on-screen or cover text
    that a person would not actually say or write to a friend. Labels, slogans, clipped fragments, dramatic
-   number contrasts and words in capitals all count.
+   number contrasts and words in capitals all count. On each phone screen, say what you looked at first and
+   whether anything else on it is there for no reason.
 5. **Is it the same person?** Compare each character with the golden frames and with the last cover: skin tone,
    face, hair, clothes, proportions. Name any difference, however small.
 6. **Does anything look wrong or cheap?** Anything attached in the wrong place, blocky, blurry, floating, or
@@ -37,8 +40,12 @@ kind. If you are unsure, say "not sure", and that counts as a no.
 9. **Did you laugh or smile?** At what, exactly? If nothing, say "nothing".
 10. **Was anyone alive?** Do the faces change, or do the people look like they are waiting for their turn?
     Name any stretch where nothing was happening, any shot of an empty room or a wall, any pause that felt
-    like a mistake, and anything that bobbed up and down.
+    like a mistake, and anything that bobbed up and down. Do the people act toward each other, or toward you? Name
+    any face that looks at you, smirks at you or raises a brow at you when nobody in the story is talking to you.
 11. **Did anyone sound like they were explaining a plan or selling something?** Quote it.
+12. **Does the sound fit the picture?** From `audio.txt`, say whether each stretch is heard as what the picture shows
+    (a party as music and chatter, a roof as wind, a line as speech). Any stretch heard as a siren, a horn, a buzz,
+    insects, static or anything that is not in the scene fails the piece.
 
 End with one line: **PASS** or **FAIL**, and the single most important thing to fix.
 

@@ -1,0 +1,30 @@
+[
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Great sesh, fam. Real ones come to office hours.",
+  "note": "A soft, gentle whisper right into the mic, proud of saying fam; the room's PA makes it boom. Say 'real ones' clearly.",
+  "out": "raw_oh_01t1.wav"
+ },
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Great sesh, fam. Real ones come to office hours.",
+  "note": "A soft, gentle whisper right into the mic, proud of saying fam; the room's PA makes it boom. Clean read, exactly these words.",
+  "out": "raw_oh_01t2.wav"
+ },
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Nio. Today.",
+  "note": "Whispered, warm, delighted, into the mic. Say Nio as 'Nee-oh', clearly.",
+  "out": "raw_oh_02t1.wav"
+ },
+ {
+  "who": "profh",
+  "role": "dprofh",
+  "text": "Nio. Today.",
+  "note": "Whispered, warm, delighted, into the mic. Clean read, exactly these words.",
+  "out": "raw_oh_02t2.wav"
+ }
+]

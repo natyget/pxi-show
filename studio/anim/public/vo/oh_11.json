@@ -1,0 +1,38 @@
+{
+  "key": "oh_11",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "versions": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3",
+    "torch": "2.8.0+cpu"
+  },
+  "seed": 7,
+  "language": "English",
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "character": "darnell",
+  "description_sha256": "0009d0ce7aa33e631bcfee655d7ebf760fb9b732f23b603e2a3f4897ca8e94b1",
+  "note": "Very calm, kind, slow, soft.",
+  "line": "First time?",
+  "text_sent": "First time?",
+  "treatment": {
+    "pitch": 0,
+    "trim_silence": true,
+    "colour": "walkie",
+    "walkie": "highpass=f=280,lowpass=f=3500,acrusher=level_in=1:level_out=1:bits=9:mode=log:aa=0.4:samples=4:mix=0.5,vibrato=f=4.5:d=0.05,asoftclip=type=tanh:threshold=0.8",
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1,
+    "pa_room": "Prof H's lecture-hall mic lines add bass=g=9:f=110 and a hall echo (the whisper made to boom by the room)"
+  },
+  "dur": 0.694,
+  "wav_sha256": "bb427c2bfa8f0a5bef38bbd1e5fc793d9ba906ede7b5f3c664e38e8c0d4deac0",
+  "made_by": "studio/voice/audition_oh.py + treat_oh.py"
+}
