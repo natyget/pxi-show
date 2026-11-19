@@ -140,10 +140,9 @@ export const Skit: React.FC<SkitProps> = (p) => {
       {shots.flatMap((s) => (s.shake ?? []).map((at, i) => <Sequence key={`${s.n}hit${i}`} from={s.from + at} layout="none"><Audio src={staticFile('sfx/sk_hit.wav')} volume={0.8} /></Sequence>))}
       {shots.flatMap((s) => (s.sfx ?? []).map(([f, at, v], i) => (
         <Sequence key={`${s.n}fx${i}`} from={s.from + at} layout="none"><Audio src={staticFile(`sfx/${f}.wav`)} volume={v ?? 1} /></Sequence>)))}
-      {shots.flatMap((s) => (s.say ?? []).filter((l) => vo[l.key]).map((l) => {
-        const a = s.from + l.at, b = a + Math.max(Math.ceil(vo[l.key].dur * 24) + 8, 30);
-        return p.subs !== false && frame >= a && frame < b ? <Sub key={l.key} text={vo[l.key].sub} /> : null;
-      }))}
+      {/* one subtitle at a time: when lines overlap (the rain panic) the newest wins, so two never print on top of each other */}
+      {p.subs !== false ? (() => { const on = shots.flatMap((s) => (s.say ?? []).filter((l) => vo[l.key]).map((l) => ({ l, a: s.from + l.at, b: s.from + l.at + Math.max(Math.ceil(vo[l.key].dur * 24) + 8, 30) })))
+        .filter(({ a, b }) => frame >= a && frame < b).sort((x, y) => y.a - x.a)[0]; return on ? <Sub key={on.l.key} text={vo[on.l.key].sub} /> : null; })() : null}
     </AbsoluteFill>
   );
 };

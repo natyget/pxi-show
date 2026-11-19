@@ -9,6 +9,6 @@ OPT = {
  'E': "vibrato=f=0.7:d=0.18,vibrato=f=5.5:d=0.03,lowpass=f=5200,highpass=f=110",  # warbly tape
  'F': "anull",  # clean
 }
-NOISE = {'B': 'crackle', 'E': 'hiss'}
+NOISE = {'B': 'crackle'}  # no hiss on E: the audio check heard it as static (Nov 19)
 # Which skit uses which medium. Record the result in engine/learning.md once posted.
 SKIT = {'one-sip': 'B', 'group-photo': 'F', 'aux': 'E', 'wave-back': 'A'}

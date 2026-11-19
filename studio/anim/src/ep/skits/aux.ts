@@ -23,7 +23,7 @@ const BDAY = { fill: 0.32, faces: 3, face: [5.0, 5.4] as [number, number] }; // 
 const RAIN: [string, number, number?][] = [['sk_rain', 0, 0.45]];
 const tapSkip = (n: number, img: string, next: string, snd: string): Shot[] => [
   { n, frames: 34, img: `pxi-ui/screens/${img}.png`, tap: [[18, 790, 1590]], sfx: [['oh_tap', 18, 0.9]] }, // aimed at pause, lands on skip
-  { n: n + 0.5, frames: 30, img: `pxi-ui/screens/${next}.png`, zoom: [1.25, 40], sfx: [[snd, 2, 0.8]] },
+  { n: n + 0.5, frames: 46, img: `pxi-ui/screens/${next}.png`, zoom: [1.4, 30], sfx: [[snd, 2, 0.8]] },
 ];
 const shots: Shot[] = [
   // 1. Theo's living room, full, dead. The hosts by the island.
