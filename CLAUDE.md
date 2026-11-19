@@ -32,6 +32,13 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - **Devices, pacing, text, look, voices and covers follow `bible/craft-library.md`.** A flashback looks and
   sounds like a flashback. Nothing the viewer must understand goes by faster than the floors there. No standing
   label on screen. Approved voices only, never a stand-in. PXI is spoken "pixie" and written PXI. Smooth curves under the pixels, shaped hands.
+- **The studio checks every step** (`engine/studio/departments.md`, founder, Nov 19). Each department (Story, Board,
+  Model, Keys, In-betweens, Voice, Sound, Finish) is a fresh agent with a small packet, one agent per scene for Keys
+  and In-betweens, and never grades its own work. A gate checks each output before the next department starts:
+  `studio/anim/tools/story_check.ts` (who talks, who looks at us, what changed off screen, who is off model, empty
+  and repeated shots), `engine/tools/sound_check.py` (each sound heard as itself, alone), and blind readers on stills.
+  Each passed gate writes a lock; a remake changes only the shots a note names (`story_check --lock --allow`).
+  When the stranger finds something every gate passed, a check for it is added to that gate in the same run.
 - **The stranger reviews every finished video and cover** (`engine/reviewer.md`): a reviewer who knows nothing,
   given only what a viewer gets. If it is lost, finds text a person would not write, or sees a character look
   different from the golden frames, the piece does not go to the founder.
@@ -111,6 +118,8 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 | `engine/learning.md`, `engine/playbook.md` | The results ledger, and the one page of what is working now |
 | `engine/promotion.md` | Paid promotion: boost winners for follows, the 95% watchers audience, app retargeting, budgets |
 | `engine/reviewer.md` | The stranger: the last review of the finished video and cover |
+| `engine/studio/` | The studio: departments, packets and gates; the passed cast (`cast.json`); what each sound must be heard as (`sounds.json`) |
+| `episodes/<id>/lock/` | The locks each passed gate writes, so a remake keeps what passed |
 | `engine/BACKLOG.md`, `engine/ROUTINES.md` | Tools still to build, and the scheduled tasks' exact text |
 | `bible/` | The writers' room role, characters and voices, the world, the style handoff, humor, dialogue, story, the Gumball lens, the craft library, directing and acting, product truth, QA checklist, canon. `bible/show-bible.md` has the index and every founder note |
 | `.claude/skills/writers-room/` | The staged writing method, rubric and tells |

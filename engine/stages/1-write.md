@@ -82,8 +82,14 @@ Then:
 5. Punch-up by the writer, in role: fix only what was flagged, then the Nio pass (the eight checks at
    the bottom of `bible/voice-and-dialogue.md`) and the ten questions at the end of `bible/writers-room.md` and the ten checks at the end of
    `bible/gumball-style.md`. Score with `rubric.md`. Run the lint again.
+6. **The beat sheet** (the studio's first hand-off, `engine/studio/departments.md`), at the end of `script.md`: a
+   table with one row per beat: who wants what, what causes the turn, and **on screen**: what the viewer SEES that
+   shows the want and the cause (a face, an action, a thing in someone's hand), with no line of dialogue doing it
+   alone. Then the **blind beat read**: a fresh Sonnet reader gets only the on-screen column and says, per beat,
+   who wants what and why it happened. A beat it gets wrong is rewritten until a picture can carry it. (Text cold
+   reads passed scripts the videos then failed: the cold read hears the lines, the viewer has to see the causes.)
 
-**Gate:** the cold read matches the header and quotes a laugh; lint has no FAIL; rubric 40/55 or more with no
+**Gate:** the blind beat read matches the want and cause of every beat; the cold read matches the header and quotes a laugh; lint has no FAIL; rubric 40/55 or more with no
 veto; the short cut stands alone. One more round with fresh critics is allowed. If it fails again, write
 `BLOCKED` in `STATE.md` with the critics' three weakest lines quoted, and stop.
 

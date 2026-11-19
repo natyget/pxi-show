@@ -69,6 +69,8 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
+- 2026-11-19 · engine · studio pipeline (engine/studio/departments.md): Story, Board, Model, Keys and In-betweens per scene, Voice, Sound, Finish, each a fresh agent with a gate; new story check, sound check, animatic and locks; stage 3 is now KEYS. Run on the four cut skits: the story check finds the stranger's failures before a frame is drawn, 18 of 30 sounds fail alone (engine/studio/proof-nov19.md). Current cuts locked in episodes/launch-skits/lock/.
+
 - 2026-11-19 · launch-skits · Aux v12 and One Sip v11 rendered and posted; Aux rain sound fixed (it stacked into static), re-render queued; One Sip v11 failed the third and last stranger round, BLOCKED; Wave Back v10 voiced and rendering; Group Photo v12 and Wave Back v10 failed stranger round 2, BLOCKED.
 - 2026-11-19 · launch-skits · founder note on Aux v10 (clean voices, intent on screen); voices clean everywhere, tone check, the viewer read; Aux v12 staged and voiced; One Sip v10 failed round 2, BLOCKED.
 - 2026-11-18 · launch-skits · all four v7 cuts failed the stranger twice; founder: rework with the cause on screen, then hold for a ground-up rewrite; acting defaults fixed.

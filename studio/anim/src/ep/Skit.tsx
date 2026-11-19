@@ -27,14 +27,14 @@ import VO_WB from '../vo_wb.json';
 import LIPS_WB from '../lips/wb.json';
 import ACC_WB from '../lips/wb_accents.json';
 
-export type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
+export type Line = { key: string; who: string; at: number; off?: string }; // at: the frame inside the shot where the line starts. off: the line is meant to be heard from someone not in the picture, and why (the story check refuses it otherwise)
 // img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. zoom: [scale, the height
 // it zooms toward, percent from the top], for a screen whose point is one row. flash: a camera flash at this frame.
 export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean | [number, number][]; drip?: [number, number, number][]; finder?: boolean; tap?: [number, number, number, string?][]; hover?: [number, number, number]; say?: Line[]; sfx?: [string, number, number?, number?][] };
 // beds: [sound, volume, the shot it stops at (optional: else it runs to the end), the shot it starts at (optional: else the start)]
 export type SkitDef = { id: string; shots: Shot[]; beds: [string, number, number?, number?][] };
 type VoLine = { file: string; who: string; sub: string; dur: number };
-const vo = { ...VO_OS, ...VO_GP, ...VO_AX, ...VO_WB } as unknown as Record<string, VoLine>;
+export const vo = { ...VO_OS, ...VO_GP, ...VO_AX, ...VO_WB } as unknown as Record<string, VoLine>;
 const lips = { ...LIPS_OS, ...LIPS_GP, ...LIPS_AX, ...LIPS_WB } as unknown as Record<string, Cues>;
 const acc = { ...ACC_OS, ...ACC_GP, ...ACC_AX, ...ACC_WB } as unknown as Record<string, Accents>;
 export const SKITS: Record<string, SkitDef> = { 'one-sip': ONE_SIP, 'group-photo': GROUP_PHOTO, aux: AUX, 'wave-back': WAVE_BACK, 'wb-pics': WB_PICS, 'gp-pics': GP_PICS, 'gp-test': GP_TEST, 'os-pics': OS_PICS, 'os-test': OS_TEST };
