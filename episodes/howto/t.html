@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Inter;font-weight:900;src:url(Inter-Black.otf)}
+@font-face{font-family:Inter;font-weight:700;src:url(Inter-Bold.otf)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;background:#0A0A0A;color:#fff;font-family:Inter,"Noto Color Emoji"}
+.k{position:absolute;left:64px;top:80px;font-weight:700;font-size:34px;color:rgba(255,255,255,.45)}
+.t{position:absolute;left:64px;right:64px;top:128px;font-weight:900;font-size:64px;line-height:1.06;letter-spacing:-1px}
+.ph{position:absolute;left:50%;width:520px;height:1127px;margin-left:-260px;border-radius:64px;overflow:hidden;background:#000;box-shadow:0 0 0 9px #1c1c1e,0 0 0 11px #3a3a3e}
+.ph img{position:absolute;left:0;top:0;width:520px;height:1127px;image-rendering:auto}
+.ring{position:absolute;border:5px solid #FFD60A;border-radius:999px;box-shadow:0 0 0 6px rgba(255,214,10,.18)}
+</style></head><body><div id="root"></div>
+<script>
+const K=520/720;
+function R(s){let h='';
+ if(s.type==='end'){h='<img src="pxi-icon.png" style="position:absolute;left:410px;top:380px;width:260px;height:260px;border-radius:58px"><div style="position:absolute;left:0;right:0;top:730px;text-align:center;font-weight:700;font-size:40px;color:rgba(255,255,255,.75)">Free</div><div style="position:absolute;left:0;right:0;top:810px;display:flex;justify-content:center;gap:28px"><img src="app-store-badge.svg" style="height:96px"><img src="google-play-badge.png" style="height:96px"></div>';}
+ else { const big=s.type==='cover';
+  if(s.kicker)h+='<div class="k">'+s.kicker+'</div>';
+  h+='<div class="t" style="'+(big?'font-size:86px;top:96px':'')+(s.kicker?'':';top:96px')+'">'+s.text+'</div>';
+  const top=big?470:(s.text.length>26?370:310);
+  if(s.img){h+='<div class="ph" style="top:'+top+'px"><img src="'+s.img+'">';
+   (s.ring||[]).forEach(r=>{h+='<div class="ring" style="left:'+(r[0]*K-r[2]*K/2)+'px;top:'+(r[1]*K-r[3]*K/2)+'px;width:'+r[2]*K+'px;height:'+r[3]*K+'px"></div>'});
+   h+='</div>';}
+  if(s.card)h+=s.card;
+ }
+ root.innerHTML=h;}
+window.READY=document.fonts.ready;
+</script></body></html>
