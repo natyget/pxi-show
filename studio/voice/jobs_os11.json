@@ -1,0 +1,146 @@
+[
+{
+"who": "sami",
+"role": "dsami",
+"text": "Nah, I'm good. I can't. I get weird.",
+"note": "Turning down a drink his friend offers. Polite and friendly, a little apologetic, easy, palms up.",
+"out": "raw_os11_01_t3.wav",
+"seed": 3
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Nah, I'm good. I can't. I get weird.",
+"note": "Turning down a drink his friend offers. Polite and friendly, a little apologetic, easy, palms up.",
+"out": "raw_os11_01_t17.wav",
+"seed": 17
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "One sip. You'll be fine.",
+"note": "Holding a cup out to his friend. Easy and sure of himself, relaxed, a lazy little smile in the voice, unhurried.",
+"out": "raw_os11_02_t3.wav",
+"seed": 3
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "One sip. You'll be fine.",
+"note": "Holding a cup out to his friend. Easy and sure of himself, relaxed, a lazy little smile in the voice, unhurried.",
+"out": "raw_os11_02_t17.wav",
+"seed": 17
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Your haircut. Who did that to you?",
+"note": "Hand on his friend's shoulder, looking at his hair with real worry. Soft and completely sincere, gentle concern, quiet and warm.",
+"out": "raw_os11_03_t3.wav",
+"seed": 3
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Your haircut. Who did that to you?",
+"note": "Hand on his friend's shoulder, looking at his hair with real worry. Soft and completely sincere, gentle concern, quiet and warm.",
+"out": "raw_os11_03_t17.wav",
+"seed": 17
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Whose coat is this?",
+"note": "Wearing a coat, holding its lapels, to the whole party. Loud and accusing, to a whole room, pompous.",
+"out": "raw_os11_04_t3.wav",
+"seed": 3
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Whose coat is this?",
+"note": "Wearing a coat, holding its lapels, to the whole party. Loud and accusing, to a whole room, pompous.",
+"out": "raw_os11_04_t17.wav",
+"seed": 17
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Mine.",
+"note": "Slowly, not sure where this is going. Slowly, flat, careful, suspicious, one word.",
+"out": "raw_os11_05_t3.wav",
+"seed": 3
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "Mine.",
+"note": "Slowly, not sure where this is going. Slowly, flat, careful, suspicious, one word.",
+"out": "raw_os11_05_t17.wav",
+"seed": 17
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Is it.",
+"note": "Narrowing his eyes at the coat's owner. Low and slow, narrowing his eyes, quiet menace.",
+"out": "raw_os11_06_t3.wav",
+"seed": 3
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Is it.",
+"note": "Narrowing his eyes at the coat's owner. Low and slow, narrowing his eyes, quiet menace.",
+"out": "raw_os11_06_t17.wav",
+"seed": 17
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "This is my table now.",
+"note": "Standing on a coffee table, cup raised, to everyone. Grand and slow, theatrical, booming, like a king addressing his court.",
+"out": "raw_os11_07_t3.wav",
+"seed": 3
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "This is my table now.",
+"note": "Standing on a coffee table, cup raised, to everyone. Grand and slow, theatrical, booming, like a king addressing his court.",
+"out": "raw_os11_07_t17.wav",
+"seed": 17
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Off the table. Go home.",
+"note": "Pointing at the door, done with him. Flat and dry, low and steady, no emotion, an even pace.",
+"out": "raw_os11_08_t3.wav",
+"seed": 3
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Off the table. Go home.",
+"note": "Pointing at the door, done with him. Flat and dry, low and steady, no emotion, an even pace.",
+"out": "raw_os11_08_t17.wav",
+"seed": 17
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Theo, I stand by the haircut.",
+"note": "Calling through a closed front door from outside, sincere. Soft and completely sincere, gentle concern, quiet and warm.",
+"out": "raw_os11_09_t3.wav",
+"seed": 3
+},
+{
+"who": "sami",
+"role": "dsami",
+"text": "Theo, I stand by the haircut.",
+"note": "Calling through a closed front door from outside, sincere. Soft and completely sincere, gentle concern, quiet and warm.",
+"out": "raw_os11_09_t17.wav",
+"seed": 17
+}
+]

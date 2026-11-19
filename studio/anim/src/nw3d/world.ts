@@ -107,6 +107,7 @@ SETS.partyLive = {
     king: { s: 1.6, z: 3.38, yaw: 180, on: 0.36 }, booM: { s: 0.95, z: 3.0, yaw: 90 }, booT: { s: 2.0, z: 2.3, yaw: 330 }, booI: { s: 1.25, z: 2.25, yaw: 20 }, booG: { s: 0.9, z: 2.5, yaw: 60 },
     nioK: { s: 2.55, z: 1.85, yaw: 320 }, couch: { s: 1.15, z: 3.72, yaw: 180, seat: 0.45 },
     // ONE SIP v10 (Nov 19): the coat hooks by the door, the floor lamp by the sofa, Imane and Sami on the sofa
+    doorOut: { s: 0.95, z: 0.55, yaw: 180 }, // (v11) at the front door, his back to the room
     hookS: { s: 0.55, z: 2.0, yaw: 90 }, lampS: { s: 2.75, z: 3.7, yaw: 120 }, couchI: { s: 0.7, z: 3.72, yaw: 180, seat: 0.45 }, couchS: { s: 1.12, z: 3.72, yaw: 180, seat: 0.45 },
     q1: { s: 1.2, z: 1.45, yaw: 195 }, q2: { s: 1.4, z: 1.9, yaw: 195 }, q3: { s: 1.6, z: 2.35, yaw: 195 }, q4: { s: 1.8, z: 2.8, yaw: 195 },
   },
@@ -140,6 +141,8 @@ SETS.partyLive = {
     couch: C([1.15, 1.45, 1.9], [1.15, 1.05, 3.72], 40), // whoever is on the sofa
     hooksC: C([1.6, 1.5, 0.9], [0.35, 1.4, 2.05], 58), lampC: C([2.3, 1.5, 2.4], [2.75, 1.3, 3.7], 40), juiceP: C([1.3, 2.0, 4.0], [2.4, 1.25, 1.9], 52), filmW: C([3.0, 1.7, 0.2], [1.58, 1.3, 2.27], 90), sofa2: C([0.95, 1.25, 2.2], [0.91, 1.05, 3.72], 60), // (v10)
         faint: C([1.55, 1.45, 0.85], [0.95, 0.6, 2.3], 60), // the couch, and whoever is on it
+        three: C([0.4, 1.5, 1.9], [2.08, 1.3, 2.18], 66), // (One Sip v11) Nio, Sami and Theo on the rug, from the sofa end
+        pour: C([2.2, 1.5, 1.3], [3.15, 1.25, 1.98], 44), // (v11) Nio at the desk from behind: what he pours, his back to the room
   },
 };
 // THE LIVING ROOM THE MORNING AFTER (One Sip's button): the same room and places, in daylight
@@ -219,7 +222,7 @@ export const ACTIONS: Record<string, Action> = {
 //  wave: a hand up by the head, open, waving side to side (hand: 0 his left, 1 his right; sitting or standing).
 //  slideFlyer (Prof H pushes the flyer across his desk), flyer (the flyer held up beside his face, toward whoever he faces),
 //  mop (the cleaner, walking), ticket (Darnell, sitting: the lab report on his knees, his ticket 4 on it under his left hand).
-export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox', 'throttle', 'pizza', 'foldChair', 'shade', 'duvet', 'records'] as const;
+export const HOLDS = ['phone', 'arms-crossed', 'selfie', 'show-phone', 'phone-knee', 'point', 'arm-up', 'arms-up', 'cup', 'cup-point', 'asleep', 'photo', 'sweep', 'spinner', 'capOff', 'pen', 'slideFlyer', 'flyer', 'mop', 'ticket', 'sip', 'sniff', 'wave', 'juicebox', 'sipbox', 'throttle', 'pizza', 'foldChair', 'shade', 'duvet', 'records', 'shush', 'hair'] as const;
 // Costume pieces worn over the outfit (One Sip). A shot may change them at a frame: wear: [[0, []], [12, ['bowtie']]].
 export const WEAR = ['bowtie', 'monocle', 'tophat', 'sideburns', 'moustache', 'partyhat', 'lanyard', 'scarf', 'glasses', 'lampshade', 'beret', 'headset', 'longcoat', 'glove'];
 const SEATED_HOLDS = ['phone-knee', 'asleep', 'spinner', 'pen', 'slideFlyer', 'ticket'], TRAVEL_HOLDS = ['phone', 'cup', 'mop', 'foldChair', 'throttle'];

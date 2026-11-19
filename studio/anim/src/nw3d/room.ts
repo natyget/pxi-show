@@ -433,6 +433,16 @@ export const pose = (a: Act) => {
     for (const i of [0, 1] as const) { s = reach(s, i, add(pc, add(mul(s.side, i === 0 ? 0.16 : -0.16), add(mul(up, -0.2), mul(fwd, 0.2)))), add(out(i), [0, -0.5, 0]), P, up, fwd); hands[i] = 'fist'; }
   }
   // (Group Photo v12) a flat hand up over his eyes against the sun, palm down, just above the brows
+  // (One Sip v11) a finger to his lips: shh. The index finger up in front of the mouth, the palm to the side
+  if (nm === 'shush') {
+    const up: V = [0, 1, 0], w = add(add(s.neckBase, mul(up, 0.06)), add(mul(fwd, 0.2), mul(s.side, -0.01)));
+    s = reach(s, 1, w, add(out(1), [0, -0.6, 0]), P, mul(s.side, 1), up); hands[1] = 'point';
+  }
+  // (One Sip v11) a hand on top of his own head, touching his hair (the haircut)
+  if (nm === 'hair') {
+    const up: V = [0, 1, 0], w = add(add(s.neckBase, mul(up, 0.44)), add(mul(fwd, -0.02), mul(s.side, -0.1)));
+    s = reach(s, 1, w, add(out(1), [0, 0.1, 0]), P, mul(up, -1), fwd); hands[1] = 'open';
+  }
   if (nm === 'shade') {
     const up: V = [0, 1, 0], w = add(add(s.neckBase, mul(up, 0.27)), add(mul(fwd, 0.16), mul(s.side, -0.02)));
     s = reach(s, 1, w, add(out(1), [0, -0.3, 0]), P, mul(up, -1), mul(s.side, 1)); hands[1] = 'open';

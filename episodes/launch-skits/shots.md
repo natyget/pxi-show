@@ -86,3 +86,17 @@ Every shot in `src/ep/skits/aux.ts` carries its viewer line (`bible/acting.md`, 
 - Theo at the records: he freezes, "...No.", hugs two records (new hold `records`: two sleeves flat on his chest), finds Nio across the room (new camera nioPov, Theo's eyes), his face turns, he drops them (a splash) and jogs at Nio with his arms out (`throttle` may now travel). Then his hands are at Nio's neck while Nio talks fast.
 - Sami takes the phone: "Give me that." Maya picks up the phone on the porch and turns the album to them; Theo sets his record down before he throttles Nio; Nio holds the lit phone up for "Worth it."
 - Every voice is plain and clean, each line read from its delivery note, picked from two or three takes by `engine/tools/tone_check.py`.
+
+## One Sip v11 (writers' room, Nov 19, the third and last try, allowed by the founder)
+
+- Opens on three: Theo offers a red cup (his face, the cup), Sami turns it down. Nio's small smile. At the desk Nio holds the kid's apple juice box and pours (the box is seen, the pour is heard; the cup itself is small in the picture). Maya sees; Nio puts a finger to his lips (new hold `shush`).
+- Three sips, each its own held shot facing us: cup up, swallow, a beat, glassy eyes, a bigger push each time.
+- Haircut: Sami to Theo, "Your haircut. Who did that to you?" Theo's hand goes to his hair (new hold `hair`), the room gasps. Coat and glove, then the lampshade and the table, as v10.
+- No app screen. The music stops on the juice box. Sami sniffs his cup, puts the shade back on the lamp and the coat back on its hook (the same take shots, reversed), walks to the front door (the door does not animate; it clicks), and the room hears him through the door, muffled (a low-pass on that one line: a voice through a door). Theo touches his hair.
+
+## Wave Back v10 (writers' room, Nov 19, round 2)
+
+- Four speakers only. Marcus wears a red cap in every shot (cap added to his design); Tobi is big, bearded, in a white tank top (his design changed for this; both are new skit guests the founder has not approved yet). Maya is a voice over the phone's own call screen, which shows "Maya" (a plain call screen, no brand).
+- The girl jogs from right behind Nio into Marcus's arms; two people on the bench watch his hand and smirk (new camera `bench`).
+- Dinner: Marcus steers Nio in ("Guys! Nio! Cabin Four!", Marcus heard from the hall); Tobi "...I was in Four."; the album; "Find yourself."; the face search finds nothing; "Bathroom." Tobi knocks: "Nio. Come out." The escape runs as v9 without Tobi at the shed.
+- The lake: the push, the album's newest photo, then "...That's a good photo."

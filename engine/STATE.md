@@ -8,7 +8,7 @@ stage: 0
 stage_card: engine/stages/0-pilot-lock.md
 next_action: Launch skits, writers' drafts (Nov 19): render Group Photo v12, Wave Back v9 and Aux v12 (clean voices, the viewer read, tone check), post each, stranger round 2. One Sip v10 is BLOCKED (below): it waits on a founder call. Office Hours stays ON HOLD.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
-gate_failures: One Sip 2 (BLOCKED, Nov 19): the stranger failed v9 and v10; it never sees the sip that causes the change, cannot tell who says several lines, and reads the closing photo-review screens as a product drop-in. No third try without a founder call. Group Photo 1 (v9; v12 is round 2). Aux 1 (v10; v12 is round 2). Wave Back 0 (v9 not reviewed yet).
+gate_failures: One Sip 2 (BLOCKED, Nov 19): the stranger failed v9 and v10; it never sees the sip that causes the change, cannot tell who says several lines, and reads the closing photo-review screens as a product drop-in. No third try without a founder call. Group Photo 1 (v9; v12 is round 2). Aux 1 (v10; v12 is round 2). Wave Back 1 (v9, Nov 19: cannot tell who is talking or who is who; the camp lines repeat; the push reads as an ad).
 
 ## Next render: "Office Hours" (season 1, episode 1)
 

@@ -949,6 +949,7 @@ export const QUAD_CAMS: Record<string, Cam3> = {
   grp: C([6.7, 1.6, 5.0], [5.85, 1.35, 8.6], 58), // over Nio's shoulder at Marcus and his two friends
   nioG: C([6.55, 1.5, 9.0], [6.0, 1.4, 7.0], 42), // Nio, from between Marcus and his friend
   come: C([7.3, 1.6, 4.6], [5.8, 1.3, 10.0], 56), // past Nio up the lawn: Marcus and his friends coming over
+  bench: C([2.7, 1.3, 7.6], [2.3, 1.15, 9.0], 52), // (v10) the two on the bench, watching Nio's hand
 };
 export const QUAD_MARKS = {
   nio: { s: 6.0, z: 7.0, yaw: 0 }, // in the middle of the lawn, facing up it
@@ -962,6 +963,9 @@ export const QUAD_MARKS = {
   f1: { s: 4.9, z: 13.6, yaw: 180 }, f2: { s: 6.4, z: 13.5, yaw: 180 },
   mW: { s: 5.75, z: 10.9, yaw: 180 }, f1W: { s: 4.85, z: 11.5, yaw: 180 }, f2W: { s: 6.75, z: 11.4, yaw: 180 },
   marcusN: { s: 5.85, z: 8.1, yaw: 180 }, f1N: { s: 5.0, z: 8.7, yaw: 180 }, f2N: { s: 6.6, z: 8.65, yaw: 180 },
+  // v10: the girl starts right behind Nio and jogs up the lawn into Marcus's arms; two people on the bench watch Nio's hand
+  sisB: { s: 5.55, z: 6.0, yaw: 0 }, sisHug: { s: 5.65, z: 12.45, yaw: 0 },
+  benchA: { s: 2.3, z: 8.7, yaw: 90, seat: 0.45 }, benchB: { s: 2.3, z: 9.3, yaw: 90, seat: 0.45 },
 };
 export const QUAD_SOLIDS = [{ name: 'the tree', s: [9.2, 10.0] as [number, number], z: [11.1, 11.9] as [number, number] }, { name: 'the bench', s: [2.0, 2.6] as [number, number], z: [8.1, 9.9] as [number, number] }];
 

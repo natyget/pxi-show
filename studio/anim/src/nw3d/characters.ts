@@ -198,7 +198,7 @@ export const DARNELL_CHAR: Character = {
 // lanyard round his neck (wear 'lanyard'): Nio reads his name off it.
 export const MARCUS: Props = { ...THEO, shin: 0.37, thigh: 0.38, torso: 0.41, shoulderHalf: 0.145 };
 export const MARCUS_CHAR: Character = {
-  id: 'marcus', body: MARCUS, skin: '#6e4630', hairA: '#141010', hairB: '#0c0a0a',
+  id: 'marcus', body: MARCUS, skin: '#6e4630', hairA: '#141010', hairB: '#0c0a0a', cap: '#c8322c', // (Wave Back v10) a red cap, always: the one face you can find in any shot
   hair: [L(0, 0.125, -0.04, 0.13)],
   head: { width: 1.02, chin: 1.08 },
   wardrobe: { day: { top: { color: '#2a8f84', loose: 0.03, sleeve: 0.8, long: true, trim: '#22766d' },
@@ -233,12 +233,12 @@ export const SIS_CHAR: Character = {
 // TOBI, the one who organises everything. Medium height, sporty, light brown skin, a short high-top fade, a bright
 // orange track jacket, navy trackies, white trainers.
 export const TOBI_CHAR: Character = {
-  id: 'tobi', body: { ...THEO, shoulderHalf: 0.15 }, skin: '#8c5a3c', hairA: '#191212', hairB: '#100c0c',
+  id: 'tobi', body: { ...THEO, shoulderHalf: 0.175, torsoR: 0.125, armR: 0.03, legR: 0.038 }, skin: '#8c5a3c', hairA: '#191212', hairB: '#100c0c', beard: '#191212', // (Wave Back v10) big and bearded, the real Cabin Four
   hair: [L(0, 0.16, -0.03, 0.12), L(0, 0.22, -0.04, 0.1), L(0, 0.11, -0.11, 0.12)],
   head: { width: 1.0, chin: 1.06 },
-  wardrobe: { day: { top: { color: '#e8762c', loose: 0.03, sleeve: 0.8, long: true, trim: '#f2f0ea' },
+  wardrobe: { day: { top: { color: '#e8e4da', loose: 0.03, sleeve: 0.0, trim: '#d6d1c4' }, // a white tank top
     bottom: { color: '#263354', cuff: '#1f2a46', width: 0.05 }, shoes: { color: '#f2efe8' } } },
-  outfit: 'day', restFace: 'hyped',
+  outfit: 'day', restFace: 'neutral',
 };
 // JADE, friendly and curious. Small, pale with freckles' warmth, a high red ponytail, a lilac fleece, grey jeans.
 export const CAMP1_CHAR: Character = {
