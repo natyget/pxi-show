@@ -392,3 +392,6 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     also if you noticed there is a pxi.nyc if we also can post what to do today/this week/weekend based on pxi events told by maya it would be tuff"
   - What this changed: app demos are the main video format, many a day. Instagram Reels post with "show on grid" off;
     the grid is kept for curated stills and carousels. Stories every day. First demo posted Nov 19 at 7 PM Chicago.
+- **Nov 19, 3:48 PM, word for word:**
+  - "now make more of those in disovery how to discover events how to plan weddings birthdays parties how to how to things to do did you know you could showcasing like we did in the video and more start scheduling them and work slowly over the week were at 90% usage so lets not work unitl reset on monday for the scheduled generation lets use what we got now and make as many now and then schedule each one and then regroup monday"
+  - What this changed: the how-to, tips and did-you-know batch is scheduled Nov 20 to 28. No new generation until Monday Nov 23; regroup then.

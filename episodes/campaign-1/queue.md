@@ -39,3 +39,20 @@ App demos and stories added Nov 19 (format approved by the founder Nov 19, 3:04 
 | Sun Nov 22 13:00, 20:00 | Stories: gallery scroll, event sheet still | IG + FB story |
 
 Held for the founder's yes: the 5-slide "lights off vs flash on" grid carousel (first carousel in this look).
+
+How-to, tips and did-you-know batch (founder, Nov 19, 3:48 PM). Grid posts at 4:5 on IG + FB, TikTok photo posts 5
+minutes later. Media in pxispace.com `public/social/nio-week2/`.
+
+| When | Piece |
+|---|---|
+| Fri Nov 20 17:00 | What I saw vs what PXI saw (single) |
+| Sat Nov 21 17:00 | 4 tips for better party pics (carousel, 6) |
+| Sun Nov 22 17:00 | How to plan a birthday (carousel, 6) |
+| Mon Nov 23 17:00 | Did you know: tagged in new photos (single); story 20:00 what I saw |
+| Tue Nov 24 20:00 | Story: tagged in new photos |
+| Wed Nov 25 12:00 | How to find something to do tonight, Discover (carousel, 6) |
+| Thu Nov 26 12:00 | Did you know: passport stamps (single); story 19:00 |
+| Fri Nov 27 12:00 | How to get every photo from your wedding (carousel, 5) |
+| Sat Nov 28 12:00 | Did you know: every album has its own chat (single); story 19:00 |
+
+The flash-on carousel is dropped (replaced by this batch).
