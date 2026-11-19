@@ -55,7 +55,7 @@ const shots: Shot[] = [
   // 6. alone. He scowls at the empty roof, looks down at his feet, and turns round
   { n: 23, frames: 46, spec: (f) => R('nio', [at('nio', 'nio2', [[0, 'suspicious'], [16, 'neutral']], { facing: f < 30 ? 'maya' : 'sunM', gaze: f >= 16 && f < 30 ? [0, -0.8] : [0, 0], back: f >= 30 ? true : undefined })], 0.06) },
   // right then the sun drops out under the cloud and the whole sky goes pink and gold
-  { n: 24, frames: 52, spec: R('sky', [], 0.12, { glow: [[0, GREY], [8, GREY], [44, 1]] }), sfx: [['ne_swell', 6, 0.35]] },
+  { n: 24, frames: 40, spec: R('sky', [], 0.35, { glow: [[0, GREY], [4, GREY], [30, 1]] }), sfx: [['ne_swell', 6, 0.35]] },
   // lighting up his face. A real, quiet "wow"
   { n: 25, frames: 20, spec: R('nioSun', [at('nio', 'nio2', [[0, 'neutral'], [8, 'real']], { facing: 'sunM', hold: 'phone', gaze: [0, 0.3] })], 0.1, { glow: 1 }), say: [L('gp12_13', 'nio', 12)] },
   { n: 26, frames: 40, finder: true, shake: [30], spec: R('sky', [], 0.15, { glow: 1 }), flash: 30, sfx: [['shutter', 30, 0.9]] },
