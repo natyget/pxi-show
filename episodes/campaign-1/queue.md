@@ -28,3 +28,14 @@ Discover demo, Wave Back v9.
 
 The demo is an Instagram Reel with "show on grid" off, plus Facebook Reel, TikTok 19:05, YouTube Short 19:10 and
 Instagram and Facebook stories 19:15. Metricool holds its own copy of the video.
+
+App demos and stories added Nov 19 (format approved by the founder Nov 19, 3:04 PM: "this is amazing lets do many of these a day"):
+
+| When | Piece | Where |
+|---|---|---|
+| Fri Nov 20 18:30 / 18:35 / 18:40 | "Flash On" demo (nio-demo-flash) | IG + FB Reel (show on grid off), TikTok, YouTube Short |
+| Fri Nov 20 18:45 | Story: flash-on tap | IG + FB story |
+| Sat Nov 21 13:00, 20:00 | Stories: flash-on loop, flash-on still | IG + FB story |
+| Sun Nov 22 13:00, 20:00 | Stories: gallery scroll, event sheet still | IG + FB story |
+
+Held for the founder's yes: the 5-slide "lights off vs flash on" grid carousel (first carousel in this look).
