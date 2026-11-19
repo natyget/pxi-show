@@ -1,5 +1,5 @@
 const { chromium } = require('playwright'); const path = require('path'); const fs = require('fs');
-(async () => { const P = JSON.parse(fs.readFileSync('posts.json')); const out = process.argv[2];
+(async () => { const P = JSON.parse(fs.readFileSync(process.argv[3]||'posts.json')); const out = process.argv[2];
   const b = await chromium.launch(); const pg = await b.newPage({ viewport: { width: 1080, height: 1350 } });
   await pg.goto('file://' + path.resolve('t.html')); await pg.evaluate(() => window.READY);
   for (const [name, slides] of Object.entries(P)) { fs.mkdirSync(path.join(out, name), { recursive: true });

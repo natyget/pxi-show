@@ -1,0 +1,31 @@
+{
+"discover-thanksgiving-eve":[
+ {"type":"cover","text":"where to go the night before Thanksgiving","img":"s/discover-wed.png"},
+ {"kicker":"1/4","text":"open Discover","img":"s/discover-wed.png","ring":[[360,170,330,100]]},
+ {"kicker":"2/4","text":"set it to tonight and your city","img":"s/discover-wed.png","ring":[[360,283,700,110]]},
+ {"kicker":"3/4","text":"swipe through what's on, or flip to Map for what's close","img":"s/discover-wed.png","ring":[[534,386,130,64]]},
+ {"kicker":"4/4","text":"tap JOIN and you're on the list","img":"s/discover-wed.png","ring":[[307,1324,250,100]]},
+ {"type":"end"}],
+"host-friendsgiving":[
+ {"type":"cover","text":"how to host Friendsgiving and actually get the pics","img":"s/friendsgiving-event.png"},
+ {"kicker":"1/4","text":"make the event","img":"s/discover-wed.png","ring":[[652,170,110,110]]},
+ {"kicker":"2/4","text":"drop the link in the group chat","img":"s/friendsgiving-event-open.png","ring":[[594,1311,110,110]]},
+ {"kicker":"3/4","text":"everyone at the table shoots into one album","img":"s/friendsgiving-camera.png","ring":[[360,152,340,74]]},
+ {"kicker":"4/4","text":"the morning after, it's all there","img":"s/friendsgiving-gallery.png"},
+ {"type":"end"}],
+"plan-a-birthday":[
+ {"type":"cover","text":"how to plan a birthday without the group chat chaos","img":"s/tess-event.png"},
+ {"kicker":"1/4","text":"make the event","img":"s/discover-wed.png","ring":[[652,170,110,110]]},
+ {"kicker":"2/4","text":"drop the link in the group chat","img":"s/tess-event-open.png","ring":[[594,1311,110,110]]},
+ {"kicker":"3/4","text":"everyone shoots into the same album","img":"s/tess-camera.png","ring":[[360,152,320,74]]},
+ {"kicker":"4/4","text":"wake up to every photo from the night","img":"s/tess-gallery.png"},
+ {"type":"end"}],
+"wedding-photos":[
+ {"type":"cover","text":"how to get every photo from your wedding","img":"s/wedding-event.png"},
+ {"kicker":"1/3","text":"make your wedding an event on PXI","img":"s/discover-wed.png","ring":[[652,170,110,110]]},
+ {"kicker":"2/3","text":"guests shoot from their own phones, straight into your album","img":"s/wedding-camera.png","ring":[[360,152,320,74]]},
+ {"kicker":"3/3","text":"every angle you missed, in one place","img":"s/wedding-gallery.png"},
+ {"type":"end"}],
+"dyk-tagged":[{"kicker":"did you know","text":"PXI tells you when you're in new photos","img":"s/lock-fg.png","ring":[[360,788,690,150]]}],
+"family-chat":[{"type":"raw","card":"<div class='t' style='top:96px'>the Thanksgiving pics</div><div style='position:absolute;left:60px;top:300px;width:470px;height:960px;border-radius:30px;background:#000;padding:110px 28px 0;overflow:hidden'><div style='position:absolute;left:22px;top:22px;width:78px;height:78px;border-radius:50%;background:#FF453A;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:46px'>✕</div><div style='font-weight:700;font-size:26px;color:rgba(255,255,255,.45);margin:10px 4px'>Family 🦃</div><div class='bub'>can someone send the pics</div><div class='bub'>which ones</div><div class='bub'>all of them</div><div class='bub'>aunty only sent 2 and they're blurry</div></div><div style='position:absolute;left:550px;top:300px;width:470px;height:960px;border-radius:30px;background:#000;overflow:hidden'><img src='s/friendsgiving-gallery.png' style='position:absolute;left:0;top:0;width:470px'><div style='position:absolute;left:22px;top:22px;width:78px;height:78px;border-radius:50%;background:#32D74B;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:46px'>✓</div><img src='pxi-icon.png' style='position:absolute;right:22px;top:22px;width:78px;height:78px;border-radius:18px'></div>"}]
+}

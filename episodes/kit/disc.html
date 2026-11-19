@@ -1,0 +1,48 @@
+<!doctype html><html><head><meta charset="utf-8"><script src="icons.js"></script><style>
+@font-face{font-family:Notch;src:url(StackSansNotch-Bold.ttf)}
+@font-face{font-family:Inter;font-weight:600;src:url(Inter-SemiBold.otf)}
+@font-face{font-family:Inter;font-weight:700;src:url(Inter-Bold.otf)}
+@font-face{font-family:Inter;font-weight:800;src:url(Inter-ExtraBold.otf)}
+@font-face{font-family:Inter;font-weight:900;src:url(Inter-Black.otf)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:720px;height:1560px;overflow:hidden;background:#000;font-family:Inter,"Noto Color Emoji";color:#fff}
+#g{position:absolute;left:0;top:0;width:360px;height:780px;transform:scale(2);transform-origin:0 0;overflow:hidden;background:#000}
+.a{position:absolute}.c{transform:translateX(-50%)}
+.cov{position:absolute;border-radius:16px;overflow:hidden;background:#111 center/cover}
+</style></head><body><div id="g"></div><script>
+const Q=new URLSearchParams(location.search);
+const ic=(n,s,c,f)=>'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none">'+ICONS[n].replaceAll('currentColor',c)+'</svg>';
+const L=Q.get('l'),C=Q.get('c'),Rr=Q.get('r');
+g.innerHTML=
+'<div class="a" style="left:50px;top:19px;font-weight:600;font-size:16px">9:41</div>'+
+'<svg class="a" style="left:256px;top:22px" width="76" height="14" viewBox="0 0 76 14"><rect x="2" y="9" width="3" height="4" fill="#fff"/><rect x="7" y="7" width="3" height="6" fill="#fff"/><rect x="12" y="4" width="3" height="9" fill="#fff"/><rect x="17" y="2" width="3" height="11" fill="#fff"/><path d="M27 6.5a10 10 0 0 1 14 0M29.5 9a6 6 0 0 1 9 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="34" cy="11.5" r="1.5" fill="#fff"/><rect x="48.5" y="1.5" width="22" height="11" rx="3" stroke="rgba(255,255,255,.45)" fill="none"/><rect x="50.5" y="3.5" width="18" height="7" rx="1.5" fill="#fff"/></svg>'+
+'<div class="a" style="left:123px;top:10px;width:115px;height:33px;border-radius:17px;background:#000;border:1px solid #111"></div>'+
+'<div class="a" style="left:15px;top:66px;width:38px;height:38px;border-radius:50%;background:#2a2a2a url(laugh.png) 50% 28%/300% auto"></div>'+
+'<div class="a c" style="left:180px;top:68px;font-family:Notch;font-size:30px;letter-spacing:-1px;white-space:nowrap">Discover <span style="font-size:14px;vertical-align:middle">⌄</span></div>'+
+'<div class="a" style="left:307px;top:66px;width:38px;height:38px;border-radius:50%;background:#A523EF"></div><div class="a" style="left:317px;top:76px">'+ic('PlusSignIcon',18,'#fff')+'</div>'+
+'<div class="a" style="left:7px;top:116px;width:346px;height:51px;border-radius:26px;background:#232323"></div>'+
+'<div class="a" style="left:23px;top:131px;font-size:13px;font-weight:700;color:rgba(255,255,255,.35)">at <span style="margin-left:10px;font-size:18px;font-weight:800;color:#fff">'+(Q.get('when')||'Tonight')+'</span> <span style="color:rgba(255,255,255,.55)">⌄</span>&nbsp;&nbsp; in <span style="margin-left:8px;font-size:18px;font-weight:800;color:#fff">'+(Q.get('city')||'NYC')+'</span> <span style="color:rgba(255,255,255,.55)">⌄</span></div>'+
+'<div class="a" style="left:265px;top:130px;width:1px;height:24px;background:rgba(255,255,255,.22)"></div>'+
+'<div class="a" style="left:276px;top:131px">'+ic('Sorting01Icon',20,'#fff')+'</div><div class="a" style="left:316px;top:131px">'+ic('Search01Icon',20,'#fff')+'</div>'+
+'<div class="a" style="left:7px;top:207px;width:346px;height:1px;background:rgba(255,255,255,.16)"></div>'+
+'<div class="a c" style="left:94px;top:184px;font-weight:800;font-size:14px">Cards</div><div class="a" style="left:70px;top:206px;width:48px;height:2px;background:#A523EF"></div>'+
+'<div class="a c" style="left:267px;top:184px;font-weight:800;font-size:14px;color:rgba(255,255,255,.55)">Map</div>'+
+'<div class="a c" style="left:180px;top:226px;font-family:Notch;font-size:17px;white-space:nowrap"><span style="color:#A523EF">'+(Q.get('day')||'TONIGHT')+'</span>&nbsp; '+(Q.get('t')||'9 PM')+'</div>'+
+'<div class="cov" style="left:-48px;top:274px;width:121px;height:162px;background-image:url('+L+');filter:brightness(.5)"></div>'+
+'<div class="cov" style="left:287px;top:274px;width:121px;height:162px;background-image:url('+Rr+');filter:brightness(.5)"></div>'+
+'<div class="a" style="left:72px;top:260px;width:232px;height:232px;border-radius:50%;background:radial-gradient(circle,#161616 0 18%,#0a0a0a 19%,#151515 40%,#080808 70%,#111 98%,#2a2a2a 100%)"></div>'+
+'<div class="cov" style="left:80px;top:254px;width:184px;height:245px;background-image:url('+C+')">'+
+ '<div class="a" style="right:-24px;top:94px;width:48px;height:48px;border-radius:50%;background:#FF5A1F"></div>'+
+ '<div class="a" style="right:12px;bottom:12px;width:29px;height:29px;border-radius:50%;background:rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center">'+ic('FavouriteIcon',15,'#fff')+'</div>'+
+ '<div class="a" style="left:13px;bottom:12px;display:flex;align-items:center">'+[0,1,2].map(i=>'<div style="width:21px;height:21px;border-radius:50%;background:#EBEBEB;margin-right:-7px;border:1px solid #EBEBEB;overflow:hidden"><svg width="19" height="19" viewBox="0 0 64 64"><rect width="64" height="64" fill="#111"/><circle cx="32" cy="24" r="12" fill="#2a2a2a"/><circle cx="32" cy="64" r="22" fill="#2a2a2a"/></svg></div>').join('')+
+ '<div style="margin-left:12px;height:21px;border-radius:11px;background:#EBEBEB;color:#111;font-weight:900;font-size:10px;padding:0 7px;display:flex;align-items:center">+'+(Q.get('n')||'48')+'</div></div></div>'+
+'<div class="a" style="left:71px;top:510px;width:99px;height:99px;border-radius:50%;background:#161616;border:1px solid #222;overflow:hidden"><div style="position:absolute;inset:14px;border-radius:50%;background:url('+C+') center/cover;border:3px solid #A523EF"></div></div>'+
+'<div class="a c" style="left:121px;top:615px;font-weight:800;font-size:10px;letter-spacing:1px;color:#A523EF">EVENT STAMP</div>'+
+[['LOCATION',Q.get('loc')||'BROOKLYN',514,528,12],['PRICE',Q.get('price')||'FREE',554,567,12],['GOING',Q.get('going')||'51',593,609,22]].map(r=>'<div class="a" style="left:191px;top:'+r[2]+'px;font-weight:800;font-size:9px;letter-spacing:1px;color:#A523EF">'+r[0]+'</div><div class="a" style="left:191px;top:'+r[3]+'px;font-family:Notch;font-size:'+r[4]+'px">'+r[1]+'</div>').join('')+
+'<div class="a" style="left:95px;top:639px;width:117px;height:46px;border-radius:23px;background:#A523EF;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px">JOIN</div>'+
+'<div class="a" style="left:220px;top:639px;width:45px;height:45px;border-radius:50%;background:#A523EF;display:flex;align-items:center;justify-content:center">'+ic('LinkForwardIcon',20,'#fff')+'</div>'+
+'<div class="a" style="left:76px;top:700px;width:208px;height:58px;border-radius:29px;background:#1A1A1A"></div>'+
+['Home05Icon','Camera02Icon','Ticket01Icon'].map((n,i)=>'<div class="a" style="left:'+(100+Math.round(i*69.6))+'px;top:718px">'+ic(n,22,i==0?'#fff':'rgba(255,255,255,.4)')+'</div>').join('')+
+'<div class="a" style="left:111px;bottom:8px;width:138px;height:5px;border-radius:3px;background:#fff"></div>';
+window.READY=document.fonts.ready.then(()=>new Promise(r=>setTimeout(r,500)));
+</script></body></html>
