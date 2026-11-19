@@ -5,6 +5,7 @@ Facebook share a caption; TikTok gets its own. AI labels on.
 
 | When | Piece | Folder | IG / FB caption | TikTok caption |
 |---|---|---|---|---|
+| Thu Nov 19 19:00 | App demo "Saturday at Nio's" (approved Nov 19) | nio-demo-saturday | saturday at nio's, and nobody has to beg for the pics 📸 (pxi is a free app on the app store: every photo from the party lands in one shared album, so you get the pics everyone took of you) | saturday at nio's and nobody has to beg for the pics 📸 pxi puts every photo from the party in one shared album, free on the app store #photoapp #pxi #houseparty |
 | Fri Nov 20 12:30 | Lock screen still | nio-lock | the notifications after a night out say everything about your friends 😭 (pxi is a free app on the app store and google play. everyone's photos from the night land in one shared album, so you get every photo you're in) | the notifications after a night out say everything about your friends 😭 pxi puts everyone's pics in one shared album, free on the app store #photoapp #pxi #groupchat |
 | Fri Nov 20 18:00 | Group Photo skit v12 | nio-groupphoto | golden hour lasted four minutes and we spent all of them arguing about the light 😭 (pxi is a free app on the app store and google play: everyone's photos from the night land in one shared album, so you get every photo you're in) | golden hour lasted four minutes and we spent all of them arguing 😭 (pxi: one shared album for everyone's photos from the night) #photoapp #pxi #goldenhour |
 | Sat Nov 21 12:30 | Tier list carousel | nio-tier | the group chat, ranked. maya will not be shortening the voice notes 🎙️ (p.s. pxi is free on the app store and google play, and every event near you is on one map) | the group chat, ranked 🎙️ every event near you is on pxi, free on the app store #thingstodo #pxi #groupchat |
@@ -24,3 +25,6 @@ legacy post is a draft, so from Fri Nov 20 only Nio posts go out.
 
 Held for week 2: dictionary, the Sunday loop (Sun Nov 29). Built next: Friendsgiving seating chart, the Thanksgiving event moment, the
 Discover demo, Wave Back v9.
+
+The demo is an Instagram Reel with "show on grid" off, plus Facebook Reel, TikTok 19:05, YouTube Short 19:10 and
+Instagram and Facebook stories 19:15. Metricool holds its own copy of the video.

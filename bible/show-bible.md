@@ -386,3 +386,9 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - What this changed: the four skits (Group Photo, Aux, Wave Back, One Sip) are back to drafts in Metricool and
     not posted. Simple captioned app demos (a party, then the app) take the video slots. Every legacy post is off.
     The stills stay scheduled.
+- **Nov 19, 3:04 PM, word for word (on the first app demo, "Saturday at Nio's"):**
+  - "this is amazing lets do many of these a day and with gifs and still images and even these but different aspects of the product, ensure the camera captures and shows images as if the filter applied with flash darkening background and looking nice. lets post on our grid on reel that wont appear on grid and stories and ensure the grid starts looking nice. for tiktok do stories and all the rest. do carousels too
+    really think about what works and lets blow this account up. my current followers arent engaging in insta should i remove them? let me know if from scratch is best or how we can break away from this limited loop
+    also if you noticed there is a pxi.nyc if we also can post what to do today/this week/weekend based on pxi events told by maya it would be tuff"
+  - What this changed: app demos are the main video format, many a day. Instagram Reels post with "show on grid" off;
+    the grid is kept for curated stills and carousels. Stories every day. First demo posted Nov 19 at 7 PM Chicago.
