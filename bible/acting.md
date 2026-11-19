@@ -39,6 +39,24 @@ A TV cartoon works the other way round: strong held poses, and a snap from one t
     makes and the board marks (`lens: true`); the engine refuses any other (founder, Nov 18: "why nio always smirking
     and one eyebrow lifted looking at us").
 
+## The viewer read (founder, Nov 19)
+
+"Figure out what someone thinks when they see something so your design conveys something." Before a shot is built,
+the board writes one line above it in the skit file: `Viewer: "..."`, what a first-time viewer should think at that
+beat. Then the shot is built so the picture alone makes them think it:
+
+- **Intent is shown in the body before it is acted on.** A character who is about to do something looks at the
+  thing, the face changes, then the body goes. Theo going for Nio: he sees the soaked records, freezes, hugs two
+  of them, finds Nio holding the phone (his eyes, a cut to what he sees), his face turns, he drops the records and
+  comes at him with his arms out. Never a cut straight to the attack.
+- **Physical action is animated, not implied.** A lunge travels with reach and contact; a grab has hands on the
+  thing. If the rig cannot do it, a new hold is built (the rule is one new set and three new props an episode).
+- **Every line has a visible target.** Who it is said to and what about is in the frame or the frame before it.
+  A line like "Do it. Do it." with nothing on screen to do is cut.
+- **A cause lands in time with what causes it.** The rain comes on the piano's notes, one drop a note, then it pours.
+- If a shot's viewer line cannot be made true in the picture, the shot goes back to the writers' room, it is not
+  built and hoped for.
+
 ## What the board writes (`shots.md` and the episode file)
 
 - **A face for every line and a face for every reaction**, as now. The body follows the face, so the face keys ARE

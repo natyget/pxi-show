@@ -30,7 +30,7 @@ import ACC_WB from '../lips/wb_accents.json';
 export type Line = { key: string; who: string; at: number }; // at: the frame inside the shot where the line starts
 // img: a full-screen picture instead of a set (a PXI screen, public/<img>), pushed in slowly. zoom: [scale, the height
 // it zooms toward, percent from the top], for a screen whose point is one row. flash: a camera flash at this frame.
-export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean; finder?: boolean; tap?: [number, number, number, string?][]; hover?: [number, number, number]; say?: Line[]; sfx?: [string, number, number?][] };
+export type Shot = { n: number; frames: number; spec?: ShotSpec | ((f: number) => ShotSpec); img?: string; zoom?: [number, number]; flash?: number; shake?: number[]; drop?: [number, number, number, number, number]; poof?: [number, number, number][]; rain?: boolean | [number, number][]; drip?: [number, number, number][]; finder?: boolean; tap?: [number, number, number, string?][]; hover?: [number, number, number]; say?: Line[]; sfx?: [string, number, number?][] };
 // beds: [sound, volume, the shot it stops at (optional: else it runs to the end), the shot it starts at (optional: else the start)]
 export type SkitDef = { id: string; shots: Shot[]; beds: [string, number, number?, number?][] };
 type VoLine = { file: string; who: string; sub: string; dur: number };
@@ -54,13 +54,18 @@ const Poof: React.FC<{ at: number; x: number; y: number }> = ({ at, x, y }) => {
   return <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0, opacity: o }}>{[0, 1, 2, 3, 4, 5, 6].map((k) => { const a = (k / 7) * Math.PI * 2;
     return <circle key={k} cx={x + Math.cos(a) * r * 0.7} cy={y + Math.sin(a) * r * 0.55} r={r * 0.42} fill="#fbf6ee" stroke="#2a2024" strokeWidth={8} />; })}</svg>; };
 // indoor rain: streaks falling on twos, the room a little bluer
-const Rain: React.FC = () => { const f = Math.floor(useCurrentFrame() / 2) * 2;
+const Rain: React.FC<{ d?: number }> = ({ d = 1 }) => { const f = Math.floor(useCurrentFrame() / 2) * 2; const n = Math.max(1, Math.round(260 * d));
   // (stranger, Nov 18: short thick white dashes read as a glitch; thin, long, blue, many, with splashes on the floor reads as rain)
-  return <><AbsoluteFill style={{ background: '#2f5590', mixBlendMode: 'multiply', opacity: 0.45 }} />
-    <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}>{Array.from({ length: 260 }, (_, k) => { const x = (k * 137.5) % 1080, y = ((k * 263 + f * 90) % 2200) - 200;
+  return <><AbsoluteFill style={{ background: '#2f5590', mixBlendMode: 'multiply', opacity: 0.45 * Math.min(1, d * 1.5) }} />
+    <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}>{Array.from({ length: n }, (_, k) => { const x = (k * 137.5) % 1080, y = ((k * 263 + f * 90) % 2200) - 200;
       return <line key={k} x1={x} y1={y} x2={x - 14} y2={y + 150} stroke="#9fc2ff" strokeWidth={3} opacity={0.6} />; })}
-    {Array.from({ length: 40 }, (_, k) => { const x = (k * 211.3 + f * 37) % 1080, y = 1500 + ((k * 97) % 380), r = 10 + ((k + f) % 6) * 6;
+    {Array.from({ length: Math.round(40 * d) }, (_, k) => { const x = (k * 211.3 + f * 37) % 1080, y = 1500 + ((k * 97) % 380), r = 10 + ((k + f) % 6) * 6;
       return <ellipse key={'s' + k} cx={x} cy={y} rx={r} ry={r * 0.3} fill="none" stroke="#9fc2ff" strokeWidth={3} opacity={0.5} />; })}</svg></>; };
+// (Aux v12) one drop of indoor rain: a blue streak falls for 8 frames onto (x, y), lands on frame 'at', and splashes
+const Drip: React.FC<{ at: number; x: number; y: number }> = ({ at, x, y }) => { const f = useCurrentFrame() - at; if (f < -8 || f > 7) return null;
+  if (f < 0) { const yy = y + (f / 8) * 900; return <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}><line x1={x} y1={yy - 120} x2={x} y2={yy} stroke="#9fc2ff" strokeWidth={6} strokeLinecap="round" /></svg>; }
+  const r = 14 + f * 9; return <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0, opacity: 1 - f / 8 }}><ellipse cx={x} cy={y} rx={r} ry={r * 0.32} fill="none" stroke="#9fc2ff" strokeWidth={5} />
+    {[-1, 1].map((k) => <circle key={k} cx={x + k * (10 + f * 6)} cy={y - 16 - f * 5 + f * f * 0.8} r={6} fill="#9fc2ff" />)}</svg>; };
 // a monocle falling: a gold ring that drops from (x0, y0) to (x1, y1) in 7 frames, turning edge-on as it goes, then gone
 const Drop: React.FC<{ d: [number, number, number, number, number] }> = ({ d: [at, x0, y0, x1, y1] }) => { const f = useCurrentFrame() - at; if (f < 0 || f > 7) return null;
   const k = (f / 7) ** 2, x = x0 + (x1 - x0) * k, y = y0 + (y1 - y0) * k;
@@ -128,7 +133,7 @@ export const Skit: React.FC<SkitProps> = (p) => {
           {s.hover ? <Hover at={s.hover[0]} x={s.hover[1]} y={s.hover[2]} /> : null}
           {s.flash !== undefined ? <Flash at={s.flash} /> : null}
           {s.drop ? <Drop d={s.drop} /> : null}
-          {s.rain ? <Rain /> : null}
+          {s.rain ? <Rain d={s.rain === true ? 1 : [...s.rain].reverse().find(([k]) => frame - s.from >= k)?.[1] ?? 0} /> : null}{(s.drip ?? []).map(([at, x, y], i) => <Drip key={'dr' + i} at={at} x={x} y={y} />)}
           {(s.poof ?? []).map(([at, x, y], i) => <Poof key={i} at={at} x={x} y={y} />)}
           {(s.say ?? []).filter((l) => vo[l.key]).map((l) => (
             <Sequence key={l.key} from={l.at} durationInFrames={Math.ceil(vo[l.key].dur * 24) + 2} layout="none"><Audio src={staticFile(vo[l.key].file)} /></Sequence>

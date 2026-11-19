@@ -1,0 +1,123 @@
+[
+{
+"key": "ax11_01",
+"who": "theo",
+"tone": "deadpan",
+"text": "She's been reading it for ten minutes.",
+"files": [
+"raw/raw_ax11_01_t3.wav",
+"raw/raw_ax11_01_t17.wav",
+"raw/raw_ax11_01_t41.wav"
+]
+},
+{
+"key": "ax11_08",
+"who": "theo",
+"tone": "horror",
+"text": "My records.",
+"files": [
+"raw/raw_ax11_08_t3.wav",
+"raw/raw_ax11_08_t17.wav",
+"raw/raw_ax11_08_t41.wav"
+]
+},
+{
+"key": "ax10_05",
+"who": "guest1",
+"tone": "panic",
+"text": "How is it raining inside?",
+"files": [
+"raw/raw_ax10_05_t3.wav",
+"raw/raw_ax10_05_t17.wav",
+"raw/raw_ax10_05_t41.wav"
+]
+},
+{
+"key": "ax10_06",
+"who": "guest2",
+"tone": "panic",
+"text": "Is the roof gone?",
+"files": [
+"raw/raw_ax10_06_t3.wav",
+"raw/raw_ax10_06_t17.wav",
+"raw/raw_ax10_06_t41.wav"
+]
+},
+{
+"key": "ax10_07",
+"who": "guest3",
+"tone": "panic",
+"text": "My phone's not waterproof!",
+"files": [
+"raw/raw_ax10_07_t3.wav",
+"raw/raw_ax10_07_t17.wav",
+"raw/raw_ax10_07_t41.wav"
+]
+},
+{
+"key": "ax11_09",
+"who": "guest1",
+"tone": "laugh",
+"text": "Bro, film my feet.",
+"files": [
+"raw/raw_ax11_09_t3.wav",
+"raw/raw_ax11_09_t17.wav",
+"raw/raw_ax11_09_t41.wav"
+]
+},
+{
+"key": "ax10_10",
+"who": "maya",
+"tone": "shout",
+"text": "Turn it off!",
+"files": [
+"raw/raw_ax10_10_t3.wav",
+"raw/raw_ax10_10_t17.wav",
+"raw/raw_ax10_10_t41.wav"
+]
+},
+{
+"key": "ax10_11",
+"who": "nio",
+"tone": "shout",
+"text": "I'm trying!",
+"files": [
+"raw/raw_ax10_11_t3.wav",
+"raw/raw_ax10_11_t17.wav",
+"raw/raw_ax10_11_t41.wav"
+]
+},
+{
+"key": "ax11_16",
+"who": "nio",
+"tone": "sincere",
+"text": "Same time next weekend?",
+"files": [
+"raw/raw_ax11_16_t3.wav",
+"raw/raw_ax11_16_t17.wav",
+"raw/raw_ax11_16_t41.wav"
+]
+},
+{
+"key": "ax11_17",
+"who": "maya",
+"tone": "deadpan",
+"text": "He's not worth it.",
+"files": [
+"raw/raw_ax11_17_t3.wav",
+"raw/raw_ax11_17_t17.wav",
+"raw/raw_ax11_17_t41.wav"
+]
+},
+{
+"key": "ax11_18",
+"who": "nio",
+"tone": "wheeze",
+"text": "Worth it.",
+"files": [
+"raw/raw_ax11_18_t3.wav",
+"raw/raw_ax11_18_t17.wav",
+"raw/raw_ax11_18_t41.wav"
+]
+}
+]

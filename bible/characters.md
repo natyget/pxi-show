@@ -314,10 +314,17 @@ Made the same way as Nio's and Maya's (below), each description plus an acting n
   performance comes from: "Hyped, bragging, can't stop smiling." "Devastated, quiet, like it is the worst thing
   that has happened to anyone." A line without an acting note comes out flat, and flat is a defect.
 - **In the text sent to the tool, PXI is written `pixie`.** Nothing with "aight", "ight" or a drawn-out "nah".
-- **Treatment:** the walkie-talkie colour. The founder heard clean and walkie samples side by side and picked
-  walkie (decision card, Nov 11). Chain: approved per-character pitch 0, trim, the walkie colour (band-pass
-  280-3500 Hz, light bit-crush, vibrato, soft clip; `WALKIE` in `studio/voice/clean.py`), loudnorm -16 LUFS.
-  Dev (always on a video call) adds a light phone band on top. Flashback lines add light reverb.
+- **Treatment:** plain and clean (founder, Nov 19: "keep the voices a normal not static no nothing voice").
+  Chain: approved per-character pitch 0, trim, loudnorm -16 LUFS, nothing else. No walkie, radio, tape, phone line
+  or crackle on any skit or episode (the Nov 11 walkie pick and the Nov 17 medium comparison are retired).
+  Flashback lines add light reverb; a voice heard through a phone adds a light phone band, only in that shot.
+- **Tone by situation** (founder, Nov 19): the acting note names the situation and the delivery, never a generic
+  "casual, natural". Panic is loud, high and fast; rage is clipped and hard; horror is quiet and cracking; deadpan
+  is flat and low; bragging is slow and easy; sincere is warm with a lift. Every emotional line gets two or three
+  takes (seeds), and `engine/tools/tone_check.py` measures each take against its tone (loudness, pitch, range,
+  brightness and speed against that speaker's own baseline) and picks one. It also refuses a gap inside a short
+  line or a read slower than people talk ("my records" in Aux v10 had both). `studio/voice/tone_pick.py` treats the
+  picked takes.
 - **Output:** `public/vo/<key>.wav`, 48 kHz mono, with the 12 fps mouth envelope merged into `src/audio.json`.
 - **Never:** the earlier Chatterbox and Kokoro picks (`am_puck`, `af_river` and the rest), any other tool, or
   any stand-in. If this voice cannot be made in the session, the stage is `BLOCKED`.

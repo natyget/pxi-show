@@ -9,6 +9,6 @@ OPT = {
  'E': "vibrato=f=0.7:d=0.18,vibrato=f=5.5:d=0.03,lowpass=f=5200,highpass=f=110",  # warbly tape
  'F': "anull",  # clean
 }
-NOISE = {'B': 'crackle'}  # no hiss on E: the audio check heard it as static (Nov 19)
+NOISE = {}  # founder, Nov 19: plain clean voices, no static, no medium on any skit
 # Which skit uses which medium. Record the result in engine/learning.md once posted.
-SKIT = {'one-sip': 'B', 'group-photo': 'F', 'aux': 'E', 'wave-back': 'A'}
+SKIT = {'one-sip': 'F', 'group-photo': 'F', 'aux': 'F', 'wave-back': 'F'}  # founder, Nov 19: all clean

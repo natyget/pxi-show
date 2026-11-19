@@ -1181,6 +1181,7 @@ export const THEO_CAMS: Record<string, Cam3> = {
   records: C([2.6, 1.5, 3.2], [0.0, 1.3, 4.2], 56), // the record wall
   door: C([3.2, 1.55, 3.2], [1.63, 1.3, 6.0], 70), // the front door
   doorTheo: C([2.8, 1.5, 6.0], [2.3, 1.3, 7.2], 40), // Theo at the door
+  doorHug: C([3.4, 1.5, 5.0], [2.1, 1.3, 7.13], 46), // Theo at the door with the cake guy holding on to him
   sign: C([4.9, 1.75, 2.3], [6.6, 1.55, 3.3], 50), // the fire-exit sign and whoever reads it
   under: C([4.0, 0.55, 3.6], [5.0, 0.4, 5.6], 60), // low: under the island
   up: C([4.2, 1.35, 1.3], [4.2, 1.3, 4.17], 62), // the ceiling party (with theo.flip: the camera turned over)
@@ -1188,6 +1189,7 @@ export const THEO_CAMS: Record<string, Cam3> = {
   upNio: C([3.1, 1.4, 3.3], [4.0, 1.3, 3.6], 46),
   panic: C([6.8, 2.3, 0.9], [2.85, 1.3, 5.34], 72), // the rain: the whole room from the near right
   lunge: C([2.9, 1.55, 2.7], [3.82, 1.3, 4.45], 54), // Theo coming at Nio
+  nioPov: C([4.3, 1.55, 4.65], [3.4, 1.35, 3.9], 44), // Theo's eyes: Nio across the room with the phone
 };
 export const THEO_MARKS = {
   theo: { s: 4.4, z: 4.9, yaw: 180 }, maya: { s: 5.0, z: 4.85, yaw: 180 }, sami: { s: 5.6, z: 4.9, yaw: 180 }, nio: { s: 3.8, z: 5.0, yaw: 180 }, // at the island
@@ -1196,7 +1198,7 @@ export const THEO_MARKS = {
   pizza: { s: 2.4, z: 3.4, yaw: 160 }, shirt: { s: 5.9, z: 3.0, yaw: 200 }, // the girl under the pizza box; the guy with his phone up his shirt
   doorA: { s: 1.3, z: 7.5, yaw: 0 }, doorB: { s: 1.8, z: 7.45, yaw: 0 }, // the couple stuck at the door
   theoDoor: { s: 2.3, z: 7.2, yaw: 270 }, gOut1: { s: 1.0, z: 5.6, yaw: 0 }, gOutD: { s: 1.5, z: 7.75, yaw: 0 }, // Theo by the door, guests leaving
-  gOut2: { s: 1.6, z: 5.2, yaw: 0 }, nioDoor: { s: 3.4, z: 6.0, yaw: 220 },
+  gOut2: { s: 1.6, z: 5.2, yaw: 0 }, nioDoor: { s: 3.4, z: 6.0, yaw: 220 }, hugTheo: { s: 1.9, z: 7.05, yaw: 90 }, // the cake guy holding on to Theo
   upNio: { s: 4.0, z: 3.6, yaw: 180 }, upTheo: { s: 4.0, z: 4.1, yaw: 0 }, upMaya: { s: 3.3, z: 4.6, yaw: 160 }, upSami: { s: 4.7, z: 4.6, yaw: 200 }, upGuy: { s: 4.6, z: 3.3, yaw: 220 }, // on the ceiling
 };
 export const THEO_SOLIDS = [{ name: 'the island', s: [4.05, 5.95] as [number, number], z: [5.15, 6.05] as [number, number] }, { name: 'the sofa', s: [2.0, 4.0] as [number, number], z: [0.55, 1.45] as [number, number] }, { name: 'the coffee table', s: [2.5, 3.5] as [number, number], z: [1.9, 2.5] as [number, number] }];

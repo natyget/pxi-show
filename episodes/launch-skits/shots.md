@@ -70,3 +70,19 @@ Scripts: `nio-soul/skits/v9/scripts.md` and `nio-soul/skits/v9/aux.md` (writers'
 | One Sip 23, 27 | Guests filming him | Where the morning's photos come from | Phones up in the wide shots |
 | One Sip 26 | The shade off the floor lamp, worn like a crown | The king | The lamp by the sofa has its shade in every earlier shot; bare after |
 | One Sip 32 to 37 | The next morning on the sofa: the buzzing phone, the review screens, his thumb hovering, the duvet over his head | The night is in the party's album | The real face-review screen, the guests' own photos from the night |
+
+## Aux v11 (writers' room, Nov 19, after the stranger failed v10)
+
+- The opening no longer says what the picture shows: Maya names the girl at the exit sign, then Theo, flat, on his own shot: "She's been reading it for ten minutes."
+- Theo's horror is two words, "My records." The upside-down guest says "Bro, film my feet."
+- The door: four guests, one line each ("I was on the ceiling." / "My shoe's still up there." / "Thank you." / "Next weekend?"). The cake guy, still in his hat, holds on to Theo with open arms (there is no hug rig, so it is a close lean). New camera doorHug.
+- The porch: Nio picks up the buzzing phone and glances at it, then "Same time next weekend?". Theo throttles him, Maya: "He's not worth it." Nio holds the lit phone up: "Worth it." The phone buzzes again on the last shot. Sami's line is cut.
+- The lock-screen pushes carry photos and "posted a photo" only, never a caption that repeats a spoken line.
+
+## Aux v12 (writers' room, Nov 19, in place of v11, after the founder's note on v10)
+
+Every shot in `src/ep/skits/aux.ts` carries its viewer line (`bible/acting.md`, The viewer read). Declared:
+- The rain starts on the piano: one drop lands in a guest's cup on the first note, another on the second, she looks up, a few more, and it pours on the fourth note (`drip` and keyed `rain` density in Skit.tsx).
+- Theo at the records: he freezes, "...No.", hugs two records (new hold `records`: two sleeves flat on his chest), finds Nio across the room (new camera nioPov, Theo's eyes), his face turns, he drops them (a splash) and jogs at Nio with his arms out (`throttle` may now travel). Then his hands are at Nio's neck while Nio talks fast.
+- Sami takes the phone: "Give me that." Maya picks up the phone on the porch and turns the album to them; Theo sets his record down before he throttles Nio; Nio holds the lit phone up for "Worth it."
+- Every voice is plain and clean, each line read from its delivery note, picked from two or three takes by `engine/tools/tone_check.py`.

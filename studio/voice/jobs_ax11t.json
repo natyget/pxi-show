@@ -1,0 +1,266 @@
+[
+{
+"who": "theo",
+"role": "dtheo",
+"text": "She's been reading it for ten minutes.",
+"note": "Not even looking at her, quietly hurt that his party is dead. Flat and dry, low and steady, no emotion at all, an even pace like stating the weather.",
+"out": "raw_ax11_01_t3.wav",
+"seed": 3
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "She's been reading it for ten minutes.",
+"note": "Not even looking at her, quietly hurt that his party is dead. Flat and dry, low and steady, no emotion at all, an even pace like stating the weather.",
+"out": "raw_ax11_01_t17.wav",
+"seed": 17
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "She's been reading it for ten minutes.",
+"note": "Not even looking at her, quietly hurt that his party is dead. Flat and dry, low and steady, no emotion at all, an even pace like stating the weather.",
+"out": "raw_ax11_01_t41.wav",
+"seed": 41
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "My records.",
+"note": "Seeing his record collection getting soaked. Devastated, a cracked half-whisper, the words catch in his throat, no pause between them.",
+"out": "raw_ax11_08_t3.wav",
+"seed": 3
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "My records.",
+"note": "Seeing his record collection getting soaked. Devastated, a cracked half-whisper, the words catch in his throat, no pause between them.",
+"out": "raw_ax11_08_t17.wav",
+"seed": 17
+},
+{
+"who": "theo",
+"role": "dtheo",
+"text": "My records.",
+"note": "Seeing his record collection getting soaked. Devastated, a cracked half-whisper, the words catch in his throat, no pause between them.",
+"out": "raw_ax11_08_t41.wav",
+"seed": 41
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "How is it raining inside?",
+"note": "Rain pouring from the ceiling at a house party. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax10_05_t3.wav",
+"seed": 3
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "How is it raining inside?",
+"note": "Rain pouring from the ceiling at a house party. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax10_05_t17.wav",
+"seed": 17
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "How is it raining inside?",
+"note": "Rain pouring from the ceiling at a house party. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax10_05_t41.wav",
+"seed": 41
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Is the roof gone?",
+"note": "Looking up into the rain. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax10_06_t3.wav",
+"seed": 3
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Is the roof gone?",
+"note": "Looking up into the rain. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax10_06_t17.wav",
+"seed": 17
+},
+{
+"who": "guest2",
+"role": "dguest2",
+"text": "Is the roof gone?",
+"note": "Looking up into the rain. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax10_06_t41.wav",
+"seed": 41
+},
+{
+"who": "guest3",
+"role": "dguest3",
+"text": "My phone's not waterproof!",
+"note": "Shoving his phone up his shirt. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax10_07_t3.wav",
+"seed": 3
+},
+{
+"who": "guest3",
+"role": "dguest3",
+"text": "My phone's not waterproof!",
+"note": "Shoving his phone up his shirt. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax10_07_t17.wav",
+"seed": 17
+},
+{
+"who": "guest3",
+"role": "dguest3",
+"text": "My phone's not waterproof!",
+"note": "Shoving his phone up his shirt. Screaming in real fear, loud, high and fast, breathless, the words tumbling out.",
+"out": "raw_ax10_07_t41.wav",
+"seed": 41
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "Bro, film my feet.",
+"note": "Upside down on the ceiling, to his friend. Laughing while he talks, breathless with joy, loud and delighted.",
+"out": "raw_ax11_09_t3.wav",
+"seed": 3
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "Bro, film my feet.",
+"note": "Upside down on the ceiling, to his friend. Laughing while he talks, breathless with joy, loud and delighted.",
+"out": "raw_ax11_09_t17.wav",
+"seed": 17
+},
+{
+"who": "guest1",
+"role": "dguest1",
+"text": "Bro, film my feet.",
+"note": "Upside down on the ceiling, to his friend. Laughing while he talks, breathless with joy, loud and delighted.",
+"out": "raw_ax11_09_t41.wav",
+"seed": 41
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Turn it off!",
+"note": "Across the room at her friend who caused it. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax10_10_t3.wav",
+"seed": 3
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Turn it off!",
+"note": "Across the room at her friend who caused it. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax10_10_t17.wav",
+"seed": 17
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "Turn it off!",
+"note": "Across the room at her friend who caused it. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax10_10_t41.wav",
+"seed": 41
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm trying!",
+"note": "Stabbing at his wet phone, panicking. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax10_11_t3.wav",
+"seed": 3
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm trying!",
+"note": "Stabbing at his wet phone, panicking. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax10_11_t17.wav",
+"seed": 17
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "I'm trying!",
+"note": "Stabbing at his wet phone, panicking. Shouting over a loud room, urgent, sharp and fast.",
+"out": "raw_ax10_11_t41.wav",
+"seed": 41
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Same time next weekend?",
+"note": "Asking his furious friend, as if it were a kind offer. Warm and earnest, genuinely helpful, totally serious, a small hopeful lift at the end.",
+"out": "raw_ax11_16_t3.wav",
+"seed": 3
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Same time next weekend?",
+"note": "Asking his furious friend, as if it were a kind offer. Warm and earnest, genuinely helpful, totally serious, a small hopeful lift at the end.",
+"out": "raw_ax11_16_t17.wav",
+"seed": 17
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Same time next weekend?",
+"note": "Asking his furious friend, as if it were a kind offer. Warm and earnest, genuinely helpful, totally serious, a small hopeful lift at the end.",
+"out": "raw_ax11_16_t41.wav",
+"seed": 41
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "He's not worth it.",
+"note": "Pulling her friend off by the arm, unbothered. Flat and dry, low and steady, no emotion at all, an even pace like stating the weather.",
+"out": "raw_ax11_17_t3.wav",
+"seed": 3
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "He's not worth it.",
+"note": "Pulling her friend off by the arm, unbothered. Flat and dry, low and steady, no emotion at all, an even pace like stating the weather.",
+"out": "raw_ax11_17_t17.wav",
+"seed": 17
+},
+{
+"who": "maya",
+"role": "dmaya",
+"text": "He's not worth it.",
+"note": "Pulling her friend off by the arm, unbothered. Flat and dry, low and steady, no emotion at all, an even pace like stating the weather.",
+"out": "raw_ax11_17_t41.wav",
+"seed": 41
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Worth it.",
+"note": "While his friend throttles him. Being choked, a strangled breathy squeak, squeezed out, but grinning.",
+"out": "raw_ax11_18_t3.wav",
+"seed": 3
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Worth it.",
+"note": "While his friend throttles him. Being choked, a strangled breathy squeak, squeezed out, but grinning.",
+"out": "raw_ax11_18_t17.wav",
+"seed": 17
+},
+{
+"who": "nio",
+"role": "dnio",
+"text": "Worth it.",
+"note": "While his friend throttles him. Being choked, a strangled breathy squeak, squeezed out, but grinning.",
+"out": "raw_ax11_18_t41.wav",
+"seed": 41
+}
+]

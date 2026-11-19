@@ -438,3 +438,12 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     Not me and ends on his face. Party scenes get a real original party track, never synthesized babble, and the
     stranger now judges what the audio sounds like. App screens copy the real app's components exactly, unscrolled.
     A reaction thread shows a real group of people with pictures and mixed reactions.
+- **Nov 19, 5:14 AM (UTC), on the Aux v10 cut, word for word:**
+  - "v1o uncanny and i dont even want to bother and explain why i think you should firugre out why its hard to understand whats going on and things dont track and this is not a real short episode we can air. the premisse is nice but your execution is just weird i dont know whats happening at times nio saying do it but to what i cant really tell there is no intention behind things like really animating theo trynna get at him, the my records speech rythm being off and weird and the i think we should keep the voices a normal not static no nothing voice. you really need to work on voice and how peoples tone work on different scenarios you are really bad at it and also animating by deisgn and figure it out what someone thinks when they see something so your design conveys something
+
+    its good that it failed review becuase the production engine means its still lacking the goal should be to pass with as little reviews as possible meaning we need to improveyour skills"
+  - What this changed: every voice in every skit is plain and clean, with no medium (no radio, tape, walkie or
+    crackle). Every voice line is directed for the situation (panic, rage, bragging, deadpan) and checked for
+    rhythm. Before a shot is built, a viewer-read pass writes what a stranger thinks at that beat and what the
+    picture must show for them to think it; a beat whose intent is not visible in the pose and motion is not built.
+    Physical intent is animated, never implied by a cut (Theo going for Nio is a real lunge with reach and contact).

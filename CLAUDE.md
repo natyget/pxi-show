@@ -52,7 +52,8 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - **Nothing by accident** (`bible/anti-slop.md`). Every strange thing is declared in the intent ledger before
   it is built. Anything strange that is not in the ledger is a defect, however good it looks.
 - **Whole releases, never "Part 1".** No intro or outro unless the piece calls for one.
-- **Voices are locked:** the designed Qwen3-TTS voices in `bible/characters.md`, made exactly as written there.
+- **Voices are locked:** the designed Qwen3-TTS voices in `bible/characters.md`, made exactly as written there. Plain and clean, no
+  effect on any voice, each line read for its situation and checked with `engine/tools/tone_check.py` (founder, Nov 19).
   Character designs change only on a dated founder note.
 - **After the pilot is approved, `bible/style-lock.md` is the reference.** A difference from it is a defect.
 - **A gate that fails twice stops the line.** Write `BLOCKED` and the exact reason in `STATE.md`. Never lower a

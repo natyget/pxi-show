@@ -1,0 +1,221 @@
+[
+{
+"key": "ax12_02",
+"who": "maya",
+"tone": "deadpan",
+"text": "That girl's reading the fire exit sign.",
+"sub": "That girl's reading the fire exit sign.",
+"files": [
+"raw/raw_ax12_02_t3.wav",
+"raw/raw_ax12_02_t17.wav"
+]
+},
+{
+"key": "ax12_03",
+"who": "theo",
+"tone": "deadpan",
+"text": "She's been reading it for ten minutes.",
+"sub": "She's been reading it for ten minutes.",
+"files": [
+"raw/raw_ax12_03_t3.wav",
+"raw/raw_ax12_03_t17.wav",
+"raw/raw_ax12_03_t41.wav"
+]
+},
+{
+"key": "ax12_04",
+"who": "nio",
+"tone": "brag",
+"text": "Give me the aux.",
+"sub": "Give me the aux.",
+"files": [
+"raw/raw_ax12_04_t3.wav",
+"raw/raw_ax12_04_t17.wav"
+]
+},
+{
+"key": "ax12_05",
+"who": "theo",
+"tone": "deadpan",
+"text": "Just don't make it worse.",
+"sub": "Just don't make it worse.",
+"files": [
+"raw/raw_ax12_05_t3.wav",
+"raw/raw_ax12_05_t17.wav"
+]
+},
+{
+"key": "ax12_06",
+"who": "guest1",
+"tone": "panic",
+"text": "It's raining inside!",
+"sub": "It's raining inside!",
+"files": [
+"raw/raw_ax12_06_t3.wav",
+"raw/raw_ax12_06_t17.wav",
+"raw/raw_ax12_06_t41.wav"
+]
+},
+{
+"key": "ax12_07",
+"who": "guest2",
+"tone": "panic",
+"text": "My phone, my phone!",
+"sub": "My phone, my phone!",
+"files": [
+"raw/raw_ax12_07_t3.wav",
+"raw/raw_ax12_07_t17.wav",
+"raw/raw_ax12_07_t41.wav"
+]
+},
+{
+"key": "ax12_08",
+"who": "theo",
+"tone": "horror",
+"text": "No.",
+"sub": "...No.",
+"files": [
+"raw/raw_ax12_08_t3.wav",
+"raw/raw_ax12_08_t17.wav",
+"raw/raw_ax12_08_t41.wav"
+]
+},
+{
+"key": "ax12_09",
+"who": "nio",
+"tone": "shout",
+"text": "Okay, okay, I'm stopping it.",
+"sub": "Okay, okay, I'm stopping it.",
+"files": [
+"raw/raw_ax12_09_t3.wav",
+"raw/raw_ax12_09_t17.wav",
+"raw/raw_ax12_09_t41.wav"
+]
+},
+{
+"key": "ax12_10",
+"who": "guest1",
+"tone": "laugh",
+"text": "Bro, film my feet.",
+"sub": "Bro, film my feet.",
+"files": [
+"raw/raw_ax12_10_t3.wav",
+"raw/raw_ax12_10_t17.wav",
+"raw/raw_ax12_10_t41.wav"
+]
+},
+{
+"key": "ax12_11",
+"who": "maya",
+"tone": "shout",
+"text": "Nio! Turn it off!",
+"sub": "Nio! Turn it off!",
+"files": [
+"raw/raw_ax12_11_t3.wav",
+"raw/raw_ax12_11_t17.wav",
+"raw/raw_ax12_11_t41.wav"
+]
+},
+{
+"key": "ax12_12",
+"who": "nio",
+"tone": "shout",
+"text": "I'm trying!",
+"sub": "I'm trying!",
+"files": [
+"raw/raw_ax12_12_t3.wav",
+"raw/raw_ax12_12_t17.wav",
+"raw/raw_ax12_12_t41.wav"
+]
+},
+{
+"key": "ax12_13",
+"who": "sami",
+"tone": "deadpan",
+"text": "Give me that.",
+"sub": "Give me that.",
+"files": [
+"raw/raw_ax12_13_t3.wav",
+"raw/raw_ax12_13_t17.wav"
+]
+},
+{
+"key": "ax12_14",
+"who": "guest2",
+"tone": "beam",
+"text": "I was on the ceiling.",
+"sub": "I was on the ceiling.",
+"files": [
+"raw/raw_ax12_14_t3.wav",
+"raw/raw_ax12_14_t17.wav"
+]
+},
+{
+"key": "ax12_15",
+"who": "guest1",
+"tone": "laugh",
+"text": "My shoe's still up there.",
+"sub": "My shoe's still up there.",
+"files": [
+"raw/raw_ax12_15_t3.wav",
+"raw/raw_ax12_15_t17.wav"
+]
+},
+{
+"key": "ax12_16",
+"who": "guest3",
+"tone": "sincere",
+"text": "Thank you.",
+"sub": "Thank you.",
+"files": [
+"raw/raw_ax12_16_t3.wav",
+"raw/raw_ax12_16_t17.wav"
+]
+},
+{
+"key": "ax12_17",
+"who": "guest2",
+"tone": "sincere",
+"text": "Next weekend?",
+"sub": "Next weekend?",
+"files": [
+"raw/raw_ax12_17_t3.wav",
+"raw/raw_ax12_17_t17.wav"
+]
+},
+{
+"key": "ax12_18",
+"who": "nio",
+"tone": "sincere",
+"text": "Same time next weekend?",
+"sub": "Same time next weekend?",
+"files": [
+"raw/raw_ax12_18_t3.wav",
+"raw/raw_ax12_18_t17.wav",
+"raw/raw_ax12_18_t41.wav"
+]
+},
+{
+"key": "ax12_19",
+"who": "maya",
+"tone": "strained",
+"text": "He's not worth it.",
+"sub": "He's not worth it.",
+"files": [
+"raw/raw_ax12_19_t3.wav",
+"raw/raw_ax12_19_t17.wav"
+]
+},
+{
+"key": "ax12_20",
+"who": "nio",
+"tone": "wheeze",
+"text": "Worth it.",
+"sub": "Worth it.",
+"files": [
+"raw/raw_ax12_20_t3.wav",
+"raw/raw_ax12_20_t17.wav",
+"raw/raw_ax12_20_t41.wav"
+]
+}
+]
