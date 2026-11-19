@@ -92,7 +92,7 @@ const shots: Shot[] = [
   { n: 43, frames: 24, img: 'pxi-ui/screens/parkway-album-2.png', sfx: [['sk_ding', 2, 0.35], ['sk_ding', 10, 0.35], ['sk_ding', 18, 0.3]] },
   { n: 44, frames: 48, img: 'pxi-ui/screens/parkway-album.png', sfx: [['sk_ding', 2, 0.3], ['sk_ding', 10, 0.3], ['sk_ding', 18, 0.3]] },
 ];
-export const GROUP_PHOTO: SkitDef = { id: 'group-photo', shots, beds: [['sk_roof', 0.35], ['sk_party', 0.16, undefined, 36]] };
+export const GROUP_PHOTO: SkitDef = { id: 'group-photo', shots, beds: [['sk_roof', 0.2], ['sk_party', 0.16, undefined, 36]] };
 void WIND;
 
 // The neighbours' photos for the album montage (out/skit-stills/gp12_*.png), and his sunset, one frame each.
