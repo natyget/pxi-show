@@ -40,10 +40,10 @@ const shots: Shot[] = [
   // 2. Close on the phone: his thumb taps "Rainy Day Piano". The title holds long enough to read.
   { n: 5, frames: 50, img: 'pxi-ui/screens/song-rain.png', zoom: [1.25, 40], tap: [[10, 540, 1590]], sfx: [['oh_tap', 10, 0.8]] },
   // The first note lands as one drop in a guest's cup; the next note, another. Viewer: "wait... it's raining with the music."
-  { n: 5.2, frames: 46, spec: T('maya', [st('girl2', 'maya', [[0, 'neutral'], [30, 'uneasy']], { hold: 'cup', facing: 'nio' })], { party: DEAD }, 0.06),
-    drip: [[6, 600, 1180], [30, 590, 1190]], sfx: [['sk_piano', 6, 0.7], ['sk_plink', 6, 0.6], ['sk_plink', 30, 0.6]] },
+  { n: 5.2, frames: 46, spec: T('cup', [st('girl2', 'maya', [[0, 'neutral'], [30, 'uneasy']], { hold: 'cup' })], { party: DEAD }, 0.06),
+    drip: [[6, 600, 1790], [30, 585, 1800]], sfx: [['sk_piano', 6, 0.7], ['sk_plink', 6, 0.6], ['sk_plink', 30, 0.6]] },
   // she looks up at the ceiling; another drop, then a few
-  { n: 5.3, frames: 30, spec: T('maya', [st('girl2', 'maya', 'uneasy', { hold: 'cup', gaze: [0, 0.9] })], { party: DEAD }, 0.04), rain: [[0, 0], [6, 0.02], [18, 0.05]], drip: [[6, 520, 760]], sfx: [['sk_plink', 6, 0.5]] },
+  { n: 5.3, frames: 30, spec: T('cup', [st('girl2', 'maya', 'uneasy', { hold: 'cup', gaze: [0, 0.9] })], { party: DEAD }, 0.04), rain: [[0, 0], [6, 0.02], [18, 0.05]], drip: [[6, 520, 760]], sfx: [['sk_plink', 6, 0.5]] },
   // the piano rolls and it pours. Indoors, on the note.
   { n: 5.4, frames: 40, shake: [16], spec: T('panic', [], { party: { ...DEAD, headsUp: 0.9 } }, 0.2), rain: [[0, 0.06], [16, 1]], sfx: [['sk_rain', 16, 0.45], ['sk_gasp', 18, 0.6]] },
   // Screams: phones up shirts, under the island, a pizza box over a head.
@@ -59,10 +59,10 @@ const shots: Shot[] = [
   // his face changes. Viewer: "oh no. He's going to kill him."
   { n: 8.6, frames: 22, spec: T('theo', [st('theo', 'theo', [[0, 'deadInside'], [8, 'rage']], { hold: 'records', facing: 'nioBack' })], { party: PANIC }, 0.1), rain: true, sfx: RAIN },
   // he drops the records and comes at Nio, arms out, shoving through; Nio sees him coming and backs up
-  { n: 9, frames: 8, spec: T('lunge', [{ who: 'theo', at: 'theo', to: 'theoLunge', action: 'jog', face: 'rage', hold: 'throttle' }, st('nio', 'nioBack', [[0, 'uneasy'], [4, 'shock']], { hold: 'phone', facing: 'theoLunge', back: true })], { party: PANIC }, 0.1),
+  { n: 9, frames: 8, spec: T('lungeSide', [{ who: 'theo', at: 'theo', to: 'theoLunge', action: 'jog', face: 'rage', hold: 'throttle' }, st('nio', 'nioBack', [[0, 'uneasy'], [4, 'shock']], { hold: 'phone', facing: 'theoLunge' })], { party: { ...PANIC, fill: 0.1 } }, 0.1),
     rain: true, say: [L('ax12_09', 'nio', 4)], sfx: [...RAIN, ['sk_splash', 1, 0.5]] },
   // Theo's hands coming for his neck; Nio leaning away, talking fast
-  { n: 9.5, frames: 30, shake: [0], spec: T('lunge', [st('theo', 'theoLunge', 'rage', { hold: 'throttle', facing: 'nioBack' }), st('nio', 'nioBack', 'shock', { hold: 'phone', facing: 'theoLunge', back: true })], { party: PANIC }, 0.18), rain: true, sfx: RAIN },
+  { n: 9.5, frames: 30, shake: [0], spec: T('ots', [st('theo', 'theoLunge', 'rage', { hold: 'throttle', facing: 'nioBack' }), st('nio', 'nioBack', 'shock', { hold: 'phone', facing: 'theoLunge' })], { party: { ...PANIC, fill: 0.1 } }, 0.18), rain: true, sfx: RAIN },
   // 3. a wet thumb goes for pause and slides onto skip: "Through The Roof"
   ...tapSkip(10, 'song-rain-wet', 'song-roof', 'sk_hype'),
   // the whole party lifts off the floor: Theo up there mid-lunge, hands an inch from Nio's neck, grabbing air. Screams.

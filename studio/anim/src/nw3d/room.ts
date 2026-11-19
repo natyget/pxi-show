@@ -420,11 +420,11 @@ export const pose = (a: Act) => {
   }
   // (Aux v12) two records hugged flat to his chest, arms crossed over them: saving what he can
   if (nm === 'records') {
-    const up: V = [0, 1, 0], pc = add(s.neckBase, add(mul(up, -0.24), mul(fwd, 0.14)));
-    props.push({ c: pc, x: s.side, y: up, z: fwd, h: [0.155, 0.155, 0.012], col: '#1d1b20' });
-    props.push({ c: add(pc, add(add(mul(fwd, 0.026), mul(s.side, 0.04)), [0, 0.03, 0])), x: s.side, y: up, z: fwd, h: [0.155, 0.155, 0.012], col: '#c0503a' });
-    for (const i of [0, 1] as const) { s = reach(s, i, add(pc, add(mul(s.side, i === 0 ? -0.1 : 0.1), add(mul(up, i === 0 ? 0.04 : -0.06), mul(fwd, 0.06)))), add(out(i), [0, -0.5, 0]), P, mul(fwd, -1), up); hands[i] = 'fist'; }
-    s = lookAt(s, add(pc, mul(up, -0.1)), 0.3, P);
+    const up: V = [0, 1, 0], pc = add(s.neckBase, add(mul(up, -0.16), mul(fwd, 0.15)));
+    props.push({ c: add(pc, add(mul(fwd, -0.02), add(mul(s.side, -0.05), [0, 0.04, 0]))), x: s.side, y: up, z: fwd, h: [0.16, 0.16, 0.01], col: '#c0503a' }); // the second sleeve, behind
+    props.push({ c: pc, x: s.side, y: up, z: fwd, h: [0.16, 0.16, 0.012], col: '#1d1b20' }); // a black record, front
+    props.push({ c: add(pc, mul(fwd, 0.014)), x: s.side, y: up, z: fwd, h: [0.05, 0.05, 0.004], col: '#e8c24a' }); // its label
+    for (const i of [0, 1] as const) { s = reach(s, i, add(pc, add(mul(s.side, i === 0 ? 0.15 : -0.15), add(mul(up, i === 0 ? 0.03 : -0.05), mul(fwd, 0.02)))), add(out(i), [0, -0.5, 0]), P, mul(fwd, -1), up); hands[i] = 'fist'; }
   }
   // (One Sip v10) the duvet pulled up over his head: a big soft lump over the head and shoulders, his hands holding its edge
   if (nm === 'duvet') {

@@ -1189,6 +1189,9 @@ export const THEO_CAMS: Record<string, Cam3> = {
   upNio: C([3.1, 1.4, 3.3], [4.0, 1.3, 3.6], 46),
   panic: C([6.8, 2.3, 0.9], [2.85, 1.3, 5.34], 72), // the rain: the whole room from the near right
   lunge: C([2.9, 1.55, 2.7], [3.82, 1.3, 4.45], 54), // Theo coming at Nio
+  cup: C([4.95, 1.3, 3.75], [5.0, 1.15, 4.85], 46), // a guest at the island from the chest up, her cup in the picture
+  ots: C([5.3, 1.5, 3.5], [3.52, 1.3, 4.22], 60), // side on, square to them: Theo's hands at Nio's neck, both faces in profile
+  lungeSide: C([2.0, 1.5, 5.5], [3.82, 1.3, 4.45], 78), // side on: Theo's hands coming for Nio, Nio's face
   nioPov: C([4.3, 1.55, 4.65], [3.4, 1.35, 3.9], 44), // Theo's eyes: Nio across the room with the phone
 };
 export const THEO_MARKS = {
