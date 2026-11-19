@@ -85,3 +85,8 @@ from the demos (`public/social/nio-reels/`): flash lights-off TikTok Fri 20 21:0
 Friendsgiving "none of the pics" TikTok Wed 25 10:00; Thanksgiving Day host slideshow TikTok 09:00, album clip IG Reel
 09:05 and TikTok 19:00; gallery scroll IG Reel Fri 27 19:00; tips slideshow TikTok Fri 27 20:00; birthday slideshow
 TikTok Sat 28 17:00.
+
+**Plain names and the pin (founder, Nov 19, 4:03 to 4:09 PM).** Every scheduled post was swapped to
+`public/social/nio-week4/` (plain names, real event covers): the earlier nio-week2, nio-week2b, nio-week3 and old
+nio-reels slideshow files are no longer used. Pin carousel "what is PXI?" (`public/social/nio-pin/`) on IG + FB
+grid Fri Nov 20 09:00, for the founder to pin.

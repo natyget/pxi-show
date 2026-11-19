@@ -402,3 +402,14 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 - **Nov 19, 4:56 PM, word for word:**
   - "lets bump that number up ok maybe a little more because quality is good and now we just need quantity. also never forget the tip about how no designer will write out find o appstore when they can show the appstore icon, so the idea is we design for quick understanding not slop and over explanation. that also doesnt mean we never write text as when it was necessary we said free on the appstore icon top"
   - What this changed: volume up on TikTok and Instagram. Design rule: show, don't spell it out (store badges, not "find us on the App Store"); text only where the picture can't carry it.
+- **Nov 19, 4:03 PM, word for word:**
+  - "ive consitently asked to avoid these slop names like late checkout kofi and other stuff. i dont know where it gets these things they need to go"
+- **Nov 19, 4:04 PM, word for word:**
+  - "like the game night needs a actual name not kofi like jaden or something but even that aint a great name maybe micheal idk average name"
+  - What this changed: no made-up names (Late Checkout, Kofi, Zoe, Ama, Tess, Nia). Plain average names only: Sarah,
+    Emily, Jessica, Lauren, Mike, Chris & Ashley. Every scheduled post now uses the plain-name files in
+    `public/social/nio-week4/` on pxispace.com (Friendsgiving "at Sarah's", game night "at Mike's").
+- **Nov 19, 4:09 PM, word for word:**
+  - "a post that i can pin on what is pxi and how it works will also be nice maybe nio just standing infront of camera and explaining to follow along the journey the firend giving could have had a guy bitting down chicken and people spilling something in the shots being made"
+  - What this changed: a "what is PXI" carousel goes on the IG + FB grid Fri Nov 20 at 9 AM for the founder to pin.
+    The talking-Nio pin video and the busier Friendsgiving shots wait for the Monday regroup.
