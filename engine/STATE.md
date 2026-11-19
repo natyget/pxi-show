@@ -6,9 +6,9 @@ phase: PILOT_LOCK
 episode: office-hours
 stage: 0
 stage_card: engine/stages/0-pilot-lock.md
-next_action: Launch skits, writers' drafts (Nov 19): render Group Photo v12, Wave Back v9 and Aux v12 (clean voices, the viewer read, tone check), post each, stranger round 2. One Sip v10 is BLOCKED (below): it waits on a founder call. Office Hours stays ON HOLD.
+next_action: Launch skits (Nov 19): render Wave Back v10, Group Photo v12 and the sound-fixed Aux v12; post each; stranger round 2 on each. One Sip is BLOCKED after its third and last try (below): it waits on the founder. Office Hours stays ON HOLD.
 phases: PILOT_LOCK → REPLICATION (first three episodes, made from these files alone) → PRODUCTION
-gate_failures: One Sip 2 (BLOCKED, Nov 19): the stranger failed v9 and v10; it never sees the sip that causes the change, cannot tell who says several lines, and reads the closing photo-review screens as a product drop-in. No third try without a founder call. Group Photo 1 (v9; v12 is round 2). Aux 1 (v10; v12 is round 2). Wave Back 1 (v9, Nov 19: cannot tell who is talking or who is who; the camp lines repeat; the push reads as an ad).
+gate_failures: One Sip 3 (BLOCKED, Nov 19, after the founder allowed one more try): the stranger failed v9, v10 and v11. On v11 it cannot follow the story from the first line ("I can't. I get weird." plays over Theo, so who refuses is unclear), never sees what the sip does, reads the coat as a broken body and the lampshade as a hat, and hears the put-back pop as a beep. No fourth try without the founder. Group Photo 1 (v9; v12 is round 2). Aux 1 (v10; v12 is round 2, re-rendering with the rain sound fixed). Wave Back 1 (v9; v10 is round 2).
 
 ## Next render: "Office Hours" (season 1, episode 1)
 
@@ -69,8 +69,8 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Run log (newest first, keep five)
 
+- 2026-11-19 · launch-skits · Aux v12 and One Sip v11 rendered and posted; Aux rain sound fixed (it stacked into static), re-render queued; One Sip v11 failed the third and last stranger round, BLOCKED; Wave Back v10 voiced and rendering.
 - 2026-11-19 · launch-skits · founder note on Aux v10 (clean voices, intent on screen); voices clean everywhere, tone check, the viewer read; Aux v12 staged and voiced; One Sip v10 failed round 2, BLOCKED.
 - 2026-11-18 · launch-skits · all four v7 cuts failed the stranger twice; founder: rework with the cause on screen, then hold for a ground-up rewrite; acting defaults fixed.
 - 2026-11-18 · launch-skits · v7 approved; 35 lines voiced; One Sip rebuilt; new face-match, review and album screens; rendering all four.
 - 2026-11-17 · office-hours · v5 re-voiced and cut (held, not reviewed); founder put the episode on hold for launch skits; acting pass is law.
-- 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.

@@ -96,6 +96,8 @@ Every shot in `src/ep/skits/aux.ts` carries its viewer line (`bible/acting.md`, 
 - Haircut: Sami to Theo, "Your haircut. Who did that to you?" Theo's hand goes to his hair (new hold `hair`), the room gasps. Coat and glove, then the lampshade and the table, as v10.
 - No app screen. The music stops on the juice box. Sami sniffs his cup, puts the shade back on the lamp and the coat back on its hook (the same take shots, reversed), walks to the front door (the door does not animate; it clicks), and the room hears him through the door, muffled (a low-pass on that one line: a voice through a door). Theo touches his hair.
 
+- Declared holds (the script asks for silence): 44.8 to 51.2 s, Nio holds up the juice box "without a word", Sami looks, sniffs, "the room goes quiet", he puts the lampshade back; 51.5 to 53.8 s, Sami puts the coat back and walks out "in total silence" to the door click; 53.9 to 55.0 s, "A beat" before his voice through the door; 56.9 to 58.7 s, Theo touches his hair, the end. The soft pop on the put-backs is the same take sound used on every take.
+
 ## Wave Back v10 (writers' room, Nov 19, round 2)
 
 - Four speakers only. Marcus wears a red cap in every shot (cap added to his design); Tobi is big, bearded, in a white tank top (his design changed for this; both are new skit guests the founder has not approved yet). Maya is a voice over the phone's own call screen, which shows "Maya" (a plain call screen, no brand).
