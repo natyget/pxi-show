@@ -84,6 +84,8 @@ Scripts: `nio-soul/skits/v9/scripts.md` and `nio-soul/skits/v9/aux.md` (writers'
 Every shot in `src/ep/skits/aux.ts` carries its viewer line (`bible/acting.md`, The viewer read). Declared:
 - The rain starts on the piano: one drop lands in a guest's cup on the first note, another on the second, she looks up, a few more, and it pours on the fourth note (`drip` and keyed `rain` density in Skit.tsx).
 - Theo at the records: he freezes, "...No.", hugs two records (new hold `records`: two sleeves flat on his chest), finds Nio across the room (new camera nioPov, Theo's eyes), his face turns, he drops them (a splash) and jogs at Nio with his arms out (`throttle` may now travel). Then his hands are at Nio's neck while Nio talks fast.
+- Sound fix after the first v12 render: the rain clip was started again in every rain shot and the clips stacked into a hiss heard as static (24 to 48 s). Now one rain clip runs from the pour to the skip, and the lift music stops at the porch. Shot sounds can take a length (Skit.tsx).
+- Declared hold, 12.4 to 14.3 s: no line while the song title "Rainy Day Piano" holds to be read and the first drops land in the cup on the piano notes (the script asks for both).
 - Sami takes the phone: "Give me that." Maya picks up the phone on the porch and turns the album to them; Theo sets his record down before he throttles Nio; Nio holds the lit phone up for "Worth it."
 - Every voice is plain and clean, each line read from its delivery note, picked from two or three takes by `engine/tools/tone_check.py`.
 

@@ -20,7 +20,8 @@ const PANIC = { fill: 0.3, armsUp: 0.8, headsUp: 0.9, crouch: 0.25, faces: 2 };
 const UP = { fill: 0.3, dance: 1, armsUp: 0.6, faces: 1 }; // dancing on the ceiling
 const LIFT = { fill: 0.32, faces: 4, face: [1.5, 9.0] as [number, number] }; // everyone faces the front door
 const BDAY = { fill: 0.32, faces: 3, face: [5.0, 5.4] as [number, number] }; // everyone turns to the guy with the cake, singing
-const RAIN: [string, number, number?][] = [['sk_rain', 0, 0.45]];
+// the rain sound is one clip from the pour to the skip (shot 5.4); per-shot clips stacked into a hiss
+const RAIN: [string, number, number?, number?][] = [];
 const tapSkip = (n: number, img: string, next: string, snd: string): Shot[] => [
   { n, frames: 34, img: `pxi-ui/screens/${img}.png`, tap: [[18, 790, 1590]], sfx: [['oh_tap', 18, 0.9]] }, // aimed at pause, lands on skip
   { n: n + 0.5, frames: 46, img: `pxi-ui/screens/${next}.png`, zoom: [1.4, 30], sfx: [[snd, 2, 0.8]] },
@@ -45,7 +46,7 @@ const shots: Shot[] = [
   // she looks up at the ceiling; another drop, then a few
   { n: 5.3, frames: 30, spec: T('cup', [st('girl2', 'maya', 'uneasy', { hold: 'cup', gaze: [0, 0.9] })], { party: DEAD }, 0.04), rain: [[0, 0], [6, 0.02], [18, 0.05]], drip: [[6, 520, 760]], sfx: [['sk_plink', 6, 0.5]] },
   // the piano rolls and it pours. Indoors, on the note.
-  { n: 5.4, frames: 40, shake: [16], spec: T('panic', [], { party: { ...DEAD, headsUp: 0.9 } }, 0.2), rain: [[0, 0.06], [16, 1]], sfx: [['sk_rain', 16, 0.45], ['sk_gasp', 18, 0.6]] },
+  { n: 5.4, frames: 40, shake: [16], spec: T('panic', [], { party: { ...DEAD, headsUp: 0.9 } }, 0.2), rain: [[0, 0.06], [16, 1]], sfx: [['sk_rain', 16, 0.45, 339], ['sk_gasp', 18, 0.6]] },
   // Screams: phones up shirts, under the island, a pizza box over a head.
   { n: 6, frames: 56, shake: [2], spec: T('panic', [st('girl2', 'pizza', 'shock', { hold: 'pizza' }), st('guest3', 'shirt', 'shock', { hold: 'phone' }), st('cap', 'doorA', 'uneasy', { facing: 'gOutD' }), st('girl', 'doorB', 'shock', { back: true, facing: 'gOutD' })], { party: PANIC }, 0.3),
     rain: true, say: [L('ax12_06', 'guest1', 2), L('ax12_07', 'guest2', 38)], sfx: RAIN },
@@ -80,7 +81,7 @@ const shots: Shot[] = [
   { n: 17, frames: 30, spec: T('theo', [st('guest3', 'theo', [[0, 'uneasy'], [14, 'charm']], { wear: HAT, gaze: [0, -0.5] })], { cake: true, party: BDAY }, 0.1), sfx: [['sk_cheer', 20, 0.6]] },
   // 5. Sami takes the phone out of Nio's hand: calm, done. "Lift Music".
   { n: 18, frames: 40, spec: T('sami', [st('sami', 'sami', [[0, 'deadpan'], [22, 'neutral']], { wear: HAT, hold: 'phone', facing: 'nio' })], { party: BDAY }), say: [L('ax12_13', 'sami', 2)], sfx: [['oh_tap', 32, 0.8]] },
-  { n: 19, frames: 44, img: 'pxi-ui/screens/song-lift.png', zoom: [1.25, 40], sfx: [['sk_muzak', 2, 0.7]] },
+  { n: 19, frames: 44, img: 'pxi-ui/screens/song-lift.png', zoom: [1.25, 40], sfx: [['sk_muzak', 2, 0.7, 277]] },
   { n: 20, frames: 44, spec: (f) => T('wide', hosts({ theo: 'deadpan', maya: 'deadpan', sami: 'deadpan', nio: 'uneasy' }, { theo: { wear: HAT, facing: 'gOutD', back: true }, maya: { wear: HAT, facing: 'gOutD', back: true }, sami: { wear: HAT, facing: 'gOutD', back: true }, nio: { wear: HAT, facing: 'theo' } }),
     { party: LIFT, door: f < 26 ? 0 : Math.min(1, (f - 26) / 8) }, 0.25), sfx: [['sk_ding', 24, 0.5]] },
   // 6. the front door: guests leave one at a time, soaked, in party hats, thrilled. Theo nods at each, a dead face, eyes on Nio.
