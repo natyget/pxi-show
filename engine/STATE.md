@@ -61,7 +61,8 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Founder approvals (word for word, dated)
 
-- (none yet)
+- Nov 19, campaign 1 and the ready stills: "so we sips start posting and improve the weird stuff as we go".
+  Week 1: `episodes/campaign-1/queue.md`.
 
 ## Parked
 

@@ -369,3 +369,12 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     refine the engine as we go we can haul the legacy system"
   - What this changed: campaign 1 (Nov 20 to Dec 3) proposed in `engine/STATE.md`, Queue; the legacy queue retires
     after Sun Nov 22 once approved.
+- **Nov 19, 4:59 PM, word for word:**
+  - "i feel weird making comments again shit uncanny ness of videos and how each remake is radically different and
+    the audio still weird cuz now background track of. but not worse than posting slop. so we sips start posting
+    and improve the weird stuff as we go but the video making engine really need to work on its stuff because why
+    we still having so. it should be self vicious each step of generation instead of trying something and hoping it
+    passes review. also making small batch of animation by agents will probably gave better results than one thread
+    do it all for less hallucination. like make let frames by one agent for one scenes and the in between by another
+    agent like a real shooting studio and shutter team does another scene"
+  - What this changed: campaign 1 approved; week 1 queue in `episodes/campaign-1/queue.md`.
