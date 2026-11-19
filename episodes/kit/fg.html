@@ -185,7 +185,7 @@ h+='<div class="abs" style="left:15px;top:300px;font-size:11.5px;font-weight:600
 galscroll.innerHTML=h;
 
 // ---- the timeline (seconds)
-const CAPS=[[0.15,2.3,"friendsgiving at zoe's",1500],[2.3,4.6,"everyone's taking pics",1500],[4.6,7.9,"next day: you're in none of them",1500],
+const CAPS=[[0.15,2.3,"friendsgiving at sarah's",1500],[2.3,4.6,"everyone's taking pics",1500],[4.6,7.9,"next day: you're in none of them",1500],
  [7.9,11.7,"so now every pic goes to one album",62],[11.7,15.0,"one tap and you're in",62],[15.0,18.4,"even the ones you're actually in",62]];
 const ease=x=>x<0?0:x>1?1:1-Math.pow(1-x,3), cl=x=>Math.max(0,Math.min(1,x)), lin=(t,a,b)=>cl((t-a)/(b-a));
 function show(id){['party','stage','end'].forEach(s=>document.getElementById(s).style.display=s==id?'block':'none')}

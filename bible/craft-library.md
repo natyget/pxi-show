@@ -118,6 +118,11 @@ The second pilot build was "too fast and something hard to follow". These are fl
   us on the App Store". Write a word only when the picture cannot carry it, like "Free" above the badges. No
   slogans, no explaining what the viewer can already see. Plain dark backgrounds, never neon glows. App
   screens show real event covers (the poster set in pxispace.com `public/img/posters`), never "Late Checkout".
+- **Names are plain and average (founder, Nov 19).** People and events get ordinary names a viewer has met:
+  Michael, Mike, Sarah, Emily, Jessica, Chris, Ashley, Lauren. Events are named for what they are: Friendsgiving,
+  Game Night at Mike's, Emily Is 21. Never stylized or invented-sounding names (Late Checkout, Kofi, Ama, Zoe,
+  Tess, Nia, Velvet Hour). The poster set and the design thread's screens carry such names: clean them off a
+  poster before it is used (`episodes/kit/posters.html`), and check every string on a slide before it ships.
 - Text appears only when the picture cannot say it: a time or date that matters, a flashback stamp, a place
   name the first time, the tag.
 - **No standing label.** No pill, banner or title that stays on screen saying what the episode or the series is.

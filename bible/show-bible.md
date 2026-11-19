@@ -353,3 +353,6 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 - **Nov 19, 4:56 PM CT, word for word (app demo posts):**
   - "lets bump that number up ok maybe a little more because quality is good and now we just need quantity. also never forget the tip about how no designer will write out find o appstore when they can show the appstore icon, so the idea is we design for quick understanding not slop and over explanation. that also doesnt mean we never write text as when it was necessary we said free on the appstore icon top"
   - Earlier the same day: no neon backgrounds; the end frame is the app icon, "Free", and the App Store and Google Play badges; no "Late Checkout" and no Nio-in-bedroom covers, use real event covers.
+- **Nov 19, 5:03 PM CT, word for word:**
+  - "ive consitently asked to avoid these slop names like late checkout kofi and other stuff. i dont know where it gets these things they need to go"
+  - "like the game night needs a actual name not kofi like jaden or something but even that aint a great name maybe micheal idk average name"
