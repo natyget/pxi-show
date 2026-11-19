@@ -1,0 +1,19 @@
+What the sound is heard as, every 4 s (an audio classifier; the score is how sure it is).
+  0.0-  4.0s  Chirp, tweet 0.08
+  4.0-  8.0s  Frog 0.06, Chirp, tweet 0.05
+  8.0- 12.0s  Speech 0.61, Frog 0.22
+ 12.0- 16.0s  Speech 0.56, Sigh 0.29, Gasp 0.11, Groan 0.06
+ 16.0- 20.0s  Speech 0.71, Ding 0.10, Ding-dong 0.08, Music 0.08
+ 20.0- 24.0s  Speech 0.80, Buzzer 0.11, Beep, bleep 0.08, Vehicle 0.07   << sounds wrong: Buzzer
+ 24.0- 28.0s  Speech 0.75, Static 0.06, White noise 0.06
+ 28.0- 32.0s  Speech 0.52, Ding 0.47, Music 0.10, Jingle, tinkle 0.05
+ 32.0- 36.0s  Speech 0.48, Ding 0.37, Chime 0.16, Music 0.13
+ 36.0- 40.0s  Speech 0.40, Wind chime 0.32, Chime 0.31, Ding 0.24
+ 40.0- 44.0s  Speech 0.54, Music 0.26, Chime 0.22, Wind chime 0.18
+ 44.0- 48.0s  Speech 0.46, Chime 0.21, Ding 0.21, Wind chime 0.19
+ 48.0- 52.0s  Speech 0.65, Music 0.33, Ding 0.30, Plop 0.09
+ 52.0- 56.0s  Sound effect 0.16, Music 0.10
+ 56.0- 60.0s  Helicopter 0.23, Vehicle 0.19, Explosion 0.14, Sound effect 0.08
+ 60.0- 64.0s  Ding 0.17, Explosion 0.13, Vehicle 0.13, Eruption 0.08
+ 64.0- 68.0s  Speech 0.61, Vehicle 0.13, Waves, surf 0.07, Waterfall 0.06
+RESULT FLAG (1 stretch heard as something that does not belong)

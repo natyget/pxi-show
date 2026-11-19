@@ -104,3 +104,4 @@ Every shot in `src/ep/skits/aux.ts` carries its viewer line (`bible/acting.md`, 
 - The girl jogs from right behind Nio into Marcus's arms; two people on the bench watch his hand and smirk (new camera `bench`).
 - Dinner: Marcus steers Nio in ("Guys! Nio! Cabin Four!", Marcus heard from the hall); Tobi "...I was in Four."; the album; "Find yourself."; the face search finds nothing; "Bathroom." Tobi knocks: "Nio. Come out." The escape runs as v9 without Tobi at the shed.
 - The lake: the push, the album's newest photo, then "...That's a good photo."
+- Sound check: 20 to 24 s is heard faintly as "Buzzer" (0.11). It is the notification ding on the Lakeview push at 19.2 s, under Nio on the bed; the phone is on screen.
