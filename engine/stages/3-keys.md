@@ -12,7 +12,7 @@ line the producer writes: where each person stands, and what they hold and wear 
 
 **Do:**
 1. Keys sets the key poses of its scene, eyelines first: every speaker faces the person his line is for (`to:` on
-   the line when it is not the next speaker), nobody stands between them, and the listener faces him back. the first picture of every shot, every face change, and every line's
+   the line when it is not the next speaker), nobody stands between them, and the listener faces him back. Then the first picture of every shot, every face change, and every line's
    key word (faces, facing, gaze, holds, wear, marks). It does not time anything between keys.
 2. The producer runs `node out/story_check.js <skit>` (must PASS), then renders the scene's animatic:
    `node tools/animatic.mjs <skit> episodes/<id>/animatic/<scene> --shots <the scene's shots>`.
