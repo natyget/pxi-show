@@ -72,12 +72,13 @@ No campaign is built or proposed by a run; `engine/promotion.md` stays as the pl
 
 ## Queue (two weeks of releases, written by PLAN once the pilot is approved)
 
-- Campaign 1, proposed Nov 18, waiting on the founder: Nov 20 to Dec 3, two feed posts a day (12:30 and 18:30
-  Chicago) plus stories; legacy retires after Sun Nov 22. Plan: `/mnt/project-files/production-plan/first-campaign.html`.
-  Nothing is scheduled until the founder approves each piece.
+- Campaign 1 week 1 is scheduled (stills only): `episodes/campaign-1/queue.md`. The four skits are drafts (founder,
+  Nov 19: "its all so slop"). Video slots go to simple captioned app demos, party then app. Every legacy post is a
+  draft in Metricool.
 
 ## Run log (newest first, keep five)
 
+- 2026-11-19 · campaign · week 1 stills scheduled; four skits pulled to drafts; legacy fully off; demos replace skits.
 - 2026-11-18 · engine · table read added (script, dialogue, interaction gate); five script checklists and the rubric folded into it; week mix of about 30 pieces; 12 old posts back to drafts.
 - 2026-11-13 · bible · founder notes on the draft: nothing carried over, PXI as the phone his world runs on, engine continuity; LEARN paused.
 - 2026-11-12 · pilot · No Pics written, built and cut; failed the stranger twice; BLOCKED on cast, props and voices.

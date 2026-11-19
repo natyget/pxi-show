@@ -18,9 +18,9 @@ Facebook share a caption; TikTok gets its own. AI labels on.
 | Wed Nov 25 18:30 | Superlatives still | nio-superlatives | friend group superlatives. nio wrote all of them 🏆 (pxi is free on the app store and google play: make an album for the night and everyone's photos land in it) | friend group superlatives 🏆 pxi, free on the app store #photoapp #pxi #friendgroup |
 
 Skit captions, Shorts titles and alt text come from the skits thread (`/mnt/project-files/launch-skits/post-plan.md`).
-Skits also go to YouTube Shorts (not made for kids, AI content declared). All four skits failed the stranger
-review; the founder chose to post and improve (Nov 19). The old engine retires Fri Nov 20: all its remaining
-posts go back to drafts.
+**Skits pulled (founder, Nov 19, 1:55 PM: "its all so slop").** The four skit rows are drafts in Metricool and will
+not post. Their 18:00 slots go to simple captioned app demos (a party, then the app) as each one is made. Every
+legacy post is a draft, so from Fri Nov 20 only Nio posts go out.
 
 Held for week 2: dictionary, the Sunday loop (Sun Nov 29). Built next: Friendsgiving seating chart, the Thanksgiving event moment, the
 Discover demo, Wave Back v9.

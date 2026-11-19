@@ -378,3 +378,11 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
     do it all for less hallucination. like make let frames by one agent for one scenes and the in between by another
     agent like a real shooting studio and shutter team does another scene"
   - What this changed: campaign 1 approved; week 1 queue in `episodes/campaign-1/queue.md`.
+- **Nov 19, 1:55 PM, word for word:**
+  - "the key framesneed a lot more attention to when it comes to making sure they arent uncanny like the wave back
+    having the random guy talk to nio while looking and facing the girl. its all so slop so i rather we for now make
+    simpler videos demoing the app etc party then demo and maybe we dont even need speech maybe captions are enough"
+  - "and ive merged so we can even post one video tonight and end legacy"
+  - What this changed: the four skits (Group Photo, Aux, Wave Back, One Sip) are back to drafts in Metricool and
+    not posted. Simple captioned app demos (a party, then the app) take the video slots. Every legacy post is off.
+    The stills stay scheduled.
