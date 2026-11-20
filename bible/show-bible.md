@@ -356,3 +356,5 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 - **Nov 19, 5:03 PM CT, word for word:**
   - "ive consitently asked to avoid these slop names like late checkout kofi and other stuff. i dont know where it gets these things they need to go"
   - "like the game night needs a actual name not kofi like jaden or something but even that aint a great name maybe micheal idk average name"
+- **Nov 19, 9:24 PM CT, word for word:**
+  - "u never said if i should remove current followers. also turn. of the ai tag when posting because we only need it on when we post content that looks human but is generated. this is animation so no more ai tag"
