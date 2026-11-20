@@ -413,3 +413,8 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "a post that i can pin on what is pxi and how it works will also be nice maybe nio just standing infront of camera and explaining to follow along the journey the firend giving could have had a guy bitting down chicken and people spilling something in the shots being made"
   - What this changed: a "what is PXI" carousel goes on the IG + FB grid Fri Nov 20 at 9 AM for the founder to pin.
     The talking-Nio pin video and the busier Friendsgiving shots wait for the Monday regroup.
+- **Nov 19, 9:24 PM, word for word:**
+  - "u never said if i should remove current followers. also turn. of the ai tag when posting because we only need it on when we post content that looks human but is generated. this is animation so no more ai tag"
+  - What this changed: AI labels off on our animated content (Instagram, TikTok, YouTube). The label goes on only
+    for generated content that looks like real people. This replaces "AI content labels on" in the standing
+    constraints. All 72 scheduled posts were updated Nov 19. Followers: keep them, no mass removal; try Trial Reels.

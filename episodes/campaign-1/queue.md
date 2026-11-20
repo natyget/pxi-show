@@ -90,3 +90,6 @@ TikTok Sat 28 17:00.
 `public/social/nio-week4/` (plain names, real event covers): the earlier nio-week2, nio-week2b, nio-week3 and old
 nio-reels slideshow files are no longer used. Pin carousel "what is PXI?" (`public/social/nio-pin/`) on IG + FB
 grid Fri Nov 20 09:00, for the founder to pin.
+
+**AI label off (founder, Nov 19, 9:24 PM).** Every scheduled post (72) now goes out without the AI label on
+Instagram, TikTok and YouTube. Use the label only for generated content that looks like real people.

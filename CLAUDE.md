@@ -66,7 +66,7 @@ One stage per run. If the stage is finished early, stop. Do not start the next o
 - Never post to @pxi.nyc. In Metricool, only the PXI brand (blogId 7790844), and confirm before scheduling.
 - Never compare fees or say "cheaper than other apps".
 - Never use the founder's photos (`public/site/img/lib/t00.jpg` is banned).
-- No copyrighted music, art or lyrics. AI content labels on.
+- No copyrighted music, art or lyrics. AI labels off for our animation; on only for generated content that looks like real people (founder, Nov 19).
 - Keep the founder's email and name private. Never send them to an outside service.
 - Do not work around a site that blocks automated access.
 - The app repo (`pxi-mobile-app`) is reference only. Never push to it.
