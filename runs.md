@@ -24,7 +24,9 @@ pushed to the default branch, and a report of six lines or fewer that leads with
   On no, the words go to the top of `STATE.md` and the piece is fixed or dropped.
 - **The maker thread** makes the upcoming videos and stills, and is where Monday's heavy run happens. Every finished
   piece gets a `post.md` beside it: the hosted files, the captions for each network, the cover, the audio pick and
-  the planned times (`videos/2026-11-24-idk-to-omw/post.md` is the model).
+  the planned times (`videos/2026-11-24-idk-to-omw/post.md` is the model). When there is more to make than one
+  thread can, a second maker takes one format ("PXI maker 2" started Nov 24 with Nio to camera); each works in its
+  own video folders and pulls before it pushes.
 - **The trainer** (the session that built this engine) tests the engine with a cheaper model on real pieces, reads
   where it fell short, and fixes the tool, the template or the page that caused it. The goal: the cheaper model
   makes pieces at the level of the approved ones, from these files alone.

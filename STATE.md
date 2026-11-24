@@ -1,9 +1,11 @@
 # State
 
 next: "idk to omw" goes out tonight. The founder says yes or no to the Los Angeles weekend reel
-(`videos/2026-11-24-la-weekend/`, passed the fresh reviewer, must go out before Friday). The maker thread then makes
-two or three "One night" pieces from Los Angeles listings and New York's weekend the same way. The trainer fixes
-what the cheaper model's first trial showed (`trial/screen-time`, its `notes.md`) and runs the next trial.
+(`videos/2026-11-24-la-weekend/`, passed the fresh reviewer, must go out before Friday; the file and a phone
+notification were sent Nov 24). The maker thread then makes two or three "One night" pieces from Los Angeles
+listings and New York's weekend the same way. "PXI maker 2" makes the first Nio to camera piece. Two trials of the
+cheaper model are making a "One night" piece and a Discover demo for Los Angeles against the fixed tools
+(`trial/` branches); the trainer reads their notes next.
 
 ## Where things stand (Nov 24, 2026)
 
