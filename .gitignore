@@ -15,9 +15,8 @@ videos/*/plates/
 videos/*/mix.wav
 videos/*/fr
 
-# real listings: the list (events.json), its proof (sources.md), stamps and seeds are committed with the piece.
+# real listings: the list (events.json, raw.json), its proof (sources.md), stamps and seeds are committed with the piece.
 # Posters are other people's work and are never committed: `studio/events.py --posters <folder>` fetches them again.
 /events/
 videos/*/events/*/covers/
-videos/*/events/*/raw.json
 studio/world3d/out/

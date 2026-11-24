@@ -4,7 +4,7 @@
 //   check <spec>    ok, or every reason the shot is refused
 //   atlas [--all] [sets]   the shots behind the pictures in look/rig.md, as JSON
 import { readFileSync } from 'fs';
-import { SETS, validate, framing, ACTIONS, HOLDS, WEAR, CHARACTERS } from '../src/nw3d/world';
+import { SETS, validate, framing, facesCamera, ACTIONS, HOLDS, WEAR, CHARACTERS } from '../src/nw3d/world';
 import { FACES } from '../src/nw3d/face';
 const [cmd, arg] = process.argv.slice(2);
 const names = (o: object) => Object.keys(o).join(', ');
@@ -38,10 +38,11 @@ if (cmd === 'check') {
   const set = SETS[arg]; if (!set) { console.log(`no set "${arg}". Sets: ${names(SETS)}`); process.exit(1); }
   const cams = Object.keys(set.cameras), marks = Object.entries(set.marks);
   console.log(`${arg}: which camera sees a person at which place.`);
-  console.log('in = the head is whole in the picture. cut = the edge slices it. steep, near = a bad angle. . = not seen.\n');
+  console.log('sees = the head is whole in the picture. cuts = the edge slices it. (back) = he faces away there unless the spec turns him.\n');
   const w = Math.max(...marks.map(([m]) => m.length)) + 2;
   for (const c of cams) {
-    const seen = marks.filter(([, mk]) => framing(set.cameras[c], mk) === 'in').map(([m]) => m);
+    // a place seen from behind is marked: a seat cannot turn, a standing person can ("facing": "camera")
+    const seen = marks.filter(([, mk]) => framing(set.cameras[c], mk) === 'in').map(([m, mk]) => m + (facesCamera(set.cameras[c], mk, mk.yaw) ? '' : mk.seat !== undefined ? ' (back, a seat)' : ' (back)'));
     const cut = marks.filter(([, mk]) => framing(set.cameras[c], mk) === 'cut').map(([m]) => m);
     console.log(c.padEnd(12) + (seen.length ? 'sees ' + seen.join(', ') : (set.inserts ?? []).includes(c) ? '(on a thing, not a person)' : 'sees no place whole') + (cut.length ? '   | cuts ' + cut.join(', ') : ''));
   }

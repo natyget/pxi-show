@@ -5,9 +5,11 @@ from the video's folder.
 
 - **A story** (a feature, a joke, a cast): `videos/2026-11-24-idk-to-omw/` is the model. Copy its `scene.html`,
   `seed.json` and `cues.json`, and write your own `script.md` and `shots/`.
-- **A city weekend reel**: one scene for every city and week (`studio/weekend-reel.html`, built by
-  `studio/weekend.py`); `videos/2026-11-24-nyc-weekend/script.md` says how to make the next one. Its shape is in
-  `growth.md`: nights out, with the app as the proof.
+- **A piece that gives information** (a city weekend reel, a "One night" piece, an app demo): never build its
+  scene by hand. `studio/weekend.py` builds it from a short list of beats (a rig shot, a real card, a chat, a flick
+  through the cards, the end card), each tied to a voice line or a word, and gets the phone's size, the camera, the
+  captions and the sounds right for you. `videos/2026-11-24-la-weekend/` is the model: copy its `reel.json` and
+  write your own beats. A piece with one listing is the same thing with fewer beats.
 
 ## A fresh machine (once)
 
@@ -30,7 +32,9 @@ or 60 to 90 s), and the real listing or app screen it shows.
 Real events: `python3 studio/events.py la --out videos/<slug>/events/la` fetches the next nine nights of listings
 and posters from PXI's own API and writes `sources.md`. `python3 studio/card.py <that folder> "<words from the
 title>" --clock 1:04 --out videos/<slug>/seed.json` dresses one listing as the app's Discover card (the app's own
-code picks the name, place, price, record lines and stamp; `--clock` is the time in the story). The scene's Discover
+code picks the name, place, price, record lines and stamp; `--clock` is the time in the story, `--today` the day
+the piece goes out, `--when "This weekend"` what the filter pill says). It refuses a listing with no song: the app
+shows those in All events, never as a card (`product.md`). The scene's Discover
 screen loads `seed.json` from its own folder. `node studio/screen.cjs look/app-screens/discover.html <seed> out.png`
 shows it as a still. Fetch again on the day a piece is scheduled: listings change.
 
@@ -79,8 +83,9 @@ the caption groups come from the voice, so nothing is counted by hand.
 
 ## 5. Stills, then the checks
 
-- `python3 studio/sheet.py videos/<slug>` makes the contact sheets: a still every 1.25 s. Look at them as the
-  viewer (`studio/viewer.md`) and fix timing, size and clutter here. `--every 0.5 --from 8 --to 14` looks closer.
+- `python3 studio/sheet.py videos/<slug>` makes the contact sheets: the first three seconds four times a second,
+  then a still at every cut and at least every 1.25 s. It prints the longest stretch with no cut. Look at the
+  sheets as the viewer (`studio/viewer.md`) and fix timing, size and clutter here.
 - `node studio/safe.cjs videos/<slug>/scene.html` fails anything in the sharp layer outside the safe box.
 
 ## 6. Render and sound

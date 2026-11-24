@@ -190,6 +190,15 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   rest are in All events. The LA weekend reel drew two cards the app never would (the dinner, the brunch), New
   York four. `studio/card.py` now refuses such a card and follows the app's card order; the All events list and
   the carousel's last card are being rebuilt so those listings have a true screen.
+- Nov 24, engine trials 2a ("One night", dinner with strangers) and 2b (Discover demo), the cheaper model: both
+  dropped after two fails from the stranger. The ideas held ("Sunday, you sleep"); the pictures did not: scenes
+  built by hand came out with shots that do not move, zooms that crop, a small dim phone, a long end card. Half of
+  that is the trainer's doing: the engine changed under both trials and the re-cuts cost a pass. What their notes
+  named is fixed where it lived (lengths in one place, the script check reads only the voice block, the hearing
+  model comes with setup, raw.json is committed, the rig's list shows which way a seat faces, contact sheets keep
+  every cut and the whole hook and refuse a blank picture, a count restarts on a cut the founder asked for). The
+  larger cause: an information piece should never be built by hand; `method.md` now sends it to the beat builder
+  the stronger model made for the weekend reels. Trial 3 tests exactly that, with no engine change while it runs.
 - Nov 24, the founder on the LA weekend reel: the hook did not call out the city and the need, and the narrator was
   "sleepy" for information. Measured: 2.3 words a second, and the flattest pitch of the standard voices. Fixed
   where each lives: the first question in `studio/viewer.md` and the hooks in `growth.md` (say who it is for), and

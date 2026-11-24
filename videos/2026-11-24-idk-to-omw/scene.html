@@ -215,7 +215,7 @@ groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.wor
 const show = (w) => { const l = w.toLowerCase(); return l === 'pxi' ? 'PXI' : l === 'nio' ? 'Nio' : l === 'friday' ? 'Friday' : l === 'a.m.' ? 'am' : l; };
 
 // The phone camera. The phone is drawn 1080x1920 ("phone space", #pwrap); the app screen inside it is the 390x844
-// Discover page scaled 1.37949, so an app pixel (x, y) is at about (271 + 1.379x, 367 + 1.379y) in phone space.
+// Discover page scaled 1.37949, so an app pixel (x, y) is at (271 + 1.379x, 316 + 1.379y) in phone space (#screen starts at 271, 316).
 // A camera { s, P, Q } puts phone-space point P at frame point Q, at scale s. To aim at a new part of the screen,
 // take a still of the whole phone (camera C0), read the pixel you want, and use it as P.
 // CARD: the middle of the event card. JOINP, SHAREP: the middles of the JOIN and share buttons (the taps land there).

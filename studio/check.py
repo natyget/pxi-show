@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """The check before anything goes to the founder.
-  python3 studio/check.py script <script.md|caption.md>        banned phrases (dont.md section 1)
+  python3 studio/check.py script <script.md|caption.md>        banned phrases (dont.md section 1). In a script only
+                                                               the voice block is read: the notes around it are yours
   python3 studio/check.py video <file.mp4> [caption.md]        1080x1920, 30 fps, sound, -14 LUFS +-1.5, peak, length, caption words
 Exit code 1 on any failure."""
 import json, re, subprocess, sys
@@ -16,8 +17,9 @@ BANNED = [
     (r"\bhold up\b|\bi?ght\b|\bnah{3,}\b", "not how Nio talks"),
 ]
 def scan(path):
-    bad = []
-    for n, line in enumerate(open(path), 1):
+    bad = []; text = open(path).read(); block = re.search(r"```voice[^\n]*\n(.*?)```", text, re.S)
+    first = text[:block.start(1)].count("\n") + 1 if block else 1
+    for n, line in enumerate((block.group(1) if block else text).splitlines(), first):
         for pat, why in BANNED:
             m = re.search(pat, line, re.I)
             if m: bad.append(f"{path}:{n}: '{m.group(0)}' ({why})")

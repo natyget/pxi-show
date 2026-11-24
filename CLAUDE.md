@@ -21,7 +21,7 @@ of them. Its renderer is the one part that lives on.
 - **Show, never describe.** Quality is proven by a rendered file or a contact sheet, never by a sentence.
 - **Discover leads.** The shared album and the camera come right after.
 - **Every video:** a hook in the first 2 seconds, voice first or captions only, a caption on every spoken word,
-  one idea per beat, one ending. 30 to 45 s or 60 to 90 s.
+  one idea per beat, one ending. 30 to 45 s or 60 to 90 s, unless the format's row in `growth.md` gives its own length.
 - **Think as the viewer** (`studio/viewer.md`): someone who has never heard of PXI or Nio. Say "you". If the
   founder would catch it, catch it first.
 - **The world is Nio World, the app is real.** The cast and sets come from the 3D rig. App screens are the real

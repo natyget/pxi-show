@@ -15,7 +15,8 @@ For every line ask, and rewrite until each answer is fine:
 - Is it said at the speed of what it is? Information comes quick and bright; only a story takes its time.
 - Would a friend say it this way, out loud?
 - Does the speaker sound sure? A narrator never sounds puzzled by his own app.
-- Do I already see this on screen? Then the line goes.
+- Do I already see this on screen? Then the line goes. The voice gives the reason to go; the card gives the facts.
+  One fact may be said the way a friend says it ("about twenty-five bucks").
 - Do I learn what the app does without being told it is an app?
 
 ## Before anything is shown: look at every frame as the viewer
@@ -30,7 +31,9 @@ For every line ask, and rewrite until each answer is fine:
 
 ## The stranger (a fresh reviewer, for every finished video)
 
-Give a reviewer who has seen nothing the contact sheets (`studio/sheet.py`: a frame every 1.25 s) and the spoken
-lines, and nothing else. Ask: what happened and what did the person want; what is the app and what would you search for; where would
+Give a reviewer who has seen nothing the contact sheets (`studio/sheet.py`: the first three seconds four times a
+second, then a frame at every cut and at least every 1.25 s) and the spoken lines, and nothing else. Ask: what happened and what did the person want; what is the app and what would you search for; where would
 you scroll away; what confused you; which line or picture reads as an ad or as machine-made; what looks wrong;
-would you send it to a friend. A FAIL is fixed and reviewed once more. Two FAILs and the piece is dropped.
+would you send it to a friend. A FAIL is fixed and reviewed once more. Two FAILs and the piece is dropped. A new
+cut the founder asked for starts the count again. The stranger sees stills, so say in one line what moves in any
+shot that holds for more than two seconds.

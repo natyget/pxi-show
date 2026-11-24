@@ -18,7 +18,7 @@ which camera sees which place, and a still takes twenty seconds.
 | `quad` | Campus lawn in daylight, brick halls | Daytime, a run club, meeting someone |
 | `pitch` | A five-a-side cage at dusk, floodlights | Sport, a pickup game |
 | `porch` | A house front at night, the door lit | Arriving, leaving, waiting for a ride |
-| `dining` | A family dining room in daylight | Home, a birthday, a dinner |
+| `dining` | A family dining room, always in daylight (there is no restaurant and no dinner at night yet) | Home, a birthday, a lunch |
 | `theoHouse` | A house party seen from inside, a crowd | Hosting at home |
 | `garden` | A back garden down to a lake, a shed | A day party, a barbecue |
 | `waiting`, `hall`, `office`, `corridor`, `bath` | Campus rooms | Skits |
@@ -33,7 +33,9 @@ map, the chat, the real card) or gets a few lines of new set in `studio/world3d/
   club, `low` and `wide` have it, `mid` does not.
 - The world refuses a shot it cannot show well (a back nobody asked for, someone out of frame, a seat with a
   standing action). `rig.py check` prints every reason.
-- One or two people a shot. Eyes go to the phone, the person or the thing: `gaze: [0, -0.9]` looks down at a held
+- "ok" from the check means the world allows the shot, not that it reads: a crowd can hide him, a lying body can
+  show only feet. The still is the check. `lie` lasts 59 frames.
+- One or two people a shot (on the roof, one: a second person there nearly always has their back to the camera). Eyes go to the phone, the person or the thing: `gaze: [0, -0.9]` looks down at a held
   phone, and `glow` lights the face from the screen. `look: 'camera'` only when the script asks for it.
 - A face changes on the word that causes it: `"face": [[0, "deadpan"], [49, "suspicious"]]`, frames at 24 a second.
 
