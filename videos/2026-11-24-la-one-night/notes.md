@@ -36,6 +36,14 @@ on this branch is cut 2, 17.8 s. No engine file was changed; every fix stayed in
 
 The whole making, without the restart, was about 45 minutes. The tools were not the bottleneck; the format was.
 
+## The cut-off (the account's usage limit)
+
+It fell during cut 2, right after `weekend.py`, `sheet.py` and `safe.cjs` had run on the rewritten script and the
+re-rendered plates (about 15:35 UTC), before the cut 2 render. The session's worker came back at about 19:42. Every
+file was still on disk (plates, sheets, voice, the branch); nothing was made twice. What it cost: about four hours of
+wall clock, and the context of the first stranger's report had to be carried in the summary, not re-read. No step
+was redone, and the render, sound, check and the second stranger ran from where it stopped.
+
 ## Problems with the engine, worst first
 
 1. **The format's own shape fails the stranger, and nothing warns of it.** `growth.md:29` (One night) asks for a
