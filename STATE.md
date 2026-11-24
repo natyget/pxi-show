@@ -6,6 +6,8 @@ that shows.
 
 ## Where things stand (Nov 24, 2026)
 
+- **Scheduled (not drafts):** "idk to omw" goes out Tue Nov 24 (America/Chicago): Instagram and Facebook Reel 6:30 PM
+  (cover.jpg, TrackTribe "Just A Weekend" at 18), TikTok 6:35 PM, YouTube Short 6:40 PM. Read back from Metricool.
 - **Metricool:** every pending post through Dec 8 was set to draft on Nov 23 (the founder: "nuked"). Nothing is
   scheduled to publish. The old "PXI social engine" scheduled task is off. The "Weekly show progress recap" task
   lives in the Project and could not be switched off from a repo session; it only writes a commit recap.
