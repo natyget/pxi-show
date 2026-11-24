@@ -9,7 +9,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def prints(folder):
     files = [f for pat in ("scene.html", "words.json", "reel.js", "seed*.json", "events/seed-*.json", "cues.json") for f in glob.glob(os.path.join(folder, pat))]
     files += [f for pat in ("look/app-screens/*.html", "look/app-screens/*.js", "look/brand/*", "look/fonts/*") for f in glob.glob(os.path.join(ROOT, pat))]
-    return {os.path.relpath(f, ROOT): hashlib.sha1(open(f, "rb").read()).hexdigest()[:12] for f in sorted(files) if os.path.isfile(f)}
+    def mark(f):  # a JSON file is fingerprinted by what it says, so writing it out again with other spacing is not a change
+        raw = open(f, "rb").read()
+        if f.endswith(".json"):
+            try: raw = json.dumps(json.loads(raw), sort_keys=True, separators=(",", ":")).encode()
+            except ValueError: pass
+        return hashlib.sha1(raw).hexdigest()[:12]
+    return {os.path.relpath(f, ROOT): mark(f) for f in sorted(files) if os.path.isfile(f)}
 def changed(mp4):
     side = mp4 + ".made.json"
     if not os.path.exists(side): return None
