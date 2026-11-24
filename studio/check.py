@@ -51,7 +51,7 @@ def find(folder):
     post = open(os.path.join(folder, "post.md")).read(); m = re.search(r"^Search phrase:\s*(.+)$", post, re.M | re.I)
     if not m: return ["post.md has no line \"Search phrase: ...\" (growth.md, Being found)"]
     phrase = m.group(1).strip().strip('"').lower(); want = phrase.split(); bad = []
-    norm = lambda s: re.sub(r"[^a-z0-9 ]", " ", s.lower().replace("l.a.", "la").replace("new york city", "nyc").replace("new york", "nyc"))
+    norm = lambda s: re.sub(r"[^a-z0-9 ]", " ", re.sub(r"\bl\.a\b\.?", "la", s.lower()).replace("new york city", "nyc").replace("new york", "nyc"))
     vo = json.load(open(os.path.join(folder, "words.json"))); first = norm(" ".join(w["w"] for w in vo["words"] if w["line"] <= 1)).split()
     missing = [w for w in want if w not in first]
     if missing: bad.append(f"the first lines never say: {' '.join(missing)} (the phrase is \"{phrase}\")")

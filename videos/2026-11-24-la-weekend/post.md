@@ -17,6 +17,10 @@ the $23 dinner are things it "would actually mention to a friend". What it marke
 Nio at his phone in a dark room and nothing that says LA or weekend with the sound off; the dinner and the roof
 each stay about six seconds; the label's second line is small.
 
+Since that review the cards were redrawn on the Discover screen as corrected against the app (no name printed
+over a poster) and the captions on a card now sit on the poster, clear of the app's own text. The fresh reviewer
+passed that cut too ("narrowly") before the captions moved.
+
 Hook type: the city and the need, as a question. Ask: send.
 
 Files (in this folder; hosted on pxispace.com only after the yes):

@@ -1,4 +1,4 @@
-# Listings for Los Angeles, fetched 2026-11-24 14:07 UTC
+# Listings for Los Angeles, fetched 2026-11-24 19:52 UTC
 
 From PXI's API (`/api/listings/discover`). Check the ticket page again before a piece is scheduled.
 
@@ -19,11 +19,11 @@ From PXI's API (`/api/listings/discover`). Check the ticket page again before a 
 | Thu Nov 26, 9 PM | Lost Without R&B | Lost But Found | Free | POSH | https://posh.vip/e/lost-without-rb-2026-11-27-10-0-1 |
 | Thu Nov 26, 7 PM | Foodies New Friends Echo Park: Dinner with Strangers | Restaurant of the Night | $23.18 | EVENTBRITE | https://www.eventbrite.com/e/foodies-new-friends-echo-park-dinner-with-strangers-tickets-1997776345829 |
 | Thu Nov 26, 5 PM | Hollywood Palladium Pregame & After‑Show at Sunset Rooftop — 2 Minute Walk | SUNSET ROOFTOP | Free | EVENTBRITE | https://www.eventbrite.com/e/hollywood-palladium-pregame-aftershow-at-sunset-rooftop-2-minute-walk-tickets-1986781721612 |
+| Fri Nov 27, 2 PM | Time Warp Los Angeles | Ace*Mission Studios | $125.17 | DICE | https://dice.fm/event/ryrd9v-time-warp-los-angeles-27th-nov-acemission-studios-los-angeles-tickets |
 | Fri Nov 27, 1 PM | Kids' PotteryPainting Party - Downtown LA | 316 W 2nd St ste 112 | $140.56 | EVENTBRITE | https://www.eventbrite.com/e/kids-potterypainting-party-downtown-la-tickets-2002524082437 |
 | Fri Nov 27, 10 PM | Night Tales | The Spotlight | $24.93 | DICE | https://dice.fm/event/ryedly-night-tales-27th-nov-the-spotlight-los-angeles-tickets |
 | Fri Nov 27, 7 PM | Foodies New Friends Echo Park: Dinner with Strangers | Restaurant of the Night | $23.18 | EVENTBRITE | https://www.eventbrite.com/e/foodies-new-friends-echo-park-dinner-with-strangers-tickets-1997776346832 |
 | Fri Nov 27, 5 PM | Hollywood Palladium Pregame & After‑Show at Sunset Rooftop — 2 Minute Walk | SUNSET ROOFTOP | Free | EVENTBRITE | https://www.eventbrite.com/e/hollywood-palladium-pregame-aftershow-at-sunset-rooftop-2-minute-walk-tickets-1986781722615 |
-| Fri Nov 27, 5:30 PM | Sip Smoke And Paint - Dj Pony Boy | Sunset Rooftop | $60.54 | EVENTBRITE | https://www.eventbrite.com/e/sip-smoke-and-paint-dj-pony-boy-tickets-1994243787853 |
 | Sat Nov 28, 6 PM | Solomun | Reframe Studios Outdoors | $118.59 | DICE | https://dice.fm/event/7dbax7-solomun-28th-nov-reframe-studios-outdoors-los-angeles-tickets |
 | Sat Nov 28, 10 AM | Kids' PotteryPainting Party - Downtown LA | 316 W 2nd St ste 112 | $140.56 | EVENTBRITE | https://www.eventbrite.com/e/kids-potterypainting-party-downtown-la-tickets-2002524221854 |
 | Sat Nov 28, 11:45 PM | Midnight Lovers with Demi Riquísimo | Location TBA, Los Angeles | $35.02 | DICE | https://dice.fm/event/r32nxy-midnight-lovers-with-demi-riqusimo-28th-nov-location-tba-los-angeles-los-angeles-tickets |

@@ -13,7 +13,7 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
 - **City weekend reels (maker thread, Nov 24):** the weekend told as nights out, one scene for every city and week:
   `studio/weekend-reel.html`, built by `studio/weekend.py` from a `reel.json` of beats (a rig shot, the pick's real
   card, a chat, the end card) and the voice. `videos/2026-11-24-la-weekend/script.md` says how to make the next one.
-  Los Angeles (34 s) and New York (`videos/2026-11-24-nyc-nights/`, 35 s) are at cut 3: the hook calls the city and
+  Los Angeles (34 s) and New York (`videos/2026-11-24-nyc-nights/`, 37 s) are at their latest cuts: the hook calls the city and
   the need, the quick narrator reads (the founder's note on cut 1), and a Discover card is drawn only for a listing
   the app shows as one (it needs a song); the other picks are a picture and a plain label. Both passed the fresh
   reviewer and wait for the founder's yes. The first two, New York and Boston,
@@ -96,6 +96,11 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
   tiktok facebook ad the other platofrms and workt o be ranked on those searches and work on really being able to
   reach braod new audiences each post and trying different things and learning from trial and repeating things that
   work well etc. were on a good track im excited to see the next video that you said your currently making".
+
+- **Nov 24, on the New York weekend reel (cut 2), in the maker thread:** "i see that jyd had a regeton at huston in san
+  Antonio. we should do one video one city not every city. i fear it may resonate with nobody when trying to appeal
+  to everyone". (The video was New York only: "Reggaeton on Houston" is on Houston Street, at a bar named San
+  Antonios. It read as Texas to the founder and to the fresh reviewer, so the pick is out.)
 
 - **Nov 24, on the three quick-narrator samples:** "voice b nice". (B is Kokoro `am_puck` at 1.27, the `quick`
   narrator in `studio/voice.py`.)
@@ -274,3 +279,8 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   caption lay on the end card; captions lay on a card's own text (the card's lower half dims under them until the
   push to the price). Learned and not fixed: a cast line under about six words comes out of the voice model
   garbled; the phone he holds up is blank; a label for a listing with no card is small.
+
+- Nov 24, New York weekend reel after the founder's one-city note: a pick that read as another city is out. On the
+  corrected Discover screen the captions fell on the app's own text and the reviewer failed it; with the captions on
+  the poster, the labels clear of faces and no stray fifth card, it passed. A listing's start time moved by two hours
+  within the day: fetch again right before a yes.
