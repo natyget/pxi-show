@@ -197,6 +197,12 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   rest are in All events. The LA weekend reel drew two cards the app never would (the dinner, the brunch), New
   York four. `studio/card.py` now refuses such a card and follows the app's card order; the All events list and
   the carousel's last card are being rebuilt so those listings have a true screen.
+- Nov 24, the stall and the stale file: six threads at once spent the five-hour limit by 9:40 AM Chicago; three
+  stopped mid-piece until 1 PM (`runs.md` now caps the threads). And cut 3 of both city reels was rendered four
+  minutes after the card screen was corrected on the default branch but from the old copy, so the files sent to the
+  founder still printed the name over the flyer. The trainer caught it by rendering the repo's own scene.
+  `studio/compose.sh` now records what a file was rendered from and `studio/check.py video` fails a file that is
+  older than its scene or the app screens.
 - Nov 24, engine trials 2a ("One night", dinner with strangers) and 2b (Discover demo), the cheaper model: both
   dropped after two fails from the stranger. The ideas held ("Sunday, you sleep"); the pictures did not: scenes
   built by hand came out with shots that do not move, zooms that crop, a small dim phone, a long end card. Half of

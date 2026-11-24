@@ -7,4 +7,5 @@ slug=$1
 ffmpeg -y -loglevel error -framerate 30 -i fr/art/f%05d.jpg -framerate 30 -i fr/ui/f%05d.png -i mix.wav \
   -filter_complex "[0:v]scale=360:640:flags=area,scale=1080:1920:flags=neighbor[a];[a][1:v]overlay=0:0,format=yuv420p[v]" \
   -map "[v]" -map 2:a -c:v libx264 -preset slow -crf 20 -c:a aac -b:a 256k -shortest -movflags +faststart "$slug.mp4"
+python3 "$(dirname "$0")/made.py" write . "$slug.mp4"   # what it was rendered from, so check.py can tell a stale file
 ls -la "$slug.mp4"

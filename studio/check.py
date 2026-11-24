@@ -2,7 +2,8 @@
 """The check before anything goes to the founder.
   python3 studio/check.py script <script.md|caption.md>        banned phrases (dont.md section 1). In a script only
                                                                the voice block is read: the notes around it are yours
-  python3 studio/check.py video <file.mp4> [caption.md]        1080x1920, 30 fps, sound, -14 LUFS +-1.5, peak, length, caption words
+  python3 studio/check.py video <file.mp4> [caption.md]        1080x1920, 30 fps, sound, -14 LUFS +-1.5, peak, length, caption words,
+                                                               and that the scene and the app screens have not changed since it was rendered
 Exit code 1 on any failure."""
 import json, re, subprocess, sys
 BANNED = [
@@ -39,6 +40,9 @@ def video(path):
         if abs(I + 14) > 1.5: bad.append(f"loudness {I} LUFS (want -14)")
         if pk > -1.0: bad.append(f"peak {pk} dBFS")
         print(f"{path}: {v[0]['width']}x{v[0]['height']} {dur:.1f}s {I} LUFS peak {pk} dB")
+    import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import made
+    stale = made.changed(path)
+    if stale: bad.append("rendered before these changed, so render it again: " + ", ".join(stale[:6]))
     return bad
 mode, *args = sys.argv[1:]
 bad = scan(args[0]) if mode == "script" else video(args[0]) + (scan(args[1]) if len(args) > 1 else [])
