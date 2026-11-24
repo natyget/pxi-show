@@ -14,7 +14,7 @@ What the founder has thrown out, so it is never written again:
 ## The engine
 
 How the show we study is written is in `bible/gumball-style.md`: where stories come from, how one is built,
-what makes the pair work, how they talk, pacing, trends and sound. That page and its ten checks are the
+what makes the pair work, how they talk, pacing, trends and sound. That page is the
 engine. In short:
 
 1. **Someone's ego causes it.** Nio's, Maya's or a friend's. A confident wrong theory turns a small itch into

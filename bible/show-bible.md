@@ -17,7 +17,7 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
 |---|---|
 | The writer's role, workflow and output format | `bible/writers-room.md` |
 | Who Nio, Maya and the others are; looks; the locked voices and how a line is made | `bible/characters.md` |
-| The style handoff: how the show we study is written, with ten checks | `bible/gumball-style.md` |
+| The style handoff: how the show we study is written | `bible/gumball-style.md` |
 | Maya in depth, the friends, the places, the slate of stories | `bible/world.md` |
 | The humor engine, devices, the pause, the never list | `bible/humor.md` |
 | How they talk and what makes a conversation good | `bible/voice-and-dialogue.md` |
@@ -458,3 +458,71 @@ carry the newer notes. For writing, start at `bible/writers-room.md`.
   - "like the game night needs a actual name not kofi like jaden or something but even that aint a great name maybe micheal idk average name"
 - **Nov 19, 9:24 PM CT, word for word:**
   - "u never said if i should remove current followers. also turn. of the ai tag when posting because we only need it on when we post content that looks human but is generated. this is animation so no more ai tag"
+- **Nov 18, 1:33 AM, word for word:**
+  - "ok good now i have merged the thing necessary i need to now have a not only animation reviewer but also a
+    script dialogue and interaction the same way so thing look clean. check if there is any increasign egnines like
+    we said with the writer rules where you kept adding notes as rules and see if we can tidie anything up"
+  - "the goal is a cool funny nice series to follow that will have people interested and hooked but at the same
+    time we will have episodes where we demo product with nio. him being like you wanna find something to do this
+    weekend to the audience"
+  - "we want to mass post decent quality content so we can also reach mass audience get more followers downloads
+    etc. i think our camera and discovery page are top usables, thent he albums for birthdays weddings baby showrs
+    any events and i think small content of nio wihtin those events will help"
+  - "we need to start posting this week ideally so we can push content"
+  - What this changed: `engine/script-reviewer.md` (the table read) replaces the ten questions, the Nio checks,
+    the ten Gumball checks, the script tests and the rubric; `bible/qa-checklist.md` is visual only.
+- **Nov 18, 9:32 PM, word for word (campaign):**
+  - "were actually getting better and better tho we just really need more and more refining and creativity i
+    think we can start planning campaigns and replacing the engine by short video gifs and posts then slowly
+    refine the engine as we go we can haul the legacy system"
+  - What this changed: campaign 1 (Nov 20 to Dec 3) proposed in `engine/STATE.md`, Queue; the legacy queue retires
+    after Sun Nov 22 once approved.
+- **Nov 19, 4:59 PM, word for word:**
+  - "i feel weird making comments again shit uncanny ness of videos and how each remake is radically different and
+    the audio still weird cuz now background track of. but not worse than posting slop. so we sips start posting
+    and improve the weird stuff as we go but the video making engine really need to work on its stuff because why
+    we still having so. it should be self vicious each step of generation instead of trying something and hoping it
+    passes review. also making small batch of animation by agents will probably gave better results than one thread
+    do it all for less hallucination. like make let frames by one agent for one scenes and the in between by another
+    agent like a real shooting studio and shutter team does another scene"
+  - What this changed: campaign 1 approved; week 1 queue in `episodes/campaign-1/queue.md`.
+- **Nov 19, 1:55 PM, word for word:**
+  - "the key framesneed a lot more attention to when it comes to making sure they arent uncanny like the wave back
+    having the random guy talk to nio while looking and facing the girl. its all so slop so i rather we for now make
+    simpler videos demoing the app etc party then demo and maybe we dont even need speech maybe captions are enough"
+  - "and ive merged so we can even post one video tonight and end legacy"
+  - What this changed: the four skits (Group Photo, Aux, Wave Back, One Sip) are back to drafts in Metricool and
+    not posted. Simple captioned app demos (a party, then the app) take the video slots. Every legacy post is off.
+    The stills stay scheduled.
+- **Nov 19, 3:04 PM, word for word (on the first app demo, "Saturday at Nio's"):**
+  - "this is amazing lets do many of these a day and with gifs and still images and even these but different aspects of the product, ensure the camera captures and shows images as if the filter applied with flash darkening background and looking nice. lets post on our grid on reel that wont appear on grid and stories and ensure the grid starts looking nice. for tiktok do stories and all the rest. do carousels too
+    really think about what works and lets blow this account up. my current followers arent engaging in insta should i remove them? let me know if from scratch is best or how we can break away from this limited loop
+    also if you noticed there is a pxi.nyc if we also can post what to do today/this week/weekend based on pxi events told by maya it would be tuff"
+  - What this changed: app demos are the main video format, many a day. Instagram Reels post with "show on grid" off;
+    the grid is kept for curated stills and carousels. Stories every day. First demo posted Nov 19 at 7 PM Chicago.
+- **Nov 19, 3:48 PM, word for word:**
+  - "now make more of those in disovery how to discover events how to plan weddings birthdays parties how to how to things to do did you know you could showcasing like we did in the video and more start scheduling them and work slowly over the week were at 90% usage so lets not work unitl reset on monday for the scheduled generation lets use what we got now and make as many now and then schedule each one and then regroup monday"
+  - What this changed: the how-to, tips and did-you-know batch is scheduled Nov 20 to 28. No new generation until Monday Nov 23; regroup then.
+- **Nov 19, 4:10 PM, word for word:**
+  - "stop with the late checkout idk why you keep doing that name and instead show covers that are real event covers not nio in bedroom
+    i like the content think of any niche event we can do ball picj up session wedding baby shower, graduation thanksgiving (this actually the best thing we should pump since its close with how to host and how to find bars and make moments and scrapbooks) video would be nice asdie from carousel, gifs, stories, still images, also be creative and make holiday current event centered content like news or any festival any event and moment needing stuff"
+  - What this changed: no "Late Checkout" event and no Nio's bedroom as an event cover; real event covers only. Thanksgiving is the push this week.
+- **Nov 19, 4:56 PM, word for word:**
+  - "lets bump that number up ok maybe a little more because quality is good and now we just need quantity. also never forget the tip about how no designer will write out find o appstore when they can show the appstore icon, so the idea is we design for quick understanding not slop and over explanation. that also doesnt mean we never write text as when it was necessary we said free on the appstore icon top"
+  - What this changed: volume up on TikTok and Instagram. Design rule: show, don't spell it out (store badges, not "find us on the App Store"); text only where the picture can't carry it.
+- **Nov 19, 4:03 PM, word for word:**
+  - "ive consitently asked to avoid these slop names like late checkout kofi and other stuff. i dont know where it gets these things they need to go"
+- **Nov 19, 4:04 PM, word for word:**
+  - "like the game night needs a actual name not kofi like jaden or something but even that aint a great name maybe micheal idk average name"
+  - What this changed: no made-up names (Late Checkout, Kofi, Zoe, Ama, Tess, Nia). Plain average names only: Sarah,
+    Emily, Jessica, Lauren, Mike, Chris & Ashley. Every scheduled post now uses the plain-name files in
+    `public/social/nio-week4/` on pxispace.com (Friendsgiving "at Sarah's", game night "at Mike's").
+- **Nov 19, 4:09 PM, word for word:**
+  - "a post that i can pin on what is pxi and how it works will also be nice maybe nio just standing infront of camera and explaining to follow along the journey the firend giving could have had a guy bitting down chicken and people spilling something in the shots being made"
+  - What this changed: a "what is PXI" carousel goes on the IG + FB grid Fri Nov 20 at 9 AM for the founder to pin.
+    The talking-Nio pin video and the busier Friendsgiving shots wait for the Monday regroup.
+- **Nov 19, 9:24 PM, word for word:**
+  - "u never said if i should remove current followers. also turn. of the ai tag when posting because we only need it on when we post content that looks human but is generated. this is animation so no more ai tag"
+  - What this changed: AI labels off on our animated content (Instagram, TikTok, YouTube). The label goes on only
+    for generated content that looks like real people. This replaces "AI content labels on" in the standing
+    constraints. All 72 scheduled posts were updated Nov 19. Followers: keep them, no mass removal; try Trial Reels.

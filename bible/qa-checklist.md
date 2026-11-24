@@ -1,4 +1,7 @@
-# Visual + story QA checklist (grows with every new defect type; a major hit blocks publishing)
+# Visual QA checklist (a major hit blocks publishing)
+
+A new item goes in only when a defect is a new kind; a new case of an old kind sharpens the old line. Story and
+dialogue are not checked here: the table read (`engine/script-reviewer.md`) checks them before anything is drawn.
 
 The reviewer is a separate agent with no context. It gets: a contact sheet of the middle frame of every shot, full-size
 stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot with the exact fix.
@@ -28,10 +31,6 @@ stills of every face shot, the script, and this file. Verdict PASS/FAIL per shot
 
 ## Sound
 - [ ] Room tone from frame 1; voices land on the right shot; thoughts subtitled in (parentheses); no clipping.
-
-## Story
-- [ ] Premise in one sentence; escalation; a laugh or gasp at least every 5 s; one real feeling;
-      out fast; PXI shown not said, or absent on purpose; a whole release with no "Part" label.
 
 ## Added after the Ep 1 review (Nov 9)
 - [ ] Insert hands use the character's own skin; fingers wrap the phone; the thumb rests OFF the screen and only enters to tap.
