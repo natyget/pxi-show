@@ -33,6 +33,9 @@ AI label off on every network (founder, Nov 19: animation does not need it). Not
 fetch the listings again (`studio/events.py nyc`) and check each of the four still stands (day, time, venue, price);
 one pick already left the feed between two fetches on Nov 24.
 
+The file here was rendered again on Nov 24 from the repo with the corrected card screen (no name printed over a
+listing's flyer, as the app draws it); nothing else changed.
+
 Search phrase: things to do in nyc this weekend
 
 **Instagram and Facebook caption**

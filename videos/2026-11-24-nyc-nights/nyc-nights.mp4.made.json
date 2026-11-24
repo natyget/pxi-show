@@ -1,0 +1,23 @@
+{
+ "look/app-screens/all-events.html": "584d12fc4892",
+ "look/app-screens/chrome.js": "cbd2a4b62e06",
+ "look/app-screens/discover.html": "9e2f4d73431f",
+ "look/app-screens/icons.js": "2a3c9889e697",
+ "look/brand/app-store-badge.svg": "5eb1a238a24f",
+ "look/brand/google-play-badge.png": "5d70e6147433",
+ "look/brand/grain.webp": "696d9e5715a0",
+ "look/brand/pxi-app-icon.png": "e5b9e44e760a",
+ "look/fonts/InstrumentSerif-OFL.txt": "da916812f711",
+ "look/fonts/InstrumentSerif-Regular.woff2": "37ddf465bbcc",
+ "look/fonts/dm-mono-400.woff2": "f41e4e83f822",
+ "look/fonts/dm-mono-500.woff2": "0fca4facaa0a",
+ "look/fonts/inter.woff2": "1dc044f4824f",
+ "videos/2026-11-24-nyc-nights/cues.json": "1ef21d8f4ecd",
+ "videos/2026-11-24-nyc-nights/events/seed-1.json": "c99bf9cfbe5a",
+ "videos/2026-11-24-nyc-nights/events/seed-2.json": "0d2dac475b79",
+ "videos/2026-11-24-nyc-nights/events/seed-3.json": "42acae5f89ae",
+ "videos/2026-11-24-nyc-nights/events/seed-4.json": "da26d9c5dc36",
+ "videos/2026-11-24-nyc-nights/reel.js": "a0529d180e59",
+ "videos/2026-11-24-nyc-nights/scene.html": "816426e6612c",
+ "videos/2026-11-24-nyc-nights/words.json": "1b077569b0f3"
+}
