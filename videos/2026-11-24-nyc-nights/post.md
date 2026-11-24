@@ -13,11 +13,11 @@ Files (in this folder; hosted on pxispace.com only after the yes):
 - video: `nyc-nights.mp4` (1080x1920, 35.1 s, voice and sound effects, no music)
 - cover: the Xanadu card at 7 s, cut when the files are hosted
 
-The fresh reviewer passed cut 2 ("barely"): the chat "is the only part that sounds like a person", "when the money
-runs out… it's free" is "a decent joke". Where it would leave: the second app card, at about 15 s. Its hard notes
-are about listings, not the video: **the free pick's card says SUN 5 PM (what the listing gives PXI) and its own
-poster says 9PM-3AM**, and Marco Lys's card gives the place as ARTSPACE while its name says Public Hotel. The voice
-says what the listings say. To decide before a
+The fresh reviewer passed cut 3 ("barely"): the chat "is the best part and would hold me", "the info is real and
+specific". What it marked down: the captions cross the stamp on the two cards; Nio asleep stays about six seconds;
+the label's second line is small; PXI is not on screen until the end. Two listing questions stay open: **the free
+pick, Reggaeton on Houston, is listed for SUN 5 PM (what the voice and the label say) while its own poster says
+9PM-3AM**, and Marco Lys's card gives the place as ARTSPACE while its name says Public Hotel. To decide before a
 yes: keep it as listed, or have someone check the ticket page and swap the pick if the listing's time is wrong.
 
 It has to go out before Friday: the cards say FRI, SAT, SUN, and on Friday the app would say TONIGHT.

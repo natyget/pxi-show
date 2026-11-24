@@ -12,9 +12,10 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
 - **City weekend reels (maker thread, Nov 24):** the weekend told as nights out, one scene for every city and week:
   `studio/weekend-reel.html`, built by `studio/weekend.py` from a `reel.json` of beats (a rig shot, the pick's real
   card, a chat, the end card) and the voice. `videos/2026-11-24-la-weekend/script.md` says how to make the next one.
-  Los Angeles (34 s) and New York (`videos/2026-11-24-nyc-nights/`, 35 s) are at cut 2 after the founder's note on
-  the first Los Angeles cut: the hook calls the city and the need, the quick narrator reads. Both passed the fresh
-  reviewer again and wait for the founder's yes. The first two, New York and Boston,
+  Los Angeles (34 s) and New York (`videos/2026-11-24-nyc-nights/`, 35 s) are at cut 3: the hook calls the city and
+  the need, the quick narrator reads (the founder's note on cut 1), and a Discover card is drawn only for a listing
+  the app shows as one (it needs a song); the other picks are a picture and a plain label. Both passed the fresh
+  reviewer and wait for the founder's yes. The first two, New York and Boston,
   were the old shape (the app under a voice listing events), failed the reviewer twice and are dropped; their
   folders keep the files and what the reviewer said.
 - **Scheduled (not drafts):** "idk to omw" goes out Tue Nov 24 (America/Chicago): Instagram and Facebook Reel 6:30 PM
@@ -230,3 +231,6 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   leaves at the app cards (about 9 s and 15 s): four cards in the same layout, the caption over the stamp, the app's
   name printed over a poster's lettering. Next thing to test: each card held half as long, and the city in written
   words on the first frame.
+- Nov 24, both weekend reels, cut 3 (two real cards each, two nights told with a picture and a label): passed,
+  "barely". Still marked down: a shot held about six seconds under a label, the label's small second line, the
+  captions over the card's stamp, the first seconds saying nothing about the city with the sound off.
