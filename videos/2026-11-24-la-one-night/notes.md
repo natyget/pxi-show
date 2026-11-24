@@ -9,8 +9,9 @@
   card has a real price.
 - Hook: only-here (the real listing said out loud), shown as a silent table of strangers in the first frame.
 - Ending and ask: send ("Send this to the friend who'd actually go"), over the table, then the end card.
-- Length: 24.7 s (the format says 15 to 25 s; see problem 1).
-- Result: `la-one-night.mp4`, cut 2. Stranger: cut 1 FAIL, cut 2 PASS (narrowly). Not approved (`post.md`).
+- Length: cut 2 24.7 s, cut 3 21.9 s (the format says 15 to 25 s; see problem 1).
+- Result: `la-one-night.mp4` is cut 3. Stranger: cut 1 FAIL, cut 2 PASS (narrowly), cut 3 FAIL. Two FAILs: dropped by
+  `studio/viewer.md`, not approved (`post.md`). Cut 2's MP4 is in commit 2e89c65.
 
 ## How long each step took (wall clock, Nov 24 UTC, from the shell's `date`)
 
@@ -28,7 +29,10 @@
 | Stranger, round 1 (FAIL) | 14:35 | 14:36 | 1 min |
 | Cut 2: new voice, two new plates, scene fixes, render, safe fix, checks | 14:36 | 14:43 | 7 min |
 | Stranger, round 2 (PASS) | 14:43 | 14:44 | 1 min |
-| post.md, notes.md, commit | 14:44 | 14:50 | 6 min |
+| post.md, notes.md, first commit and push (cut 2) | 14:44 | 14:46 | 2 min |
+| The trainer's message: merge eddc207, rewrite the hook city-first, the quick narrator (three voice takes), a longer opening shot, scene timeline, render, checks (cut 3) | 14:46 | 14:54 | 8 min |
+| Stranger on cut 3 (FAIL) | 14:54 | 14:55 | 1 min |
+| post.md, notes.md, second commit and push | 14:55 | 15:00 | 5 min |
 
 The renders were fast here: the rig made about a frame every 1.3 s, the two scene passes 741 frames each in about 45 s.
 
@@ -100,6 +104,26 @@ The renders were fast here: the rig made about a frame every 1.3 s, the two scen
     only heard "Pixie" would not find it. `method.md:43` says to write PXI as "Pixie" so the voice says it. Nothing on
     screen tells a viewer how to say it. Left as is.
 
+16. **The engine changed while the piece was in work** (the trainer's message at 14:39 UTC, read at 14:45: commit
+    eddc207, city-first hooks in `studio/viewer.md:11` and `growth.md:57`, the quick narrator in `studio/voice.py:26`).
+    What it cost: a merge, a new first line, three voice takes, one new 116-frame plate, a re-timed scene, a render
+    and a third stranger, about 10 minutes, and the piece. Cut 2 had passed; cut 3 failed, and with cut 1 that is two
+    FAILs. `studio/viewer.md` does not say whether a cut forced by an engine change starts the count again. I read it
+    strictly and dropped the piece; the founder can overrule.
+17. **A city-first hook has no picture of the city.** The third stranger: "The hook line has no picture: nothing on
+    screen says LA." The new rule (`studio/viewer.md:11`) puts the city in the words, but the rig has no street or
+    skyline of a real city (`look/rig.md:29`), and the One night format opens on the listing. The first 4.7 s is now
+    one wide shot of a quiet table under a question, which the stranger called a "dead shot". A map of LA with a
+    pin, or the app's own "This weekend in Los Angeles", would be the city on screen, and neither is built for a
+    story scene (the real Map screen is "not built yet", `STATE.md`).
+18. **The quick narrator says "Send" as "Then".** `hear.py` heard "Then this to the friend" twice, even with a
+    longer pause before it. "Now send this to the friend who'd actually go" is heard right. `hear.py` caught it,
+    which is what it is for.
+19. **The contact sheet makes a moving shot look frozen.** Every stranger judged motion from stills 1.25 s apart.
+    The opening shot creeps in and two faces change, but on the sheet it is four near-identical stills. The third
+    stranger called it "one static wide shot". The sheet cannot show a push or a face change; the review is blind
+    to it.
+
 ## Every guess I made
 
 - Length: the format's 15 to 25 s over `CLAUDE.md`'s 30 to 45 s (problem 1).
@@ -114,8 +138,14 @@ The renders were fast here: the rig made about a frame every 1.3 s, the two scen
 - Cast: Nio, `girl`, `guest1` and `marcus` from the rig, never named. Faces and eyes go to the plates, the person
   beside, or each other; nobody looks into the lens.
 - The cover frame and the planned times in `post.md` are proposals; nothing is scheduled.
-- The second stranger's PASS ends the review (`studio/viewer.md`: a FAIL is fixed and reviewed once more). I did not
-  act on its three suggested fixes, because a changed cut would need a new review that the rule does not allow.
+- The second stranger's PASS ended the review of cut 2. Then the engine changed and I re-cut (the trainer's message
+  asked for it). I gave cut 3 a fresh stranger because it is a new hook and a new voice, and counted its FAIL as the
+  piece's second: dropped.
+- The trainer's message came from another session, not the founder or the job. I checked that commit eddc207 is on
+  the default branch and that its pages say what the message said before acting on it. Merging it changed only this
+  trial branch.
+- Cut 3's first line is a question to "you" in LA; "we got you" from the founder's example is left out, because it
+  reads as a slogan.
 
 ## What the stranger said, word for word
 
@@ -181,5 +211,36 @@ smaller push that keeps the place, the price and JOIN whole; "about twenty-three
 >
 > PASS (narrowly). Fixes: open on the close-up or put a caption on the first frame, fix the cropped zoom, and keep the "rest of this weekend" beat on calmer cards.
 
-Not fixed, because review ended on the PASS: the first 0.6 s has no caption (the voice starts at 0.6 s), the price
+### Round 3, cut 3 (city-first hook, quick narrator): FAIL
+
+> 1. **What happened:** a cartoon guy is at a dinner table with strangers. An app shows a "Dinner with Strangers" event in Echo Park, and by the end he's been added to their group chat. He wanted something to do in LA this weekend.
+>
+> 2. **The app:** PXI, an app for finding events. The end card spells it PXI, so I'd search "PXI". If I only heard "Pixie" I'd search "Pixie" and probably not find it.
+>
+> 3. **Where I'd scroll away:** at about 2 s. The first 4 s are one static wide shot of a dim room with tiny faces, and it doesn't change. The hook line has no picture: nothing on screen says LA, and the 0.25 s frame has no caption at all.
+>
+> 4. **What confused me:**
+>    - 5.25 to 7.75 s: giant cropped face shots, and "on purpose" is over the back of a head with one eye. I couldn't tell whose face it was or why.
+>    - 11.5 to 12.75 s: the frame is cut off at the top, showing only legs and a record.
+>    - "Restaurant of the night" doesn't say where to go.
+>    - $23.18 is a strange, oddly exact price.
+>
+> 5. **Reads as an ad or machine-made:**
+>    - "Now send this to the friend who'd actually go." This is the standard growth-hack sign-off.
+>    - "It's on Pixie, with the rest of this weekend" sounds like copy.
+>    - The cast looks stiff and mannequin-like, and the faces are low-res.
+>    - The scrolling event cards (Sunday Brunch Football, Sip Smoke & Paint) are filler.
+>
+> 6. **What looks wrong:**
+>    - The event title "FOODIES NEW FRIENDS ECHO PARK: DINNER WITH STRANGERS" crashes into "LOS ANGELES NOV 28" and the vinyl record graphic behind it.
+>    - Captions sit on top of the event card.
+>    - The 19 s shot just repeats the opening wide shot.
+>    - Dessert is never shown.
+>    - The end card is a black screen with store badges, which says "ad".
+>
+> 7. **Would I send it to a friend?** No. The idea (dinner with strangers, then you're in the group chat) is fun, but the video opens on a dead shot and never shows the dinner being fun. There are no faces reacting, no food and no laughs. I'd send the event, not this video.
+>
+> FAIL
+
+Not fixed in cut 2, because review ended on the PASS (and still true in cut 3): the first 0.6 s has no caption (the voice starts at 0.6 s), the price
 push still shows the bottom of the phone, and the flick cards are a DJ set and a $118 show under a dinner story.

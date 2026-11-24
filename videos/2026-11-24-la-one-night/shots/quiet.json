@@ -1,8 +1,8 @@
 {
 "set": "dining",
 "camera": "wide",
-"frames": 88,
-"push": 0.18,
+"frames": 116,
+"push": 0.22,
 "actors": [
 {
 "who": "nio",
@@ -35,7 +35,7 @@
 "deadpan"
 ],
 [
-30,
+40,
 "suspicious"
 ]
 ],
@@ -54,7 +54,7 @@
 "neutral"
 ],
 [
-50,
+72,
 "uneasy"
 ]
 ],
