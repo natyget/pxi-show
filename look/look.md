@@ -16,8 +16,9 @@
   record spins) on a pixel grid twice as fine as the world, so app text stays readable. The camera pushes into the
   part of the screen the line is about.
 - **Captions and labels stay sharp**, never pixelated.
-- **Event covers look like a host made them**: a flyer with one idea, the day big, the time small
-  (`app-screens/covers/`), or a real photo we may use. Never a stock crowd, never a room from the show.
+- **Event covers are real.** A real listing wears its own poster (`studio/events.py`). An invented demo event
+  gets a flyer that looks like a host made it: one idea, the day big, the time small (`app-screens/covers/`).
+  Never a stock crowd, never a room from the show.
 
 ## Directing the rig
 

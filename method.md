@@ -6,7 +6,13 @@ One folder per video: `videos/<date>-<slug>/`. Commands run from that folder unl
 ## 1. Brief (five lines, before anything is made)
 
 The format (`growth.md`), the city if any, the hook, the one ending, the length (30 to 45 s or 60 to 90 s), and
-the real listing or app screen it shows. Event facts come from the real listing; the link goes in `sources.md`.
+the real listing or app screen it shows.
+
+Real events: `python3 studio/events.py nyc --out videos/<slug>/events/nyc` fetches this week's listings and posters
+from PXI's own API and writes `sources.md`. `python3 studio/card.py <that folder> "<words from the title>"` dresses
+one listing as the app's Discover card (the app's own code picks the name, place, price, record lines and stamp)
+and writes the seed the scene's Discover screen loads. `node studio/screen.cjs look/app-screens/discover.html
+<seed> out.png` shows it as a still. Fetch again on the day a piece is scheduled: listings change.
 
 ## 2. Script, read as the viewer, then the voice
 

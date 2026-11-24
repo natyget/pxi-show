@@ -1,8 +1,8 @@
 # State
 
-next: the founder watches `videos/2026-11-24-idk-to-omw/idk-to-omw.mp4` (cut 5). Then one batch from the format
-menu in `growth.md`: two city discovery reels with real listings (NYC, Boston), one Nio to camera, one side quest
-still, one invite. Nothing is scheduled until the founder says yes to each piece.
+next: Sunday's light run writes the first weekly plan; Monday's heavy run makes the first full week (`runs.md`).
+Before then, in a working session: one city discovery reel for New York from real listings, as the model for the
+format, and Nio's first to-camera line in his own voice.
 
 ## Where things stand (Nov 24, 2026)
 
@@ -20,21 +20,38 @@ still, one invite. Nothing is scheduled until the founder says yes to each piece
   cut 3: the founder is reviewing directly.
 - **Known weakness of the rig:** it drops blank frames when another render runs beside it. `studio/shot.py`
   catches and repairs them.
-- **Not built yet:** a pose library and mouth shapes for dialogue, Nio's own voice on this machine, the app's real
-  Map screen, real street maps (OpenStreetMap tiles are reachable), a source of real event photos.
+- **Real events:** `studio/events.py` pulls this week's listings and posters for New York and Boston from PXI's
+  own API; `studio/card.py` dresses one as the app's Discover card with the app's own code.
+- **Not built yet:** a pose library and mouth shapes for dialogue, the app's real Map and listing screens, real
+  street maps (OpenStreetMap tiles are reachable).
 - **Tools that could not be reached from here:** Wikimedia Commons and Openverse image search (rate limits), the
   AI Geek Gumroad checkout (bot check). The two long AI Geek prompts were read from their public documents.
 
+## Decided (Nov 24)
+
+- Cut 5 of "idk to omw" is the level to build from ("the latest cut is nice").
+- Real listings, with their real posters, from PXI's own API. More app demos.
+- Nio never quotes downloads or followers, unless the founder asks for a milestone post.
+- Nio's existing voice is rebuilt, not replaced.
+- 3 to 5 posts a day on each network and 3 to 10 stories a day (read from "3-5 posts per social media and many
+  stories on all social inculding tiktok like 3-10"; if the founder meant a week, halve nothing and ask).
+- Three runs a week: the heavy one on Monday before the 8 PM usage reset, two light ones for numbers and planning.
+
 ## Open decisions (the founder's)
 
-- Nio to camera: his designed voice has to be rebuilt on this machine, or a new one picked.
-- Nio builds PXI: may he say real numbers (downloads, followers), build-in-public style?
 - Which city leads the profile name: New York or Boston.
-- Real photos: are there PXI event photos we may post, or only openly licensed ones?
-- When the first video is approved: turn on a Sunday-evening batch task (makes the week, sends one review page).
+- Whether the reading of the volume above (a day, not a week) is right.
 
 ## Founder notes (newest first, word for word)
 
+- **Nov 24, on cut 5 and the plan:** "yes use real listings and also have more demos the latest cut is nice. no dont
+  say real donwlaods and folllowers what type of video would ever need that unless he is celebrting a milestone.
+  and rebuild his existing voice". "you can literally check our repo and webste and scrap the event posters from
+  there when you demo real events havae that pipeline built. i think if we do monday its better because my tokens
+  reset at 8pm time for a over many session run right before reset so we can do the most out of ourusage weekly
+  limit". "lets have to be honest 3-5 posts per social media and many stories on all social inculding tiktok like
+  3-10. and for the how many runs try like 3 a week and the others are smaller sessions and also analytic and
+  insight and planning sessions more than making content while the heavy one does all".
 - **Nov 24, on cut 4:** "phone has image on top right that isnt nio's its weird and have appstore button be the
   bigger one". "i mean the profile avatar image should be nio's but video good overal a little slow tho when it
   lists the events".

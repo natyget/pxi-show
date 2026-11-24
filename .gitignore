@@ -14,3 +14,8 @@ videos/*/sfx.wav
 videos/*/plates/
 videos/*/mix.wav
 videos/*/fr
+
+# real listings: posters are other people's work, fetched fresh each time, never committed
+events/
+videos/*/events/*/covers/
+videos/*/events/*/raw.json

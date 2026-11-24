@@ -1,5 +1,7 @@
 <!doctype html>
 <html><head><meta charset="utf-8">
+<!-- An outside listing (center.external) has no heart, and no faces, polaroids, reaction or taste match unless given:
+     that is how EventCover.tsx and DiscoverDetails.tsx draw one. -->
 <!-- PXI Discover, rebuilt for the web from pxi-mobile-app v2.3.2 (src/components/discover/*).
      Geometry follows geometry.ts / DiscoverScreen.tsx at a 390x844pt iPhone (insets 47/34).
      Hydrate by setting window.SEED before load, or ?seed=<url-encoded JSON>. -->
@@ -24,7 +26,7 @@ body{font-family:Inter,-apple-system,system-ui,sans-serif;color:#fff;position:re
 .fb{top:115px;left:8px;right:8px;height:56px;border-radius:28px;background:var(--pill);display:flex;align-items:center;padding-left:18px;padding-right:8px}
 .grp{display:flex;align-items:baseline;gap:6px}
 .small{color:var(--dimmer);font-size:14px;font-weight:700}
-.val{font-size:20px;font-weight:800;letter-spacing:-.4px}
+.val{font-size:20px;font-weight:800;letter-spacing:-.4px;white-space:nowrap}
 .chev{margin-left:2px;align-self:center}
 .div{width:1px;height:26px;background:rgba(255,255,255,.22);margin-left:auto;margin-right:6px}
 .ib{width:44px;height:56px;display:flex;align-items:center;justify-content:center}
@@ -44,7 +46,7 @@ body{font-family:Inter,-apple-system,system-ui,sans-serif;color:#fff;position:re
 .scrimT{position:absolute;left:0;right:0;top:0;height:50%;background:linear-gradient(rgba(0,0,0,.42),rgba(0,0,0,0))}
 .scrimB{position:absolute;left:0;right:0;bottom:0;height:32%;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5))}
 .ttl{position:absolute;left:14px;top:14px;width:175px}
-.ttl .n{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.38);text-transform:uppercase}
+.ttl .n{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.38);text-transform:uppercase;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
 .ttl .by{margin-top:5px;color:var(--purpleOnPhoto);font-weight:900;letter-spacing:.6px;font-size:10px}
 .face{display:flex;align-items:center;position:absolute;left:14px;bottom:14px}
 .face span{width:24px;height:24px;border-radius:12px;border:1.5px solid rgba(255,255,255,.92);overflow:hidden;background:#1C1C1C}
@@ -138,15 +140,20 @@ const W = 390, cw = 203, ch = 271, s = cw / 224, R = Math.round(cw * 0.634), cov
 const pitch = cw * 0.87, shift = S.discOpen ? cw * 0.17 : 0, disc = S.discOpen ? cw * 0.5 : cw * 0.09, tabR = Math.round(cw * 0.13), dia = Math.round(120 * s);
 const stage = $('stage');
 const pad = Math.round(cw * 0.07);
-const fitTitle = (t) => { const max = Math.round(cw * 0.195), min = Math.round(cw * 0.085); const longest = Math.max(...t.split(' ').map((w) => w.length)); return Math.max(min, Math.min(max, Math.floor((cw - pad * 2) / (longest * 0.62)))); };
+const fitTitle = (t) => { // titleFit.ts: the largest size, in steps of 2, whose greedy-wrapped lines fit a box 34% of the card high
+  const words = t.split(/\s+/).filter(Boolean), boxW = cw - pad * 2, boxH = ch * 0.34, max = Math.round(cw * 0.195), min = Math.round(cw * 0.085);
+  for (let fs = max; fs >= min; fs -= 2) { let lines = 1, w = 0, bad = false;
+    for (const wd of words) { const ww = wd.length * fs * 0.7; if (w === 0) { w = ww; if (ww > boxW) bad = true; } else if (w + fs * 0.28 + ww <= boxW) w += fs * 0.28 + ww; else { lines++; w = ww; if (ww > boxW) bad = true; } }
+    if (!bad && lines * fs * 0.98 <= boxH) return fs; }
+  return min; };
 function card(ev, x, scale, ty, dimA, z, center) {
   const el = document.createElement('div'); el.className = 'card';
   el.style.cssText = `left:${coverCx - cw / 2}px;top:0;transform:translateX(${x}px) translateY(${ty}px) scale(${scale});z-index:${z}`;
   const fs = fitTitle(ev.name.toUpperCase());
   el.innerHTML = `<img class="cover" src="${ev.cover}" style="object-position:${ev.pos || '50% 30%'}"><div class="scrimT"></div><div class="scrimB"></div>
     <div class="ttl"><div class="n disp" style="font-size:${fs}px;line-height:${Math.round(fs * .98)}px">${ev.name}</div>${ev.host ? `<div class="by">BY ${ev.host.toUpperCase()}</div>` : ''}</div>
-    ${center ? `<div class="face">${(ev.faces || []).map((f) => `<span><img src="${f}"></span>`).join('')}<div class="more">+${ev.going - 3}</div></div>
-    <div class="heart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+    ${center ? `${(ev.faces || []).length || ev.going ? `<div class="face">${(ev.faces || []).map((f) => `<span><img src="${f}"></span>`).join('')}${ev.going - (ev.faces || []).length > 0 ? `<div class="more">${(ev.faces || []).length ? '+' + (ev.going - ev.faces.length) : ev.going + ' going'}</div>` : ''}</div>` : ''}
+    ${ev.external ? '' : `<div class="heart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>`}
     <div class="tab" style="top:${ch * .48 - tabR}px;width:${tabR}px;height:${tabR * 2}px;border-radius:${tabR}px 0 0 ${tabR}px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></div>` : ''}
     <div class="dim" style="opacity:${dimA}"></div>`;
   stage.appendChild(el);
@@ -177,13 +184,13 @@ const pw = Math.round(R * 0.4), ppad = pw * 0.085;
   const p = document.createElement('div'); p.className = 'pol';
   const cx = rcx + sp.x * R, cy = rcy + sp.y * R;
   p.style.cssText = `left:${cx - pw / 2}px;top:${cy - pw * .6}px;width:${pw}px;height:${pw * 1.2}px;padding:${ppad}px;transform:rotate(${sp.rot}deg);z-index:3`;
+  if (!C.polaroids || !C.polaroids[i]) return;
   p.innerHTML = `<img src="${C.polaroids[i]}" style="width:${pw - ppad * 2}px;height:${pw - ppad * 2}px">`;
   stage.appendChild(p);
 });
 const rp = document.createElement('div'); rp.className = 'rpill';
 rp.style.cssText = `left:${rcx + .64 * R - 40}px;top:${rcy + .72 * R - 15}px;z-index:4`;
-rp.innerHTML = `<span style="font-size:14px">${C.reaction[0]}</span>${C.reaction[1]}`;
-stage.appendChild(rp);
+if (C.reaction) { rp.innerHTML = `<span style="font-size:14px">${C.reaction[0]}</span>${C.reaction[1]}`; stage.appendChild(rp); }
 // centre card on top
 card(C, -shift, 1, 0, 0, 5, true);
 
@@ -196,7 +203,17 @@ $('det').innerHTML = `<div class="circle" style="left:${stampLeft}px;top:0;width
   <div class="fields" style="left:${stampLeft + dia + gap}px;top:${fieldsTop}px;width:${fieldsW}px;height:${fieldsH}px">
     <div><div class="lab">Location</div><div class="fv disp" style="font-size:${vs}px">${C.location}</div></div>
     <div><div class="lab">Price</div><div class="fv disp" style="font-size:${vs}px">${C.price}</div></div>
-    <div><div class="lab">Taste match</div><div class="fv disp" style="font-size:${ms}px">${C.match}%</div></div></div>`;
+    ${C.match ? `<div><div class="lab">Taste match</div><div class="fv disp" style="font-size:${ms}px">${C.match}%</div></div>` : ''}</div>`;
 document.fonts.ready.then(() => { document.body.dataset.ready = '1'; });
+
+// One line each, shrunk to fit, the way the app's Text does it (numberOfLines={1} adjustsFontSizeToFit): the two
+// lines on the record and the When and city in the filter bar. Past 60% of its size the line is cut with "…".
+function oneLine(el, room) { if (!el) return; el.style.whiteSpace = 'nowrap'; const fs0 = parseFloat(getComputedStyle(el).fontSize); let fs = fs0;
+  while (el.scrollWidth > room && fs > fs0 * 0.6) { fs -= 0.5; el.style.fontSize = fs + 'px'; }
+  if (el.scrollWidth > room) { el.style.overflow = 'hidden'; el.style.textOverflow = 'ellipsis'; el.style.maxWidth = room + 'px'; } }
+document.fonts.ready.then(() => {
+  document.querySelectorAll('.gen > div').forEach((d) => { d.style.display = 'block'; oneLine(d, d.parentElement.clientWidth); });
+  oneLine(document.getElementById('when'), 96); oneLine(document.getElementById('city'), 112);
+});
 </script>
 </body></html>
