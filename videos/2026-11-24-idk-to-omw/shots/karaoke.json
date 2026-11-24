@@ -1,0 +1,1 @@
+{"set": "club", "camera": "mid", "frames": 78, "push": 0.15, "actors": [{"who": "theo", "at": "circle", "action": "stand", "hold": "mic", "hand": 1, "face": "laughing"}], "club": {"mood": 0, "crowd": {"armsUp": 0.7, "dance": 0.6, "faces": 1}}}

@@ -1,127 +1,53 @@
-# PXI LABS show: how to work in this repo
+# PXI studio: how to work in this repo
 
-This repo makes "Nio World", an animated series (9:16) about Nio and Maya for @pxi.app, written through a
-Gumball lens, with Nio's app PXI in it wherever it fits. It ships as episodes with a short cut and a long cut,
-plus cheaper formats between episodes, so that there is a post every day and a long video every week. The standing order is `engine/DIRECTIVE.md`. You do not need to read it for a normal run:
-this page and one stage card carry what you need.
+This repo makes PXI's short videos and stills for @pxi.app (Instagram, TikTok, YouTube Shorts, Facebook): city
+discovery reels, one-feature stories, Nio to camera, Nio World skits. All 9:16, all made in code: the 3D rig draws
+the world and the cast (`studio/world3d`), HTML draws the real app screens and the captions, FFmpeg makes the file.
+The old engine's rules and scripts are in `archive/`. They are history: never copy a line, name, joke or rule out
+of them. Its renderer is the one part that lives on.
 
-## Every run, in this order
+## Read in this order, every session
 
-1. Read `engine/STATE.md`. It names the phase, the episode, the stage and the next action.
-2. Read the one stage card it points to in `engine/stages/`, and only the files that card lists.
-3. Do that stage, using the model the card names for each part. Stop when its gate passes, or when the gate
-   has failed twice.
-4. Update `engine/STATE.md` (stage, next action, one new line at the top of the run log, and drop the oldest so
-   five remain). Commit and push to the repository's default branch when your run instructions allow it, so the
-   next run sees the new state. Otherwise push to the branch you were given and say in the report that the state
-   is waiting on a merge.
-5. Report in six lines or fewer, with the frame, contact sheet or video attached. Lead with anything the founder
-   has to decide.
+1. `STATE.md`: what is next and what the founder said last.
+2. `studio/viewer.md`: who every piece is for, and how to check it as that person.
+3. `dont.md`: the mistakes we never repeat.
+4. `method.md`: how a video is made, step by step, with the commands.
+5. Only what the job needs: `look/look.md` (how it looks), `product.md` (what PXI is), `growth.md` (what to post,
+   hooks, endings, audio, the weekly loop).
 
-One stage per run. If the stage is finished early, stop. Do not start the next one.
+## Rules
 
-## Rules that never bend
-
-- **A rendered sequence is the only proof.** Never describe how good something will be. Show it.
-- **Funny first, and clear** (`bible/story.md`). An episode is funny even if PXI did not exist. It starts from something real, someone's ego
-  causes it, it escalates by "so" and never "and then", it has one real second, and it is out fast. A stranger can say what Nio wanted and what
-  happened, and can quote a laugh. A script that fails the cold read does not go forward.
-- **The writer takes on the room** (`bible/writers-room.md`): a Cartoon Network writers' room making Nio World.
-  Our own characters and jokes. Never a character, line, name or design from an existing show.
-- **Every file sent to the founder has sound, is loud enough, and reads with the sound off.** Run `engine/tools/render.sh check`.
-- **Devices, pacing, text, look, voices and covers follow `bible/craft-library.md`.** A flashback looks and
-  sounds like a flashback. Nothing the viewer must understand goes by faster than the floors there. No standing
-  label on screen. Approved voices only, never a stand-in. PXI is spoken "pixie" and written PXI. Smooth curves under the pixels, shaped hands.
-- **The studio checks every step** (`engine/studio/departments.md`, founder, Nov 19). Each department (Story, Board,
-  Model, Keys, In-betweens, Voice, Sound, Finish) is a fresh agent with a small packet, one agent per scene for Keys
-  and In-betweens, and never grades its own work. A gate checks each output before the next department starts:
-  `studio/anim/tools/story_check.ts` (who talks, who they face and who faces them back, who looks at us, what changed off screen, who is off model, empty,
-  repeated and dead shots, stacked sounds), `engine/tools/sound_check.py` (each sound heard as itself, alone), and blind readers on stills.
-  Each passed gate writes a lock; a remake changes only the shots a note names (`story_check --lock --allow`).
-  When the stranger finds something every gate passed, a check for it is added to that gate in the same run.
-- **The stranger reviews every finished video and cover** (`engine/reviewer.md`): a reviewer who knows nothing,
-  given only what a viewer gets. If it is lost, finds text a person would not write, or sees a character look
-  different from the golden frames, the piece does not go to the founder.
-- **Humor is the Gumball engine** (`bible/humor.md`): built as `bible/gumball-style.md` says: a small itch, a confident wrong
-  theory, the absurd treated as normal, calm lines against loud pictures, a picture that is the joke, no lesson. Never a random
-  line as a punchline, never an explained joke, no narrator.
-- **Nio is alive** (`bible/characters.md`): quick, funny, laid back, a troll on purpose, chill about the weird
-  and big about himself. Never a goof, never stupid, never an NPC reading a plan. He is good-looking.
-- **People talk to each other** (`bible/voice-and-dialogue.md`), and **faces act** (`bible/director.md`): an
-  expression for every line, no idle bobbing, no shot where nothing happens.
-- **The acting pass is law** (`bible/acting.md`, founder, Nov 17): held poses, never looping clips; still legs when
-  seated; one pose change per line on its key word; blinks on thought changes; listeners hold and react. The engine
-  refuses a shot without it, and every voice manifest gets `engine/tools/accents.py` before a render. Keep improving it.
-- **PXI is Nio's app and is never forced** (`bible/story.md`, section 4). It is shown and never sold. Screens
-  are the real app 1:1 in the show's pixels (`bible/pxi-product.md`). Every release carries a PXI call to
-  action in its own slot: the tag, the caption or the end frame (`engine/formats.md`), and every caption says
-  what PXI is for in the words people search (`engine/captions.md`).
-- **Nothing by accident** (`bible/anti-slop.md`). Every strange thing is declared in the intent ledger before
-  it is built. Anything strange that is not in the ledger is a defect, however good it looks.
-- **Whole releases, never "Part 1".** No intro or outro unless the piece calls for one.
-- **Voices are locked:** the designed Qwen3-TTS voices in `bible/characters.md`, made exactly as written there. Plain and clean, no
-  effect on any voice, each line read for its situation and checked with `engine/tools/tone_check.py` (founder, Nov 19).
-  Character designs change only on a dated founder note.
-- **After the pilot is approved, `bible/style-lock.md` is the reference.** A difference from it is a defect.
-- **A gate that fails twice stops the line.** Write `BLOCKED` and the exact reason in `STATE.md`. Never lower a
-  gate, skip a check or try a third time.
-- **Nothing leaves the repo without the founder's approval.** A finished piece goes to the founder by notification with
-  the video attached. Only stage 6, with the founder's approval recorded word for word, may schedule anything.
-- **A founder note is recorded the moment it arrives**, word for word, dated, under "Founder notes" in
-  `bible/show-bible.md`. The newest note wins over every file here.
-- **A story the founder tells is banked the moment it arrives** (`engine/story-intake.md`). So is anything after
-  "funny:" (into `engine/funny-log.md`) and "order:" (into `engine/episode-orders.md`, which WRITE takes first).
-
-## Standing constraints (the founder's, from the first handoff; they hold everywhere)
-
-- Never post to @pxi.nyc. In Metricool, only the PXI brand (blogId 7790844), and confirm before scheduling.
-- Never compare fees or say "cheaper than other apps".
-- Never use the founder's photos (`public/site/img/lib/t00.jpg` is banned).
-- No copyrighted music, art or lyrics. AI content label off for our animation; on only for generated content that looks like real people (founder, Nov 19).
-- Keep the founder's email and name private. Never send them to an outside service.
-- Do not work around a site that blocks automated access.
-- The app repo (`pxi-mobile-app`) is reference only. Never push to it.
-- Research first and use existing open-source tools before building anything from scratch.
-- Updates go in the chat. The one notification is a finished piece waiting for approval.
-- Do not open pull requests unless asked. Scheduled runs push to the default branch.
-- No model name in a commit, a pull request or a file.
-
-## Keeping a run cheap
-
-- Read only what the stage card lists. Never open `.wav`, `.mp4`, `package-lock.json`, `node_modules`,
-  `studio/anim/src/audio.json`, `studio/voice/`, `studio/style-test/`, `bible/source/`, or the drafts
-  in another episode's `room/` folder.
-- No web research. No studying references. The craft is already in the bible. Only PLAN may look up a date, and BOARD
-  may look up a storytelling device that is not yet in `bible/craft-library.md`.
-- Use the tools, not your head, for mechanical work:
-  - `python3 engine/tools/script_lint.py episodes/<id>/script.md` checks word count, runtime, line rhythm and
-    banned phrases.
-  - `engine/tools/render.sh still|draft|final|sheet|check ...` holds every render command and the has-sound check.
-- Subagents are only the ones a stage card names, on the model it names, each given only what the card lists.
-  This file is the instruction to use them. Never use the top model in a scheduled run.
-- Look at contact sheets, not folders of stills. At most four images a QA pass.
-- An episode adds at most one new set and three new props. Reuse `studio/anim/src/world/`, `src/lib/` and
-  `src/ui/` as they are.
-- Draft renders are half size and only the frames that changed. The full render runs once per episode.
+- **Show, never describe.** Quality is proven by a rendered file or a contact sheet, never by a sentence.
+- **Discover leads.** The shared album and the camera come right after.
+- **Every video:** a hook in the first 2 seconds, voice first or captions only, a caption on every spoken word,
+  one idea per beat, one ending. 30 to 45 s or 60 to 90 s.
+- **Think as the viewer** (`studio/viewer.md`): someone who has never heard of PXI or Nio. Say "you". If the
+  founder would catch it, catch it first.
+- **The world is Nio World, the app is real.** The cast and sets come from the 3D rig. App screens are the real
+  app rebuilt (`look/app-screens/`) and animated. Never a fake screen, never a feature the app does not have.
+- **One fix, one place.** When something goes wrong, fix the cause in the template or the tool. Never stack a new
+  rule on top of an old one: change or delete the old one. A note from the founder is not a new rule; it is a
+  sign the maker stopped thinking as the viewer.
+- **Founder notes** go at the top of `STATE.md` the day they arrive, word for word. If a note changes a rule,
+  change that rule in the one file that owns it.
+- **Nothing leaves without the founder's yes** on that exact piece. Metricool: the PXI LABS brand only (blogId
+  7790844), never @pxi.nyc. Show the video file before anything is scheduled.
+- **Sound:** narrator is the Kokoro `am_michael` voice; Nio World characters keep their designed Qwen3-TTS voices.
+  Never AI-generated music. Instagram reels get a licensed library track when scheduled; TikTok photo posts get
+  auto music; TikTok videos carry their own sound.
+- No copyrighted characters, music or art. No fee comparisons. Never the founder's photos. Keep the founder's name
+  and email out of outside services. `pxi-mobile-app` is read-only. No model name in any commit or file. No pull
+  request unless asked.
 
 ## Where things are
 
 | Path | What |
 |---|---|
-| `engine/STATE.md` | The board: phase, episode, stage, next action, open founder decisions |
-| `engine/stages/` | One card per stage |
-| `engine/premise-bank.md` | Approved and candidate premises |
-| `engine/real-stories.md`, `engine/story-intake.md` | The founder's real stories, and how one becomes a premise |
-| `engine/episode-orders.md`, `engine/funny-log.md` | Episodes the founder ordered by naming their parts (taken first), and what the founder found funny |
-| `engine/formats.md`, `engine/calendar.md` | The format menu and the holiday calendar |
-| `engine/captions.md` | How every caption is written so the release is found in search |
-| `engine/learning.md`, `engine/playbook.md` | The results ledger, and the one page of what is working now |
-| `engine/promotion.md` | Paid promotion: boost winners for follows, the 95% watchers audience, app retargeting, budgets |
-| `engine/reviewer.md` | The stranger: the last review of the finished video and cover |
-| `engine/studio/` | The studio: departments, packets and gates; the passed cast (`cast.json`); what each sound must be heard as (`sounds.json`) |
-| `episodes/<id>/lock/` | The locks each passed gate writes, so a remake keeps what passed |
-| `engine/BACKLOG.md`, `engine/ROUTINES.md` | Tools still to build, and the scheduled tasks' exact text |
-| `bible/` | The writers' room role, characters and voices, the world, the style handoff, humor, dialogue, story, the Gumball lens, the craft library, directing and acting, product truth, QA checklist, canon. `bible/show-bible.md` has the index and every founder note |
-| `.claude/skills/writers-room/` | The staged writing method, rubric and tells |
-| `episodes/<id>/` | Script, shots, final render and contact sheet for each episode |
-| `studio/anim/` | Remotion and three.js project: `src/world` sets and rigs, `src/ui` phone screens, `src/lib` helpers |
+| `STATE.md` | Next action, founder notes, open decisions |
+| `dont.md` | Never again, one line each |
+| `method.md` | The pipeline and its commands |
+| `look/` | Palette, fonts, styles, cast, the rebuilt app screens, brand files |
+| `product.md`, `growth.md` | What PXI is; what to post and how we learn |
+| `studio/` | The tools: `world3d` (the 3D rig), scene template, render, voice, sound, compose, check, `viewer.md` |
+| `videos/<date>-<slug>/` | One folder per video: script, caption, scene, timings, contact sheet, the MP4s |
+| `archive/` | The old engine's rules, scripts and renders |

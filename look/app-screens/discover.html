@@ -1,0 +1,202 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- PXI Discover, rebuilt for the web from pxi-mobile-app v2.3.2 (src/components/discover/*).
+     Geometry follows geometry.ts / DiscoverScreen.tsx at a 390x844pt iPhone (insets 47/34).
+     Hydrate by setting window.SEED before load, or ?seed=<url-encoded JSON>. -->
+<style>
+@font-face{font-family:Inter;src:url(assets/inter.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:'Stack Sans Notch';src:url(assets/StackSansNotch-Bold.ttf);font-weight:700 900}
+:root{--page:#000;--sheet:#1C1C1C;--pill:#232323;--input:#2E2E2E;--stampDisc:#161616;--purple:#A523EF;--purpleOnPhoto:#D651FB;--magenta:#FF10F0;--orange:#FF5A1F;--dim:rgba(255,255,255,.55);--dimmer:rgba(255,255,255,.35);--hair:rgba(255,255,255,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:390px;height:844px;background:#000;overflow:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:Inter,-apple-system,system-ui,sans-serif;color:#fff;position:relative}
+.disp{font-family:'Stack Sans Notch',Inter,sans-serif;font-weight:900;letter-spacing:-.4px}
+.abs{position:absolute}
+/* status bar */
+.sb{top:0;left:0;right:0;height:47px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 30px 9px 38px;font-weight:600;font-size:17px}
+/* header: avatar + Discover ⌄ ... + Create (SWITCHER_TITLE_HEIGHT 44) */
+.hdr{top:59px;left:16px;right:16px;height:44px;display:flex;align-items:center;justify-content:space-between}
+.hdr img{width:42px;height:42px;border-radius:21px;object-fit:cover}
+.hdr .mid{position:absolute;left:0;right:0;top:3px;display:flex;justify-content:center;align-items:flex-start;pointer-events:none}
+.hdr .t{font-size:33px;line-height:38px;letter-spacing:-1.22px}
+.create{width:42px;height:42px;border-radius:21px;background:var(--purple);display:flex;align-items:center;justify-content:center}
+/* filter bar (FILTER_BAR_HEIGHT 56) */
+.fb{top:115px;left:8px;right:8px;height:56px;border-radius:28px;background:var(--pill);display:flex;align-items:center;padding-left:18px;padding-right:8px}
+.grp{display:flex;align-items:baseline;gap:6px}
+.small{color:var(--dimmer);font-size:14px;font-weight:700}
+.val{font-size:20px;font-weight:800;letter-spacing:-.4px}
+.chev{margin-left:2px;align-self:center}
+.div{width:1px;height:26px;background:rgba(255,255,255,.22);margin-left:auto;margin-right:6px}
+.ib{width:44px;height:56px;display:flex;align-items:center;justify-content:center}
+/* view switch (VIEW_ROW_H 44) */
+.vs{top:181px;left:8px;right:8px;height:34px;display:flex;font-weight:800;font-size:15px;letter-spacing:-.1px;border-bottom:.5px solid rgba(255,255,255,.16)}
+.vs>div{flex:1;display:flex;justify-content:center;align-items:center}
+.vs span{position:relative;height:34px;display:flex;align-items:center}
+.vs .on span:after{content:"";position:absolute;left:0;right:0;bottom:-.5px;height:2.5px;background:var(--purple)}
+.vs .off{color:var(--dim)}
+/* dateline */
+.dl{top:215px;left:0;right:0;height:24px;display:flex;justify-content:center;align-items:center;gap:8px;font-size:17px;text-transform:uppercase;letter-spacing:.4px}
+.dl b{color:var(--purple);font-weight:900}
+/* stage */
+.stage{top:247px;left:0;width:390px;height:271px}
+.card{position:absolute;width:203px;height:271px;border-radius:18px;overflow:hidden;background:#111}
+.card .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scrimT{position:absolute;left:0;right:0;top:0;height:50%;background:linear-gradient(rgba(0,0,0,.42),rgba(0,0,0,0))}
+.scrimB{position:absolute;left:0;right:0;bottom:0;height:32%;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5))}
+.ttl{position:absolute;left:14px;top:14px;width:175px}
+.ttl .n{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.38);text-transform:uppercase}
+.ttl .by{margin-top:5px;color:var(--purpleOnPhoto);font-weight:900;letter-spacing:.6px;font-size:10px}
+.face{display:flex;align-items:center;position:absolute;left:14px;bottom:14px}
+.face span{width:24px;height:24px;border-radius:12px;border:1.5px solid rgba(255,255,255,.92);overflow:hidden;background:#1C1C1C}
+.face span+span{margin-left:-7.7px}
+.face img{width:100%;height:100%;object-fit:cover}
+.more{height:24px;border-radius:12px;padding:0 8px;margin-left:6px;background:rgba(255,255,255,.92);color:#111;font-size:10.5px;font-weight:900;display:flex;align-items:center}
+.heart{position:absolute;right:14px;bottom:14px;width:32px;height:32px;border-radius:16px;background:rgba(0,0,0,.38);border:.33px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center}
+.tab{position:absolute;right:0;width:26px;height:52px;border-radius:26px 0 0 26px;background:var(--orange);display:flex;align-items:center;justify-content:center}
+.dim{position:absolute;inset:0;background:#000}
+/* record */
+.rec{position:absolute;width:258px;height:258px;border-radius:50%;background:radial-gradient(circle,#161616,#060606)}
+.rec .grooves{position:absolute;inset:0;border-radius:50%;background:repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.07) 0 .5px,rgba(0,0,0,0) .5px 1.6px)}
+.rec .rim{position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.12),inset 0 0 0 5px rgba(0,0,0,.65)}
+.rec .label{position:absolute;left:77.4px;top:77.4px;width:103.2px;height:103.2px;border-radius:50%;overflow:hidden}
+.rec .label img{width:100%;height:100%;object-fit:cover}
+.rec .label .tint{position:absolute;inset:0;background:rgba(139,111,206,.66)}
+.rec .spindle{position:absolute;left:123.3px;top:123.3px;width:11.4px;height:11.4px;border-radius:50%;background:#0b0b0b}
+.gen{position:absolute;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.pol{position:absolute;background:#FBFAF6;border-radius:3px;box-shadow:0 3px 7px rgba(0,0,0,.5)}
+.pol img{display:block;object-fit:cover;background:#0d0d0d}
+.rpill{position:absolute;height:28px;border-radius:14px;padding:0 11px;background:#EDEDED;display:flex;align-items:center;gap:5px;color:#111;font-weight:800;font-size:14px;box-shadow:0 2px 5px rgba(0,0,0,.35)}
+/* details */
+.det{top:530px;left:0;right:0;height:129px}
+.circle{position:absolute;width:109px;height:109px;border-radius:50%;background:var(--stampDisc);border:.5px solid var(--hair);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cap{position:absolute;width:109px;text-align:center;font-size:9.5px;font-weight:800;letter-spacing:.9px;color:var(--purple);text-transform:uppercase}
+.fields{position:absolute;display:flex;flex-direction:column;justify-content:space-between}
+.lab{font-size:9.5px;font-weight:800;letter-spacing:.9px;color:var(--purple);text-transform:uppercase}
+.fv{color:#fff;letter-spacing:-.3px;line-height:1.05;text-transform:uppercase}
+/* actions (ACTION_H 50) */
+.act{top:671px;left:0;right:0;height:50px;display:flex;justify-content:center;gap:9px}
+.join{height:50px;padding:0 30px;min-width:128px;border-radius:25px;background:var(--purple);display:flex;align-items:center;justify-content:center;font-family:-apple-system,'SF Pro Display',Inter,sans-serif;font-weight:900;font-size:18px;letter-spacing:.2px}
+.join.done{background:var(--input)}
+.share{width:49px;height:49px;border-radius:25px;background:var(--purple);display:flex;align-items:center;justify-content:center}
+/* floating tab bar (TAB_BAR_RESERVE 98) */
+.tb{left:81px;bottom:24px;width:228px;height:64px;border-radius:32px;background:rgba(26,26,26,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex}
+.tb .slot{width:76px;display:flex;align-items:center;justify-content:center}
+</style></head>
+<body>
+<div class="abs sb"><span id="clock">9:41</span>
+  <span style="display:flex;gap:6px;align-items:center">
+  <svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+  <svg width="16" height="12" viewBox="0 0 16 12" fill="#fff"><path d="M8 11.5l2.3-2.7a3.6 3.6 0 0 0-4.6 0z M3.9 6.6a6.4 6.4 0 0 1 8.2 0l1.6-1.8a8.8 8.8 0 0 0-11.4 0z M.5 3.2a11.4 11.4 0 0 1 15 0L17 1.4A13.7 13.7 0 0 0-1 1.4z"/></svg>
+  <svg width="26" height="12" viewBox="0 0 26 12"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="#fff" stroke-opacity=".4"/><rect x="2" y="2" width="19" height="8" rx="2" fill="#fff"/><rect x="23.5" y="4" width="1.5" height="4" rx=".7" fill="#fff" fill-opacity=".4"/></svg></span></div>
+
+<div class="abs hdr"><img id="me" src="assets/f2.jpg"><div class="mid"><span class="t disp">Discover</span><svg style="margin:12px 0 0 8px" width="14" height="14" viewBox="0 0 24 24"><path d="M18 9l-6 6-6-6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="create"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></div></div>
+
+<div class="abs fb">
+  <div class="grp"><span class="small">at</span><span class="val" id="when">Tonight</span><svg class="chev" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5l4 4 4-4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+  <div style="width:18px"></div>
+  <div class="grp"><span class="small">in</span><span class="val" id="city">Brooklyn</span><svg class="chev" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5l4 4 4-4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+  <div class="div"></div>
+  <div class="ib"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M6 4v14M3 15l3 3 3-3M12 5h7M12 9.5h5M12 14h3"/></svg></div>
+  <div class="ib"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="10" cy="10" r="6.5"/><path d="M15 15l4 4"/></svg></div>
+</div>
+
+<div class="abs vs"><div class="on"><span>Cards</span></div><div class="off"><span>Map</span></div></div>
+<div class="abs dl disp"><b id="day">Tonight</b><span id="hour">8 PM</span></div>
+
+<div class="abs stage" id="stage"></div>
+<div class="abs det" id="det"></div>
+
+<div class="abs act"><div class="join" id="join">JOIN</div>
+  <div class="share"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 5.5L20 12l-6.5 6.5" stroke-width="2.4"/><path d="M20 12h-8.5C7.4 12 4 15 4 19" stroke-width="2.4"/></svg></div></div>
+
+<div class="abs tb">
+  <div class="slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11.5L12 4l9 7.5"/><path d="M5 10v8.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V10"/><path d="M10 20v-4.5a2 2 0 0 1 4 0V20"/></svg></div>
+  <div class="slot" style="opacity:.4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.8l1.4-2h4.6l1.4 2h1.8A2.5 2.5 0 0 1 20 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
+  <div class="slot" style="opacity:.4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M14 5v2.5M14 10.5v3M14 16.5V19"/></svg></div>
+</div>
+
+<script>
+// ---- seed (hydrate with anything) ----
+const DEFAULT = {
+  clock: '7:42', when: 'Tonight', city: 'Brooklyn', day: 'Tonight', hour: '8 PM',
+  me: 'assets/f2.jpg',
+  center: {name: 'Watch party', host: 'Sanaa Groove', cover: 'assets/cover.jpg', pos: '50% 50%', faces: ['assets/f1.jpg','assets/f3.jpg','assets/f5.jpg'], going: 248,
+           genre: 'Afrobeats', second: 'Big screen', label: 'assets/cover.jpg', polaroids: ['assets/pol0.jpg','assets/pol1.jpg','assets/pol2.jpg'], reaction: ['🔥', 128],
+           location: 'Smoot Standard', price: 'Free', match: 93, stamp: 'assets/stamp.svg'},
+  left: {name: 'Late set', cover: 'assets/left.jpg'},
+  discOpen: true, joined: false,
+};
+const S = Object.assign({}, DEFAULT, window.SEED || (new URLSearchParams(location.search).get('seed') ? JSON.parse(new URLSearchParams(location.search).get('seed')) : {}));
+const C = Object.assign({}, DEFAULT.center, S.center || {});
+const $ = (id) => document.getElementById(id);
+$('clock').textContent = S.clock; $('when').textContent = S.when; $('city').textContent = S.city; $('day').textContent = S.day; $('hour').textContent = S.hour; $('me').src = S.me;
+if (S.joined) { $('join').classList.add('done'); $('join').textContent = 'JOINED'; }
+
+// ---- geometry (geometry.ts at W=390, availableH=497) ----
+const W = 390, cw = 203, ch = 271, s = cw / 224, R = Math.round(cw * 0.634), coverCx = W / 2 - W * 0.023;
+const pitch = cw * 0.87, shift = S.discOpen ? cw * 0.17 : 0, disc = S.discOpen ? cw * 0.5 : cw * 0.09, tabR = Math.round(cw * 0.13), dia = Math.round(120 * s);
+const stage = $('stage');
+const pad = Math.round(cw * 0.07);
+const fitTitle = (t) => { const max = Math.round(cw * 0.195), min = Math.round(cw * 0.085); const longest = Math.max(...t.split(' ').map((w) => w.length)); return Math.max(min, Math.min(max, Math.floor((cw - pad * 2) / (longest * 0.62)))); };
+function card(ev, x, scale, ty, dimA, z, center) {
+  const el = document.createElement('div'); el.className = 'card';
+  el.style.cssText = `left:${coverCx - cw / 2}px;top:0;transform:translateX(${x}px) translateY(${ty}px) scale(${scale});z-index:${z}`;
+  const fs = fitTitle(ev.name.toUpperCase());
+  el.innerHTML = `<img class="cover" src="${ev.cover}" style="object-position:${ev.pos || '50% 30%'}"><div class="scrimT"></div><div class="scrimB"></div>
+    <div class="ttl"><div class="n disp" style="font-size:${fs}px;line-height:${Math.round(fs * .98)}px">${ev.name}</div>${ev.host ? `<div class="by">BY ${ev.host.toUpperCase()}</div>` : ''}</div>
+    ${center ? `<div class="face">${(ev.faces || []).map((f) => `<span><img src="${f}"></span>`).join('')}<div class="more">+${ev.going - 3}</div></div>
+    <div class="heart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>
+    <div class="tab" style="top:${ch * .48 - tabR}px;width:${tabR}px;height:${tabR * 2}px;border-radius:${tabR}px 0 0 ${tabR}px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></div>` : ''}
+    <div class="dim" style="opacity:${dimA}"></div>`;
+  stage.appendChild(el);
+}
+// neighbours (DiscoverStage: scale .66, lift -0.085ch, dim .5)
+card(Object.assign({pos: '50% 40%'}, S.left), -pitch - shift, 0.66, -0.085 * ch, 0.5, 1, false);
+// record (EventDisc): centre at the cover's right edge when open
+const rec = document.createElement('div'); rec.className = 'rec';
+const rcx = coverCx - shift + disc, rcy = ch / 2;
+rec.style.cssText = `left:${rcx - R}px;top:${rcy - R}px;width:${R * 2}px;height:${R * 2}px;z-index:2`;
+const lr = R * 0.4;
+rec.innerHTML = `<canvas class="vc" width="${R*6}" height="${R*6}" style="position:absolute;inset:0;width:${R*2}px;height:${R*2}px"></canvas><div class="label" style="left:${R - lr}px;top:${R - lr}px;width:${lr * 2}px;height:${lr * 2}px"><img src="${C.label}"><div class="tint"></div></div><div class="spindle" style="left:${R - 5}px;top:${R - 5}px;width:10px;height:10px"></div>
+  <div class="gen disp" style="left:${R + R * .37 - R * .45}px;top:${R - R * .68}px;width:${R * .9}px"><div style="color:var(--magenta);font-size:${Math.round(R * .155)}px;line-height:1">${C.genre.toUpperCase()}</div><div style="color:#fff;font-size:${Math.round(R * .12)}px;margin-top:3px">${C.second.toUpperCase()}</div></div>`;
+stage.appendChild(rec);
+{ const cv = rec.querySelector('canvas'), x = cv.getContext('2d'); x.scale(3, 3); const size = R * 2, lab = R * .4;
+  const bg = x.createRadialGradient(R, R, 0, R, R, R); bg.addColorStop(0, '#161616'); bg.addColorStop(1, '#060606'); x.fillStyle = bg; x.beginPath(); x.arc(R, R, R, 0, 7); x.fill();
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let r = lab + size * .025; r < R - size * .035; r += 1.1) { x.strokeStyle = `rgba(255,255,255,${(0.03 + rnd() * .085).toFixed(3)})`; x.lineWidth = .7; x.beginPath(); x.arc(R, R, r, 0, 7); x.stroke(); }
+  [.56, .74, .88].forEach((f) => { x.strokeStyle = 'rgba(0,0,0,.78)'; x.lineWidth = 2.8; x.beginPath(); x.arc(R, R, R * f, 0, 7); x.stroke(); });
+  const sheen = (a0, a, al) => { const g = x.createConicGradient(a0, R, R); g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(a / 2, `rgba(255,255,255,${al})`); g.addColorStop(a, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = g; x.beginPath(); x.arc(R, R, R - 2, 0, 7); x.arc(R, R, lab + 3, 0, 7, true); x.fill(); };
+  sheen(-2.2, .14, .20); sheen(.95, .14, .13);
+  x.strokeStyle = 'rgba(0,0,0,.85)'; x.lineWidth = 2; x.beginPath(); x.arc(R, R, lab + size * .012, 0, 7); x.stroke();
+  x.strokeStyle = 'rgba(0,0,0,.65)'; x.lineWidth = size * .02; x.beginPath(); x.arc(R, R, R - size * .014, 0, 7); x.stroke();
+  x.strokeStyle = 'rgba(255,255,255,.12)'; x.lineWidth = 1.5; x.beginPath(); x.arc(R, R, R - .75, 0, 7); x.stroke(); }
+// polaroids on the record (POLAROID_SPOTS)
+const pw = Math.round(R * 0.4), ppad = pw * 0.085;
+[{x: .33, y: .58, rot: -15}, {x: .66, y: .3, rot: 20}].forEach((sp, i) => {
+  const p = document.createElement('div'); p.className = 'pol';
+  const cx = rcx + sp.x * R, cy = rcy + sp.y * R;
+  p.style.cssText = `left:${cx - pw / 2}px;top:${cy - pw * .6}px;width:${pw}px;height:${pw * 1.2}px;padding:${ppad}px;transform:rotate(${sp.rot}deg);z-index:3`;
+  p.innerHTML = `<img src="${C.polaroids[i]}" style="width:${pw - ppad * 2}px;height:${pw - ppad * 2}px">`;
+  stage.appendChild(p);
+});
+const rp = document.createElement('div'); rp.className = 'rpill';
+rp.style.cssText = `left:${rcx + .64 * R - 40}px;top:${rcy + .72 * R - 15}px;z-index:4`;
+rp.innerHTML = `<span style="font-size:14px">${C.reaction[0]}</span>${C.reaction[1]}`;
+stage.appendChild(rp);
+// centre card on top
+card(C, -shift, 1, 0, 0, 5, true);
+
+// ---- details (DiscoverDetails) ----
+const gap = Math.round(26 * s), edge = Math.round(W * .07), stampLeft = Math.max(edge, Math.round(W / 2 - gap / 2 - dia));
+const fieldsW = W - edge - (stampLeft + dia + gap), fieldsTop = Math.round(6 * s), fieldsH = dia + 20 - fieldsTop;
+const vs = Math.max(12, Math.round(16 * s * .86)), ms = Math.max(20, Math.round(31 * s * .86));
+$('det').innerHTML = `<div class="circle" style="left:${stampLeft}px;top:0;width:${dia}px;height:${dia}px"><img src="${C.stamp}" style="width:${Math.round(dia*.84)}px;height:${Math.round(dia*.84)}px"></div>
+  <div class="cap" style="left:${stampLeft}px;top:${dia + 6}px">Event stamp</div>
+  <div class="fields" style="left:${stampLeft + dia + gap}px;top:${fieldsTop}px;width:${fieldsW}px;height:${fieldsH}px">
+    <div><div class="lab">Location</div><div class="fv disp" style="font-size:${vs}px">${C.location}</div></div>
+    <div><div class="lab">Price</div><div class="fv disp" style="font-size:${vs}px">${C.price}</div></div>
+    <div><div class="lab">Taste match</div><div class="fv disp" style="font-size:${ms}px">${C.match}%</div></div></div>`;
+document.fonts.ready.then(() => { document.body.dataset.ready = '1'; });
+</script>
+</body></html>

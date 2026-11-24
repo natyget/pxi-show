@@ -4,3 +4,13 @@ episodes/nopics/__pycache__/
 __pycache__/
 studio/anim/public/pxi-ui/screens/*_x3.png
 episodes/*/out/*.mp4
+
+# the 3D rig
+studio/world3d/node_modules/
+studio/world3d/out/
+# render scratch
+videos/*/fr/
+videos/*/sfx.wav
+videos/*/plates/
+videos/*/mix.wav
+videos/*/fr

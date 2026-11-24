@@ -356,6 +356,16 @@ export const pose = (a: Act) => {
     s = reach(s, i, wr, add(out(i), [0, -1.4, 0]), P, norm(add(mul(s.headFw, 0.3), mul(out(i), -0.9))), ax);
     extra.push(...cupAx(c, ax));
   }
+  if (nm === 'mic') {
+    // a handheld microphone: the head just in front of his lips, the handle down and a little out, in a fist (hand: 0 left, 1 right)
+    const lip = add(s.headC, add(mul(s.headFw, P.headR * 1.1), mul(s.headUp, -P.headR * 0.62)));
+    const ax = norm(add(mul(s.headUp, 0.82), mul(s.headFw, -0.42))); // from the handle up to the head
+    const tip = add(lip, mul(s.headFw, 0.03)), c = sub(tip, mul(ax, 0.1));
+    const i = (a.hand ?? 1) as 0 | 1, wr = add(c, add(mul(out(i), 0.045), add(mul(ax, -0.03), [0, -0.02, 0])));
+    s = reach(s, i, wr, add(out(i), [0, -1.4, 0]), P, norm(add(mul(s.headFw, 0.3), mul(out(i), -0.9))), ax); hands[i] = 'fist';
+    extra.push({ a: sub(tip, mul(ax, 0.17)), ra: 0.013, b: sub(tip, mul(ax, 0.04)), rb: 0.016, g: G.shoe, k: 0.002, c: '#26262b' },
+      { a: tip, ra: 0.031, b: add(tip, mul(ax, 0.006)), rb: 0.031, g: G.shoe, k: 0.002, c: '#c3c6ce' });
+  }
   if (nm === 'juicebox' || nm === 'sipbox') {
     // a kid's juice box with a bendy straw. juicebox: held up at shoulder height in his right hand, the front turned
     // to whoever he shows it to. sipbox: at his lips, the straw in his mouth.

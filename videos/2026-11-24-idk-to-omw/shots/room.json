@@ -1,0 +1,1 @@
+{"set": "nioRoom", "camera": "bed", "frames": 141, "push": 0.1, "actors": [{"who": "nio", "at": "bedEdge", "action": "sit", "hold": "phone", "gaze": [0, -0.5], "face": [[0, "deadpan"], [49, "suspicious"], [112, "deadpan"], [127, "neutral"]]}]}
