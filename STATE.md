@@ -76,6 +76,9 @@ cheaper model are making a "One night" piece and a Discover demo for Los Angeles
 
 ## Founder notes (newest first, word for word)
 
+- **Nov 24, on the three quick-narrator samples:** "voice b nice". (B is Kokoro `am_puck` at 1.27, the `quick`
+  narrator in `studio/voice.py`.)
+
 - **Nov 24, on the Los Angeles weekend reel:** "the hooks are a bit weak and not specific. it doesn't say are you in
   [city] looking for things to do? we got you. or something. and the voice sleepy and not fat and quick better for
   stories not info like this".
@@ -183,8 +186,7 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 - Nov 24, the founder on the LA weekend reel: the hook did not call out the city and the need, and the narrator was
   "sleepy" for information. Measured: 2.3 words a second, and the flattest pitch of the standard voices. Fixed
   where each lives: the first question in `studio/viewer.md` and the hooks in `growth.md` (say who it is for), and
-  a quick narrator in `studio/voice.py` (```voice quick, 3.2 words a second). The founder has three samples to
-  pick from; B is the default until they choose.
+  a quick narrator in `studio/voice.py` (```voice quick, 3.2 words a second). The founder picked sample B.
 - Nov 24, talking: Nio's approved reference line went through `studio/voice.py` byte for byte, and a 156-frame shot
   moved his mouth to it (`videos/2026-11-24-talk-test/`). Not yet seen by the founder or a stranger.
 - Nov 24, engine trial, the cheaper model as scheduler: every commit was refused because it ended with a

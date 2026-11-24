@@ -23,7 +23,8 @@ import numpy as np, soundfile as sf
 SR = 24000
 HERE = os.path.dirname(os.path.abspath(__file__))
 CAST = json.load(open(os.path.join(HERE, "cast_voice.json")))["characters"]
-PACES = {"story": dict(voice="am_michael", speed=1.05, gap=0.35), "quick": dict(voice="am_puck", speed=1.27, gap=0.15)}  # both Kokoro
+# both Kokoro. quick is the sample the founder picked on Nov 24 ("voice b nice"): change it only on the founder's word
+PACES = {"story": dict(voice="am_michael", speed=1.05, gap=0.35), "quick": dict(voice="am_puck", speed=1.27, gap=0.15)}
 SHOW = {"I.D.K.s": "idks", "I.D.K.": "idk", "Pixie": "PXI", "P.M": "pm", "P.M.": "pm", "A.M.": "am", "O.M.W.": "omw"}
 SAY = re.compile(r"(\S+?)\{([^{}\s]+)\}")
 PUNCT = ",.?!:;"
