@@ -358,7 +358,7 @@ export const pose = (a: Act) => {
   }
   if (nm === 'mic') {
     // a handheld microphone: the head just in front of his lips, the handle down and a little out, in a fist (hand: 0 left, 1 right)
-    const lip = add(s.headC, add(mul(s.headFw, P.headR * 1.1), mul(s.headUp, -P.headR * 0.62)));
+    const lip = add(s.headC, add(mul(s.headFw, P.headR * 1.12), mul(s.headUp, -P.headR * 1.02))); // under the mouth, so the mouth shows over it
     const ax = norm(add(mul(s.headUp, 0.82), mul(s.headFw, -0.42))); // from the handle up to the head
     const tip = add(lip, mul(s.headFw, 0.03)), c = sub(tip, mul(ax, 0.1));
     const i = (a.hand ?? 1) as 0 | 1, wr = add(c, add(mul(out(i), 0.045), add(mul(ax, -0.03), [0, -0.02, 0])));

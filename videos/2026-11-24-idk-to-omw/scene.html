@@ -69,8 +69,10 @@ body.st-sketch #pbody{border-color:#f2f2f0}
 .m .card{background:#0a84ff;border-radius:30px;padding:10px;width:330px}
 .m .card img{width:310px;height:280px;object-fit:cover;border-radius:22px;display:block}
 .m .card .t{color:#fff;font:800 32px Inter;padding:10px 8px 4px}
-.m .card .u{color:#d8e8ff;font:500 24px Inter;padding:0 8px 6px}
-#chat .in{position:absolute;left:22px;right:22px;bottom:110px;height:76px;border-radius:38px;border:2px solid #2c2c2e}
+.m .card .u{color:#d8e8ff;font:500 28px Inter;padding:0 8px 6px}
+#chat .in{position:absolute;left:22px;right:22px;bottom:110px;height:76px;border-radius:38px;border:2px solid #2c2c2e;display:flex;align-items:center;gap:18px;padding:0 14px;color:#5c5c61;font:400 34px Inter}
+#chat .in .plus{width:50px;height:50px;border-radius:25px;background:#2c2c2e;color:#9a9aa0;display:flex;align-items:center;justify-content:center;font:400 40px/1 Inter}
+.ts{align-self:center;color:#8e8e93;font:500 24px Inter;margin:6px 0 10px}
 #fx .tap{fill:rgba(255,255,255,.35);stroke:#fff;stroke-width:5}
 /* ui (always crisp) */
 #cap{position:absolute;left:90px;right:150px;top:1160px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;text-align:center}
@@ -78,12 +80,20 @@ body.st-sketch #pbody{border-color:#f2f2f0}
 #cap span.k{color:#c26bff}
 .lab{position:absolute;color:#fff;paint-order:stroke fill;-webkit-text-stroke:12px #000;opacity:0}
 .lab b{display:block;font:900 64px/1.05 Inter}
-.lab i{display:block;font:500 38px/1.2 "DM Mono";font-style:normal;color:#e6d6ff;margin-top:6px}
+.lab i{display:block;font:500 46px/1.2 "DM Mono";font-style:normal;color:#e6d6ff;margin-top:6px}
 #hud{position:absolute;left:100px;top:372px;display:flex;align-items:center;gap:24px;color:#fff;opacity:0;paint-order:stroke fill;-webkit-text-stroke:10px #000}
 #hud .g{font:900 60px/1 Inter;letter-spacing:-5px}
 #hud .tm{font:500 44px/1 "DM Mono"}
 #scan{position:absolute;inset:0;opacity:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 3px,transparent 3px 9px)}
 .trk{position:absolute;left:0;right:0;height:26px;background:rgba(255,255,255,.55);mix-blend-mode:screen;opacity:0}
+.ban{position:absolute;left:110px;width:800px;top:384px;height:150px;border-radius:36px;background:rgba(30,30,32,.95);display:flex;align-items:center;gap:22px;padding:0 26px;opacity:0;box-shadow:0 12px 34px rgba(0,0,0,.45)}
+.ban .av{flex:none;width:88px;height:88px;border-radius:44px;background:#48484c;color:#fff;font:700 38px Inter;display:flex;align-items:center;justify-content:center}
+.ban .tx{flex:1;color:#fff;font:700 42px/1.25 Inter}
+.ban .tx span{display:block;font-weight:400;color:#dcdce0}
+.ban .nw{flex:none;align-self:flex-start;margin-top:26px;color:#8e8e93;font:400 30px Inter}
+#rcpt{position:absolute;left:110px;top:392px;opacity:0;transform-origin:0 100%}
+#rcpt .who{color:#fff;font:600 30px Inter;margin:0 0 6px 26px;paint-order:stroke fill;-webkit-text-stroke:8px #000}
+#rcpt .b{display:inline-block;background:#262628;color:#fff;font:500 56px/1.12 Inter;padding:16px 32px 20px;border-radius:42px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
 #end{position:absolute;inset:0;background:#050505;opacity:0}
 #end .icon{position:absolute;left:410px;top:400px;width:260px;height:260px;border-radius:60px;overflow:hidden;background:#000;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
 #end .icon img{width:100%;height:100%}
@@ -120,11 +130,11 @@ body.st-sketch #pbody{border-color:#f2f2f0}
   <div id="pbody"></div>
   <div id="screen">
     <div id="home"><div class="ic"><img src="/look/brand/pxi-app-icon.png"></div><div class="lbl">PXI</div></div>
-    <div id="app" style="opacity:0"><iframe id="disc" src="/look/app-screens/discover.html?seed=%7B%22clock%22%3A%20%229%3A02%22%2C%20%22hour%22%3A%20%229%3A30%20PM%22%2C%20%22center%22%3A%20%7B%22name%22%3A%20%22Karaoke%20night%22%2C%20%22host%22%3A%20%22Mike%22%2C%20%22cover%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22pos%22%3A%20%2250%25%2055%25%22%2C%20%22label%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22going%22%3A%2041%2C%20%22reaction%22%3A%20%5B%22%5Cud83d%5Cudd25%22%2C%2023%5D%2C%20%22genre%22%3A%20%22Karaoke%22%2C%20%22second%22%3A%20%22Open%20mic%22%2C%20%22location%22%3A%20%22Corner%20Bar%22%2C%20%22price%22%3A%20%22Free%22%2C%20%22stamp%22%3A%20%22assets/stamp-karaoke.svg%22%7D%2C%20%22left%22%3A%20%7B%22name%22%3A%20%22Trivia%20night%22%2C%20%22cover%22%3A%20%22assets/left.jpg%22%7D%7D"></iframe></div>
+    <div id="app" style="opacity:0"><iframe id="disc" src="/look/app-screens/discover.html?seed=%7B%22clock%22%3A%20%229%3A02%22%2C%20%22hour%22%3A%20%229%3A30%20PM%22%2C%20%22center%22%3A%20%7B%22name%22%3A%20%22Karaoke%20night%22%2C%20%22host%22%3A%20%22Jessica%22%2C%20%22cover%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22pos%22%3A%20%2250%25%2055%25%22%2C%20%22label%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22going%22%3A%2041%2C%20%22reaction%22%3A%20%5B%22%5Cud83d%5Cudd25%22%2C%2023%5D%2C%20%22genre%22%3A%20%22Karaoke%22%2C%20%22second%22%3A%20%22Open%20mic%22%2C%20%22location%22%3A%20%22Corner%20Bar%22%2C%20%22price%22%3A%20%22Free%22%2C%20%22stamp%22%3A%20%22assets/stamp-karaoke.svg%22%7D%2C%20%22left%22%3A%20%7B%22name%22%3A%20%22Trivia%20night%22%2C%20%22cover%22%3A%20%22assets/left.jpg%22%7D%7D"></iframe></div>
     <div id="chat" style="opacity:0">
       <div class="hd"><div class="bk">‹</div><div class="av">F</div><div class="nm">friday</div></div>
       <div id="msgs"><div class="list" id="list"></div></div>
-      <div class="in"></div>
+      <div class="in"><span class="plus">+</span><span>Message</span></div>
     </div>
   </div>
   <svg id="fx" width="1080" height="1920"><circle id="tap" class="tap" r="0" cx="0" cy="0" style="opacity:0"/></svg>
@@ -137,6 +147,10 @@ body.st-sketch #pbody{border-color:#f2f2f0}
   <div class="lab" id="labK" style="left:120px;top:420px"><b>karaoke</b><i>3 blocks away</i></div>
   <div class="lab" id="labR" style="left:300px;top:390px"><b>rooftop party</b><i>10 pm</i></div>
   <div class="lab" id="labC" style="left:120px;top:640px"><b>run club</b><i>tomorrow morning</i></div>
+  <div class="ban" id="ban0"><div class="av">F</div><div class="tx">friday<span>Sarah: idk</span></div><div class="nw">now</div></div>
+  <div class="ban" id="ban1"><div class="av">F</div><div class="tx">friday<span>Mike: idk you pick</span></div><div class="nw">now</div></div>
+  <div class="ban" id="ban2"><div class="av">F</div><div class="tx">friday<span>Emily: someone pick 😭</span></div><div class="nw">now</div></div>
+  <div id="rcpt"><div class="who">Theo</div><div class="b">omw. not singing tho</div></div>
   <div id="end"><div class="icon"><img src="/look/brand/pxi-app-icon.png"></div><div class="nm">PXI</div><div class="free">free</div>
     <div class="badges"><img class="as" src="/look/brand/app-store-badge.svg"><img class="gp" src="/look/brand/google-play-badge.png"></div></div>
   <div id="cap"></div>
@@ -184,7 +198,7 @@ function msgHTML(m) {
 let lastChat = '';
 function setChat(list, pop) {
   const key = JSON.stringify(list) + '|' + (pop ?? 1).toFixed(2); if (key === lastChat) return; lastChat = key;
-  $('list').innerHTML = list.map(msgHTML).join('');
+  $('list').innerHTML = '<div class="ts">Today 9:01 PM</div>' + list.map(msgHTML).join('');
   const kids = $('list').children;
   if (kids.length && pop !== undefined) { const k = kids[kids.length - 1]; const p = eBack(pop); k.style.transform = `translateY(${(1 - p) * 40}px) scale(${lerp(.6, 1, p)})`; k.style.opacity = clamp(pop * 3); k.style.transformOrigin = k.classList.contains('me') ? '100% 100%' : '0 100%'; }
 }
@@ -266,7 +280,7 @@ window.render = function (t, pass) {
       let sx = 0, so = 1, dop = 1, spot = 0; // spot: the card is the subject, the rest of the screen dims
       if (inn('phone1')) { const c = eOut(pr(t, K.pxi + 0.5, 0.42)); sx = (1 - c) * 300; so = c; dop = eOut(pr(t, K.pxi + 0.7, 0.35)); spot = eIO(pr(t, K.turns - 0.05, 0.45)); }
       if (inn('phone2')) spot = 1 - eIO(pr(t, K.tap - 0.35, 0.4));
-      st.style.transform = `translateX(${sx}px)`; st.style.opacity = so; det.style.opacity = dop * lerp(1, 0.2, spot); D.querySelector('.act').style.opacity = lerp(1, 0.2, spot);
+      st.style.transform = `translateX(${sx}px)`; st.style.opacity = so; det.style.opacity = dop * lerp(1, 0.06, spot); D.querySelector('.act').style.opacity = lerp(1, 0.06, spot);
       const jt = K.join, pressed = t >= jt - 0.06 && t < jt + 0.1;
       join.style.transform = `scale(${pressed ? 0.92 : 1})`;
       const joined = (inn('phone2') || inn('chat2')) && t >= jt + 0.1;
@@ -300,6 +314,9 @@ window.render = function (t, pass) {
   [0, 1, 2].forEach((i) => { const e = $('trk' + i); e.style.opacity = rw || tr2 ? .6 : 0; e.style.top = `${((Math.floor(t * 24) * (173 + i * 311)) % 1920)}px`; });
   const LB = [['labK', T.map[0], K.rooftop], ['labR', K.rooftop, K.run], ['labC', K.run, T.map[1]]];
   LB.forEach(([id, a, b]) => { const p = eOut(pr(t, a, 0.25)); const o = !inn('map') ? 0 : t < b - 0.05 ? p : 1 - pr(t, b - 0.05, 0.15); $(id).style.opacity = o; $(id).style.transform = `translateY(${(1 - p) * 20}px)`; });
+  const BT = [A(1, "Everyone's") - 0.05, A(1, 'someone') - 0.05, A(1, 'pick') - 0.15, K.so - 0.05];
+  [0, 1, 2].forEach((i) => { const b = $('ban' + i), a = eOut(pr(t, BT[i], 0.22)), o = 1 - pr(t, BT[i + 1] - 0.02, 0.16); b.style.opacity = inn('room') ? Math.min(a, o) : 0; b.style.transform = `translateY(${(1 - a) * -46}px)`; });
+  { const a = pr(t, T.kara[0] + 0.12, 0.28); $('rcpt').style.opacity = inn('kara') ? clamp(a * 3) : 0; $('rcpt').style.transform = `scale(${lerp(.6, 1, eBack(a))})`; }
   $('end').style.opacity = pr(t, T.end[0], 0.2);
   document.querySelector('#end .icon').style.transform = `scale(${eBack(pr(t, T.end[0], 0.35))})`;
   const card2 = pr(t, T.end[0] + 0.15, 0.25);
@@ -311,7 +328,7 @@ window.render = function (t, pass) {
 window.ready = () => new Promise((res) => { const f = $('disc'); const go = () => { D = f.contentDocument; Promise.all([document.fonts.ready, D.fonts ? D.fonts.ready : 1]).then(() => setTimeout(res, 400)); }; if (f.contentDocument && f.contentDocument.readyState === 'complete') go(); else f.addEventListener('load', go); });
 window.safeCheck = function (t) {
   window.render(t, 'all'); const bad = [];
-  document.querySelectorAll('#cap span, .lab, #hud, #end .icon, #end .nm, #end .free, #end .badges').forEach((el) => {
+  document.querySelectorAll('#cap span, .lab, #hud, .ban, #rcpt .b, #end .icon, #end .nm, #end .free, #end .badges').forEach((el) => {
     const cs = getComputedStyle(el); if (parseFloat(cs.opacity) < 0.05 || cs.display === 'none' || !el.textContent && !el.querySelector('img')) return;
     let op = 1, e = el; while (e && e !== document.body) { op *= parseFloat(getComputedStyle(e).opacity); e = e.parentElement; } if (op < 0.05) return;
     const rg = document.createRange(); rg.selectNodeContents(el); const r = rg.getBoundingClientRect(); if (r.width === 0) return;

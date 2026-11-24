@@ -23,12 +23,14 @@ Each shot is a JSON spec in `shots/` (set, camera, marks, action, faces by frame
 `words.json` at 24 a second, so a face changes on its word.
 
 ```
-cd studio/world3d && npx remotion render src/index.ts N3Shot <raw_dir> --sequence --image-format=png \
-  --props='{"spec": <the spec>}' --gl=swangle --concurrency=3 --timeout=240000 --browser-executable=/opt/pw-browsers/chromium
-python3 studio/plates.py <raw_dir> videos/<slug>/plates/<name>
+python3 studio/shot.py videos/<slug>/shots/<name>.json videos/<slug>/plates/<name>
 ```
 
-Render one still first (`remotion still ... --frame=N`) and look at it: who is in frame, where the eyes point.
+It renders the shot, re-renders any blank frame the rig drops, and refuses to finish until every frame is clean.
+Run one shot at a time with no other render going: the rig loses its graphics context when the machine is busy.
+
+Render one still first and look at it as the viewer (who is in frame, where the eyes point):
+`cd studio/world3d && npx remotion still src/index.ts N3Shot out.png --props='{"spec": <spec>}' --frame=N --gl=swangle --browser-executable=/opt/pw-browsers/chromium`
 
 ## 4. The scene
 

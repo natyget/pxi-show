@@ -1,6 +1,6 @@
 # State
 
-next: the founder watches `videos/2026-11-24-idk-to-omw/idk-to-omw.mp4` (cut 3). Then one batch from the format
+next: the founder watches `videos/2026-11-24-idk-to-omw/idk-to-omw.mp4` (cut 4). Then one batch from the format
 menu in `growth.md`: two city discovery reels with real listings (NYC, Boston), one Nio to camera, one side quest
 still, one invite. Nothing is scheduled until the founder says yes to each piece.
 
@@ -11,9 +11,13 @@ still, one invite. Nothing is scheduled until the founder says yes to each piece
   lives in the Project and could not be switched off from a repo session; it only writes a commit recap.
 - **Repo:** the old engine's rules, scripts and renders are in `archive/2026-11-old-engine/`. Its renderer moved to
   `studio/world3d` and is the house look. Thread branches 11rl11, d7kodp and 2n09ns are merged into this branch.
-- **First video on the new pipeline:** "idk to omw", 35 s. Cut 1 failed the stranger (narrator taglines, no joke,
-  a stare). Cut 2 fixed those with a 2D Nio the founder found cheaper than the old rig. Cut 3 uses the old rig,
-  says "you", and has the flyer cover.
+- **First video on the new pipeline:** "idk to omw", 35 s, cut 4. Cut 1 failed the stranger (narrator taglines, no
+  joke, a stare). Cut 2 used a 2D Nio the founder found cheaper than the old rig. Cut 3 brought the old rig back
+  and said "you"; a fresh reviewer failed it narrowly (Nio read as looking at us, the joke could slip past, the
+  host on the flyer was someone in the chat, the mic hid the singer's face, the chat looked like a mock-up).
+  Cut 4 fixes those. It has not had another fresh review: the founder is reviewing it directly.
+- **Known weakness of the rig:** it drops blank frames when another render runs beside it. `studio/shot.py`
+  catches and repairs them.
 - **Not built yet:** a pose library and mouth shapes for dialogue, Nio's own voice on this machine, the app's real
   Map screen, real street maps (OpenStreetMap tiles are reachable), a source of real event photos.
 - **Tools that could not be reached from here:** Wikimedia Commons and Openverse image search (rate limits), the
