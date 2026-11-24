@@ -1,0 +1,11 @@
+{
+  "key": "line00",
+  "character": "nio",
+  "line": "If you're in L.A. and you never know what to do this weekend, I built an app for that.",
+  "note": "Quick and bright, to a friend, sure of himself.",
+  "text_sent": "If you're in L.A. and you never know what to do this weekend, I built an app for that.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 4.92,
+  "wav_sha256": "44fdcfb4e7b4e28b6a5b7ec5220b190e74beccd8dcd7badc933a74fdd6e83820"
+}

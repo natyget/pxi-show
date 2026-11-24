@@ -95,6 +95,8 @@ W.forEach((w) => { const g = groups[groups.length - 1]; if (g && g.line === w.li
 groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.words[0].s - 0.02; const nx = groups[i + 1]; g.e = nx ? Math.min(nx.words[0].s - 0.02, last.e + 0.7) : last.e + 1.6; });
 // a line's last words leave before the picture changes
 groups.forEach((g, i) => { const nx = groups[i + 1]; if (nx && nx.words[0].line !== g.words[0].line) g.e = Math.min(g.e, Math.max(g.words[g.words.length - 1].e + 0.1, VO.lines[nx.words[0].line].s - 0.14)); });
+// no caption lies on the end card
+{ const end = B.find((x) => x.kind === 'end'); if (end) groups.forEach((g) => { g.e = Math.min(g.e, end.t0); }); }
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 const PROPER = new Set([...REEL.proper, 'PXI', ...DAYS, ...DAYS.map((d) => d + "'s")].map((x) => x.toLowerCase()));
 const KEY = new Set(['pxi', 'free', ...DAYS, ...DAYS.map((d) => d + "'s"), ...REEL.key.map((x) => x.toLowerCase())]);

@@ -58,10 +58,15 @@ A cast member speaks in their own voice, and the mouth follows the audio.
 2. In the shot, the actor says the line by its number: `"says": [[6, 0]]` is "line 0 starts on frame 6 of this
    shot". The mouth shapes and the stressed beats come from the line's own audio; the body acts on the beats when
    the action is `talk` or `sitTalk`.
-3. To the viewer: `"facing": "camera", "look": "camera", "lens": true`. The world refuses a look into the lens
-   that the script did not ask for. In `nioRoom`, `close` (at `rug`) and `screen` (at `desk`, the view from his
-   computer) frame him for it.
+3. To the viewer: `"facing": "camera", "look": "camera", "lens": true`. His pupils come to the lens on every face
+   (most faces rest with them off to one side). The world refuses a look into the lens
+   that the script did not ask for. In `nioRoom`, three cameras at `rug` are made for it: `talk` (head and
+   shoulders, the window behind), `talkSide` (the same size from the bed side, a second angle to cut to) and
+   `talkClose` (punched in, for the line that lands). They keep his chin above the caption band, so the captions
+   sit on his chest. `close` and `screen` put his mouth inside the band: use them only where nothing is captioned.
 
 `videos/2026-11-24-talk-test/` is the smallest worked example (one line, one shot).
+`videos/2026-11-24-nio-la/` is a whole piece: eight shots, a cut every two to four seconds, and its `script.md`
+says how to make the next one.
 
 A new prop is a few lines in `studio/world3d/src/nw3d/room.ts` (the microphone was added this way).

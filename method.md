@@ -5,6 +5,8 @@ from the video's folder.
 
 - **A story** (a feature, a joke, a cast): `videos/2026-11-24-idk-to-omw/` is the model. Copy its `scene.html`,
   `seed.json` and `cues.json`, and write your own `script.md` and `shots/`.
+- **Nio to camera**: `videos/2026-11-24-nio-la/` is the model, and its `script.md` says how to make the next one. It
+  is built with the same tool as the pieces below: his shots, the real cards he talks about, the end card.
 - **A piece that gives information** (a city weekend reel, a "One night" piece, an app demo): never build its
   scene by hand. `studio/weekend.py` builds it from a short list of beats (a rig shot, a real card, a chat, a flick
   through the cards, the end card), each tied to a voice line or a word, and gets the phone's size, the camera, the

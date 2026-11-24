@@ -1,0 +1,11 @@
+{
+  "key": "line03",
+  "character": "nio",
+  "line": "This Friday there's a dinner with strangers in Echo Park. I didn't know that existed, and I made the app.",
+  "note": "Quick and amused, then dry, laughing at himself a little.",
+  "text_sent": "This Friday there's a dinner with strangers in Echo Park. I didn't know that existed, and I made the app.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 5.91,
+  "wav_sha256": "5bec21d5bf2b43613eea78996a4c0b18e2bed8b7434cbfbb7917d3e47d0a2496"
+}

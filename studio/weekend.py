@@ -7,7 +7,10 @@ the voice and the rig shots change.
 Reads from that folder:
   reel.json     the city; "cards": the picks (words from each listing's title, or a listing id); "beats": what the
                 picture is on each voice line, in order. A beat is one of
-                  {"line": 0, "shot": "dinner"}                  a rig shot (shots/dinner.json, plates/dinner/)
+                  {"line": 0, "shot": "dinner"}                  a rig shot (shots/dinner.json, plates/dinner/). When someone
+                                                                 in the cast speaks in it (look/rig.md, "Talking"), its "says"
+                                                                 must start each line on its frame: a shot that differs is
+                                                                 refused, with the "says" to write
                   {"line": 1, "shot": "dinner", "zoom": [1.5, 540, 700], "label": {"pick": "<id>", "name": "...", "place": "..."}}
                                                                  the same shot carried on, cut in closer (scale, and the
                                                                  point it grows from), with the listing's facts as a plain
@@ -20,7 +23,8 @@ Reads from that folder:
                   {"line": 8, "flick": true}                     the carousel swiped, card after card from the first pick
                                                                  (the app's own next cards, whatever they are)
                 "now": the moment in the story, in the city's time ("2026-11-27 18:30"); left out: when the listings were fetched
-                  {"line": 8, "at": "Send", "end": true}         the end card ("at": a beat that starts on a word inside its line)
+                  {"line": 8, "at": "Send", "end": true}         the end card ("at": a beat that starts on a word inside its line;
+                                                                 "after": true: it starts when the line has been said)
                 and how names are written in the captions ("proper", "show", "key")
   words.json    the voice (studio/voice.py)
   events/<city> this week's listings (studio/events.py)
@@ -59,7 +63,9 @@ json.dump(seed, open(os.path.join(d, "events", "seed.json"), "w"), indent=1, ens
 
 dur = round(vo["duration"] + 0.45, 2); beats = []; cues = []; used = {}; labelled = []
 listings = json.load(open(os.path.join(ev_dir, "events.json")))["events"]
-starts = [0.0 if i == 0 else round((word(b["line"], b["at"]) if b.get("at") else LN[b["line"]]["s"]) - 0.12, 3) for i, b in enumerate(reel["beats"])]
+last = lambda line: [x for x in W if x["line"] == line][-1]["e"]
+starts = [0.0 if i == 0 else round(last(b["line"]) + 0.25, 3) if b.get("after") else round((word(b["line"], b["at"]) if b.get("at") else LN[b["line"]]["s"]) - 0.12, 3) for i, b in enumerate(reel["beats"])]
+wrong = []
 for i, b in enumerate(reel["beats"]):
     t0, t1 = starts[i], (starts[i + 1] if i + 1 < len(starts) else dur); o = {"t0": t0, "t1": t1}
     if "shot" in b:
@@ -67,6 +73,12 @@ for i, b in enumerate(reel["beats"]):
         f0 = used.get(b["shot"], 0); used[b["shot"]] = f0 + int(round((t1 - t0) * 24))  # a second beat on the same shot carries on where the first stopped
         if spec["frames"] < f0 + need - 4: sys.exit(f"shot {b['shot']} has {spec['frames']} frames; its beats need {f0 + need}")
         o.update(kind="shot", name=b["shot"], frames=spec["frames"], f0=f0, zoom=b.get("zoom"))
+        # the cast's lines heard during this shot, each on the frame it starts (a line already running starts before frame 0)
+        for a in spec["actors"]:
+            if "says" not in a or f0: continue
+            span = t0 + sum((starts[k + 1] if k + 1 < len(starts) else dur) - starts[k] for k, x in enumerate(reel["beats"]) if x.get("shot") == b["shot"])
+            says = [[round((l["s"] - t0) * 24), l["i"]] for l in LN if l.get("who") == a["who"] and l["e"] > t0 and l["s"] < span]
+            if a["says"] != says: wrong.append(f'shot {b["shot"]}: {a["who"]} says the wrong lines or on the wrong frames. Write "says": {json.dumps(says)}, then render it again')
         if b.get("label"):
             e = next(x for x in listings if x["id"] == b["label"]["pick"]); price = "FREE" if e["price"] == "Free" else (e["price"] or "price TBA")
             o["label"] = [b["label"].get("name", e["title"]), f"{e['day'].split()[0].upper()} {e['time']} · {b['label'].get('place', e['venue'])} · {price}"]
@@ -83,6 +95,7 @@ for i, b in enumerate(reel["beats"]):
     else:
         o.update(kind="end"); cues.append(["pop", t0, 0.12])
     beats.append(o)
+if wrong: sys.exit("\n".join(wrong))
 js = {"city": seed["city"], "cards": picks, "beats": beats, "dur": dur, "proper": reel.get("proper", []), "show": reel.get("show", {}), "key": reel.get("key", [])}
 open(os.path.join(d, "reel.js"), "w").write("window.REEL=" + json.dumps(js, ensure_ascii=False) + ";")
 json.dump({"duration": dur, "cues": cues}, open(os.path.join(d, "cues.json"), "w"))

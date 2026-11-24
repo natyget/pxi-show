@@ -1,0 +1,11 @@
+{
+  "key": "line04",
+  "character": "nio",
+  "line": "Saturday there's a party that still hasn't said where it is. I respect that.",
+  "note": "Quick, amused, to a friend.",
+  "text_sent": "Saturday there's a party that still hasn't said where it is. I respect that.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 3.89,
+  "wav_sha256": "d4f074d1b46bed605f740961aadc7eee1042ac7f56dfca087165ecc7fa6d4b92"
+}

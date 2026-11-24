@@ -51,6 +51,10 @@ export const SETS: Record<string, SetDef> = {
       screen: C([3.72, 1.12, 1.3], [2.8, 1.38, 1.3], 56), // from behind the laptop, when he is working at the desk
       atDoor: C([2.55, 1.35, 3.0], [1.05, 1.05, 0.6], 50), // the reverse angle: from the window end, back toward the door
       rugLie: C([2.9, 0.9, 2.2], [2.0, 0.2, 3.4], 58), // down at him flat on his back on the rug
+      // talking to the viewer in a 9:16 video: his chin sits above the caption band (y 1160 of 1920), the captions on his chest
+      talk: C([2.2, 1.34, 0.75], [2.0, 1.24, 2.5], 46), // head and shoulders at the rug, the window and the fairy lights behind
+      talkClose: C([2.15, 1.32, 1.1], [2.0, 1.22, 2.5], 46), // the same, punched in: for the line that lands
+      talkSide: C([1.0, 1.34, 1.0], [2.0, 1.24, 2.5], 46), // the same size from a step to the bed side, the window still behind him: a second angle to cut to
     },
     marks: {
       rug: { s: 2.0, z: 2.5, yaw: 180 }, rugLeft: { s: 1.55, z: 2.45, yaw: 180 }, rugRight: { s: 2.55, z: 2.45, yaw: 180 },
@@ -408,6 +412,7 @@ export const buildShot = (spec: ShotSpec, frame: number): Scene3 => {
     // facing mark and no gaze given, the pupils come in from the side of the face to nearly centre
     if (a.gaze) face = gaze(face, a.gaze[0], a.gaze[1]);
     else if (a.facing && a.facing !== 'camera') face = gaze(face, face.eyeL.px * 0.25, face.eyeL.py);
+    else if (a.lens) face = gaze(face, Math.min(face.eyeL.px, 0.2), face.eyeL.py); // a scripted look to the viewer: the pupils come to the lens on every face (most faces rest with them off to one side)
     face = speaking(face, a.speak, frame, a.mouth);
     const acting = act.rest && a.act !== false;
     const perf = acting ? perform({ who: a.who, frames: spec.frames, frame, faces: typeof a.face === 'string' ? [[0, a.face]] : a.face,

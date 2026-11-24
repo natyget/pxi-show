@@ -1,0 +1,86 @@
+{
+ "city": "la",
+ "cards": [
+  "Night Tales",
+  "Midnight Lovers"
+ ],
+ "beats": [
+  {
+   "line": 0,
+   "shot": "a-hook"
+  },
+  {
+   "line": 0,
+   "at": "I",
+   "shot": "b-built"
+  },
+  {
+   "line": 1,
+   "shot": "c-name"
+  },
+  {
+   "line": 1,
+   "at": "this",
+   "flick": true
+  },
+  {
+   "line": 2,
+   "shot": "d-tabs"
+  },
+  {
+   "line": 2,
+   "at": "just",
+   "shot": "d2-find"
+  },
+  {
+   "line": 3,
+   "shot": "e-dinner",
+   "label": {
+    "pick": "b34fd766-14e0-4603-914d-dedb5e43d092",
+    "name": "Foodies + New Friends",
+    "place": "Echo Park"
+   }
+  },
+  {
+   "line": 3,
+   "at": "I",
+   "shot": "f-joke"
+  },
+  {
+   "line": 4,
+   "card": 1
+  },
+  {
+   "line": 5,
+   "shot": "g-ask"
+  },
+  {
+   "line": 5,
+   "after": true,
+   "end": true
+  }
+ ],
+ "show": {
+  "L.A": "LA"
+ },
+ "proper": [
+  "I",
+  "I'm",
+  "I'll",
+  "It's",
+  "LA",
+  "Echo",
+  "Park"
+ ],
+ "key": [
+  "LA",
+  "weekend",
+  "five",
+  "tabs",
+  "strangers",
+  "follow",
+  "Echo",
+  "Park",
+  "respect"
+ ]
+}

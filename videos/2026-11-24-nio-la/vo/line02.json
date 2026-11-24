@@ -1,0 +1,11 @@
+{
+  "key": "line02",
+  "character": "nio",
+  "line": "I made it because every Friday I had five tabs open, just to find one thing to do.",
+  "note": "Quick, talking to a friend, still a bit annoyed about it.",
+  "text_sent": "I made it because every Friday I had five tabs open, just to find one thing to do.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 5.26,
+  "wav_sha256": "489fe082c182016252611d46f567db481eaf40a27d09d06d634fdf369b1a625a"
+}

@@ -1,0 +1,1 @@
+{"set": "nioRoom", "camera": "talk", "frames": 45, "actors": [{"who": "nio", "at": "rug", "facing": "camera", "look": "camera", "lens": true, "action": "talk", "face": [[0, "charm"]], "says": [[3, 1]], "hold": "show-phone"}]}

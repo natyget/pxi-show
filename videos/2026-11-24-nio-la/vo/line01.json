@@ -1,0 +1,11 @@
+{
+  "key": "line01",
+  "character": "nio",
+  "line": "It's called PXI, and this is everything on in L.A. this weekend.",
+  "note": "Quick and easy, a little pleased with himself.",
+  "text_sent": "It's called pixie, and this is everything on in L.A. this weekend.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 4.63,
+  "wav_sha256": "7b941533d0f381944347c85251b562905d5f31747705e5068241a868609cba71"
+}
