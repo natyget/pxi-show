@@ -1,5 +1,7 @@
 # Engine trial notes: "One night", Los Angeles (Midnight Lovers)
 
+Branch: `trial/la-one-night-midnight-lovers` (`trial/la-one-night` already held trial 2a, so it was left alone).
+
 Result: dropped after two FAILs from the stranger (`studio/viewer.md`: two FAILs and the piece is dropped). The MP4
 on this branch is cut 2, 17.8 s. No engine file was changed; every fix stayed inside this folder.
 
