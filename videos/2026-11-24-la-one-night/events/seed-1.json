@@ -1,0 +1,32 @@
+{
+ "clock": "6:12",
+ "when": "This weekend",
+ "city": "Los Angeles",
+ "day": "SAT",
+ "hour": "11:45 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Midnight Lovers with Demi Riquísimo",
+  "host": "",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "HOUSE",
+  "second": "NEVER SEEN YOU DANCE (DEMI RIQUÍSIMO REMIX)",
+  "label": "/videos/2026-11-24-la-one-night/events/la/covers/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.jpg",
+  "location": "LOCATION TBA, LOS ANGELES",
+  "price": "$35.02",
+  "stamp": "/videos/2026-11-24-la-one-night/events/la/stamps/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.svg"
+ },
+ "left": {
+  "name": "Solomun",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/ab651338-5294-45b8-aebb-e861eb1af50c.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}

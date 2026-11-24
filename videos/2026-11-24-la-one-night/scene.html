@@ -1,0 +1,160 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- The city weekend reel: this weekend told as nights out. The same file for every city and every week: it loads
+     words.js (the voice) and reel.js (the beats, the cards and every time, written by studio/weekend.py).
+     A beat is a rig shot of that kind of night, the pick's real Discover card (the app screen as wide as the
+     picture, a small push toward the price on its word), a chat, or the end card. The picture changes on every
+     voice line; the captions sit in the empty band between the place and the price on a card. -->
+<style>
+@font-face{font-family:Inter;src:url(/look/fonts/inter.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"DM Mono";src:url(/look/fonts/dm-mono-500.woff2) format("woff2");font-weight:500}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+#art,#ui{position:absolute;inset:0}
+#art{background:#1d1820}
+body.pass-ui #art{display:none}
+body.pass-art #ui{display:none}
+#grain{position:absolute;inset:0;background:url(/look/brand/grain.webp);opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+#tap{position:absolute;left:0;top:0;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:rgba(255,255,255,.3);border:5px solid #fff;opacity:0}
+#plate{position:absolute;left:0;top:0;width:1080px;height:1920px;image-rendering:pixelated;display:none}
+/* the phone: body and the real screen, moved by one camera */
+#pwrap{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+#pbody{position:absolute;left:255px;top:300px;width:570px;height:1196px;border-radius:74px;background:#141216;border:7px solid #1b1416}
+#screen{position:absolute;left:271px;top:316px;width:538px;height:1164px;border-radius:56px;overflow:hidden;background:#000}
+#screen iframe{position:absolute;left:0;top:0;width:390px;height:844px;border:0;transform:scale(1.37949);transform-origin:0 0;background:transparent}
+/* captions and the end card (always sharp) */
+#cap{position:absolute;left:90px;right:150px;top:1160px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;text-align:center}
+#cap span{font:900 84px/1.12 Inter;color:#fff;letter-spacing:-1px;paint-order:stroke fill;-webkit-text-stroke:14px #000;display:inline-block;transform-origin:50% 70%}
+#cap span.k{color:#c26bff}
+#end{position:absolute;inset:0;background:#050505;opacity:0}
+#end .icon{position:absolute;left:410px;top:400px;width:260px;height:260px;border-radius:60px;overflow:hidden;background:#000;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+#end .icon img{width:100%;height:100%}
+#end .nm{position:absolute;left:0;right:0;top:690px;text-align:center;color:#fff;font:900 96px Inter;letter-spacing:-2px}
+#end .free{position:absolute;left:0;right:0;top:810px;text-align:center;color:#c9c9c7;font:500 46px "DM Mono"}
+#end .badges{position:absolute;left:0;right:0;top:905px;display:flex;justify-content:center;align-items:center;gap:22px}
+#end .badges img.as{height:118px}
+#end .badges img.gp{height:108px;margin:-17px -12px}
+/* the chat (a one-to-one thread, as it looks on a phone) */
+#chat{position:absolute;inset:0;background:#000;display:none}
+#chat .hd{position:absolute;left:0;right:0;top:0;height:170px;border-bottom:1px solid #1c1c1e;background:#0d0d0e}
+#chat .hd .nm{position:absolute;left:0;right:0;top:108px;text-align:center;color:#fff;font:600 26px Inter}
+#chat .hd .av{position:absolute;left:229px;top:22px;width:80px;height:80px;border-radius:40px;background:#3a3a3c;color:#fff;font:700 34px Inter;display:flex;align-items:center;justify-content:center}
+#chat .hd .bk{position:absolute;left:26px;top:48px;color:#0a84ff;font:500 54px Inter}
+#list{position:absolute;left:0;right:0;top:192px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:0 22px}
+#list .ts{align-self:center;color:#8e8e93;font:500 22px Inter;margin:2px 0 8px}
+#list .b{display:inline-block;width:fit-content;max-width:400px;background:#262628;color:#fff;font:500 36px/1.15 Inter;padding:10px 22px 12px;border-radius:30px;transform-origin:0 100%}
+#list .b.me{align-self:flex-end;background:#0a84ff;transform-origin:100% 100%}
+#chat .in{position:absolute;left:22px;right:22px;bottom:60px;height:76px;border-radius:38px;border:2px solid #2c2c2e;display:flex;align-items:center;gap:18px;padding:0 14px;color:#5c5c61;font:400 34px Inter}
+#chat .in .plus{width:50px;height:50px;border-radius:25px;background:#2c2c2e;color:#9a9aa0;display:flex;align-items:center;justify-content:center;font:400 40px/1 Inter}
+</style></head>
+<body>
+<div id="stage">
+<div id="art">
+  <img id="plate">
+  <div id="pwrap" style="display:none"><div id="pbody"></div><div id="screen">
+    <div id="chat"><div class="hd"><div class="bk">‹</div><div class="av" id="chav"></div><div class="nm" id="chnm"></div></div>
+      <div id="list"></div><div class="in"><span class="plus">+</span><span>Message</span></div></div>
+  </div></div>
+  <div id="grain"></div>
+</div>
+<div id="ui">
+  <div id="end"><div class="icon"><img src="/look/brand/pxi-app-icon.png"></div><div class="nm">PXI</div><div class="free">free</div>
+    <div class="badges"><img class="as" src="/look/brand/app-store-badge.svg"><img class="gp" src="/look/brand/google-play-badge.png"></div></div>
+  <div id="cap"></div>
+</div>
+</div>
+<script src="words.js"></script>
+<script src="reel.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const eOut = (p) => 1 - Math.pow(1 - clamp(p), 3);
+const eIO = (p) => { p = clamp(p); return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+const eBack = (p) => { p = clamp(p); const c = 1.6; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+const pr = (t, a, d) => clamp((t - a) / d);
+const W = VO.words, B = REEL.beats, DUR = REEL.dur;
+
+// one Discover screen per card
+REEL.seeds.forEach((s, i) => { const f = document.createElement('iframe'); f.id = 'disc' + i; f.src = '/look/app-screens/discover.html?seed=' + encodeURIComponent(JSON.stringify(s)); $('screen').insertBefore(f, $('chat')); });
+const docs = () => REEL.seeds.map((_, i) => $('disc' + i).contentDocument);
+
+// captions: every spoken word, in the phrases the script breaks them into (studio/voice.py: " / " in a voice line)
+const groups = [];
+W.forEach((w) => { const g = groups[groups.length - 1]; if (g && g.line === w.line && g.g === w.g) g.words.push(w); else groups.push({ line: w.line, g: w.g, words: [w] }); });
+groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.words[0].s - 0.02; const nx = groups[i + 1]; g.e = nx ? Math.min(nx.words[0].s - 0.02, last.e + 0.7) : last.e + 1.6; });
+// a line's last words leave before the picture changes
+groups.forEach((g, i) => { const nx = groups[i + 1]; if (nx && nx.words[0].line !== g.words[0].line) g.e = Math.min(g.e, Math.max(g.words[g.words.length - 1].e + 0.1, VO.lines[nx.words[0].line].s - 0.14)); });
+const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+const PROPER = new Set([...REEL.proper, 'PXI', ...DAYS, ...DAYS.map((d) => d + "'s")].map((x) => x.toLowerCase()));
+const KEY = new Set(['pxi', 'free', ...DAYS, ...DAYS.map((d) => d + "'s"), ...REEL.key.map((x) => x.toLowerCase())]);
+const show = (w) => { const s = REEL.show[w] || w; return s === 'PXI' ? s : PROPER.has(s.toLowerCase()) ? s[0].toUpperCase() + s.slice(1) : s.toLowerCase(); };
+
+// the phone camera: a point of the phone (P) lands on a point of the picture (Q), at scale s
+const pt = (x, y) => [271 + 1.37949 * x, 316 + 1.37949 * y]; // a point of the 390x844 app screen, in phone space
+function cam(c) { return `translate(${c.Q[0] - c.s * c.P[0]}px,${c.Q[1] - c.s * c.P[1]}px) scale(${c.s})`; }
+function mix(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
+const FIT = 1080 / 538, PX = FIT * 1.37949;                      // the app screen exactly as wide as the picture
+const C0 = { s: FIT, P: pt(195, 104), Q: [540, 0] };             // a card arrives from a little higher: the filter says when and where
+const CA = { s: FIT, P: pt(195, 158), Q: [540, 0] };             // the day, the poster, the name, the place, the price, JOIN; the caption band falls between the place and the price
+const CB = { s: FIT * 1.18, P: pt(285, 640), Q: [285 * PX, (640 - 158) * PX] }; // a small push toward the price, which stays where it was
+const CC = { s: FIT, P: [540, 316], Q: [540, 0] };               // the chat: as wide as the picture, the messages above the caption band
+
+let lastChat = '';
+window.render = function (t, pass) {
+  document.body.classList.toggle('pass-ui', pass === 'ui');
+  document.body.classList.toggle('pass-art', pass === 'art');
+  const D = docs();
+  $('grain').style.backgroundPosition = `${(Math.floor(t * 12) * 37) % 200}px ${(Math.floor(t * 12) * 91) % 200}px`;
+  const b = B.find((x) => t >= x.t0 && t < x.t1) || B[B.length - 1];
+  /* a rig shot: one PNG per frame at 24 a second */
+  let wait = true; const im = $('plate');
+  if (b.kind === 'shot') {
+    const f = Math.min(b.frames - 1, Math.floor((t - b.t0) * 24)), src = `plates/${b.name}/f${String(f).padStart(4, '0')}.png`;
+    im.style.display = 'block';
+    if (im.dataset.src !== src) { im.dataset.src = src; im.src = src; wait = im.decode().then(() => true, () => true); }
+  } else im.style.display = 'none';
+  const flick = b.kind === 'flick' ? Math.min(REEL.seeds.length - 1, Math.floor((t - b.t0) / (b.t1 - b.t0) * REEL.seeds.length)) : -1; // every card again, one after another
+  const phone = b.kind === 'card' || b.kind === 'chat' || flick >= 0;
+  $('grain').style.display = phone ? '' : 'none';
+  $('pwrap').style.display = phone ? '' : 'none';
+  REEL.seeds.forEach((_, i) => { $('disc' + i).style.display = (b.kind === 'card' && b.card === i) || flick === i ? '' : 'none'; });
+  if (flick >= 0) { const sl = (b.t1 - b.t0) / REEL.seeds.length; $('pwrap').style.transform = cam(mix(C0, CA, eOut(pr(t, b.t0 + flick * sl, 0.3)))); }
+  $('chat').style.display = b.kind === 'chat' ? 'block' : 'none';
+  if (b.kind === 'card') {
+    let C = mix(C0, CA, eOut(pr(t, b.t0, 0.5)));
+    if (b.on !== null) C = mix(C, CB, eIO(pr(t, b.on, 0.5)));
+    $('pwrap').style.transform = cam(C);
+    const vc = D[b.card].querySelector('.vc'); if (vc) vc.style.transform = `rotate(${t * 38}deg)`;
+  }
+  if (b.kind === 'chat') {
+    $('pwrap').style.transform = cam(CC);
+    const shown = b.msgs.filter((m) => t >= m.t), key = b.name + shown.length;
+    if (key !== lastChat) { lastChat = key; $('chav').textContent = b.name[0].toUpperCase(); $('chnm').textContent = b.name;
+      $('list').innerHTML = shown.map((m) => `<div class="b ${m.me ? 'me' : ''}">${m.txt}</div>`).join(''); }
+    const kids = $('list').querySelectorAll('.b');
+    shown.forEach((m, i) => { const p = pr(t, m.t, 0.25); kids[i].style.transform = `translateY(${(1 - eBack(p)) * 36}px) scale(${lerp(.6, 1, eBack(p))})`; kids[i].style.opacity = clamp(p * 3); });
+  }
+  /* the end card and the captions */
+  const end = B.find((x) => x.kind === 'end'), te = end ? end.t0 : 1e9;
+  $('end').style.opacity = pr(t, te, 0.2);
+  document.querySelector('#end .icon').style.transform = `scale(${eBack(pr(t, te, 0.35))})`;
+  ['nm', 'free', 'badges'].forEach((c, i) => { document.querySelector('#end .' + c).style.opacity = pr(t, te + 0.15 + i * 0.12, 0.2); });
+  const g = groups.find((x) => t >= x.s && t < x.e);
+  $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has((REEL.show[w.w] || w.w).toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
+  return wait;
+};
+// Fonts inside an app screen load only while that screen is drawn: draw each card in turn and wait for its fonts.
+window.ready = async () => {
+  await Promise.all(REEL.seeds.map((_, i) => new Promise((res) => { const f = $('disc' + i); const ok = () => f.contentDocument && f.contentDocument.readyState === 'complete' && f.contentDocument.getElementById('stage');
+    if (ok()) res(); else f.addEventListener('load', res); })));
+  await document.fonts.ready;
+  for (const b of B) { if (b.kind !== 'card' && b.kind !== 'chat') continue;
+    window.render(b.t0 + 0.6, 'all');
+    if (b.kind === 'card') { const D = docs()[b.card]; await Promise.all([D.fonts.load('900 20px "Stack Sans Notch"'), D.fonts.load('800 14px Inter'), D.fonts.ready]); }
+    await new Promise((r) => setTimeout(r, 350)); }
+  await document.fonts.ready;
+};
+</script>
+</body></html>

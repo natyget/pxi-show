@@ -1,0 +1,19 @@
+{
+ "city": "la",
+ "cards": ["Midnight Lovers", "Night Tales", "Solomun"],
+ "beats": [
+  {"line": 0, "shot": "hook"},
+  {"line": 1, "chat": {"name": "Sarah", "msgs": [
+    ["them", "party saturday??", null],
+    ["me", "where", "where"],
+    ["them", "they won't say 😂", "Nobody"],
+    ["me", "say less", "both"]]}},
+  {"line": 2, "shot": "club"},
+  {"line": 3, "card": 0, "on": "About"},
+  {"line": 3, "at": "rest", "flick": true},
+  {"line": 4, "end": true}
+ ],
+ "show": {"L.A.": "LA"},
+ "proper": ["Midnight", "Lovers", "Saturday", "LA"],
+ "key": ["party", "Saturday", "Midnight", "Lovers", "thirty-five", "bucks", "send", "LA"]
+}
