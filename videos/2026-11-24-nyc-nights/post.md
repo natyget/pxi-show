@@ -1,24 +1,27 @@
 # Post: New York this weekend, as nights out
 
-**Not approved.** Waiting for the founder's yes on this exact cut (cut 3). Nothing is hosted or scheduled.
-
-Cut 2 follows the founder's note on the Los Angeles reel: it opens on "are you in New York, looking for things to do
-this weekend? we got you" and uses the quick narrator; it is 35 s instead of 42. Cut 2 was withdrawn the same hour:
-it drew Discover cards for the cruise and for Reggaeton on Houston, and the app only shows a listing as a card when
-it carries a song. Cut 3 keeps real cards for Xanadu and Marco Lys and tells the other two with a picture and a label.
+**Not approved.** Waiting for the founder's yes on this exact cut (cut 5). Nothing is hosted or scheduled.
 
 Hook type: the city and the need, then a question answered by the first listing. Ask: comment.
 
 Files (in this folder; hosted on pxispace.com only after the yes):
-- video: `nyc-nights.mp4` (1080x1920, 35.1 s, voice and sound effects, no music)
-- cover: the Xanadu card at 7 s, cut when the files are hosted
+- video: `nyc-nights.mp4` (1080x1920, 36.8 s, voice and sound effects, no music)
+- cover: the Xanadu card at 9 s, cut when the files are hosted
 
-The fresh reviewer passed cut 3 ("barely"): the chat "is the best part and would hold me", "the info is real and
-specific". What it marked down: the captions cross the stamp on the two cards; Nio asleep stays about six seconds;
-the label's second line is small; PXI is not on screen until the end. Two listing questions stay open: **the free
-pick, Reggaeton on Houston, is listed for SUN 5 PM (what the voice and the label say) while its own poster says
-9PM-3AM**, and Marco Lys's card gives the place as ARTSPACE while its name says Public Hotel. To decide before a
-yes: keep it as listed, or have someone check the ticket page and swap the pick if the listing's time is wrong.
+How it got here: cut 1 passed the fresh reviewer; cut 2 took the founder's note on the Los Angeles reel (the city
+hook, the quick narrator); cut 3 drew a card only where the app shows one. The founder on cut 2: "i see that jyd had a
+regeton at huston in san Antonio. we should do one video one city not every city. i fear it may resonate with nobody
+when trying to appeal to everyone". The video was New York only, but that pick ("Reggaeton on Houston" at San
+Antonios) read as Texas, so cut 4 replaces it with the free rave with an arcade at Danger Danger in Brooklyn, says
+Marco Lys at ten (his listing moved from 8 PM to 10 PM during the day), and uses the Discover screen as corrected
+against the app (no name printed over a poster). The fresh reviewer failed cut 4 (captions on the app's own text,
+a label across Nio's face, an unrelated fifth card under "all four", "Public Hotel" said over a card that says
+ARTSPACE); cut 5 fixes each of those. The fresh reviewer passed cut 5 ("narrowly"): New York is "mostly clear" now, the
+chat "is the best bit", and the free rave is the one it would text a friend. What it still marks down: Nio asleep
+and Nio in tears each stay four to five seconds under a label, and it would rather see those two events' own
+pictures (they have no card in the app, or a card that would say PRICE TBA).
+
+One pick is a drinks cruise ("unlimited prosecco"): say if a listing like that should stay out of our posts.
 
 It has to go out before Friday: the cards say FRI, SAT, SUN, and on Friday the app would say TONIGHT.
 One pick is a drinks cruise ("unlimited prosecco"): say if a listing like that should stay out of our posts.
@@ -31,7 +34,7 @@ One pick is a drinks cruise ("unlimited prosecco"): say if a listing like that s
 
 AI label off on every network (founder, Nov 19: animation does not need it). Not a draft. Before it is scheduled:
 fetch the listings again (`studio/events.py nyc`) and check each of the four still stands (day, time, venue, price);
-one pick already left the feed between two fetches on Nov 24.
+one pick left the top of the feed and another changed its start time between two fetches on Nov 24.
 
 The file here was rendered again on Nov 24 from the repo with the corrected card screen (no name printed over a
 listing's flyer, as the app draws it); nothing else changed.
@@ -42,7 +45,7 @@ Search phrase: things to do in nyc this weekend
 
 things to do in NYC this weekend 👀 in New York with nothing planned? we got you. which one are you going to?
 
-Fri: Marco Lys at the Public Hotel. Sat: skate night at Xanadu with Rich Medina. Sun: an unlimited prosecco cruise at Pier 36, then Reggaeton on Houston (free).
+Fri: Marco Lys at the Public Hotel. Sat: skate night at Xanadu with Rich Medina, or a free rave with an arcade at Danger Danger. Sun: an unlimited prosecco cruise at Pier 36.
 
 pxi is a free app to find things to do near you in New York: every event this weekend with its poster, place and price.
 
@@ -50,11 +53,11 @@ pxi is a free app to find things to do near you in New York: every event this we
 
 **TikTok caption** (title: things to do in NYC this weekend 👀)
 
-things to do in NYC this weekend 👀 a skate night, a prosecco cruise, free reggaeton. all in pxi, free on iPhone and Android #thingstodoinnyc #nyc #nycevents #nycweekend
+things to do in NYC this weekend 👀 a skate night, a free rave with an arcade, a prosecco cruise. all in pxi, free on iPhone and Android #thingstodoinnyc #nyc #nycevents #nycweekend
 
 **YouTube** (title: Things to do in NYC this weekend (Nov 27 to 29) #shorts)
 
-Things to do in NYC this weekend, Nov 27 to 29: a skate night at Xanadu, Marco Lys at the Public Hotel, a prosecco cruise at Pier 36 and a free reggaeton party. PXI is a free app that shows things to do in New York near you, each with its poster, place and price. pxispace.com/bio?utm_source=youtube
+Things to do in NYC this weekend, Nov 27 to 29: a skate night at Xanadu, Marco Lys at the Public Hotel, a free rave with an arcade at Danger Danger and a prosecco cruise at Pier 36. PXI is a free app that shows things to do in New York near you, each with its poster, place and price. pxispace.com/bio?utm_source=youtube
 
 Tags: things to do in nyc, things to do in nyc this weekend, what to do in nyc this weekend, nyc events this weekend, free things to do in nyc, pxi
 

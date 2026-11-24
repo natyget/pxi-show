@@ -14,7 +14,7 @@ Reads from that folder:
                   {"line": 1, "shot": "dinner", "zoom": [1.5, 540, 700], "label": {"pick": "<id>", "name": "...", "place": "..."}}
                                                                  the same shot carried on, cut in closer (scale, and the
                                                                  point it grows from), with the listing's facts as a plain
-                                                                 label: for a pick the app shows in All events, not as a card
+                                                                 label ("noprice": true when the listing gives none): for a pick the app shows in All events, not as a card
                                                                  (only a listing with a song is a Discover card; card.py refuses the rest)
                   {"line": 1, "card": 0, "on": "about"}          that pick's real Discover card; the camera pushes
                                                                  toward the price on the word "on" (leave out: no push)
@@ -61,6 +61,16 @@ for pick in reel["cards"]:
 seed = seed_of(ev_dir, car, moment, picks[0]); seeds = picks
 json.dump(seed, open(os.path.join(d, "events", "seed.json"), "w"), indent=1, ensure_ascii=False)
 
+def from_app(pick):  # a listing outside the forty in events.json, from the app's own answer (app.json)
+    import datetime; from zoneinfo import ZoneInfo
+    a = json.load(open(os.path.join(ev_dir, "app.json"))); a = a if isinstance(a, list) else a.get("events") or a.get("listings") or []
+    r = next((x for x in a if x["id"] == pick), None)
+    if not r: sys.exit(f"no listing {pick} in events.json or app.json: fetch again, it may be gone")
+    tz = ZoneInfo((json.load(open(os.path.join(ev_dir, "events.json"))).get("city") or {}).get("timeZone") or "America/New_York")
+    st = datetime.datetime.fromisoformat(r["startsAt"].replace("Z", "+00:00")).astimezone(tz); c = r.get("priceFromCents")
+    return {"id": pick, "title": r["title"].strip(), "day": st.strftime("%a %b %-d"), "time": st.strftime("%-I:%M %p").replace(":00 ", " "), "venue": r.get("venueName"),
+            "price": "Free" if r.get("isFree") or c == 0 else ("$%d" % (c / 100) if c and c % 100 == 0 else "$%.2f" % (c / 100) if c else None), "ticketUrl": r.get("ticketUrl")}
+
 dur = round(vo["duration"] + 0.45, 2); beats = []; cues = []; used = {}; labelled = []
 listings = json.load(open(os.path.join(ev_dir, "events.json")))["events"]
 last = lambda line: [x for x in W if x["line"] == line][-1]["e"]
@@ -80,8 +90,8 @@ for i, b in enumerate(reel["beats"]):
             says = [[round((l["s"] - t0) * 24), l["i"]] for l in LN if l.get("who") == a["who"] and l["e"] > t0 and l["s"] < span]
             if a["says"] != says: wrong.append(f'shot {b["shot"]}: {a["who"]} says the wrong lines or on the wrong frames. Write "says": {json.dumps(says)}, then render it again')
         if b.get("label"):
-            e = next(x for x in listings if x["id"] == b["label"]["pick"]); price = "FREE" if e["price"] == "Free" else (e["price"] or "price TBA")
-            o["label"] = [b["label"].get("name", e["title"]), f"{e['day'].split()[0].upper()} {e['time']} · {b['label'].get('place', e['venue'])} · {price}"]
+            e = next((x for x in listings if x["id"] == b["label"]["pick"]), None) or from_app(b["label"]["pick"]); price = "FREE" if e["price"] == "Free" else (e["price"] or "price TBA")
+            o["label"] = [b["label"].get("name", e["title"]), f"{e['day'].split()[0].upper()} {e['time']} · {b['label'].get('place', e['venue'])}" + ("" if b["label"].get("noprice") else f" · {price}")]
             labelled.append({"when": f"{e['day']}, {e['time']}", "listing": e["title"], "venue": e["venue"], "price": price + " (label, no card)", "ticket page": e["ticketUrl"]})
     elif "card" in b:
         on = round(word(b["line"], b["on"], b.get("nth", 0)) - 0.12, 3) if b.get("on") else None

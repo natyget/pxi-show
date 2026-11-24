@@ -66,12 +66,12 @@
    "zoom": [
     1.5,
     540,
-    400
+    150
    ],
    "label": {
     "pick": "774906c0-c1f0-4832-a48d-03e68d87779f",
     "name": "Unlimited Prosecco Cruise",
-    "place": "Pier 36"
+    "place": "Pier 36 NYC"
    }
   },
   {
@@ -84,39 +84,35 @@
    "zoom": [
     1.5,
     540,
-    300
+    0
    ],
    "label": {
-    "pick": "33b0a2c8-855f-4215-8543-5fafa0425104",
-    "name": "Reggaeton on Houston",
-    "place": "San Antonios"
+    "pick": "818eae62-f0a6-456b-9596-ca20130899b2",
+    "name": "Free Rave and Arcade Pop Up",
+    "place": "Danger Danger, Brooklyn",
+    "noprice": true
    }
   },
   {
    "line": 9,
-   "flick": true
-  },
-  {
-   "line": 9,
-   "at": "Which",
    "end": true
   }
  ],
  "show": {},
  "proper": [
-  "New",
-  "York",
-  "Xanadu",
+  "ArtSpace",
   "Brooklyn",
-  "Rich",
-  "Medina",
-  "Marco",
-  "Lys",
-  "Public",
+  "Danger",
   "Hotel",
+  "Lys",
+  "Marco",
+  "Medina",
+  "New",
   "Pier",
-  "Reggaeton",
-  "Houston"
+  "Public",
+  "Rich",
+  "Xanadu",
+  "York"
  ],
  "key": [
   "skate",
