@@ -36,24 +36,28 @@ AI label off on every network (founder, Nov 19: animation does not need it). Not
 fetch the listings again (`studio/events.py la`) and check the dinner and Midnight Lovers still stand (day, time,
 price, and that the party's location is still unannounced: if it has been announced, the line is wrong).
 
+Search phrase: things to do in la this weekend
+(His first line says "what to do this weekend" in LA, not "things to do": the captions and the title carry the
+exact phrase. Saying it word for word means remaking his first line.)
+
 **Instagram and Facebook caption**
 
-if you're in LA and never know what to do this weekend, i built an app for that 🫡
+things to do in LA this weekend 🫡 if you're in LA and never know what to do, i built an app for that
 
 it's called pxi: a free app to find things to do near you. every event in Los Angeles this weekend in one place, from a dinner with strangers in Echo Park to a party that still hasn't said where it is.
 
 follow for what's on in LA every week.
 
-#losangeles #thingstodoinla #laevents #buildinpublic #pxi
+#thingstodoinla #losangeles #laevents #buildinpublic #pxi
 
-**TikTok caption** (title: if you're in LA with nothing to do this weekend)
+**TikTok caption** (title: things to do in LA this weekend? i built an app for that)
 
-if you're in LA and never know what to do this weekend, i built an app for that 🫡 it's called pxi. follow for what's on in LA every week #losangeles #thingstodoinla #laevents #buildinpublic
+things to do in LA this weekend 🫡 i never knew what to do either, so i built an app for that. it's called pxi. follow for what's on in LA every week #thingstodoinla #losangeles #laevents #buildinpublic
 
-**YouTube** (title: If you're in LA with nothing to do this weekend #shorts)
+**YouTube** (title: Things to do in LA this weekend? I built an app for that #shorts)
 
-If you're in LA and never know what to do this weekend, I built an app for that. PXI is a free app to find things to do near you: every event in Los Angeles this weekend in one place. pxispace.com/bio?utm_source=youtube
+Things to do in LA this weekend: I never knew either, so I built an app for that. PXI is a free app to find things to do in Los Angeles near you, every event this weekend in one place. pxispace.com/bio?utm_source=youtube
 
-Tags: things to do in los angeles, la events, this weekend in la, app to find events, pxi
+Tags: things to do in la, things to do in la this weekend, things to do in los angeles, la events this weekend, app to find events, pxi
 
-**Alt text:** A cartoon guy in his bedroom at night, rain on the window, tells the camera he built an app for people in Los Angeles who never know what to do. Real event cards from the PXI app flick past, then one for a Saturday party whose location is still to be announced.
+**Alt text:** Things to do in LA this weekend: a cartoon guy in his bedroom at night, rain on the window, tells the camera he built an app for people in Los Angeles who never know what to do. Real event cards from the PXI app flick past, then one for a Saturday party whose location is still to be announced.
