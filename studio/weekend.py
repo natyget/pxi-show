@@ -38,11 +38,7 @@ for i, pick in enumerate(reel["cards"]):
     out = os.path.join(d, "events", f"seed-{i + 1}.json")
     r = subprocess.run(["python3", os.path.join(ROOT, "studio/card.py"), ev_dir, pick, "--when", "This weekend", "--out", out], capture_output=True, text=True)
     if r.returncode: sys.exit(r.stderr or r.stdout)
-    fact = json.loads(r.stdout); seed = json.load(open(out))
-    # the app prints a listing's title as it is ("Foodies + New Friends"); until card.py does, take it from the listing
-    raw = json.load(open(os.path.join(ev_dir, "events.json")))["events"]
-    seed["center"]["name"] = next(e["title"] for e in raw if e["ticketUrl"] == fact["ticket page"]); json.dump(seed, open(out, "w"), indent=1, ensure_ascii=False)
-    fact["listing"] = seed["center"]["name"]; facts.append(fact); seeds.append(seed)
+    seeds.append(json.load(open(out))); facts.append({**json.loads(r.stdout), "listing": seeds[-1]["center"]["name"]})  # the title as the card prints it
 
 dur = round(vo["duration"] + 0.45, 2); beats = []; cues = []
 starts = [0.0 if i == 0 else round((word(b["line"], b["at"]) if b.get("at") else LN[b["line"]]["s"]) - 0.12, 3) for i, b in enumerate(reel["beats"])]
