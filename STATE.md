@@ -8,6 +8,8 @@ the numbers.
 
 ## Where things stand (Nov 24, 2026)
 
+- **Scheduled (not drafts, read back):** LA weekend Wed Nov 25 8:30/8:35/8:40 PM; NYC nights Thu Nov 26 5:30/5:35/
+  5:40 PM; Nio LA Thu Nov 26 8:30/8:35/8:40 PM (Chicago; IG+FB reel, TikTok, YouTube Short). Listings re-fetched first: all stand.
 - **City weekend reels (maker thread, Nov 24):** the weekend told as nights out, one scene for every city and week:
   `studio/weekend-reel.html`, built by `studio/weekend.py` from a `reel.json` of beats (a rig shot, the pick's real
   card, a chat, the end card) and the voice. `videos/2026-11-24-la-weekend/script.md` says how to make the next one.
