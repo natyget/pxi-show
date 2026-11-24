@@ -38,8 +38,9 @@ of them. Its renderer is the one part that lives on.
   Never AI-generated music. Instagram reels get a licensed library track when scheduled; TikTok photo posts get
   auto music; TikTok videos carry their own sound.
 - No copyrighted characters, music or art. No fee comparisons. Never the founder's photos. Keep the founder's name
-  and email out of outside services. `pxi-mobile-app` is read-only. No model name in any commit or file. No pull
-  request unless asked.
+  and email out of outside services. `pxi-mobile-app` is read-only. No pull request unless asked.
+- **Commits:** no model name in any commit or file. A commit message ends with the `Claude-Session:` line and
+  nothing else: never a `Co-Authored-By` line (it names a model, and the commit is refused).
 
 ## Where things are
 
