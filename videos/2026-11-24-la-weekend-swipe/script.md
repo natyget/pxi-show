@@ -19,7 +19,7 @@ Friday: / a late one / in Hollywood, / twenty-five bucks.
 Swipe. / Saturday: / Solomun{Solomoon}, / outdoors, / at six.
 Swipe. / Still standing? / House music / at midnight. || 0.3
 Sunday, / you sleep. || 0.5
-It's free. / It's called Pixie. || 1.2
+It's free. / It's called Pixie. || 0.7
 ```
 
 | Line | Picture |

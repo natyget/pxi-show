@@ -76,10 +76,10 @@ const W = VO.words;
 const A = (line, w, n = 0) => { const m = W.filter((x) => x.line === line && x.w.toLowerCase() === w.toLowerCase()); if (!m[n]) throw new Error('no word ' + line + ' ' + w); return m[n].s; };
 const LN = VO.lines;
 // key times, all from the voice
-const K = { pxi: A(2, 'PXI'), pick: A(2, 'pick'), swipe0: A(2, 'swipe'), friday: A(3, 'Friday'), late: A(3, 'late'), swipe1: A(4, 'Swipe'), outdoors: A(4, 'outdoors'),
+const K = { got: A(1, 'We'), pxi: A(2, 'PXI'), pick: A(2, 'pick'), swipe0: A(2, 'swipe'), friday: A(3, 'Friday'), late: A(3, 'late'), swipe1: A(4, 'Swipe'), outdoors: A(4, 'outdoors'), six: A(4, 'at'),
   swipe2: A(5, 'Swipe'), house: A(5, 'at'), sunday: A(6, 'Sunday') };
-const T = { couch: [0, K.pxi - 0.17], phone1: [K.pxi - 0.17, K.late - 0.12], fri: [K.late - 0.12, K.swipe1 - 0.1],
-  phone2: [K.swipe1 - 0.1, K.outdoors - 0.05], sat: [K.outdoors - 0.05, K.swipe2 - 0.1], phone3: [K.swipe2 - 0.1, K.house - 0.1],
+const T = { couch: [0, K.got - 0.05], phone1: [K.got - 0.05, K.late - 0.12], fri: [K.late - 0.12, K.swipe1 - 0.1],
+  phone2: [K.swipe1 - 0.1, K.six - 0.05], sat: [K.six - 0.05, K.swipe2 - 0.1], phone3: [K.swipe2 - 0.1, K.house - 0.1],
   late: [K.house - 0.1, K.sunday - 0.1], sun: [K.sunday - 0.1, LN[7].s - 0.25], end: [LN[7].s - 0.25, 99] };
 const PL = { couch: 100, fri: 80, sat: 46, late: 66, sun: 60 }; // frames in plates/<name>/, 24 a second, from the 3D rig
 
@@ -100,7 +100,7 @@ const PITCH = 203 * 0.87; // DiscoverStage: one card's travel in a swipe, in app
 function cam(s, P, Q) { return `translate(${Q[0] - s * P[0]}px,${Q[1] - s * P[1]}px) scale(${s})`; }
 function mixCam(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
 // CP: the filter pill, "at This weekend in Los Angeles" (app 150, 143)
-const C0 = { s: 1, P: [540, 898], Q: [540, 860] }, CP = { s: 2.1, P: [478, 513], Q: [540, 700] }, CC = { s: 1.9, P: CARD, Q: [540, 690] };
+const C0 = { s: 1.6, P: [540, 760], Q: [540, 720] }, CP = { s: 2.1, P: [478, 513], Q: [540, 700] }, CC = { s: 1.6, P: CARD, Q: [540, 640] };
 // the two swipes: from card i to card i+1, 0.34 s, starting on the word "Swipe"
 const SW = [[K.swipe1 - 0.04, 0], [K.swipe2 - 0.04, 1]], SWD = 0.34;
 
@@ -176,7 +176,7 @@ window.render = function (t, pass) {
   /* UI */
   $('end').style.opacity = pr(t, T.end[0], 0.2);
   document.querySelector('#end .icon').style.transform = `scale(${eBack(pr(t, T.end[0], 0.35))})`;
-  ['nm', 'free', 'badges'].forEach((c, i) => { document.querySelector('#end .' + c).style.opacity = pr(t, T.end[0] + 0.15 + i * 0.12, 0.2); });
+  ['nm', 'free', 'badges'].forEach((c, i) => { document.querySelector('#end .' + c).style.opacity = pr(t, T.end[0] + 0.08 + i * 0.06, 0.12); });
   const g = groups.find((x) => t >= x.s && t < x.e);
   $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has(w.w.toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
   return wait;

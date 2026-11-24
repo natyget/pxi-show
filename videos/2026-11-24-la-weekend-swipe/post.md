@@ -1,13 +1,13 @@
 # Post: one swipe a night (Los Angeles)
 
-**Not approved.** Waits for the founder's yes on this exact file. Nothing is hosted or scheduled. This piece was made
+**Not approved. Dropped:** the fresh reviewer failed it twice (`notes.md`), so by `studio/viewer.md` it does not go to the founder as is. Were it used, it would wait for the founder's yes on this exact file. Nothing is hosted or scheduled. This piece was made
 as an engine trial (`notes.md`).
 
 Hook type: a question that says who it is for ("In L.A., looking for something to do this weekend? We got you."). Ask: download ("It's free. It's called Pixie." over
 the store badges). Format: app demo, one feature (swiping the Discover cards with the When pill on This weekend).
 
 Files (not hosted):
-- video: `la-weekend-swipe.mp4` (1080x1920, 20.9 s, quick narrator and sound effects, no music)
+- video: `la-weekend-swipe.mp4` (1080x1920, 20.4 s, quick narrator and sound effects, no music)
 - cover: none made yet; the frame at 8.5 s (you dancing in the club, arms up) is the pick
 
 | Network | When (America/Chicago) | How |
