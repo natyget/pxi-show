@@ -1,10 +1,8 @@
 {
  "city": "la",
  "cards": [
-  "b34fd766-14e0-4603-914d-dedb5e43d092",
   "Night Tales",
-  "Midnight Lovers",
-  "Sunday Brunch"
+  "Midnight Lovers"
  ],
  "beats": [
   {
@@ -17,8 +15,17 @@
   },
   {
    "line": 2,
-   "card": 0,
-   "on": "about"
+   "shot": "dinner",
+   "zoom": [
+    1.5,
+    540,
+    700
+   ],
+   "label": {
+    "pick": "b34fd766-14e0-4603-914d-dedb5e43d092",
+    "name": "Foodies + New Friends",
+    "place": "Echo Park"
+   }
   },
   {
    "line": 3,
@@ -26,7 +33,7 @@
   },
   {
    "line": 4,
-   "card": 1,
+   "card": 0,
    "on": "about"
   },
   {
@@ -59,7 +66,7 @@
   },
   {
    "line": 6,
-   "card": 2,
+   "card": 1,
    "on": "about"
   },
   {
@@ -68,8 +75,16 @@
   },
   {
    "line": 8,
-   "card": 3,
-   "on": "free"
+   "shot": "roof",
+   "zoom": [
+    1.5,
+    540,
+    1200
+   ],
+   "label": {
+    "pick": "2464b0f7-2e02-400b-88c4-b9e0fa95e615",
+    "place": "Sunset Rooftop"
+   }
   },
   {
    "line": 9,

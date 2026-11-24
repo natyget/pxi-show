@@ -21,14 +21,14 @@ All four of these / are in Pixie. / Send this / to whoever plans / your weekend.
 |---|---|
 | Are you in LA, looking for things to do this weekend? We got you | Nio in his room, seen from the floor, bored at his phone; his face lights up on "We got you" (rig shot `shots/hook.json`) |
 | Friday, you can have dinner with strangers in Echo Park | A dinner table in Nio World: Nio and three people he does not know, laughing (rig shot `shots/dinner.json`) |
-| It's called Foodies and New Friends | The listing's real Discover card, the app screen as wide as the picture. A small push toward the price on "about twenty-three dollars" |
+| It's called Foodies and New Friends | The same table, closer, with the listing's facts as a plain label: its name, FRI 7 PM, Echo Park, $23.18. No card: this listing has no song, so the app lists it in All events and never shows it as a card |
 | After dinner, you go dancing | Nio on the club floor, the crowd behind him (rig shot `shots/club.json`) |
-| Night Tales, at The Spotlight | Its real card. Push toward the price on "about twenty-five" |
+| Night Tales, at The Spotlight | The listing's real Discover card, the app screen as wide as the picture. A small push toward the price on "about twenty-five" |
 | Saturday's party won't say where it is yet | A chat with Sarah: "midnight lovers saturday?", "where is it", "location TBA 😭", "ok im in", each landing on its word |
 | Midnight Lovers | Its real card: the place line says LOCATION TBA, LOS ANGELES. Push toward the price on "about thirty-five dollars" |
 | Sunday, you recover on a rooftop | Nio up on a chair on the roof with a cup, laughing (rig shot `shots/roof.json`) |
-| Brunch and football on Sunset | Its real card. Push toward the price, which says FREE, on "free" |
-| All four of these are in PXI | The four cards again, quickly |
+| Brunch and football on Sunset | The same roof, closer, with a plain label: Sunday Brunch + Football, SUN 11 AM, Sunset Rooftop, FREE. No card, for the same reason |
+| All four of these are in PXI | The two cards again, quickly |
 | Send this to whoever plans your weekend | The PXI icon, "PXI", "free", the store badges |
 
 ## The listings (fetched Nov 24 from PXI's API; every fact, with its ticket page, is in `sources.md`)
@@ -57,6 +57,8 @@ The scene is `studio/weekend-reel.html`, copied in as `scene.html`; it names no 
    the one ask. Say only what each listing says; say prices the way a friend does ("about twenty-five").
    Open the block with ```` ```voice quick ````, break the captions with ` / `, then
    `python ../../studio/voice.py script.md` and `hear.py`.
+   Only a listing with a song (the note mark in `events.py`) is a Discover card in the app; `card.py` refuses the
+   rest. A pick without one is told with its picture and a `label` (see `studio/weekend.py`), never a card.
 3. `reel.json`: the city, `cards` (words from each title, or the listing id when the same event is listed on several
    nights), and `beats`, one per voice line (`studio/weekend.py` lists the kinds: `shot`, `card` with the word its
    push lands on, `chat` with the word each message lands on, `end`), plus the names that keep their capitals.

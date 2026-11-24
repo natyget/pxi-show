@@ -1,15 +1,13 @@
 # Post: Los Angeles this weekend
 
-**Not approved.** Waiting for the founder's yes on this exact cut (cut 2). Nothing is hosted or scheduled.
+**Not approved.** Waiting for the founder's yes on this exact cut (cut 3). Nothing is hosted or scheduled.
 
-Cut 1 (Nov 24) passed the fresh reviewer; the founder on it: "the hooks are a bit weak and not specific. it doesn't
-say are you in [city] looking for things to do? we got you. or something. and the voice sleepy and not fat and quick
-better for stories not info like this". Cut 2 opens on that line and uses the quick narrator the founder picked
-("voice b nice"); it is 34 s instead of 41.
-
-The fresh reviewer passed cut 2 ("barely"): the opening question "is for me", the strangers' dinner is "a good
-lead", the chat "the most human beat". Where it would leave: the app cards, at about 9 s; it wants each held half as
-long and the captions off the stamp. It also wants "LA this weekend" in written words on the first frame.
+Cut 1 passed the fresh reviewer; the founder on it: "the hooks are a bit weak and not specific. it doesn't say are
+you in [city] looking for things to do? we got you. or something. and the voice sleepy and not fat and quick better
+for stories not info like this". Cut 2 opened on that line with the quick narrator the founder picked ("voice b
+nice") and was withdrawn the same hour: it drew Discover cards for the dinner and the brunch, and the app only shows
+a listing as a card when it carries a song (`carouselMix.ts`). Cut 3 keeps real cards for Night Tales and Midnight
+Lovers and tells the dinner and the brunch with their picture and a plain label.
 
 Hook type: the city and the need, as a question. Ask: send.
 

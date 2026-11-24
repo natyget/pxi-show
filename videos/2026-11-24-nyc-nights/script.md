@@ -27,10 +27,10 @@ All four / are in Pixie. / Which one / are you going to? || 0.9
 | If you'd rather stay on your feet, Friday is for dancing | Nio on the club floor, the crowd's arms up (rig shot `shots/club.json`) |
 | Marco Lys, at the Public Hotel | Its real card. Push toward the price on "twenty dollars" |
 | Sunday starts before you're ready | Nio asleep sitting up on the edge of his bed (rig shot `shots/asleep.json`) |
-| An unlimited prosecco cruise, at Pier 36 | Its real card. Push toward the price on "about nineteen dollars" |
+| An unlimited prosecco cruise, at Pier 36 | The same shot, closer, with the listing's facts as a plain label: Unlimited Prosecco Cruise, SUN 11 AM, Pier 36, $18.90. No card: this listing has no song, so the app lists it in All events and never shows it as a card |
 | And when the money runs out, | Nio in tears at his phone (rig shot `shots/broke.json`) |
-| there's Reggaeton on Houston. Sunday at five, and it's free | Its real card. Push toward the price, which says FREE, on "free" |
-| All four are in PXI | The four cards again, quickly |
+| there's Reggaeton on Houston. Sunday at five, and it's free | The same shot, closer, with a plain label: Reggaeton on Houston, SUN 5 PM, San Antonios, FREE. No card, for the same reason |
+| All four are in PXI | The two cards again, quickly |
 | Which one are you going to? | The PXI icon, "PXI", "free", the store badges |
 
 ## The listings (fetched Nov 24 from PXI's API; every fact, with its ticket page, is in `sources.md`)

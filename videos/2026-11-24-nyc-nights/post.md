@@ -1,9 +1,11 @@
 # Post: New York this weekend, as nights out
 
-**Not approved.** Waiting for the founder's yes on this exact cut (cut 2). Nothing is hosted or scheduled.
+**Not approved.** Waiting for the founder's yes on this exact cut (cut 3). Nothing is hosted or scheduled.
 
 Cut 2 follows the founder's note on the Los Angeles reel: it opens on "are you in New York, looking for things to do
-this weekend? we got you" and uses the quick narrator; it is 35 s instead of 42.
+this weekend? we got you" and uses the quick narrator; it is 35 s instead of 42. Cut 2 was withdrawn the same hour:
+it drew Discover cards for the cruise and for Reggaeton on Houston, and the app only shows a listing as a card when
+it carries a song. Cut 3 keeps real cards for Xanadu and Marco Lys and tells the other two with a picture and a label.
 
 Hook type: the city and the need, then a question answered by the first listing. Ask: comment.
 

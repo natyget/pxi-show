@@ -3,12 +3,12 @@
  "when": "This weekend",
  "city": "Los Angeles",
  "day": "FRI",
- "hour": "7 PM",
+ "hour": "10 PM",
  "me": "assets/me-nio.png",
  "center": {
-  "name": "Foodies + New Friends Echo Park: Dinner with Strangers",
+  "name": "Night Tales",
   "host": "",
-  "cover": "/videos/2026-11-24-la-weekend/events/la/covers/b34fd766-14e0-4603-914d-dedb5e43d092.jpg",
+  "cover": "/videos/2026-11-24-la-weekend/events/la/covers/351b05f3-10f3-4281-a0c6-e5e1526ef688.jpg",
   "pos": "50% 50%",
   "faces": [],
   "going": 0,
@@ -16,16 +16,16 @@
   "reaction": null,
   "match": null,
   "external": true,
-  "genre": "LOS ANGELES",
-  "second": "NOV 27",
-  "label": "/videos/2026-11-24-la-weekend/events/la/covers/b34fd766-14e0-4603-914d-dedb5e43d092.jpg",
-  "location": "RESTAURANT OF THE NIGHT",
-  "price": "$23.18",
-  "stamp": "/videos/2026-11-24-la-weekend/events/la/stamps/b34fd766-14e0-4603-914d-dedb5e43d092.svg"
+  "genre": "NIGHT TALES",
+  "second": "BELIEVE",
+  "label": "/videos/2026-11-24-la-weekend/events/la/covers/351b05f3-10f3-4281-a0c6-e5e1526ef688.jpg",
+  "location": "THE SPOTLIGHT",
+  "price": "$24.93",
+  "stamp": "/videos/2026-11-24-la-weekend/events/la/stamps/351b05f3-10f3-4281-a0c6-e5e1526ef688.svg"
  },
  "left": {
-  "name": "Sip Smoke And Paint - Dj Pony Boy",
-  "cover": "/videos/2026-11-24-la-weekend/events/la/covers/24fa8fd3-57fc-40b3-901f-e3e5a396d2c1.jpg"
+  "name": "Lost Without R&B🍹",
+  "cover": "/videos/2026-11-24-la-weekend/events/la/covers/1137d493-e267-4571-b5d8-67994b10040b.jpg"
  },
  "discOpen": true,
  "joined": false

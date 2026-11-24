@@ -47,6 +47,10 @@ body.pass-art #ui{display:none}
 #list .b.me{align-self:flex-end;background:#0a84ff;transform-origin:100% 100%}
 #chat .in{position:absolute;left:22px;right:22px;bottom:60px;height:76px;border-radius:38px;border:2px solid #2c2c2e;display:flex;align-items:center;gap:18px;padding:0 14px;color:#5c5c61;font:400 34px Inter}
 #chat .in .plus{width:50px;height:50px;border-radius:25px;background:#2c2c2e;color:#9a9aa0;display:flex;align-items:center;justify-content:center;font:400 40px/1 Inter}
+/* a listing's facts beside a picture of the night, when the app shows it in All events and not as a card */
+#lab{position:absolute;left:100px;right:160px;top:380px;color:#fff;paint-order:stroke fill;-webkit-text-stroke:12px #000;opacity:0}
+#lab b{display:block;font:900 64px/1.05 Inter;letter-spacing:-1px}
+#lab i{display:block;font:500 40px/1.25 "DM Mono";font-style:normal;color:#e6d6ff;margin-top:10px}
 </style></head>
 <body>
 <div id="stage">
@@ -61,6 +65,7 @@ body.pass-art #ui{display:none}
 <div id="ui">
   <div id="end"><div class="icon"><img src="/look/brand/pxi-app-icon.png"></div><div class="nm">PXI</div><div class="free">free</div>
     <div class="badges"><img class="as" src="/look/brand/app-store-badge.svg"><img class="gp" src="/look/brand/google-play-badge.png"></div></div>
+  <div id="lab"><b></b><i></i></div>
   <div id="cap"></div>
 </div>
 </div>
@@ -111,8 +116,8 @@ window.render = function (t, pass) {
   /* a rig shot: one PNG per frame at 24 a second */
   let wait = true; const im = $('plate');
   if (b.kind === 'shot') {
-    const f = Math.min(b.frames - 1, Math.floor((t - b.t0) * 24)), src = `plates/${b.name}/f${String(f).padStart(4, '0')}.png`;
-    im.style.display = 'block';
+    const f = Math.min(b.frames - 1, (b.f0 || 0) + Math.floor((t - b.t0) * 24)), src = `plates/${b.name}/f${String(f).padStart(4, '0')}.png`;
+    im.style.display = 'block'; im.style.transformOrigin = b.zoom ? `${b.zoom[1]}px ${b.zoom[2]}px` : '50% 50%'; im.style.transform = b.zoom ? `scale(${b.zoom[0]})` : 'none';
     if (im.dataset.src !== src) { im.dataset.src = src; im.src = src; wait = im.decode().then(() => true, () => true); }
   } else im.style.display = 'none';
   const flick = b.kind === 'flick' ? Math.min(REEL.seeds.length - 1, Math.floor((t - b.t0) / (b.t1 - b.t0) * REEL.seeds.length)) : -1; // every card again, one after another
@@ -136,6 +141,8 @@ window.render = function (t, pass) {
     const kids = $('list').querySelectorAll('.b');
     shown.forEach((m, i) => { const p = pr(t, m.t, 0.25); kids[i].style.transform = `translateY(${(1 - eBack(p)) * 36}px) scale(${lerp(.6, 1, eBack(p))})`; kids[i].style.opacity = clamp(p * 3); });
   }
+  { const L = $('lab'), on = b.kind === 'shot' && b.label; if (on) { L.querySelector('b').textContent = b.label[0]; L.querySelector('i').textContent = b.label[1]; }
+    const p = on ? eOut(pr(t, b.t0 + 0.1, 0.25)) : 0; L.style.opacity = p; L.style.transform = `translateY(${(1 - p) * 20}px)`; }
   /* the end card and the captions */
   const end = B.find((x) => x.kind === 'end'), te = end ? end.t0 : 1e9;
   $('end').style.opacity = pr(t, te, 0.2);
