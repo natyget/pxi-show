@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Inter;font-weight:600;src:url(Inter-SemiBold.otf)}
+@font-face{font-family:Inter;font-weight:700;src:url(Inter-Bold.otf)}
+@font-face{font-family:Inter;font-weight:500;src:url(Inter-Medium.otf)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:720px;height:1560px;overflow:hidden;background:#000;font-family:Inter,"Noto Color Emoji";color:#fff}
+#bg{position:absolute;inset:-60px;background:center/cover;filter:blur(28px) brightness(.4)}
+.n{position:absolute;left:28px;right:28px;height:136px;border-radius:40px;background:rgba(40,40,44,.72);backdrop-filter:blur(20px);display:flex;align-items:center;padding:0 26px;gap:22px}
+.n img.i{width:76px;height:76px;border-radius:18px}.n .tx{flex:1}.n b{font-weight:700;font-size:28px;display:block}.n span{font-weight:500;font-size:27px;opacity:.9}
+.n .th{width:76px;height:76px;border-radius:12px;background:center/cover}.n .tm{position:absolute;right:122px;top:20px;font-size:22px;opacity:.6;font-weight:500}
+</style></head><body><div id="bg"></div>
+<div style="position:absolute;left:0;right:0;top:170px;text-align:center;font-weight:600;font-size:40px;opacity:.9" id="d"></div>
+<div style="position:absolute;left:0;right:0;top:215px;text-align:center;font-weight:700;font-size:210px;letter-spacing:-6px;opacity:.95">9:40</div>
+<div id="ns"></div>
+<script>
+const Q=new URLSearchParams(location.search); bg.style.backgroundImage='url('+Q.get('bg')+')'; d.textContent=Q.get('date');
+const N=JSON.parse(Q.get('n')); ns.innerHTML=N.map((x,i)=>'<div class="n" style="top:'+(720+i*156)+'px"><img class="i" src="pxi-icon.png"><div class="tx"><b>'+x[0]+'</b><span>'+x[1]+'</span></div><div class="th" style="background-image:url('+x[3]+')"></div><div class="tm">'+x[2]+'</div></div>').join('');
+window.READY=document.fonts.ready.then(()=>new Promise(r=>setTimeout(r,400)));
+</script></body></html>

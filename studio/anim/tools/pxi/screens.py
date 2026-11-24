@@ -241,7 +241,7 @@ def discover():
     tabbar(s, 0)
     return s.im
 
-def camera(album='LATE CHECKOUT', view='view', print_shot='selfie'):
+def camera(album='FRIENDSGIVING', view='view', print_shot='selfie'):
     """The camera. Sources: app/(tabs)/camera.tsx (a full-bleed viewfinder with the controls over it), and in
     src/components/camera: LiveAlbumPill.tsx, VaultPolaroid.tsx, FilterModePill.tsx, filterPillThemes.ts (SNAP: a matte
     black body, white shutter, the orange ring and name)."""

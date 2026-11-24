@@ -1,0 +1,25 @@
+{
+"discover-tonight":[
+ {"type":"cover","text":"how to find something to do tonight","img":"s/discover.png"},
+ {"kicker":"1/4","text":"open Discover","img":"s/discover.png","ring":[[330,168,330,110]]},
+ {"kicker":"2/4","text":"pick when and which city","img":"s/discover.png","ring":[[360,285,700,120]]},
+ {"kicker":"3/4","text":"swipe through what's on. or flip to Map for what's near you","img":"s/discover.png","ring":[[534,384,170,80]]},
+ {"kicker":"4/4","text":"tap JOIN and you're in","img":"s/discover.png","ring":[[309,1322,260,110]]},
+ {"type":"end"}],
+"plan-a-birthday":[
+ {"type":"cover","text":"how to plan a birthday without the group chat chaos","img":"s/event.png"},
+ {"kicker":"1/4","text":"make the event","img":"s/discover.png","ring":[[651,168,120,120]]},
+ {"kicker":"2/4","text":"drop the link in the group chat","img":"s/event.png","ring":[[594,1311,110,110]]},
+ {"kicker":"3/4","text":"everyone shoots into the same album","img":"s/camera.png","ring":[[360,150,400,90]]},
+ {"kicker":"4/4","text":"wake up to every photo from the night","img":"s/gallery.png"},
+ {"type":"end"}],
+"wedding-photos":[
+ {"type":"cover","text":"how to get every photo from your wedding","img":"s/gallery.png"},
+ {"kicker":"1/3","text":"make your wedding an event on PXI","img":"s/discover.png","ring":[[651,168,120,120]]},
+ {"kicker":"2/3","text":"guests join and shoot from their own phones","img":"s/camera.png","ring":[[360,150,400,90]]},
+ {"kicker":"3/3","text":"every angle you missed, in one album","img":"s/gallery.png"},
+ {"type":"end"}],
+"dyk-passport":[{"kicker":"did you know","text":"PXI gives you a stamp for every event you go to","img":"s/passport.png","ring":[[360,670,700,420]]}],
+"dyk-tagged":[{"kicker":"did you know","text":"PXI tells you when you're in new photos","img":"s/lock.png","ring":[[360,775,700,100]]}],
+"dyk-thread":[{"kicker":"did you know","text":"every album has its own chat","img":"s/thread.png","ring":[[220,265,330,90]]}]
+}

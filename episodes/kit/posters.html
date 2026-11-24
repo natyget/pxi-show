@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:PF;font-style:italic;font-weight:600;src:url(pf/playfair-display-latin-600-italic.woff2)}
+@font-face{font-family:Fred;font-weight:600;src:url(pf/fredoka-latin-600-normal.woff2)}
+@font-face{font-family:Nun;font-weight:700;src:url(pf/nunito-latin-700-normal.woff2)}
+@font-face{font-family:Nun;font-weight:800;src:url(pf/nunito-latin-800-normal.woff2)}
+@font-face{font-family:DMS;src:url(pf/dm-serif-display-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:700;src:url(Inter-Bold.otf)}
+*{margin:0;padding:0}body{width:720px;height:900px;overflow:hidden;position:relative}
+#bg{position:absolute;inset:0;background:center/cover}.x{position:absolute;white-space:nowrap}
+.c{left:0;right:0;text-align:center}
+</style></head><body><div id="bg"></div><div id="t"></div><script>
+const P={
+fg:['clean-friendsgiving.png','<div class="x" style="left:82px;top:312px;font-family:PF;font-style:italic;font-weight:600;font-size:36px;color:#C46A2B">at Sarah\'s</div><div class="x" style="left:82px;top:748px;font-family:Nun;font-weight:700;font-size:19px;color:#A0704F">Bring a side. Sarah has the bird.</div>'],
+bday:['clean-tess-turns-21.png','<div class="x c" style="top:122px;margin-left:20px;font-family:DMS;font-size:36px;letter-spacing:2px;color:#B5173F">EMILY IS</div><div class="x c" style="top:690px;margin-left:16px;font-family:Inter;font-weight:700;font-size:21px;letter-spacing:4px;color:#2a2a2a">RSVP TO EMILY</div>'],
+shower:['clean-baby-shower.png','<div class="x c" style="top:546px;font-family:Nun;font-weight:700;font-size:40px;color:#E8846B">A shower for Jessica</div><div class="x c" style="top:668px;font-family:Nun;font-weight:800;font-size:19px;letter-spacing:3px;color:#4A78A8">AT LAUREN\'S PLACE</div>'],
+game:['clean-game-night-at-kofis.png','<div class="x c" style="top:520px;font-family:Fred;font-weight:600;font-size:52px;color:#fff">at Mike\'s</div>'],
+wedding:['clean-maya-and-theo.png','<div class="x c" style="top:262px;font-family:DMS;font-size:80px;color:#2F3B2F">C&amp;A</div><div class="x c" style="top:446px;font-family:DMS;font-size:62px;color:#2F3B2F">Chris &amp; Ashley</div>']};
+const k=new URLSearchParams(location.search).get('p');bg.style.backgroundImage='url('+P[k][0]+')';t.innerHTML=P[k][1];
+window.READY=document.fonts.ready.then(()=>new Promise(r=>setTimeout(r,300)));
+</script></body></html>

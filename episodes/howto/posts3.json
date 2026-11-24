@@ -1,0 +1,198 @@
+{
+ "baby-shower": [
+  {
+   "type": "cover",
+   "text": "how to get every photo from the baby shower",
+   "img": "s/shower-event.png"
+  },
+  {
+   "kicker": "1/3",
+   "text": "make the event",
+   "img": "s/shower-discover.png",
+   "ring": [
+    [
+     652,
+     170,
+     110,
+     110
+    ]
+   ]
+  },
+  {
+   "kicker": "2/3",
+   "text": "drop the link in the group chat",
+   "img": "s/shower-event-open.png",
+   "ring": [
+    [
+     594,
+     1311,
+     110,
+     110
+    ]
+   ]
+  },
+  {
+   "kicker": "3/3",
+   "text": "everyone shoots into one album",
+   "img": "s/shower-camera.png",
+   "ring": [
+    [
+     360,
+     152,
+     380,
+     74
+    ]
+   ]
+  },
+  {
+   "type": "end"
+  }
+ ],
+ "graduation": [
+  {
+   "type": "cover",
+   "text": "how to get every photo from graduation",
+   "img": "s/grad-event.png"
+  },
+  {
+   "kicker": "1/3",
+   "text": "make the event",
+   "img": "s/grad-discover.png",
+   "ring": [
+    [
+     652,
+     170,
+     110,
+     110
+    ]
+   ]
+  },
+  {
+   "kicker": "2/3",
+   "text": "drop the link in the group chat",
+   "img": "s/grad-event-open.png",
+   "ring": [
+    [
+     594,
+     1311,
+     110,
+     110
+    ]
+   ]
+  },
+  {
+   "kicker": "3/3",
+   "text": "everyone shoots into one album",
+   "img": "s/grad-camera.png",
+   "ring": [
+    [
+     360,
+     152,
+     380,
+     74
+    ]
+   ]
+  },
+  {
+   "type": "end"
+  }
+ ],
+ "game-night": [
+  {
+   "type": "cover",
+   "text": "how to get every photo from game night",
+   "img": "s/game-event.png"
+  },
+  {
+   "kicker": "1/3",
+   "text": "make the event",
+   "img": "s/game-discover.png",
+   "ring": [
+    [
+     652,
+     170,
+     110,
+     110
+    ]
+   ]
+  },
+  {
+   "kicker": "2/3",
+   "text": "drop the link in the group chat",
+   "img": "s/game-event-open.png",
+   "ring": [
+    [
+     594,
+     1311,
+     110,
+     110
+    ]
+   ]
+  },
+  {
+   "kicker": "3/3",
+   "text": "everyone shoots into one album",
+   "img": "s/game-camera.png",
+   "ring": [
+    [
+     360,
+     152,
+     380,
+     74
+    ]
+   ]
+  },
+  {
+   "type": "end"
+  }
+ ],
+ "run-club": [
+  {
+   "type": "cover",
+   "text": "how to get every photo from run club",
+   "img": "s/run-event.png"
+  },
+  {
+   "kicker": "1/3",
+   "text": "make the event",
+   "img": "s/run-discover.png",
+   "ring": [
+    [
+     652,
+     170,
+     110,
+     110
+    ]
+   ]
+  },
+  {
+   "kicker": "2/3",
+   "text": "drop the link in the group chat",
+   "img": "s/run-event-open.png",
+   "ring": [
+    [
+     594,
+     1311,
+     110,
+     110
+    ]
+   ]
+  },
+  {
+   "kicker": "3/3",
+   "text": "everyone shoots into one album",
+   "img": "s/run-camera.png",
+   "ring": [
+    [
+     360,
+     152,
+     380,
+     74
+    ]
+   ]
+  },
+  {
+   "type": "end"
+  }
+ ]
+}

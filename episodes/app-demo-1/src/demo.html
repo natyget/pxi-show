@@ -1,0 +1,229 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- App demo 1, "Saturday at Nio's". 1080 x 1920. Window.T(t) draws the frame at t seconds.
+     App screens copy pxi-mobile-app: camera (app/(tabs)/camera.tsx, components/camera), the event view
+     (components/album/AlbumDetailsModal.tsx, components/event/EventDetailsBody.tsx, EventFooter.tsx, eventTheme.ts)
+     and the album gallery (app/album/[id].tsx, AlbumMasonryGrid.tsx). Camera and gallery sizes are the ones
+     studio/anim/tools/pxi/screens.py read from the app, on its 360 x 780 grid. -->
+<script src="icons.js"></script>
+<style>
+@font-face{font-family:Notch;src:url(StackSansNotch-Bold.ttf)}
+@font-face{font-family:Notch6;src:url(StackSansNotch-SemiBold.ttf)}
+@font-face{font-family:Inter;font-weight:400;src:url(Inter-Regular.otf)}
+@font-face{font-family:Inter;font-weight:500;src:url(Inter-Medium.otf)}
+@font-face{font-family:Inter;font-weight:600;src:url(Inter-SemiBold.otf)}
+@font-face{font-family:Inter;font-weight:700;src:url(Inter-Bold.otf)}
+@font-face{font-family:Inter;font-weight:800;src:url(Inter-ExtraBold.otf)}
+@font-face{font-family:Inter;font-weight:900;src:url(Inter-Black.otf)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Inter,"Noto Color Emoji",sans-serif;color:#fff}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;display:none;overflow:hidden}
+.photo{position:absolute;inset:0;background-size:cover;background-position:center;image-rendering:pixelated}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+/* captions: white heavy type on a dark plate, where a person would put it */
+.cap{position:absolute;left:60px;right:60px;text-align:center;font-weight:900;font-size:66px;line-height:1.12;letter-spacing:-0.5px;opacity:0}
+.cap span{background:rgba(0,0,0,.72);padding:6px 22px;border-radius:18px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* the phone */
+#stage{background:#000 url(bg.png) center/cover}
+#phone{position:absolute;left:160px;top:262px;width:760px;height:1647px;border-radius:106px;overflow:hidden;background:#000;
+  box-shadow:0 0 0 10px #1b1b1d,0 0 0 12px #3a3a3e,0 40px 120px rgba(0,0,0,.6)}
+#screen{position:absolute;left:0;top:0;width:393px;height:852px;transform:scale(1.93384);transform-origin:0 0;overflow:hidden;background:#000}
+.g360{position:absolute;left:0;top:0;width:360px;height:780px;transform:scale(1.091667);transform-origin:0 0;overflow:hidden}
+.ic svg{display:block}
+.island{position:absolute;left:135px;top:11px;width:123px;height:36px;border-radius:18px;background:#000;z-index:50}
+.tap{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(255,255,255,.55);border:2px solid rgba(255,255,255,.9);opacity:0;z-index:60}
+</style></head><body>
+
+<!-- 1. the party, as the photos people took -->
+<div class="scene" id="party">
+  <div class="photo" id="p1"></div>
+  <div class="flash" id="pflash"></div>
+</div>
+
+<!-- 2. the phone -->
+<div class="scene" id="stage">
+  <div id="phone"><div id="screen">
+    <div class="island"></div>
+
+    <!-- CAMERA -->
+    <div id="cam" class="g360">
+      <div class="photo" id="vf" style="background-image:url(shout.png)"></div>
+      <div id="camst"></div>
+      <div class="abs" id="livepill" style="top:61px;height:29px;border-radius:15px;background:#121212;display:flex;align-items:center;padding:0 15px 0 11px;left:50%;transform:translateX(-50%)">
+        <div style="width:6px;height:6px;border-radius:3px;background:#FF5A1F;margin-right:7px"></div>
+        <div style="font-weight:900;font-size:10px;letter-spacing:1px;color:#FF5A1F">LIVE</div>
+        <div style="width:1px;height:13px;background:rgba(255,255,255,.25);margin:0 7px"></div>
+        <div style="font-family:Notch6;font-size:12px;white-space:nowrap">NIO'S BIRTHDAY</div>
+      </div>
+      <div class="abs" style="left:121px;top:547px;width:118px;height:40px;border-radius:20px;background:rgba(0,0,0,.4)"></div>
+      <div class="abs" style="left:125px;top:551px;width:33px;height:33px"></div>
+      <div class="abs" style="left:163px;top:551px;width:33px;height:33px;border-radius:50%;background:#121212;border:1px solid #1f1f1f"></div>
+      <div class="abs" style="left:121px;top:547px;width:118px;height:40px;display:flex;align-items:center;font-weight:900;font-size:10px">
+        <div style="position:absolute;left:20px;transform:translateX(-50%);color:rgba(255,255,255,.75)">.5</div>
+        <div style="position:absolute;left:59px;transform:translateX(-50%)">1</div>
+        <div style="position:absolute;left:97px;transform:translateX(-50%);color:rgba(255,255,255,.75)">3</div>
+      </div>
+      <div class="abs" style="left:294px;top:543px;width:40px;height:49px;border-radius:3px;background:#F4F1EA;box-shadow:0 2px 6px rgba(0,0,0,.4)">
+        <div class="photo" id="thumb" style="left:3px;top:3px;right:3px;bottom:auto;height:37px;border-radius:1px;background-image:url(girls.png)"></div>
+      </div>
+      <div class="abs" style="left:41px;top:602px;width:277px;height:69px;border-radius:35px;background:#121212;border:1px solid #1f1f1f"></div>
+      <div class="abs ic" style="left:73px;top:628px" data-icon="Refresh04Icon" data-size="18" data-color="rgba(255,255,255,.9)"></div>
+      <div class="abs ic" style="left:270px;top:629px" data-icon="FlashIcon" data-size="16" data-color="rgba(255,255,255,.9)"></div>
+      <div class="abs" style="left:154px;top:610px;width:53px;height:53px;border-radius:50%;background:#FF5A1F"></div>
+      <div class="abs" style="left:157px;top:613px;width:47px;height:47px;border-radius:50%;background:#121212"></div>
+      <div class="abs" id="shutter" style="left:159px;top:615px;width:43px;height:43px;border-radius:50%;background:#fff"></div>
+      <div class="abs" style="left:181px;top:681px;transform:translateX(-50%);font-weight:900;font-size:10px;letter-spacing:2px;color:#FF5A1F">SNAP</div>
+      <div id="camtab"></div>
+      <div class="flash" id="camflash"></div>
+    </div>
+
+    <!-- GALLERY (behind the event view, then on its own) -->
+    <div id="gal" class="g360" style="background:#000">
+      <div class="abs" id="galscroll" style="left:0;top:0;width:360px;height:1100px"></div>
+      <div class="abs" style="left:0;top:0;width:360px;height:158px;background:#000"></div>
+      <div id="galst"></div>
+      <div class="abs ic" style="left:14px;top:68px" data-icon="ArrowLeft01Icon" data-size="24" data-color="#fff"></div>
+      <div class="abs" style="left:180px;top:73px;transform:translateX(-50%);font-family:Notch;font-size:13px;letter-spacing:1px;white-space:nowrap">NIO'S BIRTHDAY</div>
+      <div class="abs ic" style="left:322px;top:68px" data-icon="MoreHorizontalIcon" data-size="24" data-color="#fff"></div>
+      <div class="abs" style="left:15px;top:110px;width:330px;height:46px;border-radius:23px;background:#1C1C1C"></div>
+      <div class="abs" style="left:183px;top:116px;width:157px;height:34px;border-radius:17px;background:#A523EF"></div>
+      <div class="abs" style="left:100px;top:127px;transform:translateX(-50%);font-weight:900;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.3)">THREAD</div>
+      <div class="abs" style="left:263px;top:127px;transform:translateX(-50%);font-weight:900;font-size:10px;letter-spacing:2px">GALLERY</div>
+      <div class="abs" style="left:292px;top:643px;width:51px;height:51px;border-radius:50%;background:#A523EF;box-shadow:0 6px 16px rgba(0,0,0,.5)"></div>
+      <div class="abs ic" style="left:305px;top:656px" data-icon="Add01Icon" data-size="24" data-color="#fff"></div>
+    </div>
+
+    <!-- EVENT VIEW: the album's sheet (pageSheet over the app) -->
+    <div id="dim" class="abs" style="inset:0;background:#000;opacity:0"></div>
+    <div id="sheet" class="abs" style="left:0;top:62px;width:393px;height:790px;background:#1C1C1C;border-radius:12px 12px 0 0;overflow:hidden;transform:translateY(800px)">
+      <div class="abs" style="left:0;top:0;right:0;height:56px;padding:22px 20px 6px;display:flex;align-items:center;justify-content:space-between;z-index:3;background:#1C1C1C">
+        <div style="font-size:12.5px;font-weight:800;letter-spacing:.3px">EVENT DETAILS</div>
+        <div class="ic" data-icon="Cancel01Icon" data-size="22" data-color="#fff"></div>
+      </div>
+      <div class="abs" id="body" style="left:0;top:56px;width:393px">
+        <div style="padding:0 20px;margin-top:8px;text-align:center">
+          <div style="font-family:Notch;font-size:34px;line-height:36px;letter-spacing:-0.01em;color:#A523EF;text-shadow:0 3px 6px rgba(0,0,0,.45)">NIO'S BIRTHDAY</div>
+          <div style="margin-top:6px;color:rgba(255,255,255,.55);font-size:11px;line-height:13px;font-weight:800;letter-spacing:1.4px">PRIVATE</div>
+        </div>
+        <div style="margin:16px auto 0;width:353px;height:471px;border-radius:40px;overflow:hidden;background:#2A2A2C;position:relative">
+          <div class="photo" style="background-image:url(door.png)"></div>
+        </div>
+        <div style="padding:0 20px;margin-top:26px;text-align:center;font-family:Notch;font-size:20px;line-height:16.4px;letter-spacing:-0.015em;color:#A523EF;text-shadow:0 3px 6px rgba(0,0,0,.45)">NIO'S PLACE</div>
+        <div style="display:flex;justify-content:center;gap:40px;margin-top:22px;text-align:center">
+          <div><div style="color:#A523EF;font-size:11px;line-height:13px;font-weight:800;letter-spacing:1px">DATE</div>
+            <div style="font-family:Notch;font-size:24px;line-height:26px;margin-top:.5px;letter-spacing:-0.4px">SAT, NOV 21</div></div>
+          <div><div style="color:#A523EF;font-size:11px;line-height:13px;font-weight:800;letter-spacing:1px">TIME</div>
+            <div style="font-family:Notch;font-size:24px;line-height:26px;margin-top:.5px;letter-spacing:-0.4px">10 PM</div></div>
+        </div>
+        <div style="margin-top:4px;text-align:center;color:rgba(255,255,255,.55);font-size:11.5px;line-height:14px;font-weight:700;letter-spacing:.6px">UNTIL 3 AM</div>
+        <div style="margin:26px auto 0;width:295px;display:flex;gap:11px;align-items:center">
+          <div id="openpill" style="flex:1;height:37px;border-radius:18.5px;background:#572077;color:#A523EF;display:flex;align-items:center;justify-content:center;font-size:15.5px;font-weight:900;letter-spacing:.3px">OPEN ALBUM</div>
+          <div style="width:37px;height:37px;border-radius:50%;background:rgba(255,90,31,.15);display:flex;align-items:center;justify-content:center" class="ic" data-icon="LinkForwardIcon" data-size="17" data-color="#FF5A1F"></div>
+        </div>
+        <div style="height:400px"></div>
+      </div>
+      <!-- sticky footer, the joined state -->
+      <div class="abs" style="left:0;right:0;bottom:0;padding:44px 18px 44px;background:linear-gradient(rgba(28,28,28,0) 0%,#1C1C1C 42%,#1C1C1C 100%);z-index:3">
+        <div style="height:48px;border-radius:24px;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(50,215,75,.14)">
+          <div class="ic" data-icon="Tick02Icon" data-size="18" data-color="#32D74B"></div>
+          <div style="color:#32D74B;font-size:14px;font-weight:900;letter-spacing:1.6px">JOINED</div>
+        </div>
+      </div>
+    </div>
+    <div class="abs" style="left:126px;bottom:8px;width:141px;height:5px;border-radius:3px;background:#fff;z-index:40"></div>
+    <div class="tap" id="tap"></div>
+  </div></div>
+</div>
+
+<!-- 3. the end frame -->
+<div class="scene" id="end" style="background:#0A0A0A">
+  <img src="pxi-icon.png" class="abs" id="endicon" style="left:405px;top:660px;width:270px;height:270px;border-radius:60px">
+  <div class="abs" id="endline" style="left:0;right:0;top:1010px;text-align:center;font-weight:700;font-size:44px;color:rgba(255,255,255,.75)">Free</div>
+  <div class="abs" id="endsub" style="left:0;right:0;top:1090px;display:flex;justify-content:center;gap:30px"><img src="app-store-badge.svg" style="height:104px"><img src="google-play-badge.png" style="height:104px"></div>
+</div>
+
+<div style="display:none"><img src="door.png"><img src="sami.png"><img src="girls.png"><img src="laugh.png"><img src="shout.png"><img src="asleep.png"></div>
+<div class="cap" id="cap"><span id="captext"></span></div>
+
+<script>
+// icons
+document.querySelectorAll('[data-icon]').forEach(e=>{const s=+e.dataset.size;
+  e.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none">'+ICONS[e.dataset.icon].replaceAll('currentColor',e.dataset.color)+'</svg>';});
+// status bar and tab bar, on the 360 grid
+function status(el){el.innerHTML='<div class="abs" style="left:50px;top:19px;font-weight:600;font-size:16px">9:41</div>'+
+ '<svg class="abs" style="left:256px;top:22px" width="76" height="14" viewBox="0 0 76 14"><rect x="2" y="9" width="3" height="4" rx=".5" fill="#fff"/><rect x="7" y="7" width="3" height="6" rx=".5" fill="#fff"/><rect x="12" y="4" width="3" height="9" rx=".5" fill="#fff"/><rect x="17" y="2" width="3" height="11" rx=".5" fill="#fff"/>'+
+ '<path d="M27 6.5a10 10 0 0 1 14 0M29.5 9a6 6 0 0 1 9 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="34" cy="11.5" r="1.5" fill="#fff"/>'+
+ '<rect x="48.5" y="1.5" width="22" height="11" rx="3" stroke="rgba(255,255,255,.45)" fill="none"/><rect x="50.5" y="3.5" width="18" height="7" rx="1.5" fill="#fff"/><rect x="71.5" y="5" width="2" height="4" rx="1" fill="rgba(255,255,255,.45)"/></svg>';}
+status(camst);status(galst);
+function ic(n,s,c){return '<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none">'+ICONS[n].replaceAll('currentColor',c)+'</svg>'}
+camtab.innerHTML='<div class="abs" style="left:76px;top:700px;width:208px;height:58px;border-radius:29px;background:#1A1A1A"></div>'+
+ ['Home05Icon','Camera02Icon','Ticket01Icon'].map((n,i)=>'<div class="abs" style="left:'+(100+Math.round(i*69.6))+'px;top:718px">'+ic(n,22,i==1?'#fff':'rgba(255,255,255,.4)')+'</div>').join('');
+// gallery tiles: your shots, then everyone else
+const NOB='<svg width="22" height="22" viewBox="0 0 64 64"><rect width="64" height="64" fill="#111"/><circle cx="32" cy="24" r="12" fill="#2a2a2a"/><circle cx="32" cy="64" r="22" fill="#2a2a2a"/></svg>';
+const T_=[ // [photo, zoom, x%, y%, emoji, count]
+ ['shout',1,50,50,'🔥','156'],['laugh',1,50,40,'😍','124'],['door',1,50,50,'❤️','91'],
+ ['girls',1,50,45,'🔥','90'],['sami',1,50,35,'🙌','83'],['asleep',1,50,60,'😭','77'],
+ ['girls',2.1,25,30,'😍','71'],['door',2,50,30,'✌️','66'],['sami',2.2,50,18,'🔥','61'],
+ ['asleep',2,72,45,'🫶','58'],['laugh',1.8,50,60,'✨','52'],['shout',2,48,25,'🙌','47'],
+ ['door',2.2,20,60,'😂','44'],['girls',2,80,40,'🔥','39'],['asleep',2.2,25,40,'😴','36'],
+ ['sami',2,50,70,'✨','31'],['door',2.4,80,35,'❤️','28'],['laugh',2.6,50,30,'😍','24']];
+let h='';T_.forEach((t,i)=>{const mine=i<3;const r=mine?0:1+Math.floor((i-3)/3);const x=(i%3)*120;const y=mine?160:324+(r-1)*120;
+ h+='<div class="abs" style="left:'+(x+2)+'px;top:'+(y+2)+'px;width:116px;height:116px;border-radius:13px;overflow:hidden">'+
+   '<div class="photo" style="background-image:url('+t[0]+'.png);background-size:'+(t[1]*100)+'% auto;background-position:'+t[2]+'% '+t[3]+'%"></div></div>'+
+   '<div class="abs" style="left:'+(x+9)+'px;top:'+(y+85)+'px;width:26px;height:26px;border-radius:50%;background:#1C1C1C;padding:2px"><div style="width:22px;height:22px;border-radius:50%;overflow:hidden">'+
+   (mine?'<div style="width:22px;height:22px;background:url(laugh.png) 50% 28%/300% auto;image-rendering:pixelated"></div>':NOB)+'</div></div>'+
+   '<div class="abs" style="right:'+(360-x-111)+'px;top:'+(y+96)+'px;height:15px;border-radius:7.5px;background:rgba(0,0,0,.62);display:flex;align-items:center;padding:0 6px;gap:2px;font-size:9px;font-weight:800"><span style="font-size:10px">'+t[4]+'</span>'+t[5]+'</div>';});
+h+='<div class="abs" style="left:15px;top:300px;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.55)">Everyone else</div>';
+galscroll.innerHTML=h;
+
+// ---- the timeline (seconds)
+const CAPS=[[0.15,2.3,"saturday at nio's",1500],[2.3,4.6,"everyone's taking pics",1500],[4.6,7.9,"next day: you're in none of them",1500],
+ [7.9,11.7,"so now every pic goes to one album",62],[11.7,15.0,"one tap and you're in",62],[15.0,18.4,"even the ones you're actually in",62]];
+const ease=x=>x<0?0:x>1?1:1-Math.pow(1-x,3), cl=x=>Math.max(0,Math.min(1,x)), lin=(t,a,b)=>cl((t-a)/(b-a));
+function show(id){['party','stage','end'].forEach(s=>document.getElementById(s).style.display=s==id?'block':'none')}
+function T(t){
+  // captions
+  const c=CAPS.find(c=>t>=c[0]&&t<c[1]);
+  if(c){captext.textContent=c[2];cap.style.top=c[3]+'px';cap.style.opacity=Math.min(lin(t,c[0],c[0]+.12),1-lin(t,c[1]-.1,c[1]));
+    cap.style.transform='translateY('+(1-ease(lin(t,c[0],c[0]+.2)))*18+'px)';} else cap.style.opacity=0;
+  if(t<7.9){ show('party');
+    // the party: the door, then three photos as flashes go off, then the morning after
+    let src='door',z=1.04+0.06*lin(t,0,2.3),ox=0;
+    if(t>=2.3&&t<4.6){const k=Math.floor((t-2.3)/0.77);src=['sami','girls','laugh'][Math.min(k,2)];z=1.1-0.04*lin(t,2.3+k*.77,2.3+(k+1)*.77)}
+    if(t>=4.6){src='asleep';z=1.0+0.08*lin(t,4.6,7.9)}
+    p1.style.backgroundImage='url('+src+'.png)';p1.style.transform='scale('+z+')';
+    let f=0;[2.3,3.07,3.84].forEach(ft=>{if(t>=ft&&t<ft+.3)f=Math.max(f,.9*(1-(t-ft)/.3))});pflash.style.opacity=f;
+    return;}
+  if(t>=18.4){ show('end');
+    const k=ease(lin(t,18.4,18.9));endicon.style.transform='scale('+(0.8+0.2*k)+')';endicon.style.opacity=k;
+    endline.style.opacity=ease(lin(t,18.6,19.0));endsub.style.opacity=ease(lin(t,18.9,19.3));return;}
+  show('stage');
+  phone.style.transform='translateY('+(1-ease(lin(t,7.9,8.35)))*140+'px)';
+  const inCam=t<11.7; cam.style.display=inCam?'block':'none';
+  // camera: the viewfinder drifts, the shutter is pressed at 9.4, the print swaps to the new shot
+  vf.style.transform='scale('+(1.06+0.02*Math.sin(t*1.3))+') translate('+Math.sin(t*0.9)*3+'px,'+Math.cos(t*1.1)*2+'px)';
+  const press=lin(t,9.3,9.4)-lin(t,9.45,9.6);shutter.style.transform='scale('+(1-0.12*press)+')';
+  camflash.style.opacity=t>=9.42&&t<9.75?0.85*(1-(t-9.42)/.33):0;
+  thumb.style.backgroundImage=t>=9.5?'url(shout.png)':'url(girls.png)';
+  thumb.parentElement.style.transform='scale('+(t>=9.5?1+0.25*(1-ease(lin(t,9.5,9.8))):1)+')';
+  // the event view rises over the gallery, scrolls a little, OPEN ALBUM is tapped
+  gal.style.display=t>=11.7?'block':'none';
+  const up=ease(lin(t,11.7,12.15)), down=ease(lin(t,14.6,15.0));
+  sheet.style.transform='translateY('+((1-up)+down)*800+'px)';
+  dim.style.opacity=t<15?0.6*up:0.6*(1-down);
+  body.style.transform='translateY('+(-118*ease(lin(t,12.7,13.6)))+'px)';
+  openpill.style.transform='scale('+(1-0.05*(lin(t,14.25,14.35)-lin(t,14.4,14.5)))+')';
+  galscroll.style.transform='translateY('+(-170*ease(lin(t,15.5,18.3)))+'px)';
+  // touches
+  let tp=null;
+  if(t>=9.25&&t<9.7)tp=[196,694,lin(t,9.25,9.35)-lin(t,9.5,9.7)];
+  if(t>=14.2&&t<14.65)tp=[176,62+56+118-118+0,0];
+  if(t>=14.2&&t<14.65){const r=openpill.getBoundingClientRect(),sr=screenEl.getBoundingClientRect(),k=sr.width/393;
+    tp=[(r.left+r.width/2-sr.left)/k,(r.top+r.height/2-sr.top)/k,lin(t,14.2,14.3)-lin(t,14.45,14.65)];}
+  if(tp){tap.style.left=tp[0]+'px';tap.style.top=tp[1]+'px';tap.style.opacity=tp[2];}else tap.style.opacity=0;
+}
+const screenEl=document.getElementById('screen');
+window.READY=document.fonts.ready.then(()=>Promise.all([...document.images].map(i=>i.decode().catch(()=>0))));
+</script>
+</body></html>
