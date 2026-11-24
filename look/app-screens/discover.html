@@ -1,224 +1,279 @@
 <!doctype html>
 <html><head><meta charset="utf-8">
-<!-- An outside listing (center.external) has no heart, and no faces, polaroids, reaction or taste match unless given:
-     that is how EventCover.tsx and DiscoverDetails.tsx draw one. -->
-<!-- PXI Discover, rebuilt for the web from pxi-mobile-app v2.3.2 (src/components/discover/*).
-     Geometry follows geometry.ts / DiscoverScreen.tsx at a 390x844pt iPhone (insets 47/34).
-     Hydrate by setting window.SEED before load, or ?seed=<a seed file, or url-encoded JSON>. -->
+<!-- PXI Discover, the carousel, rebuilt for the web from pxi-mobile-app (src/components/discover/: DiscoverScreen.tsx,
+     DiscoverStage.tsx, EventCover.tsx, EventDisc.tsx, VinylDisc.tsx, DiscoverDetails.tsx, geometry.ts, titleFit.ts, and
+     allEvents/DoorwayCover.tsx, DoorwayDetails.tsx for the last card). 390x844pt iPhone, insets 47/34.
+     Seed: studio/card.py writes it (the app's own code picks the cards, their order and every word): { clock, when,
+     city, second, cards: [...], at, discOpen }. An older seed ({ center, left }) still draws: one card and the one before it.
+     A scene drives it (all of these only set where things are; the scene owns the clock):
+       swipe(index, progress)  the carousel between card `index` (progress 0) and the next one (progress 1), as a finger
+                               drags it: the leaving card shrinks, lifts and dims, the arriving one grows, the record
+                               fades away with its card and comes back under the new one, the words under it cross-fade
+       disc(p)                 the record popped out from behind the centred cover, 0 (a sliver) to 1 (out, its two lines showing)
+       spin(deg)               the record turned
+       fan(p)                  the last card's three flyers, 0 (stacked) to 1 (fanned); left alone they open as the card arrives
+       spring(name, seconds)   how far one of the app's springs has come after that long: 'snap' (a card), 'disc' (the record), 'pop' (the flyers)
+     An outside listing with a flyer shows the flyer alone (no name over it, no heart, no faces), as EventCover draws it. -->
 <style>
-@font-face{font-family:Inter;src:url(assets/inter.woff2) format('woff2');font-weight:100 900}
-@font-face{font-family:'Stack Sans Notch';src:url(assets/StackSansNotch-Bold.ttf);font-weight:700 900}
-:root{--page:#000;--sheet:#1C1C1C;--pill:#232323;--input:#2E2E2E;--stampDisc:#161616;--purple:#A523EF;--purpleOnPhoto:#D651FB;--magenta:#FF10F0;--orange:#FF5A1F;--dim:rgba(255,255,255,.55);--dimmer:rgba(255,255,255,.35);--hair:rgba(255,255,255,.08)}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{width:390px;height:844px;background:#000;overflow:hidden;-webkit-font-smoothing:antialiased}
-body{font-family:Inter,-apple-system,system-ui,sans-serif;color:#fff;position:relative}
-.disp{font-family:'Stack Sans Notch',Inter,sans-serif;font-weight:900;letter-spacing:-.4px}
-.abs{position:absolute}
-/* status bar */
-.sb{top:0;left:0;right:0;height:47px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 30px 9px 38px;font-weight:600;font-size:17px}
-/* header: avatar + Discover ⌄ ... + Create (SWITCHER_TITLE_HEIGHT 44) */
-.hdr{top:59px;left:16px;right:16px;height:44px;display:flex;align-items:center;justify-content:space-between}
-.hdr img{width:42px;height:42px;border-radius:21px;object-fit:cover}
-.hdr .mid{position:absolute;left:0;right:0;top:3px;display:flex;justify-content:center;align-items:flex-start;pointer-events:none}
-.hdr .t{font-size:33px;line-height:38px;letter-spacing:-1.22px}
-.create{width:42px;height:42px;border-radius:21px;background:var(--purple);display:flex;align-items:center;justify-content:center}
-/* filter bar (FILTER_BAR_HEIGHT 56) */
-.fb{top:115px;left:8px;right:8px;height:56px;border-radius:28px;background:var(--pill);display:flex;align-items:center;padding-left:18px;padding-right:8px}
-.grp{display:flex;align-items:baseline;gap:6px}
-.small{color:var(--dimmer);font-size:14px;font-weight:700}
-.val{font-size:20px;font-weight:800;letter-spacing:-.4px;white-space:nowrap}
-.chev{margin-left:2px;align-self:center}
-.div{width:1px;height:26px;background:rgba(255,255,255,.22);margin-left:auto;margin-right:6px}
-.ib{width:44px;height:56px;display:flex;align-items:center;justify-content:center}
-/* view switch (VIEW_ROW_H 44) */
-.vs{top:181px;left:8px;right:8px;height:34px;display:flex;font-weight:800;font-size:15px;letter-spacing:-.1px;border-bottom:.5px solid rgba(255,255,255,.16)}
-.vs>div{flex:1;display:flex;justify-content:center;align-items:center}
-.vs span{position:relative;height:34px;display:flex;align-items:center}
-.vs .on span:after{content:"";position:absolute;left:0;right:0;bottom:-.5px;height:2.5px;background:var(--purple)}
-.vs .off{color:var(--dim)}
-/* dateline */
-.dl{top:215px;left:0;right:0;height:24px;display:flex;justify-content:center;align-items:center;gap:8px;font-size:17px;text-transform:uppercase;letter-spacing:.4px}
+/* the line that says when (DiscoverDateline) */
+.dl{left:0;right:0;display:flex;justify-content:center;align-items:center;text-transform:uppercase;letter-spacing:.4px;white-space:pre}
 .dl b{color:var(--purple);font-weight:900}
-/* stage */
-.stage{top:247px;left:0;width:390px;height:271px}
-.card{position:absolute;width:203px;height:271px;border-radius:18px;overflow:hidden;background:#111}
+/* the stage (DiscoverStage): slots, covers, the record between them */
+.stage{left:0;width:390px}
+.cslot{position:absolute;top:0;transform-origin:50% 50%}
+.card{position:absolute;inset:0;border-radius:18px;overflow:hidden;background:#111}
 .card .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .scrimT{position:absolute;left:0;right:0;top:0;height:50%;background:linear-gradient(rgba(0,0,0,.42),rgba(0,0,0,0))}
 .scrimB{position:absolute;left:0;right:0;bottom:0;height:32%;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5))}
-.ttl{position:absolute;left:14px;top:14px;width:175px}
-.ttl .n{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.38);text-transform:uppercase;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
-.ttl .by{margin-top:5px;color:var(--purpleOnPhoto);font-weight:900;letter-spacing:.6px;font-size:10px}
-.face{display:flex;align-items:center;position:absolute;left:14px;bottom:14px}
-.face span{width:24px;height:24px;border-radius:12px;border:1.5px solid rgba(255,255,255,.92);overflow:hidden;background:#1C1C1C}
-.face span+span{margin-left:-7.7px}
-.face img{width:100%;height:100%;object-fit:cover}
-.more{height:24px;border-radius:12px;padding:0 8px;margin-left:6px;background:rgba(255,255,255,.92);color:#111;font-size:10.5px;font-weight:900;display:flex;align-items:center}
-.heart{position:absolute;right:14px;bottom:14px;width:32px;height:32px;border-radius:16px;background:rgba(0,0,0,.38);border:.33px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center}
-.tab{position:absolute;right:0;width:26px;height:52px;border-radius:26px 0 0 26px;background:var(--orange);display:flex;align-items:center;justify-content:center}
-.dim{position:absolute;inset:0;background:#000}
-/* record */
-.rec{position:absolute;width:258px;height:258px;border-radius:50%;background:radial-gradient(circle,#161616,#060606)}
-.rec .grooves{position:absolute;inset:0;border-radius:50%;background:repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.07) 0 .5px,rgba(0,0,0,0) .5px 1.6px)}
-.rec .rim{position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.12),inset 0 0 0 5px rgba(0,0,0,.65)}
-.rec .label{position:absolute;left:77.4px;top:77.4px;width:103.2px;height:103.2px;border-radius:50%;overflow:hidden}
-.rec .label img{width:100%;height:100%;object-fit:cover}
-.rec .label .tint{position:absolute;inset:0;background:rgba(139,111,206,.66)}
-.rec .spindle{position:absolute;left:123.3px;top:123.3px;width:11.4px;height:11.4px;border-radius:50%;background:#0b0b0b}
+.ttl{position:absolute}
+.ttl .n{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.38);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
+.ttl .by{margin-top:5px;color:var(--purpleOnPhoto);font-weight:900;letter-spacing:.6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.face{display:flex;align-items:center;position:absolute}
+.face span{border-radius:50%;border:1.5px solid rgba(255,255,255,.92);overflow:hidden;background:#1C1C1C}
+.face img{width:100%;height:100%;object-fit:cover;display:block}
+.more{padding:0 8px;background:rgba(255,255,255,.92);color:#111;font-size:10.5px;font-weight:900;letter-spacing:-.1px;display:flex;align-items:center}
+.heart{position:absolute;width:32px;height:32px;border-radius:16px;background:rgba(0,0,0,.38);border:var(--hl) solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center}
+.tab{position:absolute;right:0;background:var(--orange)}
+.tab>div{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.dim{position:absolute;inset:0;background:#000;border-radius:18px;pointer-events:none}
+/* the doorway card (DoorwayCover) */
+.fan{position:absolute;left:0;right:0}
+.fslot{position:absolute;top:0;left:0;right:0;display:flex;justify-content:center;align-items:flex-start}
+.flyer{background:#FBFAF6;border-radius:3px}
+.flyer img{display:block;object-fit:cover}
+.count{position:absolute}
+.count .num{color:#fff;letter-spacing:-1.5px;white-space:nowrap}
+.count .lab{color:var(--dim);font-weight:800;letter-spacing:1.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* the record (EventDisc, VinylDisc) */
+.reclip{position:absolute;overflow:hidden;z-index:95}
+.vc{position:absolute;inset:0}
+.vc .lab{position:absolute;overflow:hidden;border-radius:50%;background:#8B6FCE}
+.vc .lab img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vc .lab .tint{position:absolute;inset:0;background:rgba(139,111,206,.66)}
+.vc .lab .ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(0,0,0,.5)}
+.vc .lab .spindle{position:absolute;border-radius:50%;background:#050505;border:1.5px solid rgba(255,255,255,.28)}
+.sheen{position:absolute;inset:0;pointer-events:none}
 .gen{position:absolute;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.gen>div{white-space:nowrap;line-height:1.3}
 .pol{position:absolute;background:#FBFAF6;border-radius:3px;box-shadow:0 3px 7px rgba(0,0,0,.5)}
 .pol img{display:block;object-fit:cover;background:#0d0d0d}
 .rpill{position:absolute;height:28px;border-radius:14px;padding:0 11px;background:#EDEDED;display:flex;align-items:center;gap:5px;color:#111;font-weight:800;font-size:14px;box-shadow:0 2px 5px rgba(0,0,0,.35)}
-/* details */
-.det{top:530px;left:0;right:0;height:129px}
-.circle{position:absolute;width:109px;height:109px;border-radius:50%;background:var(--stampDisc);border:.5px solid var(--hair);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.cap{position:absolute;width:109px;text-align:center;font-size:9.5px;font-weight:800;letter-spacing:.9px;color:var(--purple);text-transform:uppercase}
+/* the details (DiscoverDetails, DoorwayDetails) */
+.det{left:0;right:0}
+.det>div{position:absolute;inset:0}
+.circle{position:absolute;top:0;border-radius:50%;background:var(--stampDisc);border:var(--hl) solid var(--hair);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cap{position:absolute;text-align:center;font-size:11px;font-weight:800;letter-spacing:.9px;color:var(--purple);text-transform:uppercase}
 .fields{position:absolute;display:flex;flex-direction:column;justify-content:space-between}
-.lab{font-size:9.5px;font-weight:800;letter-spacing:.9px;color:var(--purple);text-transform:uppercase}
-.fv{color:#fff;letter-spacing:-.3px;line-height:1.05;text-transform:uppercase}
-/* actions (ACTION_H 50) */
-.act{top:671px;left:0;right:0;height:50px;display:flex;justify-content:center;gap:9px}
-.join{height:50px;padding:0 30px;min-width:128px;border-radius:25px;background:var(--purple);display:flex;align-items:center;justify-content:center;font-family:-apple-system,'SF Pro Display',Inter,sans-serif;font-weight:900;font-size:18px;letter-spacing:.2px}
+.lab2{font-weight:800;letter-spacing:.9px;color:var(--purple);text-transform:uppercase;white-space:nowrap}
+.fv{color:#fff;letter-spacing:-.3px;overflow:hidden}
+.dd{display:flex;flex-direction:column;justify-content:center}
+.dd .ln{display:flex;align-items:baseline;gap:10px}
+.dd .tm{color:var(--dim);font-weight:700;white-space:nowrap;flex-shrink:0}
+.dd .tt{flex:1;min-width:0;color:#fff;font-weight:800;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dd .from{margin-top:4px;color:var(--dim);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* the action row (ACTION_H 50) */
+.act{left:0;right:0;height:50px;display:flex;justify-content:center;align-items:center;gap:9px}
+.join{height:50px;padding:0 30px;min-width:128px;border-radius:25px;background:var(--purple);display:flex;align-items:center;justify-content:center;gap:8px;font-family:-apple-system,'SF Pro Display',Inter,sans-serif;font-weight:900;font-size:18px;letter-spacing:.2px;white-space:nowrap}
 .join.done{background:var(--input)}
-.share{width:49px;height:49px;border-radius:25px;background:var(--purple);display:flex;align-items:center;justify-content:center}
-/* floating tab bar (TAB_BAR_RESERVE 98) */
-.tb{left:81px;bottom:24px;width:228px;height:64px;border-radius:32px;background:rgba(26,26,26,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex}
-.tb .slot{width:76px;display:flex;align-items:center;justify-content:center}
+.share{width:49px;height:49px;border-radius:24.5px;background:var(--purple);display:flex;align-items:center;justify-content:center}
 </style></head>
 <body>
-<div class="abs sb"><span id="clock">9:41</span>
-  <span style="display:flex;gap:6px;align-items:center">
-  <svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
-  <svg width="16" height="12" viewBox="0 0 16 12" fill="#fff"><path d="M8 11.5l2.3-2.7a3.6 3.6 0 0 0-4.6 0z M3.9 6.6a6.4 6.4 0 0 1 8.2 0l1.6-1.8a8.8 8.8 0 0 0-11.4 0z M.5 3.2a11.4 11.4 0 0 1 15 0L17 1.4A13.7 13.7 0 0 0-1 1.4z"/></svg>
-  <svg width="26" height="12" viewBox="0 0 26 12"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="#fff" stroke-opacity=".4"/><rect x="2" y="2" width="19" height="8" rx="2" fill="#fff"/><rect x="23.5" y="4" width="1.5" height="4" rx=".7" fill="#fff" fill-opacity=".4"/></svg></span></div>
-
-<div class="abs hdr"><img id="me" src="assets/f2.jpg"><div class="mid"><span class="t disp">Discover</span><svg style="margin:12px 0 0 8px" width="14" height="14" viewBox="0 0 24 24"><path d="M18 9l-6 6-6-6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="create"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></div></div>
-
-<div class="abs fb">
-  <div class="grp"><span class="small">at</span><span class="val" id="when">Tonight</span><svg class="chev" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5l4 4 4-4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-  <div style="width:18px"></div>
-  <div class="grp"><span class="small">in</span><span class="val" id="city">Brooklyn</span><svg class="chev" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5l4 4 4-4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-  <div class="div"></div>
-  <div class="ib"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M6 4v14M3 15l3 3 3-3M12 5h7M12 9.5h5M12 14h3"/></svg></div>
-  <div class="ib"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="10" cy="10" r="6.5"/><path d="M15 15l4 4"/></svg></div>
-</div>
-
-<div class="abs vs"><div class="on"><span>Cards</span></div><div class="off"><span>Map</span></div></div>
-<div class="abs dl disp"><b id="day">Tonight</b><span id="hour">8 PM</span></div>
-
+<div class="abs dl disp" id="dl"></div>
 <div class="abs stage" id="stage"></div>
 <div class="abs det" id="det"></div>
+<div class="abs act" id="act"><div class="join" id="join">JOIN</div><div class="share" id="share"></div></div>
 
-<div class="abs act"><div class="join" id="join">JOIN</div>
-  <div class="share"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 5.5L20 12l-6.5 6.5" stroke-width="2.4"/><path d="M20 12h-8.5C7.4 12 4 15 4 19" stroke-width="2.4"/></svg></div></div>
-
-<div class="abs tb">
-  <div class="slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11.5L12 4l9 7.5"/><path d="M5 10v8.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V10"/><path d="M10 20v-4.5a2 2 0 0 1 4 0V20"/></svg></div>
-  <div class="slot" style="opacity:.4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.8l1.4-2h4.6l1.4 2h1.8A2.5 2.5 0 0 1 20 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
-  <div class="slot" style="opacity:.4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M14 5v2.5M14 10.5v3M14 16.5V19"/></svg></div>
-</div>
-
+<script src="icons.js"></script>
+<script src="chrome.js"></script>
 <script>
-// ---- seed (hydrate with anything) ----
-const DEFAULT = {
-  clock: '7:42', when: 'Tonight', city: 'Brooklyn', day: 'Tonight', hour: '8 PM',
-  me: 'assets/f2.jpg',
+// ---- seed ----
+const DEFAULT = { // an invented PXI night with our own cover, for a demo that is not a real listing
+  clock: '7:42', when: 'Tonight', city: 'Brooklyn', day: 'Tonight', hour: '8 PM', me: 'assets/f2.jpg',
   center: {name: 'Watch party', host: 'Sanaa Groove', cover: 'assets/cover.jpg', pos: '50% 50%', faces: ['assets/f1.jpg','assets/f3.jpg','assets/f5.jpg'], going: 248,
            genre: 'Afrobeats', second: 'Big screen', label: 'assets/cover.jpg', polaroids: ['assets/pol0.jpg','assets/pol1.jpg','assets/pol2.jpg'], reaction: ['🔥', 128],
            location: 'Smoot Standard', price: 'Free', match: 93, stamp: 'assets/stamp.svg'},
   left: {name: 'Late set', cover: 'assets/left.jpg'},
   discOpen: true, joined: false,
 };
-// ?seed= is the seed as JSON, or the path of a seed file (seed.json): a bare name is looked up beside the scene that frames this page
-const seedParam = new URLSearchParams(location.search).get('seed');
-const readSeed = (v) => { if (v.trim().startsWith('{')) return JSON.parse(v);
-  const x = new XMLHttpRequest(); x.open('GET', new URL(v, parent !== window ? parent.location.href : location.href).href, false); x.send();
-  if (x.status !== 200) throw new Error('no seed file ' + v); return JSON.parse(x.responseText); };
-const S = Object.assign({}, DEFAULT, window.SEED || (seedParam ? readSeed(seedParam) : {}));
-const C = Object.assign({}, DEFAULT.center, S.center || {});
+const given = readSeed();
+const S = Object.assign({}, given && given.cards ? {} : DEFAULT, given || {});
+// An older seed: one card (center) and the one before it (left). It becomes two cards that do not loop.
+if (!S.cards) {
+  const c = Object.assign({}, DEFAULT.center, S.center || {}), ext = !!c.external;
+  const one = (x) => ({ name: x.name, host: x.host || '', cover: x.cover, pos: x.pos, external: ext, hideName: ext && !!x.cover, faces: x.faces || [], going: x.going || 0,
+    label: x.label || x.cover, labelFallback: true, record: [String(x.genre || '').toUpperCase(), String(x.second || '').toUpperCase()], polaroids: x.polaroids || [], reaction: x.reaction || null,
+    day: S.day, clock: S.hour, location: String(x.location || '').toUpperCase(), price: String(x.price || '').toUpperCase(), match: x.match || null, stamp: x.stamp ? { img: x.stamp } : null });
+  S.cards = [...(S.left && S.left.cover ? [Object.assign(one(Object.assign({}, S.left, { faces: [], going: 0, polaroids: [], reaction: null, stamp: null, match: null })), { pos: S.left.pos || '50% 40%' })] : []), one(c)];
+  S.at = S.cards.length - 1; S.loop = false;
+}
+const CARDS = S.cards, n = CARDS.length, LOOP = S.loop !== false && n > 1;
 const $ = (id) => document.getElementById(id);
-$('clock').textContent = S.clock; $('when').textContent = S.when; $('city').textContent = S.city; $('day').textContent = S.day; $('hour').textContent = S.hour; $('me').src = S.me;
-if (S.joined) { $('join').classList.add('done'); $('join').textContent = 'JOINED'; }
+const barFitted = chrome({ clock: S.clock, when: S.when, city: S.city, me: S.me, view: 'cards', second: S.second || 'Map', sortDotted: S.sortDotted });
 
-// ---- geometry (geometry.ts at W=390, availableH=497) ----
-const W = 390, cw = 203, ch = 271, s = cw / 224, R = Math.round(cw * 0.634), coverCx = W / 2 - W * 0.023;
-const pitch = cw * 0.87, shift = S.discOpen ? cw * 0.17 : 0, disc = S.discOpen ? cw * 0.5 : cw * 0.09, tabR = Math.round(cw * 0.13), dia = Math.round(120 * s);
-const stage = $('stage');
-const pad = Math.round(cw * 0.07);
-const fitTitle = (t) => { // titleFit.ts: the largest size, in steps of 2, whose greedy-wrapped lines fit a box 34% of the card high
-  const words = t.split(/\s+/).filter(Boolean), boxW = cw - pad * 2, boxH = ch * 0.34, max = Math.round(cw * 0.195), min = Math.round(cw * 0.085);
+// ---- geometry (geometry.ts computeGeometry at W 390; DiscoverScreen: the height the tab bar, the header and the dateline leave) ----
+const W = 390, H = 844, TAB_BAR_RESERVE = 98, contentTop = 215, DATELINE_H0 = 26, DATELINE_GAP = 8, ACTION_H = 50, CAPTION_H = 20, MIN_GAP = 12;
+const availableH = H - TAB_BAR_RESERVE - contentTop - DATELINE_H0 - DATELINE_GAP;
+const byHeight = (availableH - ACTION_H - CAPTION_H - 4 * MIN_GAP) / (224 / 0.75 + 120), byWidth = (W * 0.575) / 224;
+const cw = Math.round(224 * Math.min(1.15, Math.max(0.62, Math.min(byHeight, byWidth)))), ch = Math.round(cw / 0.75), s = cw / 224;
+const R = Math.round(cw * 0.634), coverCx = W / 2 - W * 0.023, pitch = cw * 0.87, shift = cw * 0.17, discRest = cw * 0.09, discOpenX = cw * 0.5, tabR = Math.round(cw * 0.13), dia = Math.round(120 * s);
+const pad = Math.round(cw * 0.07), detH = dia + CAPTION_H;
+// The body shares its spare height out: three parts above the dateline, two round the details, one above the tab bar.
+const dlH = Math.round(DATELINE_H0 * s), dlSize = Math.max(14, Math.round(19 * s));
+const air = (H - TAB_BAR_RESERVE - contentTop - (dlH + DATELINE_GAP + ch + detH + ACTION_H)) / 8;
+const dlTop = contentTop + 3 * air, stageTop = dlTop + dlH + DATELINE_GAP, detTop = stageTop + ch + 2 * air, actTop = detTop + detH + 2 * air;
+const dl = $('dl'), stage = $('stage'), det = $('det');
+dl.style.cssText += `top:${dlTop}px;height:${dlH}px;font-size:${dlSize}px;line-height:${Math.round(dlSize * 1.15)}px`;
+stage.style.cssText += `top:${stageTop}px;height:${ch}px`; det.style.cssText += `top:${detTop}px;height:${detH}px`; $('act').style.top = actTop + 'px';
+$('share').innerHTML = hugeicon('LinkForwardIcon', 22, '#fff', 2.4);
+
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+// Reanimated's interpolate, clamped at both ends
+const interp = (x, xs, ys) => { if (x <= xs[0]) return ys[0]; for (let i = 1; i < xs.length; i++) if (x <= xs[i]) return ys[i - 1] + (ys[i] - ys[i - 1]) * (x - xs[i - 1]) / (xs[i] - xs[i - 1]); return ys[ys.length - 1]; };
+const wrap = (i) => ((i % n) + n) % n;
+
+// titleFit.ts fitTitle: the largest size, in steps of 2, whose greedy-wrapped lines fit the box (a capital counts 0.7em)
+function fitTitle(t, boxW, boxH, max, min) {
+  const words = t.split(/\s+/).filter(Boolean);
   for (let fs = max; fs >= min; fs -= 2) { let lines = 1, w = 0, bad = false;
     for (const wd of words) { const ww = wd.length * fs * 0.7; if (w === 0) { w = ww; if (ww > boxW) bad = true; } else if (w + fs * 0.28 + ww <= boxW) w += fs * 0.28 + ww; else { lines++; w = ww; if (ww > boxW) bad = true; } }
     if (!bad && lines * fs * 0.98 <= boxH) return fs; }
-  return min; };
-function card(ev, x, scale, ty, dimA, z, center) {
-  const el = document.createElement('div'); el.className = 'card';
-  el.style.cssText = `left:${coverCx - cw / 2}px;top:0;transform:translateX(${x}px) translateY(${ty}px) scale(${scale});z-index:${z}`;
-  const fs = fitTitle(ev.name.toUpperCase());
-  el.innerHTML = `<img class="cover" src="${ev.cover}" style="object-position:${ev.pos || '50% 30%'}"><div class="scrimT"></div><div class="scrimB"></div>
-    <div class="ttl"><div class="n disp" style="font-size:${fs}px;line-height:${Math.round(fs * .98)}px">${ev.name}</div>${ev.host ? `<div class="by">BY ${ev.host.toUpperCase()}</div>` : ''}</div>
-    ${center ? `${(ev.faces || []).length || ev.going ? `<div class="face">${(ev.faces || []).map((f) => `<span><img src="${f}"></span>`).join('')}${ev.going - (ev.faces || []).length > 0 ? `<div class="more">${(ev.faces || []).length ? '+' + (ev.going - ev.faces.length) : ev.going + ' going'}</div>` : ''}</div>` : ''}
-    ${ev.external ? '' : `<div class="heart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div>`}
-    <div class="tab" style="top:${ch * .48 - tabR}px;width:${tabR}px;height:${tabR * 2}px;border-radius:${tabR}px 0 0 ${tabR}px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></div>` : ''}
-    <div class="dim" style="opacity:${dimA}"></div>`;
-  stage.appendChild(el);
+  return min;
 }
-// neighbours (DiscoverStage: scale .66, lift -0.085ch, dim .5)
-card(Object.assign({pos: '50% 40%'}, S.left), -pitch - shift, 0.66, -0.085 * ch, 0.5, 1, false);
-// record (EventDisc): centre at the cover's right edge when open
-const rec = document.createElement('div'); rec.className = 'rec';
-const rcx = coverCx - shift + disc, rcy = ch / 2;
-rec.style.cssText = `left:${rcx - R}px;top:${rcy - R}px;width:${R * 2}px;height:${R * 2}px;z-index:2`;
-const lr = R * 0.4;
-rec.innerHTML = `<canvas class="vc" width="${R*6}" height="${R*6}" style="position:absolute;inset:0;width:${R*2}px;height:${R*2}px"></canvas><div class="label" style="left:${R - lr}px;top:${R - lr}px;width:${lr * 2}px;height:${lr * 2}px"><img src="${C.label}"><div class="tint"></div></div><div class="spindle" style="left:${R - 5}px;top:${R - 5}px;width:10px;height:10px"></div>
-  <div class="gen disp" style="left:${R + R * .37 - R * .45}px;top:${R - R * .68}px;width:${R * .9}px"><div style="color:var(--magenta);font-size:${Math.round(R * .155)}px;line-height:1">${C.genre.toUpperCase()}</div><div style="color:#fff;font-size:${Math.round(R * .12)}px;margin-top:3px">${C.second.toUpperCase()}</div></div>`;
-stage.appendChild(rec);
-{ const cv = rec.querySelector('canvas'), x = cv.getContext('2d'); x.scale(3, 3); const size = R * 2, lab = R * .4;
-  const bg = x.createRadialGradient(R, R, 0, R, R, R); bg.addColorStop(0, '#161616'); bg.addColorStop(1, '#060606'); x.fillStyle = bg; x.beginPath(); x.arc(R, R, R, 0, 7); x.fill();
-  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  for (let r = lab + size * .025; r < R - size * .035; r += 1.1) { x.strokeStyle = `rgba(255,255,255,${(0.03 + rnd() * .085).toFixed(3)})`; x.lineWidth = .7; x.beginPath(); x.arc(R, R, r, 0, 7); x.stroke(); }
-  [.56, .74, .88].forEach((f) => { x.strokeStyle = 'rgba(0,0,0,.78)'; x.lineWidth = 2.8; x.beginPath(); x.arc(R, R, R * f, 0, 7); x.stroke(); });
-  const sheen = (a0, a, al) => { const g = x.createConicGradient(a0, R, R); g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(a / 2, `rgba(255,255,255,${al})`); g.addColorStop(a, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = g; x.beginPath(); x.arc(R, R, R - 2, 0, 7); x.arc(R, R, lab + 3, 0, 7, true); x.fill(); };
-  sheen(-2.2, .14, .20); sheen(.95, .14, .13);
-  x.strokeStyle = 'rgba(0,0,0,.85)'; x.lineWidth = 2; x.beginPath(); x.arc(R, R, lab + size * .012, 0, 7); x.stroke();
-  x.strokeStyle = 'rgba(0,0,0,.65)'; x.lineWidth = size * .02; x.beginPath(); x.arc(R, R, R - size * .014, 0, 7); x.stroke();
-  x.strokeStyle = 'rgba(255,255,255,.12)'; x.lineWidth = 1.5; x.beginPath(); x.arc(R, R, R - .75, 0, 7); x.stroke(); }
-// polaroids on the record (POLAROID_SPOTS)
-const pw = Math.round(R * 0.4), ppad = pw * 0.085;
-[{x: .33, y: .58, rot: -15}, {x: .66, y: .3, rot: 20}].forEach((sp, i) => {
-  const p = document.createElement('div'); p.className = 'pol';
-  const cx = rcx + sp.x * R, cy = rcy + sp.y * R;
-  p.style.cssText = `left:${cx - pw / 2}px;top:${cy - pw * .6}px;width:${pw}px;height:${pw * 1.2}px;padding:${ppad}px;transform:rotate(${sp.rot}deg);z-index:3`;
-  if (!C.polaroids || !C.polaroids[i]) return;
-  p.innerHTML = `<img src="${C.polaroids[i]}" style="width:${pw - ppad * 2}px;height:${pw - ppad * 2}px">`;
-  stage.appendChild(p);
-});
-const rp = document.createElement('div'); rp.className = 'rpill';
-rp.style.cssText = `left:${rcx + .64 * R - 40}px;top:${rcy + .72 * R - 15}px;z-index:4`;
-if (C.reaction) { rp.innerHTML = `<span style="font-size:14px">${C.reaction[0]}</span>${C.reaction[1]}`; stage.appendChild(rp); }
-// centre card on top
-card(C, -shift, 1, 0, 0, 5, true);
 
-// ---- details (DiscoverDetails) ----
-const gap = Math.round(26 * s), edge = Math.round(W * .07), stampLeft = Math.max(edge, Math.round(W / 2 - gap / 2 - dia));
-const fieldsW = W - edge - (stampLeft + dia + gap), fieldsTop = Math.round(6 * s), fieldsH = dia + 20 - fieldsTop;
-const vs = Math.max(12, Math.round(16 * s * .86)), ms = Math.max(20, Math.round(31 * s * .86));
-$('det').innerHTML = `<div class="circle" style="left:${stampLeft}px;top:0;width:${dia}px;height:${dia}px"><img src="${C.stamp}" style="width:${Math.round(dia*.84)}px;height:${Math.round(dia*.84)}px"></div>
-  <div class="cap" style="left:${stampLeft}px;top:${dia + 6}px">Event stamp</div>
-  <div class="fields" style="left:${stampLeft + dia + gap}px;top:${fieldsTop}px;width:${fieldsW}px;height:${fieldsH}px">
-    <div><div class="lab">Location</div><div class="fv disp" style="font-size:${vs}px">${C.location}</div></div>
-    <div><div class="lab">Price</div><div class="fv disp" style="font-size:${vs}px">${C.price}</div></div>
-    ${C.match ? `<div><div class="lab">Taste match</div><div class="fv disp" style="font-size:${ms}px">${C.match}%</div></div>` : ''}</div>`;
-document.fonts.ready.then(() => { document.body.dataset.ready = '1'; });
+// ---- a cover (EventCover) ----
+function coverHTML(c) {
+  const name = (c.name || '').trim().toUpperCase() || 'UNTITLED', boxW = cw - pad * 2, fs = fitTitle(name, boxW, ch * 0.34, Math.round(cw * 0.195), Math.round(cw * 0.085));
+  const face = Math.round(26 * Math.max(0.85, s)), faces = (c.faces || []).slice(0, 3), extra = c.going ? Math.max(0, c.going - faces.length) : 0, ic = Math.round(tabR * 0.62);
+  const img = c.cover ? `<img class="cover" src="${c.cover}" style="object-position:${c.pos || '50% 50%'}">${c.hideName ? '' : '<div class="scrimT"></div>'}<div class="scrimB"></div>
+      ${c.hideName ? '' : `<div class="ttl" style="left:${pad}px;top:${pad}px;width:${boxW}px"><div class="n disp" style="font-size:${fs}px;line-height:${Math.round(fs * 0.98)}px">${esc(name)}</div>${c.host ? `<div class="by" style="font-size:${Math.max(9, Math.round(cw * 0.05))}px">BY ${esc(c.host.toUpperCase())}</div>` : ''}</div>`}`
+    : c.poster ? posterHTML(c.poster, 0) : '';
+  return `<div class="card">${img}
+    ${faces.length || c.going ? `<div class="face" style="left:${pad}px;bottom:${pad}px">${faces.map((f, i) => `<span style="width:${face}px;height:${face}px;margin-left:${i ? -face * 0.32 : 0}px"><img src="${f}"></span>`).join('')}${extra > 0 ? `<div class="more" style="height:${face}px;border-radius:${face / 2}px;margin-left:${faces.length ? 6 : 0}px">${faces.length ? '+' + extra : extra + ' going'}</div>` : ''}</div>` : ''}
+    ${c.external ? '' : `<div class="heart" style="right:${pad}px;bottom:${pad}px">${hugeicon('FavouriteIcon', 16, '#fff', 2, 'transparent')}</div>`}
+    <div class="tab" style="top:${ch * 0.48 - tabR}px;width:${tabR}px;height:${tabR * 2}px;border-radius:${tabR}px 0 0 ${tabR}px"><div class="tnote">${hugeicon('MusicNote01Icon', ic, '#fff')}</div><div class="tback" style="opacity:0">${hugeicon('ArrowLeft01Icon', ic, '#fff', 3)}</div></div></div>`;
+}
+// ---- the doorway card (DoorwayCover): three flyers in a stack, the number, what it counts ----
+const FAN = [{ rest: 0, open: 0, x0: 0, x1: 0, lift: 0 }, { rest: -8, open: -12, x0: -0.12, x1: -0.17, lift: -0.012 }, { rest: 7, open: 11, x0: 0.12, x1: 0.17, lift: -0.008 }];
+function doorwayHTML(c) {
+  const fw = Math.round(cw * 0.46), fh = Math.round(fw * 4 / 3), border = Math.max(2, Math.round(fw * 0.045)), inner = fw - border * 2, cs = Math.round(cw * 0.3);
+  const picks = c.picks.slice(0, 3);
+  return `<div class="card"><div class="fan" style="top:${pad}px;height:${fh + Math.round(cw * 0.05)}px">${[2, 1, 0].map((rank) => { const p = picks[rank]; return !p ? '' : `<div class="fslot" style="height:${fh}px"><div class="flyer" data-rank="${rank}" style="width:${fw}px;padding:${border}px">${p.cover ? `<img src="${p.cover}" style="width:${inner}px;height:${Math.round(inner * 4 / 3)}px">` : p.poster ? posterHTML(p.poster, 0) : `<div style="width:${inner}px;height:${Math.round(inner * 4 / 3)}px;background:#141414"></div>`}</div></div>`; }).join('')}</div>
+    <div class="count" style="left:${pad}px;right:${pad}px;bottom:${pad}px"><div class="num disp" style="font-size:${cs}px;line-height:${Math.round(cs * 1.02)}px">${c.count}</div><div class="lab" style="font-size:${Math.max(10, Math.round(cw * 0.056))}px">MORE ${esc(c.windowLabel)}</div></div></div>`;
+}
+// ---- the details under a card (DiscoverDetails) and under the doorway (DoorwayDetails) ----
+function detailsHTML(c) {
+  if (c.doorway) { const padH = Math.round(W * 0.11), size = Math.max(12, Math.round(16 * s * 0.86)), picks = c.picks.slice(0, 3);
+    const timeW = Math.round(Math.max(5, ...picks.map((p) => p.time.length)) * size * 0.58);
+    return `<div class="dd" style="padding:0 ${padH}px">${picks.map((p) => `<div class="ln" style="margin-bottom:${Math.round(9 * s)}px"><div class="tm tnum" style="font-size:${size}px;width:${timeW}px">${esc(p.time)}</div><div class="tt" style="font-size:${size}px">${esc(p.title)}</div></div>`).join('')}${c.from ? `<div class="from" style="font-size:${Math.max(11, Math.round(13 * s))}px">${esc(c.from)}</div>` : ''}</div>`; }
+  const gap = Math.round(26 * s), edge = Math.round(W * 0.07), stampLeft = Math.max(edge, Math.round(W / 2 - gap / 2 - dia));
+  const fieldsW = W - edge - (stampLeft + dia + gap), fieldsTop = Math.round(6 * s), fieldsH = dia + CAPTION_H - fieldsTop;
+  const vs = Math.max(12, Math.round(16 * s * 0.86)), ms = Math.max(20, Math.round(31 * s * 0.86));
+  const labelSize = Math.min(11, Math.max(9, Math.round(11 * s))), labelLH = Math.round(labelSize * 1.2), g = Math.max(5, Math.round(7 * s));
+  const field = (label, value, size, lines, color) => `<div><div class="lab2" style="font-size:${labelSize}px;line-height:${labelLH}px">${label}</div><div class="fv disp" data-lines="${lines}" style="font-size:${size}px;line-height:${Math.round(size * 1.1)}px;margin-top:${Math.round((g - 0.22 * labelSize - 0.18 * size) * 2) / 2}px;${color ? 'color:' + color + ';' : ''}">${esc(value)}</div></div>`;
+  const st = c.stamp, box = st ? { w: st.w || dia * 0.74, h: st.h || dia * 0.74 } : null;
+  return `<div><div class="circle" style="left:${stampLeft}px;width:${dia}px;height:${dia}px">${st ? `<img src="${st.img}" style="width:${box.w}px;height:${box.h}px;object-fit:contain">` : ''}</div>
+    <div class="cap" style="left:${stampLeft}px;top:${dia + 6}px;width:${dia}px">Event stamp</div>
+    <div class="fields" style="left:${stampLeft + dia + gap}px;top:${fieldsTop}px;width:${fieldsW}px;height:${fieldsH}px">
+      ${field('Location', c.location, vs, s >= 0.85 ? 2 : 1)}${field('Price', c.price, vs, 1)}${field('Taste match', c.match ? c.match + '%' : '--', ms, 1, c.match ? '' : 'rgba(255,255,255,.4)')}</div></div>`;
+}
 
-// One line each, shrunk to fit, the way the app's Text does it (numberOfLines={1} adjustsFontSizeToFit): the two
-// lines on the record and the When and city in the filter bar. Past 60% of its size the line is cut with "…".
-function oneLine(el, room) { if (!el) return; el.style.whiteSpace = 'nowrap'; const fs0 = parseFloat(getComputedStyle(el).fontSize); let fs = fs0;
-  while (el.scrollWidth > room && fs > fs0 * 0.6) { fs -= 0.5; el.style.fontSize = fs + 'px'; }
-  if (el.scrollWidth > room) { el.style.overflow = 'hidden'; el.style.textOverflow = 'ellipsis'; el.style.maxWidth = room + 'px'; } }
-document.fonts.ready.then(() => {
-  document.querySelectorAll('.gen > div').forEach((d) => { d.style.display = 'block'; oneLine(d, d.parentElement.clientWidth); });
-  oneLine(document.getElementById('when'), 96); oneLine(document.getElementById('city'), 112);
-});
+// ---- build: every card once (twice or more when fewer than five loop), the record, the details ----
+const copies = LOOP && n < 5 ? Math.ceil(5 / n) : 1, pool = CARDS.map(() => []);
+CARDS.forEach((c, i) => { for (let k = 0; k < copies; k++) { const el = document.createElement('div'); el.className = 'cslot'; el.style.cssText = `left:${coverCx - cw / 2}px;width:${cw}px;height:${ch}px;display:none`;
+  el.innerHTML = (c.doorway ? doorwayHTML(c) : coverHTML(c)) + '<div class="dim"></div>'; stage.appendChild(el); pool[i].push(el); } });
+// The record (VinylDisc): grooves, track gaps and the rim drawn once; the two light wedges on a layer that does not turn.
+const D2 = R * 2, labelR = R * 0.4, spindle = Math.max(4, labelR * 0.11);
+function vinyl(draw) { const cv = document.createElement('canvas'); cv.width = cv.height = D2 * 3; const x = cv.getContext('2d'); x.scale(3, 3); draw(x); return cv.toDataURL(); }
+const pseudo = (i) => { const v = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return v - Math.floor(v); };
+const ring = (x, r, color, w) => { x.strokeStyle = color; x.lineWidth = w; x.beginPath(); x.arc(R, R, r, 0, Math.PI * 2); x.stroke(); };
+const grooves = vinyl((x) => { const bg = x.createRadialGradient(R, R, 0, R, R, R); bg.addColorStop(0, '#161616'); bg.addColorStop(1, '#060606'); x.fillStyle = bg; x.beginPath(); x.arc(R, R, R, 0, Math.PI * 2); x.fill();
+  let i = 0; for (let r = labelR + D2 * 0.025; r < R - D2 * 0.035; r += Math.max(2.1, D2 / 125), i++) ring(x, r, `rgba(255,255,255,${(0.03 + pseudo(i) * 0.085).toFixed(3)})`, 0.7);
+  [0.56, 0.74, 0.88].forEach((f) => ring(x, R * f, 'rgba(0,0,0,.78)', D2 * 0.011));
+  ring(x, labelR + D2 * 0.012, 'rgba(0,0,0,.85)', D2 * 0.014); ring(x, R - D2 * 0.014, 'rgba(0,0,0,.65)', D2 * 0.02); ring(x, R - 0.75, 'rgba(255,255,255,.12)', 1.5); });
+const sheen = vinyl((x) => { const g = x.createConicGradient(0, R, R); [[0, 0], [0.07, 0.2], [0.15, 0], [0.5, 0], [0.57, 0.13], [0.65, 0], [1, 0]].forEach(([p, a]) => g.addColorStop(p, `rgba(255,255,255,${a})`)); x.fillStyle = g; x.beginPath(); x.arc(R, R, R - 1, 0, Math.PI * 2); x.fill(); });
+const clip = document.createElement('div'); clip.className = 'reclip'; clip.style.cssText = `left:${coverCx - cw / 2}px;top:${ch / 2 - R}px;width:${W}px;height:${D2}px`;
+const pw = Math.round(R * 0.4), ppad = pw * 0.085, SPOTS = [{ x: 0.33, y: 0.58, rot: -15 }, { x: 0.66, y: 0.3, rot: 20 }, { x: 0.5, y: -0.12, rot: 8 }];
+clip.innerHTML = `<div id="disc" style="position:absolute;left:0;top:0;width:${D2}px;height:${D2}px">
+  <div class="vc" style="background:url(${grooves}) 0 0/100% 100%"><div class="lab" style="left:${R - labelR}px;top:${R - labelR}px;width:${labelR * 2}px;height:${labelR * 2}px">
+    ${CARDS.map((c, i) => (c.doorway || !c.label ? '' : `<img data-i="${i}" src="${c.label}" style="display:none;${c.labelFallback ? 'transform:scale(1.7)' : ''}">`)).join('')}<div class="tint" id="tint"></div><div class="ring"></div>
+    <div class="spindle" style="left:${labelR - spindle}px;top:${labelR - spindle}px;width:${spindle * 2}px;height:${spindle * 2}px"></div></div></div>
+  <div class="sheen" style="background:url(${sheen}) 0 0/100% 100%"></div>
+  ${CARDS.map((c, i) => (c.doorway ? '' : `<div class="gen disp" data-i="${i}" style="display:none;left:${R + R * 0.37 - R * 0.45}px;top:${R - R * 0.68}px;width:${R * 0.9}px"><div style="color:var(--magenta);font-size:${Math.round(R * 0.155)}px">${esc(c.record[0])}</div><div style="color:#fff;font-size:${Math.round(R * 0.12)}px">${esc(c.record[1])}</div></div>
+    ${(c.polaroids || []).slice(0, 3).map((src, k) => `<div class="pol pop" data-i="${i}" style="display:none;left:${R + SPOTS[k].x * R - pw / 2}px;top:${R + SPOTS[k].y * R - pw * 0.6}px;width:${pw}px;height:${pw * 1.2}px;padding:${ppad}px;--rot:${SPOTS[k].rot}deg"><img src="${src}" style="width:${pw - ppad * 2}px;height:${pw - ppad * 2}px"></div>`).join('')}
+    ${c.reaction ? `<div class="rpill pop" data-i="${i}" style="display:none;left:${R + 0.64 * R - 40}px;top:${R + 0.72 * R - 15}px;--rot:0deg"><span>${c.reaction[0]}</span>${c.reaction[1]}</div>` : ''}`)).join('')}</div>`;
+stage.appendChild(clip);
+CARDS.forEach((c, i) => { const el = document.createElement('div'); el.dataset.i = i; el.style.display = 'none'; el.innerHTML = detailsHTML(c); if (c.doorway) { el.firstChild.style.cssText += 'position:absolute;inset:0'; } det.appendChild(el); });
+
+// ---- where everything is, from the carousel's position and how far the record is out ----
+let POS = S.at || 0, DISC = S.discOpen ? 1 : 0, FANP = null, SPIN = 0, lastCenter = null;
+function draw() {
+  const center = Math.round(POS), ci = LOOP ? wrap(center) : clamp(center, 0, n - 1), cc = CARDS[ci];
+  const used = new Set(), taken = CARDS.map(() => 0);
+  const vs = n === 1 ? [0] : [-2, -1, 0, 1, 2].map((k) => center + k);
+  for (const v of vs) { if (!LOOP && (v < 0 || v >= n)) continue;
+    const i = LOOP ? wrap(v) : v, el = pool[i][taken[i]++]; if (!el) continue; used.add(el);
+    const d = v - POS, a = Math.abs(d), isCenter = v === center;
+    const x = (d < 0 ? -1 : 1) * interp(a, [0, 1, 2, 3], [0, pitch, pitch + cw * 0.62, pitch + cw * 1.1]) - shift * DISC;
+    el.style.display = ''; el.style.opacity = a > 2.2 ? 0 : 1; el.style.zIndex = 100 - Math.abs(v - center) * 10;
+    el.style.transform = `translateX(${x}px) translateY(${-0.085 * ch * Math.min(a, 1)}px) scale(${interp(a, [0, 1, 2], [1, 0.66, 0.5])})`;
+    el.querySelector('.dim').style.opacity = interp(a, [0, 1, 2], [0, 0.5, 0.78]);
+    const t = isCenter ? DISC : 0, note = el.querySelector('.tnote'), back = el.querySelector('.tback'); // only the centred card's tab flips to "<"
+    if (note) { note.style.opacity = interp(t, [0, 0.5], [1, 0]); note.style.transform = `scale(${interp(t, [0, 0.5], [1, 0.5])})`; back.style.opacity = interp(t, [0.5, 1], [0, 1]); back.style.transform = `scale(${interp(t, [0.5, 1], [0.5, 1])})`; }
+    if (CARDS[i].doorway) { const f = FANP != null ? FANP : isCenter ? clamp(1 - a / 0.5) : 0; // it opens as the card comes to the centre
+      el.querySelectorAll('.flyer').forEach((fl) => { const sp = FAN[+fl.dataset.rank]; fl.style.transform = `translateX(${(sp.x0 + (sp.x1 - sp.x0) * f) * cw}px) translateY(${sp.lift * cw}px) rotate(${sp.rest + (sp.open - sp.rest) * f}deg)`; }); }
+  }
+  pool.forEach((list) => list.forEach((el) => { if (!used.has(el)) el.style.display = 'none'; }));
+  // the record: it travels with the centred cover, shows only to the right of that cover's left edge, and fades as its card leaves
+  const dn = center - POS, an = Math.abs(dn);
+  clip.style.display = cc.doorway ? 'none' : '';
+  clip.style.opacity = interp(an, [0.02, 0.3], [1, 0]);
+  clip.style.transform = `translateX(${(dn < 0 ? -1 : 1) * interp(an, [0, 1], [0, pitch]) - shift * DISC}px)`;
+  $('disc').style.transform = `translateX(${cw / 2 + discRest + (discOpenX - discRest) * DISC - R}px)`;
+  clip.querySelector('.vc').style.transform = `rotate(${SPIN % 360}deg)`;
+  const capO = interp(DISC, [0.6, 1], [0, 1]);
+  clip.querySelectorAll('.gen').forEach((g) => { g.style.opacity = capO; g.style.transform = `translateY(${interp(DISC, [0.6, 1], [6, 0])}px)`; });
+  clip.querySelectorAll('.pop').forEach((p) => { p.style.opacity = capO; p.style.transform = `scale(${0.4 + 0.6 * capO}) rotate(var(--rot))`; });
+  // the dateline and the details fade out towards the half-way point and come back as the next card's
+  const f = Math.abs(POS - Math.round(POS)), o = interp(f, [0.05, 0.4], [1, 0]);
+  dl.style.opacity = o; dl.style.transform = `translateY(${interp(f, [0, 0.5], [0, -4])}px)`;
+  det.style.opacity = o; det.style.transform = `translateY(${interp(f, [0, 0.5], [0, 5])}px)`;
+  if (ci !== lastCenter) { lastCenter = ci;
+    dl.innerHTML = cc.doorway || !cc.day ? '' : `<b>${esc(cc.day)}</b>  ${esc(cc.clock || '')}`;
+    det.querySelectorAll(':scope>div').forEach((el) => { el.style.display = +el.dataset.i === ci ? '' : 'none'; });
+    clip.querySelectorAll('[data-i]').forEach((el) => { el.style.display = +el.dataset.i === ci ? '' : 'none'; });
+    $('tint').style.display = cc.labelFallback || !cc.label ? '' : 'none';
+    const done = !cc.doorway && S.joined;
+    $('join').className = 'join' + (done ? ' done' : ''); $('join').innerHTML = (done ? hugeicon('Tick02Icon', 18, '#fff', 3) : '') + `<span>${cc.doorway ? 'SEE ALL' : done ? 'JOINED' : 'JOIN'}</span>`;
+    $('share').style.display = cc.doorway ? 'none' : '';
+    fitText();
+  }
+}
+// One line (or two), shrunk to fit as the app's Text does (adjustsFontSizeToFit), then cut.
+function shrink(el, room, min, lines = 1) { const fs0 = parseFloat(getComputedStyle(el).fontSize), lh0 = parseFloat(getComputedStyle(el).lineHeight); let fs = fs0;
+  const wide = () => { const d = el.style.display; el.style.display = 'inline-block'; const w = el.offsetWidth; el.style.display = d; return w; }; // the words' own width, wherever they are centred
+  if (lines === 1) { el.style.whiteSpace = 'nowrap'; while (wide() > room + 0.5 && fs > fs0 * min) { fs -= 0.5; el.style.fontSize = fs + 'px'; } el.style.maxWidth = room + 'px'; el.style.overflow = 'hidden'; el.style.textOverflow = 'ellipsis'; }
+  else { el.style.maxHeight = lh0 * lines + 'px'; while ((el.scrollHeight > lh0 * lines + 1 || el.scrollWidth > room + 0.5) && fs > fs0 * min) { fs -= 0.5; el.style.fontSize = fs + 'px'; el.style.lineHeight = lh0 * fs / fs0 + 'px'; } } }
+// Text is fitted once it can be measured: the fonts are in and the page is on screen (a scene may hold it hidden at first).
+let fontsIn = false;
+function fitText() { if (!fontsIn || !document.body.offsetWidth || !stage.offsetWidth) return;
+  const todo = (el) => el.style.display !== 'none' && !el.dataset.fit && (el.dataset.fit = 1);
+  clip.querySelectorAll('.gen').forEach((g) => { if (todo(g)) g.querySelectorAll('div').forEach((d) => shrink(d, R * 0.9, 0.5)); });
+  det.querySelectorAll(':scope>div').forEach((el) => { if (todo(el)) el.querySelectorAll('.fv').forEach((v) => shrink(v, v.parentElement.parentElement.clientWidth, +v.dataset.lines === 2 ? 0.6 : 0.7, +v.dataset.lines)); });
+  stage.querySelectorAll('.num').forEach((nm) => { if (nm.offsetWidth && !nm.dataset.fit) { nm.dataset.fit = 1; shrink(nm, cw - pad * 2, 0.5); } });
+  if (!window.postersFit && document.querySelector('.pline')) { window.postersFit = 1; fitPosters(); }
+}
+setInterval(fitText, 50);
+// ---- what a scene can do ----
+window.swipe = (index, progress = 0) => { POS = index + progress; draw(); };
+window.disc = (p) => { DISC = clamp(p); draw(); };
+window.spin = (deg) => { SPIN = deg; draw(); };
+window.fan = (p) => { FANP = p == null ? null : clamp(p); draw(); };
+window.carousel = { n, at: S.at || 0, ids: CARDS.map((c) => c.id || null), indexOf: (id) => CARDS.findIndex((c) => c.id === id), doorway: CARDS.findIndex((c) => c.doorway) };
+// The app's springs (tokens.ts SPRINGS), as how far from 0 to 1 one has come after t seconds.
+const SPRINGS = { snap: [20, 260, 0.7], disc: [17, 150, 0.9], pop: [11, 190, 0.6], press: [18, 320, 0.5] };
+window.spring = (name, t) => { const [c, k, m] = SPRINGS[name]; if (t <= 0) return 0; const w0 = Math.sqrt(k / m), z = c / (2 * Math.sqrt(k * m)), wd = w0 * Math.sqrt(1 - z * z);
+  return 1 - Math.exp(-z * w0 * t) * (Math.cos(wd * t) + (z * w0 / wd) * Math.sin(wd * t)); };
+draw();
+Promise.all([barFitted, document.fonts.ready]).then(() => { fontsIn = true; fitText(); document.body.dataset.ready = '1'; });
 </script>
 </body></html>

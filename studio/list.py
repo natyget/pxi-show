@@ -20,65 +20,11 @@ answer to the app's own question (app.json, saved by events.py): what is over, t
 The posters of the rows on the list are fetched into the folder's covers/ (never committed). Run the same command
 again after a fresh clone to fetch them again. Then:
   node studio/screen.cjs look/app-screens/all-events.html <seed> out.png      (a still to look at)"""
-import argparse, datetime, json, os, re, subprocess, sys, tempfile, urllib.request
-from concurrent.futures import ThreadPoolExecutor
-from zoneinfo import ZoneInfo
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-APP = os.environ.get("PXI_APP", os.path.join(os.path.dirname(ROOT), "pxi-mobile-app"))
-UA = {"User-Agent": "pxi-studio/1.0"}
+import argparse, datetime, json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from appdata import ROOT, app_code, find, load_app, posters, the_moment, web
 VIEW_H = 844 - 223  # the list's window on a 390x844 phone: from 8 under the view switch to the bottom of the screen
 TAB_BAR = 98        # the room the app leaves under the last row for the floating tab bar
-
-def app_code(script, *args):
-    """Run one of look/app-screens/*.ts against the app's code and return what it prints, as JSON."""
-    cfg = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
-    json.dump({"compilerOptions": {"baseUrl": APP, "paths": {"@/*": ["src/*"]}, "jsx": "react-jsx", "esModuleInterop": True, "allowJs": True}}, cfg); cfg.close()
-    r = subprocess.run(["npx", "-y", "tsx", "--tsconfig", cfg.name, os.path.join(ROOT, "look/app-screens", script), *args], cwd=APP, capture_output=True, text=True)
-    os.unlink(cfg.name)
-    if r.returncode: sys.exit("the app's code would not run (is pxi-mobile-app cloned beside this repo, or PXI_APP set?):\n" + r.stderr[-800:])
-    return json.loads(r.stdout)
-
-def load_app(d):
-    p = os.path.join(d, "app.json")
-    if not os.path.exists(p): sys.exit(f"no app.json in {d}: fetch the listings again with studio/events.py (it saves the app's own answer now)")
-    app = json.load(open(p))
-    if app.get("pxiEvents"): sys.exit(f"REFUSED: {app['pxiEvents']} PXI events are public in this city. The app lists them first in each night as a record sleeve, "
-                                      "a row these screens do not draw yet (look/app-screens/README.md): build it from AllEventsRows.tsx (PxiRow) before showing this list.")
-    return p, app
-
-def the_moment(app, now):
-    """The moment in the story as an instant, and the city's zone."""
-    tz = ZoneInfo((app.get("city") or {}).get("timeZone") or "America/New_York")
-    if now: at = datetime.datetime.fromisoformat(now.replace(" ", "T")).replace(tzinfo=tz)
-    else: at = datetime.datetime.fromisoformat(app["asked"].replace("Z", "+00:00")).astimezone(tz)
-    return at, tz
-
-def find(app, q, at):
-    """The listing a maker means: an id, or words from its title. Never picks in silence between two."""
-    rows = app.get("events") or []
-    hit = [e for e in rows if e["id"] == q] or [e for e in rows if all(w.lower() in e["title"].lower() for w in q.split())]
-    hit = [e for e in hit if datetime.datetime.fromisoformat(e["startsAt"].replace("Z", "+00:00")) >= at] or hit
-    if not hit: sys.exit(f"no listing matches {q!r} in the app's answer (app.json). The list holds seven nights from the day it was fetched.")
-    hit.sort(key=lambda e: (e["night"], -(e.get("rank") or 0)))
-    if len(hit) > 1:
-        print(f"{len(hit)} listings match {q!r}; took the first. For another, pass its id:", file=sys.stderr)
-        for e in hit[:12]: print(f"   {e['night']}  {e['title'][:60]}  id {e['id']}", file=sys.stderr)
-    return hit[0]
-
-def posters(d, wanted):
-    """Fetch the posters the screen shows into covers/, and return {listing id: file}."""
-    os.makedirs(os.path.join(d, "covers"), exist_ok=True); have = {}
-    for f in os.listdir(os.path.join(d, "covers")): have[os.path.splitext(f)[0]] = "covers/" + f
-    def one(row):
-        key = re.sub(r"[^A-Za-z0-9_-]", "_", row["id"])[:60]
-        if key in have: return row["id"], have[key]
-        try:
-            with urllib.request.urlopen(urllib.request.Request(row["coverUrl"], headers=UA), timeout=30) as r: img, ctype = r.read(), r.headers.get("Content-Type", "")
-            name = "covers/" + key + "." + ("png" if "png" in ctype else "webp" if "webp" in ctype else "jpg")
-            open(os.path.join(d, name), "wb").write(img); return row["id"], name
-        except Exception as err:
-            print("  poster not fetched:", row["title"][:50], "|", str(err)[:60], file=sys.stderr); return row["id"], None
-    with ThreadPoolExecutor(8) as ex: return dict(ex.map(one, [r for r in wanted if r.get("coverUrl")]))
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -93,9 +39,9 @@ def main():
     if pick and lst["openNote"]: sys.exit(f"REFUSED: \"{pick['title']}\" is not on this list: {lst['openNote']}. Change --when or --now, or pick a listing the list holds.")
     if not lst["sections"]: sys.exit(f"the app would say \"Nothing listed in {lst['city']} ...\" here: no listing falls in this When at this moment")
     rows = [r for s in lst["sections"] for r in s["rows"] if r["kind"] == "listing"]
-    got = posters(d, rows); web = lambda f: "/" + os.path.relpath(os.path.join(d, f), ROOT)
+    got = posters(d, rows)
     for r in rows:
-        f = got.get(r["id"]); r["cover"] = web(f) if f else None
+        f = got.get(r["id"]); r["cover"] = web(os.path.join(d, f)) if f else None
         if r.pop("coverUrl", None) and not f: print(f"  \"{r['title'][:50]}\" will show an empty flyer: its poster could not be fetched", file=sys.stderr)
     top = max(0, lst["height"] + TAB_BAR - VIEW_H)  # how far the list scrolls
     # Open on a listing: one row stays above it, under its night's pinned header.

@@ -23,3 +23,6 @@ studio/world3d/out/
 look/app-screens/examples/*/covers/
 look/app-screens/examples/*/raw.json
 look/app-screens/examples/*/seed-*.json
+look/app-screens/examples/*/art/
+look/app-screens/examples/*/stamps/
+videos/*/events/*/art/

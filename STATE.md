@@ -43,7 +43,13 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
   Metricool: a run that starts a fresh thread gets no connectors in this workspace. Do not archive the two threads.
 - **Talking works:** a cast line in the voice block is made in that person's voice and timed for captions, and a
   shot's `"says"` moves the mouth from the line's own audio (`look/rig.md`). Nio to camera can be made now.
-- **Not built yet:** the app's real Map and listing screens, real street maps
+- **The app's screens (screens thread, Nov 24):** rebuilt from the component code and filled by the app's own code
+  (`look/app-screens/README.md`): the All events list (`studio/list.py`), the carousel with a real swipe and its
+  last card, the doorway (`studio/card.py`). The corrected card shows an outside listing's flyer with no name printed
+  over it and always prints TASTE MATCH, 18 points lower, so the two weekend reels waiting for a yes no longer match
+  their MP4s: their scenes render (the camera is re-aimed) but need a new render before they go out. A
+  `weekend.py` run needs a fresh `events.py` fetch (it reads `app.json`) and the new `scene.html`.
+- **Not built yet:** the app's real Map and listing sheet, the PXI event row of All events, real street maps
   (OpenStreetMap tiles are reachable), a story template for the daily listing cards, a wide 16:9 frame for episodes.
 - **Tools that could not be reached from here:** Wikimedia Commons and Openverse image search (rate limits), the
   AI Geek Gumroad checkout (bot check). The two long AI Geek prompts were read from their public documents.

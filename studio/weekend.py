@@ -17,16 +17,21 @@ Reads from that folder:
                                                                  toward the price on the word "on" (leave out: no push)
                   {"line": 4, "chat": {"name": "Sarah", "msgs": [["them", "text", null], ["me", "text", "word"]]}}
                                                                  a chat; each message lands on its word (null: at once; "3:word": a word of line 3)
-                  {"line": 8, "flick": true}                     every card again, one after another, quickly
+                  {"line": 8, "flick": true}                     the carousel swiped, card after card from the first pick
+                                                                 (the app's own next cards, whatever they are)
+                "now": the moment in the story, in the city's time ("2026-11-27 18:30"); left out: when the listings were fetched
                   {"line": 8, "at": "Send", "end": true}         the end card ("at": a beat that starts on a word inside its line)
                 and how names are written in the captions ("proper", "show", "key")
   words.json    the voice (studio/voice.py)
   events/<city> this week's listings (studio/events.py)
-Writes: one Discover seed per card (studio/card.py; the pill says "This weekend"), reel.js (what scene.html loads),
+Writes: events/seed.json, the app's carousel with every pick in it (studio/card.py; the When is "This weekend"),
+reel.js (what scene.html loads),
 cues.json (the small sounds, on the same times), sources.md (the listings shown, with their ticket pages) and
 scene.html (a copy of studio/weekend-reel.html, if not there yet). Every time comes from the voice."""
-import json, os, shutil, subprocess, sys
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import json, os, shutil, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from appdata import ROOT, find
+from card import carousel, seed_of
 d = os.path.abspath(sys.argv[1]); reel = json.load(open(os.path.join(d, "reel.json"))); vo = json.load(open(os.path.join(d, "words.json")))
 ev_dir = os.path.join(d, "events", reel["city"]); LN = vo["lines"]; W = vo["words"]
 
@@ -38,12 +43,19 @@ def word(line, w, n=0):
 def at(line, w):  # "word" in the beat's own line, or "3:word" in line 3
     return word(int(w.split(':')[0]), w.split(':')[1]) if ':' in w else word(line, w)
 
-seeds, facts = [], []
-for i, pick in enumerate(reel["cards"]):
-    out = os.path.join(d, "events", f"seed-{i + 1}.json")
-    r = subprocess.run(["python3", os.path.join(ROOT, "studio/card.py"), ev_dir, pick, "--when", "This weekend", "--out", out], capture_output=True, text=True)
-    if r.returncode: sys.exit(r.stderr or r.stdout)
-    seeds.append(json.load(open(out))); facts.append({**json.loads(r.stdout), "listing": seeds[-1]["center"]["name"]})  # the title as the card prints it
+scene = os.path.join(d, "scene.html")
+if os.path.exists(scene) and "REEL.seeds" in open(scene).read():
+    sys.exit(f"{scene} is the older scene (one screen per card). Delete it and run this again: the new one swipes the app's real carousel.")
+# The app's own carousel for this weekend, and where each pick sits in it. A pick the app would not show as a card stops the build.
+app, moment, car = carousel(ev_dir, "weekend", reel.get("now")); ids = [c["id"] for c in car["cards"]]; picks, facts = [], []
+for pick in reel["cards"]:
+    e = find(app, pick, moment)
+    if e["id"] not in ids: sys.exit(f"REFUSED: \"{e['title']}\" is not a card of the app's carousel this weekend (no song, over, or another night). "
+                                    f"Show it with a label on a shot, or in All events (studio/list.py).")
+    c = car["cards"][ids.index(e["id"])]; picks.append(ids.index(e["id"]))
+    facts.append({"listing": c["name"], "when": f"{c['day']}, {c['clock']}", "venue": c["venue"], "price": c["price"], "listed on": c["source"], "ticket page": c["ticketUrl"]})
+seed = seed_of(ev_dir, car, moment, picks[0]); seeds = picks
+json.dump(seed, open(os.path.join(d, "events", "seed.json"), "w"), indent=1, ensure_ascii=False)
 
 dur = round(vo["duration"] + 0.45, 2); beats = []; cues = []; used = {}; labelled = []
 listings = json.load(open(os.path.join(ev_dir, "events.json")))["events"]
@@ -71,13 +83,13 @@ for i, b in enumerate(reel["beats"]):
     else:
         o.update(kind="end"); cues.append(["pop", t0, 0.12])
     beats.append(o)
-js = {"city": seeds[0]["city"], "seeds": seeds, "beats": beats, "dur": dur, "proper": reel.get("proper", []), "show": reel.get("show", {}), "key": reel.get("key", [])}
+js = {"city": seed["city"], "cards": picks, "beats": beats, "dur": dur, "proper": reel.get("proper", []), "show": reel.get("show", {}), "key": reel.get("key", [])}
 open(os.path.join(d, "reel.js"), "w").write("window.REEL=" + json.dumps(js, ensure_ascii=False) + ";")
 json.dump({"duration": dur, "cues": cues}, open(os.path.join(d, "cues.json"), "w"))
 with open(os.path.join(d, "sources.md"), "w") as f:  # the proof behind the piece: only the listings it shows
     f.write(f"# Listings shown in this piece\n\nFrom PXI's API, fetched {json.load(open(os.path.join(ev_dir, 'events.json')))['fetched']}. Check each ticket page again before the piece is scheduled.\n\n| When | Event | Venue | Price on the card | Ticket page |\n|---|---|---|---|---|\n")
     for x in facts + labelled: f.write(f"| {x['when']} | {x['listing']} | {x['venue'] or ''} | {x['price']} | {x['ticket page']} |\n")
-if not os.path.exists(os.path.join(d, "scene.html")): shutil.copy(os.path.join(ROOT, "studio/weekend-reel.html"), os.path.join(d, "scene.html"))
+if not os.path.exists(scene): shutil.copy(os.path.join(ROOT, "studio/weekend-reel.html"), scene)
 for f in facts: print(f"  {f['when']:<18} {f['listing'][:50]:<50} {(f['venue'] or '')[:24]:<24} {f['price']:<8} {f['listed on']}")
 for b in beats: print(f"  {b['t0']:>6.2f} to {b['t1']:>6.2f}  {b['kind']:<5} {b.get('name', b.get('card', ''))}")
 print(f"{len(seeds)} cards, {dur} s")

@@ -8,10 +8,12 @@ All are 390x844 points (an iPhone, insets 47/34), shown at 3x.
 
 | What the video shows | Screen | Seed tool |
 |---|---|---|
-| A listing with a song (a note mark in the `events.py` list): the app shows it as a Discover card | `discover.html` | `studio/card.py` |
-| Any other listing from a ticket site (most of them): the app shows it only in All events | `all-events.html` | `studio/list.py` |
+| A listing with a song (a note mark in the `events.py` list): the app shows it as a Discover card | `discover.html` | `studio/card.py <folder> "<words>"` |
+| Any other listing from a ticket site (most of them): the app shows it only in All events | `all-events.html` | `studio/list.py <folder> --open "<words>"` |
+| "And 221 more this week": the carousel's last card, the way in to All events | `discover.html` | `studio/card.py <folder> doorway` |
 
-`card.py` refuses a card the app would not draw and points here. Never draw a card for a listing with no song.
+`card.py` refuses a card the app would not draw and points to the list. Never draw a card for a listing with no song.
+A piece that goes from the cards to the list passes `--no-map` to `card.py`, so both screens say Cards / All events.
 
 ## `all-events.html`: the All events list
 
@@ -46,16 +48,46 @@ Not drawn, and refused or left out by the tool:
   city. The screen is the app with no location shared.
 - The sponsored host row, the loading blocks, the empty and failed states, a preview playing (the purple pause).
 
-## `discover.html`: the Discover carousel
+## `discover.html`: the Discover carousel, and its last card
 
-The carousel stage (header, filter bar, Cards / Map, the line that says when, the cover and its neighbour, the record,
-the stamp, LOCATION / PRICE, JOIN and share, the tab bar), geometry from `geometry.ts`. `studio/card.py` writes its
-seed from one real listing (`listing.ts` and `stamp.ts` run the app's code for the name, byline, place, price, record
-lines and stamp). Seed keys are in DEFAULT in the file. An outside listing has no heart, faces, polaroids or taste
-match, as the app draws it.
+The carousel as the app holds it: every card of the When in the app's order, the record behind the centred cover,
+the line that says when, the stamp, LOCATION / PRICE / TASTE MATCH, JOIN and share. Stills with Los Angeles listings
+(Nov 24): `discover-example.jpg` (a card, its record out), `discover-swipe-example.jpg` (one swipe, then the record),
+`doorway-example.jpg` (the last card).
+
+```
+python3 studio/card.py videos/<slug>/events/la "Night Tales" --now "2026-11-27 18:30" --out videos/<slug>/seed.json
+python3 studio/card.py videos/<slug>/events/la doorway --no-map --out videos/<slug>/seed-doorway.json
+node studio/screen.cjs look/app-screens/discover.html videos/<slug>/seed.json out.png
+```
+
+- `card.py` runs the app's own code (`carousel.ts`: `carouselMix.ts`, `doorway.ts`, `externalEvents.ts`, `geometry.ts`,
+  the stamp builder, the ticket-price rules). The seed holds all the cards (in Los Angeles on Nov 24: 33 this week,
+  in time order) and opens on the pick. `--record` opens it with the record out; `--when` and `--now` as for the list.
+- An outside listing's card is its flyer alone: no name printed over it, no host line, no heart, no faces. The taste
+  match reads "--". That is how `EventCover.tsx` and `DiscoverDetails.tsx` draw one.
+- In a scene (an iframe, `discover.html?seed=seed.json`), the page only goes where it is told; the scene owns time:
+  `swipe(index, progress)` is the carousel between card `index` and the next (what the leaving card, the arriving
+  card, the record and the words under them each do is `DiscoverStage.tsx`, `EventDisc.tsx` and `DiscoverDetails.tsx`,
+  line for line); `disc(p)` pops the record out (its orange tab pressed); `spin(deg)` turns it (40 degrees a second
+  in the app, only while it is out); `spring('snap' | 'disc' | 'pop', seconds)` is the app's own spring, so a swipe
+  lands and a record pops with the app's motion; `carousel.at`, `carousel.indexOf(id)` and `carousel.doorway` say
+  where cards are. A swipe always closes the record first, as in the app. `studio/weekend-reel.html` is the model.
+- **The doorway** is the last card: three flyers in a stack that fan as it arrives (`fan(p)` to place them by hand),
+  the app's count of the outside listings of the When that are not cards, "MORE THIS WEEK", and under it the three
+  top picks with their times and the ticket sites. The button reads SEE ALL and there is no share. The count, the
+  picks and the words are `doorway.ts`'s. This is the honest "and N more": say the number the card shows.
+- An older seed (`center`, `left`) still draws, as one card and the one before it, so finished pieces keep rendering.
+  `DEFAULT` in the file is an invented PXI night for a demo that is not a real listing (name on the cover, host,
+  heart, faces, polaroids, a taste match).
+
+Not drawn: sponsored cards, a PXI event from the API (none was public), the loading and empty states, the sheets
+that open from a card, JOIN or SEE ALL (the listing sheet, the paywall, the map).
 
 ## Shared
 
+- `chrome.js`: what every Discover body sits under and over (status bar, header, filter bar, view switch, tab bar),
+  the seed reader and the poster a listing gets when it has no flyer. One place for all the screens.
 - `icons.js`: the app's own icon set (`@hugeicons/core-free-icons`), path for path. Use `hugeicon(name, size, colour,
   strokeWidth)`; never redraw an icon by hand.
 - `assets/`: Inter (the stand-in for the phone's system font), Stack Sans Notch (the app's display face), the app's
@@ -88,4 +120,11 @@ match, as the app draws it.
 - **Signed in.** The listings were asked for signed out. A signed-in viewer may get PXI events or a different rank.
 - **The 300-row answer.** A busy city has more listings than the app loads, so a night's count ("44") is the count
   of what the app loaded, which is what the app prints.
+- **The record's two lines.** By the code's own numbers a line that fills its box starts about 10 points under the
+  cover's right edge, so its first letter can be half hidden. Drawn as coded; a phone was not there to confirm it.
+- **The doorway's fan** opens on a spring when the card is centred. Here it opens with the swipe's last half unless
+  the scene drives `fan(p)`.
+- **The city in the bar.** The carousel says "City" until a city is picked; the seeds say the city, as after a pick.
+- **Where the card sits.** The newer code puts the dateline, the card and the details 18 points lower than the
+  screen approved on Nov 6 and always prints TASTE MATCH. The new numbers are the code's.
 - Not compared against a real phone at all: no device or screenshot was available.

@@ -18,7 +18,7 @@ cd studio/world3d && npm ci                      # the 3D rig
 bash studio/setup.sh && . ~/.pxi-tts/bin/activate   # the narrator's voice and the hearing check
 bash studio/setup_cast_voice.sh                  # only when a cast member speaks (a 4 GB model)
 python3 studio/events.py --posters videos/<slug>/events/<city>   # only to render a piece that shows real cards
-python3 studio/list.py videos/<slug>/events/<city> ...           # the same command as before: fetches a list's posters again
+python3 studio/card.py | studio/list.py <the same command as before>   # fetches a carousel's or a list's pictures again
 ```
 
 Node tools need `NODE_PATH=$(npm root -g)` (Playwright and Chromium are already installed). `studio/card.py` reads
@@ -35,14 +35,16 @@ and posters from PXI's own API and writes `sources.md`. Then pick the screen the
 (`look/app-screens/README.md`):
 
 - **It carries a song** (a note mark in the list): it is a Discover card.
-  `python3 studio/card.py <that folder> "<words from the title>" --clock 1:04 --out videos/<slug>/seed.json`
-  (`--clock` is the time in the story, `--today` the day the piece goes out, `--when "This weekend"` what the filter
-  pill says), then `node studio/screen.cjs look/app-screens/discover.html <seed> out.png` for a still. The scene's
-  Discover screen loads `seed.json` from its own folder.
+  `python3 studio/card.py <that folder> "<words from the title>" --now "<the moment in the story>" --out
+  videos/<slug>/seed.json`, then `node studio/screen.cjs look/app-screens/discover.html <seed> out.png` for a still.
+  The seed is the app's whole carousel opened on that card: a scene swipes it with `swipe(index, progress)` and pops
+  the record with `disc(p)`. The scene's Discover screen loads `seed.json` from its own folder.
 - **It does not** (most listings): it is a row of All events, and `card.py` refuses it.
   `python3 studio/list.py <that folder> --open "<words from the title>" --now "<the moment in the story>" --out
   videos/<slug>/seed-list.json`, then `node studio/screen.cjs look/app-screens/all-events.html <seed> out.png`.
   The list opens scrolled to that listing; a scene scrolls it with `scrollList(y)`.
+- **"And N more"**: the carousel's last card says the number. `python3 studio/card.py <that folder> doorway`.
+  Never say a count the card does not show.
 
 The app's own code picks every word, price, order and count on both screens. Fetch again on the day a piece is
 scheduled: listings change.

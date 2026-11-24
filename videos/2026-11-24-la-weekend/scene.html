@@ -101,9 +101,9 @@ const pt = (x, y) => [271 + 1.37949 * x, 316 + 1.37949 * y]; // a point of the 3
 function cam(c) { return `translate(${c.Q[0] - c.s * c.P[0]}px,${c.Q[1] - c.s * c.P[1]}px) scale(${c.s})`; }
 function mix(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
 const FIT = 1080 / 538, PX = FIT * 1.37949;                      // the app screen exactly as wide as the picture
-const C0 = { s: FIT, P: pt(195, 104), Q: [540, 0] };             // a card arrives from a little higher: the filter says when and where
-const CA = { s: FIT, P: pt(195, 158), Q: [540, 0] };             // the day, the poster, the name, the place, the price, JOIN; the caption band falls between the place and the price
-const CB = { s: FIT * 1.18, P: pt(285, 640), Q: [285 * PX, (640 - 158) * PX] }; // a small push toward the price, which stays where it was
+const C0 = { s: FIT, P: pt(195, 155), Q: [540, 0] };             // a card arrives from a little higher
+const CA = { s: FIT, P: pt(195, 209), Q: [540, 0] };             // the day, the poster, the place, the price, JOIN; the caption band falls on the empty TASTE MATCH line ("--" on an outside listing), under the price
+const CB = { s: FIT * 1.18, P: pt(285, 612), Q: [285 * PX, (612 - 209) * PX] }; // a small push toward the price, which stays where it was
 const CC = { s: FIT, P: [540, 316], Q: [540, 0] };               // the chat: as wide as the picture, the messages above the caption band
 
 let lastChat = '';

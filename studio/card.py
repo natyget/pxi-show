@@ -1,71 +1,87 @@
 #!/usr/bin/env python3
-"""One real listing as the app's Discover card: writes the seed for look/app-screens/discover.html.
+"""The app's Discover carousel for a city, centred on one real listing: writes the seed for look/app-screens/discover.html.
 
-  python3 studio/card.py <events dir from events.py> "<listing id or words from its title>" [--left "<words>"] [--when "This weekend"] [--clock 1:04] [--out seed.json]
+  python3 studio/card.py <events dir from events.py> "<listing id or words from its title>" [--when week]
+        [--now "2026-11-27 18:30"] [--clock 6:30] [--record] [--no-map] [--out seed.json]
+  python3 studio/card.py <events dir> doorway ...      the carousel opened on its last card, the way in to All events
 
-The card is dressed by the app's own code (look/app-screens/listing.ts, run against ../pxi-mobile-app, read-only):
-the name, the byline, Location, Price, the two lines on the record, and the stamp. The cover is the listing's own
-poster. An outside listing has no heart, no guest faces and no taste match, exactly as the app draws it.
-Then: node studio/screen.cjs look/app-screens/discover.html seed.json out.png   (a still to look at)"""
-import argparse, datetime, json, os, subprocess, sys, tempfile
-from zoneinfo import ZoneInfo
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-APP = os.environ.get("PXI_APP", os.path.join(os.path.dirname(ROOT), "pxi-mobile-app"))
+The seed holds every card the app's carousel would hold, in the app's order, and its last card, the doorway to All
+events ("230 MORE THIS WEEK"), so a scene can swipe from the pick to its real neighbours (look/app-screens/README.md).
+The app's own code decides all of it (look/app-screens/carousel.ts, run against ../pxi-mobile-app, read-only): which
+listings are cards (only the ones that carry a song), their order, each card's day and hour, Location, Price, the two
+lines on the record, the stamp, and the doorway's count, three picks and words. A listing's cover is its own poster;
+an outside listing has no name printed over it, no heart, no faces and no taste match, exactly as the app draws it.
 
-def find(events, q):
-    hit = [e for e in events if e["id"] == q] or [e for e in events if all(w.lower() in (e["titleClean"] + " " + e["title"]).lower() for w in q.split())]
-    if not hit: sys.exit(f"no listing matches {q!r}")
-    hit.sort(key=lambda e: e["start"])
-    if len(hit) > 1:  # the same event on several nights, or two events with the same words: say so, never pick in silence
-        print(f"{len(hit)} listings match {q!r}; took the earliest. For another, pass its id:", file=sys.stderr)
-        for e in hit: print(f"   {e['day']}, {e['time']}  {e['titleClean'][:50]}  id {e['id']}", file=sys.stderr)
-    return hit[0]
+  --when     what the filter bar's When says: week (the app's own start, tonight to Sunday), tonight, tomorrow,
+             weekend, or one night as YYYY-MM-DD. "This weekend" and "This week" are understood too.
+  --now      the moment in the story, in the city's own time: it decides "TONIGHT" and what is over.
+             Left out: the moment the listings were fetched.
+  --clock    the time on the status bar, when it should differ from --now.
+  --record   the seed opens with the pick's record popped out (a still of it; a scene pops it with disc(p))
+  --no-map   the second word of the view switch reads "All events", not "Map": use it when the piece goes on to
+             the All events list (studio/list.py), which is drawn as the app shows it with no map.
+
+A listing with no song is REFUSED: the app never shows it as a card. Show it with studio/list.py.
+The posters and the songs' artwork are fetched into the folder (never committed): run the same command again after
+a fresh clone. Then:  node studio/screen.cjs look/app-screens/discover.html <seed> out.png   (a still to look at)"""
+import argparse, datetime, json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from appdata import ROOT, app_code, find, load_app, posters, the_moment, web
+
+WHENS = {"this week": "week", "this weekend": "weekend", "week": "week", "weekend": "weekend", "tonight": "tonight", "tomorrow": "tomorrow"}
+
+def carousel(d, when="week", now=None):
+    """The app's carousel for the folder's city at that moment: the cards in order, the doorway, and the moment itself."""
+    p, app = load_app(d); at, tz = the_moment(app, now)
+    key = WHENS.get(when.lower()) or "night:" + when
+    car = app_code("carousel.ts", p, json.dumps({"now": at.astimezone(datetime.timezone.utc).isoformat(), "when": key}), tz=str(tz))
+    return app, at, car
+
+def seed_of(d, car, at, index, clock=None, no_map=False):
+    """The seed for discover.html: the carousel with every picture it shows fetched, opened on card `index`."""
+    cards = car["cards"]; door = car["doorway"]
+    covers = posters(d, cards + (door["picks"] if door else []))
+    art = posters(d, [{"id": "art-" + c["id"], "labelUrl": c["labelUrl"], "name": c["name"]} for c in cards if not c["labelFallback"]], key="labelUrl", sub="art")
+    os.makedirs(os.path.join(d, "stamps"), exist_ok=True); out = []
+    for c in cards:
+        stamp = os.path.join(d, "stamps", c["id"][:60] + ".svg"); open(stamp, "w").write(c["stamp"]["svg"])
+        f = covers.get(c["id"]); a = art.get("art-" + c["id"])
+        if c["coverUrl"] and not f: print(f"  \"{c['name'][:50]}\": its poster could not be fetched, the card will be empty", file=sys.stderr)
+        out.append({"id": c["id"], "external": True, "name": c["name"], "hideName": c["hideName"], "host": c["host"], "cover": web(os.path.join(d, f)) if f else None, "poster": c["poster"],
+                    "label": web(os.path.join(d, a)) if a else web(os.path.join(d, f)) if f else None, "labelFallback": c["labelFallback"] or not a,
+                    "record": c["record"], "day": c["day"], "clock": c["clock"], "location": c["location"], "price": c["price"], "match": None,
+                    "stamp": {"img": web(stamp), "w": c["stamp"]["w"], "h": c["stamp"]["h"]}})
+    if door:
+        picks = [{"id": p["id"], "title": p["title"], "time": p["time"], "poster": p["poster"],
+                  "cover": web(os.path.join(d, covers[p["id"]])) if covers.get(p["id"]) else None} for p in door["picks"]]
+        out.append({"doorway": True, "count": door["count"], "windowLabel": door["windowLabel"], "from": door["from"], "picks": picks})
+    return {"clock": clock or at.strftime("%-I:%M"), "when": car["whenLabel"], "city": car["city"], "me": "assets/me-nio.png", "second": "All events" if no_map else "Map",
+            "cards": out, "at": index, "discOpen": False, "joined": False}
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("dir"); ap.add_argument("pick"); ap.add_argument("--left"); ap.add_argument("--out")
-    ap.add_argument("--when", help='what the filter pill says, as the app words it: "This weekend", "This week". Left out: the listing\'s own night')
-    ap.add_argument("--clock", default="6:12", help="the time on the phone's status bar: the time in the story")
-    ap.add_argument("--today", help="the day the piece goes out, YYYY-MM-DD: the card says TONIGHT, FRI or NOV 29 as the app would that day. Left out: today")
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("dir"); ap.add_argument("pick"); ap.add_argument("--out"); ap.add_argument("--when", default="week"); ap.add_argument("--now"); ap.add_argument("--clock")
+    ap.add_argument("--no-map", action="store_true"); ap.add_argument("--record", action="store_true")
     a = ap.parse_args()
-    d = os.path.abspath(a.dir); data = json.load(open(os.path.join(d, "events.json"))); events = data["events"]
-    e = find(events, a.pick)
-    # The app's own rule (pxi-mobile-app, src/components/discover/carouselMix.ts): a listing from another ticket site is a
-    # card of the Discover carousel only when it carries a song. Without one the app shows it in All events, never as a card.
-    rides = lambda x: bool((x.get("song") or "").strip())
-    if not rides(e): sys.exit(f"REFUSED: \"{e['titleClean']}\" has no song, so the app never shows it as a Discover card: it is in All events.\n"
-                              f"Show it where the app does: python3 studio/list.py {a.dir} --open \"{a.pick}\"   (look/app-screens/all-events.html)")
-    cfg = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
-    json.dump({"compilerOptions": {"baseUrl": APP, "paths": {"@/*": ["src/*"]}, "jsx": "react-jsx", "esModuleInterop": True, "allowJs": True}}, cfg); cfg.close()
-    r = subprocess.run(["npx", "-y", "tsx", "--tsconfig", cfg.name, os.path.join(ROOT, "look/app-screens/listing.ts"), os.path.join(d, "raw.json"), e["id"]],
-                       cwd=APP, capture_output=True, text=True)
-    os.unlink(cfg.name)
-    if r.returncode: sys.exit("the app's code would not run:\n" + r.stderr[-600:])
-    card = json.loads(r.stdout)
-    os.makedirs(os.path.join(d, "stamps"), exist_ok=True)
-    stamp = os.path.join(d, "stamps", e["id"][:60] + ".svg"); open(stamp, "w").write(card["stampSvg"])
-    web = lambda p: "/" + os.path.relpath(p, ROOT)  # a path the render server understands
-    tz = ZoneInfo((data.get("city") or {}).get("timeZone") or "America/New_York")
-    start = datetime.datetime.fromisoformat(e["start"]); today = datetime.date.fromisoformat(a.today) if a.today else datetime.datetime.now(tz).date()
-    night = datetime.date.fromisoformat(e["night"]) if e.get("night") else start.date(); ahead = (night - today).days
-    when = a.when or ("Tonight" if ahead == 0 else start.strftime("%a %-d"))
-    # the line above the card, as the app's eventClock.ts words it: Tonight or Today, the weekday for the next six nights, then the date
-    day = ("Tonight" if start.hour >= 17 or start.hour < 5 else "Today") if ahead == 0 else night.strftime("%a") if 0 < ahead < 7 else night.strftime("%b %-d")
-    # the card peeking in from the left: the one before it in the carousel, which the app keeps in time order (cards with a song only).
-    # Before the first card the app shows its All events doorway, which is not rebuilt: the slot stays empty there.
-    line = sorted((x for x in events if rides(x) and x["cover"]), key=lambda x: x["start"]); k = [x["id"] for x in line].index(e["id"])
-    left = find(events, a.left) if a.left else (line[k - 1] if k > 0 else None)
-    if left and not rides(left): sys.exit(f"REFUSED: the card on the left, \"{left['titleClean']}\", has no song, so the app never shows it as a card")
-    seed = {"clock": a.clock, "when": when, "city": (data.get("city") or {}).get("name", ""), "day": day.upper(), "hour": e["time"], "me": "assets/me-nio.png",
-            "center": {"name": card["name"] or e["title"], "host": card["host"] or "", "cover": web(os.path.join(d, e["cover"])), "pos": "50% 50%",
-                       "faces": [], "going": 0, "polaroids": [], "reaction": None, "match": None, "external": True,
-                       "genre": card["record"][0], "second": card["record"][1], "label": web(os.path.join(d, e["cover"])),
-                       "location": card["location"], "price": card["price"], "stamp": web(stamp)},
-            "left": {"name": left["title"], "cover": web(os.path.join(d, left["cover"]))} if left else {"name": "", "cover": ""},
-            "discOpen": True, "joined": False}
-    out = a.out or os.path.join(d, "seed-" + e["id"][:12] + ".json")
+    d = os.path.abspath(a.dir); app, at, car = carousel(d, a.when, a.now)
+    ids = [c["id"] for c in car["cards"]]; door = car["doorway"]
+    out = a.out or os.path.join(d, "seed-" + a.pick[:12].replace(" ", "-") + ".json")
+    if a.pick.lower() == "doorway":
+        if not door: sys.exit("the app would show no doorway here: no outside listing is left in this When once the cards are taken out")
+        json.dump(seed_of(d, car, at, len(ids), a.clock, a.no_map), open(out, "w"), indent=1, ensure_ascii=False)
+        print(json.dumps({"doorway": f"{door['count']} MORE {door['windowLabel']}", "its three picks": [f"{p['time']}  {p['title']}" for p in door["picks"]], "under them": door["from"],
+                          "cards before it": len(ids), "the moment": at.strftime("%a %b %-d, %-I:%M %p"), "seed": out}, indent=1, ensure_ascii=False)); return
+    e = find(app, a.pick, at)
+    if e["id"] not in ids:
+        if not ((e.get("topSong") or {}).get("title") or "").strip():
+            sys.exit(f"REFUSED: \"{e['title']}\" has no song, so the app never shows it as a Discover card: it is in All events.\n"
+                     f"Show it where the app does: python3 studio/list.py {a.dir} --open \"{a.pick}\"   (look/app-screens/all-events.html)")
+        sys.exit(f"REFUSED: \"{e['title']}\" ({e['night']}) is not a card at this moment with the When on \"{car['whenLabel']}\": it is over, or its night is outside the When. Change --when or --now.")
+    k = ids.index(e["id"]); c = car["cards"][k]; seed = seed_of(d, car, at, k, a.clock, a.no_map); seed["discOpen"] = a.record
     json.dump(seed, open(out, "w"), indent=1, ensure_ascii=False)
-    print(json.dumps({"listing": e["titleClean"], "when": f"{e['day']}, {e['time']}", "venue": e["venue"], "price": card["price"], "listed on": e["source"],
-                      "ticket page": e["ticketUrl"], "seed": out}, indent=1, ensure_ascii=False))
+    print(json.dumps({"listing": c["name"], "when": f"{c['day']}, {c['clock']}", "venue": c["venue"], "price": c["price"], "listed on": c["source"], "ticket page": c["ticketUrl"],
+                      "card": f"{k + 1} of {len(ids)}" + (", then the doorway" if door else ""), "next cards": [x["name"] for x in car["cards"][k + 1:k + 4]],
+                      "doorway": f"{door['count']} MORE {door['windowLabel']}" if door else None, "the moment": at.strftime("%a %b %-d, %-I:%M %p"), "seed": out}, indent=1, ensure_ascii=False))
 
 if __name__ == "__main__":
     main()

@@ -11,10 +11,10 @@ Writes into the out folder:
                 file, where the poster came from. Listings that have already started are left out
   covers/       the posters, one file per listing
   sources.md    every fact with its ticket link and the time it was fetched (the proof behind a post)
-  raw.json      the API's answer as it came, for the tool that dresses a listing as the app's Discover card
+  raw.json      the API's answer as it came
   app.json      the answer to the question the app itself asks for its carousel and its All events list (the city's
-                centre, ranked, seven nights, 300 rows), with the time it was asked: studio/list.py and the
-                carousel's last card are built from it, so they count what the app counts
+                centre, ranked, seven nights, 300 rows), with the time it was asked: studio/card.py (the carousel
+                and its last card) and studio/list.py (All events) are built from it, so they count what the app counts
 
 These are listings from other ticket sites (Eventbrite, DICE, Posh, RA, Ticketmaster) as PXI shows them. The app
 makes a listing a card of the Discover carousel only when it carries a song (the note mark in the list below); the
@@ -103,7 +103,7 @@ def main():
             except Exception as err:
                 failed.append((row["titleClean"], str(err)[:60]))
         rows.append(row)
-    json.dump(data, open(os.path.join(out, "raw.json"), "w"), ensure_ascii=False)  # the API's own rows, for look/app-screens/listing.ts
+    json.dump(data, open(os.path.join(out, "raw.json"), "w"), ensure_ascii=False)  # the API's own rows, as they came
     json.dump({"city": data.get("city"), "fetched": fetched, "events": rows}, open(os.path.join(out, "events.json"), "w"), indent=1, ensure_ascii=False)
     with open(os.path.join(out, "sources.md"), "w") as f:
         f.write(f"# Listings for {(data.get('city') or {}).get('name', a.city)}, fetched {fetched}\n\nFrom PXI's API (`/api/listings/discover`). Check the ticket page again before a piece is scheduled.\n\n")

@@ -3,7 +3,9 @@
 <!-- The city weekend reel: this weekend told as nights out. The same file for every city and every week: it loads
      words.js (the voice) and reel.js (the beats, the cards and every time, written by studio/weekend.py).
      A beat is a rig shot of that kind of night, the pick's real Discover card (the app screen as wide as the
-     picture, a small push toward the price on its word), a chat, or the end card. The picture changes on every
+     picture, a small push toward the price on its word; the record pops out and turns, as when its tab is pressed),
+     a chat, or the end card. The cards are one real carousel (look/app-screens/discover.html, the app's own cards
+     in the app's order): a "flick" beat swipes it, card after card, from the first pick. The picture changes on every
      voice line; the captions sit in the empty band between the place and the price on a card. -->
 <style>
 @font-face{font-family:Inter;src:url(/look/fonts/inter.woff2) format("woff2");font-weight:100 900}
@@ -81,9 +83,11 @@ const eBack = (p) => { p = clamp(p); const c = 1.6; return 1 + (c + 1) * Math.po
 const pr = (t, a, d) => clamp((t - a) / d);
 const W = VO.words, B = REEL.beats, DUR = REEL.dur;
 
-// one Discover screen per card
-REEL.seeds.forEach((s, i) => { const f = document.createElement('iframe'); f.id = 'disc' + i; f.src = '/look/app-screens/discover.html?seed=' + encodeURIComponent(JSON.stringify(s)); $('screen').insertBefore(f, $('chat')); });
-const docs = () => REEL.seeds.map((_, i) => $('disc' + i).contentDocument);
+// one Discover screen: the app's carousel, with every card in it (events/seed.json, written by studio/weekend.py)
+{ const f = document.createElement('iframe'); f.id = 'disc'; f.src = '/look/app-screens/discover.html?seed=events/seed.json'; $('screen').insertBefore(f, $('chat')); }
+const app = () => $('disc').contentWindow;
+const PICKS = REEL.cards;          // where each pick sits in the carousel
+const POP = 0.45;                  // a card's record pops out this long after the card arrives (its orange tab pressed)
 
 // captions: every spoken word, in the phrases the script breaks them into (studio/voice.py: " / " in a voice line)
 const groups = [];
@@ -101,16 +105,16 @@ const pt = (x, y) => [271 + 1.37949 * x, 316 + 1.37949 * y]; // a point of the 3
 function cam(c) { return `translate(${c.Q[0] - c.s * c.P[0]}px,${c.Q[1] - c.s * c.P[1]}px) scale(${c.s})`; }
 function mix(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
 const FIT = 1080 / 538, PX = FIT * 1.37949;                      // the app screen exactly as wide as the picture
-const C0 = { s: FIT, P: pt(195, 104), Q: [540, 0] };             // a card arrives from a little higher: the filter says when and where
-const CA = { s: FIT, P: pt(195, 158), Q: [540, 0] };             // the day, the poster, the name, the place, the price, JOIN; the caption band falls between the place and the price
-const CB = { s: FIT * 1.18, P: pt(285, 640), Q: [285 * PX, (640 - 158) * PX] }; // a small push toward the price, which stays where it was
+const C0 = { s: FIT, P: pt(195, 155), Q: [540, 0] };             // a card arrives from a little higher
+const CA = { s: FIT, P: pt(195, 209), Q: [540, 0] };             // the day, the poster, the place, the price, JOIN; the caption band falls on the empty TASTE MATCH line ("--" on an outside listing), under the price
+const CB = { s: FIT * 1.18, P: pt(285, 612), Q: [285 * PX, (612 - 209) * PX] }; // a small push toward the price, which stays where it was
 const CC = { s: FIT, P: [540, 316], Q: [540, 0] };               // the chat: as wide as the picture, the messages above the caption band
 
 let lastChat = '';
 window.render = function (t, pass) {
   document.body.classList.toggle('pass-ui', pass === 'ui');
   document.body.classList.toggle('pass-art', pass === 'art');
-  const D = docs();
+  const A = app();
   $('grain').style.backgroundPosition = `${(Math.floor(t * 12) * 37) % 200}px ${(Math.floor(t * 12) * 91) % 200}px`;
   const b = B.find((x) => t >= x.t0 && t < x.t1) || B[B.length - 1];
   /* a rig shot: one PNG per frame at 24 a second */
@@ -120,18 +124,22 @@ window.render = function (t, pass) {
     im.style.display = 'block'; im.style.transformOrigin = b.zoom ? `${b.zoom[1]}px ${b.zoom[2]}px` : '50% 50%'; im.style.transform = b.zoom ? `scale(${b.zoom[0]})` : 'none';
     if (im.dataset.src !== src) { im.dataset.src = src; im.src = src; wait = im.decode().then(() => true, () => true); }
   } else im.style.display = 'none';
-  const flick = b.kind === 'flick' ? Math.min(REEL.seeds.length - 1, Math.floor((t - b.t0) / (b.t1 - b.t0) * REEL.seeds.length)) : -1; // every card again, one after another
-  const phone = b.kind === 'card' || b.kind === 'chat' || flick >= 0;
+  const flick = b.kind === 'flick';
+  const phone = b.kind === 'card' || b.kind === 'chat' || flick;
   $('grain').style.display = phone ? '' : 'none';
   $('pwrap').style.display = phone ? '' : 'none';
-  REEL.seeds.forEach((_, i) => { $('disc' + i).style.display = (b.kind === 'card' && b.card === i) || flick === i ? '' : 'none'; });
-  if (flick >= 0) { const sl = (b.t1 - b.t0) / REEL.seeds.length; $('pwrap').style.transform = cam(mix(C0, CA, eOut(pr(t, b.t0 + flick * sl, 0.3)))); }
+  $('disc').style.display = b.kind === 'card' || flick ? '' : 'none';
+  if (flick) { // a real swipe, card after card from the first pick, each one landing on the app's own spring
+    const sl = (b.t1 - b.t0) / PICKS.length, k = Math.min(PICKS.length - 1, Math.floor((t - b.t0) / sl)), into = t - b.t0 - k * sl;
+    A.disc(0); A.swipe(PICKS[0] + k - 1, k === 0 ? 1 : A.spring('snap', into));
+    $('pwrap').style.transform = cam(CA); }
   $('chat').style.display = b.kind === 'chat' ? 'block' : 'none';
   if (b.kind === 'card') {
     let C = mix(C0, CA, eOut(pr(t, b.t0, 0.5)));
     if (b.on !== null) C = mix(C, CB, eIO(pr(t, b.on, 0.5)));
     $('pwrap').style.transform = cam(C);
-    const vc = D[b.card].querySelector('.vc'); if (vc) vc.style.transform = `rotate(${t * 38}deg)`;
+    const out = Math.max(0, t - b.t0 - POP);
+    A.swipe(PICKS[b.card], 0); A.disc(A.spring('disc', out)); A.spin(out * 40); // VinylDisc turns once in nine seconds
   }
   if (b.kind === 'chat') {
     $('pwrap').style.transform = cam(CC);
@@ -152,15 +160,14 @@ window.render = function (t, pass) {
   $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has((REEL.show[w.w] || w.w).toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
   return wait;
 };
-// Fonts inside an app screen load only while that screen is drawn: draw each card in turn and wait for its fonts.
+// The app screen is ready when it says so (its fonts are in and its words are fitted); then every card's pictures are decoded.
 window.ready = async () => {
-  await Promise.all(REEL.seeds.map((_, i) => new Promise((res) => { const f = $('disc' + i); const ok = () => f.contentDocument && f.contentDocument.readyState === 'complete' && f.contentDocument.getElementById('stage');
-    if (ok()) res(); else f.addEventListener('load', res); })));
+  const f = $('disc');
+  await new Promise((res) => { const ok = () => f.contentDocument && f.contentDocument.body && f.contentDocument.body.dataset.ready === '1'; const tick = () => (ok() ? res() : setTimeout(tick, 50)); tick(); });
   await document.fonts.ready;
-  for (const b of B) { if (b.kind !== 'card' && b.kind !== 'chat') continue;
-    window.render(b.t0 + 0.6, 'all');
-    if (b.kind === 'card') { const D = docs()[b.card]; await Promise.all([D.fonts.load('900 20px "Stack Sans Notch"'), D.fonts.load('800 14px Inter'), D.fonts.ready]); }
-    await new Promise((r) => setTimeout(r, 350)); }
+  for (const b of B) { if (b.kind !== 'card' && b.kind !== 'chat' && b.kind !== 'flick') continue;
+    for (const t of b.kind === 'flick' ? PICKS.map((_, k) => b.t0 + (k + 0.9) * (b.t1 - b.t0) / PICKS.length) : [b.t0 + 0.6]) { window.render(t, 'all'); await new Promise((r) => setTimeout(r, 250)); } }
+  await Promise.all([...f.contentDocument.images].map((im) => im.decode().catch(() => {})));
   await document.fonts.ready;
 };
 </script>
