@@ -8,7 +8,20 @@ Every run starts the same way: read `CLAUDE.md`, then `STATE.md`, then this page
 ends the same way: one new line in the test log in `STATE.md` if something was learned, the state updated, a commit
 pushed to the default branch, and a report of six lines or fewer that leads with what the founder has to decide.
 
-**Nothing is posted or scheduled by a run until the founder says yes to that exact piece in the run's own chat.**
+**Nothing is posted or scheduled until the founder has said yes to that exact piece** (see the threads below).
+
+## The threads (founder, Nov 24)
+
+- **The scheduler thread** holds Metricool. It schedules, reads the numbers, and is where the two light runs happen.
+  It schedules a piece only when the piece's `post.md` carries the founder's yes, word for word and dated, and it
+  always reads the schedule back. The founder can say yes there (it shows what is waiting) or in the thread that
+  made the piece, which writes the words into `post.md`.
+- **The maker thread** makes the upcoming videos and stills, and is where Monday's heavy run happens. Every finished
+  piece gets a `post.md` beside it: the hosted files, the captions for each network, the cover, the audio pick and
+  the planned times (`videos/2026-11-24-idk-to-omw/post.md` is the model).
+- **The trainer** (the session that built this engine) tests the engine with a cheaper model on real pieces, reads
+  where it fell short, and fixes the tool, the template or the page that caused it. The goal: the cheaper model
+  makes pieces at the level of the approved ones, from these files alone.
 
 ## What a week holds (founder: 3 to 5 posts a day on each network, 3 to 10 stories a day)
 
@@ -35,8 +48,8 @@ The same piece goes to Instagram, TikTok, YouTube Shorts and Facebook, so a week
    a time on each machine.
 4. Run the checks on every piece. Put all of them on one review page for the founder: the file, the caption, the
    audio pick, the network and the planned time. Send the notification.
-5. On the founder's yes, piece by piece: host the files, schedule in Metricool (the PXI LABS brand only), read the
-   schedule back, confirm nothing is a draft.
+5. On the founder's yes, piece by piece: record it in the piece's `post.md`, host the files, and leave the
+   scheduling to the scheduler thread.
 
 Stop making new pieces at 7:30 PM. A piece that is not finished is listed as not finished, never shipped rough.
 

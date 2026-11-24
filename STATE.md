@@ -1,8 +1,8 @@
 # State
 
-next: Sunday's light run writes the first weekly plan; Monday's heavy run makes the first full week (`runs.md`).
-Before then, in a working session: one city discovery reel for New York from real listings, as the model for the
-format, and Nio's first to-camera line in his own voice.
+next: the scheduler thread schedules "idk to omw" (its `post.md` is approved). The maker thread makes the New York
+weekend reel from real listings, then Boston. The trainer tests the engine with the cheaper model and fixes what
+that shows.
 
 ## Where things stand (Nov 24, 2026)
 
@@ -23,8 +23,7 @@ format, and Nio's first to-camera line in his own voice.
 - **Real events:** `studio/events.py` pulls this week's listings and posters for New York and Boston from PXI's
   own API; `studio/card.py` dresses one as the app's Discover card with the app's own code.
 - **Nio's voice:** rebuilt with the recipe behind his 20 approved lines (same description, model, versions and
-  seed); `studio/cast_voice.py` makes a line in about 30 seconds. Samples: `look/cast/voice/`. The founder has
-  not yet confirmed it by ear.
+  seed); `studio/cast_voice.py` makes a line in about 30 seconds. The founder picked the first sample: `look/cast/voice/nio-reference.wav`.
 - **Scheduled:** "PXI Monday heavy run" (Mon 1:45 PM), "PXI Thursday light run" (Thu 12:17 PM), "PXI Sunday plan
   run" (Sun 6:38 PM), all America/Chicago, each a fresh session that follows `runs.md`. They were created without
   the Metricool connector (this workspace does not let a session attach one): until the founder adds it to each
@@ -40,17 +39,26 @@ format, and Nio's first to-camera line in his own voice.
 - Real listings, with their real posters, from PXI's own API. More app demos.
 - Nio never quotes downloads or followers, unless the founder asks for a milestone post.
 - Nio's existing voice is rebuilt, not replaced.
-- 3 to 5 posts a day on each network and 3 to 10 stories a day (read from "3-5 posts per social media and many
-  stories on all social inculding tiktok like 3-10"; if the founder meant a week, halve nothing and ask).
+- 3 to 5 posts a day on each network and 3 to 10 stories a day (confirmed: "i mean per network per day so 3-5 on
+  tiktok in that day for example").
+- Nio's voice: the first sample is the one ("the first smaple for nio voice the best"). Its acting note, "Talking
+  to a friend, quick and easy, a little pleased with himself", is the reference delivery
+  (`look/cast/voice/nio-reference.wav`).
+- "idk to omw" is approved for scheduling.
 - Three runs a week: the heavy one on Monday before the 8 PM usage reset, two light ones for numbers and planning.
 
 ## Open decisions (the founder's)
 
 - Which city leads the profile name: New York or Boston.
-- Whether the reading of the volume above (a day, not a week) is right.
 
 ## Founder notes (newest first, word for word)
 
+- **Nov 24, on the threads:** "metricool is connected and been connected i dont know why you cant access it but if you
+  cant then make the sceduler be able to and hand off what you made in this session and show me too". "the first
+  smaple for nio voice the best". "i mean per network per day so 3-5 on tiktok in that day for example". "lets
+  schedule the ones we have right no on this new scheduler thread and show me what else you made and make the other
+  tread also do upcoming videos as fable i need you to train an engine until opus 5.5 be able to actually produce
+  videos at that quality because its toekn effecient to check and do what you need".
 - **Nov 24, on cut 5 and the plan:** "yes use real listings and also have more demos the latest cut is nice. no dont
   say real donwlaods and folllowers what type of video would ever need that unless he is celebrting a milestone.
   and rebuild his existing voice". "you can literally check our repo and webste and scrap the event posters from

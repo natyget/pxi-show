@@ -3,6 +3,17 @@
 One folder per video: `videos/<date>-<slug>/`. Commands run from that folder unless they start with `studio/`.
 `videos/2026-11-24-idk-to-omw/` is the worked example: copy its files to start a new one.
 
+## A fresh machine (once)
+
+```
+cd studio/world3d && npm ci                      # the 3D rig
+bash studio/setup.sh && . ~/.pxi-tts/bin/activate   # the narrator's voice and the hearing check
+bash studio/setup_cast_voice.sh                  # only when a cast member speaks (a 4 GB model)
+```
+
+Node tools need `NODE_PATH=$(npm root -g)` (Playwright and Chromium are already installed). `studio/card.py` reads
+the app's code from `../pxi-mobile-app`, or from the folder in `PXI_APP`.
+
 ## 1. Brief (five lines, before anything is made)
 
 The format (`growth.md`), the city if any, the hook, the one ending, the length (30 to 45 s or 60 to 90 s), and
@@ -67,9 +78,10 @@ Then the stranger (`studio/viewer.md`): a fresh reviewer, contact sheets and the
 
 ## 7. To the founder, then out
 
-Send the MP4 itself. On a yes: host it (`pxispace.com/public/social/<slug>/`, pushed with the founder's yes),
-schedule in Metricool with the caption, an Instagram library track (`audioConfiguration`), `showReelOnFeed` true,
-`draft` false, and read the schedule back.
+Send the MP4 itself. Write `post.md` beside it: the captions for each network, the cover, the audio pick, the
+planned times (`videos/2026-11-24-idk-to-omw/post.md` is the model). On the founder's yes, write the yes into
+`post.md` word for word, host the files (`pxispace.com/public/social/<slug>/video.mp4` and `cover.jpg`, on main),
+and the scheduler thread schedules it and reads the schedule back (`runs.md`).
 
 ## Safe zones (1080x1920)
 
