@@ -89,6 +89,10 @@ the numbers.
 
 ## Founder notes (newest first, word for word)
 
+- **Nov 24, on volume, after three pieces were scheduled:** "yes but were supposed to be posting 3-10 posts a day, 3
+  reels some posts a lot of stories right so your 3 scheduled work i hope its not it for us and that were pumping
+  quality content at quantity because its necessary for growth".
+
 - **Nov 24, evening, the yes and the ad cap:** "ok go soft for now lets try to go viral and see traction at first. lets
   see if people watch a video if one does exceptionally well that is our sign i dont want to spend more tan 150 a
   month total for ads on tiktok ig seo all combined. but i need you to optimize and think of our growth and how
