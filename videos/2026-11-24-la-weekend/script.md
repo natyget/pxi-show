@@ -14,7 +14,7 @@ Saturday's party / won't say / where it is yet.
 Midnight Lovers. / Eleven forty-five, / about thirty-five dollars.
 Sunday, / you recover / on a rooftop.
 Brunch and football / on Sunset, / from eleven. / That one's free.
-All four of these / are in Pixie. / Send this / to whoever plans / your weekend. || 0.9
+All four of these / are in Pixie. / Send this / to whoever plans / your weekend. || 1.7
 ```
 
 | Line | Picture |
@@ -23,12 +23,12 @@ All four of these / are in Pixie. / Send this / to whoever plans / your weekend.
 | Friday, you can have dinner with strangers in Echo Park | A dinner table in Nio World: Nio and three people he does not know, laughing (rig shot `shots/dinner.json`) |
 | It's called Foodies and New Friends | The same table, closer, with the listing's facts as a plain label: its name, FRI 7 PM, Echo Park, $23.18. No card: this listing has no song, so the app lists it in All events and never shows it as a card |
 | After dinner, you go dancing | Nio on the club floor, the crowd behind him (rig shot `shots/club.json`) |
-| Night Tales, at The Spotlight | The listing's real Discover card, the app screen as wide as the picture. A small push toward the price on "about twenty-five" |
+| Night Tales, at The Spotlight | The listing's real Discover card, the app screen as wide as the picture. The app is whole and centred on its own black; the captions sit on the poster. On "about twenty-five" a hand-drawn purple circle goes round the price |
 | Saturday's party won't say where it is yet | A chat with Sarah: "midnight lovers saturday?", "where is it", "location TBA 😭", "ok im in", each landing on its word |
-| Midnight Lovers | Its real card: the place line says LOCATION TBA, LOS ANGELES. Push toward the price on "about thirty-five dollars" |
+| Midnight Lovers | Its real card: the place line says LOCATION TBA, LOS ANGELES. The circle goes round the price on "about thirty-five dollars" |
 | Sunday, you recover on a rooftop | Nio up on a chair on the roof with a cup, laughing (rig shot `shots/roof.json`) |
 | Brunch and football on Sunset | The same roof, closer, with a plain label: Sunday Brunch + Football, SUN 11 AM, Sunset Rooftop, FREE. No card, for the same reason |
-| All four of these are in PXI | The two cards again, quickly |
+| All four of these are in PXI | The map, our drawing: every listing the app has for these nights as a pin, placed by its own coordinates; the dinner, Night Tales and the brunch named with their times. Midnight Lovers has no place yet, so it has no pin |
 | Send this to whoever plans your weekend | The PXI icon, "PXI", "free", the store badges |
 
 ## The listings (fetched Nov 24 from PXI's API; every fact, with its ticket page, is in `sources.md`)
@@ -60,8 +60,8 @@ The scene is `studio/weekend-reel.html`, copied in as `scene.html`; it names no 
    Only a listing with a song (the note mark in `events.py`) is a Discover card in the app; `card.py` refuses the
    rest. A pick without one is told with its picture and a `label` (see `studio/weekend.py`), never a card.
 3. `reel.json`: the city, `cards` (words from each title, or the listing id when the same event is listed on several
-   nights), and `beats`, one per voice line (`studio/weekend.py` lists the kinds: `shot`, `card` with the word its
-   push lands on, `chat` with the word each message lands on, `end`), plus the names that keep their capitals.
+   nights), and `beats`, one per voice line (`studio/weekend.py` lists the kinds: `shot`, `card` with the word on which
+   its price is circled, `chat` with the word each message lands on, `map` for a line about all of them, `end`), plus the names that keep their capitals.
 4. The rig shots in `shots/` (`studio/shot.py`), each at least as long as its beat; faces above the caption band.
 5. `python3 studio/weekend.py videos/<date>-<city>-weekend` writes the card seeds, `reel.js`, `cues.json`,
    `sources.md` and the scene, and prints each beat's times. Then stills, `safe.cjs`, the two render passes,

@@ -20,6 +20,9 @@ Reads from that folder:
                                                                  everything but the price dims (leave out: nothing dims)
                   {"line": 4, "chat": {"name": "Sarah", "msgs": [["them", "text", null], ["me", "text", "word"]]}}
                                                                  a chat; each message lands on its word (null: there when the chat appears; "3:word": a word of line 3)
+                  {"line": 8, "map": {"labels": [{"pick": "<id>", "name": "Night Tales", "place": "Echo Park"}]}}
+                                                                 the map, for a line about all of them at once: every weekend
+                                                                 listing a pin by its own coordinates, the named ones with name and time
                   {"line": 8, "flick": true}                     the carousel swiped, card after card from the first pick
                                                                  (the app's own next cards, whatever they are)
                 "now": the moment in the story, in the city's time ("2026-11-27 18:30"); left out: when the listings were fetched
@@ -31,7 +34,7 @@ Reads from that folder:
 Writes: events/seed.json, the app's carousel with every pick in it (studio/card.py; the When is "This weekend"),
 reel.js (what scene.html loads),
 cues.json (the small sounds, on the same times), sources.md (the listings shown, with their ticket pages) and
-scene.html (a copy of studio/weekend-reel.html, if not there yet). Every time comes from the voice."""
+scene.html (a copy of studio/weekend-reel.html, copied again on every run). Every time comes from the voice."""
 import json, os, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from appdata import ROOT, find
@@ -69,7 +72,45 @@ def from_app(pick):  # a listing outside the forty in events.json, from the app'
     tz = ZoneInfo((json.load(open(os.path.join(ev_dir, "events.json"))).get("city") or {}).get("timeZone") or "America/New_York")
     st = datetime.datetime.fromisoformat(r["startsAt"].replace("Z", "+00:00")).astimezone(tz); c = r.get("priceFromCents")
     return {"id": pick, "title": r["title"].strip(), "day": st.strftime("%a %b %-d"), "time": st.strftime("%-I:%M %p").replace(":00 ", " "), "venue": r.get("venueName"),
-            "price": "Free" if r.get("isFree") or c == 0 else ("$%d" % (c / 100) if c and c % 100 == 0 else "$%.2f" % (c / 100) if c else None), "ticketUrl": r.get("ticketUrl")}
+            "price": "Free" if r.get("isFree") or c == 0 else ("$%d" % (c / 100) if c and c % 100 == 0 else "$%.2f" % (c / 100) if c else None), "ticketUrl": r.get("ticketUrl"), "lat": r.get("lat"), "lng": r.get("lng")}
+
+def map_pins(spec, t0):
+    """The map: every weekend listing as a pin by its own coordinates, the named ones with their name and time.
+    Our drawing of the idea, so only what the coordinates give: which is north or east of which, nothing about distance."""
+    import math
+    lab = []
+    for k, m in enumerate(spec["labels"]):
+        e = next((x for x in listings if x["id"] == m["pick"]), None) or from_app(m["pick"])
+        if e.get("lat") is None or "tba" in (e.get("venue") or "").lower(): sys.exit(f"the map cannot place \"{e['title']}\": its listing gives no place")
+        lab.append({"lat": e["lat"], "lng": e["lng"], "name": m.get("name", e["title"]), "when": f"{e['day'].split()[0].upper()} {e['time']}" + (f" · {m['place']}" if m.get("place") else "")})
+    k0 = math.cos(math.radians(lab[0]["lat"])); X = lambda e: e["lng"] * k0; Y = lambda e: -e["lat"]
+    xs, ys = [X(e) for e in lab], [Y(e) for e in lab]; span = max(max(xs) - min(xs), (max(ys) - min(ys)) * 560 / 520, 0.02)
+    cx, cy = (max(xs) + min(xs)) / 2, (max(ys) + min(ys)) / 2; sc = 560 / span
+    P = lambda e: (round(540 + (X(e) - cx) * sc), round(760 + (Y(e) - cy) * sc))
+    pins = []; seen = set()
+    a = json.load(open(os.path.join(ev_dir, "app.json"))); a = a if isinstance(a, list) else a.get("events") or a.get("listings") or []
+    for e in a:  # every other listing the app has for these nights, unnamed, where it falls inside the picture
+        if e.get("lat") is None or "tba" in (e.get("venueName") or "").lower(): continue
+        x, y = P(e)
+        if not (40 <= x <= 1040 and 300 <= y <= 1560) or (x // 20, y // 20) in seen or any(abs(x - P(l)[0]) < 24 and abs(y - P(l)[1]) < 24 for l in lab): continue
+        seen.add((x // 20, y // 20)); pins.append({"x": x, "y": y})
+    for i, p in enumerate(pins): p["t"] = round(t0 + min(0.04, 1.2 / len(pins)) * i, 3)  # every pin is down inside 1.2 s
+    named = []
+    for k, l in enumerate(lab):
+        x, y = P(l); wide = max(len(l["name"]) * 29, len(l["when"]) * 23); n = {"x": x, "y": y, "w": wide, "name": l["name"], "when": l["when"], "t": round(t0 + 0.15 + 0.28 * k, 3)}
+        # the label sits beside its pin where it fits inside the safe box, else under it
+        if x + 52 + wide <= 930: n.update(lx=x + 52, ly=y - 124)
+        elif x - 52 - wide >= 90: n.update(lx=x - 52 - wide, ly=y - 124)
+        else: n.update(lx=max(96, min(930 - wide, x - wide // 2)), ly=y + 14)
+        named.append(n)
+    for _ in range(12):  # two labels never lie on each other: the lower one moves down until they are clear
+        moved = False
+        for a2 in sorted(named, key=lambda n: n["ly"]):
+            for b2 in named:
+                if b2 is a2 or b2["ly"] > a2["ly"] or (b2["ly"] == a2["ly"] and named.index(b2) > named.index(a2)): continue
+                if a2["lx"] < b2["lx"] + b2["w"] + 20 and b2["lx"] < a2["lx"] + a2["w"] + 20 and a2["ly"] - b2["ly"] < 122: a2["ly"] = b2["ly"] + 122; moved = True
+        if not moved: break
+    return pins + named
 
 dur = round(vo["duration"] + 0.45, 2); beats = []; cues = []; used = {}; labelled = []
 listings = json.load(open(os.path.join(ev_dir, "events.json")))["events"]
@@ -100,6 +141,8 @@ for i, b in enumerate(reel["beats"]):
     elif "chat" in b:
         msgs = [{"me": who == "me", "txt": txt, "t": round(at(b["line"], w) - 0.08, 3) if w else t0} for who, txt, w in b["chat"]["msgs"]]
         o.update(kind="chat", name=b["chat"]["name"], msgs=msgs); cues += [["pop", m["t"], 0.13] for m in msgs]
+    elif "map" in b:
+        pins = map_pins(b["map"], t0); o.update(kind="map", pins=pins); cues += [["pop", p["t"], 0.12] for p in pins if p.get("name")]
     elif "flick" in b:
         o.update(kind="flick"); cues += [["tick", round(t0 + k * (t1 - t0) / len(seeds), 3) + 0.02, 0.12] for k in range(len(seeds))]
     else:
@@ -112,7 +155,7 @@ json.dump({"duration": dur, "cues": cues}, open(os.path.join(d, "cues.json"), "w
 with open(os.path.join(d, "sources.md"), "w") as f:  # the proof behind the piece: only the listings it shows
     f.write(f"# Listings shown in this piece\n\nFrom PXI's API, fetched {json.load(open(os.path.join(ev_dir, 'events.json')))['fetched']}. Check each ticket page again before the piece is scheduled.\n\n| When | Event | Venue | Price on the card | Ticket page |\n|---|---|---|---|---|\n")
     for x in facts + labelled: f.write(f"| {x['when']} | {x['listing']} | {x['venue'] or ''} | {x['price']} | {x['ticket page']} |\n")
-if not os.path.exists(scene): shutil.copy(os.path.join(ROOT, "studio/weekend-reel.html"), scene)
+shutil.copy(os.path.join(ROOT, "studio/weekend-reel.html"), scene)  # always the builder as it is now: a fix there reaches every piece
 for f in facts: print(f"  {f['when']:<18} {f['listing'][:50]:<50} {(f['venue'] or '')[:24]:<24} {f['price']:<8} {f['listed on']}")
 for b in beats: print(f"  {b['t0']:>6.2f} to {b['t1']:>6.2f}  {b['kind']:<5} {b.get('name', b.get('card', ''))}")
 print(f"{len(seeds)} cards, {dur} s")

@@ -15,8 +15,10 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
   card, a chat, the end card) and the voice. `videos/2026-11-24-la-weekend/script.md` says how to make the next one.
   Los Angeles (34 s) and New York (`videos/2026-11-24-nyc-nights/`, 37 s) are at their latest cuts: the hook calls the city and
   the need, the quick narrator reads (the founder's note on cut 1), and a Discover card is drawn only for a listing
-  the app shows as one (it needs a song); the other picks are a picture and a plain label. Both passed the fresh
-  reviewer and wait for the founder's yes. The first two, New York and Boston,
+  the app shows as one (it needs a song); the other picks are a picture and a plain label. Both, and the Nio to camera piece
+  (`videos/2026-11-24-nio-la/`), were made again the evening of Nov 24 on the founder's three aesthetic notes (app screens
+  clean and centred, a circle on the price, the map under "all of these"), passed the fresh reviewer and wait for
+  the founder's yes. The first two, New York and Boston,
   were the old shape (the app under a voice listing events), failed the reviewer twice and are dropped; their
   folders keep the files and what the reviewer said.
 - **Scheduled (not drafts):** "idk to omw" goes out Tue Nov 24 (America/Chicago): Instagram and Facebook Reel 6:30 PM
@@ -223,6 +225,7 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 
 ## Test log (one line per test)
 
+- Nov 24, clean-app builder (the founder's three aesthetic notes): app screens whole, centred, black to the edge; a circle on the price in place of a zoom; the map under "all of these". LA, New York and Nio to camera rendered again; fresh reviewers: LA pass, Nio pass, New York fail (small chat in a black frame) then pass with the chat filling the frame. Found after the reviews: the circle did not render because the app layer was removed, not hidden, in the captions pass; fixed in `studio/weekend-reel.html`. `studio/weekend.py` now copies the builder into the piece on every run, so a fix there reaches every piece.
 - Nov 24, the first two city reels (the stronger model): both failed the stranger twice. After three seconds they
   were thirty seconds of one app screen under a voice listing events. Cause: the format as `growth.md` defined it.
   Changed there (nights out, the app as the proof) and one question added to `studio/viewer.md`.

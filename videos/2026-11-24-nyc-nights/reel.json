@@ -95,6 +95,30 @@
   },
   {
    "line": 9,
+   "map": {
+    "labels": [
+     {
+      "pick": "1c461bc8-df7d-4a0d-ab22-8804cd3e671c",
+      "name": "Marco Lys"
+     },
+     {
+      "pick": "9ac77bfd-9ff4-4425-9cf9-08d6c105227b",
+      "name": "Xanadu skate night"
+     },
+     {
+      "pick": "818eae62-f0a6-456b-9596-ca20130899b2",
+      "name": "Free rave + arcade"
+     },
+     {
+      "pick": "774906c0-c1f0-4832-a48d-03e68d87779f",
+      "name": "Prosecco cruise"
+     }
+    ]
+   }
+  },
+  {
+   "line": 9,
+   "after": true,
    "end": true
   }
  ],

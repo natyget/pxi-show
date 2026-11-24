@@ -16,21 +16,21 @@ Sunday starts / before you're ready.
 An unlimited / prosecco cruise, / at Pier 36. / Eleven A.M., / about nineteen dollars.
 And when / the money runs out,
 there's a free rave / with an arcade. / Saturday at nine, / at Danger Danger.
-All of these / are in Pixie. / Which one / are you going to? || 0.9
+All of these / are in Pixie. / Which one / are you going to? || 1.7
 ```
 
 | Line | Picture |
 |---|---|
 | Are you in New York, looking for things to do this weekend? We got you | Nio up on a chair on the roof at sunset, the city behind him, on his phone (rig shot `shots/roof.json`) |
 | First, can you skate? Because there's a skate night this Saturday | A chat with Mike: "can you skate", "no", "me neither", "saturday at 7?", "obviously", each landing on its word |
-| Xanadu, in Brooklyn, with Rich Medina | The listing's real Discover card, the app screen as wide as the picture. The captions sit on the poster, clear of the app's own text. A small push toward the price on "twenty-five dollars" |
+| Xanadu, in Brooklyn, with Rich Medina | The listing's real Discover card, the app screen as wide as the picture. The app is whole and centred on its own black; the captions sit on the poster. On "twenty-five dollars" a hand-drawn purple circle goes round the price |
 | If you'd rather stay on your feet, Friday is for dancing | Nio on the club floor, the crowd's arms up (rig shot `shots/club.json`) |
-| Marco Lys, in ArtSpace at the Public Hotel | Its real card. Push toward the price on "twenty dollars" |
+| Marco Lys, in ArtSpace at the Public Hotel | Its real card. The circle goes round the price on "twenty dollars" |
 | Sunday starts before you're ready | Nio asleep sitting up on the edge of his bed (rig shot `shots/asleep.json`) |
 | An unlimited prosecco cruise, at Pier 36 | The same shot, closer, with the listing's facts as a plain label: Unlimited Prosecco Cruise, SUN 11 AM, Pier 36, $18.90. No card: this listing has no song, so the app lists it in All events and never shows it as a card |
 | And when the money runs out, | Nio in tears at his phone (rig shot `shots/broke.json`) |
 | there's a free rave with an arcade. Saturday at nine, at Danger Danger | The same shot, closer, with a plain label: "Free Rave and Arcade Pop Up" (from the listing's name), SAT 9 PM, Danger Danger, Brooklyn. No price in the label: the listing gives none; free is in its name |
-| All of these are in PXI. Which one are you going to? | The PXI icon, "PXI", "free", the store badges |
+| All of these are in PXI. Which one are you going to? | The map, our drawing: every listing the app has for these nights as a pin, placed by its own coordinates; the four picks named with their times. Then the PXI icon, "PXI", "free", the store badges |
 
 ## The listings (fetched again Nov 24, afternoon, from PXI's API; every fact, with its ticket page, is in `sources.md`)
 

@@ -21,7 +21,23 @@
   {
    "line": 1,
    "at": "this",
-   "flick": true
+   "map": {
+    "labels": [
+     {
+      "pick": "b34fd766-14e0-4603-914d-dedb5e43d092",
+      "name": "Foodies + New Friends",
+      "place": "Echo Park"
+     },
+     {
+      "pick": "351b05f3-10f3-4281-a0c6-e5e1526ef688",
+      "name": "Night Tales"
+     },
+     {
+      "pick": "2464b0f7-2e02-400b-88c4-b9e0fa95e615",
+      "name": "Sunday Brunch + Football"
+     }
+    ]
+   }
   },
   {
    "line": 2,

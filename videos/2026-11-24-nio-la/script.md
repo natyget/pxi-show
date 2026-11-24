@@ -19,7 +19,7 @@ nio: I'm still building it. Follow, and I'll show you what's on in LA{L.A.} ever
 | Looking for things to do in LA this weekend? | Nio in his room, to the viewer (`shots/a-hook.json`, camera `talk`) |
 | I built an app for that. | A cut in, inside the line (`b-built`, `talkClose`) |
 | It's called PXI, | Nio holding up his phone (`c-name`, `talk`); the caption shows the name |
-| and this is everything on in LA this weekend. | The real Discover carousel for Los Angeles, swiped card after card (the app is on screen at 7 s) |
+| and this is everything on in LA this weekend. | The map, our drawing (founder, Nov 24: "for that moment i think the map does so well"): every listing the app has for these nights as a pin, placed by its own coordinates; the dinner, Night Tales and the brunch named with their times |
 | I made it because every Friday I had five tabs open, | Arms crossed, a step to the side (`d-tabs`, `talkSide`) |
 | just to find one thing to do. | Cut in (`d2-find`, `talkClose`) |
 | This Friday there's a dinner with strangers in Echo Park. | Nio (`e-dinner`, `talk`) with the listing's facts as a plain label: Foodies + New Friends, FRI 7 PM, Echo Park, $23.18. No card: the listing has no song, so the app lists it in All events |
@@ -50,7 +50,7 @@ It is made with the reel tool (`studio/weekend.py`), like every piece that gives
    and the need; his own reason comes second, in one line. The app is on screen within about seven seconds, and
    never under words about the problem. A line under about six words comes out of the voice model garbled: join
    it to its neighbour. `python ../../studio/voice.py script.md` (about 30 s a line), then `hear.py`.
-2. `reel.json`: a `shot` when he is on screen; a `flick` or a `card` when he talks about the app (his voice carries
+2. `reel.json`: a `shot` when he is on screen; a `map` or a `card` when he talks about the app (his voice carries
    on over it); a `label` on his shot for a listing the app does not show as a card; the `end` beat with
    `"after": true`, so he finishes the ask to the viewer first. A beat with `"at": "<word>"` cuts to another
    camera inside a line: no shot of him runs past four seconds.
