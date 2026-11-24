@@ -1,0 +1,61 @@
+{
+ "city": "nyc",
+ "shot": "roof",
+ "dive": "One",
+ "phoneAt": [
+  585,
+  1070
+ ],
+ "events": [
+  {
+   "pick": "Marco Lys",
+   "push": "price",
+   "on": "twenty"
+  },
+  {
+   "pick": "Xanadu",
+   "push": "price",
+   "on": "Twenty-five"
+  },
+  {
+   "pick": "Sounds So Dangerous"
+  },
+  {
+   "pick": "Theo Parrish",
+   "push": "price",
+   "on": "Twenty"
+  }
+ ],
+ "show": {
+  "Leece": "Lys"
+ },
+ "proper": [
+  "New",
+  "York",
+  "Marco",
+  "Lys",
+  "Public",
+  "Hotel",
+  "Xanadu",
+  "Brooklyn",
+  "Rich",
+  "Medina",
+  "Danger",
+  "Theo",
+  "Parrish",
+  "Nowadays"
+ ],
+ "key": [
+  "New",
+  "York",
+  "free",
+  "twenty",
+  "dollars",
+  "twenty-five",
+  "nothing"
+ ],
+ "more": [
+  "Prosecco",
+  "Panama"
+ ]
+}

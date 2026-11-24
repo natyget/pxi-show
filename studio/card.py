@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """One real listing as the app's Discover card: writes the seed for look/app-screens/discover.html.
 
-  python3 studio/card.py <events dir from events.py> "<listing id or words from its title>" [--left "<words>"] [--out seed.json]
+  python3 studio/card.py <events dir from events.py> "<listing id or words from its title>" [--left "<words>"] [--when "This weekend"] [--out seed.json]
 
 The card is dressed by the app's own code (look/app-screens/listing.ts, run against ../pxi-mobile-app, read-only):
 the name, the byline, Location, Price, the two lines on the record, and the stamp. The cover is the listing's own
@@ -18,7 +18,9 @@ def find(events, q):
     return hit[0]
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("dir"); ap.add_argument("pick"); ap.add_argument("--left"); ap.add_argument("--out"); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("dir"); ap.add_argument("pick"); ap.add_argument("--left"); ap.add_argument("--out")
+    ap.add_argument("--when", help='what the filter pill says, as the app words it: "This weekend", "This week". Left out: the listing\'s own night')
+    a = ap.parse_args()
     d = os.path.abspath(a.dir); data = json.load(open(os.path.join(d, "events.json"))); events = data["events"]
     e = find(events, a.pick)
     cfg = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
@@ -32,10 +34,13 @@ def main():
     stamp = os.path.join(d, "stamps", e["id"][:60] + ".svg"); open(stamp, "w").write(card["stampSvg"])
     web = lambda p: "/" + os.path.relpath(p, ROOT)  # a path the render server understands
     tz = ZoneInfo((data.get("city") or {}).get("timeZone") or "America/New_York")
-    start = datetime.datetime.fromisoformat(e["start"]); tonight = datetime.datetime.now(tz).strftime("%Y-%m-%d") == e["night"]
-    when = "Tonight" if tonight else start.strftime("%a %-d")
+    start = datetime.datetime.fromisoformat(e["start"]); today = datetime.datetime.now(tz).date()
+    night = datetime.date.fromisoformat(e["night"]) if e.get("night") else start.date(); ahead = (night - today).days
+    when = a.when or ("Tonight" if ahead == 0 else start.strftime("%a %-d"))
+    # the line above the card, as the app's eventClock.ts words it: Tonight or Today, the weekday for the next six nights, then the date
+    day = ("Tonight" if start.hour >= 17 or start.hour < 5 else "Today") if ahead == 0 else night.strftime("%a") if 0 < ahead < 7 else night.strftime("%b %-d")
     left = find(events, a.left) if a.left else next((x for x in events if x["id"] != e["id"] and x["cover"]), None)
-    seed = {"clock": "6:12", "when": when, "city": (data.get("city") or {}).get("name", ""), "day": when.upper(), "hour": e["time"], "me": "assets/me-nio.png",
+    seed = {"clock": "6:12", "when": when, "city": (data.get("city") or {}).get("name", ""), "day": day.upper(), "hour": e["time"], "me": "assets/me-nio.png",
             "center": {"name": e["titleClean"], "host": card["host"] or "", "cover": web(os.path.join(d, e["cover"])), "pos": "50% 50%",
                        "faces": [], "going": 0, "polaroids": [], "reaction": None, "match": None, "external": True,
                        "genre": card["record"][0], "second": card["record"][1], "label": web(os.path.join(d, e["cover"])),

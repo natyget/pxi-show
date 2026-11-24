@@ -1,7 +1,9 @@
 # How a video is made
 
 One folder per video: `videos/<date>-<slug>/`. Commands run from that folder unless they start with `studio/`.
-`videos/2026-11-24-idk-to-omw/` is the worked example: copy its files to start a new one.
+`videos/2026-11-24-idk-to-omw/` is the worked example of a story: copy its files to start a new one. The city weekend
+reel has its own scene for every city and week (`studio/weekend-reel.html`, built by `studio/weekend.py`);
+`videos/2026-11-24-nyc-weekend/script.md` says how to make the next one.
 
 ## A fresh machine (once)
 

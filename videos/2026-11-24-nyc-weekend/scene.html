@@ -1,0 +1,161 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- The city weekend reel. The same file for every city and every week: it loads words.js (the voice) and reel.js
+     (the cards and every time, written by studio/weekend.py). Nothing here names a city or an event.
+     Order: the hook over one rig shot, a dive into the phone, one real Discover card per voice line (a swipe between
+     them, a glide down to the place and the price on its word), a pull back and a swipe on through more of the weekend on the PXI line, the end card. -->
+<style>
+@font-face{font-family:Inter;src:url(/look/fonts/inter.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"DM Mono";src:url(/look/fonts/dm-mono-500.woff2) format("woff2");font-weight:500}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+#art,#ui{position:absolute;inset:0}
+#art{background:#1d1820}
+body.pass-ui #art{display:none}
+body.pass-art #ui{display:none}
+#grain{position:absolute;inset:0;background:url(/look/brand/grain.webp);opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+#tap{position:absolute;left:0;top:0;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:rgba(255,255,255,.3);border:5px solid #fff;opacity:0}
+#plate{position:absolute;left:0;top:0;width:1080px;height:1920px;image-rendering:pixelated;display:none}
+/* the phone: body and the real screen, moved by one camera */
+#pwrap{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+#pbody{position:absolute;left:255px;top:300px;width:570px;height:1196px;border-radius:74px;background:#141216;border:7px solid #1b1416}
+#screen{position:absolute;left:271px;top:316px;width:538px;height:1164px;border-radius:56px;overflow:hidden;background:#000}
+#screen iframe{position:absolute;left:0;top:0;width:390px;height:844px;border:0;transform:scale(1.37949);transform-origin:0 0;background:transparent}
+/* captions and the end card (always sharp) */
+#cap{position:absolute;left:90px;right:150px;top:1160px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;text-align:center}
+#cap span{font:900 84px/1.12 Inter;color:#fff;letter-spacing:-1px;paint-order:stroke fill;-webkit-text-stroke:14px #000;display:inline-block;transform-origin:50% 70%}
+#cap span.k{color:#c26bff}
+#end{position:absolute;inset:0;background:#050505;opacity:0}
+#end .icon{position:absolute;left:410px;top:400px;width:260px;height:260px;border-radius:60px;overflow:hidden;background:#000;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+#end .icon img{width:100%;height:100%}
+#end .nm{position:absolute;left:0;right:0;top:690px;text-align:center;color:#fff;font:900 96px Inter;letter-spacing:-2px}
+#end .free{position:absolute;left:0;right:0;top:810px;text-align:center;color:#c9c9c7;font:500 46px "DM Mono"}
+#end .badges{position:absolute;left:0;right:0;top:905px;display:flex;justify-content:center;align-items:center;gap:22px}
+#end .badges img.as{height:118px}
+#end .badges img.gp{height:108px;margin:-17px -12px}
+</style></head>
+<body>
+<div id="stage">
+<div id="art">
+  <img id="plate">
+  <div id="pwrap" style="display:none"><div id="pbody"></div><div id="screen"></div></div>
+  <div id="tap"></div>
+  <div id="grain"></div>
+</div>
+<div id="ui">
+  <div id="end"><div class="icon"><img src="/look/brand/pxi-app-icon.png"></div><div class="nm">PXI</div><div class="free">free</div>
+    <div class="badges"><img class="as" src="/look/brand/app-store-badge.svg"><img class="gp" src="/look/brand/google-play-badge.png"></div></div>
+  <div id="cap"></div>
+</div>
+</div>
+<script src="words.js"></script>
+<script src="reel.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const eOut = (p) => 1 - Math.pow(1 - clamp(p), 3);
+const eIO = (p) => { p = clamp(p); return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+const eBack = (p) => { p = clamp(p); const c = 1.6; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+const pr = (t, a, d) => clamp((t - a) / d);
+const W = VO.words, T = REEL.t, N = REEL.n; // N cards have a voice line; the seeds after them are swiped past on the PXI line
+const DUR = T.dur;
+
+// one Discover screen per card, stacked; only the first keeps the header, the buttons and the tab bar
+REEL.seeds.forEach((s, i) => { const f = document.createElement('iframe'); f.id = 'disc' + i; f.src = '/look/app-screens/discover.html?seed=' + encodeURIComponent(JSON.stringify(s)); $('screen').appendChild(f); });
+let DOCS = null;
+function docs() {
+  if (DOCS) return DOCS;
+  const d = REEL.seeds.map((_, i) => $('disc' + i).contentDocument);
+  d.forEach((D, i) => { D.documentElement.style.background = 'transparent'; D.body.style.background = 'transparent';
+    if (i) D.querySelectorAll('.sb,.hdr,.fb,.vs,.act,.tb').forEach((e) => { e.style.visibility = 'hidden'; }); });
+  return (DOCS = d);
+}
+
+// captions: every spoken word, a new phrase where the voice breathes or the line gets long
+const groups = [];
+// A phrase ends at the line's own punctuation, starts again before a small joining word, and holds four words at most.
+const JOINERS = new Set(['in', 'at', 'with', 'this', 'from', 'is', 'on', 'and', 'for']);
+VO.lines.forEach((ln, li) => { let g = null;
+  const lw = W.filter((w) => w.line === li), toks = ln.text.split(/\s+/).filter((x) => /[A-Za-z0-9]/.test(x)), stops = toks.length === lw.length;
+  lw.forEach((w, k) => { const after = k > 0 && (stops ? /[.,:;?!]$/.test(toks[k - 1]) : w.s - lw[k - 1].e > 0.2);
+    if (!g || after || g.words.length >= 4 || (g.words.length >= 2 && JOINERS.has(w.w.toLowerCase()))) { g = { words: [] }; groups.push(g); }
+    g.words.push(w); }); });
+groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.words[0].s - 0.02; const nx = groups[i + 1]; g.e = nx ? Math.min(nx.words[0].s - 0.02, last.e + 0.7) : last.e + 1.6; });
+const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+const PROPER = new Set([...REEL.proper, 'PXI', ...DAYS.map((d) => d[0].toUpperCase() + d.slice(1))].map((x) => x.toLowerCase()));
+const KEY = new Set(['pxi', 'free', ...DAYS, ...REEL.key.map((x) => x.toLowerCase())]);
+const show = (w) => { const s = REEL.show[w] || w; return s === 'PXI' ? s : PROPER.has(s.toLowerCase()) ? s[0].toUpperCase() + s.slice(1) : s.toLowerCase(); };
+
+// the phone camera: a point of the phone (P) lands on a point of the picture (Q), at scale s
+const pt = (x, y) => [271 + 1.37949 * x, 316 + 1.37949 * y]; // a point of the 390x844 app screen, in phone space
+function cam(c) { return `translate(${c.Q[0] - c.s * c.P[0]}px,${c.Q[1] - c.s * c.P[1]}px) scale(${c.s})`; }
+function mix(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
+const C0 = { s: 1.75, P: pt(195, 440), Q: [540, 960] };          // the whole app on the phone, edge to edge: the filter says when and where
+const CA = { s: 2.3, P: pt(165, 365), Q: [540, 680] };           // the app fills the frame: the day, the poster, the name, the place, the price, JOIN
+const CB = { s: 2.7, P: pt(215, 548), Q: [540, 506] };           // closer on the place and the price, JOIN just under them
+const PUSH = { price: CB, name: CA };
+
+window.render = function (t, pass) {
+  document.body.classList.toggle('pass-ui', pass === 'ui');
+  document.body.classList.toggle('pass-art', pass === 'art');
+  const D = docs();
+  $('grain').style.backgroundPosition = `${(Math.floor(t * 12) * 37) % 200}px ${(Math.floor(t * 12) * 91) % 200}px`;
+  const inShot = t < T.dive, inPhone = t >= T.dive && t < T.end;
+  /* the rig shot: one PNG per frame at 24 a second; the camera dives into the phone in his hand */
+  let wait = true; const im = $('plate');
+  if (inShot) {
+    const f = Math.min(REEL.shot.frames - 1, Math.floor(t * 24)), src = `plates/${REEL.shot.name}/f${String(f).padStart(4, '0')}.png`;
+    im.style.display = 'block'; im.style.transformOrigin = `${REEL.shot.phone[0]}px ${REEL.shot.phone[1]}px`; im.style.transform = `scale(${lerp(1, 5, eIO(pr(t, T.dive - 0.34, 0.34)))})`;
+    if (im.dataset.src !== src) { im.dataset.src = src; im.src = src; wait = im.decode().then(() => true, () => true); }
+  } else im.style.display = 'none';
+  $('grain').style.display = inShot ? 'none' : '';
+  $('pwrap').style.display = inPhone ? '' : 'none';
+  if (inPhone) {
+    /* which card is centred: one step on each event line, then on through the extra cards on the PXI line */
+    const swipes = [...T.ev.slice(1).map((e) => [e.s, 0.42]), ...T.flick.map((f) => [f, 0.32])];
+    let pos = 0; swipes.forEach(([a, d]) => { pos += eIO(pr(t, a, d)); });
+    /* the camera */
+    let C = mix(C0, CA, eIO(pr(t, T.ev[0].s - 0.05, 0.5)));
+    T.ev.forEach((e, i) => { if (!e.push) return; const out = i + 1 < N ? T.ev[i + 1].s : T.back, a = eIO(pr(t, e.on, 0.5)) - eIO(pr(t, out - 0.05, 0.4)); if (a > 0) C = mix(CA, PUSH[e.push], a); });
+    const backP = eIO(pr(t, T.back, 0.5)); if (backP > 0) C = mix(CA, C0, backP);
+    $('pwrap').style.transform = cam(C);
+    D.forEach((doc, i) => {
+      const d = pos - i, a = clamp(1 - Math.abs(d) * 1.6), st = doc.getElementById('stage'), det = doc.getElementById('det'), dl = doc.querySelector('.dl');
+      st.style.transform = `translateX(${-d * 300}px)`; st.style.opacity = clamp(1 - Math.abs(d) * 1.25);
+      dl.style.opacity = a; det.style.opacity = a;
+      const vc = doc.querySelector('.vc'); if (vc) vc.style.transform = `rotate(${t * 38}deg)`;
+    });
+    /* the thumb: a touch that drags the card away, a little ahead of it */
+    let tp = null; swipes.forEach(([a, d]) => { if (t >= a - 0.08 && t < a + d) tp = pr(t, a - 0.08, d + 0.08); });
+    const tap = $('tap'); if (tp === null) tap.style.opacity = 0; else { const x = lerp(800, 300, eIO(tp)); tap.style.opacity = Math.min(1, tp * 6, (1 - tp) * 4); tap.style.transform = `translate(${x}px,${lerp(820, 780, tp)}px) scale(${lerp(1.15, 0.9, clamp(tp * 4))})`; }
+  } else $('tap').style.opacity = 0;
+  /* the end card and the captions */
+  $('end').style.opacity = pr(t, T.end, 0.2);
+  document.querySelector('#end .icon').style.transform = `scale(${eBack(pr(t, T.end, 0.35))})`;
+  ['nm', 'free', 'badges'].forEach((c, i) => { document.querySelector('#end .' + c).style.opacity = pr(t, T.end + 0.15 + i * 0.12, 0.2); });
+  const g = groups.find((x) => t >= x.s && t < x.e);
+  $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has((REEL.show[w.w] || w.w).toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
+  return wait;
+};
+// Fonts inside the app screens load only once the phone is drawn: draw it once, then wait for every screen's fonts.
+window.ready = async () => {
+  await Promise.all(REEL.seeds.map((_, i) => new Promise((res) => { const f = $('disc' + i); const ok = () => f.contentDocument && f.contentDocument.readyState === 'complete' && f.contentDocument.getElementById('stage');
+    if (ok()) res(); else f.addEventListener('load', res); })));
+  window.render(T.ev[0].s + 1, 'all');
+  await Promise.all([document.fonts.ready, ...docs().map((D) => D.fonts.ready)]);
+  await new Promise((r) => setTimeout(r, 600));
+};
+window.safeCheck = function (t) {
+  window.render(t, 'all'); const bad = [];
+  document.querySelectorAll('#cap span, #end .icon, #end .nm, #end .free, #end .badges').forEach((el) => {
+    const cs = getComputedStyle(el); if (parseFloat(cs.opacity) < 0.05 || cs.display === 'none' || !el.textContent && !el.querySelector('img')) return;
+    let op = 1, e = el; while (e && e !== document.body) { op *= parseFloat(getComputedStyle(e).opacity); e = e.parentElement; } if (op < 0.05) return;
+    const rg = document.createRange(); rg.selectNodeContents(el); const r = rg.getBoundingClientRect(); if (r.width === 0) return;
+    if (r.left < 88 || r.right > 932 || r.top < 360 || r.bottom > 1440) bad.push(`${t.toFixed(2)}s ${el.id || el.className || el.tagName} [${Math.round(r.left)},${Math.round(r.top)},${Math.round(r.right)},${Math.round(r.bottom)}]`);
+  });
+  return bad;
+};
+</script>
+</body></html>

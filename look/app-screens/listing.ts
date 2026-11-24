@@ -27,7 +27,7 @@ const shape = getStampTypeForEvent(l.isFree ? 0 : usd, 'MEMBER');
 const name = formatStampName(ev.name ?? '');
 const date = formatStampDate(ev.startDate);
 // recordCaption: genre in magenta over the song (or its artist, or the date); with no genre, the artist over the song
-const shortDate = new Date(ev.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+const shortDate = new Date(ev.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: raw.city?.timeZone || 'America/New_York' }).toUpperCase();
 const genre = String(ev.genre ?? l.genre ?? '').trim();
 const song = l.topSong ?? null;
 const record = genre

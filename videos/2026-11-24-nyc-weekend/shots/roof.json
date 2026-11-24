@@ -1,0 +1,1 @@
+{"set": "roof", "camera": "chair", "frames": 92, "campus": {"chair": true}, "actors": [{"who": "nio", "at": "chair", "action": "stand", "hold": "phone", "gaze": [0, -0.9], "face": [[0, "neutral"], [56, "hyped"]], "glow": 0.6}]}

@@ -1,0 +1,1 @@
+{"set": "nioRoom", "camera": "low", "frames": 90, "actors": [{"who": "nio", "at": "rug", "action": "stand", "hold": "phone", "gaze": [0, -0.9], "face": [[0, "neutral"], [38, "hyped"]], "glow": 0.8}]}

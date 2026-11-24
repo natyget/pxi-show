@@ -1,0 +1,62 @@
+{
+ "city": "boston",
+ "shot": "hook",
+ "dive": "And",
+ "phoneAt": [
+  600,
+  720
+ ],
+ "events": [
+  {
+   "pick": "Black Friday Funk",
+   "push": "price",
+   "on": "free"
+  },
+  {
+   "pick": "No Wall Huggers",
+   "push": "price",
+   "on": "Twenty"
+  },
+  {
+   "pick": "Matcha Madness",
+   "push": "price",
+   "on": "Twenty"
+  },
+  {
+   "pick": "59f34ded-5294-4b72-a24c-09c4d5181e80",
+   "push": "price",
+   "on": "Twenty-eight"
+  }
+ ],
+ "show": {},
+ "proper": [
+  "Boston",
+  "Black",
+  "Funk",
+  "Spy",
+  "Bar",
+  "No",
+  "Wall",
+  "Huggers",
+  "Bootleg",
+  "Special",
+  "Matcha",
+  "Madness",
+  "Hue",
+  "Sam",
+  "Adams"
+ ],
+ "key": [
+  "Boston",
+  "igloos",
+  "igloo",
+  "twenty",
+  "dollars",
+  "twenty-eight",
+  "forty-five"
+ ],
+ "more": [
+  "FUNKYTOWN",
+  "Sunday Reunion"
+ ]
+}
