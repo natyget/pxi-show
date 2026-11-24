@@ -12,8 +12,9 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
 - **City weekend reels (maker thread, Nov 24):** the weekend told as nights out, one scene for every city and week:
   `studio/weekend-reel.html`, built by `studio/weekend.py` from a `reel.json` of beats (a rig shot, the pick's real
   card, a chat, the end card) and the voice. `videos/2026-11-24-la-weekend/script.md` says how to make the next one.
-  Los Angeles (41 s) and New York (`videos/2026-11-24-nyc-nights/`, 42 s) passed the fresh reviewer and wait for the
-  founder's yes. The first two, New York and Boston,
+  Los Angeles (34 s) and New York (`videos/2026-11-24-nyc-nights/`, 35 s) are at cut 2 after the founder's note on
+  the first Los Angeles cut: the hook calls the city and the need, the quick narrator reads. Both passed the fresh
+  reviewer again and wait for the founder's yes. The first two, New York and Boston,
   were the old shape (the app under a voice listing events), failed the reviewer twice and are dropped; their
   folders keep the files and what the reviewer said.
 - **Scheduled (not drafts):** "idk to omw" goes out Tue Nov 24 (America/Chicago): Instagram and Facebook Reel 6:30 PM
@@ -210,3 +211,7 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 - Nov 24, New York weekend reel in the new shape: passed on the first read. Hook: a question, as a chat. Ask: comment.
   A listing can disagree with its own poster (start time), and a pick can leave the feed between two fetches the
   same day: look at each poster against its card, and fetch again before a yes.
+- Nov 24, both weekend reels, cut 2 (city hook, quick narrator, 34 and 35 s): passed, "barely". The reviewer now
+  leaves at the app cards (about 9 s and 15 s): four cards in the same layout, the caption over the stamp, the app's
+  name printed over a poster's lettering. Next thing to test: each card held half as long, and the city in written
+  words on the first frame.

@@ -156,15 +156,5 @@ window.ready = async () => {
     await new Promise((r) => setTimeout(r, 350)); }
   await document.fonts.ready;
 };
-window.safeCheck = function (t) {
-  window.render(t, 'all'); const bad = [];
-  document.querySelectorAll('#cap span, #end .icon, #end .nm, #end .free, #end .badges').forEach((el) => {
-    const cs = getComputedStyle(el); if (parseFloat(cs.opacity) < 0.05 || cs.display === 'none' || !el.textContent && !el.querySelector('img')) return;
-    let op = 1, e = el; while (e && e !== document.body) { op *= parseFloat(getComputedStyle(e).opacity); e = e.parentElement; } if (op < 0.05) return;
-    const rg = document.createRange(); rg.selectNodeContents(el); const r = rg.getBoundingClientRect(); if (r.width === 0) return;
-    if (r.left < 88 || r.right > 932 || r.top < 360 || r.bottom > 1440) bad.push(`${t.toFixed(2)}s ${el.id || el.className || el.tagName} [${Math.round(r.left)},${Math.round(r.top)},${Math.round(r.right)},${Math.round(r.bottom)}]`);
-  });
-  return bad;
-};
 </script>
 </body></html>

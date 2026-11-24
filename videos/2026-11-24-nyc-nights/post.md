@@ -11,9 +11,11 @@ Files (in this folder; hosted on pxispace.com only after the yes):
 - video: `nyc-nights.mp4` (1080x1920, 35.1 s, voice and sound effects, no music)
 - cover: the Xanadu card at 7 s, cut when the files are hosted
 
-The fresh reviewer passed it (Nov 24): the chat opening held, "when the money runs out… free" was "the best beat".
-Its one hard note is about a listing, not the video: **the free pick's card says SUN 5 PM (what the listing gives
-PXI) and its own poster says 9PM-3AM.** The voice says "Sunday at five", as the listing does. To decide before a
+The fresh reviewer passed cut 2 ("barely"): the chat "is the only part that sounds like a person", "when the money
+runs out… it's free" is "a decent joke". Where it would leave: the second app card, at about 15 s. Its hard notes
+are about listings, not the video: **the free pick's card says SUN 5 PM (what the listing gives PXI) and its own
+poster says 9PM-3AM**, and Marco Lys's card gives the place as ARTSPACE while its name says Public Hotel. The voice
+says what the listings say. To decide before a
 yes: keep it as listed, or have someone check the ticket page and swap the pick if the listing's time is wrong.
 
 It has to go out before Friday: the cards say FRI, SAT, SUN, and on Friday the app would say TONIGHT.

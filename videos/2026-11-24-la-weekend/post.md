@@ -7,6 +7,10 @@ say are you in [city] looking for things to do? we got you. or something. and th
 better for stories not info like this". Cut 2 opens on that line and uses the quick narrator the founder picked
 ("voice b nice"); it is 34 s instead of 41.
 
+The fresh reviewer passed cut 2 ("barely"): the opening question "is for me", the strangers' dinner is "a good
+lead", the chat "the most human beat". Where it would leave: the app cards, at about 9 s; it wants each held half as
+long and the captions off the stamp. It also wants "LA this weekend" in written words on the first frame.
+
 Hook type: the city and the need, as a question. Ask: send.
 
 Files (in this folder; hosted on pxispace.com only after the yes):
