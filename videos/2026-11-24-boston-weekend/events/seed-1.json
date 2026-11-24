@@ -1,0 +1,32 @@
+{
+ "clock": "6:12",
+ "when": "This weekend",
+ "city": "Boston",
+ "day": "SAT",
+ "hour": "12 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Heated Igloos at Sam",
+  "host": "",
+  "cover": "/videos/2026-11-24-boston-weekend/events/boston/covers/4716eed9-5b09-4a41-aa4a-9439dd0e011b.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "BOSTON",
+  "second": "NOV 28",
+  "label": "/videos/2026-11-24-boston-weekend/events/boston/covers/4716eed9-5b09-4a41-aa4a-9439dd0e011b.jpg",
+  "location": "SAMUEL ADAMS BOSTON BREWERY",
+  "price": "$28.45",
+  "stamp": "/videos/2026-11-24-boston-weekend/events/boston/stamps/4716eed9-5b09-4a41-aa4a-9439dd0e011b.svg"
+ },
+ "left": {
+  "name": "Hosted by Latto",
+  "cover": "/videos/2026-11-24-boston-weekend/events/boston/covers/9458c232-83ee-4503-878d-24d92bee2cff.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}
