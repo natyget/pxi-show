@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 """The voice of a video, with a timestamp for every word. Run from the video's folder:
   python ../../studio/voice.py script.md
-Reads the ```voice block of script.md, one line per voice line. A plain line is the narrator (Kokoro, voice
-am_michael, 1.05x). A line that starts with a cast name is that person, in their own voice (studio/cast_voice.py):
+Reads the ```voice block of script.md, one line per voice line. A plain line is the narrator. A block that opens
+```voice quick is the quick narrator, for information (a city reel, a demo, a list): brighter, about 3.1 words a
+second, short pauses. A block that opens ```voice is the story narrator, about 2.3 words a second (the founder,
+Nov 24: that one is "better for stories not info"). A line that starts with a cast name is that person, in their
+own voice (studio/cast_voice.py):
   nio: So I built Pixie. / You open it, / and tonight is just there. (Talking to a friend, quick and easy.) || 0.4
 In a voice line:
   /            where the caption breaks ("Thirty minutes ago, / nobody knew / what to do tonight."). A line with
                no slash is broken for you at its commas, in groups of two or three words; the breaks are printed
   Lys{Leece}   the caption shows Lys, the voice says Leece (for a name the voice gets wrong; one word each)
   (a note)     cast lines only, at the end: how the line is said. A cast line with no note is refused
-  || 0.4       at the end of a line: the pause after it, in seconds (0.35 if left out)
+  || 0.4       at the end of a line: the pause after it, in seconds (left out: 0.35 in a story, 0.15 when quick)
 Writes vo_raw.wav (24 kHz) and words.json / words.js for the scene: every word with its start, end, line and
 caption group; a cast line also has "who" and its own file in vo/, which a shot's "says" uses to move the mouth
 (look/rig.md). Cast lines already made with the same words and note are kept, not made again.
@@ -20,6 +23,7 @@ import numpy as np, soundfile as sf
 SR = 24000
 HERE = os.path.dirname(os.path.abspath(__file__))
 CAST = json.load(open(os.path.join(HERE, "cast_voice.json")))["characters"]
+PACES = {"story": dict(voice="am_michael", speed=1.05, gap=0.35), "quick": dict(voice="am_puck", speed=1.27, gap=0.15)}  # both Kokoro
 SHOW = {"I.D.K.s": "idks", "I.D.K.": "idk", "Pixie": "PXI", "P.M": "pm", "P.M.": "pm", "A.M.": "am", "O.M.W.": "omw"}
 SAY = re.compile(r"(\S+?)\{([^{}\s]+)\}")
 PUNCT = ",.?!:;"
@@ -27,7 +31,10 @@ alnum = lambda s: sum(ch.isalnum() for ch in s)
 bare = lambda s: s.strip(PUNCT + "'\"")
 
 LINES = []
-for raw in re.search(r"```voice\n(.*?)```", open(sys.argv[1]).read(), re.S).group(1).strip().splitlines():
+BLOCK = re.search(r"```voice[ \t]*(\w*)[ \t]*\n(.*?)```", open(sys.argv[1]).read(), re.S)
+if (BLOCK.group(1) or "story") not in PACES: sys.exit(f"the voice block opens ```voice or ```voice quick, not ```voice {BLOCK.group(1)}")
+PACE = PACES[BLOCK.group(1) or "story"]
+for raw in BLOCK.group(2).strip().splitlines():
     line, _, gap = raw.partition("||"); line = line.strip(); who = note = None
     m = re.match(r"([a-z][A-Za-z0-9]*):\s+", line)
     if m and m.group(1) in CAST:
@@ -38,7 +45,7 @@ for raw in re.search(r"```voice\n(.*?)```", open(sys.argv[1]).read(), re.S).grou
     show = {m.group(2): m.group(1) for m in SAY.finditer(line)}  # what the voice says -> what the caption shows
     segs = [SAY.sub(lambda m: m.group(2), s).strip() for s in line.split(" / ")]
     LINES.append(dict(text=" ".join(s for s in segs if s), cuts=[alnum(s) for s in segs if s] if len(segs) > 1 else None, show=show,
-                      gap=float(gap) if gap.strip() else 0.35, who=who, note=note))
+                      gap=float(gap) if gap.strip() else PACE["gap"], who=who, note=note))
 
 def group(lw, cuts):
     """Caption groups for one line's words. Each word carries n (its letters) and brk (punctuation came before it)."""
@@ -65,7 +72,7 @@ def group(lw, cuts):
 
 def narrator(L):
     """Kokoro: the audio and every word with its own start and end."""
-    chunks = list(KOKORO(L["text"], voice="am_michael", speed=1.05)); a = np.concatenate([c.audio.numpy() for c in chunks]); off = 0.0; lw = []; brk = False; lost = 0
+    chunks = list(KOKORO(L["text"], voice=PACE["voice"], speed=PACE["speed"])); a = np.concatenate([c.audio.numpy() for c in chunks]); off = 0.0; lw = []; brk = False; lost = 0
     for c in chunks:
         for t in c.tokens:
             if not any(ch.isalnum() for ch in t.text): brk = brk or any(ch in PUNCT for ch in t.text); continue
@@ -123,6 +130,8 @@ for i, L in enumerate(LINES):
 audio = np.concatenate(out); sf.write("vo_raw.wav", audio, SR)
 d = {"duration": round(len(audio) / SR, 3), "lines": lines, "words": words}
 json.dump(d, open("words.json", "w"), indent=1); open("words.js", "w").write("window.VO=" + json.dumps(d) + ";")
+nar = [l for l in lines if "who" not in l]
+if nar: print("narrator:", BLOCK.group(1) or "story", "at", round(sum(1 for w in words if "who" not in lines[w["line"]]) / sum(l["e"] - l["s"] for l in nar), 2), "words a second")
 print("duration", d["duration"])
 for l in lines:
     lw = [w for w in words if w["line"] == l["i"]]

@@ -54,6 +54,10 @@ about a real person's private life. A public moment (a launch, a keynote, a meme
 
 ## Hooks (first 2 seconds; never the same type twice in a row)
 
+Every hook says who it is for in its first words. A piece about a city calls the city and the need out loud, the
+way the founder put it: "are you in [city] looking for things to do? we got you." The types below are ways to do
+that, never a way around it.
+
 A question ("why does everyone leave at 1:40?"), a mid-story cold open that rewinds, a myth check ("nothing to do
 in LA on a Tuesday"), did you know ("did you know there's a free rave in an arcade this Saturday?"), a fun fact
 about the city or the night, a list that holds one back ("four things this weekend, one of them is free"), "here

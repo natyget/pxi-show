@@ -40,7 +40,9 @@ shows it as a still. Fetch again on the day a piece is scheduled: listings chang
 - Read it as the viewer (`studio/viewer.md`) and rewrite until every line passes. Then
   `python3 studio/check.py script videos/<slug>/script.md` for the banned phrases.
 - In the folder: `python ../../studio/voice.py script.md` makes `vo_raw.wav` and `words.json`: a start and end for
-  every word (Kokoro, voice `am_michael`). In a voice line, ` / ` is where the caption breaks, `Lys{Leece}` shows
+  every word. Open the block with ```` ```voice quick ```` when the piece gives information (a city reel, a demo, a
+  list): a brighter narrator at about 3.1 words a second. Plain ```` ```voice ```` is the story narrator, slower and
+  warmer. In a voice line, ` / ` is where the caption breaks, `Lys{Leece}` shows
   "Lys" and says "Leece", and `|| 0.4` is the pause after the line. Write PXI as "Pixie"; captions show "PXI".
   A line that starts with a cast name (`nio: ... (how it is said)`) is spoken by that person in their own voice,
   and a shot can move their mouth to it (`look/rig.md`, "Talking").
