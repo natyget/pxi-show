@@ -1,0 +1,32 @@
+{
+ "clock": "6:12",
+ "when": "Sun 29",
+ "city": "New York",
+ "day": "SUN 29",
+ "hour": "3 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Theo Parrish All Day",
+  "host": "",
+  "cover": "/videos/2026-11-24-screen-time/events/nyc/covers/d914ff7c-6202-4b1f-9899-221d21549df3.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "HOUSE",
+  "second": "NOV 29",
+  "label": "/videos/2026-11-24-screen-time/events/nyc/covers/d914ff7c-6202-4b1f-9899-221d21549df3.jpg",
+  "location": "NOWADAYS",
+  "price": "$20",
+  "stamp": "/videos/2026-11-24-screen-time/events/nyc/stamps/d914ff7c-6202-4b1f-9899-221d21549df3.svg"
+ },
+ "left": {
+  "name": "New York Giants Watch Parties at The Crown",
+  "cover": "/videos/2026-11-24-screen-time/events/nyc/covers/41c59953-c02d-4ccb-919a-d104336e723d.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}
