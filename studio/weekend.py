@@ -35,7 +35,7 @@ for i, p in enumerate(picks + more):
     facts.append(json.loads(r.stdout)); seeds.append(json.load(open(out)))
 
 t = {"dive": round(word(0, reel["dive"]) - 0.05, 3) if reel.get("dive") else round(LN[0]["s"] + 0.65 * (LN[0]["e"] - LN[0]["s"]), 3),
-     "ev": [{"s": round(LN[i + 1]["s"] - 0.3, 3), "push": p.get("push"), "on": round(word(i + 1, p["on"], p.get("nth", 0)) - 0.12, 3) if p.get("on") else None} for i, p in enumerate(picks)],
+     "ev": [{"s": round(LN[i + 1]["s"] - 0.3, 3), "push": bool(p.get("on")), "on": round(word(i + 1, p["on"], p.get("nth", 0)) - 0.12, 3) if p.get("on") else None} for i, p in enumerate(picks)],
      "back": round(LN[N + 1]["s"] - 0.1, 3), "end": round(LN[N + 2]["s"] + 0.02, 3), "dur": round(vo["duration"] + 0.45, 2)}
 t["flick"] = [round(t["back"] + 0.55 + k * 0.6, 3) for k in range(len(more))]
 shot = json.load(open(os.path.join(d, "shots", reel["shot"] + ".json")))

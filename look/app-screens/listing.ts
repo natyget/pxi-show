@@ -17,9 +17,9 @@ if (!l) throw new Error('no listing ' + id);
 const ev: any = listingToDiscoverEvent(l);
 const usd = typeof l.priceFromCents === 'number' ? l.priceFromCents / 100 : 0;
 const money = (n: number) => (Number.isInteger(n) ? `$${n}` : `$${n.toFixed(2)}`);
-// priceDisplay: an outside listing that gave no price says TBA, a free one FREE, several prices FROM the lowest
+// priceDisplay: an outside listing that gave no price says TBA, a free one (flagged free, or a price of 0) FREE, several prices FROM the lowest
 const several = typeof l.priceToCents === 'number' && l.priceToCents > l.priceFromCents;
-const price = l.isFree ? 'FREE' : typeof l.priceFromCents !== 'number' ? 'TBA' : several ? `FROM ${money(usd)}` : money(usd);
+const price = l.isFree || l.priceFromCents === 0 ? 'FREE' : typeof l.priceFromCents !== 'number' ? 'TBA' : several ? `FROM ${money(usd)}` : money(usd);
 // locationDisplay: the venue's name, else the first line of the address, else TBA
 const firstLine = String(l.address || '').split(',')[0];
 const location = String(l.venueName || firstLine || 'TBA').trim().toUpperCase();

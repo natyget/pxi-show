@@ -1,7 +1,7 @@
 {
  "city": "nyc",
  "shot": "roof",
- "dive": "One",
+ "dive": "The",
  "phoneAt": [
   585,
   1070
@@ -9,21 +9,19 @@
  "events": [
   {
    "pick": "Marco Lys",
-   "push": "price",
    "on": "twenty"
   },
   {
    "pick": "Xanadu",
-   "push": "price",
-   "on": "Twenty-five"
-  },
-  {
-   "pick": "Sounds So Dangerous"
+   "on": "twenty-five"
   },
   {
    "pick": "Theo Parrish",
-   "push": "price",
-   "on": "Twenty"
+   "on": "twenty"
+  },
+  {
+   "pick": "33b0a2c8-855f-4215-8543-5fafa0425104",
+   "on": "free"
   }
  ],
  "show": {
@@ -40,10 +38,13 @@
   "Brooklyn",
   "Rich",
   "Medina",
-  "Danger",
   "Theo",
   "Parrish",
-  "Nowadays"
+  "Nowadays",
+  "Reggaeton",
+  "Houston",
+  "San",
+  "Antonios"
  ],
  "key": [
   "New",
@@ -51,8 +52,7 @@
   "free",
   "twenty",
   "dollars",
-  "twenty-five",
-  "nothing"
+  "twenty-five"
  ],
  "more": [
   "Prosecco",

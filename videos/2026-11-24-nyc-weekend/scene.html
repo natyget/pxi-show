@@ -2,8 +2,9 @@
 <html><head><meta charset="utf-8">
 <!-- The city weekend reel. The same file for every city and every week: it loads words.js (the voice) and reel.js
      (the cards and every time, written by studio/weekend.py). Nothing here names a city or an event.
-     Order: the hook over one rig shot, a dive into the phone, one real Discover card per voice line (a swipe between
-     them, a glide down to the place and the price on its word), a pull back and a swipe on through more of the weekend on the PXI line, the end card. -->
+     Order: the hook over one rig shot, a dive into the phone, one real Discover card per voice line (a thumb swipes
+     between them, a small push toward the price on its word), a swipe on through more of the weekend on the PXI line, the end card.
+     The app screen fills the frame edge to edge, and the captions sit in the empty band between the place and the price. -->
 <style>
 @font-face{font-family:Inter;src:url(/look/fonts/inter.woff2) format("woff2");font-weight:100 900}
 @font-face{font-family:"DM Mono";src:url(/look/fonts/dm-mono-500.woff2) format("woff2");font-weight:500}
@@ -75,14 +76,16 @@ function docs() {
 
 // captions: every spoken word, a new phrase where the voice breathes or the line gets long
 const groups = [];
-// A phrase ends at the line's own punctuation, starts again before a small joining word, and holds four words at most.
+// A phrase ends at the line's own punctuation, starts again before a small joining word, and holds three words and one line at most.
 const JOINERS = new Set(['in', 'at', 'with', 'this', 'from', 'is', 'on', 'and', 'for']);
 VO.lines.forEach((ln, li) => { let g = null;
   const lw = W.filter((w) => w.line === li), toks = ln.text.split(/\s+/).filter((x) => /[A-Za-z0-9]/.test(x)), stops = toks.length === lw.length;
   lw.forEach((w, k) => { const after = k > 0 && (stops ? /[.,:;?!]$/.test(toks[k - 1]) : w.s - lw[k - 1].e > 0.2);
-    if (!g || after || g.words.length >= 4 || (g.words.length >= 2 && JOINERS.has(w.w.toLowerCase()))) { g = { words: [] }; groups.push(g); }
+    if (!g || after || g.words.length >= 3 || g.words.reduce((n, x) => n + x.w.length + 1, 0) + w.w.length > 16 || (g.words.length >= 2 && JOINERS.has(w.w.toLowerCase()))) { g = { words: [] }; groups.push(g); }
     g.words.push(w); }); });
 groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.words[0].s - 0.02; const nx = groups[i + 1]; g.e = nx ? Math.min(nx.words[0].s - 0.02, last.e + 0.7) : last.e + 1.6; });
+// a line's last words leave before the picture moves on to the next card
+groups.forEach((g, i) => { const nx = groups[i + 1]; if (nx && nx.words[0].line !== g.words[0].line) g.e = Math.min(g.e, Math.max(g.words[g.words.length - 1].e + 0.1, VO.lines[nx.words[0].line].s - 0.34)); });
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 const PROPER = new Set([...REEL.proper, 'PXI', ...DAYS.map((d) => d[0].toUpperCase() + d.slice(1))].map((x) => x.toLowerCase()));
 const KEY = new Set(['pxi', 'free', ...DAYS, ...REEL.key.map((x) => x.toLowerCase())]);
@@ -92,10 +95,10 @@ const show = (w) => { const s = REEL.show[w] || w; return s === 'PXI' ? s : PROP
 const pt = (x, y) => [271 + 1.37949 * x, 316 + 1.37949 * y]; // a point of the 390x844 app screen, in phone space
 function cam(c) { return `translate(${c.Q[0] - c.s * c.P[0]}px,${c.Q[1] - c.s * c.P[1]}px) scale(${c.s})`; }
 function mix(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
-const C0 = { s: 1.75, P: pt(195, 440), Q: [540, 960] };          // the whole app on the phone, edge to edge: the filter says when and where
-const CA = { s: 2.3, P: pt(165, 365), Q: [540, 680] };           // the app fills the frame: the day, the poster, the name, the place, the price, JOIN
-const CB = { s: 2.7, P: pt(215, 548), Q: [540, 506] };           // closer on the place and the price, JOIN just under them
-const PUSH = { price: CB, name: CA };
+const FIT = 1080 / 538, PX = FIT * 1.37949;                      // the app screen exactly as wide as the picture
+const C0 = { s: FIT, P: pt(195, 40), Q: [540, 0] };              // from the top: Discover, the filter (when and where), the card
+const CA = { s: FIT, P: pt(195, 158), Q: [540, 0] };             // the day, the poster, the name, the place, the price, JOIN; the caption band falls between the place and the price
+const CB = { s: FIT * 1.18, P: pt(285, 640), Q: [285 * PX, (640 - 158) * PX] }; // a small push toward the price, which stays where it was
 
 window.render = function (t, pass) {
   document.body.classList.toggle('pass-ui', pass === 'ui');
@@ -118,7 +121,7 @@ window.render = function (t, pass) {
     let pos = 0; swipes.forEach(([a, d]) => { pos += eIO(pr(t, a, d)); });
     /* the camera */
     let C = mix(C0, CA, eIO(pr(t, T.ev[0].s - 0.05, 0.5)));
-    T.ev.forEach((e, i) => { if (!e.push) return; const out = i + 1 < N ? T.ev[i + 1].s : T.back, a = eIO(pr(t, e.on, 0.5)) - eIO(pr(t, out - 0.05, 0.4)); if (a > 0) C = mix(CA, PUSH[e.push], a); });
+    T.ev.forEach((e, i) => { if (!e.push) return; const out = i + 1 < N ? T.ev[i + 1].s : T.back, a = eIO(pr(t, e.on, 0.5)) - eIO(pr(t, out - 0.05, 0.4)); if (a > 0) C = mix(CA, CB, a); });
     const backP = eIO(pr(t, T.back, 0.5)); if (backP > 0) C = mix(CA, C0, backP);
     $('pwrap').style.transform = cam(C);
     D.forEach((doc, i) => {
