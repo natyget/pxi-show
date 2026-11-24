@@ -83,12 +83,27 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
 
 ## Open decisions (the founder's)
 
+- Ads (asked Nov 24; the trainer's answer is in the thread): the go-ahead, a monthly cap, and how installs are
+  counted. Checked Nov 24 through Supermetrics: the Meta ad account can take campaigns (no blockers), the pixel
+  "Meta PXI" is live on pxispace.com, there are no saved audiences, no campaigns and no conversion events. TikTok
+  Ads Manager's own floor is $20 a day for an ad group and $50 for a campaign, so a $1 to $5 test cannot run there.
+  No campaign is created, and none is ever switched on, without the founder's word.
+
 - The two city weekend reels (New York, Boston): use them or drop them. The reviewer's lasting objection is to
   what the brief asked for (real Discover cards under a voice that lists them reads as "a screen recording of an
   app", and a listing's own poster may not show the thing the hook promises). What it asked for instead: a picture
   of each night, a reason to pick one, prices said the way a friend says them.
 
 ## Founder notes (newest first, word for word)
+
+- **Nov 24, on connectors and ads:** "if there is any other mcp or connector i can add to really boost our performance
+  or anything i can do for pxi because we really need to start going viral really seriously. also should i run ads if
+  so where and how. im sure that supermetric is also connected i had a strategy to run$1-5 ads to have people watch
+  it and then turn the people who watched 95% of the reel or tiktok to be a audience and then make another ad for a
+  proper app ad with download cta, the firts one would be to incease engengemnet and have people watch and then pick
+  from them the most interested to make a profile that we can build an alike profile with. you think you can do
+  something similar here like that? for both tiktok and insta ads run smart budgeted low cost high efffeciency new
+  method and smart exsiting ones camapaign? think about it please and let me know what you need".
 
 - **Nov 24, on the three waiting pieces (LA weekend, Nio to camera, New York):** "only aesthetic point id comment in are
   1. there is padding on bottom when showing app screenshots and it looks weird. small thing that could have been
