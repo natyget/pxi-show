@@ -1,6 +1,6 @@
 # State
 
-next: the founder watches `videos/2026-11-24-idk-to-omw/idk-to-omw.mp4` (cut 4). Then one batch from the format
+next: the founder watches `videos/2026-11-24-idk-to-omw/idk-to-omw.mp4` (cut 5). Then one batch from the format
 menu in `growth.md`: two city discovery reels with real listings (NYC, Boston), one Nio to camera, one side quest
 still, one invite. Nothing is scheduled until the founder says yes to each piece.
 
@@ -11,11 +11,13 @@ still, one invite. Nothing is scheduled until the founder says yes to each piece
   lives in the Project and could not be switched off from a repo session; it only writes a commit recap.
 - **Repo:** the old engine's rules, scripts and renders are in `archive/2026-11-old-engine/`. Its renderer moved to
   `studio/world3d` and is the house look. Thread branches 11rl11, d7kodp and 2n09ns are merged into this branch.
-- **First video on the new pipeline:** "idk to omw", 35 s, cut 4. Cut 1 failed the stranger (narrator taglines, no
+- **First video on the new pipeline:** "idk to omw", 32 s, cut 5. Cut 1 failed the stranger (narrator taglines, no
   joke, a stare). Cut 2 used a 2D Nio the founder found cheaper than the old rig. Cut 3 brought the old rig back
   and said "you"; a fresh reviewer failed it narrowly (Nio read as looking at us, the joke could slip past, the
   host on the flyer was someone in the chat, the mic hid the singer's face, the chat looked like a mock-up).
-  Cut 4 fixes those. It has not had another fresh review: the founder is reviewing it directly.
+  Cut 4 fixed those; the founder: "video good overal a little slow tho when it lists the events". Cut 5 has
+  Nio's picture as the profile avatar, the App Store badge bigger and a shorter event list. No fresh review since
+  cut 3: the founder is reviewing directly.
 - **Known weakness of the rig:** it drops blank frames when another render runs beside it. `studio/shot.py`
   catches and repairs them.
 - **Not built yet:** a pose library and mouth shapes for dialogue, Nio's own voice on this machine, the app's real
@@ -33,6 +35,9 @@ still, one invite. Nothing is scheduled until the founder says yes to each piece
 
 ## Founder notes (newest first, word for word)
 
+- **Nov 24, on cut 4:** "phone has image on top right that isnt nio's its weird and have appstore button be the
+  bigger one". "i mean the profile avatar image should be nio's but video good overal a little slow tho when it
+  lists the events".
 - **Nov 24, on the red flyer redone in yellow:** "no erlier red desing looks so much better just change typography".
 - **Nov 24, on the first flyer:** "the friday poster looks somewhat ai the friday should have been bigger with time
   smaller and differnt look then no footer or cover text so stopping making these ui ai looking descisions from now

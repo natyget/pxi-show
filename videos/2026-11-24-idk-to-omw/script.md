@@ -1,4 +1,4 @@
-# idk to omw (Discover, 35 s)
+# idk to omw (Discover, 32 s)
 
 Format: feature story. Hook: a mid-story cold open that rewinds. Ending: a one-word question.
 Said to "you": the viewer does not know Nio, so he is the picture and never the name.
@@ -8,8 +8,7 @@ The joke: "omw. not singing tho" in the first frame, paid off by the last pictur
 Thirty minutes ago, nobody knew what to do tonight. || 0.75
 Friday, nine P.M. Everyone's waiting for someone else to pick. || 0.35
 So you open Pixie. || 0.30
-Turns out there's karaoke three blocks away. || 0.30
-A rooftop party at ten. A run club tomorrow morning. || 0.35
+Turns out there's karaoke three blocks away, a rooftop party, and a run club. || 0.30
 You pick karaoke, tap join, and send it to the chat. || 0.35
 Now everybody's on the way. || 0.45
 Your friend sang four songs. || 0.60
@@ -22,7 +21,7 @@ What's your group chat doing tonight? || 1.2
 | Friday, nine PM | Nio on his bed in the rain, on his phone (rig shot `shots/room.json`). His eyes narrow on "waiting for someone else to pick" |
 | So you open PXI | His eyes open; the camera dives into his phone; a tap on the PXI icon; the app opens |
 | Karaoke three blocks away | The real Discover screen; the camera pushes into the KARAOKE NIGHT card and the rest of the screen dims |
-| Rooftop, run club | The neighbourhood from above: you are the dot; one pin and one label at a time |
+| a rooftop party, and a run club | The neighbourhood from above: you are the dot; one pin and one label at a time. The labels carry the times, so the voice does not |
 | You pick karaoke, tap join, send | The real screen: push to JOIN, press, JOINED, share |
 | Everybody's on the way | The flyer lands in the chat; four "omw" |
 | Your friend sang four songs | Theo in the club with the microphone, eyes shut (rig shot `shots/karaoke.json`) |

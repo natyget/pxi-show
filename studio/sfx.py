@@ -23,5 +23,11 @@ subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", sys.argv[2], "-i", "
 import re
 out = subprocess.run(["ffmpeg", "-i", "mix_pre.wav", "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
 I = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", out)[-1])
-subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", "mix_pre.wav", "-af", f"volume={-14 - I:.2f}dB,alimiter=limit=0.84:level=false", "mix.wav"], check=True)
-os.remove("mix_pre.wav"); print(f"mix.wav written (was {I} LUFS, trimmed to -14)")
+subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", "mix_pre.wav", "-af", f"volume={-14 - I:.2f}dB,alimiter=limit=0.76:level=false", "mix.wav"], check=True)
+os.remove("mix_pre.wav")
+# a sharp tap or tick can slip past the limiter: measure the true peak and bring the whole mix down if it is over -3 dB (the AAC encode adds about 1.5 dB on sharp sounds)
+out = subprocess.run(["ffmpeg", "-i", "mix.wav", "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True).stderr
+pk = float(re.findall(r"Peak:\s+(-?[\d.]+) dBFS", out)[-1])
+if pk > -3.0:
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", "mix.wav", "-af", f"volume={-3.0 - pk:.2f}dB", "mix_t.wav"], check=True); os.replace("mix_t.wav", "mix.wav")
+print(f"mix.wav written (was {I} LUFS, trimmed to -14; peak {pk} dB" + (", lowered to -3)" if pk > -3.0 else ")"))

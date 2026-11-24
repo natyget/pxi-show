@@ -100,8 +100,8 @@ body.st-sketch #pbody{border-color:#f2f2f0}
 #end .nm{position:absolute;left:0;right:0;top:690px;text-align:center;color:#fff;font:900 96px Inter;letter-spacing:-2px}
 #end .free{position:absolute;left:0;right:0;top:810px;text-align:center;color:#c9c9c7;font:500 46px "DM Mono"}
 #end .badges{position:absolute;left:0;right:0;top:905px;display:flex;justify-content:center;align-items:center;gap:22px}
-#end .badges img{height:92px}
-#end .badges img.gp{height:134px;margin:-21px -15px}
+#end .badges img.as{height:118px}
+#end .badges img.gp{height:108px;margin:-17px -12px}
 </style></head>
 <body>
 <div id="stage">
@@ -130,7 +130,7 @@ body.st-sketch #pbody{border-color:#f2f2f0}
   <div id="pbody"></div>
   <div id="screen">
     <div id="home"><div class="ic"><img src="/look/brand/pxi-app-icon.png"></div><div class="lbl">PXI</div></div>
-    <div id="app" style="opacity:0"><iframe id="disc" src="/look/app-screens/discover.html?seed=%7B%22clock%22%3A%20%229%3A02%22%2C%20%22hour%22%3A%20%229%3A30%20PM%22%2C%20%22center%22%3A%20%7B%22name%22%3A%20%22Karaoke%20night%22%2C%20%22host%22%3A%20%22Jessica%22%2C%20%22cover%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22pos%22%3A%20%2250%25%2055%25%22%2C%20%22label%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22going%22%3A%2041%2C%20%22reaction%22%3A%20%5B%22%5Cud83d%5Cudd25%22%2C%2023%5D%2C%20%22genre%22%3A%20%22Karaoke%22%2C%20%22second%22%3A%20%22Open%20mic%22%2C%20%22location%22%3A%20%22Corner%20Bar%22%2C%20%22price%22%3A%20%22Free%22%2C%20%22stamp%22%3A%20%22assets/stamp-karaoke.svg%22%7D%2C%20%22left%22%3A%20%7B%22name%22%3A%20%22Trivia%20night%22%2C%20%22cover%22%3A%20%22assets/left.jpg%22%7D%7D"></iframe></div>
+    <div id="app" style="opacity:0"><iframe id="disc" src="/look/app-screens/discover.html?seed=%7B%22clock%22%3A%20%229%3A02%22%2C%20%22hour%22%3A%20%229%3A30%20PM%22%2C%20%22center%22%3A%20%7B%22name%22%3A%20%22Karaoke%20night%22%2C%20%22host%22%3A%20%22Jessica%22%2C%20%22cover%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22pos%22%3A%20%2250%25%2055%25%22%2C%20%22label%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22going%22%3A%2041%2C%20%22reaction%22%3A%20%5B%22%5Cud83d%5Cudd25%22%2C%2023%5D%2C%20%22genre%22%3A%20%22Karaoke%22%2C%20%22second%22%3A%20%22Open%20mic%22%2C%20%22location%22%3A%20%22Corner%20Bar%22%2C%20%22price%22%3A%20%22Free%22%2C%20%22stamp%22%3A%20%22assets/stamp-karaoke.svg%22%7D%2C%20%22left%22%3A%20%7B%22name%22%3A%20%22Trivia%20night%22%2C%20%22cover%22%3A%20%22assets/left.jpg%22%7D%2C%20%22me%22%3A%20%22assets/me-nio.png%22%7D"></iframe></div>
     <div id="chat" style="opacity:0">
       <div class="hd"><div class="bk">‹</div><div class="av">F</div><div class="nm">friday</div></div>
       <div id="msgs"><div class="list" id="list"></div></div>
@@ -172,10 +172,10 @@ document.body.classList.add('st-' + STYLE);
 // key times, all from the voice
 const LN = VO.lines;
 const K = { thirty: A(0, 'Thirty'), nobody: A(0, 'nobody'), so: A(2, 'So'), pxi: A(2, 'PXI'), turns: A(3, 'Turns'), karaoke: A(3, 'karaoke'), three: A(3, 'three'),
-  rooftop: A(4, 'rooftop'), run: A(4, 'run'), tap: A(5, 'tap'), join: A(5, 'join'), send: A(5, 'send'), chat: A(5, 'chat'),
-  now: A(6, 'Now'), every: A(6, "everybody's"), on: A(6, 'on'), way: A(6, 'way'), four: A(7, 'four') };
-const T = { hook: [0, LN[1].s - 0.05], room: [LN[1].s - 0.05, K.pxi - 0.17], phone1: [K.pxi - 0.17, K.three - 0.03], map: [K.three - 0.03, LN[5].s + 0.05],
-  phone2: [LN[5].s + 0.05, K.send + 0.3], chat2: [K.send + 0.3, LN[7].s - 0.1], kara: [LN[7].s - 0.1, LN[8].s + 0.02], end: [LN[8].s + 0.02, 99] };
+  rooftop: A(3, 'rooftop'), run: A(3, 'run'), tap: A(4, 'tap'), join: A(4, 'join'), send: A(4, 'send'), chat: A(4, 'chat'),
+  now: A(5, 'Now'), every: A(5, "everybody's"), on: A(5, 'on'), way: A(5, 'way'), four: A(6, 'four') };
+const T = { hook: [0, LN[1].s - 0.05], room: [LN[1].s - 0.05, K.pxi - 0.17], phone1: [K.pxi - 0.17, K.three - 0.03], map: [K.three - 0.03, LN[4].s + 0.05],
+  phone2: [LN[4].s + 0.05, K.send + 0.3], chat2: [K.send + 0.3, LN[6].s - 0.1], kara: [LN[6].s - 0.1, LN[7].s + 0.02], end: [LN[7].s + 0.02, 99] };
 const R1 = K.nobody - 0.3; // the rewind ends here
 const PL = { room: 141, kara: 78 }; // frames in plates/<name>/, 24 a second, from the 3D rig
 const DUR = VO.duration + 0.45;
@@ -207,7 +207,7 @@ const OMW = [{ who: 'Sarah', txt: 'omw' }, { who: 'Mike', txt: 'omw' }, { who: '
 const FINAL = [...HIST, { card: 1, who: 'me' }, ...OMW];
 
 const KEY = new Set(['pxi','karaoke','rooftop','run','club','join','way','four','tonight']);
-const PHR = [[3,2,4],[3,2,3,2],[4],[3,1,3],[3,2,3,2],[3,2,3,3],[2,3],[2,3],[2,2,2]];
+const PHR = [[3,2,4],[3,2,3,2],[4],[3,1,3,3,4],[3,2,3,3],[2,3],[2,3],[2,2,2]];
 const groups = [];
 PHR.forEach((counts, li) => { const lw = W.filter((w) => w.line === li); let k = 0; counts.forEach((c) => { groups.push({ words: lw.slice(k, k + c) }); k += c; }); });
 groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.words[0].s - 0.02; const nx = groups[i + 1]; g.e = nx ? Math.min(nx.words[0].s - 0.02, last.e + 0.7) : last.e + 1.6; });
