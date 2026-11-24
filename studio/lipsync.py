@@ -12,9 +12,8 @@ and hiss. A left-to-right Viterbi pass lines those up with the audio's loudness 
 optional pauses between words. The result is quantised to the frame rate and held at least two frames, because
 the show animates on twos.
 
-Usage:
+Used by studio/rig.py: an actor's "says" in a shot spec becomes these cues. By hand:
   lipsync.py one <audio> "<text>" [--fps 24]              print the cues as JSON
-  lipsync.py manifest <vo_*.json> <out.json> [--fps 24]   every line in a voice manifest ({id: {file, text}})
 Needs ffmpeg and numpy only.
 """
 import json, re, subprocess, sys

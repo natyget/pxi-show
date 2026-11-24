@@ -10,10 +10,11 @@ import numpy as np
 from PIL import Image
 ROOT = os.path.dirname(os.path.abspath(__file__)); RIG = os.path.join(ROOT, 'world3d')
 spec_path, dst = os.path.abspath(sys.argv[1]), os.path.abspath(sys.argv[2])
-spec = json.load(open(spec_path)); n = spec['frames']
+sys.path.insert(0, ROOT); import rig
+spec, checked = rig.expanded(spec_path); n = spec['frames']
 raw = sys.argv[3] if len(sys.argv) > 3 else tempfile.mkdtemp(prefix='shot_')
 os.makedirs(raw, exist_ok=True)
-if subprocess.run([sys.executable, os.path.join(ROOT, 'rig.py'), 'check', spec_path]).returncode: sys.exit(1)
+if rig.info('check', checked): sys.exit(1)
 def render(frames=None):
     cmd = ['npx', 'remotion', 'render', 'src/index.ts', 'N3Shot', raw, '--sequence', '--image-format=png', '--props=' + json.dumps({'spec': spec}),
            '--gl=swangle', '--log=error', '--concurrency=2', '--timeout=240000', '--browser-executable=/opt/pw-browsers/chromium']

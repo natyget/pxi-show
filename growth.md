@@ -38,7 +38,7 @@ Of every ten pieces, at least seven are for the first person and are about Disco
 | Weekend carousel | Cover with the hook, one real event per slide, last slide asks which one | 6 to 10 slides, 1080x1350 | Saves, sends |
 | Stories | Stills, 5 s clips, polls | 3 to 10 a day | Keep followers |
 | Organizer post | For LinkedIn: one thing a host gets, shown on the real host screen, or a short note from Nio on what he is building for organizers | Still, carousel, or 20 to 40 s | Do organizers reply |
-| Episode | A whole Nio World story for YouTube, wide: the cast, a night that goes somewhere, PXI used the way people use it. Each scene is also cut as a short | 3 to 8 min, 16:9 | Subscribers, watch time. Needs talking wired in first (`look/rig.md`) |
+| Episode | A whole Nio World story for YouTube, wide: the cast, a night that goes somewhere, PXI used the way people use it. Each scene is also cut as a short | 3 to 8 min, 16:9 | Subscribers, watch time. Talking works (`look/rig.md`); the wide frame and a first script are next |
 
 How many of each a week, and which run makes them: `runs.md` (3 to 5 posts a day on each network, 3 to 10 stories a
 day; one heavy run on Monday, two light ones).
@@ -53,6 +53,10 @@ property: no characters, logos, fonts or music from a game, show or brand, and o
 about a real person's private life. A public moment (a launch, a keynote, a meme) is fine when the joke is on us.
 
 ## Hooks (first 2 seconds; never the same type twice in a row)
+
+Every hook says who it is for in its first words. A piece about a city calls the city and the need out loud, the
+way the founder put it: "are you in [city] looking for things to do? we got you." The types below are ways to do
+that, never a way around it.
 
 A question ("why does everyone leave at 1:40?"), a mid-story cold open that rewinds, a myth check ("nothing to do
 in LA on a Tuesday"), did you know ("did you know there's a free rave in an arcade this Saturday?"), a fun fact

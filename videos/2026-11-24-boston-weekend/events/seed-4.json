@@ -1,0 +1,32 @@
+{
+ "clock": "6:12",
+ "when": "This weekend",
+ "city": "Boston",
+ "day": "SAT",
+ "hour": "1 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Matcha Madness: Boston Edition V2",
+  "host": "",
+  "cover": "/videos/2026-11-24-boston-weekend/events/boston/covers/8f050cc7-1757-4c57-8816-daf743366436.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "DRAKE",
+  "second": "QUEBEC",
+  "label": "/videos/2026-11-24-boston-weekend/events/boston/covers/8f050cc7-1757-4c57-8816-daf743366436.jpg",
+  "location": "HUE BOSTON",
+  "price": "$20",
+  "stamp": "/videos/2026-11-24-boston-weekend/events/boston/stamps/8f050cc7-1757-4c57-8816-daf743366436.svg"
+ },
+ "left": {
+  "name": "No Wall Huggers (Black Friday Bashment)",
+  "cover": "/videos/2026-11-24-boston-weekend/events/boston/covers/758be2da-b54b-465f-8aa9-9a76530efd53.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}

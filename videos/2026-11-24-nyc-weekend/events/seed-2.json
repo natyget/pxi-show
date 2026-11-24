@@ -1,0 +1,32 @@
+{
+ "clock": "6:12",
+ "when": "This weekend",
+ "city": "New York",
+ "day": "SAT",
+ "hour": "7 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Xanadu 54\" starring Rich Medina (skate)",
+  "host": "",
+  "cover": "/videos/2026-11-24-nyc-weekend/events/nyc/covers/9ac77bfd-9ff4-4425-9cf9-08d6c105227b.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "HOUSE",
+  "second": "RICH MEDINA, SY SMITH, PLATINUM PIED PIPERS - CAN'T HOLD BACK (PLATINUM PIED PIPERS REMIX)",
+  "label": "/videos/2026-11-24-nyc-weekend/events/nyc/covers/9ac77bfd-9ff4-4425-9cf9-08d6c105227b.jpg",
+  "location": "XANADU",
+  "price": "$25",
+  "stamp": "/videos/2026-11-24-nyc-weekend/events/nyc/stamps/9ac77bfd-9ff4-4425-9cf9-08d6c105227b.svg"
+ },
+ "left": {
+  "name": "Marco Lys at Public Hotel",
+  "cover": "/videos/2026-11-24-nyc-weekend/events/nyc/covers/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}

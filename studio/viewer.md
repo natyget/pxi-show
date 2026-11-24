@@ -8,7 +8,11 @@ viewer. The founder reviews as that viewer too, so anything the founder would ca
 
 For every line ask, and rewrite until each answer is fine:
 
+- Do I know in the first two seconds that this is for me? If it is about a city, the first words say the city
+  and what I am after ("Are you in LA, looking for things to do this weekend? We got you."). A clever line that
+  could open any video is not a hook.
 - Is it said to me? ("You open PXI", not a name I don't know. Names belong in Nio World stories, where I meet the people.)
+- Is it said at the speed of what it is? Information comes quick and bright; only a story takes its time.
 - Would a friend say it this way, out loud?
 - Does the speaker sound sure? A narrator never sounds puzzled by his own app.
 - Do I already see this on screen? Then the line goes.

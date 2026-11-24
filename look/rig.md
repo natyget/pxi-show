@@ -46,9 +46,20 @@ Actions: stand, talk, walk, jog, sprint, stepBack, sit, sitTalk, dance, crouch, 
 Holds: phone, selfie, show-phone, photo, arms-crossed, point, arm-up, arms-up, cup, wave, mic, pizza, and more.
 Faces: neutral, deadpan, hyped, laughing, shock, uneasy, suspicious, sheepish, smug, charm, crushed, real, asleep.
 
-**Talking.** The rig moves a mouth from a voice line: an actor's `speak` takes mouth cues by frame, and `acc` the
-stressed beats. The tools that turn a voice file into those cues are in the old engine
-(`archive/2026-11-old-engine/engine/tools/lipsync.py`, `accents.py`) and are not yet wired into `studio/`. That is
-the one step between today and Nio talking to camera in his own voice (`studio/cast_voice.py`).
+## Talking
+
+A cast member speaks in their own voice, and the mouth follows the audio.
+
+1. In `script.md`'s voice block, start the line with the name and end it with how it is said:
+   `nio: So I built PXI. You open it, and tonight is just there. (Talking to a friend, quick and easy.)`
+   `studio/voice.py` makes it with that person's approved voice and times every word for the captions.
+2. In the shot, the actor says the line by its number: `"says": [[6, 0]]` is "line 0 starts on frame 6 of this
+   shot". The mouth shapes and the stressed beats come from the line's own audio; the body acts on the beats when
+   the action is `talk` or `sitTalk`.
+3. To the viewer: `"facing": "camera", "look": "camera", "lens": true`. The world refuses a look into the lens
+   that the script did not ask for. In `nioRoom`, `close` (at `rug`) and `screen` (at `desk`, the view from his
+   computer) frame him for it.
+
+`videos/2026-11-24-talk-test/` is the smallest worked example (one line, one shot).
 
 A new prop is a few lines in `studio/world3d/src/nw3d/room.ts` (the microphone was added this way).

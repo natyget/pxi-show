@@ -1,0 +1,32 @@
+{
+ "clock": "6:12",
+ "when": "This weekend",
+ "city": "New York",
+ "day": "FRI",
+ "hour": "8 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Marco Lys at Public Hotel",
+  "host": "",
+  "cover": "/videos/2026-11-24-nyc-weekend/events/nyc/covers/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "HOUSE",
+  "second": "CAJMERE - BRIGHTER DAYS - MARCO LYS REMIX",
+  "label": "/videos/2026-11-24-nyc-weekend/events/nyc/covers/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.jpg",
+  "location": "ARTSPACE",
+  "price": "$20",
+  "stamp": "/videos/2026-11-24-nyc-weekend/events/nyc/stamps/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.svg"
+ },
+ "left": {
+  "name": "Rozzi",
+  "cover": "/videos/2026-11-24-nyc-weekend/events/nyc/covers/e42dc077-b84d-46e4-90ae-73bbb8aad146.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}

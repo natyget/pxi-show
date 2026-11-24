@@ -1,17 +1,20 @@
 # State
 
-next: "idk to omw" goes out tonight. The city order is Los Angeles first, then New York. The first two city weekend
-reels (New York, Boston) failed the fresh reviewer twice, which by `studio/viewer.md` drops them: the trainer is
-changing the format before the Los Angeles one is made (what the reviewer said is in each `post.md`). The trainer
-also fixes what the cheaper model's first trial showed (`trial/screen-time`, its `notes.md`) and runs the next trial.
+next: "idk to omw" goes out tonight. The founder says yes or no to the Los Angeles weekend reel
+(`videos/2026-11-24-la-weekend/`, passed the fresh reviewer, must go out before Friday; the file and a phone
+notification were sent Nov 24). The maker thread then makes two or three "One night" pieces from Los Angeles
+listings and New York's weekend the same way. "PXI maker 2" makes the first Nio to camera piece. Two trials of the
+cheaper model are making a "One night" piece and a Discover demo for Los Angeles against the fixed tools
+(`trial/` branches); the trainer reads their notes next.
 
 ## Where things stand (Nov 24, 2026)
 
-- **City weekend reels (maker thread, Nov 24):** one scene for every city and week, `studio/weekend-reel.html`, built
-  by `studio/weekend.py` from a `reel.json` and the voice (`videos/2026-11-24-nyc-weekend/script.md` says how).
-  Boston (`videos/2026-11-24-boston-weekend/`, 36 s) and New York (`videos/2026-11-24-nyc-weekend/`, 40 s) pass
-  every check and each failed the fresh reviewer twice. Not approved, not hosted. If either is used it must go out
-  before Friday: the cards say FRI, SAT, SUN, and on Friday the app says TONIGHT.
+- **City weekend reels (maker thread, Nov 24):** the weekend told as nights out, one scene for every city and week:
+  `studio/weekend-reel.html`, built by `studio/weekend.py` from a `reel.json` of beats (a rig shot, the pick's real
+  card, a chat, the end card) and the voice. `videos/2026-11-24-la-weekend/script.md` says how to make the next one.
+  Los Angeles (41 s) passed the fresh reviewer and waits for the founder's yes. The first two, New York and Boston,
+  were the old shape (the app under a voice listing events), failed the reviewer twice and are dropped; their
+  folders keep the files and what the reviewer said.
 - **Scheduled (not drafts):** "idk to omw" goes out Tue Nov 24 (America/Chicago): Instagram and Facebook Reel 6:30 PM
   (cover.jpg, TrackTribe "Just A Weekend" at 18), TikTok 6:35 PM, YouTube Short 6:40 PM. Read back from Metricool.
 - **Metricool:** every pending post through Dec 8 was set to draft on Nov 23 (the founder: "nuked"). Nothing from
@@ -36,8 +39,9 @@ also fixes what the cheaper model's first trial showed (`trial/screen-time`, its
   (checked Nov 24: it scheduled and read back) and gets the Thursday 12:17 PM and Sunday 6:38 PM runs. "PXI maker"
   makes the pieces and gets the Monday 1:45 PM heavy run. The runs fire into those two threads, so they keep
   Metricool: a run that starts a fresh thread gets no connectors in this workspace. Do not archive the two threads.
-- **Not built yet:** talking (the rig moves mouths from a voice line, but the two tools that read a voice file into
-  mouth cues are still in the archive: `look/rig.md`), the app's real Map and listing screens, real street maps
+- **Talking works:** a cast line in the voice block is made in that person's voice and timed for captions, and a
+  shot's `"says"` moves the mouth from the line's own audio (`look/rig.md`). Nio to camera can be made now.
+- **Not built yet:** the app's real Map and listing screens, real street maps
   (OpenStreetMap tiles are reachable), a story template for the daily listing cards, a wide 16:9 frame for episodes.
 - **Tools that could not be reached from here:** Wikimedia Commons and Openverse image search (rate limits), the
   AI Geek Gumroad checkout (bot check). The two long AI Geek prompts were read from their public documents.
@@ -71,6 +75,10 @@ also fixes what the cheaper model's first trial showed (`trial/screen-time`, its
   of each night, a reason to pick one, prices said the way a friend says them.
 
 ## Founder notes (newest first, word for word)
+
+- **Nov 24, on the Los Angeles weekend reel:** "the hooks are a bit weak and not specific. it doesn't say are you in
+  [city] looking for things to do? we got you. or something. and the voice sleepy and not fat and quick better for
+  stories not info like this".
 
 - **Nov 24, after the hand-off page:** "lets actually have LA first priority then nyc second". "in the scheduler case
   then fix the thing where it stopped us from posting because of animation what not". "and if i get a mobile
@@ -172,6 +180,13 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   (the breaks now live in the voice block); a name the voice says wrong had no way to the caption (`Lys{Leece}`);
   the safe check only looked where a scene told it to (it checks the whole sharp layer now); two scene files to
   start from (one model now); the card's clock was the fetch time (`--clock`); listings that had already started.
+- Nov 24, the founder on the LA weekend reel: the hook did not call out the city and the need, and the narrator was
+  "sleepy" for information. Measured: 2.3 words a second, and the flattest pitch of the standard voices. Fixed
+  where each lives: the first question in `studio/viewer.md` and the hooks in `growth.md` (say who it is for), and
+  a quick narrator in `studio/voice.py` (```voice quick, 3.2 words a second). The founder has three samples to
+  pick from; B is the default until they choose.
+- Nov 24, talking: Nio's approved reference line went through `studio/voice.py` byte for byte, and a 156-frame shot
+  moved his mouth to it (`videos/2026-11-24-talk-test/`). Not yet seen by the founder or a stranger.
 - Nov 24, engine trial, the cheaper model as scheduler: every commit was refused because it ended with a
   `Co-Authored-By` line naming the model. `CLAUDE.md` now says how a commit ends; the next commit went through.
 - Nov 24, city weekend reel, the fresh reviewer: a phone shown small on a dark background failed (the viewer sees an
@@ -181,3 +196,6 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 - Nov 24, city weekend reel, what the second round of fresh reviews still failed: four cards in the same shape under
   a voice that lists day, name, place, price reads as a list over a screen recording, however large the cards are;
   a hook has to be shown, and a real listing's poster may not show it (Boston's igloos are a photo of beer glasses).
+- Nov 24, Los Angeles weekend reel, the new shape (a Nio World picture and a reason for each night, the card as the
+  proof, a chat for the party with no location yet): the fresh reviewer passed it on the first read. Hook: did you
+  know. Ask: send. What it still marked down: the app's name printed over a poster's own lettering.

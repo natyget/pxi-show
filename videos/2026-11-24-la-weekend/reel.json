@@ -1,0 +1,106 @@
+{
+ "city": "la",
+ "cards": [
+  "b34fd766-14e0-4603-914d-dedb5e43d092",
+  "Night Tales",
+  "Midnight Lovers",
+  "Sunday Brunch"
+ ],
+ "beats": [
+  {
+   "line": 0,
+   "shot": "dinner"
+  },
+  {
+   "line": 1,
+   "card": 0,
+   "on": "about"
+  },
+  {
+   "line": 2,
+   "shot": "club"
+  },
+  {
+   "line": 3,
+   "card": 1,
+   "on": "about"
+  },
+  {
+   "line": 4,
+   "chat": {
+    "name": "Sarah",
+    "msgs": [
+     [
+      "them",
+      "midnight lovers saturday?",
+      null
+     ],
+     [
+      "me",
+      "where is it",
+      "won't"
+     ],
+     [
+      "them",
+      "location TBA 😭",
+      "where"
+     ],
+     [
+      "me",
+      "ok im in",
+      "yet"
+     ]
+    ]
+   }
+  },
+  {
+   "line": 5,
+   "card": 2,
+   "on": "about"
+  },
+  {
+   "line": 6,
+   "shot": "roof"
+  },
+  {
+   "line": 7,
+   "card": 3,
+   "on": "free"
+  },
+  {
+   "line": 8,
+   "flick": true
+  },
+  {
+   "line": 8,
+   "at": "Send",
+   "end": true
+  }
+ ],
+ "show": {},
+ "proper": [
+  "Echo",
+  "Park",
+  "Foodies",
+  "New",
+  "Friends",
+  "Night",
+  "Tales",
+  "The",
+  "Spotlight",
+  "Midnight",
+  "Lovers",
+  "Sunset"
+ ],
+ "key": [
+  "strangers",
+  "dancing",
+  "rooftop",
+  "twenty-three",
+  "twenty-five",
+  "thirty-five",
+  "dollars",
+  "Echo",
+  "Park"
+ ]
+}
