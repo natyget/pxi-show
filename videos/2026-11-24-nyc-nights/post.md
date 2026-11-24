@@ -1,6 +1,9 @@
 # Post: New York this weekend, as nights out
 
-**Not approved.** Waiting for the founder's yes on this exact cut (cut 6, the clean-app cut). Nothing is hosted or scheduled.
+**Approved by the founder, Nov 24:** "i can approve all three as good we can move on" (said of this cut, the Nio to
+camera piece and the other city reel). Every event shown was checked again against PXI's API and its ticket page
+that afternoon: same day, time, place and price. Hosted: `https://pxispace.com/social/nyc-nights/video.mp4` and
+`cover.jpg`. The scheduler thread schedules it at the times below and reads them back.
 
 **The clean-app cut (Nov 24, evening).** Made again on the founder's three notes: an app screen is shown whole and centred with the app's black to every edge (no block under it, no lighter corner, no gradient or dimming); nothing zooms on the app, a hand-drawn circle goes round the price as the voice says it; the "all of these" line is said over the map with a pin for every listing and the picks named. The fresh reviewer failed its first render (the chat sat small in a black frame), the chat now fills the frame, and a second fresh reviewer passed it: the app screens are "whole and centred", "flat black to the edges"; the text thread "is the best part". What it still marks down: the first three seconds are one still picture under a hook every listings account uses; Nio asleep stays five seconds under one label; the cruise and the rave have no card of their own; the end card leaves its lower half empty. The price circle was missing from the reviewed frames (a render fault, fixed in the builder) and was checked by eye on the final file, not by a reviewer.
 
@@ -8,7 +11,7 @@ Hook type: the city and the need, then a question answered by the first listing.
 
 Files (in this folder; hosted on pxispace.com only after the yes):
 - video: `nyc-nights.mp4` (1080x1920, 37.5 s, voice and sound effects, no music)
-- cover: the Xanadu card at 9 s, cut when the files are hosted
+- cover: `cover.jpg`, the Xanadu card at 9 s
 
 How it got here: cut 1 passed the fresh reviewer; cut 2 took the founder's note on the Los Angeles reel (the city
 hook, the quick narrator); cut 3 drew a card only where the app shows one. The founder on cut 2: "i see that jyd had a

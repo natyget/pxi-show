@@ -1,6 +1,9 @@
 # Post: Los Angeles this weekend
 
-**Not approved.** Waiting for the founder's yes on this exact cut (cut 4, the clean-app cut). Nothing is hosted or scheduled.
+**Approved by the founder, Nov 24:** "i can approve all three as good we can move on" (said of this cut, the Nio to
+camera piece and the other city reel). Every event shown was checked again against PXI's API and its ticket page
+that afternoon: same day, time, place and price. Hosted: `https://pxispace.com/social/la-weekend/video.mp4` and
+`cover.jpg`. The scheduler thread schedules it at the times below and reads them back.
 
 **The clean-app cut (Nov 24, evening).** Made again on the founder's three notes: an app screen is shown whole and centred with the app's black to every edge (no block under it, no lighter corner, no gradient or dimming); nothing zooms on the app, a hand-drawn circle goes round the price as the voice says it; the "all of these" line is said over the map with a pin for every listing and the picks named. The fresh reviewer passed this cut. The price circle was missing from the reviewed frames (a render fault, fixed in the builder) and was checked by eye on the final file, not by a reviewer.
 
@@ -27,7 +30,7 @@ Hook type: the city and the need, as a question. Ask: send.
 
 Files (in this folder; hosted on pxispace.com only after the yes):
 - video: `la-weekend.mp4` (1080x1920, 34.8 s, voice and sound effects, no music)
-- cover: the dinner table at 2 s, cut when the files are hosted
+- cover: `cover.jpg`, the dinner table at 6 s with "in Echo Park" on the caption
 
 It has to go out before Friday: the cards say FRI, SAT, SUN, and on Friday the app would say TONIGHT.
 

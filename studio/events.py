@@ -77,7 +77,7 @@ def main():
     ap.add_argument("--out", default=None); a = ap.parse_args()
     out = a.out or os.path.join("events", a.city); os.makedirs(os.path.join(out, "covers"), exist_ok=True)
     lat, lng = CITIES[a.city]
-    q = urllib.parse.urlencode({"lat": lat, "lng": lng, "limit": 40, "sort": "rank", "days": max(1, min(9, a.days))})
+    q = urllib.parse.urlencode({"lat": lat, "lng": lng, "limit": 200, "sort": "rank", "days": max(1, min(9, a.days))})  # 40 hid real listings from a check (Nov 24)
     body, _ = get(f"{API}?{q}"); data = json.loads(body)
     tz = ZoneInfo((data.get("city") or {}).get("timeZone") or "America/New_York")
     fetched = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -112,7 +112,7 @@ def main():
     app = app_answer(a.city, out)
     print(f"{len(rows)} listings, {sum(1 for r in rows if r['cover'])} posters -> {out}" + (f" ({started} already started, left out)" if started else ""))
     print(f"{sum(1 for r in rows if r['song'])} carry a song (marked with a note): only those are cards in the app's Discover. The rest are in its All events.")
-    for r in rows[:40]: print(f"  {r['day']:<10} {r['time']:<8} {r['titleClean'][:44]:<44} {(r['venue'] or '')[:24]:<24} {r['price'] or '-':<6} {r['source']:<12} {r['type'] or ''}{' ♪' if r['song'] else ''}")
+    for r in rows[:60]: print(f"  {r['day']:<10} {r['time']:<8} {r['titleClean'][:44]:<44} {(r['venue'] or '')[:24]:<24} {r['price'] or '-':<6} {r['source']:<12} {r['type'] or ''}{' ♪' if r['song'] else ''}")
     for t, err in failed: print("  poster not fetched:", t, "|", err)
     print(f"app.json: the {len(app.get('events') or [])} listings the app's own question returns (seven nights), for studio/list.py (the All events list)"
           + (f"; {app['pxiEvents']} PXI events are public here too" if app.get("pxiEvents") else ""))

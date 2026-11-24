@@ -1,12 +1,10 @@
 # State
 
-next: "idk to omw" goes out tonight. The founder says yes or no to two city weekend reels, both passed by the fresh
-reviewer and both due before Friday: Los Angeles (`videos/2026-11-24-la-weekend/`; the file and a phone notification
-were sent Nov 24) and New York (`videos/2026-11-24-nyc-nights/`, with one listing's start time to settle first; its
-`post.md` says which). The maker thread then makes two or three "One night" pieces from Los Angeles listings.
-The first Nio to camera piece (`videos/2026-11-24-nio-la/`, 32 s, from "PXI maker 2") passed the fresh reviewer and
-waits for the founder's yes; it too is due before Friday, and its `post.md` has one line for the founder to check. Two trials of the cheaper model are making a "One night" piece
-and a Discover demo for Los Angeles against the fixed tools (`trial/` branches); the trainer reads their notes next.
+next: three approved pieces go out: Los Angeles this weekend (Wed Nov 25, 8:30 PM Chicago), New York this weekend
+(Thu Nov 26, 5:30 PM) and Nio to camera (Thu Nov 26, 8:30 PM); the scheduler thread schedules them and reads them
+back. "idk to omw" goes out tonight. No ads until a post earns them (`growth.md`, "Paid": organic first, $150 a
+month at most). Then the "One night" pieces for Los Angeles on the clean-app builder, and Sunday's first read of
+the numbers.
 
 ## Where things stand (Nov 24, 2026)
 
@@ -85,18 +83,15 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
 
 ## Open decisions (the founder's)
 
-- Ads (asked Nov 24; the trainer's answer is in the thread): the go-ahead, a monthly cap, and how installs are
-  counted. Checked Nov 24 through Supermetrics: the Meta ad account can take campaigns (no blockers), the pixel
-  "Meta PXI" is live on pxispace.com, there are no saved audiences, no campaigns and no conversion events. TikTok
-  Ads Manager's own floor is $20 a day for an ad group and $50 for a campaign, so a $1 to $5 test cannot run there.
-  No campaign is created, and none is ever switched on, without the founder's word.
-
-- The two city weekend reels (New York, Boston): use them or drop them. The reviewer's lasting objection is to
-  what the brief asked for (real Discover cards under a voice that lists them reads as "a screen recording of an
-  app", and a listing's own poster may not show the thing the hook promises). What it asked for instead: a picture
-  of each night, a reason to pick one, prices said the way a friend says them.
+- (none)
 
 ## Founder notes (newest first, word for word)
+
+- **Nov 24, evening, the yes and the ad cap:** "ok go soft for now lets try to go viral and see traction at first. lets
+  see if people watch a video if one does exceptionally well that is our sign i dont want to spend more tan 150 a
+  month total for ads on tiktok ig seo all combined. but i need you to optimize and think of our growth and how
+  things are looking push ads for highest roi not just for the sake of it". "i can approve all three as good we can
+  move on".
 
 - **Nov 24, on connectors and ads:** "if there is any other mcp or connector i can add to really boost our performance
   or anything i can do for pxi because we really need to start going viral really seriously. also should i run ads if

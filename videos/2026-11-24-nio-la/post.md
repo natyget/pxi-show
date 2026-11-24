@@ -1,6 +1,9 @@
 # Post: Nio, "things to do in LA this weekend"
 
-**Not approved.** Waiting for the founder's yes on this exact cut (the clean-app cut). Nothing is hosted or scheduled.
+**Approved by the founder, Nov 24:** "i can approve all three as good we can move on" (said of this cut, the Nio to
+camera piece and the other city reel). Every event shown was checked again against PXI's API and its ticket page
+that afternoon: same day, time, place and price. Hosted: `https://pxispace.com/social/nio-la/video.mp4` and
+`cover.jpg`. The scheduler thread schedules it at the times below and reads them back.
 
 **The clean-app cut (Nov 24, evening).** Made again on the founder's three notes: an app screen is shown whole and centred with the app's black to every edge (no block under it, no lighter corner, no gradient or dimming); nothing zooms on the app, a hand-drawn circle goes round the price as the voice says it; the "all of these" line is said over the map with a pin for every listing and the picks named. The swipe through cards under "here is everything in LA" is now the map. The fresh reviewer passed this cut. The price circle was missing from the reviewed frames (a render fault, fixed in the builder) and was checked by eye on the final file, not by a reviewer.
 

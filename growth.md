@@ -125,6 +125,21 @@ shows into the thread. That is a human job to ask for, never to guess at.
 couples") can go out on Instagram as a trial reel: it is shown to people who do not follow us and stays off the
 grid, so a test never costs the profile. The winner is posted again the normal way.
 
+## Paid (the founder, Nov 24: "go soft for now ... push ads for highest roi not just for the sake of it")
+
+Organic first. No ad runs until a post earns it. At most $150 a month, for everything paid on every platform put
+together, and only where it returns the most.
+
+- **The sign.** A post that does exceptionally well on its own: at least three times the account's usual reach
+  two days after it went out, with sends or saves above the usual too. Sunday's run looks for it; so does any
+  thread that reads the numbers. No sign, no spend.
+- **Then.** That one post is put in front of more people like the ones who watched it: Instagram, the posted reel
+  itself (so its likes and comments stay on it), one city, a few dollars a day, for a week. People who watch most
+  of it become the audience for the download ask. TikTok's ads start at $20 a day for one ad group, so TikTok stays
+  organic under this cap.
+- **Always.** A campaign is created paused, with what it will cost and what it is meant to show; the founder
+  switches it on. Spend for the month and what it bought go in Sunday's report. Never a fee comparison.
+
 ## Audio
 
 The file carries the voice and small sound effects. Instagram reels get a licensed library track at scheduling
