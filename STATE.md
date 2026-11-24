@@ -1,15 +1,15 @@
 # State
 
-next: the scheduler thread schedules "idk to omw" (its `post.md` is approved). The maker thread makes the New York
-weekend reel from real listings, then Boston. The trainer tests the engine with the cheaper model and fixes what
-that shows.
+next: "idk to omw" goes out tonight. The maker thread makes the New York weekend reel from real listings, then
+Boston. The trainer reads the cheaper model's trial piece (branch `trial/<slug>`, its `notes.md`) and fixes what
+that shows in the tool, the template or the page.
 
 ## Where things stand (Nov 24, 2026)
 
 - **Scheduled (not drafts):** "idk to omw" goes out Tue Nov 24 (America/Chicago): Instagram and Facebook Reel 6:30 PM
   (cover.jpg, TrackTribe "Just A Weekend" at 18), TikTok 6:35 PM, YouTube Short 6:40 PM. Read back from Metricool.
-- **Metricool:** every pending post through Dec 8 was set to draft on Nov 23 (the founder: "nuked"). Nothing is
-  scheduled to publish. The old "PXI social engine" scheduled task is off. The "Weekly show progress recap" task
+- **Metricool:** every pending post through Dec 8 was set to draft on Nov 23 (the founder: "nuked"). Nothing from
+  the old engine is scheduled to publish. The old "PXI social engine" scheduled task is off. The "Weekly show progress recap" task
   lives in the Project and could not be switched off from a repo session; it only writes a commit recap.
 - **Repo:** the old engine's rules, scripts and renders are in `archive/2026-11-old-engine/`. Its renderer moved to
   `studio/world3d` and is the house look. Thread branches 11rl11, d7kodp and 2n09ns are merged into this branch.
@@ -26,10 +26,10 @@ that shows.
   own API; `studio/card.py` dresses one as the app's Discover card with the app's own code.
 - **Nio's voice:** rebuilt with the recipe behind his 20 approved lines (same description, model, versions and
   seed); `studio/cast_voice.py` makes a line in about 30 seconds. The founder picked the first sample: `look/cast/voice/nio-reference.wav`.
-- **Scheduled:** "PXI Monday heavy run" (Mon 1:45 PM), "PXI Thursday light run" (Thu 12:17 PM), "PXI Sunday plan
-  run" (Sun 6:38 PM), all America/Chicago, each a fresh session that follows `runs.md`. They were created without
-  the Metricool connector (this workspace does not let a session attach one): until the founder adds it to each
-  task in the scheduled-tasks page, a run can make and plan but cannot read numbers or schedule posts.
+- **The threads and the runs:** three threads, all on this repo (`runs.md`). "PXI scheduler" holds Metricool
+  (checked Nov 24: it scheduled and read back) and gets the Thursday 12:17 PM and Sunday 6:38 PM runs. "PXI maker"
+  makes the pieces and gets the Monday 1:45 PM heavy run. The runs fire into those two threads, so they keep
+  Metricool: a run that starts a fresh thread gets no connectors in this workspace. Do not archive the two threads.
 - **Not built yet:** a pose library and mouth shapes for dialogue, the app's real Map and listing screens, real
   street maps (OpenStreetMap tiles are reachable), a story template for the daily listing cards.
 - **Tools that could not be reached from here:** Wikimedia Commons and Openverse image search (rate limits), the
@@ -133,4 +133,5 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 
 ## Test log (one line per test)
 
-- (none yet)
+- Nov 24, engine trial, the cheaper model as scheduler: every commit was refused because it ended with a
+  `Co-Authored-By` line naming the model. `CLAUDE.md` now says how a commit ends; the next commit went through.
