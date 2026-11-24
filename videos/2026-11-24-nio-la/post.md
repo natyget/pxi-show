@@ -4,6 +4,13 @@
 
 The first Nio to camera, and the first of "Nio builds PXI". It tests one thing: does founder-style content earn follows.
 
+The fresh reviewer passed it, narrowly (Nov 24): "an LA viewer who survives 5 s stays to the end"; the best lines are
+"I didn't know that existed, and I made the app" and "I respect that". Its one condition, that the caption shows
+"PXI" as he says it, was checked on the frame at 6.3 s. What it still marked down: the first 3.5 s is one pose; "I
+built an app for that" lands as an ad line; the card's lower half dimmed under the captions looks switched off; the
+dinner is a small label, not a screen of the app; LOCATION TBA is small for a joke that leans on it; the phone in
+his hand is a blank purple slab; it is not clear who "I" is when a cartoon says he built it.
+
 Hook type: the city and the need, in the founder's own voice ("If you're in LA and you never know what to do this
 weekend, I built an app for that"). Ask: follow, with the reason (what's on in LA every week).
 
@@ -13,7 +20,7 @@ different one, say it and the line is remade in his voice.
 
 Files (in this folder; hosted on pxispace.com only after the yes):
 - video: `nio-la.mp4` (1080x1920, 33 s, his voice and small sound effects, no music)
-- cover: Nio to the viewer at 1 s, cut when the files are hosted
+- cover: `cover.jpg` (Nio to the viewer at 1 s, "in LA" on the caption)
 
 It has to go out before Friday Nov 27: he says "this Friday" and "Saturday", and the card says SAT (on the day the
 app would say TONIGHT). It names the same dinner and the same Saturday party as the Los Angeles weekend reel, so the
