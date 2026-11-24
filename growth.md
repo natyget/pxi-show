@@ -75,6 +75,8 @@ The same piece can be cut twice with two different hooks; the first two seconds 
 - **Profile:** "tonight's list is on our page".
 - **Save:** for a list someone will want on Friday.
 
+The ask is this piece's own last line, said the way a friend would and tied to its pick or its joke. If the
+sentence could end any video ("send this to the friend who..."), reviewers read it as bait: rewrite it.
 `post.md` names the hook type and the ask of each piece, so Sunday's run can compare them.
 
 ## Captions
