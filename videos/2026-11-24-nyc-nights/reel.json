@@ -1,0 +1,114 @@
+{
+ "city": "nyc",
+ "cards": [
+  "Xanadu",
+  "Marco Lys",
+  "774906c0-c1f0-4832-a48d-03e68d87779f",
+  "33b0a2c8-855f-4215-8543-5fafa0425104"
+ ],
+ "beats": [
+  {
+   "line": 0,
+   "chat": {
+    "name": "Mike",
+    "msgs": [
+     [
+      "them",
+      "can you skate",
+      null
+     ],
+     [
+      "me",
+      "no",
+      "Because"
+     ],
+     [
+      "them",
+      "me neither",
+      "New"
+     ],
+     [
+      "them",
+      "saturday at 7?",
+      "night"
+     ],
+     [
+      "me",
+      "obviously",
+      "Saturday"
+     ]
+    ]
+   }
+  },
+  {
+   "line": 1,
+   "card": 0,
+   "on": "twenty-five"
+  },
+  {
+   "line": 2,
+   "shot": "club"
+  },
+  {
+   "line": 3,
+   "card": 1,
+   "on": "twenty"
+  },
+  {
+   "line": 4,
+   "shot": "asleep"
+  },
+  {
+   "line": 5,
+   "card": 2,
+   "on": "about"
+  },
+  {
+   "line": 6,
+   "shot": "broke"
+  },
+  {
+   "line": 7,
+   "card": 3,
+   "on": "free"
+  },
+  {
+   "line": 8,
+   "flick": true
+  },
+  {
+   "line": 8,
+   "at": "Which",
+   "end": true
+  }
+ ],
+ "show": {
+  "Leece": "Lys"
+ },
+ "proper": [
+  "New",
+  "York",
+  "Xanadu",
+  "Brooklyn",
+  "Rich",
+  "Medina",
+  "Marco",
+  "Lys",
+  "Public",
+  "Hotel",
+  "Pier",
+  "Reggaeton",
+  "Houston"
+ ],
+ "key": [
+  "skate",
+  "dancing",
+  "twenty",
+  "dollars",
+  "twenty-five",
+  "New",
+  "York",
+  "prosecco",
+  "nineteen"
+ ]
+}

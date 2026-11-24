@@ -41,9 +41,9 @@ body.pass-art #ui{display:none}
 #chat .hd .nm{position:absolute;left:0;right:0;top:108px;text-align:center;color:#fff;font:600 26px Inter}
 #chat .hd .av{position:absolute;left:229px;top:22px;width:80px;height:80px;border-radius:40px;background:#3a3a3c;color:#fff;font:700 34px Inter;display:flex;align-items:center;justify-content:center}
 #chat .hd .bk{position:absolute;left:26px;top:48px;color:#0a84ff;font:500 54px Inter}
-#list{position:absolute;left:0;right:0;top:186px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:0 22px}
+#list{position:absolute;left:0;right:0;top:192px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:0 22px}
 #list .ts{align-self:center;color:#8e8e93;font:500 22px Inter;margin:2px 0 8px}
-#list .b{display:inline-block;width:fit-content;max-width:400px;background:#262628;color:#fff;font:500 38px/1.15 Inter;padding:12px 24px 14px;border-radius:32px;transform-origin:0 100%}
+#list .b{display:inline-block;width:fit-content;max-width:400px;background:#262628;color:#fff;font:500 36px/1.15 Inter;padding:10px 22px 12px;border-radius:30px;transform-origin:0 100%}
 #list .b.me{align-self:flex-end;background:#0a84ff;transform-origin:100% 100%}
 #chat .in{position:absolute;left:22px;right:22px;bottom:60px;height:76px;border-radius:38px;border:2px solid #2c2c2e;display:flex;align-items:center;gap:18px;padding:0 14px;color:#5c5c61;font:400 34px Inter}
 #chat .in .plus{width:50px;height:50px;border-radius:25px;background:#2c2c2e;color:#9a9aa0;display:flex;align-items:center;justify-content:center;font:400 40px/1 Inter}
@@ -105,7 +105,7 @@ const FIT = 1080 / 538, PX = FIT * 1.37949;                      // the app scre
 const C0 = { s: FIT, P: pt(195, 104), Q: [540, 0] };             // a card arrives from a little higher: the filter says when and where
 const CA = { s: FIT, P: pt(195, 158), Q: [540, 0] };             // the day, the poster, the name, the place, the price, JOIN; the caption band falls between the place and the price
 const CB = { s: FIT * 1.18, P: pt(285, 640), Q: [285 * PX, (640 - 158) * PX] }; // a small push toward the price, which stays where it was
-const CC = { s: 1.6, P: [540, 316], Q: [540, 60] };              // the chat: the phone as tall as the picture
+const CC = { s: FIT, P: [540, 316], Q: [540, 0] };               // the chat: as wide as the picture, the messages above the caption band
 
 let lastChat = '';
 window.render = function (t, pass) {
@@ -138,7 +138,7 @@ window.render = function (t, pass) {
     $('pwrap').style.transform = cam(CC);
     const shown = b.msgs.filter((m) => t >= m.t), key = b.name + shown.length;
     if (key !== lastChat) { lastChat = key; $('chav').textContent = b.name[0].toUpperCase(); $('chnm').textContent = b.name;
-      $('list').innerHTML = '<div class="ts">Today</div>' + shown.map((m) => `<div class="b ${m.me ? 'me' : ''}">${m.txt}</div>`).join(''); }
+      $('list').innerHTML = shown.map((m) => `<div class="b ${m.me ? 'me' : ''}">${m.txt}</div>`).join(''); }
     const kids = $('list').querySelectorAll('.b');
     shown.forEach((m, i) => { const p = pr(t, m.t, 0.25); kids[i].style.transform = `translateY(${(1 - eBack(p)) * 36}px) scale(${lerp(.6, 1, eBack(p))})`; kids[i].style.opacity = clamp(p * 3); });
   }

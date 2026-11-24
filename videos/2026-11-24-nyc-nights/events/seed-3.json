@@ -1,0 +1,32 @@
+{
+ "clock": "6:12",
+ "when": "This weekend",
+ "city": "New York",
+ "day": "SUN",
+ "hour": "11 AM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "NYC: Unlimited Prosecco Cruise (Lady M)",
+  "host": "",
+  "cover": "/videos/2026-11-24-nyc-nights/events/nyc/covers/774906c0-c1f0-4832-a48d-03e68d87779f.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "NEW YORK",
+  "second": "NOV 29",
+  "label": "/videos/2026-11-24-nyc-nights/events/nyc/covers/774906c0-c1f0-4832-a48d-03e68d87779f.jpg",
+  "location": "PIER 36 NYC",
+  "price": "$18.90",
+  "stamp": "/videos/2026-11-24-nyc-nights/events/nyc/stamps/774906c0-c1f0-4832-a48d-03e68d87779f.svg"
+ },
+ "left": {
+  "name": "NYC: Unlimited Prosecco Cruise (Lady M)",
+  "cover": "/videos/2026-11-24-nyc-nights/events/nyc/covers/42e79998-9aa2-4e56-9ed9-efd8b072a66d.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}
