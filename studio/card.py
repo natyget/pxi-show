@@ -13,8 +13,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APP = os.environ.get("PXI_APP", os.path.join(os.path.dirname(ROOT), "pxi-mobile-app"))
 
 def find(events, q):
-    hit = [e for e in events if e["id"] == q] or [e for e in events if all(w.lower() in e["titleClean"].lower() for w in q.split())]
+    hit = [e for e in events if e["id"] == q] or [e for e in events if all(w.lower() in (e["titleClean"] + " " + e["title"]).lower() for w in q.split())]
     if not hit: sys.exit(f"no listing matches {q!r}")
+    hit.sort(key=lambda e: e["start"])
+    if len(hit) > 1:  # the same event on several nights, or two events with the same words: say so, never pick in silence
+        print(f"{len(hit)} listings match {q!r}; took the earliest. For another, pass its id:", file=sys.stderr)
+        for e in hit: print(f"   {e['day']}, {e['time']}  {e['titleClean'][:50]}  id {e['id']}", file=sys.stderr)
     return hit[0]
 
 def main():
@@ -44,11 +48,11 @@ def main():
     near = sorted((x for x in events if x["id"] != e["id"] and x["cover"]), key=lambda x: (x.get("type") != e.get("type"), abs((datetime.datetime.fromisoformat(x["start"]) - start).total_seconds())))
     left = find(events, a.left) if a.left else (near[0] if near else None)
     seed = {"clock": a.clock, "when": when, "city": (data.get("city") or {}).get("name", ""), "day": day.upper(), "hour": e["time"], "me": "assets/me-nio.png",
-            "center": {"name": e["titleClean"], "host": card["host"] or "", "cover": web(os.path.join(d, e["cover"])), "pos": "50% 50%",
+            "center": {"name": card["name"] or e["title"], "host": card["host"] or "", "cover": web(os.path.join(d, e["cover"])), "pos": "50% 50%",
                        "faces": [], "going": 0, "polaroids": [], "reaction": None, "match": None, "external": True,
                        "genre": card["record"][0], "second": card["record"][1], "label": web(os.path.join(d, e["cover"])),
                        "location": card["location"], "price": card["price"], "stamp": web(stamp)},
-            "left": {"name": left["titleClean"], "cover": web(os.path.join(d, left["cover"]))} if left else {"name": "", "cover": ""},
+            "left": {"name": left["title"], "cover": web(os.path.join(d, left["cover"]))} if left else {"name": "", "cover": ""},
             "discOpen": True, "joined": False}
     out = a.out or os.path.join(d, "seed-" + e["id"][:12] + ".json")
     json.dump(seed, open(out, "w"), indent=1, ensure_ascii=False)
