@@ -90,6 +90,16 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
 
 ## Founder notes (newest first, word for word)
 
+- **Nov 24, on the three waiting pieces (LA weekend, Nio to camera, New York):** "only aesthetic point id comment in are
+  1. there is padding on bottom when showing app screenshots and it looks weird. small thing that could have been
+  polished to look nice instead of having that block in the bottom. there is also some lighter corners when showing
+  pop up cards screen recording like direct message having to right and left corner light 2. is the zoom in effect
+  needs ti be refined and a kot needs to be centered properly like the recording and the shots of app etc to look
+  neat and clean. similarly circling them and having pop effects and other might have better entertaining effect
+  3. when nio says here is everything in la it has a darkened top and bottom gradient which i think hides from our
+  app aesthetics. and for that moment i think the map does so well. saying all events near you in one map is kinda
+  a big deal. refine these things and im satisfied".
+
 - **Nov 24, afternoon, on the maker and on being found:** "ok i agree with you being the maker. lets also have it so
   that we optimize captions and the whole video so we show up when people type the best key words like things to do
   in la or so. im sure you can use metricool and tiktok analytics to really see what people be looking up on ig
