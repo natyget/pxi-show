@@ -9,6 +9,9 @@ nice") and was withdrawn the same hour: it drew Discover cards for the dinner an
 a listing as a card when it carries a song (`carouselMix.ts`). Cut 3 keeps real cards for Night Tales and Midnight
 Lovers and tells the dinner and the brunch with their picture and a plain label.
 
+The file here was rendered again on Nov 24 from the repo with the corrected card screen (no name printed over a
+listing's flyer, as the app draws it) and the first caption reading "LA", not "l.a."; nothing else changed.
+
 The fresh reviewer passed cut 3 ("only just"): "the picks are real and specific", the secret-location party and
 the $23 dinner are things it "would actually mention to a friend". What it marked down: the first three seconds show
 Nio at his phone in a dark room and nothing that says LA or weekend with the sound off; the dinner and the roof
@@ -31,24 +34,26 @@ It has to go out before Friday: the cards say FRI, SAT, SUN, and on Friday the a
 AI label off on every network (founder, Nov 19: animation does not need it). Not a draft. Before it is scheduled:
 fetch the listings again (`studio/events.py la`) and check each of the four still stands (day, time, venue, price).
 
+Search phrase: things to do in la this weekend
+
 **Instagram and Facebook caption**
 
-are you in LA looking for things to do this weekend? we got you 👀 send this to whoever plans your weekend
+things to do in LA this weekend 👀 in LA with nothing planned? we got you
 
-Fri: Foodies + New Friends dinner in Echo Park, then Night Tales at The Spotlight. Sat: Midnight Lovers (location still TBA). Sun: free brunch and football on Sunset Rooftop.
+Fri: dinner with strangers in Echo Park (Foodies + New Friends, about $23), then Night Tales at The Spotlight. Sat: Midnight Lovers, location still TBA. Sun: free brunch and football on Sunset Rooftop.
 
-pxi is a free app to find things to do near you: every event in LA this weekend, with its poster, place and price.
+pxi is a free app to find things to do near you in Los Angeles: every event this weekend with its poster, place and price. send this to whoever plans your weekend.
 
-#losangeles #thingstodoinla #laevents #lanightlife #pxi
+#thingstodoinla #losangeles #laevents #laweekend #pxi
 
-**TikTok caption** (title: in LA this weekend? we got you 👀)
+**TikTok caption** (title: things to do in LA this weekend 👀)
 
-in LA looking for things to do this weekend? we got you 👀 dinner with strangers, a secret party, a free rooftop brunch. all in pxi. free on iPhone and Android #losangeles #thingstodoinla #laevents #lanightlife
+things to do in LA this weekend 👀 dinner with strangers in Echo Park, a party that won't say where it is, a free rooftop brunch. all in pxi, free on iPhone and Android #thingstodoinla #losangeles #laevents #laweekend
 
-**YouTube** (title: In LA this weekend? Four things to do #shorts)
+**YouTube** (title: Things to do in LA this weekend (Nov 27 to 29) #shorts)
 
-A whole weekend in Los Angeles, Nov 27 to 29: dinner with strangers in Echo Park, Night Tales at The Spotlight, a party that has not said where it is yet, and a free rooftop brunch. PXI is a free app that shows every event near you with its poster, place and price. pxispace.com/bio?utm_source=youtube
+Things to do in LA this weekend, Nov 27 to 29: dinner with strangers in Echo Park, Night Tales at The Spotlight, a party that has not said where it is yet, and a free rooftop brunch. PXI is a free app that shows things to do in Los Angeles near you, each with its poster, place and price. pxispace.com/bio?utm_source=youtube
 
-Tags: things to do in los angeles, la events, this weekend, la nightlife, pxi
+Tags: things to do in la, things to do in la this weekend, things to do in los angeles, la events this weekend, free things to do in la, pxi
 
-**Alt text:** A cartoon guy at a dinner table with strangers, then dancing in a club, then texting a friend about a party with no location yet, then on a rooftop. Between them, four real event cards from the PXI app for Los Angeles this weekend.
+**Alt text:** Things to do in LA this weekend: a cartoon guy at a dinner with strangers, dancing in a club, texting a friend about a party with no address yet, and on a rooftop. Two real event cards from the PXI app, Night Tales and Midnight Lovers.

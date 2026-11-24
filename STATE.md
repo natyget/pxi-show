@@ -68,6 +68,10 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
   (`look/cast/voice/nio-reference.wav`).
 - "idk to omw" is approved for scheduling.
 - Three runs a week: the heavy one on Monday before the 8 PM usage reset, two light ones for numbers and planning.
+- The stronger model stays the maker of new pieces (the founder: "ok i agree with you being the maker"); the cheaper
+  model keeps the scheduler thread and the two light runs. Its next test is a new week of an approved reel.
+- Every piece is built on one search phrase people really type (`growth.md`, "Being found"): said first, on screen
+  first, first in every caption and title. `studio/check.py find` holds a piece to it.
 - Cities: Los Angeles first, New York second ("lets actually have LA first priority then nyc second"). Boston
   after those, when there is room. The trainer's reading: the profile name leads with Los Angeles too.
 - The founder says yes or no from a phone notification; the scheduler never holds a piece for being animated.
@@ -84,6 +88,13 @@ and a Discover demo for Los Angeles against the fixed tools (`trial/` branches);
   of each night, a reason to pick one, prices said the way a friend says them.
 
 ## Founder notes (newest first, word for word)
+
+- **Nov 24, afternoon, on the maker and on being found:** "ok i agree with you being the maker. lets also have it so
+  that we optimize captions and the whole video so we show up when people type the best key words like things to do
+  in la or so. im sure you can use metricool and tiktok analytics to really see what people be looking up on ig
+  tiktok facebook ad the other platofrms and workt o be ranked on those searches and work on really being able to
+  reach braod new audiences each post and trying different things and learning from trial and repeating things that
+  work well etc. were on a good track im excited to see the next video that you said your currently making".
 
 - **Nov 24, on the three quick-narrator samples:** "voice b nice". (B is Kokoro `am_puck` at 1.27, the `quick`
   narrator in `studio/voice.py`.)

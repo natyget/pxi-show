@@ -79,11 +79,51 @@ The ask is this piece's own last line, said the way a friend would and tied to i
 sentence could end any video ("send this to the friend who..."), reviewers read it as bait: rewrite it.
 `post.md` names the hook type and the ask of each piece, so Sunday's run can compare them.
 
-## Captions
+## Being found (the founder, Nov 24: "show up when people type the best key words like things to do in la")
 
-First line repeats the hook. Name the city and the event type in words. Say what PXI is for in the words people
-search: "app to find things to do near me", "shared photo album app", "get everyone's photos from the party".
-Instagram up to 5 hashtags, TikTok 3 to 5. No links or codes in TikTok captions; the link is in the bio.
+People search TikTok, Instagram and YouTube the way they search Google, and each one reads a video's spoken words,
+the words on screen, its caption and its title. So every piece is built around **one search phrase**, the exact
+words someone types, and that phrase goes in five places:
+
+1. **Said** in the first line, as close to word for word as speech allows ("Looking for things to do in LA this
+   weekend? We got you.").
+2. **On screen** in the first two seconds (the caption of that line).
+3. **First** in every network's caption, word for word, before anything clever.
+4. **The YouTube title** (and its description's first sentence, and its tags).
+5. **The alt text**, and one hashtag made of it (#thingstodoinla).
+
+`post.md` names it ("Search phrase: things to do in la this weekend") and `python3 studio/check.py find
+videos/<slug>` fails a piece that does not carry it. After the phrase, the caption says the picks in plain words
+(day, name, neighbourhood, price) and what PXI is for in the words people search ("free app to find things to do
+near you"). Instagram up to 5 hashtags, TikTok 3 to 5. No links or codes in TikTok captions; the link is in the bio.
+
+**What people type** (Google's keyword planner for the United States, monthly searches, read Nov 24 through the
+ads account; the same words rule the apps' own search boxes):
+
+| Phrase | A month | Use it for |
+|---|---|---|
+| things to do in la (also: stuff to do in la) | 74,000 | any LA piece that is not tied to a day |
+| things to do in los angeles | 33,100 | the YouTube description and tags |
+| things to do in la this weekend | 22,200 | the weekend reel |
+| places to go in la | 18,100 | a piece about one place or neighbourhood |
+| fun things to do in la | 14,800 | a "One night" piece that is odd or funny |
+| things to do in la today (search boxes also offer: tonight) | 12,100 | stories and same-day pieces |
+| free things to do in la | 6,600, little competition | any pick that is free |
+| things to do in downtown la | 5,400 | a piece set downtown |
+
+Search boxes finish "things to do in la this weekend" with: for adults, for couples, for free, at night, with
+family. Each is a piece: the same weekend, picked for that person. New York follows the same shapes ("things to
+do in nyc this weekend"; YouTube also offers "what to do in nyc this weekend").
+
+**Learning what ranks.** Sunday's run reads YouTube's traffic sources in Metricool (how much came from search),
+refreshes this table with the keyword planner for the cities we post about, and logs each piece's phrase beside
+its hook and ask. TikTok's and Instagram's own search numbers are not in Metricool: the founder can open TikTok's
+Creator Search Insights on the phone (it shows what people search and where few videos answer) and paste what it
+shows into the thread. That is a human job to ask for, never to guess at.
+
+**New people every post.** A piece that changes one thing (a second hook, a different ask, the same weekend "for
+couples") can go out on Instagram as a trial reel: it is shown to people who do not follow us and stays off the
+grid, so a test never costs the profile. The winner is posted again the normal way.
 
 ## Audio
 

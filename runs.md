@@ -76,7 +76,9 @@ Stop making new pieces at 7:30 PM. A piece that is not finished is listed as not
 
 ## Sunday, 6:38 PM: the light run (the weekly read and Monday's plan)
 
-1. Read the last seven days in Metricool. Rank the posts by sends per reach, then follows per post.
+1. Read the last seven days in Metricool. Rank the posts by sends per reach, then follows per post. Read YouTube's
+   traffic sources (how much came from search) and log each piece's search phrase beside its hook and ask. Refresh
+   the "What people type" table in `growth.md` with the keyword planner for the cities we post about.
 2. Keep the hook and format of the top two, drop the bottom two, pick the one thing to change this week (hook, then
    ending, then format, then length, then time). Write one line per test into the test log in `STATE.md`.
 3. Look at what people are posting about this week and pick up to two trends worth our own version (`growth.md`).

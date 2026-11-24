@@ -4,6 +4,8 @@
                                                                the voice block is read: the notes around it are yours
   python3 studio/check.py video <file.mp4> [caption.md]        1080x1920, 30 fps, sound, -14 LUFS +-1.5, peak, length, caption words,
                                                                and that the scene and the app screens have not changed since it was rendered
+  python3 studio/check.py find <videos/slug>                   the piece's search phrase (post.md, "Search phrase: ...") is said in
+                                                               the first line and written in every caption and the title
 Exit code 1 on any failure."""
 import json, re, subprocess, sys
 BANNED = [
@@ -44,6 +46,19 @@ def video(path):
     stale = made.changed(path)
     if stale: bad.append("rendered before these changed, so render it again: " + ", ".join(stale[:6]))
     return bad
+def find(folder):
+    import os
+    post = open(os.path.join(folder, "post.md")).read(); m = re.search(r"^Search phrase:\s*(.+)$", post, re.M | re.I)
+    if not m: return ["post.md has no line \"Search phrase: ...\" (growth.md, Being found)"]
+    phrase = m.group(1).strip().strip('"').lower(); want = phrase.split(); bad = []
+    norm = lambda s: re.sub(r"[^a-z0-9 ]", " ", s.lower().replace("l.a.", "la").replace("new york city", "nyc").replace("new york", "nyc"))
+    vo = json.load(open(os.path.join(folder, "words.json"))); first = norm(" ".join(w["w"] for w in vo["words"] if w["line"] <= 1)).split()
+    missing = [w for w in want if w not in first]
+    if missing: bad.append(f"the first lines never say: {' '.join(missing)} (the phrase is \"{phrase}\")")
+    parts = re.split(r"\n\*\*(Instagram[^*]*|TikTok[^*]*|YouTube[^*]*|Alt text[^*]*)\*\*", post)
+    for name, body in zip(parts[1::2], parts[2::2]):
+        if norm(phrase).strip() not in " ".join(norm(name + " " + body).split()): bad.append(f"\"{phrase}\" is not written in: {name.split('(')[0].strip()}")
+    return bad
 mode, *args = sys.argv[1:]
-bad = scan(args[0]) if mode == "script" else video(args[0]) + (scan(args[1]) if len(args) > 1 else [])
+bad = scan(args[0]) if mode == "script" else find(args[0]) if mode == "find" else video(args[0]) + (scan(args[1]) if len(args) > 1 else [])
 print("\n".join(bad) if bad else "PASS"); sys.exit(1 if bad else 0)

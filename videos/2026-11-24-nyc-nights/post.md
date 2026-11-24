@@ -33,24 +33,26 @@ AI label off on every network (founder, Nov 19: animation does not need it). Not
 fetch the listings again (`studio/events.py nyc`) and check each of the four still stands (day, time, venue, price);
 one pick already left the feed between two fetches on Nov 24.
 
+Search phrase: things to do in nyc this weekend
+
 **Instagram and Facebook caption**
 
-are you in New York looking for things to do this weekend? we got you 👀 which one are you going to?
+things to do in NYC this weekend 👀 in New York with nothing planned? we got you. which one are you going to?
 
-Sat: skate night at Xanadu with Rich Medina. Fri: Marco Lys at the Public Hotel. Sun: an unlimited prosecco cruise at Pier 36, then Reggaeton on Houston (free).
+Fri: Marco Lys at the Public Hotel. Sat: skate night at Xanadu with Rich Medina. Sun: an unlimited prosecco cruise at Pier 36, then Reggaeton on Houston (free).
 
-pxi is a free app to find things to do near you: every event in NYC this weekend, with its poster, place and price.
+pxi is a free app to find things to do near you in New York: every event this weekend with its poster, place and price.
 
-#nyc #thingstodoinnyc #nycevents #nycnightlife #pxi
+#thingstodoinnyc #nyc #nycevents #nycweekend #pxi
 
-**TikTok caption** (title: in NYC this weekend? we got you 👀)
+**TikTok caption** (title: things to do in NYC this weekend 👀)
 
-in New York looking for things to do this weekend? we got you 👀 a skate night, a prosecco cruise, free reggaeton. all in pxi, free on iPhone and Android #nyc #thingstodoinnyc #nycevents #nycnightlife
+things to do in NYC this weekend 👀 a skate night, a prosecco cruise, free reggaeton. all in pxi, free on iPhone and Android #thingstodoinnyc #nyc #nycevents #nycweekend
 
-**YouTube** (title: In New York this weekend? Four things to do #shorts)
+**YouTube** (title: Things to do in NYC this weekend (Nov 27 to 29) #shorts)
 
-A weekend in New York, Nov 27 to 29: a skate night at Xanadu, Marco Lys at the Public Hotel, a prosecco cruise at Pier 36 and a free reggaeton party. PXI is a free app that shows every event near you with its poster, place and price. pxispace.com/bio?utm_source=youtube
+Things to do in NYC this weekend, Nov 27 to 29: a skate night at Xanadu, Marco Lys at the Public Hotel, a prosecco cruise at Pier 36 and a free reggaeton party. PXI is a free app that shows things to do in New York near you, each with its poster, place and price. pxispace.com/bio?utm_source=youtube
 
-Tags: things to do in nyc, nyc events, this weekend, nyc nightlife, pxi
+Tags: things to do in nyc, things to do in nyc this weekend, what to do in nyc this weekend, nyc events this weekend, free things to do in nyc, pxi
 
-**Alt text:** Two friends text about not being able to skate. Then four real event cards from the PXI app for New York this weekend, with a cartoon guy dancing in a club, asleep sitting up, and crying at his phone in between.
+**Alt text:** Things to do in NYC this weekend: two friends text about not being able to skate, a cartoon guy dances in a club, falls asleep sitting up and cries at his phone. Two real event cards from the PXI app, Xanadu and Marco Lys.

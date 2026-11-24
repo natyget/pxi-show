@@ -29,7 +29,7 @@ never committed; everything else about a listing is (`events.json`, `sources.md`
 
 ## 1. Brief (five lines at the top of `script.md`, before anything is made)
 
-The format (`growth.md`), the city if any, the hook and its type, the one ending and its ask, the length (30 to 45 s
+The format (`growth.md`), the city if any, the search phrase it is built to be found for, the hook and its type, the one ending and its ask, the length (30 to 45 s
 or 60 to 90 s), and the real listing or app screen it shows.
 
 Real events: `python3 studio/events.py la --out videos/<slug>/events/la` fetches the next nine nights of listings
@@ -109,14 +109,15 @@ node studio/render.cjs videos/<slug>/scene.html nio ui  videos/<slug>/fr/ui  fra
 (in the folder) python ../../studio/sfx.py cues.json vo_raw.wav     # voice + small sound effects, -14 LUFS, no music
 (in the folder) bash ../../studio/compose.sh <slug>
 python3 studio/check.py video videos/<slug>/<slug>.mp4 videos/<slug>/caption.md
+python3 studio/check.py find videos/<slug>          # the search phrase is said first and written in every caption
 ```
 
 Then the stranger (`studio/viewer.md`): a fresh reviewer, the contact sheets and the spoken lines only.
 
 ## 7. To the founder, then out
 
-Write `post.md` beside the MP4: the hook type and the ask, the captions for each network, the cover, the audio
-pick, the planned times (`videos/2026-11-24-idk-to-omw/post.md` is the model). Send the MP4 itself and one phone
+Write `post.md` beside the MP4: the search phrase the piece is built on (`growth.md`, "Being found"), the hook type
+and the ask, the captions for each network, the cover, the audio pick, the planned times (`videos/2026-11-24-idk-to-omw/post.md` is the model). Send the MP4 itself and one phone
 notification. On the founder's yes, write the yes into `post.md` word for word, host the files
 (`pxispace.com/public/social/<slug>/video.mp4` and `cover.jpg`, on main), and message the scheduler thread, which
 schedules it and reads the schedule back (`runs.md`).
