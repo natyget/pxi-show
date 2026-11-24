@@ -33,7 +33,7 @@ def main():
     # card of the Discover carousel only when it carries a song. Without one the app shows it in All events, never as a card.
     rides = lambda x: bool((x.get("song") or "").strip())
     if not rides(e): sys.exit(f"REFUSED: \"{e['titleClean']}\" has no song, so the app never shows it as a Discover card: it is in All events.\n"
-                              "Use a listing marked with a note in the events.py list for a card. To show this one, say it and picture the night; do not draw a card for it.")
+                              f"Show it where the app does: python3 studio/list.py {a.dir} --open \"{a.pick}\"   (look/app-screens/all-events.html)")
     cfg = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
     json.dump({"compilerOptions": {"baseUrl": APP, "paths": {"@/*": ["src/*"]}, "jsx": "react-jsx", "esModuleInterop": True, "allowJs": True}}, cfg); cfg.close()
     r = subprocess.run(["npx", "-y", "tsx", "--tsconfig", cfg.name, os.path.join(ROOT, "look/app-screens/listing.ts"), os.path.join(d, "raw.json"), e["id"]],

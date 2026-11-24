@@ -20,3 +20,6 @@ videos/*/fr
 /events/
 videos/*/events/*/covers/
 studio/world3d/out/
+look/app-screens/examples/*/covers/
+look/app-screens/examples/*/raw.json
+look/app-screens/examples/*/seed-*.json

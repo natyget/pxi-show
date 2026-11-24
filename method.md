@@ -18,6 +18,7 @@ cd studio/world3d && npm ci                      # the 3D rig
 bash studio/setup.sh && . ~/.pxi-tts/bin/activate   # the narrator's voice and the hearing check
 bash studio/setup_cast_voice.sh                  # only when a cast member speaks (a 4 GB model)
 python3 studio/events.py --posters videos/<slug>/events/<city>   # only to render a piece that shows real cards
+python3 studio/list.py videos/<slug>/events/<city> ...           # the same command as before: fetches a list's posters again
 ```
 
 Node tools need `NODE_PATH=$(npm root -g)` (Playwright and Chromium are already installed). `studio/card.py` reads
@@ -30,13 +31,21 @@ The format (`growth.md`), the city if any, the hook and its type, the one ending
 or 60 to 90 s), and the real listing or app screen it shows.
 
 Real events: `python3 studio/events.py la --out videos/<slug>/events/la` fetches the next nine nights of listings
-and posters from PXI's own API and writes `sources.md`. `python3 studio/card.py <that folder> "<words from the
-title>" --clock 1:04 --out videos/<slug>/seed.json` dresses one listing as the app's Discover card (the app's own
-code picks the name, place, price, record lines and stamp; `--clock` is the time in the story, `--today` the day
-the piece goes out, `--when "This weekend"` what the filter pill says). It refuses a listing with no song: the app
-shows those in All events, never as a card (`product.md`). The scene's Discover
-screen loads `seed.json` from its own folder. `node studio/screen.cjs look/app-screens/discover.html <seed> out.png`
-shows it as a still. Fetch again on the day a piece is scheduled: listings change.
+and posters from PXI's own API and writes `sources.md`. Then pick the screen the app really shows the listing on
+(`look/app-screens/README.md`):
+
+- **It carries a song** (a note mark in the list): it is a Discover card.
+  `python3 studio/card.py <that folder> "<words from the title>" --clock 1:04 --out videos/<slug>/seed.json`
+  (`--clock` is the time in the story, `--today` the day the piece goes out, `--when "This weekend"` what the filter
+  pill says), then `node studio/screen.cjs look/app-screens/discover.html <seed> out.png` for a still. The scene's
+  Discover screen loads `seed.json` from its own folder.
+- **It does not** (most listings): it is a row of All events, and `card.py` refuses it.
+  `python3 studio/list.py <that folder> --open "<words from the title>" --now "<the moment in the story>" --out
+  videos/<slug>/seed-list.json`, then `node studio/screen.cjs look/app-screens/all-events.html <seed> out.png`.
+  The list opens scrolled to that listing; a scene scrolls it with `scrollList(y)`.
+
+The app's own code picks every word, price, order and count on both screens. Fetch again on the day a piece is
+scheduled: listings change.
 
 ## 2. Script, read as the viewer, then the voice
 

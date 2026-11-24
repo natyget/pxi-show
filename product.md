@@ -8,8 +8,9 @@ In the order we lead with:
 1. **Discover**: every event near you, as cards or on a map. It shows events hosted on PXI and listings from
    other ticket sites (Eventbrite, DICE, Posh, RA, Ticketmaster), each with its own poster. A listing from another
    site is a card in the carousel only when it carries a song (the record plays it); the rest are in All events, a
-   list over the map, reached from the carousel's last card. `studio/card.py` refuses to draw a card the app would
-   not. Join an event and share it. Listings checked Nov 24: Los Angeles, New York and Boston. We post about Los Angeles first, then New York.
+   list by night reached from the carousel's last card. Show a listing on the screen the app shows it on: a card
+   (`studio/card.py`, which refuses a listing with no song) or a row of All events (`studio/list.py`). The app's
+   map is not rebuilt, so no video shows one. Join an event and share it. Listings checked Nov 24: Los Angeles, New York and Boston. We post about Los Angeles first, then New York.
 2. **The shared album**: everyone at an event shoots into one album, so you get the photos other people took of you.
 3. **The camera**: a flash look, faces lit and the room falling off to dark, warm film grade, straight into the
    event's album.

@@ -12,6 +12,9 @@ Writes into the out folder:
   covers/       the posters, one file per listing
   sources.md    every fact with its ticket link and the time it was fetched (the proof behind a post)
   raw.json      the API's answer as it came, for the tool that dresses a listing as the app's Discover card
+  app.json      the answer to the question the app itself asks for its carousel and its All events list (the city's
+                centre, ranked, seven nights, 300 rows), with the time it was asked: studio/list.py and the
+                carousel's last card are built from it, so they count what the app counts
 
 These are listings from other ticket sites (Eventbrite, DICE, Posh, RA, Ticketmaster) as PXI shows them. The app
 makes a listing a card of the Discover carousel only when it carries a song (the note mark in the list below); the
@@ -23,6 +26,20 @@ from zoneinfo import ZoneInfo
 API = "https://api.pxispace.com/api/listings/discover"
 CITIES = {"la": (34.0522, -118.2437), "nyc": (40.7128, -74.0060), "boston": (42.3601, -71.0589)}  # the founder's order: LA, then New York
 UA = {"User-Agent": "pxi-studio/1.0"}
+# What the app asks (pxi-mobile-app: useAllEvents.ts and useDiscoverFeed.ts ask the same): the city's centre and reach
+# as cityNames.ts has them, sort=rank, limit=300, days=7. Its PXI events come from /api/events within that reach.
+APP_CENTRES = {"la": (34.0522, -118.2437, 50), "nyc": (40.7306, -73.9866, 35), "boston": (42.3601, -71.0589, 25)}
+
+def app_answer(city, out):
+    lat, lng, km = APP_CENTRES[city]
+    body, _ = get(f"{API}?{urllib.parse.urlencode({'limit': 300, 'lat': lat, 'lng': lng, 'sort': 'rank', 'days': 7})}"); data = json.loads(body)
+    data["asked"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:  # PXI's own public events in the city: the list puts them first in each night, and the screens do not draw that row yet
+        pxi, _ = get("https://api.pxispace.com/api/events?" + urllib.parse.urlencode({"status": "active", "visibility": "PUBLIC", "limit": 50, "offset": 0, "lat": lat, "lng": lng, "radiusKm": km, "sort": "distance"}))
+        data["pxiEvents"] = len(json.loads(pxi).get("events") or [])
+    except Exception: data["pxiEvents"] = None
+    json.dump(data, open(os.path.join(out, "app.json"), "w"), ensure_ascii=False)
+    return data
 
 def get(url, timeout=40):
     with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r:
@@ -92,10 +109,13 @@ def main():
         f.write(f"# Listings for {(data.get('city') or {}).get('name', a.city)}, fetched {fetched}\n\nFrom PXI's API (`/api/listings/discover`). Check the ticket page again before a piece is scheduled.\n\n")
         f.write("| When | Event | Venue | Price | Listed on | Ticket page |\n|---|---|---|---|---|---|\n")
         for r in rows: f.write(f"| {r['day']}, {r['time']} | {r['titleClean']} | {r['venue'] or ''} | {r['price'] or 'not stated'} | {r['source']} | {r['ticketUrl']} |\n")
+    app = app_answer(a.city, out)
     print(f"{len(rows)} listings, {sum(1 for r in rows if r['cover'])} posters -> {out}" + (f" ({started} already started, left out)" if started else ""))
     print(f"{sum(1 for r in rows if r['song'])} carry a song (marked with a note): only those are cards in the app's Discover. The rest are in its All events.")
     for r in rows[:40]: print(f"  {r['day']:<10} {r['time']:<8} {r['titleClean'][:44]:<44} {(r['venue'] or '')[:24]:<24} {r['price'] or '-':<6} {r['source']:<12} {r['type'] or ''}{' ♪' if r['song'] else ''}")
     for t, err in failed: print("  poster not fetched:", t, "|", err)
+    print(f"app.json: the {len(app.get('events') or [])} listings the app's own question returns (seven nights), for studio/list.py (the All events list)"
+          + (f"; {app['pxiEvents']} PXI events are public here too" if app.get("pxiEvents") else ""))
 
 if __name__ == "__main__":
     sys.exit(main())
