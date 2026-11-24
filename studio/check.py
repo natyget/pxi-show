@@ -11,7 +11,7 @@ BANNED = [
     (r"\bpart [123]\b", "whole releases only"),
     (r"the group album|lost and found|best night of|thank you for asking|clock with no hands|contacts back in|this can'?t be real|pics or it didn'?t happen|no pics of me|who is this|yeah,? what'?s up|i'?m just tired|they left", "stock line"),
     (r"\belbows?\b|\bevidence\b|\bproof\b|the actual guy", "retired joke"), (r"\b(you'?re|i'?m not being) the \w+ guy\b", "the X guy construction"),
-    (r"\bliterally\b|\bvibes?\b|\bchaos\b|\bhonestly\b|here'?s the thing|\bi mean\b|\byou know\b|\babsolutely\b", "filler"),
+    (r"\bliterally\b|\bvibes?\b|\bchaos\b|\bhonestly\b|here'?s the thing|\bi mean\b|(?<!did )\byou know\b|\babsolutely\b", "filler"),
     (r"late checkout|gala noir|velvet hour|\bkofi\b|\bzoe\b|\btess\b|\bnia\b|\bama\b", "made-up cool name"),
     (r"\bhold up\b|\bi?ght\b|\bnah{3,}\b", "not how Nio talks"),
 ]

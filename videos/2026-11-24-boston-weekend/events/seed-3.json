@@ -1,0 +1,32 @@
+{
+ "clock": "6:12",
+ "when": "This weekend",
+ "city": "Boston",
+ "day": "FRI",
+ "hour": "10 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "No Wall Huggers (Black Friday Bashment)",
+  "host": "",
+  "cover": "/videos/2026-11-24-boston-weekend/events/boston/covers/758be2da-b54b-465f-8aa9-9a76530efd53.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "SUPERSMASHBROZ",
+  "second": "GARA (NO WAHALA)",
+  "label": "/videos/2026-11-24-boston-weekend/events/boston/covers/758be2da-b54b-465f-8aa9-9a76530efd53.jpg",
+  "location": "BOOTLEG SPECIAL KITCHEN & BAR",
+  "price": "$20",
+  "stamp": "/videos/2026-11-24-boston-weekend/events/boston/stamps/758be2da-b54b-465f-8aa9-9a76530efd53.svg"
+ },
+ "left": {
+  "name": "Black Friday Funk",
+  "cover": "/videos/2026-11-24-boston-weekend/events/boston/covers/7badd44b-59ea-459d-9e4e-07c55e96d2b5.png"
+ },
+ "discOpen": true,
+ "joined": false
+}

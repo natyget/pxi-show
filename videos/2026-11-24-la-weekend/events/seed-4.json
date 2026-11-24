@@ -1,0 +1,32 @@
+{
+ "clock": "6:12",
+ "when": "This weekend",
+ "city": "Los Angeles",
+ "day": "SUN",
+ "hour": "11 AM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Sunday Brunch + Football",
+  "host": "",
+  "cover": "/videos/2026-11-24-la-weekend/events/la/covers/2464b0f7-2e02-400b-88c4-b9e0fa95e615.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "LOS ANGELES",
+  "second": "NOV 29",
+  "label": "/videos/2026-11-24-la-weekend/events/la/covers/2464b0f7-2e02-400b-88c4-b9e0fa95e615.jpg",
+  "location": "SUNSET ROOFTOP",
+  "price": "FREE",
+  "stamp": "/videos/2026-11-24-la-weekend/events/la/stamps/2464b0f7-2e02-400b-88c4-b9e0fa95e615.svg"
+ },
+ "left": {
+  "name": "Kids' PotteryPainting Party - Downtown LA",
+  "cover": "/videos/2026-11-24-la-weekend/events/la/covers/ed8fd38e-8d76-426f-8b5d-35d5226c54ea.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}

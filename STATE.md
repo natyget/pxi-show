@@ -1,17 +1,18 @@
 # State
 
-next: "idk to omw" goes out tonight. The city order is Los Angeles first, then New York. The first two city weekend
-reels (New York, Boston) failed the fresh reviewer twice, which by `studio/viewer.md` drops them: the trainer is
-changing the format before the Los Angeles one is made (what the reviewer said is in each `post.md`). The trainer
-also fixes what the cheaper model's first trial showed (`trial/screen-time`, its `notes.md`) and runs the next trial.
+next: "idk to omw" goes out tonight. The founder says yes or no to the Los Angeles weekend reel
+(`videos/2026-11-24-la-weekend/`, passed the fresh reviewer, must go out before Friday). The maker thread then makes
+two or three "One night" pieces from Los Angeles listings and New York's weekend the same way. The trainer fixes
+what the cheaper model's first trial showed (`trial/screen-time`, its `notes.md`) and runs the next trial.
 
 ## Where things stand (Nov 24, 2026)
 
-- **City weekend reels (maker thread, Nov 24):** one scene for every city and week, `studio/weekend-reel.html`, built
-  by `studio/weekend.py` from a `reel.json` and the voice (`videos/2026-11-24-nyc-weekend/script.md` says how).
-  Boston (`videos/2026-11-24-boston-weekend/`, 36 s) and New York (`videos/2026-11-24-nyc-weekend/`, 40 s) pass
-  every check and each failed the fresh reviewer twice. Not approved, not hosted. If either is used it must go out
-  before Friday: the cards say FRI, SAT, SUN, and on Friday the app says TONIGHT.
+- **City weekend reels (maker thread, Nov 24):** the weekend told as nights out, one scene for every city and week:
+  `studio/weekend-reel.html`, built by `studio/weekend.py` from a `reel.json` of beats (a rig shot, the pick's real
+  card, a chat, the end card) and the voice. `videos/2026-11-24-la-weekend/script.md` says how to make the next one.
+  Los Angeles (41 s) passed the fresh reviewer and waits for the founder's yes. The first two, New York and Boston,
+  were the old shape (the app under a voice listing events), failed the reviewer twice and are dropped; their
+  folders keep the files and what the reviewer said.
 - **Scheduled (not drafts):** "idk to omw" goes out Tue Nov 24 (America/Chicago): Instagram and Facebook Reel 6:30 PM
   (cover.jpg, TrackTribe "Just A Weekend" at 18), TikTok 6:35 PM, YouTube Short 6:40 PM. Read back from Metricool.
 - **Metricool:** every pending post through Dec 8 was set to draft on Nov 23 (the founder: "nuked"). Nothing from
@@ -184,3 +185,6 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 - Nov 24, city weekend reel, what the second round of fresh reviews still failed: four cards in the same shape under
   a voice that lists day, name, place, price reads as a list over a screen recording, however large the cards are;
   a hook has to be shown, and a real listing's poster may not show it (Boston's igloos are a photo of beer glasses).
+- Nov 24, Los Angeles weekend reel, the new shape (a Nio World picture and a reason for each night, the card as the
+  proof, a chat for the party with no location yet): the fresh reviewer passed it on the first read. Hook: did you
+  know. Ask: send. What it still marked down: the app's name printed over a poster's own lettering.
