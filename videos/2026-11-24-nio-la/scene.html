@@ -17,6 +17,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;font
 #art{background:#1d1820}
 body.pass-ui #art{display:none}
 body.pass-art #ui{display:none}
+/* under the captions a card's lower half goes dark, so the spoken words never read as the app's own text; it lifts when the camera pushes to the price */
+#dim{position:absolute;left:0;right:0;top:1040px;bottom:0;background:linear-gradient(rgba(5,5,5,0) 0,rgba(5,5,5,.9) 90px,rgba(5,5,5,.9) 100%);display:none;pointer-events:none}
 #grain{position:absolute;inset:0;background:url(/look/brand/grain.webp);opacity:.22;mix-blend-mode:overlay;pointer-events:none}
 #tap{position:absolute;left:0;top:0;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:rgba(255,255,255,.3);border:5px solid #fff;opacity:0}
 #plate{position:absolute;left:0;top:0;width:1080px;height:1920px;image-rendering:pixelated;display:none}
@@ -62,6 +64,7 @@ body.pass-art #ui{display:none}
     <div id="chat"><div class="hd"><div class="bk">‹</div><div class="av" id="chav"></div><div class="nm" id="chnm"></div></div>
       <div id="list"></div><div class="in"><span class="plus">+</span><span>Message</span></div></div>
   </div></div>
+  <div id="dim"></div>
   <div id="grain"></div>
 </div>
 <div id="ui">
@@ -128,6 +131,7 @@ window.render = function (t, pass) {
   } else im.style.display = 'none';
   const flick = b.kind === 'flick';
   const phone = b.kind === 'card' || b.kind === 'chat' || flick;
+  $('dim').style.display = flick || (b.kind === 'card' && !(b.on !== null && b.on !== undefined && t >= b.on - 0.1)) ? 'block' : 'none';
   $('grain').style.display = phone ? '' : 'none';
   $('pwrap').style.display = phone ? '' : 'none';
   $('disc').style.display = b.kind === 'card' || flick ? '' : 'none';

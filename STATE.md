@@ -4,7 +4,8 @@ next: "idk to omw" goes out tonight. The founder says yes or no to two city week
 reviewer and both due before Friday: Los Angeles (`videos/2026-11-24-la-weekend/`; the file and a phone notification
 were sent Nov 24) and New York (`videos/2026-11-24-nyc-nights/`, with one listing's start time to settle first; its
 `post.md` says which). The maker thread then makes two or three "One night" pieces from Los Angeles listings.
-"PXI maker 2" makes the first Nio to camera piece. Two trials of the cheaper model are making a "One night" piece
+The first Nio to camera piece (`videos/2026-11-24-nio-la/`, 33 s, from "PXI maker 2") passed the fresh reviewer and
+waits for the founder's yes; it too is due before Friday, and its `post.md` has one line for the founder to check. Two trials of the cheaper model are making a "One night" piece
 and a Discover demo for Los Angeles against the fixed tools (`trial/` branches); the trainer reads their notes next.
 
 ## Where things stand (Nov 24, 2026)
@@ -261,3 +262,14 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 - Nov 24, both weekend reels, cut 3 (two real cards each, two nights told with a picture and a label): passed,
   "barely". Still marked down: a shot held about six seconds under a label, the label's small second line, the
   captions over the card's stamp, the first seconds saying nothing about the city with the sound off.
+- Nov 24, Nio to camera (PXI maker 2). The first piece, "I built an app because I was annoyed", failed two fresh
+  reviewers and is dropped (`videos/2026-11-24-nio-annoyed/review/notes.md`): fifteen seconds of him before the app,
+  then the app shown under words about the problem; captions read as part of the card; a hook that could open any
+  founder video. The second, "if you're in LA" (`videos/2026-11-24-nio-la/`), passed, narrowly. Hook: the city and
+  the need, in his voice. Ask: follow. Fixed where each lived: `close` and `screen` put his mouth under the
+  captions (three cameras for talking: `talk`, `talkSide`, `talkClose`); most faces looked past the lens (with
+  `lens: true` the pupils come to the viewer); a talking shot's `says` was counted by hand (`weekend.py` refuses
+  a wrong one and prints the right one; `"after": true` holds the end card until he has finished); the last
+  caption lay on the end card; captions lay on a card's own text (the card's lower half dims under them until the
+  push to the price). Learned and not fixed: a cast line under about six words comes out of the voice model
+  garbled; the phone he holds up is blank; a label for a listing with no card is small.
