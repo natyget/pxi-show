@@ -3,15 +3,18 @@
 **Not approved.** Waiting for the founder's yes on this exact cut. Nothing is hosted or scheduled.
 
 Files (in this folder; hosted on pxispace.com only after the yes):
-- video: `nyc-weekend.mp4` (1080x1920, 39.3 s, voice and sound effects, no music)
-- cover: the frame at 8 s (the Marco Lys card filling the frame), cut when the files are hosted
+- video: `nyc-weekend.mp4` (1080x1920, 40.4 s, voice and sound effects, no music)
+- cover: the frame at 8 s (the Marco Lys card), cut when the files are hosted
+
+**The fresh reviewer failed this piece twice** (cut 1: a small dim phone for most of the video; cut 2: the captions sat
+on the app's own text, and the free pick's card said PRICE TBA). `studio/viewer.md` drops a piece after two fails.
+Cut 3, the file here, fixes what both reviews named (the app fills the picture, the captions have their own band,
+the free pick's card says FREE) and has not been reviewed again, because the rule allows no third review.
 
 The founder's to decide:
-1. Yes or no on this cut.
-2. The free one. The listing's name says "Free Rave and Arcade Pop Up" and the voice calls it free, but the listing
-   gives no price, so the app's own card says PRICE TBA under it. Keep it, or swap it for the Sunday 11 AM prosecco
-   cruise ($18.90) and drop "One of them is free" from the hook.
-3. When. It has to go out before Friday: the cards say FRI, SAT, SUN, and on Friday the app would say TONIGHT.
+1. Use cut 3, or drop it as the rule says.
+2. When, if it is used. It has to go out before Friday: the cards say FRI, SAT, SUN, and on Friday the app would
+   say TONIGHT.
 
 | Network | When (America/Chicago), proposed | How |
 |---|---|---|
@@ -24,9 +27,9 @@ fetch the listings again (`studio/events.py nyc`) and check each of the four sti
 
 **Instagram and Facebook caption**
 
-4 things to do in New York this weekend, and one of them is free 👀 which one are you going to?
+4 things to do in New York this weekend, and the last one is free 👀 which one are you going to?
 
-Fri: Marco Lys at the Public Hotel. Sat: a skate night at Xanadu with Rich Medina, and a free rave with an arcade at Danger Danger. Sun: Theo Parrish all day at Nowadays.
+Fri: Marco Lys at the Public Hotel. Sat: a skate night at Xanadu with Rich Medina. Sun: Theo Parrish at Nowadays, then Reggaeton on Houston at San Antonios (free).
 
 pxi is a free app to find things to do near you: every event in NYC this weekend, with its poster, place and price.
 
@@ -34,12 +37,12 @@ pxi is a free app to find things to do near you: every event in NYC this weekend
 
 **TikTok caption** (title: 4 things to do in NYC this weekend 👀)
 
-4 things to do in New York this weekend, one of them is free 👀 pxi shows every event near you. free on iPhone and Android #nyc #thingstodoinnyc #nycevents #nycnightlife
+4 things to do in New York this weekend, the last one is free 👀 pxi shows every event near you. free on iPhone and Android #nyc #thingstodoinnyc #nycevents #nycnightlife
 
 **YouTube** (title: 4 things to do in New York this weekend #shorts)
 
-Four things to do in New York this weekend, Nov 27 to 29, and one of them is free. PXI is a free app that shows every event near you with its poster, place and price. pxispace.com/bio?utm_source=youtube
+Four things to do in New York this weekend, Nov 27 to 29, and the last one is free. PXI is a free app that shows every event near you with its poster, place and price. pxispace.com/bio?utm_source=youtube
 
 Tags: things to do in nyc, nyc events, this weekend, nyc nightlife, pxi
 
-**Alt text:** A cartoon guy on a roof at sunset looks at his phone. Four real event cards from the PXI app for New York this weekend: Marco Lys at the Public Hotel on Friday, a skate night at Xanadu and a free rave with an arcade on Saturday, Theo Parrish all day at Nowadays on Sunday.
+**Alt text:** A cartoon guy on a roof at sunset looks at his phone. Four real event cards from the PXI app for New York this weekend: Marco Lys at the Public Hotel on Friday, a skate night at Xanadu on Saturday, Theo Parrish at Nowadays and a free reggaeton party at San Antonios on Sunday.

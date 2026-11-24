@@ -1,11 +1,17 @@
 # State
 
-next: "idk to omw" goes out tonight. The maker thread makes the Los Angeles weekend reel first, then New York
-(made, waiting for the founder), then Boston. The trainer fixes what the cheaper model's first trial showed
-(`trial/screen-time`, its `notes.md`) and runs the next trial.
+next: "idk to omw" goes out tonight. The city order is Los Angeles first, then New York. The first two city weekend
+reels (New York, Boston) failed the fresh reviewer twice, which by `studio/viewer.md` drops them: the trainer is
+changing the format before the Los Angeles one is made (what the reviewer said is in each `post.md`). The trainer
+also fixes what the cheaper model's first trial showed (`trial/screen-time`, its `notes.md`) and runs the next trial.
 
 ## Where things stand (Nov 24, 2026)
 
+- **City weekend reels (maker thread, Nov 24):** one scene for every city and week, `studio/weekend-reel.html`, built
+  by `studio/weekend.py` from a `reel.json` and the voice (`videos/2026-11-24-nyc-weekend/script.md` says how).
+  Boston (`videos/2026-11-24-boston-weekend/`, 36 s) and New York (`videos/2026-11-24-nyc-weekend/`, 40 s) pass
+  every check and each failed the fresh reviewer twice. Not approved, not hosted. If either is used it must go out
+  before Friday: the cards say FRI, SAT, SUN, and on Friday the app says TONIGHT.
 - **Scheduled (not drafts):** "idk to omw" goes out Tue Nov 24 (America/Chicago): Instagram and Facebook Reel 6:30 PM
   (cover.jpg, TrackTribe "Just A Weekend" at 18), TikTok 6:35 PM, YouTube Short 6:40 PM. Read back from Metricool.
 - **Metricool:** every pending post through Dec 8 was set to draft on Nov 23 (the founder: "nuked"). Nothing from
@@ -58,7 +64,10 @@ next: "idk to omw" goes out tonight. The maker thread makes the Los Angeles week
 
 ## Open decisions (the founder's)
 
-- (none)
+- The two city weekend reels (New York, Boston): use them or drop them. The reviewer's lasting objection is to
+  what the brief asked for (real Discover cards under a voice that lists them reads as "a screen recording of an
+  app", and a listing's own poster may not show the thing the hook promises). What it asked for instead: a picture
+  of each night, a reason to pick one, prices said the way a friend says them.
 
 ## Founder notes (newest first, word for word)
 
@@ -153,3 +162,10 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 
 - Nov 24, engine trial, the cheaper model as scheduler: every commit was refused because it ended with a
   `Co-Authored-By` line naming the model. `CLAUDE.md` now says how a commit ends; the next commit went through.
+- Nov 24, city weekend reel, the fresh reviewer: a phone shown small on a dark background failed (the viewer sees an
+  ad and leaves), and so did captions lying on the app's own text and a card whose price disagreed with the voice.
+  The scene now shows the app screen as wide as the picture, keeps the captions in the empty band between the place
+  and the price, and `listing.ts` reads a price of 0 as FREE, as the app does.
+- Nov 24, city weekend reel, what the second round of fresh reviews still failed: four cards in the same shape under
+  a voice that lists day, name, place, price reads as a list over a screen recording, however large the cards are;
+  a hook has to be shown, and a real listing's poster may not show it (Boston's igloos are a photo of beer glasses).

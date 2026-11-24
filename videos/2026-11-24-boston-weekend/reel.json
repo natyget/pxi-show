@@ -1,31 +1,27 @@
 {
  "city": "boston",
  "shot": "hook",
- "dive": "And",
+ "dive": "this",
  "phoneAt": [
   600,
   720
  ],
  "events": [
   {
+   "pick": "4716eed9-5b09-4a41-aa4a-9439dd0e011b",
+   "on": "Twenty-eight"
+  },
+  {
    "pick": "Black Friday Funk",
-   "push": "price",
    "on": "free"
   },
   {
    "pick": "No Wall Huggers",
-   "push": "price",
-   "on": "Twenty"
+   "on": "twenty"
   },
   {
    "pick": "Matcha Madness",
-   "push": "price",
-   "on": "Twenty"
-  },
-  {
-   "pick": "59f34ded-5294-4b72-a24c-09c4d5181e80",
-   "push": "price",
-   "on": "Twenty-eight"
+   "on": "twenty"
   }
  ],
  "show": {},

@@ -35,8 +35,8 @@ def clean_title(t):
     return keep or t.strip()
 
 def price_label(e):
-    if e.get("isFree"): return "Free"
     c = e.get("priceFromCents")
+    if e.get("isFree") or c == 0: return "Free"  # the app reads a price of 0 as free too (externalEvents.ts)
     if isinstance(c, (int, float)) and c > 0: return "$%d" % round(c / 100) if c % 100 == 0 else "$%.2f" % (c / 100)
     return None
 
