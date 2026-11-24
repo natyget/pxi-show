@@ -4,7 +4,7 @@
      that is how EventCover.tsx and DiscoverDetails.tsx draw one. -->
 <!-- PXI Discover, rebuilt for the web from pxi-mobile-app v2.3.2 (src/components/discover/*).
      Geometry follows geometry.ts / DiscoverScreen.tsx at a 390x844pt iPhone (insets 47/34).
-     Hydrate by setting window.SEED before load, or ?seed=<url-encoded JSON>. -->
+     Hydrate by setting window.SEED before load, or ?seed=<a seed file, or url-encoded JSON>. -->
 <style>
 @font-face{font-family:Inter;src:url(assets/inter.woff2) format('woff2');font-weight:100 900}
 @font-face{font-family:'Stack Sans Notch';src:url(assets/StackSansNotch-Bold.ttf);font-weight:700 900}
@@ -129,7 +129,12 @@ const DEFAULT = {
   left: {name: 'Late set', cover: 'assets/left.jpg'},
   discOpen: true, joined: false,
 };
-const S = Object.assign({}, DEFAULT, window.SEED || (new URLSearchParams(location.search).get('seed') ? JSON.parse(new URLSearchParams(location.search).get('seed')) : {}));
+// ?seed= is the seed as JSON, or the path of a seed file (seed.json): a bare name is looked up beside the scene that frames this page
+const seedParam = new URLSearchParams(location.search).get('seed');
+const readSeed = (v) => { if (v.trim().startsWith('{')) return JSON.parse(v);
+  const x = new XMLHttpRequest(); x.open('GET', new URL(v, parent !== window ? parent.location.href : location.href).href, false); x.send();
+  if (x.status !== 200) throw new Error('no seed file ' + v); return JSON.parse(x.responseText); };
+const S = Object.assign({}, DEFAULT, window.SEED || (seedParam ? readSeed(seedParam) : {}));
 const C = Object.assign({}, DEFAULT.center, S.center || {});
 const $ = (id) => document.getElementById(id);
 $('clock').textContent = S.clock; $('when').textContent = S.when; $('city').textContent = S.city; $('day').textContent = S.day; $('hour').textContent = S.hour; $('me').src = S.me;

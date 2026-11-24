@@ -22,15 +22,5 @@
 
 ## Directing the rig
 
-- A shot is a small spec: the set, a named camera, who is at which mark, the action (sit, stand, walk, dance),
-  the face by frame, what they hold, where they look. Examples: `videos/2026-11-24-idk-to-omw/shots/`.
-- The rig refuses a shot the world cannot show (someone out of frame, a back nobody asked for).
-- Eyes go to the phone, the person or the thing. `look: 'camera'` only when the script asks for it.
-- One or two people a shot. The face changes on the word that causes it.
-- A new prop is a few lines in `studio/world3d/src/nw3d/room.ts` (the microphone was added this way).
-- It renders about one frame a second, 24 frames for each second of the shot.
-
-## Next for the series
-
-A pose library (named poses a scene picks from) and mouth shapes from the audio (`archive/.../engine/tools/lipsync.py`
-already reads a voice line into mouth cues), so Nio can talk to camera in his own voice (`studio/cast_voice.py`).
+`look/rig.md`: every set with a picture, how to choose a camera, what the cast can do, and what is left before Nio
+can talk to camera. The tool is `studio/rig.py`.

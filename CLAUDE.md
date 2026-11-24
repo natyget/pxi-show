@@ -13,8 +13,8 @@ of them. Its renderer is the one part that lives on.
 3. `dont.md`: the mistakes we never repeat.
 4. `method.md`: how a video is made, step by step, with the commands.
 5. A scheduled run: its section of `runs.md`.
-6. Only what the job needs: `look/look.md` (how it looks), `product.md` (what PXI is), `growth.md` (what to post,
-   hooks, endings, audio, the weekly loop).
+6. Only what the job needs: `look/look.md` (how it looks), `look/rig.md` (the sets, cameras and cast, with
+   pictures), `product.md` (what PXI is), `growth.md` (who it is for, what to post, hooks, asks, audio).
 
 ## Rules
 
@@ -52,6 +52,6 @@ of them. Its renderer is the one part that lives on.
 | `look/` | Palette, fonts, styles, cast, the rebuilt app screens, brand files |
 | `product.md`, `growth.md` | What PXI is; what to post and how we learn |
 | `runs.md` | The three scheduled runs a week: what each one does |
-| `studio/` | The tools: `world3d` (the 3D rig), scene template, render, voice, sound, compose, check, `viewer.md` |
+| `studio/` | The tools: `world3d` (the 3D rig) and `rig.py`, events and cards, voice, shot, sheet, safe, render, sound, compose, check, `viewer.md` |
 | `videos/<date>-<slug>/` | One folder per video: script, caption, scene, timings, contact sheet, the MP4s |
 | `archive/` | The old engine's rules, scripts and renders |

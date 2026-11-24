@@ -1,0 +1,26 @@
+{
+ "clock": "9:02",
+ "hour": "9:30 PM",
+ "center": {
+  "name": "Karaoke night",
+  "host": "Jessica",
+  "cover": "assets/cover-karaoke.jpg",
+  "pos": "50% 55%",
+  "label": "assets/cover-karaoke.jpg",
+  "going": 41,
+  "reaction": [
+   "🔥",
+   23
+  ],
+  "genre": "Karaoke",
+  "second": "Open mic",
+  "location": "Corner Bar",
+  "price": "Free",
+  "stamp": "assets/stamp-karaoke.svg"
+ },
+ "left": {
+  "name": "Trivia night",
+  "cover": "assets/left.jpg"
+ },
+ "me": "assets/me-nio.png"
+}

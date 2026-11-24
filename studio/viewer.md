@@ -26,7 +26,7 @@ For every line ask, and rewrite until each answer is fine:
 
 ## The stranger (a fresh reviewer, for every finished video)
 
-Give a reviewer who has seen nothing two contact sheets (a frame every 1.25 s) and the spoken lines, and nothing
-else. Ask: what happened and what did the person want; what is the app and what would you search for; where would
+Give a reviewer who has seen nothing the contact sheets (`studio/sheet.py`: a frame every 1.25 s) and the spoken
+lines, and nothing else. Ask: what happened and what did the person want; what is the app and what would you search for; where would
 you scroll away; what confused you; which line or picture reads as an ad or as machine-made; what looks wrong;
 would you send it to a friend. A FAIL is fixed and reviewed once more. Two FAILs and the piece is dropped.

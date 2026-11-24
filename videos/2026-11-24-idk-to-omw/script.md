@@ -5,14 +5,14 @@ Said to "you": the viewer does not know Nio, so he is the picture and never the 
 The joke: "omw. not singing tho" in the first frame, paid off by the last picture and "Your friend sang four songs."
 
 ```voice
-Thirty minutes ago, nobody knew what to do tonight. || 0.75
-Friday, nine P.M. Everyone's waiting for someone else to pick. || 0.35
+Thirty minutes ago, / nobody knew / what to do tonight. || 0.75
+Friday, nine P.M. / Everyone's waiting / for someone else / to pick. || 0.35
 So you open Pixie. || 0.30
-Turns out there's karaoke three blocks away, a rooftop party, and a run club. || 0.30
-You pick karaoke, tap join, and send it to the chat. || 0.35
-Now everybody's on the way. || 0.45
-Your friend sang four songs. || 0.60
-What's your group chat doing tonight? || 1.2
+Turns out there's / karaoke / three blocks away, / a rooftop party, / and a run club. || 0.30
+You pick karaoke, / tap join, / and send it / to the chat. || 0.35
+Now everybody's / on the way. || 0.45
+Your friend / sang four songs. || 0.60
+What's your / group chat / doing tonight? || 1.2
 ```
 
 | Line | Picture |

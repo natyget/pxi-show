@@ -3,7 +3,8 @@
   python3 studio/shot.py videos/<slug>/shots/<name>.json videos/<slug>/plates/<name>
 The rig can lose its graphics context when the machine is busy and write blank frames (all black or all white).
 This renders the shot, finds blank frames, renders only those again (up to three passes), and refuses to finish
-while any are left. Run one shot at a time, with no other render going."""
+while any are left. Run one shot at a time, with no other render going. A shot the world refuses stops here with
+every reason (the same check as `studio/rig.py check`)."""
 import glob, json, os, subprocess, sys, tempfile
 import numpy as np
 from PIL import Image
@@ -12,6 +13,7 @@ spec_path, dst = os.path.abspath(sys.argv[1]), os.path.abspath(sys.argv[2])
 spec = json.load(open(spec_path)); n = spec['frames']
 raw = sys.argv[3] if len(sys.argv) > 3 else tempfile.mkdtemp(prefix='shot_')
 os.makedirs(raw, exist_ok=True)
+if subprocess.run([sys.executable, os.path.join(ROOT, 'rig.py'), 'check', spec_path]).returncode: sys.exit(1)
 def render(frames=None):
     cmd = ['npx', 'remotion', 'render', 'src/index.ts', 'N3Shot', raw, '--sequence', '--image-format=png', '--props=' + json.dumps({'spec': spec}),
            '--gl=swangle', '--log=error', '--concurrency=2', '--timeout=240000', '--browser-executable=/opt/pw-browsers/chromium']

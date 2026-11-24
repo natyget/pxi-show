@@ -106,6 +106,7 @@ body.st-sketch #pbody{border-color:#f2f2f0}
 <body>
 <div id="stage">
 <div id="art">
+<!-- a rig shot, one frame at a time. transform-origin: where the phone in his hand is in this plate (read it off a plate: plate pixel x6); the push into the phone grows from there -->
 <img id="plate" style="position:absolute;left:0;top:0;width:1080px;height:1920px;image-rendering:pixelated;display:none;transform-origin:486px 800px">
 <svg id="world" width="1080" height="1920" viewBox="0 0 1080 1920">
   <defs>
@@ -130,7 +131,7 @@ body.st-sketch #pbody{border-color:#f2f2f0}
   <div id="pbody"></div>
   <div id="screen">
     <div id="home"><div class="ic"><img src="/look/brand/pxi-app-icon.png"></div><div class="lbl">PXI</div></div>
-    <div id="app" style="opacity:0"><iframe id="disc" src="/look/app-screens/discover.html?seed=%7B%22clock%22%3A%20%229%3A02%22%2C%20%22hour%22%3A%20%229%3A30%20PM%22%2C%20%22center%22%3A%20%7B%22name%22%3A%20%22Karaoke%20night%22%2C%20%22host%22%3A%20%22Jessica%22%2C%20%22cover%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22pos%22%3A%20%2250%25%2055%25%22%2C%20%22label%22%3A%20%22assets/cover-karaoke.jpg%22%2C%20%22going%22%3A%2041%2C%20%22reaction%22%3A%20%5B%22%5Cud83d%5Cudd25%22%2C%2023%5D%2C%20%22genre%22%3A%20%22Karaoke%22%2C%20%22second%22%3A%20%22Open%20mic%22%2C%20%22location%22%3A%20%22Corner%20Bar%22%2C%20%22price%22%3A%20%22Free%22%2C%20%22stamp%22%3A%20%22assets/stamp-karaoke.svg%22%7D%2C%20%22left%22%3A%20%7B%22name%22%3A%20%22Trivia%20night%22%2C%20%22cover%22%3A%20%22assets/left.jpg%22%7D%2C%20%22me%22%3A%20%22assets/me-nio.png%22%7D"></iframe></div>
+    <div id="app" style="opacity:0"><iframe id="disc" src="/look/app-screens/discover.html?seed=seed.json"></iframe></div>
     <div id="chat" style="opacity:0">
       <div class="hd"><div class="bk">‹</div><div class="av">F</div><div class="nm">friday</div></div>
       <div id="msgs"><div class="list" id="list"></div></div>
@@ -207,13 +208,17 @@ const OMW = [{ who: 'Sarah', txt: 'omw' }, { who: 'Mike', txt: 'omw' }, { who: '
 const FINAL = [...HIST, { card: 1, who: 'me' }, ...OMW];
 
 const KEY = new Set(['pxi','karaoke','rooftop','run','club','join','way','four','tonight']);
-const PHR = [[3,2,4],[3,2,3,2],[4],[3,1,3,3,4],[3,2,3,3],[2,3],[2,3],[2,2,2]];
+// Captions: the groups come from the voice (the " / " breaks in script.md's voice block, studio/voice.py). Nothing to count here.
 const groups = [];
-PHR.forEach((counts, li) => { const lw = W.filter((w) => w.line === li); let k = 0; counts.forEach((c) => { groups.push({ words: lw.slice(k, k + c) }); k += c; }); });
+VO.lines.forEach((l) => l.groups.forEach((_, g) => groups.push({ words: W.filter((w) => w.line === l.i && w.g === g) })));
 groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.words[0].s - 0.02; const nx = groups[i + 1]; g.e = nx ? Math.min(nx.words[0].s - 0.02, last.e + 0.7) : last.e + 1.6; });
 const show = (w) => { const l = w.toLowerCase(); return l === 'pxi' ? 'PXI' : l === 'nio' ? 'Nio' : l === 'friday' ? 'Friday' : l === 'a.m.' ? 'am' : l; };
 
-// phone camera: focus point (in phone space) lands on a target point, at scale s
+// The phone camera. The phone is drawn 1080x1920 ("phone space", #pwrap); the app screen inside it is the 390x844
+// Discover page scaled 1.37949, so an app pixel (x, y) is at about (271 + 1.379x, 367 + 1.379y) in phone space.
+// A camera { s, P, Q } puts phone-space point P at frame point Q, at scale s. To aim at a new part of the screen,
+// take a still of the whole phone (camera C0), read the pixel you want, and use it as P.
+// CARD: the middle of the event card. JOINP, SHAREP: the middles of the JOIN and share buttons (the taps land there).
 const CARD = [481, 842], JOINP = [498, 1276], SHAREP = [634, 1276];
 function cam(s, P, Q) { return `translate(${Q[0] - s * P[0]}px,${Q[1] - s * P[1]}px) scale(${s})`; }
 function mixCam(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
@@ -326,15 +331,5 @@ window.render = function (t, pass) {
   return wait;
 };
 window.ready = () => new Promise((res) => { const f = $('disc'); const go = () => { D = f.contentDocument; Promise.all([document.fonts.ready, D.fonts ? D.fonts.ready : 1]).then(() => setTimeout(res, 400)); }; if (f.contentDocument && f.contentDocument.readyState === 'complete') go(); else f.addEventListener('load', go); });
-window.safeCheck = function (t) {
-  window.render(t, 'all'); const bad = [];
-  document.querySelectorAll('#cap span, .lab, #hud, .ban, #rcpt .b, #end .icon, #end .nm, #end .free, #end .badges').forEach((el) => {
-    const cs = getComputedStyle(el); if (parseFloat(cs.opacity) < 0.05 || cs.display === 'none' || !el.textContent && !el.querySelector('img')) return;
-    let op = 1, e = el; while (e && e !== document.body) { op *= parseFloat(getComputedStyle(e).opacity); e = e.parentElement; } if (op < 0.05) return;
-    const rg = document.createRange(); rg.selectNodeContents(el); const r = rg.getBoundingClientRect(); if (r.width === 0) return;
-    if (r.left < 88 || r.right > 932 || r.top < 360 || r.bottom > 1440) bad.push(`${t.toFixed(2)}s ${el.id || el.className || el.tagName} [${Math.round(r.left)},${Math.round(r.top)},${Math.round(r.right)},${Math.round(r.bottom)}]`);
-  });
-  return bad;
-};
 </script>
 </body></html>

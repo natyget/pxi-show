@@ -36,8 +36,9 @@ also fixes what the cheaper model's first trial showed (`trial/screen-time`, its
   (checked Nov 24: it scheduled and read back) and gets the Thursday 12:17 PM and Sunday 6:38 PM runs. "PXI maker"
   makes the pieces and gets the Monday 1:45 PM heavy run. The runs fire into those two threads, so they keep
   Metricool: a run that starts a fresh thread gets no connectors in this workspace. Do not archive the two threads.
-- **Not built yet:** a pose library and mouth shapes for dialogue, the app's real Map and listing screens, real
-  street maps (OpenStreetMap tiles are reachable), a story template for the daily listing cards.
+- **Not built yet:** talking (the rig moves mouths from a voice line, but the two tools that read a voice file into
+  mouth cues are still in the archive: `look/rig.md`), the app's real Map and listing screens, real street maps
+  (OpenStreetMap tiles are reachable), a story template for the daily listing cards, a wide 16:9 frame for episodes.
 - **Tools that could not be reached from here:** Wikimedia Commons and Openverse image search (rate limits), the
   AI Geek Gumroad checkout (bot check). The two long AI Geek prompts were read from their public documents.
 
@@ -160,6 +161,17 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 
 ## Test log (one line per test)
 
+- Nov 24, the first two city reels (the stronger model): both failed the stranger twice. After three seconds they
+  were thirty seconds of one app screen under a voice listing events. Cause: the format as `growth.md` defined it.
+  Changed there (nights out, the app as the proof) and one question added to `studio/viewer.md`.
+- Nov 24, engine trial 1, the cheaper model, "screen time" (`trial/screen-time`): the script and the joke were at the
+  level; the tools cost it the rest. Fixed where each lived: a scene with real cards went blank on a fresh clone
+  (the ignore file hid the listings; now only posters stay out and `events.py --posters` fetches them again); no
+  contact-sheet tool (`studio/sheet.py`); the rig hid why it refused a shot and cameras were guesswork
+  (`studio/rig.py`, `look/rig.md` with a picture of every set); captions were counted by hand and failed silently
+  (the breaks now live in the voice block); a name the voice says wrong had no way to the caption (`Lys{Leece}`);
+  the safe check only looked where a scene told it to (it checks the whole sharp layer now); two scene files to
+  start from (one model now); the card's clock was the fetch time (`--clock`); listings that had already started.
 - Nov 24, engine trial, the cheaper model as scheduler: every commit was refused because it ended with a
   `Co-Authored-By` line naming the model. `CLAUDE.md` now says how a commit ends; the next commit went through.
 - Nov 24, city weekend reel, the fresh reviewer: a phone shown small on a dark background failed (the viewer sees an

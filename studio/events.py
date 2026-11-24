@@ -2,6 +2,8 @@
 """Real events for a city, from PXI's own API: the same listings the app's Discover shows, with their posters.
 
   python3 studio/events.py la|nyc|boston [--days 9] [--out videos/<slug>/events/<city>]
+  python3 studio/events.py --posters videos/<slug>/events/<city>     the posters of a list already saved, fetched again
+                (posters are never committed, so run this after a fresh clone before a scene with real cards renders)
 
 Writes into the out folder:
   events.json   {"city", "fetched", "events"}; events has one row per listing: title, clean title, venue, address,
@@ -40,7 +42,19 @@ def price_label(e):
     if isinstance(c, (int, float)) and c > 0: return "$%d" % round(c / 100) if c % 100 == 0 else "$%.2f" % (c / 100)
     return None
 
+def posters(out):
+    """Fetch the posters named in a saved events.json again, into the same files the seeds point at."""
+    rows = json.load(open(os.path.join(out, "events.json")))["events"]; os.makedirs(os.path.join(out, "covers"), exist_ok=True); got = gone = 0
+    for r in rows:
+        if not (r.get("cover") and r.get("coverUrl")): continue
+        dst = os.path.join(out, r["cover"])
+        if os.path.exists(dst): got += 1; continue
+        try: open(dst, "wb").write(get(r["coverUrl"], 30)[0]); got += 1
+        except Exception as err: gone += 1; print("  poster gone:", r["titleClean"], "|", str(err)[:60])
+    print(f"{got} posters in {out}/covers" + (f", {gone} could not be fetched: fetch the listings again and check those events still stand" if gone else ""))
+
 def main():
+    if len(sys.argv) == 3 and sys.argv[1] == "--posters": return posters(sys.argv[2])
     ap = argparse.ArgumentParser(); ap.add_argument("city", choices=sorted(CITIES)); ap.add_argument("--days", type=int, default=9, help="how many nights ahead, 1 to 9 (9 reaches the weekend after next from any day)")
     ap.add_argument("--out", default=None); a = ap.parse_args()
     out = a.out or os.path.join("events", a.city); os.makedirs(os.path.join(out, "covers"), exist_ok=True)

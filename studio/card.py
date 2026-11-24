@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """One real listing as the app's Discover card: writes the seed for look/app-screens/discover.html.
 
-  python3 studio/card.py <events dir from events.py> "<listing id or words from its title>" [--left "<words>"] [--when "This weekend"] [--out seed.json]
+  python3 studio/card.py <events dir from events.py> "<listing id or words from its title>" [--left "<words>"] [--when "This weekend"] [--clock 1:04] [--out seed.json]
 
 The card is dressed by the app's own code (look/app-screens/listing.ts, run against ../pxi-mobile-app, read-only):
 the name, the byline, Location, Price, the two lines on the record, and the stamp. The cover is the listing's own
@@ -20,6 +20,7 @@ def find(events, q):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("dir"); ap.add_argument("pick"); ap.add_argument("--left"); ap.add_argument("--out")
     ap.add_argument("--when", help='what the filter pill says, as the app words it: "This weekend", "This week". Left out: the listing\'s own night')
+    ap.add_argument("--clock", default="6:12", help="the time on the phone's status bar: the time in the story")
     a = ap.parse_args()
     d = os.path.abspath(a.dir); data = json.load(open(os.path.join(d, "events.json"))); events = data["events"]
     e = find(events, a.pick)
@@ -39,8 +40,10 @@ def main():
     when = a.when or ("Tonight" if ahead == 0 else start.strftime("%a %-d"))
     # the line above the card, as the app's eventClock.ts words it: Tonight or Today, the weekday for the next six nights, then the date
     day = ("Tonight" if start.hour >= 17 or start.hour < 5 else "Today") if ahead == 0 else night.strftime("%a") if 0 < ahead < 7 else night.strftime("%b %-d")
-    left = find(events, a.left) if a.left else next((x for x in events if x["id"] != e["id"] and x["cover"]), None)
-    seed = {"clock": "6:12", "when": when, "city": (data.get("city") or {}).get("name", ""), "day": day.upper(), "hour": e["time"], "me": "assets/me-nio.png",
+    # the card peeking in from the left: the one named, or the listing of the same kind nearest in time (never a random top listing)
+    near = sorted((x for x in events if x["id"] != e["id"] and x["cover"]), key=lambda x: (x.get("type") != e.get("type"), abs((datetime.datetime.fromisoformat(x["start"]) - start).total_seconds())))
+    left = find(events, a.left) if a.left else (near[0] if near else None)
+    seed = {"clock": a.clock, "when": when, "city": (data.get("city") or {}).get("name", ""), "day": day.upper(), "hour": e["time"], "me": "assets/me-nio.png",
             "center": {"name": e["titleClean"], "host": card["host"] or "", "cover": web(os.path.join(d, e["cover"])), "pos": "50% 50%",
                        "faces": [], "going": 0, "polaroids": [], "reaction": None, "match": None, "external": True,
                        "genre": card["record"][0], "second": card["record"][1], "label": web(os.path.join(d, e["cover"])),
