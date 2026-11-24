@@ -1,0 +1,187 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;src:url(/look/fonts/inter.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"DM Mono";src:url(/look/fonts/dm-mono-500.woff2) format("woff2");font-weight:500}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+#art,#ui{position:absolute;inset:0}
+#art{background:#1d1820}
+body.pass-ui #art{display:none}
+body.pass-art #ui{display:none}
+svg{position:absolute;left:0;top:0;overflow:visible}
+#grain{position:absolute;inset:0;background:url(/look/brand/grain.webp);opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+/* phone: body + real screen, moved by one camera */
+#pwrap{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+#pbody{position:absolute;left:255px;top:300px;width:570px;height:1196px;border-radius:74px;background:#141216;border:7px solid #1b1416}
+#screen{position:absolute;left:271px;top:316px;width:538px;height:1164px;border-radius:56px;overflow:hidden;background:#000}
+#screen > div{position:absolute;inset:0}
+#home{background:radial-gradient(120% 80% at 50% 20%,#2a1640 0%,#0b0710 70%)}
+#home .ic{position:absolute;left:169px;top:300px;width:200px;height:200px;border-radius:46px;overflow:hidden;background:#000;box-shadow:0 0 0 2px rgba(255,255,255,.15)}
+#home .ic img{width:100%;height:100%}
+#home .lbl{position:absolute;left:0;right:0;top:516px;text-align:center;color:#fff;font:600 34px Inter}
+#app{background:#000;transform-origin:269px 400px}
+#app iframe{position:absolute;left:0;top:0;width:390px;height:844px;border:0;transform:scale(1.37949);transform-origin:0 0}
+#fx .tap{fill:rgba(255,255,255,.35);stroke:#fff;stroke-width:5}
+/* ui (always crisp) */
+#cap{position:absolute;left:90px;right:150px;top:1160px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;text-align:center}
+#cap span{font:900 84px/1.12 Inter;color:#fff;letter-spacing:-1px;paint-order:stroke fill;-webkit-text-stroke:14px #000;display:inline-block;transform-origin:50% 70%}
+#cap span.k{color:#c26bff}
+#end{position:absolute;inset:0;background:#050505;opacity:0}
+#end .icon{position:absolute;left:410px;top:400px;width:260px;height:260px;border-radius:60px;overflow:hidden;background:#000;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+#end .icon img{width:100%;height:100%}
+#end .nm{position:absolute;left:0;right:0;top:690px;text-align:center;color:#fff;font:900 96px Inter;letter-spacing:-2px}
+#end .free{position:absolute;left:0;right:0;top:810px;text-align:center;color:#c9c9c7;font:500 46px "DM Mono"}
+#end .badges{position:absolute;left:0;right:0;top:905px;display:flex;justify-content:center;align-items:center;gap:22px}
+#end .badges img.as{height:118px}
+#end .badges img.gp{height:108px;margin:-17px -12px}
+</style></head>
+<body class="st-nio">
+<div id="stage">
+<div id="art">
+<!-- a rig shot, one frame at a time. transform-origin: where the phone in his hand is in the couch plate; the dive into the phone grows from there -->
+<img id="plate" style="position:absolute;left:0;top:0;width:1080px;height:1920px;image-rendering:pixelated;display:none;transform-origin:436px 1030px">
+<div id="pwrap" style="display:none">
+  <div id="pbody"></div>
+  <div id="screen">
+    <div id="home"><div class="ic"><img src="/look/brand/pxi-app-icon.png"></div><div class="lbl">PXI</div></div>
+    <div id="app" style="opacity:0">
+      <!-- the same Discover screen with "This weekend" on, one seed per card, in the app's carousel order (time order) -->
+      <iframe id="d1" src="/look/app-screens/discover.html?seed=seed-1.json"></iframe>
+      <iframe id="d2" src="/look/app-screens/discover.html?seed=seed-2.json" style="opacity:0"></iframe>
+      <iframe id="d3" src="/look/app-screens/discover.html?seed=seed-3.json" style="opacity:0"></iframe>
+    </div>
+  </div>
+  <svg id="fx" width="1080" height="1920"><circle id="tap" class="tap" r="0" cx="0" cy="0" style="opacity:0"/></svg>
+</div>
+<div id="grain"></div>
+</div>
+<div id="ui">
+  <div id="end"><div class="icon"><img src="/look/brand/pxi-app-icon.png"></div><div class="nm">PXI</div><div class="free">free</div>
+    <div class="badges"><img class="as" src="/look/brand/app-store-badge.svg"><img class="gp" src="/look/brand/google-play-badge.png"></div></div>
+  <div id="cap"></div>
+</div>
+</div>
+<script src="words.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const eOut = (p) => 1 - Math.pow(1 - clamp(p), 3);
+const eIO = (p) => { p = clamp(p); return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+const eBack = (p) => { p = clamp(p); const c = 1.6; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+const pr = (t, a, d) => clamp((t - a) / d);
+const W = VO.words;
+const A = (line, w, n = 0) => { const m = W.filter((x) => x.line === line && x.w.toLowerCase() === w.toLowerCase()); if (!m[n]) throw new Error('no word ' + line + ' ' + w); return m[n].s; };
+const LN = VO.lines;
+// key times, all from the voice
+const K = { pxi: A(2, 'PXI'), pick: A(2, 'pick'), swipe0: A(2, 'swipe'), friday: A(3, 'Friday'), late: A(3, 'late'), swipe1: A(4, 'Swipe'), outdoors: A(4, 'outdoors'),
+  swipe2: A(5, 'Swipe'), house: A(5, 'at'), sunday: A(6, 'Sunday') };
+const T = { couch: [0, K.pxi - 0.17], phone1: [K.pxi - 0.17, K.late - 0.12], fri: [K.late - 0.12, K.swipe1 - 0.1],
+  phone2: [K.swipe1 - 0.1, K.outdoors - 0.05], sat: [K.outdoors - 0.05, K.swipe2 - 0.1], phone3: [K.swipe2 - 0.1, K.house - 0.1],
+  late: [K.house - 0.1, K.sunday - 0.1], sun: [K.sunday - 0.1, LN[7].s - 0.25], end: [LN[7].s - 0.25, 99] };
+const PL = { couch: 100, fri: 80, sat: 46, late: 66, sun: 60 }; // frames in plates/<name>/, 24 a second, from the 3D rig
+
+const KEY = new Set(['pxi', 'weekend', 'swipe', 'friday', 'saturday', 'solomun', 'midnight', 'sunday', 'sleep', 'free']);
+// Captions: the groups come from the voice (the " / " breaks in script.md's voice block, studio/voice.py).
+const groups = [];
+VO.lines.forEach((l) => l.groups.forEach((_, g) => groups.push({ words: W.filter((w) => w.line === l.i && w.g === g) })));
+groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.words[0].s - 0.02; const nx = groups[i + 1]; g.e = nx ? Math.min(nx.words[0].s - 0.02, last.e + 0.7) : last.e + 1.6; });
+const SHOW = { pxi: 'PXI', 'l.a.': 'LA', friday: 'Friday', saturday: 'Saturday', sunday: 'Sunday', hollywood: 'Hollywood', solomun: 'Solomun', 'twenty-five': '25', "it's": "it's" };
+const show = (w) => { const l = w.toLowerCase(); return SHOW[l] ?? l; };
+
+// The phone camera. The phone is drawn 1080x1920 ("phone space", #pwrap); the app screen inside it is the 390x844
+// Discover page scaled 1.37949, so an app pixel (x, y) is at (271 + 1.379x, 316 + 1.379y) in phone space.
+// A camera { s, P, Q } puts phone-space point P at frame point Q, at scale s.
+// CARD: the dateline, the card and the record together (app 195, 330): the swipe is what this piece shows.
+const CARD = [574, 822];
+const PITCH = 203 * 0.87; // DiscoverStage: one card's travel in a swipe, in app points
+function cam(s, P, Q) { return `translate(${Q[0] - s * P[0]}px,${Q[1] - s * P[1]}px) scale(${s})`; }
+function mixCam(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
+// CP: the filter pill, "at This weekend in Los Angeles" (app 150, 143)
+const C0 = { s: 1, P: [540, 898], Q: [540, 860] }, CP = { s: 2.1, P: [478, 513], Q: [540, 700] }, CC = { s: 1.9, P: CARD, Q: [540, 690] };
+// the two swipes: from card i to card i+1, 0.34 s, starting on the word "Swipe"
+const SW = [[K.swipe1 - 0.04, 0], [K.swipe2 - 0.04, 1]], SWD = 0.34;
+
+let DS = null;
+window.render = function (t, pass) {
+  document.body.classList.toggle('pass-ui', pass === 'ui');
+  document.body.classList.toggle('pass-art', pass === 'art');
+  if (!DS) { try { DS = ['d1', 'd2', 'd3'].map((id) => $(id).contentDocument); } catch (e) {} }
+  const inn = (k) => t >= T[k][0] && t < T[k][1];
+  $('grain').style.backgroundPosition = `${(Math.floor(t * 12) * 37) % 200}px ${(Math.floor(t * 12) * 91) % 200}px`;
+  const phoneOn = inn('phone1') || inn('phone2') || inn('phone3');
+  $('pwrap').style.display = phoneOn ? '' : 'none';
+
+  /* PLATES: the character shots come from the 3D rig (studio/world3d), one PNG per frame at 24 a second */
+  let plate = null, wait = true;
+  for (const k of ['couch', 'fri', 'sat', 'late', 'sun']) if (inn(k)) plate = [k, Math.min(PL[k] - 1, Math.floor((t - T[k][0]) * 24))];
+  const im = $('plate');
+  if (plate) {
+    const src = `plates/${plate[0]}/f${String(plate[1]).padStart(4, '0')}.png`;
+    im.style.display = ''; im.style.transform = `scale(${inn('couch') ? lerp(1, 4.2, eIO(pr(t, T.couch[1] - 0.34, 0.34))) : 1})`;
+    if (im.dataset.src !== src) { im.dataset.src = src; im.src = src; wait = im.decode().then(() => true, () => true); }
+  } else im.style.display = 'none';
+  $('grain').style.display = plate ? 'none' : '';
+
+  /* PHONE */
+  if (phoneOn) {
+    let home = 0, app = 0, C = CC;
+    if (inn('phone1')) {
+      home = 1;
+      const open = eOut(pr(t, K.pxi + 0.02, 0.32)); app = open > 0 ? 1 : 0;
+      $('app').style.transform = `scale(${lerp(0.22, 1, open)})`; $('app').style.borderRadius = `${lerp(46, 0, open)}px`;
+      C = t < K.swipe0 - 0.1 ? mixCam(C0, CP, eIO(pr(t, K.pick - 0.15, 0.4))) : mixCam(CP, CC, eIO(pr(t, K.swipe0 - 0.1, 0.4)));
+    } else { $('app').style.transform = 'none'; app = 1; }
+    $('pwrap').style.transform = cam(C.s, C.P, C.Q);
+    $('home').style.opacity = home; $('app').style.opacity = app;
+    // which card is in the middle, and how far through a swipe
+    let cur = 0, sp = 0;
+    if (inn('phone2')) cur = 0; if (inn('phone3')) cur = 1;
+    SW.forEach(([at, i]) => { if (t >= at + SWD) cur = Math.max(cur, i + 1); else if (t >= at && cur === i) sp = eIO(pr(t, at, SWD)); });
+    if (DS && DS[0] && DS[0].getElementById('stage')) {
+      DS.forEach((D, i) => {
+        const st = D.getElementById('stage'), det = D.getElementById('det'), dl = D.querySelector('.dl');
+        const vc = D.querySelector('.vc'); if (vc) vc.style.transform = `rotate(${t * 38}deg)`;
+        let op = 0, x = 0;
+        // the outgoing card slides left, the next one slides in from the right; the two screens trade places in the
+        // middle of the move (0.4 to 0.6) so the record's lines never sit on top of each other for more than a frame
+        const xf = clamp((sp - 0.4) / 0.2);
+        if (i === cur) { op = 1 - xf; x = -sp * PITCH; }
+        if (i === cur + 1 && sp > 0) { op = xf; x = (1 - sp) * PITCH; }
+        $('d' + (i + 1)).style.opacity = op;
+        st.style.transform = `translateX(${x}px)`;
+        // the card is the subject: the rest of the screen dims while the camera is in on it
+        const spot = inn('phone1') ? eIO(pr(t, K.swipe0 - 0.1, 0.45)) : 1;
+        det.style.opacity = lerp(1, 0.25, spot); D.querySelector('.act').style.opacity = lerp(1, 0.25, spot);
+        let so = 1, sx = 0;
+        if (inn('phone1')) { const c = eOut(pr(t, K.pxi + 0.5, 0.42)); sx = (1 - c) * 300; so = c; }
+        if (i === 0 && inn('phone1')) { st.style.transform = `translateX(${sx}px)`; st.style.opacity = so; } else st.style.opacity = 1;
+      });
+    }
+    // the thumb: a tap on the icon, then a drag right to left across the card on each "swipe"
+    const taps = [[K.pxi - 0.05, 540, 716]];
+    let tp = null; taps.forEach((x) => { if (t >= x[0] && t < x[0] + 0.35) tp = x; });
+    const drags = [[K.swipe0 + 0.15, 0.5], ...SW.map(([at]) => [at - 0.06, SWD + 0.08])];
+    let dg = null; drags.forEach((x) => { if (t >= x[0] && t < x[0] + x[1]) dg = x; });
+    if (tp) { const p = pr(t, tp[0], 0.35); $('tap').setAttribute('cx', tp[1]); $('tap').setAttribute('cy', tp[2]); $('tap').setAttribute('r', 20 + 50 * eOut(p)); $('tap').style.opacity = 1 - p; }
+    else if (dg) { const p = pr(t, dg[0], dg[1]); $('tap').setAttribute('cx', lerp(660, 380, eIO(p))); $('tap').setAttribute('cy', 850); $('tap').setAttribute('r', 46); $('tap').style.opacity = Math.min(1, 4 * p, 4 * (1 - p)) * 0.9; }
+    else $('tap').style.opacity = 0;
+    // "and swipe" on the first card: a short drag that springs back, the way a thumb tries the carousel before letting go
+    if (DS && DS[0] && DS[0].getElementById('stage') && inn('phone1') && dg) {
+      const p = pr(t, dg[0], dg[1]); DS[0].getElementById('stage').style.transform = `translateX(${-Math.sin(Math.PI * p) * 40}px)`;
+    }
+  }
+  /* UI */
+  $('end').style.opacity = pr(t, T.end[0], 0.2);
+  document.querySelector('#end .icon').style.transform = `scale(${eBack(pr(t, T.end[0], 0.35))})`;
+  ['nm', 'free', 'badges'].forEach((c, i) => { document.querySelector('#end .' + c).style.opacity = pr(t, T.end[0] + 0.15 + i * 0.12, 0.2); });
+  const g = groups.find((x) => t >= x.s && t < x.e);
+  $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has(w.w.toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
+  return wait;
+};
+window.ready = () => Promise.all(['d1', 'd2', 'd3'].map((id) => new Promise((res) => { const f = $(id); const go = () => { const D = f.contentDocument; Promise.all([D.fonts ? D.fonts.ready : 1]).then(res); };
+  if (f.contentDocument && f.contentDocument.readyState === 'complete') go(); else f.addEventListener('load', go); }))).then(() => document.fonts.ready).then(() => new Promise((r) => setTimeout(r, 400)));
+</script>
+</body></html>

@@ -1,0 +1,1 @@
+{"set": "club", "camera": "mid", "frames": 66, "push": 0.1, "actors": [{"who": "nio", "at": "circle", "action": "dance", "face": "deadInside"}], "club": {"mood": 1, "crowd": {"armsUp": 0.3, "dance": 1, "faces": 1}}}

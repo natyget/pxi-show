@@ -1,0 +1,1 @@
+{"set": "livingDay", "camera": "bedPhoto", "frames": 100, "push": 0.08, "actors": [{"who": "nio", "at": "couch", "action": "sit", "hold": "phone", "gaze": [0, -0.9], "glow": 0.8, "face": [[0, "deadInside"], [51, "deadpan"]]}]}
