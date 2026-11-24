@@ -9,6 +9,10 @@
  "beats": [
   {
    "line": 0,
+   "shot": "roof"
+  },
+  {
+   "line": 1,
    "chat": {
     "name": "Mike",
     "msgs": [
@@ -20,12 +24,12 @@
      [
       "me",
       "no",
-      "Because"
+      "skate"
      ],
      [
       "them",
       "me neither",
-      "New"
+      "Because"
      ],
      [
       "them",
@@ -41,50 +45,48 @@
    }
   },
   {
-   "line": 1,
+   "line": 2,
    "card": 0,
    "on": "twenty-five"
   },
   {
-   "line": 2,
+   "line": 3,
    "shot": "club"
   },
   {
-   "line": 3,
+   "line": 4,
    "card": 1,
    "on": "twenty"
   },
   {
-   "line": 4,
+   "line": 5,
    "shot": "asleep"
   },
   {
-   "line": 5,
+   "line": 6,
    "card": 2,
    "on": "about"
   },
   {
-   "line": 6,
+   "line": 7,
    "shot": "broke"
   },
   {
-   "line": 7,
+   "line": 8,
    "card": 3,
    "on": "free"
   },
   {
-   "line": 8,
+   "line": 9,
    "flick": true
   },
   {
-   "line": 8,
+   "line": 9,
    "at": "Which",
    "end": true
   }
  ],
- "show": {
-  "Leece": "Lys"
- },
+ "show": {},
  "proper": [
   "New",
   "York",

@@ -9,24 +9,28 @@
  "beats": [
   {
    "line": 0,
-   "shot": "dinner"
+   "shot": "hook"
   },
   {
    "line": 1,
+   "shot": "dinner"
+  },
+  {
+   "line": 2,
    "card": 0,
    "on": "about"
   },
   {
-   "line": 2,
+   "line": 3,
    "shot": "club"
   },
   {
-   "line": 3,
+   "line": 4,
    "card": 1,
    "on": "about"
   },
   {
-   "line": 4,
+   "line": 5,
    "chat": {
     "name": "Sarah",
     "msgs": [
@@ -54,25 +58,25 @@
    }
   },
   {
-   "line": 5,
+   "line": 6,
    "card": 2,
    "on": "about"
   },
   {
-   "line": 6,
+   "line": 7,
    "shot": "roof"
   },
   {
-   "line": 7,
+   "line": 8,
    "card": 3,
    "on": "free"
   },
   {
-   "line": 8,
+   "line": 9,
    "flick": true
   },
   {
-   "line": 8,
+   "line": 9,
    "at": "Send",
    "end": true
   }
@@ -90,7 +94,8 @@
   "Spotlight",
   "Midnight",
   "Lovers",
-  "Sunset"
+  "Sunset",
+  "LA"
  ],
  "key": [
   "strangers",
@@ -101,6 +106,7 @@
   "thirty-five",
   "dollars",
   "Echo",
-  "Park"
+  "Park",
+  "LA"
  ]
 }

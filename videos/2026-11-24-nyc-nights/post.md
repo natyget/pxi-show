@@ -1,11 +1,14 @@
 # Post: New York this weekend, as nights out
 
-**Not approved.** Waiting for the founder's yes on this exact cut. Nothing is hosted or scheduled.
+**Not approved.** Waiting for the founder's yes on this exact cut (cut 2). Nothing is hosted or scheduled.
 
-Hook type: a question, answered by the first listing. Ask: comment.
+Cut 2 follows the founder's note on the Los Angeles reel: it opens on "are you in New York, looking for things to do
+this weekend? we got you" and uses the quick narrator; it is 35 s instead of 42.
+
+Hook type: the city and the need, then a question answered by the first listing. Ask: comment.
 
 Files (in this folder; hosted on pxispace.com only after the yes):
-- video: `nyc-nights.mp4` (1080x1920, 41.8 s, voice and sound effects, no music)
+- video: `nyc-nights.mp4` (1080x1920, 35.1 s, voice and sound effects, no music)
 - cover: the Xanadu card at 7 s, cut when the files are hosted
 
 The fresh reviewer passed it (Nov 24): the chat opening held, "when the money runs out… free" was "the best beat".
@@ -28,7 +31,7 @@ one pick already left the feed between two fetches on Nov 24.
 
 **Instagram and Facebook caption**
 
-can you skate? 👀 because New York has a skate night this Saturday. which one are you going to?
+are you in New York looking for things to do this weekend? we got you 👀 which one are you going to?
 
 Sat: skate night at Xanadu with Rich Medina. Fri: Marco Lys at the Public Hotel. Sun: an unlimited prosecco cruise at Pier 36, then Reggaeton on Houston (free).
 
@@ -36,11 +39,11 @@ pxi is a free app to find things to do near you: every event in NYC this weekend
 
 #nyc #thingstodoinnyc #nycevents #nycnightlife #pxi
 
-**TikTok caption** (title: can you skate? NYC this weekend 👀)
+**TikTok caption** (title: in NYC this weekend? we got you 👀)
 
-can you skate? 👀 New York has a skate night this Saturday, and three more plans. all in pxi, free on iPhone and Android #nyc #thingstodoinnyc #nycevents #nycnightlife
+in New York looking for things to do this weekend? we got you 👀 a skate night, a prosecco cruise, free reggaeton. all in pxi, free on iPhone and Android #nyc #thingstodoinnyc #nycevents #nycnightlife
 
-**YouTube** (title: Can you skate? New York this weekend #shorts)
+**YouTube** (title: In New York this weekend? Four things to do #shorts)
 
 A weekend in New York, Nov 27 to 29: a skate night at Xanadu, Marco Lys at the Public Hotel, a prosecco cruise at Pier 36 and a free reggaeton party. PXI is a free app that shows every event near you with its poster, place and price. pxispace.com/bio?utm_source=youtube
 

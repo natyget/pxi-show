@@ -1,4 +1,4 @@
-can you skate? 👀 because New York has a skate night this Saturday. which one are you going to?
+are you in New York looking for things to do this weekend? we got you 👀 which one are you going to?
 
 Sat: skate night at Xanadu with Rich Medina. Fri: Marco Lys at the Public Hotel. Sun: an unlimited prosecco cruise at Pier 36, then Reggaeton on Houston (free).
 

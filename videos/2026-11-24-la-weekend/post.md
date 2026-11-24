@@ -1,16 +1,16 @@
 # Post: Los Angeles this weekend
 
-**Not approved.** Waiting for the founder's yes on this exact cut. Nothing is hosted or scheduled.
+**Not approved.** Waiting for the founder's yes on this exact cut (cut 2). Nothing is hosted or scheduled.
 
-The fresh reviewer passed it (Nov 24): the hook held, the chat "feels human", it would be sent "to the one friend who
-would actually do the strangers dinner". What it still disliked is the app's own look on two cards (the app prints a
-listing's name over a poster that already has lettering) and the captions crossing the stamp. Its other note, a
-still logo for the last six seconds, is fixed: the four cards flick past first.
+Cut 1 (Nov 24) passed the fresh reviewer; the founder on it: "the hooks are a bit weak and not specific. it doesn't
+say are you in [city] looking for things to do? we got you. or something. and the voice sleepy and not fat and quick
+better for stories not info like this". Cut 2 opens on that line and uses the quick narrator the founder picked
+("voice b nice"); it is 34 s instead of 41.
 
-Hook type: did you know (the hook is the first listing). Ask: send.
+Hook type: the city and the need, as a question. Ask: send.
 
 Files (in this folder; hosted on pxispace.com only after the yes):
-- video: `la-weekend.mp4` (1080x1920, 41.1 s, voice and sound effects, no music)
+- video: `la-weekend.mp4` (1080x1920, 34 s, voice and sound effects, no music)
 - cover: the dinner table at 2 s, cut when the files are hosted
 
 It has to go out before Friday: the cards say FRI, SAT, SUN, and on Friday the app would say TONIGHT.
@@ -26,7 +26,7 @@ fetch the listings again (`studio/events.py la`) and check each of the four stil
 
 **Instagram and Facebook caption**
 
-did you know you can have dinner with strangers in Echo Park this Friday? 👀 send this to whoever plans your weekend
+are you in LA looking for things to do this weekend? we got you 👀 send this to whoever plans your weekend
 
 Fri: Foodies + New Friends dinner in Echo Park, then Night Tales at The Spotlight. Sat: Midnight Lovers (location still TBA). Sun: free brunch and football on Sunset Rooftop.
 
@@ -34,11 +34,11 @@ pxi is a free app to find things to do near you: every event in LA this weekend,
 
 #losangeles #thingstodoinla #laevents #lanightlife #pxi
 
-**TikTok caption** (title: dinner with strangers in Echo Park this Friday 👀)
+**TikTok caption** (title: in LA this weekend? we got you 👀)
 
-did you know you can have dinner with strangers in Echo Park this Friday 👀 a whole LA weekend, all in pxi. free on iPhone and Android #losangeles #thingstodoinla #laevents #lanightlife
+in LA looking for things to do this weekend? we got you 👀 dinner with strangers, a secret party, a free rooftop brunch. all in pxi. free on iPhone and Android #losangeles #thingstodoinla #laevents #lanightlife
 
-**YouTube** (title: Dinner with strangers in Echo Park? LA this weekend #shorts)
+**YouTube** (title: In LA this weekend? Four things to do #shorts)
 
 A whole weekend in Los Angeles, Nov 27 to 29: dinner with strangers in Echo Park, Night Tales at The Spotlight, a party that has not said where it is yet, and a free rooftop brunch. PXI is a free app that shows every event near you with its poster, place and price. pxispace.com/bio?utm_source=youtube
 

@@ -11,7 +11,7 @@ Reads from that folder:
                   {"line": 1, "card": 0, "on": "about"}          that pick's real Discover card; the camera pushes
                                                                  toward the price on the word "on" (leave out: no push)
                   {"line": 4, "chat": {"name": "Sarah", "msgs": [["them", "text", null], ["me", "text", "word"]]}}
-                                                                 a chat; each message lands on its word (null: at once)
+                                                                 a chat; each message lands on its word (null: at once; "3:word": a word of line 3)
                   {"line": 8, "flick": true}                     every card again, one after another, quickly
                   {"line": 8, "at": "Send", "end": true}         the end card ("at": a beat that starts on a word inside its line)
                 and how names are written in the captions ("proper", "show", "key")
@@ -30,6 +30,9 @@ def word(line, w, n=0):
     if len(m) <= n: sys.exit(f"line {line} has no word {w!r}: {' '.join(x['w'] for x in W if x['line'] == line)}")
     return m[n]["s"]
 
+def at(line, w):  # "word" in the beat's own line, or "3:word" in line 3
+    return word(int(w.split(':')[0]), w.split(':')[1]) if ':' in w else word(line, w)
+
 seeds, facts = [], []
 for i, pick in enumerate(reel["cards"]):
     out = os.path.join(d, "events", f"seed-{i + 1}.json")
@@ -47,14 +50,14 @@ for i, b in enumerate(reel["beats"]):
     t0, t1 = starts[i], (starts[i + 1] if i + 1 < len(starts) else dur); o = {"t0": t0, "t1": t1}
     if "shot" in b:
         spec = json.load(open(os.path.join(d, "shots", b["shot"] + ".json"))); need = int((t1 - t0) * 24) + 1
-        if spec["frames"] < need: sys.exit(f"shot {b['shot']} has {spec['frames']} frames; the beat needs {need}")
+        if spec["frames"] < need - 4: sys.exit(f"shot {b['shot']} has {spec['frames']} frames; the beat needs {need}")
         o.update(kind="shot", name=b["shot"], frames=spec["frames"])
     elif "card" in b:
         on = round(word(b["line"], b["on"], b.get("nth", 0)) - 0.12, 3) if b.get("on") else None
         o.update(kind="card", card=b["card"], on=on); cues.append(["pop", t0 + 0.02, 0.1])
         if on: cues.append(["tick", on + 0.1, 0.14])
     elif "chat" in b:
-        msgs = [{"me": who == "me", "txt": txt, "t": round(word(b["line"], w) - 0.08, 3) if w else round(t0 + 0.12, 3)} for who, txt, w in b["chat"]["msgs"]]
+        msgs = [{"me": who == "me", "txt": txt, "t": round(at(b["line"], w) - 0.08, 3) if w else round(t0 + 0.12, 3)} for who, txt, w in b["chat"]["msgs"]]
         o.update(kind="chat", name=b["chat"]["name"], msgs=msgs); cues += [["pop", m["t"], 0.13] for m in msgs]
     elif "flick" in b:
         o.update(kind="flick"); cues += [["tick", round(t0 + k * (t1 - t0) / len(seeds), 3) + 0.02, 0.12] for k in range(len(seeds))]

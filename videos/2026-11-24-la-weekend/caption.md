@@ -1,4 +1,4 @@
-did you know you can have dinner with strangers in Echo Park this Friday? 👀 send this to whoever plans your weekend
+are you in LA looking for things to do this weekend? we got you 👀 send this to whoever plans your weekend
 
 Fri: Foodies + New Friends dinner in Echo Park, then Night Tales at The Spotlight. Sat: Midnight Lovers (location still TBA). Sun: free brunch and football on Sunset Rooftop.
 
