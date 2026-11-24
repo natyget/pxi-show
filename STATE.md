@@ -197,6 +197,16 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   rest are in All events. The LA weekend reel drew two cards the app never would (the dinner, the brunch), New
   York four. `studio/card.py` now refuses such a card and follows the app's card order; the All events list and
   the carousel's last card are being rebuilt so those listings have a true screen.
+- Nov 24, engine trial 3, the cheaper model with the beat builder ("One night", Midnight Lovers,
+  `trial/la-one-night-midnight-lovers`): dropped after two fails. The builder removed the hand-made faults; what
+  was left is in two places. The builder itself: captions sit on the stamp and the price on every card, the push
+  crops the day and time off the card, the end card and the chat open on a near-black frame (the stronger
+  model's reels have the same marks and pass "only just"). And the script: a hook the card cannot answer, a
+  tagline, a stock ask. Fixed now: `LA{L.A.}` reached the caption as "l.a." (`studio/voice.py`; the LA reel's
+  first caption had it too), a question in `studio/viewer.md` about paying off the first line, a line on asks in
+  `growth.md`. The builder's four marks go to the maker thread, which owns it. Verdict after four pieces: the
+  cheaper model is not at the level for writing a new piece; the next test for it is narrower (a new week of an
+  approved reel, where only the listings and lines change).
 - Nov 24, the stall and the stale file: six threads at once spent the five-hour limit by 9:40 AM Chicago; three
   stopped mid-piece until 1 PM (`runs.md` now caps the threads). And cut 3 of both city reels was rendered four
   minutes after the card screen was corrected on the default branch but from the old copy, so the files sent to the

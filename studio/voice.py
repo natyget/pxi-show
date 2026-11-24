@@ -43,7 +43,7 @@ for raw in BLOCK.group(2).strip().splitlines():
         n = re.search(r"\(([^()]*)\)\s*$", line)
         if not n: sys.exit(f"{who}'s line needs how it is said, in brackets at the end: {line}")
         note = n.group(1).strip(); line = re.sub(r"\bPixie\b", "PXI", line[:n.start()].strip())  # the cast's voices are given "PXI", as their approved lines were
-    show = {m.group(2): m.group(1) for m in SAY.finditer(line)}  # what the voice says -> what the caption shows
+    show = {k: m.group(1) for m in SAY.finditer(line) for k in (m.group(2), bare(m.group(2)))}  # what the voice says -> what the caption shows ("L.A." and "L.A" both find "LA")
     segs = [SAY.sub(lambda m: m.group(2), s).strip() for s in line.split(" / ")]
     LINES.append(dict(text=" ".join(s for s in segs if s), cuts=[alnum(s) for s in segs if s] if len(segs) > 1 else None, show=show,
                       gap=float(gap) if gap.strip() else PACE["gap"], who=who, note=note))
@@ -78,7 +78,7 @@ def narrator(L):
         for t in c.tokens:
             if not any(ch.isalnum() for ch in t.text): brk = brk or any(ch in PUNCT for ch in t.text); continue
             if t.start_ts is None: lost += alnum(t.text); continue
-            lw.append({"w": L["show"].get(bare(t.text), SHOW.get(t.text, t.text)), "s": off + t.start_ts, "e": off + t.end_ts, "n": alnum(t.text) + lost, "brk": brk}); brk = False; lost = 0
+            lw.append({"w": L["show"].get(t.text, L["show"].get(bare(t.text), SHOW.get(t.text, t.text))), "s": off + t.start_ts, "e": off + t.end_ts, "n": alnum(t.text) + lost, "brk": brk}); brk = False; lost = 0
         off += len(c.audio) / SR
     return a, lw
 
@@ -98,7 +98,7 @@ def cast_words(L, a):
     for (i0, t0), (i1, t1) in zip(known, known[1:]):  # words Whisper heard differently share the gap between their neighbours
         n = i1 - i0 - 1
         for k in range(n): times[i0 + 1 + k] = (t0[1] + (t1[0] - t0[1]) * k / n, t0[1] + (t1[0] - t0[1]) * (k + 1) / n)
-    return [{"w": L["show"].get(bare(w), SHOW.get(bare(w), bare(w))), "s": times[i][0], "e": times[i][1], "n": alnum(w), "brk": i > 0 and script[i - 1][-1] in PUNCT} for i, w in enumerate(script)]
+    return [{"w": L["show"].get(w, L["show"].get(bare(w), SHOW.get(bare(w), bare(w)))), "s": times[i][0], "e": times[i][1], "n": alnum(w), "brk": i > 0 and script[i - 1][-1] in PUNCT} for i, w in enumerate(script)]
 
 # the cast's lines first (a different model, in its own environment), then the narrator's
 jobs = []
