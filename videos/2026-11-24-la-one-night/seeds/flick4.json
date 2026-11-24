@@ -1,0 +1,32 @@
+{
+ "clock": "9:41",
+ "when": "This weekend",
+ "city": "Los Angeles",
+ "day": "FRI",
+ "hour": "5:30 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Sip Smoke And Paint - Dj Pony Boy",
+  "host": "",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/24fa8fd3-57fc-40b3-901f-e3e5a396d2c1.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "LOS ANGELES",
+  "second": "NOV 27",
+  "label": "/videos/2026-11-24-la-one-night/events/la/covers/24fa8fd3-57fc-40b3-901f-e3e5a396d2c1.jpg",
+  "location": "SUNSET ROOFTOP",
+  "price": "$60.54",
+  "stamp": "/videos/2026-11-24-la-one-night/events/la/stamps/24fa8fd3-57fc-40b3-901f-e3e5a396d2c1.svg"
+ },
+ "left": {
+  "name": "Foodies New Friends Echo Park: Dinner with Strangers",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/b34fd766-14e0-4603-914d-dedb5e43d092.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}

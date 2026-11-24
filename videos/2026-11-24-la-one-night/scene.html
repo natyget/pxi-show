@@ -1,0 +1,179 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Dinner with strangers (One night, LA). Built from the model (videos/2026-11-24-idk-to-omw/scene.html) with the
+     full-width card swipe of studio/weekend-reel.html. Order: Nio close, the quiet table, Nio "on purpose", the real
+     Discover card, Nio laughing, the laughing table with a group-chat banner, a swipe through the weekend, the end card. -->
+<style>
+@font-face{font-family:Inter;src:url(/look/fonts/inter.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"DM Mono";src:url(/look/fonts/dm-mono-500.woff2) format("woff2");font-weight:500}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+#art,#ui{position:absolute;inset:0}
+#art{background:#0b0a0d}
+body.pass-ui #art{display:none}
+body.pass-art #ui{display:none}
+#grain{position:absolute;inset:0;background:url(/look/brand/grain.webp);opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+#plate{position:absolute;left:0;top:0;width:1080px;height:1920px;image-rendering:pixelated;display:none}
+#pwrap{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0;display:none}
+#pbody{position:absolute;left:255px;top:300px;width:570px;height:1196px;border-radius:74px;background:#141216;border:7px solid #1b1416}
+#screen{position:absolute;left:271px;top:316px;width:538px;height:1164px;border-radius:56px;overflow:hidden;background:#000}
+#screen iframe{position:absolute;left:0;top:0;width:390px;height:844px;border:0;transform:scale(1.37949);transform-origin:0 0;background:transparent}
+#tap{position:absolute;left:0;top:0;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:rgba(255,255,255,.3);border:5px solid #fff;opacity:0}
+#cap{position:absolute;left:90px;right:150px;top:1160px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;text-align:center}
+#cap span{font:900 84px/1.12 Inter;color:#fff;letter-spacing:-1px;paint-order:stroke fill;-webkit-text-stroke:14px #000;display:inline-block;transform-origin:50% 70%}
+#cap span.k{color:#c26bff}
+.ban{position:absolute;left:100px;width:830px;top:560px;height:196px;border-radius:44px;background:rgba(30,30,32,.95);display:flex;align-items:center;gap:22px;padding:0 26px;opacity:0;box-shadow:0 12px 34px rgba(0,0,0,.45)}
+.ban .av{flex:none;width:110px;height:110px;border-radius:55px;background:#48484c;color:#fff;font:700 48px Inter;display:flex;align-items:center;justify-content:center}
+.ban .tx{flex:1;color:#fff;font:700 52px/1.25 Inter;white-space:nowrap;overflow:hidden}
+.ban .tx span{display:block;font-weight:400;color:#dcdce0}
+.ban .nw{flex:none;align-self:flex-start;margin-top:34px;color:#8e8e93;font:400 34px Inter}
+#end{position:absolute;inset:0;background:#050505;opacity:0}
+#end .icon{position:absolute;left:410px;top:400px;width:260px;height:260px;border-radius:60px;overflow:hidden;background:#000;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+#end .icon img{width:100%;height:100%}
+#end .nm{position:absolute;left:0;right:0;top:690px;text-align:center;color:#fff;font:900 96px Inter;letter-spacing:-2px}
+#end .free{position:absolute;left:0;right:0;top:810px;text-align:center;color:#c9c9c7;font:500 46px "DM Mono"}
+#end .badges{position:absolute;left:0;right:0;top:905px;display:flex;justify-content:center;align-items:center;gap:22px}
+#end .badges img.as{height:118px}
+#end .badges img.gp{height:108px;margin:-17px -12px}
+</style></head>
+<body>
+<div id="stage">
+<div id="art">
+  <img id="plate">
+  <div id="pwrap"><div id="pbody"></div><div id="screen"></div><div id="tap"></div></div>
+  <div id="grain"></div>
+</div>
+<div id="ui">
+  <div class="ban" id="ban0"><div class="av">S</div><div class="tx">saturday dinner<span>Sarah added you</span></div><div class="nw">now</div></div>
+  <div class="ban" id="ban1"><div class="av">S</div><div class="tx">saturday dinner<span>Mike: again next week?</span></div><div class="nw">now</div></div>
+  <div id="end"><div class="icon"><img src="/look/brand/pxi-app-icon.png"></div><div class="nm">PXI</div><div class="free">free</div>
+    <div class="badges"><img class="as" src="/look/brand/app-store-badge.svg"><img class="gp" src="/look/brand/google-play-badge.png"></div></div>
+  <div id="cap"></div>
+</div>
+</div>
+<script src="words.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const eOut = (p) => 1 - Math.pow(1 - clamp(p), 3);
+const eIO = (p) => { p = clamp(p); return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+const eBack = (p) => { p = clamp(p); const c = 1.6; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+const pr = (t, a, d) => clamp((t - a) / d);
+const W = VO.words, LN = VO.lines;
+const A = (line, w, n = 0) => { const m = W.filter((x) => x.line === line && x.w.toLowerCase() === w.toLowerCase()); if (!m[n]) throw new Error('no word ' + line + ' ' + w); return m[n].s; };
+const E = (line, w) => W.filter((x) => x.line === line && x.w.toLowerCase() === w.toLowerCase())[0].e;
+// key times, all from the voice
+const K = { dinner: A(0, 'dinner'), called: A(2, 'called'), twenty: A(2, 'twenty-three'), dessert: A(3, 'dessert'), youre: A(3, "you're"), chat: A(3, 'chat'),
+  pxi: A(4, 'PXI'), rest: A(4, 'rest'), weekend: A(4, 'weekend') };
+const T = {
+  quiet: [0, A(0, 'with') - 0.05],             // the whole table, nobody talking: "This Saturday in Echo Park, you can have dinner"
+  close: [A(0, 'with') - 0.05, LN[1].s - 0.12],// Nio close, eyes sliding: "with total strangers"
+  close2: [LN[1].s - 0.12, LN[2].s - 0.3],     // "On purpose." on his face
+  phone: [LN[2].s - 0.3, LN[3].s - 0.12],      // the real card
+  laughC: [LN[3].s - 0.12, K.youre - 0.05],    // "By dessert": Nio laughing
+  laugh: [K.youre - 0.05, LN[4].s - 0.2],      // the table laughing, the group-chat banner
+  flick: [LN[4].s - 0.2, LN[5].s - 0.25],      // the rest of the weekend, swiped
+  send: [LN[5].s - 0.25, A(5, "who'd") - 0.1],   // the table again, cheers: "Send this to the friend"
+  end: [A(5, "who'd") - 0.1, 99] };
+const PL = { close: 78, quiet: 88, close2: 46, laughclose: 28, laugh: 50, laugh2: 40 }; // frames in plates/<name>/, 24 a second
+const DUR = VO.duration + 0.45;
+
+// the real Discover screens: 0 is the listing, 1 to 4 are the rest of the weekend, swiped past on the PXI line
+const SEEDS = ['seed.json', 'seeds/flick1.json', 'seeds/flick2.json', 'seeds/flick3.json', 'seeds/flick4.json'];
+SEEDS.forEach((s, i) => { const f = document.createElement('iframe'); f.id = 'disc' + i; f.src = '/look/app-screens/discover.html?seed=' + s; $('screen').appendChild(f); });
+let DOCS = null;
+function docs() {
+  if (DOCS) return DOCS;
+  const d = SEEDS.map((_, i) => $('disc' + i).contentDocument);
+  d.forEach((D, i) => { D.documentElement.style.background = 'transparent'; D.body.style.background = 'transparent';
+    if (i) D.querySelectorAll('.sb,.hdr,.fb,.vs,.act,.tb').forEach((e) => { e.style.visibility = 'hidden'; }); });
+  return (DOCS = d);
+}
+const SWIPES = [0, 1, 2, 3].map((i) => [K.pxi + 0.15 + i * 0.58, 0.32]);
+
+// Captions: the groups come from the voice (the " / " breaks in script.md's voice block). Nothing to count here.
+const KEY = new Set(['strangers', 'purpose', 'twenty-three', 'chat', 'pxi', 'go']);
+const groups = [];
+VO.lines.forEach((l) => l.groups.forEach((_, g) => groups.push({ words: W.filter((w) => w.line === l.i && w.g === g) })));
+groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.words[0].s - 0.02; const nx = groups[i + 1]; g.e = nx ? Math.min(nx.words[0].s - 0.02, last.e + 0.7) : last.e + 1.6;
+  if (nx && nx.words[0].line !== last.line) g.e = Math.min(g.e, Math.max(last.e + 0.1, LN[nx.words[0].line].s - 0.32)); });
+const PROPER = { pxi: 'PXI', saturday: 'Saturday', echo: 'Echo', park: 'Park', dinner: null };
+const show = (w, line) => { const l = w.toLowerCase(); if (l === 'pxi') return 'PXI'; if (l === 'saturday' || l === 'echo' || l === 'park') return w[0].toUpperCase() + w.slice(1).toLowerCase();
+  if (line === 2 && (l === 'dinner' || l === 'strangers')) return w[0].toUpperCase() + w.slice(1).toLowerCase(); return l; };
+
+// the phone camera: a point of the phone (P) lands on a point of the picture (Q), at scale s (studio/weekend-reel.html)
+const pt = (x, y) => [271 + 1.37949 * x, 316 + 1.37949 * y];
+function cam(c) { return `translate(${c.Q[0] - c.s * c.P[0]}px,${c.Q[1] - c.s * c.P[1]}px) scale(${c.s})`; }
+function mix(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
+const FIT = 1080 / 538, PX = FIT * 1.37949;
+const C0 = { s: FIT, P: pt(195, 40), Q: [540, 0] };              // from the top: Discover, "This weekend in Los Angeles", the card
+const CA = { s: FIT, P: pt(195, 158), Q: [540, 0] };             // the day, the poster, the name, the place, the price, JOIN
+const CB = { s: FIT * 1.3, P: pt(250, 652), Q: [600, 900] }; // a push toward the place and the price, which land above the caption band
+
+window.render = function (t, pass) {
+  document.body.classList.toggle('pass-ui', pass === 'ui');
+  document.body.classList.toggle('pass-art', pass === 'art');
+  const inn = (k) => t >= T[k][0] && t < T[k][1];
+  $('grain').style.backgroundPosition = `${(Math.floor(t * 12) * 37) % 200}px ${(Math.floor(t * 12) * 91) % 200}px`;
+  /* PLATES: the rig shots, one PNG per frame at 24 a second */
+  let plate = null, wait = true;
+  const f = (k, n) => Math.min(n - 1, Math.floor((t - T[k][0]) * 24));
+  if (inn('close')) plate = ['close', f('close', PL.close)];
+  if (inn('quiet')) plate = ['quiet', f('quiet', PL.quiet)];
+  if (inn('close2')) plate = ['close2', f('close2', PL.close2)];
+  if (inn('laughC')) plate = ['laughclose', f('laughC', PL.laughclose)];
+  if (inn('laugh')) plate = ['laugh', f('laugh', PL.laugh)];
+  if (inn('send')) plate = ['laugh2', f('send', PL.laugh2)];
+  const im = $('plate');
+  if (plate) {
+    const src = `plates/${plate[0]}/f${String(plate[1]).padStart(4, '0')}.png`;
+    im.style.display = 'block';
+    const near = /close/.test(plate[0]); im.style.transformOrigin = '540px 250px'; im.style.transform = near ? 'scale(1.3)' : 'none';
+    if (im.dataset.src !== src) { im.dataset.src = src; im.src = src; wait = im.decode().then(() => true, () => true); }
+  } else im.style.display = 'none';
+  $('grain').style.display = plate ? 'none' : '';
+  /* PHONE: the real Discover screen, as wide as the picture */
+  const phoneOn = inn('phone') || inn('flick');
+  $('pwrap').style.display = phoneOn ? 'block' : 'none';
+  if (phoneOn) {
+    const D = docs();
+    let C, pos = 0;
+    if (inn('phone')) {
+      C = C0; // the captions sit on the bottom of the poster; the name, the day and the place stay clear
+      const push = eIO(pr(t, A(2, 'Seven') - 0.1, 0.6)); if (push > 0) C = mix(C0, CB, push);
+    } else {
+      C = C0; SWIPES.forEach(([a, d]) => { pos += eIO(pr(t, a, d)); });
+    }
+    // the screen comes up from below when the phone first appears
+    const rise = 0;
+    const c = cam(C); $('pwrap').style.transform = `translateY(${rise * 1920}px) ` + c;
+    D.forEach((doc, i) => {
+      const d = pos - i, a = clamp(1 - Math.abs(d) * 1.6), st = doc.getElementById('stage'), det = doc.getElementById('det'), dl = doc.querySelector('.dl');
+      st.style.transform = `translateX(${-d * 300}px)`; st.style.opacity = clamp(1 - Math.abs(d) * 1.25);
+      dl.style.opacity = a; det.style.opacity = a;
+      const vc = doc.querySelector('.vc'); if (vc) vc.style.transform = `rotate(${t * 38}deg)`;
+    });
+    let tp = null; if (inn('flick')) SWIPES.forEach(([a, d]) => { if (t >= a - 0.08 && t < a + d) tp = pr(t, a - 0.08, d + 0.08); });
+    const tap = $('tap'); if (tp === null) tap.style.opacity = 0; else { const x = lerp(800, 300, eIO(tp)); tap.style.opacity = Math.min(1, tp * 6, (1 - tp) * 4); tap.style.transform = `translate(${x}px,${lerp(820, 780, tp)}px) scale(${lerp(1.15, 0.9, clamp(tp * 4))})`; }
+  }
+  /* UI: the group chat that started at the table */
+  const BT = [K.youre - 0.02, K.chat + 0.15, T.laugh[1]];
+  [0, 1].forEach((i) => { const b = $('ban' + i), a = eOut(pr(t, BT[i], 0.22)), o = 1 - pr(t, BT[i + 1] - 0.02, 0.16); b.style.opacity = inn('laugh') ? Math.min(a, o) : 0; b.style.transform = `translateY(${(1 - a) * -46}px)`; });
+  $('end').style.opacity = pr(t, T.end[0], 0.2);
+  document.querySelector('#end .icon').style.transform = `scale(${eBack(pr(t, T.end[0], 0.35))})`;
+  ['nm', 'free', 'badges'].forEach((c, i) => { document.querySelector('#end .' + c).style.opacity = pr(t, T.end[0] + 0.15 + i * 0.12, 0.2); });
+  const g = groups.find((x) => t >= x.s && t < x.e);
+  $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has(w.w.toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w, w.line)}</span>`; }).join('');
+  return wait;
+};
+window.ready = async () => {
+  await Promise.all(SEEDS.map((_, i) => new Promise((res) => { const fr = $('disc' + i); const ok = () => fr.contentDocument && fr.contentDocument.readyState === 'complete' && fr.contentDocument.getElementById('stage');
+    if (ok()) res(); else fr.addEventListener('load', res); })));
+  window.render(T.phone[0] + 1, 'all');
+  await Promise.all([document.fonts.ready, ...docs().map((D) => D.fonts.ready)]);
+  await new Promise((r) => setTimeout(r, 600));
+};
+</script>
+</body></html>

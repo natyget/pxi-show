@@ -1,0 +1,32 @@
+{
+ "clock": "9:41",
+ "when": "This weekend",
+ "city": "Los Angeles",
+ "day": "SAT",
+ "hour": "6 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Solomun",
+  "host": "",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/ab651338-5294-45b8-aebb-e861eb1af50c.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "SOLOMUN",
+  "second": "SOMETHING WE ALL ADORE",
+  "label": "/videos/2026-11-24-la-one-night/events/la/covers/ab651338-5294-45b8-aebb-e861eb1af50c.jpg",
+  "location": "REFRAME STUDIOS OUTDOORS",
+  "price": "$118.59",
+  "stamp": "/videos/2026-11-24-la-one-night/events/la/stamps/ab651338-5294-45b8-aebb-e861eb1af50c.svg"
+ },
+ "left": {
+  "name": "Midnight Lovers with Demi Riquísimo",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}

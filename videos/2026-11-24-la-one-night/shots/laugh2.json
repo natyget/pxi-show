@@ -1,0 +1,46 @@
+{
+"set": "dining",
+"camera": "wide",
+"frames": 40,
+"push": 0.1,
+"actors": [
+{
+"who": "nio",
+"at": "nio",
+"action": "sitTalk",
+"face": "laughing",
+"gaze": [
+0.5,
+0
+]
+},
+{
+"who": "girl",
+"at": "jade",
+"action": "sit",
+"hold": "cup",
+"face": "laughing",
+"gaze": [
+0.6,
+0
+]
+},
+{
+"who": "guest1",
+"at": "mum",
+"action": "sitTalk",
+"face": "laughing"
+},
+{
+"who": "marcus",
+"at": "marcus",
+"action": "sit",
+"hold": "cup",
+"face": "laughing",
+"gaze": [
+-0.6,
+0
+]
+}
+]
+}

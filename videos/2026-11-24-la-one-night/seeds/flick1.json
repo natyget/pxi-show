@@ -1,0 +1,32 @@
+{
+ "clock": "9:41",
+ "when": "This weekend",
+ "city": "Los Angeles",
+ "day": "FRI",
+ "hour": "10 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Night Tales",
+  "host": "",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/351b05f3-10f3-4281-a0c6-e5e1526ef688.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "NIGHT TALES",
+  "second": "BELIEVE",
+  "label": "/videos/2026-11-24-la-one-night/events/la/covers/351b05f3-10f3-4281-a0c6-e5e1526ef688.jpg",
+  "location": "THE SPOTLIGHT",
+  "price": "$24.93",
+  "stamp": "/videos/2026-11-24-la-one-night/events/la/stamps/351b05f3-10f3-4281-a0c6-e5e1526ef688.svg"
+ },
+ "left": {
+  "name": "Solomun",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/ab651338-5294-45b8-aebb-e861eb1af50c.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}

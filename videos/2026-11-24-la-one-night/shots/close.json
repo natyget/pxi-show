@@ -1,0 +1,3 @@
+{"set": "dining", "camera": "jade", "frames": 78, "push": 0.08, "actors": [
+ {"who": "nio", "at": "jade", "action": "sit", "face": "uneasy", "gaze": [0, -0.6]}
+]}

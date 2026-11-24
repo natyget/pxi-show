@@ -1,0 +1,32 @@
+{
+ "clock": "9:41",
+ "when": "This weekend",
+ "city": "Los Angeles",
+ "day": "SAT",
+ "hour": "7 PM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Foodies New Friends Echo Park: Dinner with Strangers",
+  "host": "",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/0aba5c46-56ec-4436-8e60-e53ca40beff4.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "LOS ANGELES",
+  "second": "NOV 28",
+  "label": "/videos/2026-11-24-la-one-night/events/la/covers/0aba5c46-56ec-4436-8e60-e53ca40beff4.jpg",
+  "location": "RESTAURANT OF THE NIGHT",
+  "price": "$23.18",
+  "stamp": "/videos/2026-11-24-la-one-night/events/la/stamps/0aba5c46-56ec-4436-8e60-e53ca40beff4.svg"
+ },
+ "left": {
+  "name": "Sunday Brunch Football",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/2464b0f7-2e02-400b-88c4-b9e0fa95e615.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}

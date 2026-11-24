@@ -1,0 +1,32 @@
+{
+ "clock": "9:41",
+ "when": "This weekend",
+ "city": "Los Angeles",
+ "day": "SUN",
+ "hour": "11 AM",
+ "me": "assets/me-nio.png",
+ "center": {
+  "name": "Sunday Brunch Football",
+  "host": "",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/2464b0f7-2e02-400b-88c4-b9e0fa95e615.jpg",
+  "pos": "50% 50%",
+  "faces": [],
+  "going": 0,
+  "polaroids": [],
+  "reaction": null,
+  "match": null,
+  "external": true,
+  "genre": "LOS ANGELES",
+  "second": "NOV 29",
+  "label": "/videos/2026-11-24-la-one-night/events/la/covers/2464b0f7-2e02-400b-88c4-b9e0fa95e615.jpg",
+  "location": "SUNSET ROOFTOP",
+  "price": "FREE",
+  "stamp": "/videos/2026-11-24-la-one-night/events/la/stamps/2464b0f7-2e02-400b-88c4-b9e0fa95e615.svg"
+ },
+ "left": {
+  "name": "Black Queens Brunch on Sunday",
+  "cover": "/videos/2026-11-24-la-one-night/events/la/covers/d3c65cac-70e2-4f05-8526-f1d765101f22.jpg"
+ },
+ "discOpen": true,
+ "joined": false
+}
