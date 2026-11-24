@@ -16,10 +16,10 @@ Reads from that folder:
                                                                  point it grows from), with the listing's facts as a plain
                                                                  label ("noprice": true when the listing gives none): for a pick the app shows in All events, not as a card
                                                                  (only a listing with a song is a Discover card; card.py refuses the rest)
-                  {"line": 1, "card": 0, "on": "about"}          that pick's real Discover card; the camera pushes
-                                                                 toward the price on the word "on" (leave out: no push)
+                  {"line": 1, "card": 0, "on": "about"}          that pick's real Discover card; on the word "on"
+                                                                 everything but the price dims (leave out: nothing dims)
                   {"line": 4, "chat": {"name": "Sarah", "msgs": [["them", "text", null], ["me", "text", "word"]]}}
-                                                                 a chat; each message lands on its word (null: at once; "3:word": a word of line 3)
+                                                                 a chat; each message lands on its word (null: there when the chat appears; "3:word": a word of line 3)
                   {"line": 8, "flick": true}                     the carousel swiped, card after card from the first pick
                                                                  (the app's own next cards, whatever they are)
                 "now": the moment in the story, in the city's time ("2026-11-27 18:30"); left out: when the listings were fetched
@@ -98,7 +98,7 @@ for i, b in enumerate(reel["beats"]):
         o.update(kind="card", card=b["card"], on=on); cues.append(["pop", t0 + 0.02, 0.1])
         if on: cues.append(["tick", on + 0.1, 0.14])
     elif "chat" in b:
-        msgs = [{"me": who == "me", "txt": txt, "t": round(at(b["line"], w) - 0.08, 3) if w else round(t0 + 0.12, 3)} for who, txt, w in b["chat"]["msgs"]]
+        msgs = [{"me": who == "me", "txt": txt, "t": round(at(b["line"], w) - 0.08, 3) if w else t0} for who, txt, w in b["chat"]["msgs"]]
         o.update(kind="chat", name=b["chat"]["name"], msgs=msgs); cues += [["pop", m["t"], 0.13] for m in msgs]
     elif "flick" in b:
         o.update(kind="flick"); cues += [["tick", round(t0 + k * (t1 - t0) / len(seeds), 3) + 0.02, 0.12] for k in range(len(seeds))]

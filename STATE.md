@@ -284,3 +284,8 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   corrected Discover screen the captions fell on the app's own text and the reviewer failed it; with the captions on
   the poster, the labels clear of faces and no stray fifth card, it passed. A listing's start time moved by two hours
   within the day: fetch again right before a yes.
+- Nov 24, the weekend builder, four things reviewers marked on every piece, fixed in `studio/weekend-reel.html` and
+  `weekend.py`: on a card the captions sit on the poster, off the stamp, place and price; on the price's word the rest
+  of the screen dims and the card stays whole (no push that cropped the day line); the end card is whole on its first
+  frame; a chat opens with its first message already there. Seen on stills of the LA and New York scenes; the two MP4s
+  were rendered before the last three and show them only on a next cut.

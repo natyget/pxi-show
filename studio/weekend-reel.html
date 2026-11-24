@@ -18,7 +18,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;font
 body.pass-ui #art{display:none}
 body.pass-art #ui{display:none}
 /* under the captions a card's lower half goes dark, so the spoken words never read as the app's own text; it lifts when the camera pushes to the price */
-#dim{position:absolute;left:0;right:0;top:1040px;bottom:0;background:linear-gradient(rgba(5,5,5,0) 0,rgba(5,5,5,.9) 90px,rgba(5,5,5,.9) 100%);display:none;pointer-events:none}
+#dim{position:absolute;left:548px;top:1062px;width:300px;height:96px;border-radius:20px;box-shadow:0 0 0 3000px rgba(5,5,5,.62);opacity:0;pointer-events:none} /* on the price's word everything but the price dims; the card stays whole */
 #grain{position:absolute;inset:0;background:url(/look/brand/grain.webp);opacity:.22;mix-blend-mode:overlay;pointer-events:none}
 #tap{position:absolute;left:0;top:0;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:rgba(255,255,255,.3);border:5px solid #fff;opacity:0}
 #plate{position:absolute;left:0;top:0;width:1080px;height:1920px;image-rendering:pixelated;display:none}
@@ -111,8 +111,7 @@ function cam(c) { return `translate(${c.Q[0] - c.s * c.P[0]}px,${c.Q[1] - c.s * 
 function mix(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
 const FIT = 1080 / 538, PX = FIT * 1.37949;                      // the app screen exactly as wide as the picture
 const C0 = { s: FIT, P: pt(195, 155), Q: [540, 0] };             // a card arrives from a little higher
-const CA = { s: FIT, P: pt(195, 209), Q: [540, 0] };             // the day, the poster, the place, the price, JOIN; the caption band falls on the empty TASTE MATCH line ("--" on an outside listing), under the price
-const CB = { s: FIT * 1.18, P: pt(285, 612), Q: [285 * PX, (612 - 209) * PX] }; // a small push toward the price, which stays where it was
+const CA = { s: FIT, P: pt(195, 209), Q: [540, 0] };             // the day, the poster, the place, the price, JOIN; on a card the captions sit on the poster
 const CC = { s: FIT, P: [540, 316], Q: [540, 0] };               // the chat: as wide as the picture, the messages above the caption band
 
 let lastChat = '';
@@ -131,7 +130,7 @@ window.render = function (t, pass) {
   } else im.style.display = 'none';
   const flick = b.kind === 'flick';
   const phone = b.kind === 'card' || b.kind === 'chat' || flick;
-  $('dim').style.display = flick || (b.kind === 'card' && !(b.on !== null && b.on !== undefined && t >= b.on - 0.1)) ? 'block' : 'none';
+  $('dim').style.display = b.kind === 'card' && b.on !== null && b.on !== undefined ? 'block' : 'none'; $('dim').style.opacity = b.kind === 'card' && b.on != null ? eIO(pr(t, b.on, 0.35)) : 0;
   $('grain').style.display = phone ? '' : 'none';
   $('pwrap').style.display = phone ? '' : 'none';
   $('disc').style.display = b.kind === 'card' || flick ? '' : 'none';
@@ -142,7 +141,6 @@ window.render = function (t, pass) {
   $('chat').style.display = b.kind === 'chat' ? 'block' : 'none';
   if (b.kind === 'card') {
     let C = mix(C0, CA, eOut(pr(t, b.t0, 0.5)));
-    if (b.on !== null) C = mix(C, CB, eIO(pr(t, b.on, 0.5)));
     $('pwrap').style.transform = cam(C);
     const out = Math.max(0, t - b.t0 - POP);
     A.swipe(PICKS[b.card], 0); A.disc(A.spring('disc', out)); A.spin(out * 40); // VinylDisc turns once in nine seconds
@@ -153,15 +151,14 @@ window.render = function (t, pass) {
     if (key !== lastChat) { lastChat = key; $('chav').textContent = b.name[0].toUpperCase(); $('chnm').textContent = b.name;
       $('list').innerHTML = shown.map((m) => `<div class="b ${m.me ? 'me' : ''}">${m.txt}</div>`).join(''); }
     const kids = $('list').querySelectorAll('.b');
-    shown.forEach((m, i) => { const p = pr(t, m.t, 0.25); kids[i].style.transform = `translateY(${(1 - eBack(p)) * 36}px) scale(${lerp(.6, 1, eBack(p))})`; kids[i].style.opacity = clamp(p * 3); });
+    shown.forEach((m, i) => { const p = m.t <= b.t0 ? 1 : pr(t, m.t, 0.25); kids[i].style.transform = `translateY(${(1 - eBack(p)) * 36}px) scale(${lerp(.6, 1, eBack(p))})`; kids[i].style.opacity = clamp(p * 3); });
   }
   { const L = $('lab'), on = b.kind === 'shot' && b.label; if (on) { L.querySelector('b').textContent = b.label[0]; L.querySelector('i').textContent = b.label[1]; }
     const p = on ? eOut(pr(t, b.t0 + 0.1, 0.25)) : 0; L.style.opacity = p; L.style.transform = `translateY(${(1 - p) * 20}px)`; }
   /* the end card and the captions */
   const end = B.find((x) => x.kind === 'end'), te = end ? end.t0 : 1e9;
-  $('end').style.opacity = pr(t, te, 0.2);
-  document.querySelector('#end .icon').style.transform = `scale(${eBack(pr(t, te, 0.35))})`;
-  ['nm', 'free', 'badges'].forEach((c, i) => { document.querySelector('#end .' + c).style.opacity = pr(t, te + 0.15 + i * 0.12, 0.2); });
+  $('end').style.opacity = t >= te ? 1 : 0; // whole on its first frame: a fade from black reads as the video being over
+  document.querySelector('#end .icon').style.transform = `scale(${lerp(0.9, 1, eBack(pr(t, te, 0.25)))})`;
   const g = groups.find((x) => t >= x.s && t < x.e);
   $('cap').style.top = (b.kind === 'card' || b.kind === 'flick' ? 760 : 1160) + 'px'; // on a card the words sit on the poster, clear of the app's own text
   $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has((REEL.show[w.w] || w.w).toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
