@@ -9,6 +9,11 @@ nice") and was withdrawn the same hour: it drew Discover cards for the dinner an
 a listing as a card when it carries a song (`carouselMix.ts`). Cut 3 keeps real cards for Night Tales and Midnight
 Lovers and tells the dinner and the brunch with their picture and a plain label.
 
+The fresh reviewer passed cut 3 ("only just"): "the picks are real and specific", the secret-location party and
+the $23 dinner are things it "would actually mention to a friend". What it marked down: the first three seconds show
+Nio at his phone in a dark room and nothing that says LA or weekend with the sound off; the dinner and the roof
+each stay about six seconds; the label's second line is small.
+
 Hook type: the city and the need, as a question. Ask: send.
 
 Files (in this folder; hosted on pxispace.com only after the yes):
