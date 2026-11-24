@@ -1,8 +1,8 @@
 # State
 
-next: "idk to omw" goes out tonight. The maker thread makes the New York weekend reel from real listings, then
-Boston. The trainer reads the cheaper model's trial piece (branch `trial/<slug>`, its `notes.md`) and fixes what
-that shows in the tool, the template or the page.
+next: "idk to omw" goes out tonight. The maker thread makes the Los Angeles weekend reel first, then New York
+(made, waiting for the founder), then Boston. The trainer fixes what the cheaper model's first trial showed
+(`trial/screen-time`, its `notes.md`) and runs the next trial.
 
 ## Where things stand (Nov 24, 2026)
 
@@ -48,12 +48,30 @@ that shows in the tool, the template or the page.
   (`look/cast/voice/nio-reference.wav`).
 - "idk to omw" is approved for scheduling.
 - Three runs a week: the heavy one on Monday before the 8 PM usage reset, two light ones for numbers and planning.
+- Cities: Los Angeles first, New York second ("lets actually have LA first priority then nyc second"). Boston
+  after those, when there is room. The trainer's reading: the profile name leads with Los Angeles too.
+- The founder says yes or no from a phone notification; the scheduler never holds a piece for being animated.
+- Also on the menu now (`growth.md`): long episodes for YouTube, organizer posts for LinkedIn, pieces for people
+  hosting at home, more hook types, and every kind of ask (follow, comment, download, profile, send, save).
+  Discover stays first: at least seven pieces in ten. The trainer's reading of "your own home people": people
+  hosting at home.
 
 ## Open decisions (the founder's)
 
-- Which city leads the profile name: New York or Boston.
+- (none)
 
 ## Founder notes (newest first, word for word)
+
+- **Nov 24, after the hand-off page:** "lets actually have LA first priority then nyc second". "in the scheduler case
+  then fix the thing where it stopped us from posting because of animation what not". "and if i get a mobile
+  notification i can say yes no". "im really liking what you made so far". "keep at it and consider other formats as
+  well of posting. For example, longer episodes that could go on YouTube, like full-on series-like episodes. And we
+  did talk about the different variation hooks, different variation CTAs, like to follow, to comment, to download
+  app, to check our profile, etc. Different hooks to engage people. Did you know? Fun fact. Here are these events
+  and more. Like, I'm pretty sure you can think of more, and we've probably mentioned them in chat. Don't forget
+  LinkedIn for event organizers. And then also think of content for pretty much everyone, organizers, your own home
+  people. But again, priority right now is for the discovery page to be used. What you built now already is good
+  and you should keep at it. I'm just saying keep these things in mind and think of them."
 
 - **Nov 24, on the threads:** "metricool is connected and been connected i dont know why you cant access it but if you
   cant then make the sceduler be able to and hand off what you made in this session and show me too". "the first

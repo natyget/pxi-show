@@ -14,8 +14,14 @@ pushed to the default branch, and a report of six lines or fewer that leads with
 
 - **The scheduler thread** holds Metricool. It schedules, reads the numbers, and is where the two light runs happen.
   It schedules a piece only when the piece's `post.md` carries the founder's yes, word for word and dated, and it
-  always reads the schedule back. The founder can say yes there (it shows what is waiting) or in the thread that
-  made the piece, which writes the words into `post.md`.
+  always reads the schedule back. It never judges how a piece looks: animation, Nio and the cast are the house
+  look, and the founder's yes is the only review. It never sets a post to draft, and never edits or deletes a post
+  it did not make. The one hold it may put on an approved piece: a real event in it changed (Thursday's check),
+  and then it tells the founder at once.
+- **Yes or no from the phone.** When a piece is ready, the thread that made it sends one phone notification: the
+  piece's name and that it is waiting. The founder answers yes or no in that thread. On yes, that thread writes the
+  words into `post.md`, hosts the files, pushes, and messages the scheduler thread, which schedules and reads back.
+  On no, the words go to the top of `STATE.md` and the piece is fixed or dropped.
 - **The maker thread** makes the upcoming videos and stills, and is where Monday's heavy run happens. Every finished
   piece gets a `post.md` beside it: the hosted files, the captions for each network, the cover, the audio pick and
   the planned times (`videos/2026-11-24-idk-to-omw/post.md` is the model).
@@ -30,18 +36,19 @@ The same piece goes to Instagram, TikTok, YouTube Shorts and Facebook, so a week
 
 | Kind | A week | Made from |
 |---|---|---|
-| City discovery reels, real listings | 4 (NYC and Boston, Thursday and Monday) | `studio/events.py`, `studio/card.py`, the scene template |
+| City discovery reels, real listings | 4 (Los Angeles first, then New York; the weekend and the week) | `studio/events.py`, `studio/weekend.py` |
 | App demos (the founder: "have more demos") | 4 to 6 | the real screens, one feature each, captions and voice |
 | Feature story with a joke | 1 or 2 | `videos/2026-11-24-idk-to-omw` is the model |
 | Nio to camera | 1 | his own voice (`studio/cast_voice.py`) |
 | Stills and carousels (side quest, the invite, weekend carousel, real-photo posts) | 10 to 14 | real listings, the rig, the screens |
 | One moving thing (loops) | 5 to 7 | a still with one element moving |
 | Stories | 3 to 10 a day | tonight's real listings per city as Discover cards, polls, cut-downs of the day's video |
+| Organizer posts for LinkedIn | 2 | the real host screens, Nio on what he is building for organizers (`growth.md`) |
 
 ## Monday, 1:45 PM: the heavy run (makes everything)
 
 1. Read the plan Sunday's run left in `STATE.md` (which pieces, which hooks, the one thing being tested).
-2. `python3 studio/events.py nyc --days 9` and the same for `boston`. Real listings and posters for the week.
+2. `python3 studio/events.py la` and the same for `nyc`. Real listings and posters for the week.
 3. Make the week's pieces, each in its own `videos/<date>-<slug>/` folder, each through `method.md` and read as the
    viewer (`studio/viewer.md`). To use the time before the reset, the lead may start one extra session for each
    video (same repository, a brief of five lines, that one folder) and gather the results; rig shots render one at

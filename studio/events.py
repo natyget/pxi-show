@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Real events for a city, from PXI's own API: the same listings the app's Discover shows, with their posters.
 
-  python3 studio/events.py nyc|boston [--days 7] [--out videos/<slug>/events]
+  python3 studio/events.py la|nyc|boston [--days 9] [--out videos/<slug>/events/<city>]
 
 Writes into the out folder:
-  events.json   one row per listing: title, clean title, venue, address, local start, night, price, source,
-                ticket link, organiser, type, the song on its record, the poster file, where the poster came from
+  events.json   {"city", "fetched", "events"}; events has one row per listing: title, clean title, venue, address,
+                local start, night, price, source, ticket link, organiser, type, the song on its record, the poster
+                file, where the poster came from. Listings that have already started are left out
   covers/       the posters, one file per listing
   sources.md    every fact with its ticket link and the time it was fetched (the proof behind a post)
   raw.json      the API's answer as it came, for the tool that dresses a listing as the app's Discover card
@@ -17,7 +18,7 @@ import argparse, datetime, json, os, re, sys, unicodedata, urllib.parse, urllib.
 from zoneinfo import ZoneInfo
 
 API = "https://api.pxispace.com/api/listings/discover"
-CITIES = {"nyc": (40.7128, -74.0060), "boston": (42.3601, -71.0589)}
+CITIES = {"la": (34.0522, -118.2437), "nyc": (40.7128, -74.0060), "boston": (42.3601, -71.0589)}  # the founder's order: LA, then New York
 UA = {"User-Agent": "pxi-studio/1.0"}
 
 def get(url, timeout=40):
@@ -40,7 +41,7 @@ def price_label(e):
     return None
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("city", choices=sorted(CITIES)); ap.add_argument("--days", type=int, default=7)
+    ap = argparse.ArgumentParser(); ap.add_argument("city", choices=sorted(CITIES)); ap.add_argument("--days", type=int, default=9, help="how many nights ahead, 1 to 9 (9 reaches the weekend after next from any day)")
     ap.add_argument("--out", default=None); a = ap.parse_args()
     out = a.out or os.path.join("events", a.city); os.makedirs(os.path.join(out, "covers"), exist_ok=True)
     lat, lng = CITIES[a.city]
@@ -48,10 +49,12 @@ def main():
     body, _ = get(f"{API}?{q}"); data = json.loads(body)
     tz = ZoneInfo((data.get("city") or {}).get("timeZone") or "America/New_York")
     fetched = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    rows, failed = [], []
+    rows, failed, started = [], [], 0
+    now = datetime.datetime.now(tz)
     for e in data.get("events") or []:
         if not (e.get("id") and e.get("title") and e.get("startsAt")): continue
         start = datetime.datetime.fromisoformat(e["startsAt"].replace("Z", "+00:00")).astimezone(tz)
+        if start < now: started += 1; continue  # the app still shows last night's party at 2 AM; a post cannot send anyone to it
         row = {"id": e["id"], "title": e["title"].strip(), "titleClean": clean_title(e["title"]), "venue": e.get("venueName"), "address": e.get("address"),
                "start": start.isoformat(), "day": start.strftime("%a %b %-d"), "time": start.strftime("%-I:%M %p").replace(":00 ", " "), "night": e.get("night"),
                "price": price_label(e), "free": bool(e.get("isFree")), "source": e.get("source"), "ticketUrl": e.get("ticketUrl"),
@@ -74,7 +77,7 @@ def main():
         f.write(f"# Listings for {(data.get('city') or {}).get('name', a.city)}, fetched {fetched}\n\nFrom PXI's API (`/api/listings/discover`). Check the ticket page again before a piece is scheduled.\n\n")
         f.write("| When | Event | Venue | Price | Listed on | Ticket page |\n|---|---|---|---|---|---|\n")
         for r in rows: f.write(f"| {r['day']}, {r['time']} | {r['titleClean']} | {r['venue'] or ''} | {r['price'] or 'not stated'} | {r['source']} | {r['ticketUrl']} |\n")
-    print(f"{len(rows)} listings, {sum(1 for r in rows if r['cover'])} posters -> {out}")
+    print(f"{len(rows)} listings, {sum(1 for r in rows if r['cover'])} posters -> {out}" + (f" ({started} already started, left out)" if started else ""))
     for r in rows[:40]: print(f"  {r['day']:<10} {r['time']:<8} {r['titleClean'][:44]:<44} {(r['venue'] or '')[:24]:<24} {r['price'] or '-':<6} {r['source']:<12} {r['type'] or ''}{' ♪' if r['song'] else ''}")
     for t, err in failed: print("  poster not fetched:", t, "|", err)
 

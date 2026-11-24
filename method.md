@@ -21,7 +21,7 @@ the app's code from `../pxi-mobile-app`, or from the folder in `PXI_APP`.
 The format (`growth.md`), the city if any, the hook, the one ending, the length (30 to 45 s or 60 to 90 s), and
 the real listing or app screen it shows.
 
-Real events: `python3 studio/events.py nyc --out videos/<slug>/events/nyc` fetches this week's listings and posters
+Real events: `python3 studio/events.py la --out videos/<slug>/events/la` fetches this week's listings and posters
 from PXI's own API and writes `sources.md`. `python3 studio/card.py <that folder> "<words from the title>"` dresses
 one listing as the app's Discover card (the app's own code picks the name, place, price, record lines and stamp)
 and writes the seed the scene's Discover screen loads. `node studio/screen.cjs look/app-screens/discover.html

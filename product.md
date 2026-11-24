@@ -7,7 +7,7 @@ In the order we lead with:
 
 1. **Discover**: every event near you, as cards or on a map. It shows events hosted on PXI and listings from
    other ticket sites (Eventbrite, DICE, Posh, RA, Ticketmaster), each with its own poster. Join an event and share
-   it. Cities today: New York and Boston.
+   it. Listings checked Nov 24: Los Angeles, New York and Boston. We post about Los Angeles first, then New York.
 2. **The shared album**: everyone at an event shoots into one album, so you get the photos other people took of you.
 3. **The camera**: a flash look, faces lit and the room falling off to dark, warm film grade, straight into the
    event's album.
