@@ -4,7 +4,7 @@ next: "idk to omw" goes out tonight. The founder says yes or no to two city week
 reviewer and both due before Friday: Los Angeles (`videos/2026-11-24-la-weekend/`; the file and a phone notification
 were sent Nov 24) and New York (`videos/2026-11-24-nyc-nights/`, with one listing's start time to settle first; its
 `post.md` says which). The maker thread then makes two or three "One night" pieces from Los Angeles listings.
-The first Nio to camera piece (`videos/2026-11-24-nio-la/`, 33 s, from "PXI maker 2") passed the fresh reviewer and
+The first Nio to camera piece (`videos/2026-11-24-nio-la/`, 32 s, from "PXI maker 2") passed the fresh reviewer and
 waits for the founder's yes; it too is due before Friday, and its `post.md` has one line for the founder to check. Two trials of the cheaper model are making a "One night" piece
 and a Discover demo for Los Angeles against the fixed tools (`trial/` branches); the trainer reads their notes next.
 
@@ -265,7 +265,8 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
 - Nov 24, Nio to camera (PXI maker 2). The first piece, "I built an app because I was annoyed", failed two fresh
   reviewers and is dropped (`videos/2026-11-24-nio-annoyed/review/notes.md`): fifteen seconds of him before the app,
   then the app shown under words about the problem; captions read as part of the card; a hook that could open any
-  founder video. The second, "if you're in LA" (`videos/2026-11-24-nio-la/`), passed, narrowly. Hook: the city and
+  founder video. The second, "things to do in LA this weekend" (`videos/2026-11-24-nio-la/`), passed, narrowly; its first line was
+  then remade on the search phrase (`check.py find` reads "L.A." in a script as two letters: write `LA{L.A.}`). Hook: the city and
   the need, in his voice. Ask: follow. Fixed where each lived: `close` and `screen` put his mouth under the
   captions (three cameras for talking: `talk`, `talkSide`, `talkClose`); most faces looked past the lens (with
   `lens: true` the pupils come to the viewer); a talking shot's `says` was counted by hand (`weekend.py` refuses

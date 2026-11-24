@@ -1,22 +1,22 @@
-# Nio: if you're in LA (Nio to camera, about 28 s)
+# Nio: things to do in LA this weekend (Nio to camera, 31 s)
 
 Format: Nio to camera, the first of "Nio builds PXI". City: Los Angeles, Fri Nov 27 to Sun Nov 29.
-Hook: the city and the need, in his own voice ("If you're in LA and you never know what to do this weekend, I built an app for that"). Ask: follow, with the reason (what's on in LA, every week).
+Hook: the city and the need, in his own voice, on the search phrase "things to do in la this weekend" ("Looking for things to do in LA this weekend? I built an app for that"). Ask: follow, with the reason (what's on in LA, every week).
 He talks to "you", into the lens, quick, like someone who knows the city. No narrator.
 Shows: the real Discover carousel for Los Angeles this weekend, and one real card.
 
 ```voice
-nio: If you're in L.A. and you never know what to do this weekend, I built an app for that. (Quick and bright, to a friend, sure of himself.) || 0.2
-nio: It's called PXI, and this is everything on in L.A. this weekend. (Quick and easy, a little pleased with himself.) || 0.2
+nio: Looking for things to do in LA{L.A.} this weekend? I built an app for that. (Quick and bright, to a friend, sure of himself.) || 0.2
+nio: It's called PXI, and this is everything on in LA{L.A.} this weekend. (Quick and easy, a little pleased with himself.) || 0.2
 nio: I made it because every Friday I had five tabs open, just to find one thing to do. (Quick, talking to a friend, still a bit annoyed about it.) || 0.2
 nio: This Friday there's a dinner with strangers in Echo Park. I didn't know that existed, and I made the app. (Quick and amused, then dry, laughing at himself a little.) || 0.25
 nio: Saturday there's a party that still hasn't said where it is. I respect that. (Quick, amused, to a friend.) || 0.3
-nio: I'm still building it. Follow, and I'll show you what's on in L.A. every week. (Talking to a friend, warm and easy.) || 1.9
+nio: I'm still building it. Follow, and I'll show you what's on in LA{L.A.} every week. (Talking to a friend, warm and easy.) || 1.9
 ```
 
 | Line | Picture |
 |---|---|
-| If you're in LA and you never know what to do this weekend, | Nio in his room, to the viewer (`shots/a-hook.json`, camera `talk`) |
+| Looking for things to do in LA this weekend? | Nio in his room, to the viewer (`shots/a-hook.json`, camera `talk`) |
 | I built an app for that. | A cut in, inside the line (`b-built`, `talkClose`) |
 | It's called PXI, | Nio holding up his phone (`c-name`, `talk`); the caption shows the name |
 | and this is everything on in LA this weekend. | The real Discover carousel for Los Angeles, swiped card after card (the app is on screen at 7 s) |
