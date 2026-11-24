@@ -20,6 +20,8 @@ For every line ask, and rewrite until each answer is fine:
   A chat looks like my chat. A screen looks like the app on my phone.
 - Is there anything I would not put there if I made it by hand: a bar, a tag, a label, a second line saying the first?
 - Do I know who is talking and why each thing happens?
+- Has the picture changed in the last four seconds? The app held on screen under a voice reads as a screen
+  recording. The app is the proof inside a story, a few seconds at a time, and it fills most of the frame when it is on.
 - Is there one moment I would send to a friend?
 
 ## The stranger (a fresh reviewer, for every finished video)
