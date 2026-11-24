@@ -87,7 +87,12 @@ Setup (`npm ci` 8 s, `setup.sh` 12 s), clone of pxi-mobile-app 1.5 s, `events.py
     the name three times on one card (title, poster, record).
 15. **Remotion prints "You might have inadvertently set the --memory flag of `docker run`..."** on every still
     and render. Harmless, but it buries real errors.
-16. **pxi-mobile-app:** `card.py` ran against it read-only; nothing in this trial wrote to it.
+16. **The commit attribution contradicts CLAUDE.md.** The session's own commit instructions said to end the
+    message with a "Co-Authored-By" line that names the model; CLAUDE.md (on this trial's base, 5cc368b) says "No
+    model name in any commit". My first commit with that line was refused: "Permission for this action was denied
+    by the Claude Code auto mode classifier. Reason: [Destructive or Unwanted Actions]." I committed again with
+    only the Claude-Session line. The trainer says CLAUDE.md now states this outright (914a86c, not on this branch).
+17. **pxi-mobile-app:** `card.py` ran against it read-only; nothing in this trial wrote to it.
 
 ## Guesses I made
 
