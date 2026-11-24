@@ -184,6 +184,11 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   (the breaks now live in the voice block); a name the voice says wrong had no way to the caption (`Lys{Leece}`);
   the safe check only looked where a scene told it to (it checks the whole sharp layer now); two scene files to
   start from (one model now); the card's clock was the fetch time (`--clock`); listings that had already started.
+- Nov 24, engine trial 2b, the cheaper model, read the app's code and found what every thread had missed: the app
+  shows a listing from another ticket site as a Discover card only when it carries a song (`carouselMix.ts`); the
+  rest are in All events. The LA weekend reel drew two cards the app never would (the dinner, the brunch), New
+  York four. `studio/card.py` now refuses such a card and follows the app's card order; the All events list and
+  the carousel's last card are being rebuilt so those listings have a true screen.
 - Nov 24, the founder on the LA weekend reel: the hook did not call out the city and the need, and the narrator was
   "sleepy" for information. Measured: 2.3 words a second, and the flattest pitch of the standard voices. Fixed
   where each lives: the first question in `studio/viewer.md` and the hooks in `growth.md` (say who it is for), and

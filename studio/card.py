@@ -25,9 +25,15 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument("dir"); ap.add_argument("pick"); ap.add_argument("--left"); ap.add_argument("--out")
     ap.add_argument("--when", help='what the filter pill says, as the app words it: "This weekend", "This week". Left out: the listing\'s own night')
     ap.add_argument("--clock", default="6:12", help="the time on the phone's status bar: the time in the story")
+    ap.add_argument("--today", help="the day the piece goes out, YYYY-MM-DD: the card says TONIGHT, FRI or NOV 29 as the app would that day. Left out: today")
     a = ap.parse_args()
     d = os.path.abspath(a.dir); data = json.load(open(os.path.join(d, "events.json"))); events = data["events"]
     e = find(events, a.pick)
+    # The app's own rule (pxi-mobile-app, src/components/discover/carouselMix.ts): a listing from another ticket site is a
+    # card of the Discover carousel only when it carries a song. Without one the app shows it in All events, never as a card.
+    rides = lambda x: bool((x.get("song") or "").strip())
+    if not rides(e): sys.exit(f"REFUSED: \"{e['titleClean']}\" has no song, so the app never shows it as a Discover card: it is in All events.\n"
+                              "Use a listing marked with a note in the events.py list for a card. To show this one, say it and picture the night; do not draw a card for it.")
     cfg = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
     json.dump({"compilerOptions": {"baseUrl": APP, "paths": {"@/*": ["src/*"]}, "jsx": "react-jsx", "esModuleInterop": True, "allowJs": True}}, cfg); cfg.close()
     r = subprocess.run(["npx", "-y", "tsx", "--tsconfig", cfg.name, os.path.join(ROOT, "look/app-screens/listing.ts"), os.path.join(d, "raw.json"), e["id"]],
@@ -39,14 +45,16 @@ def main():
     stamp = os.path.join(d, "stamps", e["id"][:60] + ".svg"); open(stamp, "w").write(card["stampSvg"])
     web = lambda p: "/" + os.path.relpath(p, ROOT)  # a path the render server understands
     tz = ZoneInfo((data.get("city") or {}).get("timeZone") or "America/New_York")
-    start = datetime.datetime.fromisoformat(e["start"]); today = datetime.datetime.now(tz).date()
+    start = datetime.datetime.fromisoformat(e["start"]); today = datetime.date.fromisoformat(a.today) if a.today else datetime.datetime.now(tz).date()
     night = datetime.date.fromisoformat(e["night"]) if e.get("night") else start.date(); ahead = (night - today).days
     when = a.when or ("Tonight" if ahead == 0 else start.strftime("%a %-d"))
     # the line above the card, as the app's eventClock.ts words it: Tonight or Today, the weekday for the next six nights, then the date
     day = ("Tonight" if start.hour >= 17 or start.hour < 5 else "Today") if ahead == 0 else night.strftime("%a") if 0 < ahead < 7 else night.strftime("%b %-d")
-    # the card peeking in from the left: the one named, or the listing of the same kind nearest in time (never a random top listing)
-    near = sorted((x for x in events if x["id"] != e["id"] and x["cover"]), key=lambda x: (x.get("type") != e.get("type"), abs((datetime.datetime.fromisoformat(x["start"]) - start).total_seconds())))
-    left = find(events, a.left) if a.left else (near[0] if near else None)
+    # the card peeking in from the left: the one before it in the carousel, which the app keeps in time order (cards with a song only).
+    # Before the first card the app shows its All events doorway, which is not rebuilt: the slot stays empty there.
+    line = sorted((x for x in events if rides(x) and x["cover"]), key=lambda x: x["start"]); k = [x["id"] for x in line].index(e["id"])
+    left = find(events, a.left) if a.left else (line[k - 1] if k > 0 else None)
+    if left and not rides(left): sys.exit(f"REFUSED: the card on the left, \"{left['titleClean']}\", has no song, so the app never shows it as a card")
     seed = {"clock": a.clock, "when": when, "city": (data.get("city") or {}).get("name", ""), "day": day.upper(), "hour": e["time"], "me": "assets/me-nio.png",
             "center": {"name": card["name"] or e["title"], "host": card["host"] or "", "cover": web(os.path.join(d, e["cover"])), "pos": "50% 50%",
                        "faces": [], "going": 0, "polaroids": [], "reaction": None, "match": None, "external": True,

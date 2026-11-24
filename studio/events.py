@@ -13,8 +13,9 @@ Writes into the out folder:
   sources.md    every fact with its ticket link and the time it was fetched (the proof behind a post)
   raw.json      the API's answer as it came, for the tool that dresses a listing as the app's Discover card
 
-These are listings from other ticket sites (Eventbrite, DICE, Posh, RA, Ticketmaster) as PXI shows them. Use a
-poster only the way the app does: as the cover of that event's card, with the event's own name, date and venue.
+These are listings from other ticket sites (Eventbrite, DICE, Posh, RA, Ticketmaster) as PXI shows them. The app
+makes a listing a card of the Discover carousel only when it carries a song (the note mark in the list below); the
+others are in its All events list. Use a poster only the way the app does, with the event's own name, date and venue.
 Facts change: fetch again on the day a piece is made, and again before it is scheduled."""
 import argparse, datetime, json, os, re, sys, unicodedata, urllib.parse, urllib.request
 from zoneinfo import ZoneInfo
@@ -92,6 +93,7 @@ def main():
         f.write("| When | Event | Venue | Price | Listed on | Ticket page |\n|---|---|---|---|---|---|\n")
         for r in rows: f.write(f"| {r['day']}, {r['time']} | {r['titleClean']} | {r['venue'] or ''} | {r['price'] or 'not stated'} | {r['source']} | {r['ticketUrl']} |\n")
     print(f"{len(rows)} listings, {sum(1 for r in rows if r['cover'])} posters -> {out}" + (f" ({started} already started, left out)" if started else ""))
+    print(f"{sum(1 for r in rows if r['song'])} carry a song (marked with a note): only those are cards in the app's Discover. The rest are in its All events.")
     for r in rows[:40]: print(f"  {r['day']:<10} {r['time']:<8} {r['titleClean'][:44]:<44} {(r['venue'] or '')[:24]:<24} {r['price'] or '-':<6} {r['source']:<12} {r['type'] or ''}{' ♪' if r['song'] else ''}")
     for t, err in failed: print("  poster not fetched:", t, "|", err)
 
