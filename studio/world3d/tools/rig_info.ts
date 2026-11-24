@@ -10,8 +10,8 @@ const [cmd, arg] = process.argv.slice(2);
 const names = (o: object) => Object.keys(o).join(', ');
 if (cmd === 'check') {
   const j = JSON.parse(readFileSync(arg, 'utf8')); const errs = validate(j.spec ?? j);
-  if (errs.length) { console.log('REFUSED: ' + arg); errs.forEach((e) => console.log(' - ' + e)); process.exit(1); }
-  console.log('ok: ' + arg);
+  if (errs.length) { console.log('REFUSED'); errs.forEach((e) => console.log(' - ' + e)); process.exit(1); }
+  console.log('ok');
 } else if (cmd === 'atlas') {
   // one shot per camera for the pictures in look/rig.md: Nio at the first place that camera sees whole and the world accepts
   const all = process.argv.includes('--all'), want = process.argv.slice(3).filter((x) => !x.startsWith('--')), out: object[] = [];

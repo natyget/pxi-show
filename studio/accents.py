@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The stressed beats of a voice line, for the acting pass (studio/anim/src/nw3d/acting.ts).
+"""The stressed beats of a voice line, for the acting pass (studio/world3d/src/nw3d/acting.ts). Used by studio/rig.py.
 
 An animator times dialogue to its ACCENTS, not to every syllable: the body changes pose on the one word the line
 is about, the head dips on the other stressed syllables, and everything else holds. This finds those beats from the

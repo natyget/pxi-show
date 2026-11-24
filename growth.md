@@ -38,7 +38,7 @@ Of every ten pieces, at least seven are for the first person and are about Disco
 | Weekend carousel | Cover with the hook, one real event per slide, last slide asks which one | 6 to 10 slides, 1080x1350 | Saves, sends |
 | Stories | Stills, 5 s clips, polls | 3 to 10 a day | Keep followers |
 | Organizer post | For LinkedIn: one thing a host gets, shown on the real host screen, or a short note from Nio on what he is building for organizers | Still, carousel, or 20 to 40 s | Do organizers reply |
-| Episode | A whole Nio World story for YouTube, wide: the cast, a night that goes somewhere, PXI used the way people use it. Each scene is also cut as a short | 3 to 8 min, 16:9 | Subscribers, watch time. Needs talking wired in first (`look/rig.md`) |
+| Episode | A whole Nio World story for YouTube, wide: the cast, a night that goes somewhere, PXI used the way people use it. Each scene is also cut as a short | 3 to 8 min, 16:9 | Subscribers, watch time. Talking works (`look/rig.md`); the wide frame and a first script are next |
 
 How many of each a week, and which run makes them: `runs.md` (3 to 5 posts a day on each network, 3 to 10 stories a
 day; one heavy run on Monday, two light ones).

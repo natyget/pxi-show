@@ -42,6 +42,8 @@ shows it as a still. Fetch again on the day a piece is scheduled: listings chang
 - In the folder: `python ../../studio/voice.py script.md` makes `vo_raw.wav` and `words.json`: a start and end for
   every word (Kokoro, voice `am_michael`). In a voice line, ` / ` is where the caption breaks, `Lys{Leece}` shows
   "Lys" and says "Leece", and `|| 0.4` is the pause after the line. Write PXI as "Pixie"; captions show "PXI".
+  A line that starts with a cast name (`nio: ... (how it is said)`) is spoken by that person in their own voice,
+  and a shot can move their mouth to it (`look/rig.md`, "Talking").
 - In the folder: `python ../../studio/hear.py vo_raw.wav` prints what a stranger hears. It cannot tell a name said
   wrong from a name said right, so listen to every name of a place or a person yourself.
 

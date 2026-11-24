@@ -1,0 +1,11 @@
+{
+  "key": "line00",
+  "character": "nio",
+  "line": "So I built PXI. You open it, and everything happening near you tonight is just there.",
+  "note": "Talking to a friend, quick and easy, a little pleased with himself.",
+  "text_sent": "So I built pixie. You open it, and everything happening near you tonight is just there.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 6.06,
+  "wav_sha256": "cdde1c9eec5633ca2f70a790e58586256e487b4993fb72dc96e5a3fa6e62763a"
+}

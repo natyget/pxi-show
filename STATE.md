@@ -36,8 +36,9 @@ also fixes what the cheaper model's first trial showed (`trial/screen-time`, its
   (checked Nov 24: it scheduled and read back) and gets the Thursday 12:17 PM and Sunday 6:38 PM runs. "PXI maker"
   makes the pieces and gets the Monday 1:45 PM heavy run. The runs fire into those two threads, so they keep
   Metricool: a run that starts a fresh thread gets no connectors in this workspace. Do not archive the two threads.
-- **Not built yet:** talking (the rig moves mouths from a voice line, but the two tools that read a voice file into
-  mouth cues are still in the archive: `look/rig.md`), the app's real Map and listing screens, real street maps
+- **Talking works:** a cast line in the voice block is made in that person's voice and timed for captions, and a
+  shot's `"says"` moves the mouth from the line's own audio (`look/rig.md`). Nio to camera can be made now.
+- **Not built yet:** the app's real Map and listing screens, real street maps
   (OpenStreetMap tiles are reachable), a story template for the daily listing cards, a wide 16:9 frame for episodes.
 - **Tools that could not be reached from here:** Wikimedia Commons and Openverse image search (rate limits), the
   AI Geek Gumroad checkout (bot check). The two long AI Geek prompts were read from their public documents.
@@ -172,6 +173,8 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   (the breaks now live in the voice block); a name the voice says wrong had no way to the caption (`Lys{Leece}`);
   the safe check only looked where a scene told it to (it checks the whole sharp layer now); two scene files to
   start from (one model now); the card's clock was the fetch time (`--clock`); listings that had already started.
+- Nov 24, talking: Nio's approved reference line went through `studio/voice.py` byte for byte, and a 156-frame shot
+  moved his mouth to it (`videos/2026-11-24-talk-test/`). Not yet seen by the founder or a stranger.
 - Nov 24, engine trial, the cheaper model as scheduler: every commit was refused because it ended with a
   `Co-Authored-By` line naming the model. `CLAUDE.md` now says how a commit ends; the next commit went through.
 - Nov 24, city weekend reel, the fresh reviewer: a phone shown small on a dark background failed (the viewer sees an
