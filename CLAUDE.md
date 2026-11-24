@@ -33,7 +33,8 @@ of them. Its renderer is the one part that lives on.
   change that rule in the one file that owns it.
 - **Nothing leaves without the founder's yes** on that exact piece. Metricool: the PXI LABS brand only (blogId
   7790844), never @pxi.nyc. Show the video file before anything is scheduled.
-- **Sound:** narrator is the Kokoro `am_michael` voice; Nio World characters keep their designed Qwen3-TTS voices.
+- **Sound:** the narrator is the Kokoro `am_michael` voice (`studio/voice.py`). Nio and the cast speak in their own
+  designed voices (`studio/cast_voice.py`, locked in `studio/cast_voice.json`).
   Never AI-generated music. Instagram reels get a licensed library track when scheduled; TikTok photo posts get
   auto music; TikTok videos carry their own sound.
 - No copyrighted characters, music or art. No fee comparisons. Never the founder's photos. Keep the founder's name

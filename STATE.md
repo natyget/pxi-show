@@ -22,8 +22,15 @@ format, and Nio's first to-camera line in his own voice.
   catches and repairs them.
 - **Real events:** `studio/events.py` pulls this week's listings and posters for New York and Boston from PXI's
   own API; `studio/card.py` dresses one as the app's Discover card with the app's own code.
+- **Nio's voice:** rebuilt with the recipe behind his 20 approved lines (same description, model, versions and
+  seed); `studio/cast_voice.py` makes a line in about 30 seconds. Samples: `look/cast/voice/`. The founder has
+  not yet confirmed it by ear.
+- **Scheduled:** "PXI Monday heavy run" (Mon 1:45 PM), "PXI Thursday light run" (Thu 12:17 PM), "PXI Sunday plan
+  run" (Sun 6:38 PM), all America/Chicago, each a fresh session that follows `runs.md`. They were created without
+  the Metricool connector (this workspace does not let a session attach one): until the founder adds it to each
+  task in the scheduled-tasks page, a run can make and plan but cannot read numbers or schedule posts.
 - **Not built yet:** a pose library and mouth shapes for dialogue, the app's real Map and listing screens, real
-  street maps (OpenStreetMap tiles are reachable).
+  street maps (OpenStreetMap tiles are reachable), a story template for the daily listing cards.
 - **Tools that could not be reached from here:** Wikimedia Commons and Openverse image search (rate limits), the
   AI Geek Gumroad checkout (bot check). The two long AI Geek prompts were read from their public documents.
 

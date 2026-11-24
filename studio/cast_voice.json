@@ -1,0 +1,36 @@
+{
+  "_about": "The approved cast voices: original voices designed from text (no actor is cloned or imitated). A voice changes only on a dated founder note. studio/cast_voice.py refuses to run with other package versions.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "packages": {
+    "qwen-tts": "0.1.1",
+    "transformers": "4.57.3"
+  },
+  "load": {
+    "device_map": "cpu",
+    "dtype": "float32",
+    "attn_implementation": "sdpa"
+  },
+  "seed": 7,
+  "language": "English",
+  "treatment": {
+    "note": "plain and clean (founder, Nov 19: keep the voices normal): trim the silence, loudness -16 LUFS, nothing else",
+    "loudnorm": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 7
+    },
+    "sample_rate": 48000,
+    "channels": 1
+  },
+  "characters": {
+    "nio": "A 21-year-old Black American guy, light-skinned, lower-mid pitch, warm and a little husky, quick and animated like the lead of a cartoon comedy; confident, cocky, playful; big swings between deadpan and excited; casual Gen Z delivery.",
+    "maya": "A young woman around 20, bright, sweet and earnest voice, soft and clear, slightly higher pitch, gentle and kind, a little breathless when excited; sincere and literal, like the kind sidekick in a cartoon.",
+    "profh": "A huge, gentle professor around sixty, hushed airy voice with a soft rasp, medium-low pitch, earnest and a little nervous, always talking like he is in a library.",
+    "theo": "A 21-year-old guy, clear mid pitch, quick and confident, a sports commentator's certainty in a quiet voice, slightly nasal, playful.",
+    "darnell": "A gentle man in his thirties, warm mid voice, dreamy and peaceful, speaks slowly and friendly, like a monk who likes video games.",
+    "cleaner": "A brisk woman in her fifties, bright clear voice, quick and casual, a little amused, has seen it all."
+  },
+  "refused_characters": {
+    "friend": "The best friend has no approved voice (bible/characters.md)."
+  }
+}

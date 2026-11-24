@@ -32,5 +32,5 @@
 
 ## Next for the series
 
-A pose library (named poses a scene picks from), mouth shapes from the audio (`archive/.../engine/tools/lipsync.py`
-already reads a voice line into mouth cues), and Nio's own voice for the to-camera videos.
+A pose library (named poses a scene picks from) and mouth shapes from the audio (`archive/.../engine/tools/lipsync.py`
+already reads a voice line into mouth cues), so Nio can talk to camera in his own voice (`studio/cast_voice.py`).
