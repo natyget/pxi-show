@@ -17,7 +17,8 @@ pushed to the default branch, and a report of six lines or fewer that leads with
   always reads the schedule back. It never judges how a piece looks: animation, Nio and the cast are the house
   look, and the founder's yes is the only review. It never sets a post to draft, and never edits or deletes a post
   it did not make. The one hold it may put on an approved piece: a real event in it changed (Thursday's check),
-  and then it tells the founder at once.
+  and then it tells the founder at once. YouTube Shorts are sent no cover: YouTube refuses one and Metricool
+  then marks a published Short as an error (Nov 24).
 - **Yes or no from the phone.** When a piece is ready, the thread that made it sends one phone notification: the
   piece's name and that it is waiting. The founder answers yes or no in that thread. On yes, that thread writes the
   words into `post.md`, hosts the files, pushes, and messages the scheduler thread, which schedules and reads back.

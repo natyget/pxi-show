@@ -1,10 +1,12 @@
 # State
 
-next: three approved pieces go out: Los Angeles this weekend (Wed Nov 25, 8:30 PM Chicago), New York this weekend
-(Thu Nov 26, 5:30 PM) and Nio to camera (Thu Nov 26, 8:30 PM); the scheduler thread schedules them and reads them
-back. "idk to omw" goes out tonight. No ads until a post earns them (`growth.md`, "Paid": organic first, $150 a
-month at most). Then the "One night" pieces for Los Angeles on the clean-app builder, and Sunday's first read of
-the numbers.
+next: volume. "idk to omw" is out (Nov 24, 6:30 PM: Instagram, Facebook, TikTok and YouTube). Three more are scheduled:
+Los Angeles this weekend (Wed Nov 25, 8:30 PM Chicago), New York this weekend (Thu Nov 26, 5:30 PM), Nio to camera
+(Thu Nov 26, 8:30 PM). The founder wants 3 to 5 posts a day on each network and many stories, so two threads are
+making it from what exists: the screens thread a daily tool (`studio/daily.py`: stories and a carousel from the
+real screens and the day's listings, Los Angeles first), the maker thread "One night" shorts cut from the two city
+reels. Each day's batch goes to the founder on one page for one yes. The account hit its usage limit twice on
+Nov 24: three threads at most, small cuts first, push after each piece.
 
 ## Where things stand (Nov 24, 2026)
 
