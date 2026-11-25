@@ -1,12 +1,12 @@
 # State
 
-next: volume. "idk to omw" is out (Nov 24, 6:30 PM: Instagram, Facebook, TikTok and YouTube). Three more are scheduled:
-Los Angeles this weekend (Wed Nov 25, 8:30 PM Chicago), New York this weekend (Thu Nov 26, 5:30 PM), Nio to camera
-(Thu Nov 26, 8:30 PM). The founder wants 3 to 5 posts a day on each network and many stories, so two threads are
-making it from what exists: the screens thread a daily tool (`studio/daily.py`: stories and a carousel from the
-real screens and the day's listings, Los Angeles first), the maker thread "One night" shorts cut from the two city
-reels. Each day's batch goes to the founder on one page for one yes. The account hit its usage limit twice on
-Nov 24: three threads at most, small cuts first, push after each piece.
+next: two episodes of the series this week (`series.md`: Nio's world, funny, fast, the app used inside the story),
+made by the "PXI maker 2" thread, which already has the cast's voices set up; then learn from the numbers for the
+rest of the week. Monday's heavy run reassesses and makes next week. Out: "idk to omw" (Nov 24). Scheduled: Los
+Angeles this weekend (Wed Nov 25, 8:30 PM Chicago), New York this weekend (Thu Nov 26, 5:30 PM), Nio to camera
+(Thu Nov 26, 8:30 PM). Waiting for the founder's yes: three New York "One night" shorts. Parked until the founder
+says go: daily stories (`studio/daily.py`, not built). Usage: half the week's allowance of the stronger model was
+gone by Tuesday night, so nothing runs that the founder did not ask for.
 
 ## Where things stand (Nov 24, 2026)
 
@@ -90,6 +90,32 @@ Nov 24: three threads at most, small cuts first, push after each piece.
 - (none)
 
 ## Founder notes (newest first, word for word)
+
+- **Nov 24, night, on pace, retention and the series:** "ok but to be honest we can start making this weeks content now
+  and wait for monday for next week because its only tuesday we got no posts today and we should build so our what
+  to do in video and idk to omw videos dont flop as well. so since its 6:40 r with tokens resetted lets make a
+  couple videos for this week and the rest of the week you will learn and monday you get to resses learn and run new
+  session and then from there when it resets as well you will have more tokens and we can even have the scheduler
+  work alone nod me so im in the loop and give direction based on token we have to amp up or reduce production. were
+  also at half fable limit for this week right now just fyi from this session alone".
+  "wanted to mention is that our video, right at the 3-second marker, it starts dropping off where we animate the
+  messages thing, because I think, again, we're not really clear about saying like Friday 9 p.m. at night, and nobody
+  wants to pick an event or, you know, something like that. And then the next second is Friday 9 p.m. I think on the
+  3rd second mark, right after the direct messages flow, where Neo sits in his room and he just says a word, and that
+  just kills the retention right there. That's where like a good 20% of the people just swipe away because it's
+  taking too long. It's not going to the point. It's not fast enough, and it's not entertaining enough either. Like,
+  it's not really catchy enough. You know, it's not punchy enough. It's not also funny. Like, we need to add in
+  humor. And I realize that you're just making the same like things to do content. You're not really like following
+  Neo in his world where he tries to figure out events and making series out of it, demos out of Neo using the app,
+  or, you know, him talking to us, although those should be like limited. He shouldn't be always talking to us. But I
+  really want a series where we follow a interesting character that we just want to follow because it's funny
+  stories that he encounters, you know, like the amazing world of Gumball. And you would just follow Gumball. But
+  imagine Gumball created Pixie and he's using it, and he showcases it. Like, within the show, you see him using the
+  app and all that. I think that would gain more retention. And I think you can do a lot by learning where people
+  tend to drop the following and scroll away, and really learn what's wrong in that part. Is it just too long? Is
+  there a specific word? Is there, you know, a frame or a looks that does that? And then from the videos that do
+  well, learn why people tend to stick and not scroll to. Look into those things, please. Right now, you don't need
+  to really pump in and work on all the other videos, but a couple would be nice."
 
 - **Nov 24, on volume, after three pieces were scheduled:** "yes but were supposed to be posting 3-10 posts a day, 3
   reels some posts a lot of stories right so your 3 scheduled work i hope its not it for us and that were pumping
@@ -256,6 +282,10 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   `growth.md`. The builder's four marks go to the maker thread, which owns it. Verdict after four pieces: the
   cheaper model is not at the level for writing a new piece; the next test for it is narrower (a new week of an
   approved reel, where only the listings and lines change).
+- Nov 24, "idk to omw", the first hours (the founder read the retention): about one in five left between second 3
+  and 4, where the hook ended and a second opening began over a five-second shot of Nio on his bed; the first joke
+  came at second 26. Written into `series.md` (the shape of an episode) and the first question in
+  `studio/viewer.md`. The same founder note turned the lead format from city lists to the series.
 - Nov 24, the stall and the stale file: six threads at once spent the five-hour limit by 9:40 AM Chicago; three
   stopped mid-piece until 1 PM (`runs.md` now caps the threads). And cut 3 of both city reels was rendered four
   minutes after the card screen was corrected on the default branch but from the old copy, so the files sent to the

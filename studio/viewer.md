@@ -11,6 +11,9 @@ For every line ask, and rewrite until each answer is fine:
 - Do I know in the first two seconds that this is for me? If it is about a city, the first words say the city
   and what I am after ("Are you in LA, looking for things to do this weekend? We got you."). A clever line that
   could open any video is not a hook.
+- By second three, do I know what this is, and has something made me smile or lean in? After the hook there is no
+  second opening (the day, the time, the place): that is where one in five left "idk to omw". Nothing in the
+  first ten seconds holds for more than about two and a half.
 - Does the piece pay off what its first line promises? A hook that asks "where is it?" cannot end on a card that
   says "location TBA". If the first line raises a question, the picture answers it.
 - Is it said to me? ("You open PXI", not a name I don't know. Names belong in Nio World stories, where I meet the people.)

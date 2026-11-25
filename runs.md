@@ -28,6 +28,11 @@ pushed to the default branch, and a report of six lines or fewer that leads with
   the planned times (`videos/2026-11-24-idk-to-omw/post.md` is the model). When there is more to make than one
   thread can, a second maker takes one format ("PXI maker 2" started Nov 24 with Nio to camera); each works in its
   own video folders and pulls before it pushes.
+- **The founder stays in the loop, the threads work alone.** Every run and every finished piece ends with one phone
+  notification: what went out, what is waiting for a yes, and how much was made, so the founder can say more or
+  less. The makers and the scheduler take the founder's word directly in their own threads. The trainer thread
+  has the longest history and costs the most to wake (by Nov 24 it alone had used half the week's allowance of
+  the stronger model): it is called to change the engine, not to pass messages.
 - **Usage.** The account has a five-hour limit as well as the weekly one. On Nov 24 six threads working at once
   spent it in under three hours and three of them stopped mid-piece until it reset. Outside Monday's heavy run,
   at most three threads work at a time, a trial of the cheaper model counts as one, and a thread that has

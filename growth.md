@@ -21,7 +21,12 @@ them download the app.
 
 Of every ten pieces, at least seven are for the first person and are about Discover.
 
-## Formats (rotate; never the same one twice in a row)
+## Formats (the series leads; the rest rotate around it)
+
+**The series comes first** (`series.md`): episodes of Nio's world, funny stories you follow him through, with the
+app used inside the story. The founder, Nov 24: "you're just making the same like things to do content. You're
+not really like following Neo in his world." The city pieces below are for being found in search; the series is
+for being followed.
 
 | Format | What it is | Size | What it tests |
 |---|---|---|---|
@@ -43,8 +48,8 @@ Of every ten pieces, at least seven are for the first person and are about Disco
 How many of each a week, and which run makes them: `runs.md` (3 to 5 posts a day on each network, 3 to 10 stories a
 day; one heavy run on Monday, two light ones).
 
-Two running series, every release whole on its own: **Nio builds PXI** (to camera) and **The mess and the
-scrapbook**.
+"The mess and the scrapbook", "Follow-along" and "The invite" are kinds of episode of the series. "Nio builds PXI"
+(to camera) is the rare one where he talks to us.
 
 ## Trends
 
