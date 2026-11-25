@@ -24,9 +24,9 @@ Nio talks to us only now and then.
 ## The shape of an episode
 
 Learned from where people left "idk to omw" (the founder read its first hours): about one in five swiped away
-between second 3 and second 4. The hook ended at 3.2 s; then a second opening began ("Friday, nine P.M.
-Everyone's waiting for someone else to pick."), said slowly over Nio sitting on his bed for five seconds. The
-first joke came at second 26. The founder: "it's taking too long. It's not going to the point. It's not fast
+from second 3 on. The hook took four seconds to say one sentence over the chat. Then a second opening ran from
+4.8 to 9.4 s ("Friday, nine P.M. Everyone's waiting for someone else to pick."), said slowly over Nio sitting on
+his bed. The app arrived at second 10 and the first joke at second 26. The founder: "it's taking too long. It's not going to the point. It's not fast
 enough, and it's not entertaining enough either ... not punchy enough. It's not also funny."
 
 - **Second 0 to 2:** already in the middle of the mess, on the funniest or strangest picture, with a line said.

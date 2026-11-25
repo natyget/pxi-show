@@ -282,9 +282,9 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   `growth.md`. The builder's four marks go to the maker thread, which owns it. Verdict after four pieces: the
   cheaper model is not at the level for writing a new piece; the next test for it is narrower (a new week of an
   approved reel, where only the listings and lines change).
-- Nov 24, "idk to omw", the first hours (the founder read the retention): about one in five left between second 3
-  and 4, where the hook ended and a second opening began over a five-second shot of Nio on his bed; the first joke
-  came at second 26. Written into `series.md` (the shape of an episode) and the first question in
+- Nov 24, "idk to omw", the first hours (the founder read the retention): about one in five left from second 3
+  on: the hook took four seconds to say one sentence, a second opening ran from 4.8 to 9.4 s over Nio sitting on
+  his bed, the app arrived at second 10 and the first joke at second 26. Written into `series.md` (the shape of an episode) and the first question in
   `studio/viewer.md`. The same founder note turned the lead format from city lists to the series.
 - Nov 24, the stall and the stale file: six threads at once spent the five-hour limit by 9:40 AM Chicago; three
   stopped mid-piece until 1 PM (`runs.md` now caps the threads). And cut 3 of both city reels was rendered four
