@@ -351,3 +351,14 @@ Older notes: `archive/2026-11-old-engine/bible/show-bible.md`.
   of the screen dims and the card stays whole (no push that cropped the day line); the end card is whole on its first
   frame; a chat opens with its first message already there. Seen on stills of the LA and New York scenes; the two MP4s
   were rendered before the last three and show them only on a next cut.
+- Nov 25, the series, episodes 1 and 2 (PXI maker 2): "Strangers" (`videos/2026-11-27-strangers/`, for Fri Nov 27)
+  and "One second" (`videos/2026-11-29-one-second/`, for Sun Nov 29), both 30 s, both built with `weekend.py` from
+  cast lines, rig shots and the All events list, both passed one fresh reviewer who would have watched to the end.
+  In both, the one moment the thumb twitched was the two seconds of the app's list ("reads as an ad"), and neither
+  would be sent to a friend: the endings are a picture with no button. Learned: a wide shot of a table loses the
+  speaker at the frame's edge (open on a face, cut wide); a zoom from the bottom edge lifts a face above the
+  captions; a vocative name in purple reads as the name of whoever is on screen (names are not key words); the
+  list's clock has to agree with a time said later (`"now"`); the dining room reads as a house, not a restaurant.
+  Fixed in the tool: `"after"` takes seconds and works on any beat (the last picture holds, or follows a line);
+  the caption over the list sat 13 px under the safe box on a descender.
+

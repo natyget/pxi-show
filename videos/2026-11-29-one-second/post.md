@@ -2,6 +2,16 @@
 
 **Not approved.** Waiting for the founder's yes on this exact cut. Nothing is hosted or scheduled.
 
+The fresh reviewer passed it (Nov 25) and would have watched to the end: "the dancing guy with a question over him
+holds the first 1.5 s, and the back-and-forth is quick". The second it came nearest to leaving: 5.0 to 6.5 s, the
+app's list ("reads 'ad', and my thumb twitched"; short, so it stayed); a second sag at 11.5 to 14 s, Maya in the dark
+doorway. Best: the cut from "locked in" to him sitting down, "That was a nap", "Nine thirty-one. That's a new
+record for him". Flat: "I stayed up until two on New Year's Eve", and the moustache at the end, which is small and
+dark on a tilted face. What it still marked down: Maya has one pose all the way through and is dark against the
+door; his close-ups crop the hat and he looks off frame; the caption band cuts through the list; "somebody" and
+"we" are people we never see; it would not send it, and would watch a second one but not go looking. Fixed after
+the review: the phone said 7:30 while she says 9:31; the story's clock is now 9:20.
+
 Format: the series (`series.md`). Hook type: mid-story cold open (Sunday night, Nio dancing alone in a party hat;
 Maya at the door). Ask: follow, on the caption only.
 

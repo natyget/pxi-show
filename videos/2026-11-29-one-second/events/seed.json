@@ -1,5 +1,5 @@
 {
- "clock": "7:30",
+ "clock": "9:20",
  "when": "This weekend",
  "city": "Los Angeles",
  "me": "assets/me-nio.png",
@@ -32,7 +32,7 @@
   },
   {
    "doorway": true,
-   "count": 24,
+   "count": 18,
    "windowLabel": "THIS WEEKEND",
    "from": "From Eventbrite, RA, Ticketmaster and DICE",
    "picks": [
@@ -44,18 +44,18 @@
      "cover": "/videos/2026-11-29-one-second/events/la/covers/2219b227-3035-41fd-a2b5-b58e0705919e.jpg"
     },
     {
-     "id": "35d070f9-1c5b-44c1-85c4-cfbb66bb2c98",
-     "title": "Sip Smoke And Paint - Dj Pony Boy",
-     "time": "5:30 PM",
-     "poster": null,
-     "cover": "/videos/2026-11-29-one-second/events/la/covers/35d070f9-1c5b-44c1-85c4-cfbb66bb2c98.jpg"
-    },
-    {
      "id": "80b1b81b-c673-4f02-8a06-9ea96a99c9ef",
      "title": "NIGHTSHIFT AFTER HOURS",
      "time": "11 PM",
      "poster": null,
      "cover": "/videos/2026-11-29-one-second/events/la/covers/80b1b81b-c673-4f02-8a06-9ea96a99c9ef.jpg"
+    },
+    {
+     "id": "582b37cf-83dc-4587-bf6f-60400d144bc5",
+     "title": "Sip, Smoke, Candle",
+     "time": "8 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-29-one-second/events/la/covers/582b37cf-83dc-4587-bf6f-60400d144bc5.jpg"
     }
    ]
   }
