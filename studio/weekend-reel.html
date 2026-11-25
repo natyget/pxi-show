@@ -194,7 +194,7 @@ window.render = function (t, pass) {
   $('end').style.opacity = t >= te ? 1 : 0; // whole on its first frame: a fade from black reads as the video being over
   document.querySelector('#end .icon').style.transform = `scale(${lerp(0.9, 1, eBack(pr(t, te, 0.25)))})`;
   const g = groups.find((x) => t >= x.s && t < x.e);
-  $('cap').style.top = (b.kind === 'card' || b.kind === 'flick' ? 1010 : b.kind === 'list' ? 1330 : 1160) + 'px'; // on a card the words sit on the poster, clear of the app's own text
+  $('cap').style.top = (b.kind === 'card' || b.kind === 'flick' ? 1010 : b.kind === 'list' ? 1312 : 1160) + 'px'; // on a card the words sit on the poster, clear of the app's own text
   $('cap').classList.toggle('onlist', b.kind === 'list'); $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has((REEL.show[w.w] || w.w).toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
   return wait;
 };
