@@ -1,0 +1,11 @@
+{
+  "key": "line02",
+  "character": "maya",
+  "line": "You have never once been awake at eleven.",
+  "note": "Quick and dry, stating a fact.",
+  "text_sent": "You have never once been awake at eleven.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.29,
+  "wav_sha256": "bb0b5a1f7a2930e3b281d35d58be04e193aca9efc66fbf5a8fbc91594cdf6a49"
+}

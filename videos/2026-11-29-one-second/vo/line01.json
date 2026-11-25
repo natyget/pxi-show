@@ -1,0 +1,11 @@
+{
+  "key": "line01",
+  "character": "nio",
+  "line": "There's an after hours tonight. It starts at eleven.",
+  "note": "Quick and hyped, a little out of breath from dancing.",
+  "text_sent": "There's an after hours tonight. It starts at eleven.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 3.21,
+  "wav_sha256": "d339656f1dfbcf8a1ee7dba4ee95c357b256a158aaa2f7f89ce33a8672ba5695"
+}

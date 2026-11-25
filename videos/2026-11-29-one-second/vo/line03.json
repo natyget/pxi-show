@@ -1,0 +1,11 @@
+{
+  "key": "line03",
+  "character": "nio",
+  "line": "It's free, Maya. Look at that. Free.",
+  "note": "Quick, like that settles it, holding up his phone.",
+  "text_sent": "It's free, Maya. Look at that. Free.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 3.16,
+  "wav_sha256": "468df086efbec0516fa5315b502fac000005cdb76dfacdaa88f93b7afe845613"
+}

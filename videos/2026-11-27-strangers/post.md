@@ -2,6 +2,15 @@
 
 **Not approved.** Waiting for the founder's yes on this exact cut. Nothing is hosted or scheduled.
 
+The fresh reviewer passed it (Nov 25) and would have watched to the end: "the question in the first 2 s is clear, and
+the rent exchange pays it off by 15 s". The second it came nearest to leaving: 5.75 to 8 s, the app's list ("oh, it's an
+ad"; short enough that it stayed). It leaves at 28.75 s, when the icon appears. Funniest: "you owe me two months of
+rent" into "a stranger would never bring that up". Flat: 17.2 to 21 s ("Fine. We're all new here"). What it still
+marked down: the ending has no button (the stranger is a back, and hides Maya); the circle lands on the price, and the
+row never shows the word "strangers"; in the wide shot Nio is half off the edge; the room reads as a house, not a
+restaurant; it would not send it, and would follow only if the next one is as good as the rent exchange. Fixed after
+the review: names in the captions are no longer purple (a purple "Nio" on Maya's chest read as her name).
+
 Format: the series (`series.md`). Hook type: mid-story cold open (Nio at a dinner with strangers; the strangers are
 his friends). Ask: follow, on the caption only.
 
