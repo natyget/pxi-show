@@ -1,0 +1,11 @@
+{
+  "key": "line03",
+  "character": "theo",
+  "line": "Hi, I'm Theo. I have never met you in my life.",
+  "note": "Bright and fake, like meeting someone at a party.",
+  "text_sent": "Hi, I'm Theo. I have never met you in my life.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 3.44,
+  "wav_sha256": "92e46acf92a24345ceb3261fd409bd248d0dc0871d5a5d8651de303e2752e19c"
+}

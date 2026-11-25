@@ -1,0 +1,11 @@
+{
+  "key": "line01",
+  "character": "maya",
+  "line": "Nio, we came here to get away from you.",
+  "note": "Quick and dry, not even looking up.",
+  "text_sent": "Nio, we came here to get away from you.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.78,
+  "wav_sha256": "1baf0d2059b10cebead504e18641849403af661ebd48d345744967e881701592"
+}

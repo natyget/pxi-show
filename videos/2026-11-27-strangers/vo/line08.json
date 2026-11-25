@@ -1,0 +1,11 @@
+{
+  "key": "line08",
+  "character": "maya",
+  "line": "Oh my god. Look. An actual stranger.",
+  "note": "A fast excited whisper, like spotting a celebrity.",
+  "text_sent": "Oh my god. Look. An actual stranger.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.95,
+  "wav_sha256": "485bfb9862eac8ce20f66c41d6f95c23994cc040b570a0ecb10d477989bac7b3"
+}

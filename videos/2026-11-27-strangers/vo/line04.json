@@ -1,0 +1,11 @@
+{
+  "key": "line04",
+  "character": "nio",
+  "line": "Theo, you owe me two months of rent.",
+  "note": "Quick, flat, not playing along.",
+  "text_sent": "Theo, you owe me two months of rent.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.87,
+  "wav_sha256": "3c646193e981ff20933fcd974348f93a32f4ec18bf5ba2f0cd05e5524536e409"
+}

@@ -1,0 +1,11 @@
+{
+  "key": "line02",
+  "character": "nio",
+  "line": "It says dinner with strangers. Right here on my app.",
+  "note": "Quick, defensive, holding up his phone.",
+  "text_sent": "It says dinner with strangers. Right here on my app.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.86,
+  "wav_sha256": "3c3f2dbb23103696bda404fa8188ca155447a287c7a45535181b920eaefe1cdb"
+}

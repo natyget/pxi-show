@@ -1,0 +1,56 @@
+[
+ {
+  "key": "line00",
+  "character": "nio",
+  "line": "Wait. You two are the strangers?",
+  "note": "Quick, thrown, a bit too loud for a restaurant."
+ },
+ {
+  "key": "line01",
+  "character": "maya",
+  "line": "Nio, we came here to get away from you.",
+  "note": "Quick and dry, not even looking up."
+ },
+ {
+  "key": "line02",
+  "character": "nio",
+  "line": "It says dinner with strangers. Right here on my app.",
+  "note": "Quick, defensive, holding up his phone."
+ },
+ {
+  "key": "line03",
+  "character": "theo",
+  "line": "Hi, I'm Theo. I have never met you in my life.",
+  "note": "Bright and fake, like meeting someone at a party."
+ },
+ {
+  "key": "line04",
+  "character": "nio",
+  "line": "Theo, you owe me two months of rent.",
+  "note": "Quick, flat, not playing along."
+ },
+ {
+  "key": "line05",
+  "character": "theo",
+  "line": "See, a stranger would never bring that up.",
+  "note": "Quick, wounded, very reasonable."
+ },
+ {
+  "key": "line06",
+  "character": "maya",
+  "line": "Fine. We're all new here. Hi, I'm Maya.",
+  "note": "Quick, giving up, then a big fake smile."
+ },
+ {
+  "key": "line07",
+  "character": "nio",
+  "line": "I'm Nio. I built the app that did this to us.",
+  "note": "Quick and proud, then hearing himself."
+ },
+ {
+  "key": "line08",
+  "character": "maya",
+  "line": "Oh my god. Look. An actual stranger.",
+  "note": "A fast excited whisper, like spotting a celebrity."
+ }
+]

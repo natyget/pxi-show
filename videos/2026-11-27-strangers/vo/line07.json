@@ -1,0 +1,11 @@
+{
+  "key": "line07",
+  "character": "nio",
+  "line": "I'm Nio. I built the app that did this to us.",
+  "note": "Quick and proud, then hearing himself.",
+  "text_sent": "I'm Nio. I built the app that did this to us.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.95,
+  "wav_sha256": "2ad12ac72ec0874e3372eae8ea14fd35d4328a45dc27c6c3a51be705070e5c2e"
+}

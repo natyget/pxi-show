@@ -1,0 +1,11 @@
+{
+  "key": "line06",
+  "character": "maya",
+  "line": "Fine. We're all new here. Hi, I'm Maya.",
+  "note": "Quick, giving up, then a big fake smile.",
+  "text_sent": "Fine. We're all new here. Hi, I'm Maya.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 4.03,
+  "wav_sha256": "30519dde18e75c12178f157b83f83dc3f46ea15d5a85a37b0ce948ea61ad9aff"
+}

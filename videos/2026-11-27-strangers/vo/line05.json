@@ -1,0 +1,11 @@
+{
+  "key": "line05",
+  "character": "theo",
+  "line": "See, a stranger would never bring that up.",
+  "note": "Quick, wounded, very reasonable.",
+  "text_sent": "See, a stranger would never bring that up.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.26,
+  "wav_sha256": "f4376d707b7d9fd8e8bc37073427e91a76ca9fd907868fdb2590c021eb1f2144"
+}

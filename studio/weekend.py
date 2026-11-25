@@ -33,7 +33,8 @@ Reads from that folder:
                   {"line": 2, "card": 0, "hold": true}           the same card as the beat before, carried on (a second voice line on it)
                   {"line": 8, "end": true, "cap": true}          the end card with the ask said over it, its captions under the badges
                   {"line": 8, "at": "Send", "end": true}         the end card ("at": a beat that starts on a word inside its line;
-                                                                 "after": true: it starts when the line has been said)
+                                                                 "after": true: it starts when the line has been said;
+                                                                 "after": 1.0: a second after, so the last picture holds)
                 and how names are written in the captions ("proper", "show", "key")
   words.json    the voice (studio/voice.py)
   events/<city> this week's listings (studio/events.py)
@@ -123,7 +124,7 @@ def map_pins(spec, t0):
 dur = round(vo["duration"] + 0.45, 2); beats = []; cues = []; used = {}; labelled = []
 listings = json.load(open(os.path.join(ev_dir, "events.json")))["events"]
 last = lambda line: [x for x in W if x["line"] == line][-1]["e"]
-starts = [0.0 if i == 0 else round(last(b["line"]) + 0.25, 3) if b.get("after") else round((word(b["line"], b["at"]) if b.get("at") else LN[b["line"]]["s"]) - 0.12, 3) for i, b in enumerate(reel["beats"])]
+starts = [0.0 if i == 0 else round(last(b["line"]) + (0.25 if b["after"] is True else b["after"]), 3) if b.get("after") else round((word(b["line"], b["at"]) if b.get("at") else LN[b["line"]]["s"]) - 0.12, 3) for i, b in enumerate(reel["beats"])]
 wrong = []
 for i, b in enumerate(reel["beats"]):
     t0, t1 = starts[i], (starts[i + 1] if i + 1 < len(starts) else dur); o = {"t0": t0, "t1": t1}

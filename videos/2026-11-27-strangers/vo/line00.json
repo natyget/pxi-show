@@ -1,0 +1,11 @@
+{
+  "key": "line00",
+  "character": "nio",
+  "line": "Wait. You two are the strangers?",
+  "note": "Quick, thrown, a bit too loud for a restaurant.",
+  "text_sent": "Wait. You two are the strangers?",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 1.88,
+  "wav_sha256": "811af9347d680b4c3d47751bef2821d24cd1c43df01c7feb47dcff0719388c69"
+}

@@ -1,0 +1,117 @@
+{
+ "city": "la",
+ "now": "2026-11-27 16:30",
+ "cards": [],
+ "beats": [
+  {
+   "line": 0,
+   "shot": "w0",
+   "zoom": [
+    1.7,
+    470,
+    1010
+   ]
+  },
+  {
+   "line": 1,
+   "shot": "maya1"
+  },
+  {
+   "line": 1,
+   "at": "to",
+   "shot": "maya1",
+   "zoom": [
+    1.35,
+    540,
+    820
+   ]
+  },
+  {
+   "line": 2,
+   "shot": "nio2"
+  },
+  {
+   "line": 2,
+   "at": "with",
+   "list": "b34fd766-14e0-4603-914d-dedb5e43d092",
+   "on": "strangers"
+  },
+  {
+   "line": 3,
+   "shot": "theo3"
+  },
+  {
+   "line": 3,
+   "at": "never",
+   "shot": "theo3",
+   "zoom": [
+    1.35,
+    640,
+    760
+   ]
+  },
+  {
+   "line": 4,
+   "shot": "nio4"
+  },
+  {
+   "line": 5,
+   "shot": "theo5"
+  },
+  {
+   "line": 6,
+   "shot": "maya6"
+  },
+  {
+   "line": 6,
+   "at": "Hi",
+   "shot": "w1",
+   "zoom": [
+    1.7,
+    470,
+    1010
+   ]
+  },
+  {
+   "line": 7,
+   "shot": "nio7"
+  },
+  {
+   "line": 8,
+   "shot": "jade8"
+  },
+  {
+   "line": 8,
+   "at": "An",
+   "shot": "w2",
+   "zoom": [
+    1.7,
+    470,
+    1010
+   ]
+  },
+  {
+   "line": 8,
+   "after": 1.6,
+   "end": true
+  }
+ ],
+ "show": {},
+ "proper": [
+  "I",
+  "I'm",
+  "Nio",
+  "Theo",
+  "Maya",
+  "We're"
+ ],
+ "key": [
+  "strangers",
+  "rent",
+  "Theo",
+  "Maya",
+  "Nio",
+  "app",
+  "stranger"
+ ]
+}
