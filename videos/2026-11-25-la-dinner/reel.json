@@ -1,0 +1,53 @@
+{
+ "city": "la",
+ "now": "2026-11-25 10:30",
+ "cards": [],
+ "beats": [
+  {
+   "line": 0,
+   "shot": "dinner",
+   "zoom": [
+    1.25,
+    540,
+    1100
+   ]
+  },
+  {
+   "line": 1,
+   "list": "b34fd766-14e0-4603-914d-dedb5e43d092",
+   "on": "about"
+  },
+  {
+   "line": 2,
+   "shot": "dinner",
+   "zoom": [
+    1.6,
+    540,
+    760
+   ]
+  },
+  {
+   "line": 3,
+   "end": true,
+   "cap": true
+  }
+ ],
+ "show": {
+  "POV": "POV"
+ },
+ "proper": [
+  "LA",
+  "Foodies",
+  "New",
+  "Friends",
+  "Echo",
+  "Park"
+ ],
+ "key": [
+  "strangers",
+  "LA",
+  "twenty-three",
+  "dollars",
+  "fun"
+ ]
+}

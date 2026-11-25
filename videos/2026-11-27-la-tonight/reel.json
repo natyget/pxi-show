@@ -1,0 +1,55 @@
+{
+ "city": "la",
+ "now": "2026-11-27 14:30",
+ "cards": [
+  "Night Tales"
+ ],
+ "beats": [
+  {
+   "line": 0,
+   "card": 0
+  },
+  {
+   "line": 1,
+   "card": 0,
+   "hold": true,
+   "on": "about"
+  },
+  {
+   "line": 2,
+   "shot": "club",
+   "zoom": [
+    1.25,
+    540,
+    500
+   ]
+  },
+  {
+   "line": 3,
+   "flick": true,
+   "n": 2
+  },
+  {
+   "line": 4,
+   "end": true,
+   "cap": true
+  }
+ ],
+ "show": {
+  "POV": "POV"
+ },
+ "proper": [
+  "LA",
+  "Night",
+  "Tales",
+  "The",
+  "Spotlight"
+ ],
+ "key": [
+  "tonight",
+  "LA",
+  "twenty-five",
+  "dollars"
+ ],
+ "when": "tonight"
+}

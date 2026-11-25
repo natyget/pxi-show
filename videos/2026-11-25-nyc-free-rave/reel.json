@@ -1,0 +1,55 @@
+{
+ "city": "nyc",
+ "now": "2026-11-25 18:30",
+ "cards": [],
+ "beats": [
+  {
+   "line": 0,
+   "shot": "broke",
+   "zoom": [
+    1.25,
+    540,
+    300
+   ]
+  },
+  {
+   "line": 1,
+   "list": "818eae62-f0a6-456b-9596-ca20130899b2",
+   "on": "Sounds"
+  },
+  {
+   "line": 2,
+   "map": {
+    "labels": [
+     {
+      "pick": "818eae62-f0a6-456b-9596-ca20130899b2",
+      "name": "Free rave + arcade"
+     }
+    ]
+   }
+  },
+  {
+   "line": 3,
+   "end": true,
+   "cap": true
+  }
+ ],
+ "show": {
+  "POV": "POV"
+ },
+ "proper": [
+  "New",
+  "York",
+  "Sounds",
+  "So",
+  "Dangerous",
+  "Danger"
+ ],
+ "key": [
+  "free",
+  "rave",
+  "arcade",
+  "New",
+  "York"
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "city": "la",
+ "now": "2026-11-28 10:30",
+ "cards": [],
+ "beats": [
+  {
+   "line": 0,
+   "shot": "roof",
+   "zoom": [
+    1.25,
+    540,
+    1300
+   ]
+  },
+  {
+   "line": 1,
+   "list": "2464b0f7-2e02-400b-88c4-b9e0fa95e615",
+   "on": "free",
+   "nth": 1
+  },
+  {
+   "line": 2,
+   "map": {
+    "labels": [
+     {
+      "pick": "2464b0f7-2e02-400b-88c4-b9e0fa95e615",
+      "name": "Sunday Brunch + Football"
+     }
+    ]
+   }
+  },
+  {
+   "line": 3,
+   "end": true,
+   "cap": true
+  }
+ ],
+ "show": {
+  "POV": "POV"
+ },
+ "proper": [
+  "LA",
+  "Sunday",
+  "Brunch",
+  "Football",
+  "Sunset",
+  "Rooftop",
+  "POV"
+ ],
+ "key": [
+  "free",
+  "LA",
+  "rooftop",
+  "Sunday"
+ ]
+}

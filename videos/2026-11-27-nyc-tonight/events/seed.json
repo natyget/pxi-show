@@ -1,0 +1,216 @@
+{
+ "clock": "4:30",
+ "when": "Tonight",
+ "city": "New York",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "39389663-0458-4231-b212-78ef990c5691",
+   "external": true,
+   "name": "Tempo Theory",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/39389663-0458-4231-b212-78ef990c5691.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/39389663-0458-4231-b212-78ef990c5691.jpg",
+   "labelFallback": true,
+   "record": [
+    "BRUKSHOT - ARIES & KELVIN 373 REMIX",
+    "NOV 27"
+   ],
+   "day": "Tonight",
+   "clock": "8 PM",
+   "location": "ALTHEA'S HIDEAWAY NYC",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-27-nyc-tonight/events/nyc/stamps/39389663-0458-4231-b212-78ef990c5691.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "b0d96530-1e77-486e-8ed2-2f352d67f468",
+   "external": true,
+   "name": "Serena Smart",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/b0d96530-1e77-486e-8ed2-2f352d67f468.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-27-nyc-tonight/events/nyc/art/art-b0d96530-1e77-486e-8ed2-2f352d67f468.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "DECISIONS"
+   ],
+   "day": "Tonight",
+   "clock": "8 PM",
+   "location": "THE DELANCEY ROOFTOP",
+   "price": "$20",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-27-nyc-tonight/events/nyc/stamps/b0d96530-1e77-486e-8ed2-2f352d67f468.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "a4e7e562-25a2-4092-acac-4e012eb5f598",
+   "external": true,
+   "name": "Ménage Noire Blacked Friday Affair",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/a4e7e562-25a2-4092-acac-4e012eb5f598.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-27-nyc-tonight/events/nyc/art/art-a4e7e562-25a2-4092-acac-4e012eb5f598.jpg",
+   "labelFallback": false,
+   "record": [
+    "SZA",
+    "THE WEEKEND"
+   ],
+   "day": "Tonight",
+   "clock": "8 PM",
+   "location": "PRIVACY",
+   "price": "$85",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-27-nyc-tonight/events/nyc/stamps/a4e7e562-25a2-4092-acac-4e012eb5f598.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "a73e58df-fb68-48aa-9202-ecfb9a7f1542",
+   "external": true,
+   "name": "RNB ZOO BLACK FRIDAY",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/a73e58df-fb68-48aa-9202-ecfb9a7f1542.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-27-nyc-tonight/events/nyc/art/art-a73e58df-fb68-48aa-9202-ecfb9a7f1542.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "BED"
+   ],
+   "day": "Tonight",
+   "clock": "9 PM",
+   "location": "THE MATRIARCH",
+   "price": "$17.34",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-27-nyc-tonight/events/nyc/stamps/a73e58df-fb68-48aa-9202-ecfb9a7f1542.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "ec1a8bd3-7c27-4935-bad7-45ec906650d7",
+   "external": true,
+   "name": "Melly Santana FWWTN Listening Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/ec1a8bd3-7c27-4935-bad7-45ec906650d7.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-27-nyc-tonight/events/nyc/art/art-ec1a8bd3-7c27-4935-bad7-45ec906650d7.jpg",
+   "labelFallback": false,
+   "record": [
+    "HIP-HOP",
+    "ASSAULT CHARGES"
+   ],
+   "day": "Tonight",
+   "clock": "9 PM",
+   "location": "SKYLOFT STUDIOS",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-27-nyc-tonight/events/nyc/stamps/ec1a8bd3-7c27-4935-bad7-45ec906650d7.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "1c461bc8-df7d-4a0d-ab22-8804cd3e671c",
+   "external": true,
+   "name": "Marco Lys at Public Hotel",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.jpg",
+   "labelFallback": true,
+   "record": [
+    "HOUSE",
+    "CAJMERE - BRIGHTER DAYS - MARCO LYS REMIX"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "ARTSPACE",
+   "price": "$20",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-27-nyc-tonight/events/nyc/stamps/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "97974a72-cb73-423a-b638-0e8efb9e3104",
+   "external": true,
+   "name": "Eli Fola & Hyenah in the Onyx Room",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/97974a72-cb73-423a-b638-0e8efb9e3104.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/97974a72-cb73-423a-b638-0e8efb9e3104.jpg",
+   "labelFallback": true,
+   "record": [
+    "HOUSE",
+    "HAAA!"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "THE ONYX ROOM AT HOUSE OF YES",
+   "price": "$10.82",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-27-nyc-tonight/events/nyc/stamps/97974a72-cb73-423a-b638-0e8efb9e3104.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "doorway": true,
+   "count": 29,
+   "windowLabel": "TONIGHT",
+   "from": "From RA, Eventbrite, Ticketmaster, DICE and Posh",
+   "picks": [
+    {
+     "id": "52bf7144-d7c5-4ae6-8614-54d487dd607d",
+     "title": "Panama Independence Weekend Party Latin Bar NYC",
+     "time": "5 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/52bf7144-d7c5-4ae6-8614-54d487dd607d.png"
+    },
+    {
+     "id": "b7a0ae6f-ccec-4d5f-9c77-19017d5b8282",
+     "title": "Reggaeton on Houston - Latin & Reggaeton Party NYC",
+     "time": "5 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/b7a0ae6f-ccec-4d5f-9c77-19017d5b8282.jpg"
+    },
+    {
+     "id": "7855be32-d229-46d3-805a-2b05f81d2abc",
+     "title": "Cabros Chicos: Black Friday Perreo",
+     "time": "10 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-27-nyc-tonight/events/nyc/covers/7855be32-d229-46d3-805a-2b05f81d2abc.png"
+    }
+   ]
+  }
+ ],
+ "at": 5,
+ "discOpen": false,
+ "joined": false
+}

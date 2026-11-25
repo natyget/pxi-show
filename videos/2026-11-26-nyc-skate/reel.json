@@ -1,0 +1,86 @@
+{
+ "city": "nyc",
+ "now": "2026-11-26 12:30",
+ "cards": [
+  "Xanadu"
+ ],
+ "beats": [
+  {
+   "line": 0,
+   "shot": "roof",
+   "zoom": [
+    1.6,
+    540,
+    500
+   ]
+  },
+  {
+   "line": 1,
+   "chat": {
+    "name": "Mike",
+    "msgs": [
+     [
+      "them",
+      "can you skate",
+      null
+     ],
+     [
+      "me",
+      "no",
+      "fun"
+     ],
+     [
+      "them",
+      "me neither",
+      "this"
+     ],
+     [
+      "them",
+      "saturday at 7?",
+      "skate"
+     ],
+     [
+      "me",
+      "obviously",
+      "Brooklyn"
+     ]
+    ]
+   }
+  },
+  {
+   "line": 2,
+   "card": 0,
+   "on": "twenty-five"
+  },
+  {
+   "line": 3,
+   "flick": true,
+   "n": 5
+  },
+  {
+   "line": 4,
+   "after": true,
+   "end": true
+  }
+ ],
+ "show": {
+  "POV": "POV"
+ },
+ "proper": [
+  "New",
+  "York",
+  "Brooklyn",
+  "Xanadu",
+  "Rich",
+  "Medina"
+ ],
+ "key": [
+  "skate",
+  "skating",
+  "twenty-five",
+  "dollars",
+  "New",
+  "York",
+  "fun"
+ ]
+}

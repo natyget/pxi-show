@@ -28,6 +28,8 @@ body.pass-art #ui{display:none}
 #cap{position:absolute;left:90px;right:150px;top:1160px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;text-align:center}
 #cap span{font:900 84px/1.12 Inter;color:#fff;letter-spacing:-1px;paint-order:stroke fill;-webkit-text-stroke:14px #000;display:inline-block;transform-origin:50% 70%}
 #cap span.k{color:#c26bff}
+#cap.onlist{left:0;right:0;padding:26px 150px 30px 90px;background:#000} /* on the list the words get the app's own black under them: never text on text */
+#cap.onlist:empty{display:none}
 #end{position:absolute;inset:0;background:#050505;opacity:0}
 #end .icon{position:absolute;left:410px;top:400px;width:260px;height:260px;border-radius:60px;overflow:hidden;background:#000;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
 #end .icon img{width:100%;height:100%}
@@ -68,7 +70,7 @@ body.pass-art #ui{display:none}
 <div id="art">
   <img id="plate">
   <svg id="map" viewBox="0 0 1080 1920"><rect width="1080" height="1920" fill="#1a1720"/><g id="streets"></g><g id="pins"></g></svg>
-  <div id="pwrap" style="display:none"><div id="screen">
+  <div id="pwrap" style="visibility:hidden"><div id="screen">
     <div id="chat"><div class="hd"><div class="bk">‹</div><div class="av" id="chav"></div><div class="nm" id="chnm"></div></div>
       <div id="list"></div><div class="in"><span class="plus">+</span><span>Message</span></div></div>
   </div></div>
@@ -97,6 +99,9 @@ const W = VO.words, B = REEL.beats, DUR = REEL.dur;
 
 // one Discover screen: the app's carousel, with every card in it (events/seed.json, written by studio/weekend.py)
 { const f = document.createElement('iframe'); f.id = 'disc'; f.src = '/look/app-screens/discover.html?seed=events/seed.json'; $('screen').insertBefore(f, $('chat')); }
+// the All events list, for a pick the app shows there and not as a card (events/seed-list.json, written by studio/list.py)
+const LISTB = B.find((x) => x.kind === 'list');
+if (LISTB) { const f = document.createElement('iframe'); f.id = 'lst'; f.style.visibility = 'hidden'; f.src = '/look/app-screens/all-events.html?seed=events/seed-list.json'; $('screen').insertBefore(f, $('chat')); }
 const app = () => $('disc').contentWindow;
 const PICKS = REEL.cards;          // where each pick sits in the carousel
 const POP = 0.45;                  // a card's record pops out this long after the card arrives (its orange tab pressed)
@@ -108,7 +113,7 @@ groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.wor
 // a line's last words leave before the picture changes
 groups.forEach((g, i) => { const nx = groups[i + 1]; if (nx && nx.words[0].line !== g.words[0].line) g.e = Math.min(g.e, Math.max(g.words[g.words.length - 1].e + 0.1, VO.lines[nx.words[0].line].s - 0.14)); });
 // no caption lies on the end card
-{ const end = B.find((x) => x.kind === 'end'); if (end) groups.forEach((g) => { g.e = Math.min(g.e, end.t0); }); }
+{ const end = B.find((x) => x.kind === 'end'); if (end && !end.cap) groups.forEach((g) => { g.e = Math.min(g.e, end.t0); }); } // unless the ask is said over it (the beat's "cap")
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 const PROPER = new Set([...REEL.proper, 'PXI', ...DAYS, ...DAYS.map((d) => d + "'s")].map((x) => x.toLowerCase()));
 const KEY = new Set(['pxi', 'free', ...DAYS, ...DAYS.map((d) => d + "'s"), ...REEL.key.map((x) => x.toLowerCase())]);
@@ -147,20 +152,23 @@ window.render = function (t, pass) {
     if (im.dataset.src !== src) { im.dataset.src = src; im.src = src; wait = im.decode().then(() => true, () => true); }
   } else im.style.display = 'none';
   const flick = b.kind === 'flick';
-  const phone = b.kind === 'card' || b.kind === 'chat' || flick;
+  const phone = b.kind === 'card' || b.kind === 'chat' || b.kind === 'list' || flick;
   $('grain').style.display = 'none'; // nothing is laid over an app screen, and a plate carries its own grain
   $('art').style.background = phone ? '#000' : '#1d1820';
   $('map').style.display = b.kind === 'map' ? 'block' : 'none';
-  $('pwrap').style.display = phone ? '' : 'none';
+  $('pwrap').style.visibility = phone ? '' : 'hidden'; // hidden, never removed: the app screens keep their measures
   $('disc').style.display = b.kind === 'card' || flick ? '' : 'none';
+  if (LISTB) { const L = $('lst'); L.style.visibility = b.kind === 'list' ? '' : 'hidden';
+    if (b.kind === 'list') { $('pwrap').style.transform = cam(CF); const w = L.contentWindow, y = w.rowY(b.id); // the list comes to rest on the pick, as a thumb would leave it
+      w.scrollList(y - (b.hold ? 0 : 260 * (1 - eOut(pr(t, b.t0, 0.7))))); w.press(b.id, b.on != null ? Math.sin(Math.PI * pr(t, b.on, 0.3)) : 0); } }
   if (flick) { // a real swipe, card after card from the first pick, each one landing on the app's own spring
-    const sl = (b.t1 - b.t0) / PICKS.length, k = Math.min(PICKS.length - 1, Math.floor((t - b.t0) / sl)), into = t - b.t0 - k * sl;
+    const n = b.n || PICKS.length, sl = (b.t1 - b.t0) / n, k = Math.min(n - 1, Math.floor((t - b.t0) / sl)), into = t - b.t0 - k * sl;
     A.disc(0); A.swipe(PICKS[0] + k - 1, k === 0 ? 1 : A.spring('snap', into));
     $('pwrap').style.transform = cam(CF); }
   $('chat').style.display = b.kind === 'chat' ? 'block' : 'none';
   if (b.kind === 'card') {
     $('pwrap').style.transform = cam(CF);
-    const out = Math.max(0, t - b.t0 - POP);
+    const out = b.hold ? 9 : Math.max(0, t - b.t0 - POP); // "hold": the same card as the beat before, its record already out
     A.swipe(PICKS[b.card], 0); A.disc(A.spring('disc', out)); A.spin(out * 40); // VinylDisc turns once in nine seconds
   }
   if (b.kind === 'chat') {
@@ -176,6 +184,8 @@ window.render = function (t, pass) {
   { const R = $('ringp'); let d = '', p = 0; // the circle round the price, drawn on its word; it lands with a small pop
     if (b.kind === 'card' && b.on != null && t >= b.on) { const lab = [...$('disc').contentDocument.querySelectorAll('.lab2')].filter((e) => /^\s*price\s*$/i.test(e.textContent)).map((e) => [e, e.parentElement.getBoundingClientRect()]).filter(([e, r]) => r.left >= 0 && r.right <= 390 && r.top > 300 && r.width > 0).map(([e]) => e)[0]; // the centred card's own price
       if (lab) { const [x, y, w, h] = toFrame(lab.parentElement.getBoundingClientRect()); const tw = Math.max(150, Math.min(w, 60 + 26 * lab.parentElement.textContent.replace(/price/i, '').length)); d = loop(x - 8, y, tw, h); p = eOut(pr(t, b.on, 0.32)); } }
+    if (b.kind === 'list' && b.on != null && t >= b.on) { const row = $('lst').contentDocument.querySelector(`.row[data-id="${b.id}"]`), el = row && (row.querySelector('.pr') || row.querySelector('.top'));
+      if (el) { const [x, y, w, h] = toFrame(el.getBoundingClientRect()); d = loop(x, y, w, h); p = eOut(pr(t, b.on, 0.32)); } }
     R.setAttribute('d', d); if (d) { const L = R.getTotalLength(); R.style.strokeDasharray = L; R.style.strokeDashoffset = L * (1 - p); const k = 1 + 0.07 * Math.sin(Math.PI * pr(t, b.on + 0.3, 0.22)); const bb = R.getBBox(); R.style.transformOrigin = `${bb.x + bb.width / 2}px ${bb.y + bb.height / 2}px`; R.style.transform = `scale(${k})`; } }
   if (MAPB) MAPB.pins.forEach((pn, i) => { const on = b.kind === 'map', p = on ? eBack(pr(t, pn.t, 0.3)) : 0, g = $('pin' + i); g.setAttribute('transform', `scale(${p})`);
     const L = $('ml' + i); if (L) { const q = on ? eOut(pr(t, pn.t + 0.12, 0.22)) : 0; L.style.opacity = q; L.style.transform = `translateY(${(1 - q) * 14}px)`; } });
@@ -184,8 +194,8 @@ window.render = function (t, pass) {
   $('end').style.opacity = t >= te ? 1 : 0; // whole on its first frame: a fade from black reads as the video being over
   document.querySelector('#end .icon').style.transform = `scale(${lerp(0.9, 1, eBack(pr(t, te, 0.25)))})`;
   const g = groups.find((x) => t >= x.s && t < x.e);
-  $('cap').style.top = (b.kind === 'card' || b.kind === 'flick' ? 1010 : 1160) + 'px'; // on a card the words sit on the poster, clear of the app's own text
-  $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has((REEL.show[w.w] || w.w).toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
+  $('cap').style.top = (b.kind === 'card' || b.kind === 'flick' ? 1010 : b.kind === 'list' ? 1330 : 1160) + 'px'; // on a card the words sit on the poster, clear of the app's own text
+  $('cap').classList.toggle('onlist', b.kind === 'list'); $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has((REEL.show[w.w] || w.w).toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
   return wait;
 };
 // The app screen is ready when it says so (its fonts are in and its words are fitted); then every card's pictures are decoded.
@@ -194,8 +204,10 @@ window.ready = async () => {
   await new Promise((res) => { const ok = () => f.contentDocument && f.contentDocument.body && f.contentDocument.body.dataset.ready === '1'; const tick = () => (ok() ? res() : setTimeout(tick, 50)); tick(); });
   await document.fonts.ready;
   for (const b of B) { if (b.kind !== 'card' && b.kind !== 'chat' && b.kind !== 'flick') continue;
-    for (const t of b.kind === 'flick' ? PICKS.map((_, k) => b.t0 + (k + 0.9) * (b.t1 - b.t0) / PICKS.length) : [b.t0 + 0.6]) { window.render(t, 'all'); await new Promise((r) => setTimeout(r, 250)); } }
+    for (const t of b.kind === 'flick' ? Array.from({ length: b.n || PICKS.length }, (_, k) => b.t0 + (k + 0.9) * (b.t1 - b.t0) / (b.n || PICKS.length)) : [b.t0 + 0.6]) { window.render(t, 'all'); await new Promise((r) => setTimeout(r, 250)); } }
   await Promise.all([...f.contentDocument.images].map((im) => im.decode().catch(() => {})));
+  if (LISTB) { const l = $('lst'); await new Promise((res) => { const tick = () => (l.contentDocument && l.contentDocument.body && l.contentDocument.body.dataset.ready === '1' ? res() : setTimeout(tick, 50)); tick(); });
+    window.render(LISTB.t0 + 1, 'all'); await new Promise((r) => setTimeout(r, 300)); await Promise.all([...l.contentDocument.images].map((im) => im.decode().catch(() => {}))); }
   await document.fonts.ready;
 };
 </script>

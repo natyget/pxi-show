@@ -1,0 +1,55 @@
+{
+ "city": "nyc",
+ "now": "2026-11-27 16:30",
+ "cards": [
+  "Marco Lys"
+ ],
+ "beats": [
+  {
+   "line": 0,
+   "card": 0
+  },
+  {
+   "line": 1,
+   "card": 0,
+   "hold": true,
+   "on": "twenty"
+  },
+  {
+   "line": 2,
+   "shot": "club",
+   "zoom": [
+    1.25,
+    540,
+    400
+   ]
+  },
+  {
+   "line": 3,
+   "end": true,
+   "cap": true
+  }
+ ],
+ "show": {
+  "POV": "POV"
+ },
+ "proper": [
+  "New",
+  "York",
+  "York's",
+  "Marco",
+  "Lys",
+  "ArtSpace",
+  "Public",
+  "Hotel"
+ ],
+ "key": [
+  "tonight",
+  "New",
+  "York",
+  "hotel",
+  "twenty",
+  "dollars"
+ ],
+ "when": "tonight"
+}

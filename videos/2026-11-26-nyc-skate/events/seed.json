@@ -1,0 +1,541 @@
+{
+ "clock": "12:30",
+ "when": "This weekend",
+ "city": "New York",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "39389663-0458-4231-b212-78ef990c5691",
+   "external": true,
+   "name": "Tempo Theory",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/39389663-0458-4231-b212-78ef990c5691.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/covers/39389663-0458-4231-b212-78ef990c5691.jpg",
+   "labelFallback": true,
+   "record": [
+    "BRUKSHOT - ARIES & KELVIN 373 REMIX",
+    "NOV 27"
+   ],
+   "day": "FRI",
+   "clock": "8 PM",
+   "location": "ALTHEA'S HIDEAWAY NYC",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/39389663-0458-4231-b212-78ef990c5691.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "b0d96530-1e77-486e-8ed2-2f352d67f468",
+   "external": true,
+   "name": "Serena Smart",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/b0d96530-1e77-486e-8ed2-2f352d67f468.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-b0d96530-1e77-486e-8ed2-2f352d67f468.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "DECISIONS"
+   ],
+   "day": "FRI",
+   "clock": "8 PM",
+   "location": "THE DELANCEY ROOFTOP",
+   "price": "$20",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/b0d96530-1e77-486e-8ed2-2f352d67f468.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "a4e7e562-25a2-4092-acac-4e012eb5f598",
+   "external": true,
+   "name": "Ménage Noire Blacked Friday Affair",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/a4e7e562-25a2-4092-acac-4e012eb5f598.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-a4e7e562-25a2-4092-acac-4e012eb5f598.jpg",
+   "labelFallback": false,
+   "record": [
+    "SZA",
+    "THE WEEKEND"
+   ],
+   "day": "FRI",
+   "clock": "8 PM",
+   "location": "PRIVACY",
+   "price": "$85",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/a4e7e562-25a2-4092-acac-4e012eb5f598.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "a73e58df-fb68-48aa-9202-ecfb9a7f1542",
+   "external": true,
+   "name": "RNB ZOO BLACK FRIDAY",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/a73e58df-fb68-48aa-9202-ecfb9a7f1542.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-a73e58df-fb68-48aa-9202-ecfb9a7f1542.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "BED"
+   ],
+   "day": "FRI",
+   "clock": "9 PM",
+   "location": "THE MATRIARCH",
+   "price": "$17.34",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/a73e58df-fb68-48aa-9202-ecfb9a7f1542.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "ec1a8bd3-7c27-4935-bad7-45ec906650d7",
+   "external": true,
+   "name": "Melly Santana FWWTN Listening Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/ec1a8bd3-7c27-4935-bad7-45ec906650d7.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-ec1a8bd3-7c27-4935-bad7-45ec906650d7.jpg",
+   "labelFallback": false,
+   "record": [
+    "HIP-HOP",
+    "ASSAULT CHARGES"
+   ],
+   "day": "FRI",
+   "clock": "9 PM",
+   "location": "SKYLOFT STUDIOS",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/ec1a8bd3-7c27-4935-bad7-45ec906650d7.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "1c461bc8-df7d-4a0d-ab22-8804cd3e671c",
+   "external": true,
+   "name": "Marco Lys at Public Hotel",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/covers/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.jpg",
+   "labelFallback": true,
+   "record": [
+    "HOUSE",
+    "CAJMERE - BRIGHTER DAYS - MARCO LYS REMIX"
+   ],
+   "day": "FRI",
+   "clock": "10 PM",
+   "location": "ARTSPACE",
+   "price": "$20",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "97974a72-cb73-423a-b638-0e8efb9e3104",
+   "external": true,
+   "name": "Eli Fola & Hyenah in the Onyx Room",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/97974a72-cb73-423a-b638-0e8efb9e3104.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/covers/97974a72-cb73-423a-b638-0e8efb9e3104.jpg",
+   "labelFallback": true,
+   "record": [
+    "HOUSE",
+    "HAAA!"
+   ],
+   "day": "FRI",
+   "clock": "10 PM",
+   "location": "THE ONYX ROOM AT HOUSE OF YES",
+   "price": "$10.82",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/97974a72-cb73-423a-b638-0e8efb9e3104.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "8a094ffe-42f5-415a-96d2-0828954a08f8",
+   "external": true,
+   "name": "Michigan vs Ohio State Watch Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/8a094ffe-42f5-415a-96d2-0828954a08f8.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-8a094ffe-42f5-415a-96d2-0828954a08f8.jpg",
+   "labelFallback": false,
+   "record": [
+    "FUTURE",
+    "NEVER GON LOSE"
+   ],
+   "day": "SAT",
+   "clock": "11:30 AM",
+   "location": "UNCLE ROGER’S",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/8a094ffe-42f5-415a-96d2-0828954a08f8.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "0d31a7cd-49d3-4ef9-b789-1c8dc25dadfa",
+   "external": true,
+   "name": "The Altiverse Brunch",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/0d31a7cd-49d3-4ef9-b789-1c8dc25dadfa.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-0d31a7cd-49d3-4ef9-b789-1c8dc25dadfa.jpg",
+   "labelFallback": false,
+   "record": [
+    "SNOH AALEGRA",
+    "SUPERNOVA"
+   ],
+   "day": "SAT",
+   "clock": "1:30 PM",
+   "location": "SANGER HALL",
+   "price": "$11.99",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/0d31a7cd-49d3-4ef9-b789-1c8dc25dadfa.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "c3a0a422-89cf-4b25-b5c2-f6295673c905",
+   "external": true,
+   "name": "Vibey Hour @ Damballa",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/c3a0a422-89cf-4b25-b5c2-f6295673c905.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-c3a0a422-89cf-4b25-b5c2-f6295673c905.jpg",
+   "labelFallback": false,
+   "record": [
+    "VICTONY",
+    "SLICK"
+   ],
+   "day": "SAT",
+   "clock": "5 PM",
+   "location": "DAMBALLA",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/c3a0a422-89cf-4b25-b5c2-f6295673c905.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "3902f140-f628-4e91-a86e-a19d44bf7a7b",
+   "external": true,
+   "name": "Integrity, Indecision, Deadguy, Neolithic",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/3902f140-f628-4e91-a86e-a19d44bf7a7b.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/covers/3902f140-f628-4e91-a86e-a19d44bf7a7b.jpg",
+   "labelFallback": true,
+   "record": [
+    "THOSE WHO FEAR TOMORROW",
+    "NOV 28"
+   ],
+   "day": "SAT",
+   "clock": "6 PM",
+   "location": "SAINT VITUS",
+   "price": "$55.17",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/3902f140-f628-4e91-a86e-a19d44bf7a7b.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "9ac77bfd-9ff4-4425-9cf9-08d6c105227b",
+   "external": true,
+   "name": "\"Xanadu 54\" starring Rich Medina, Kels, Varunisme (skate all night)",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/9ac77bfd-9ff4-4425-9cf9-08d6c105227b.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/covers/9ac77bfd-9ff4-4425-9cf9-08d6c105227b.jpg",
+   "labelFallback": true,
+   "record": [
+    "HOUSE",
+    "RICH MEDINA, SY SMITH, PLATINUM PIED PIPERS - CAN'T HOLD BACK (PLATINUM PIED PIPERS REMIX)"
+   ],
+   "day": "SAT",
+   "clock": "7 PM",
+   "location": "XANADU",
+   "price": "$25",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/9ac77bfd-9ff4-4425-9cf9-08d6c105227b.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "a7d19976-5bfd-4d39-a7f1-09a868da85e0",
+   "external": true,
+   "name": "Downtown Boys, Pop Music Fever Dream, NYSA, Frida Kill",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/a7d19976-5bfd-4d39-a7f1-09a868da85e0.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/covers/a7d19976-5bfd-4d39-a7f1-09a868da85e0.jpg",
+   "labelFallback": true,
+   "record": [
+    "POP",
+    "DANCING IN THE DARK"
+   ],
+   "day": "SAT",
+   "clock": "7 PM",
+   "location": "THE SULTAN ROOM",
+   "price": "$25.65",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/a7d19976-5bfd-4d39-a7f1-09a868da85e0.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "6280abb5-e3f0-464e-989c-18d9da1e143e",
+   "external": true,
+   "name": "THE KAGE: Fight Meets Music, Mont Rouge, Myles O'Neal, and Massuma",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/6280abb5-e3f0-464e-989c-18d9da1e143e.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-6280abb5-e3f0-464e-989c-18d9da1e143e.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "WAVES OF LUV"
+   ],
+   "day": "SAT",
+   "clock": "8 PM",
+   "location": "CAPITALE",
+   "price": "$37.39",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/6280abb5-e3f0-464e-989c-18d9da1e143e.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "c7c85a04-719e-4c3b-b41d-9ccd17969988",
+   "external": true,
+   "name": "GOOD TING: The Art of the Dance",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/c7c85a04-719e-4c3b-b41d-9ccd17969988.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-c7c85a04-719e-4c3b-b41d-9ccd17969988.jpg",
+   "labelFallback": false,
+   "record": [
+    "OTHER",
+    "WYFL RIDDIM"
+   ],
+   "day": "SAT",
+   "clock": "8 PM",
+   "location": "FRIDMAN GALLERY",
+   "price": "$20",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/c7c85a04-719e-4c3b-b41d-9ccd17969988.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "818eae62-f0a6-456b-9596-ca20130899b2",
+   "external": true,
+   "name": "Sounds So Dangerous (Free Rave and Arcade Pop Up)",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/818eae62-f0a6-456b-9596-ca20130899b2.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/covers/818eae62-f0a6-456b-9596-ca20130899b2.jpg",
+   "labelFallback": true,
+   "record": [
+    "TECHNO",
+    "BEAT KEEP ROCKIN'"
+   ],
+   "day": "SAT",
+   "clock": "9 PM",
+   "location": "DANGER DANGER",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/818eae62-f0a6-456b-9596-ca20130899b2.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "35a55f3b-61bc-4726-80ca-aabf830e9b68",
+   "external": true,
+   "name": "Thanksgiving Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/35a55f3b-61bc-4726-80ca-aabf830e9b68.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-35a55f3b-61bc-4726-80ca-aabf830e9b68.jpg",
+   "labelFallback": false,
+   "record": [
+    "HIP-HOP",
+    "CAN'T SLOW DOWN"
+   ],
+   "day": "SAT",
+   "clock": "10 PM",
+   "location": "MOONZESCOPE",
+   "price": "$10",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/35a55f3b-61bc-4726-80ca-aabf830e9b68.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "36523aa1-1eec-4ddc-9566-268454d2ea87",
+   "external": true,
+   "name": "Second Spin: YS Reunion and Welcome Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/36523aa1-1eec-4ddc-9566-268454d2ea87.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-36523aa1-1eec-4ddc-9566-268454d2ea87.jpg",
+   "labelFallback": false,
+   "record": [
+    "FLO RIDA",
+    "RIGHT ROUND"
+   ],
+   "day": "SUN",
+   "clock": "5 PM",
+   "location": "HIGHWATER ROOFTOP",
+   "price": "$11.99",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/36523aa1-1eec-4ddc-9566-268454d2ea87.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "e96fca71-cead-493f-800e-034bf5699cea",
+   "external": true,
+   "name": "Integrity, Most Precious Blood, Inclination, Ferment",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/e96fca71-cead-493f-800e-034bf5699cea.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/covers/e96fca71-cead-493f-800e-034bf5699cea.jpg",
+   "labelFallback": true,
+   "record": [
+    "THOSE WHO FEAR TOMORROW",
+    "NOV 29"
+   ],
+   "day": "SUN",
+   "clock": "6 PM",
+   "location": "SAINT VITUS",
+   "price": "$55.17",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/e96fca71-cead-493f-800e-034bf5699cea.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "e8095642-85f1-4178-a17c-e18c1ffdfaee",
+   "external": true,
+   "name": "Cumbia Gala",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/e8095642-85f1-4178-a17c-e18c1ffdfaee.png",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-skate/events/nyc/art/art-e8095642-85f1-4178-a17c-e18c1ffdfaee.jpg",
+   "labelFallback": false,
+   "record": [
+    "LATIN",
+    "EL AMOR DE LA NENA"
+   ],
+   "day": "SUN",
+   "clock": "6:30 PM",
+   "location": "THE MARQUEE ASTORIA",
+   "price": "$22.99",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-skate/events/nyc/stamps/e8095642-85f1-4178-a17c-e18c1ffdfaee.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "doorway": true,
+   "count": 109,
+   "windowLabel": "THIS WEEKEND",
+   "from": "From Eventbrite, RA, Ticketmaster, DICE, Partiful and Posh",
+   "picks": [
+    {
+     "id": "52bf7144-d7c5-4ae6-8614-54d487dd607d",
+     "title": "Panama Independence Weekend Party Latin Bar NYC",
+     "time": "Fri 5 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/52bf7144-d7c5-4ae6-8614-54d487dd607d.png"
+    },
+    {
+     "id": "b7a0ae6f-ccec-4d5f-9c77-19017d5b8282",
+     "title": "Reggaeton on Houston - Latin & Reggaeton Party NYC",
+     "time": "Fri 5 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/b7a0ae6f-ccec-4d5f-9c77-19017d5b8282.jpg"
+    },
+    {
+     "id": "7855be32-d229-46d3-805a-2b05f81d2abc",
+     "title": "Cabros Chicos: Black Friday Perreo",
+     "time": "Fri 10 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-26-nyc-skate/events/nyc/covers/7855be32-d229-46d3-805a-2b05f81d2abc.png"
+    }
+   ]
+  }
+ ],
+ "at": 11,
+ "discOpen": false,
+ "joined": false
+}

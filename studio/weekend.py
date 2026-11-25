@@ -11,6 +11,7 @@ Reads from that folder:
                                                                  in the cast speaks in it (look/rig.md, "Talking"), its "says"
                                                                  must start each line on its frame: a shot that differs is
                                                                  refused, with the "says" to write
+                  {"line": 0, "shot": "dinner", "from": 40}      the shot from its frame 40, for a piece that reuses a plate
                   {"line": 1, "shot": "dinner", "zoom": [1.5, 540, 700], "label": {"pick": "<id>", "name": "...", "place": "..."}}
                                                                  the same shot carried on, cut in closer (scale, and the
                                                                  point it grows from), with the listing's facts as a plain
@@ -23,9 +24,14 @@ Reads from that folder:
                   {"line": 8, "map": {"labels": [{"pick": "<id>", "name": "Night Tales", "place": "Echo Park"}]}}
                                                                  the map, for a line about all of them at once: every weekend
                                                                  listing a pin by its own coordinates, the named ones with name and time
+                  {"line": 1, "list": "<listing id>", "on": "free"}  the All events list come to rest on that listing (studio/list.py:
+                                                                 the screen for a pick with no song); on the word "on" a circle goes
+                                                                 round its price (its name when the listing gives none)
                   {"line": 8, "flick": true}                     the carousel swiped, card after card from the first pick
                                                                  (the app's own next cards, whatever they are)
                 "now": the moment in the story, in the city's time ("2026-11-27 18:30"); left out: when the listings were fetched
+                  {"line": 2, "card": 0, "hold": true}           the same card as the beat before, carried on (a second voice line on it)
+                  {"line": 8, "end": true, "cap": true}          the end card with the ask said over it, its captions under the badges
                   {"line": 8, "at": "Send", "end": true}         the end card ("at": a beat that starts on a word inside its line;
                                                                  "after": true: it starts when the line has been said)
                 and how names are written in the captions ("proper", "show", "key")
@@ -54,13 +60,15 @@ scene = os.path.join(d, "scene.html")
 if os.path.exists(scene) and "REEL.seeds" in open(scene).read():
     sys.exit(f"{scene} is the older scene (one screen per card). Delete it and run this again: the new one swipes the app's real carousel.")
 # The app's own carousel for this weekend, and where each pick sits in it. A pick the app would not show as a card stops the build.
-app, moment, car = carousel(ev_dir, "weekend", reel.get("now")); ids = [c["id"] for c in car["cards"]]; picks, facts = [], []
+WHEN = reel.get("when", "weekend")  # what the filter bar says: weekend, tonight, tomorrow
+app, moment, car = carousel(ev_dir, WHEN, reel.get("now")); ids = [c["id"] for c in car["cards"]]; picks, facts = [], []
 for pick in reel["cards"]:
     e = find(app, pick, moment)
     if e["id"] not in ids: sys.exit(f"REFUSED: \"{e['title']}\" is not a card of the app's carousel this weekend (no song, over, or another night). "
                                     f"Show it with a label on a shot, or in All events (studio/list.py).")
     c = car["cards"][ids.index(e["id"])]; picks.append(ids.index(e["id"]))
     facts.append({"listing": c["name"], "when": f"{c['day']}, {c['clock']}", "venue": c["venue"], "price": c["price"], "listed on": c["source"], "ticket page": c["ticketUrl"]})
+if not picks: picks = [0]  # a piece with no card of its own still swipes the app's carousel from its first card
 seed = seed_of(ev_dir, car, moment, picks[0]); seeds = picks
 json.dump(seed, open(os.path.join(d, "events", "seed.json"), "w"), indent=1, ensure_ascii=False)
 
@@ -121,7 +129,7 @@ for i, b in enumerate(reel["beats"]):
     t0, t1 = starts[i], (starts[i + 1] if i + 1 < len(starts) else dur); o = {"t0": t0, "t1": t1}
     if "shot" in b:
         spec = json.load(open(os.path.join(d, "shots", b["shot"] + ".json"))); need = int((t1 - t0) * 24) + 1
-        f0 = used.get(b["shot"], 0); used[b["shot"]] = f0 + int(round((t1 - t0) * 24))  # a second beat on the same shot carries on where the first stopped
+        f0 = b.get("from", used.get(b["shot"], 0)); used[b["shot"]] = f0 + int(round((t1 - t0) * 24))  # a second beat on the same shot carries on where the first stopped
         if spec["frames"] < f0 + need - 4: sys.exit(f"shot {b['shot']} has {spec['frames']} frames; its beats need {f0 + need}")
         o.update(kind="shot", name=b["shot"], frames=spec["frames"], f0=f0, zoom=b.get("zoom"))
         # the cast's lines heard during this shot, each on the frame it starts (a line already running starts before frame 0)
@@ -136,17 +144,27 @@ for i, b in enumerate(reel["beats"]):
             labelled.append({"when": f"{e['day']}, {e['time']}", "listing": e["title"], "venue": e["venue"], "price": price + " (label, no card)", "ticket page": e["ticketUrl"]})
     elif "card" in b:
         on = round(word(b["line"], b["on"], b.get("nth", 0)) - 0.12, 3) if b.get("on") else None
-        o.update(kind="card", card=b["card"], on=on); cues.append(["pop", t0 + 0.02, 0.1])
+        o.update(kind="card", card=b["card"], on=on, hold=bool(b.get("hold")))
+        if not b.get("hold"): cues.append(["pop", t0 + 0.02, 0.1])
         if on: cues.append(["tick", on + 0.1, 0.14])
     elif "chat" in b:
         msgs = [{"me": who == "me", "txt": txt, "t": round(at(b["line"], w) - 0.08, 3) if w else t0} for who, txt, w in b["chat"]["msgs"]]
         o.update(kind="chat", name=b["chat"]["name"], msgs=msgs); cues += [["pop", m["t"], 0.13] for m in msgs]
     elif "map" in b:
         pins = map_pins(b["map"], t0); o.update(kind="map", pins=pins); cues += [["pop", p["t"], 0.12] for p in pins if p.get("name")]
+    elif "list" in b:
+        import subprocess
+        out = os.path.join(d, "events", "seed-list.json"); cmd = [sys.executable, os.path.join(ROOT, "studio/list.py"), ev_dir, "--open", b["list"], "--when", WHEN, "--out", out] + (["--now", reel["now"]] if reel.get("now") else [])
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        if r.returncode: sys.exit(r.stdout + r.stderr)
+        note = json.loads(r.stdout[r.stdout.index("{"):])["opens on"]; on = round(word(b["line"], b["on"], b.get("nth", 0)) - 0.12, 3) if b.get("on") else None
+        o.update(kind="list", id=json.load(open(out))["open"], on=on); cues.append(["pop", t0 + 0.02, 0.1])
+        if on: cues.append(["tick", on + 0.1, 0.14])
+        labelled.append({"when": note["night"] + ", " + note["row"].split(",")[0], "listing": note["listing"], "venue": note["row"].split(", ")[1], "price": note["row"].split(", ")[2] + " (All events row)", "ticket page": note["ticket page"]})
     elif "flick" in b:
-        o.update(kind="flick"); cues += [["tick", round(t0 + k * (t1 - t0) / len(seeds), 3) + 0.02, 0.12] for k in range(len(seeds))]
+        n = b.get("n", len(seeds)); o.update(kind="flick", n=n); cues += [["tick", round(t0 + k * (t1 - t0) / n, 3) + 0.02, 0.12] for k in range(n)]
     else:
-        o.update(kind="end"); cues.append(["pop", t0, 0.12])
+        o.update(kind="end", cap=bool(b.get("cap"))); cues.append(["pop", t0, 0.12])
     beats.append(o)
 if wrong: sys.exit("\n".join(wrong))
 js = {"city": seed["city"], "cards": picks, "beats": beats, "dur": dur, "proper": reel.get("proper", []), "show": reel.get("show", {}), "key": reel.get("key", [])}
