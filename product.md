@@ -24,3 +24,6 @@ Never invent a feature, price, city, number or quote. If it is not here, on pxis
 Real events come from PXI's own API through `studio/events.py`: names, days, venues, prices, posters and ticket
 links, saved with the piece in `sources.md`. A poster is used the way the app uses it, as the cover of that
 event's card. An invented demo event uses plain names and our own flyer, and is never shown as a real listing.
+A real listing is someone else's words and art. Read its title and look at its poster before it is shown, also when
+it only passes in a swipe or sits in a list: one with a slur, hate or nudity stays out of the frame (Nov 24: a
+Los Angeles flyer with a slur in its title sat next to a card we wanted).
