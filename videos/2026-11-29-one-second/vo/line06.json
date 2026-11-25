@@ -1,0 +1,11 @@
+{
+  "key": "line06",
+  "character": "nio",
+  "line": "I'm just going to sit down for one second.",
+  "note": "Easy and casual, already a little sleepy.",
+  "text_sent": "I'm just going to sit down for one second.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.35,
+  "wav_sha256": "0a3f90b0452673b21f184ada364b6cc4ef12a0f63607509de31cdd72e9d22004"
+}

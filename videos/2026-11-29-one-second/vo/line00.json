@@ -1,11 +1,11 @@
 {
   "key": "line00",
   "character": "maya",
-  "line": "Nio, it's Sunday night. Why are you dressed like that?",
+  "line": "Why are you dressed like that on a Sunday?",
   "note": "Quick and flat, like she already regrets asking.",
-  "text_sent": "Nio, it's Sunday night. Why are you dressed like that?",
+  "text_sent": "Why are you dressed like that on a Sunday?",
   "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
   "seed": 7,
-  "dur": 3.95,
-  "wav_sha256": "8f5665a3cad91f2c07b17c798a2fbfe56685a57ff03b7c159689e9bf5beb315c"
+  "dur": 2.33,
+  "wav_sha256": "f88c44fd1ad80bbf3abaa09e94634eb17befb105a3b6ce090049dedbce07755a"
 }

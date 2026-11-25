@@ -1,0 +1,11 @@
+{
+  "key": "line07",
+  "character": "maya",
+  "line": "Nine thirty-one. That's a new record for him.",
+  "note": "Quiet and dry, almost impressed, so she doesn't wake him.",
+  "text_sent": "Nine thirty-one. That's a new record for him.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 3.03,
+  "wav_sha256": "626b2f4f08e6ef5005d23fb49a88157e2c1c046d53926b7d12ab4c743e743c70"
+}

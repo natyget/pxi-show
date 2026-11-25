@@ -1,0 +1,1 @@
+{"set": "nioRoom", "camera": "bed", "frames": 71, "actors": [{"who": "nio", "at": "bedEdge", "action": "sitTalk", "face": [[0, "real"], [40, "asleep"]], "wear": ["partyhat", "bowtie"], "says": [[3, 6]]}]}

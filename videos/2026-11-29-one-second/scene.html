@@ -1,0 +1,214 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- The city weekend reel: this weekend told as nights out. The same file for every city and every week: it loads
+     words.js (the voice) and reel.js (the beats, the cards and every time, written by studio/weekend.py).
+     A beat is a rig shot of that kind of night, the pick's real Discover card, a chat, the map, or the end card.
+     An app screen is shown clean (look/look.md): whole, centred, on the app's own black from edge to edge, nothing
+     laid over it. On the price's word a hand-drawn circle goes round the price; nothing zooms. The cards are one real
+     carousel (look/app-screens/discover.html). The map is our drawing: the real listings as pins, placed by their
+     own coordinates. The picture changes on every voice line; on a card the captions sit on the poster. -->
+<style>
+@font-face{font-family:Inter;src:url(/look/fonts/inter.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"DM Mono";src:url(/look/fonts/dm-mono-500.woff2) format("woff2");font-weight:500}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+#art,#ui{position:absolute;inset:0}
+#art{background:#1d1820}
+body.pass-ui #art{visibility:hidden} /* hidden, not removed: the circle is measured from the app screen */
+body.pass-art #ui{display:none}
+#grain{position:absolute;inset:0;background:url(/look/brand/grain.webp);opacity:.22;mix-blend-mode:overlay;pointer-events:none}
+#tap{position:absolute;left:0;top:0;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:rgba(255,255,255,.3);border:5px solid #fff;opacity:0}
+#plate{position:absolute;left:0;top:0;width:1080px;height:1920px;image-rendering:pixelated;display:none}
+/* the phone: body and the real screen, moved by one camera */
+#pwrap{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+#screen{position:absolute;left:271px;top:316px;width:538px;height:1164px;overflow:hidden;background:#000} /* no bezel and no rounded corner: the app's black runs to the edge of the picture */
+#screen iframe{position:absolute;left:0;top:0;width:390px;height:844px;border:0;transform:scale(1.37949);transform-origin:0 0;background:transparent}
+/* captions and the end card (always sharp) */
+#cap{position:absolute;left:90px;right:150px;top:1160px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 22px;text-align:center}
+#cap span{font:900 84px/1.12 Inter;color:#fff;letter-spacing:-1px;paint-order:stroke fill;-webkit-text-stroke:14px #000;display:inline-block;transform-origin:50% 70%}
+#cap span.k{color:#c26bff}
+#cap.onlist{left:0;right:0;padding:26px 150px 30px 90px;background:#000} /* on the list the words get the app's own black under them: never text on text */
+#cap.onlist:empty{display:none}
+#end{position:absolute;inset:0;background:#050505;opacity:0}
+#end .icon{position:absolute;left:410px;top:400px;width:260px;height:260px;border-radius:60px;overflow:hidden;background:#000;box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+#end .icon img{width:100%;height:100%}
+#end .nm{position:absolute;left:0;right:0;top:690px;text-align:center;color:#fff;font:900 96px Inter;letter-spacing:-2px}
+#end .free{position:absolute;left:0;right:0;top:810px;text-align:center;color:#c9c9c7;font:500 46px "DM Mono"}
+#end .badges{position:absolute;left:0;right:0;top:905px;display:flex;justify-content:center;align-items:center;gap:22px}
+#end .badges img.as{height:118px}
+#end .badges img.gp{height:108px;margin:-17px -12px}
+/* the chat (a one-to-one thread, as it looks on a phone) */
+#chat{position:absolute;left:0;top:0;width:538px;height:957px;background:#000;display:none} /* as wide as the picture and exactly as tall: header at the top, the message bar at the bottom, black to every edge */
+#chat .hd{position:absolute;left:0;right:0;top:0;height:170px;background:#000}
+#chat .hd .nm{position:absolute;left:0;right:0;top:108px;text-align:center;color:#fff;font:600 26px Inter}
+#chat .hd .av{position:absolute;left:229px;top:22px;width:80px;height:80px;border-radius:40px;background:#3a3a3c;color:#fff;font:700 34px Inter;display:flex;align-items:center;justify-content:center}
+#chat .hd .bk{position:absolute;left:26px;top:48px;color:#0a84ff;font:500 54px Inter}
+#list{position:absolute;left:0;right:0;top:214px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:0 22px}
+#list .ts{align-self:center;color:#8e8e93;font:500 22px Inter;margin:2px 0 8px}
+#list .b{display:inline-block;width:fit-content;max-width:400px;background:#262628;color:#fff;font:500 36px/1.15 Inter;padding:10px 22px 12px;border-radius:30px;transform-origin:0 100%}
+#list .b.me{align-self:flex-end;background:#0a84ff;transform-origin:100% 100%}
+#chat .in{position:absolute;left:22px;right:22px;bottom:60px;height:76px;border-radius:38px;border:2px solid #2c2c2e;display:flex;align-items:center;gap:18px;padding:0 14px;color:#5c5c61;font:400 34px Inter}
+#chat .in .plus{width:50px;height:50px;border-radius:25px;background:#2c2c2e;color:#9a9aa0;display:flex;align-items:center;justify-content:center;font:400 40px/1 Inter}
+/* a listing's facts beside a picture of the night, when the app shows it in All events and not as a card */
+#lab{position:absolute;left:100px;right:160px;top:380px;color:#fff;paint-order:stroke fill;-webkit-text-stroke:12px #000;opacity:0}
+#lab b{display:block;font:900 64px/1.05 Inter;letter-spacing:-1px}
+#lab i{display:block;font:500 40px/1.25 "DM Mono";font-style:normal;color:#e6d6ff;margin-top:10px}
+/* a circle drawn by hand round the thing the voice names (sharp layer) */
+#ring{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;pointer-events:none}
+#ring path{fill:none;stroke:#a523ef;stroke-width:11;stroke-linecap:round;stroke-linejoin:round}
+/* the map: our drawing of everything on, the real listings as pins */
+#map{position:absolute;left:0;top:0;width:1080px;height:1920px;display:none}
+#map .st{stroke:#2f2a38;stroke-width:14}
+#map .pin{fill:#a523ef;stroke:#1b1416;stroke-width:7;stroke-linejoin:round}
+.mlab{position:absolute;color:#fff;paint-order:stroke fill;-webkit-text-stroke:12px #000;opacity:0;white-space:nowrap}
+.mlab b{display:block;font:900 52px/1.05 Inter;letter-spacing:-1px}
+.mlab i{display:block;font:500 36px/1.2 "DM Mono";font-style:normal;color:#e6d6ff;margin-top:6px}
+</style></head>
+<body>
+<div id="stage">
+<div id="art">
+  <img id="plate">
+  <svg id="map" viewBox="0 0 1080 1920"><rect width="1080" height="1920" fill="#1a1720"/><g id="streets"></g><g id="pins"></g></svg>
+  <div id="pwrap" style="visibility:hidden"><div id="screen">
+    <div id="chat"><div class="hd"><div class="bk">‹</div><div class="av" id="chav"></div><div class="nm" id="chnm"></div></div>
+      <div id="list"></div><div class="in"><span class="plus">+</span><span>Message</span></div></div>
+  </div></div>
+  <div id="grain"></div>
+</div>
+<div id="ui">
+  <div id="end"><div class="icon"><img src="/look/brand/pxi-app-icon.png"></div><div class="nm">PXI</div><div class="free">free</div>
+    <div class="badges"><img class="as" src="/look/brand/app-store-badge.svg"><img class="gp" src="/look/brand/google-play-badge.png"></div></div>
+  <svg id="ring"><path id="ringp" d=""/></svg>
+  <div id="mlabs"></div>
+  <div id="lab"><b></b><i></i></div>
+  <div id="cap"></div>
+</div>
+</div>
+<script src="words.js"></script>
+<script src="reel.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const eOut = (p) => 1 - Math.pow(1 - clamp(p), 3);
+const eIO = (p) => { p = clamp(p); return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+const eBack = (p) => { p = clamp(p); const c = 1.6; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+const pr = (t, a, d) => clamp((t - a) / d);
+const W = VO.words, B = REEL.beats, DUR = REEL.dur;
+
+// one Discover screen: the app's carousel, with every card in it (events/seed.json, written by studio/weekend.py)
+{ const f = document.createElement('iframe'); f.id = 'disc'; f.src = '/look/app-screens/discover.html?seed=events/seed.json'; $('screen').insertBefore(f, $('chat')); }
+// the All events list, for a pick the app shows there and not as a card (events/seed-list.json, written by studio/list.py)
+const LISTB = B.find((x) => x.kind === 'list');
+if (LISTB) { const f = document.createElement('iframe'); f.id = 'lst'; f.style.visibility = 'hidden'; f.src = '/look/app-screens/all-events.html?seed=events/seed-list.json'; $('screen').insertBefore(f, $('chat')); }
+const app = () => $('disc').contentWindow;
+const PICKS = REEL.cards;          // where each pick sits in the carousel
+const POP = 0.45;                  // a card's record pops out this long after the card arrives (its orange tab pressed)
+
+// captions: every spoken word, in the phrases the script breaks them into (studio/voice.py: " / " in a voice line)
+const groups = [];
+W.forEach((w) => { const g = groups[groups.length - 1]; if (g && g.line === w.line && g.g === w.g) g.words.push(w); else groups.push({ line: w.line, g: w.g, words: [w] }); });
+groups.forEach((g, i) => { const last = g.words[g.words.length - 1]; g.s = g.words[0].s - 0.02; const nx = groups[i + 1]; g.e = nx ? Math.min(nx.words[0].s - 0.02, last.e + 0.7) : last.e + 1.6; });
+// a line's last words leave before the picture changes
+groups.forEach((g, i) => { const nx = groups[i + 1]; if (nx && nx.words[0].line !== g.words[0].line) g.e = Math.min(g.e, Math.max(g.words[g.words.length - 1].e + 0.1, VO.lines[nx.words[0].line].s - 0.14)); });
+// no caption lies on the end card
+{ const end = B.find((x) => x.kind === 'end'); if (end && !end.cap) groups.forEach((g) => { g.e = Math.min(g.e, end.t0); }); } // unless the ask is said over it (the beat's "cap")
+const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+const PROPER = new Set([...REEL.proper, 'PXI', ...DAYS, ...DAYS.map((d) => d + "'s")].map((x) => x.toLowerCase()));
+const KEY = new Set(['pxi', 'free', ...DAYS, ...DAYS.map((d) => d + "'s"), ...REEL.key.map((x) => x.toLowerCase())]);
+const show = (w) => { const s = REEL.show[w] || w; return s === 'PXI' ? s : PROPER.has(s.toLowerCase()) ? s[0].toUpperCase() + s.slice(1) : s.toLowerCase(); };
+
+// the phone camera: a point of the phone (P) lands on a point of the picture (Q), at scale s
+const pt = (x, y) => [271 + 1.37949 * x, 316 + 1.37949 * y]; // a point of the 390x844 app screen, in phone space
+function cam(c) { return `translate(${c.Q[0] - c.s * c.P[0]}px,${c.Q[1] - c.s * c.P[1]}px) scale(${c.s})`; }
+function mix(a, b, p) { return { s: lerp(a.s, b.s, p), P: [lerp(a.P[0], b.P[0], p), lerp(a.P[1], b.P[1], p)], Q: [lerp(a.Q[0], b.Q[0], p), lerp(a.Q[1], b.Q[1], p)] }; }
+const CF = { s: 1920 / 1164, P: [540, 898], Q: [540, 960] };     // the whole app screen, centred, as tall as the picture; its black fills the margins
+const CW = { s: 1080 / 538, P: [540, 316], Q: [540, 0] };          // the chat, as wide as the picture
+const toFrame = (r) => { const k = 1.37949 * CF.s, x0 = CF.Q[0] + CF.s * (271 - CF.P[0]), y0 = CF.Q[1] + CF.s * (316 - CF.P[1]); return [x0 + k * r.left, y0 + k * r.top, k * r.width, k * r.height]; }; // a box of the app screen, in the picture
+// a hand-drawn loop round a box: an ellipse a little off true that overshoots its start
+function loop(x, y, w, h) { const cx = x + w / 2, cy = y + h / 2, rx = w / 2 + 34, ry = h / 2 + 22; let d = '';
+  for (let i = 0; i <= 44; i++) { const a = -2.4 + (i / 40) * Math.PI * 2, k = 1 + 0.045 * Math.sin(a * 3 + 1) + 0.02 * (i / 44); d += `${i ? 'L' : 'M'}${(cx + rx * k * Math.cos(a)).toFixed(1)},${(cy + ry * k * Math.sin(a) + 5 * Math.sin(a * 2)).toFixed(1)} `; }
+  return d; }
+// the map's streets (a drawing, not a street plan) and its pins
+{ let h = ''; for (let i = -6; i < 16; i++) h += `<line class="st" x1="${-300 + i * 130}" y1="-200" x2="${-300 + i * 130 + 360}" y2="2100"/>`;
+  for (let j = -2; j < 18; j++) h += `<line class="st" x1="-200" y1="${j * 125}" x2="1300" y2="${j * 125 - 230}"/>`; $('streets').innerHTML = h; }
+const MAPB = B.find((x) => x.kind === 'map');
+if (MAPB) { $('pins').innerHTML = MAPB.pins.map((p, i) => `<g transform="translate(${p.x},${p.y})"><g id="pin${i}" opacity="${p.name ? 1 : 0.45}"><path class="pin" d="M0,0 C-10,-22 -34,-40 -34,-62 A34,34 0 1 1 34,-62 C34,-40 10,-22 0,0 Z"/><circle cx="0" cy="-62" r="12" fill="#fff"/></g></g>`).join('');
+  $('mlabs').innerHTML = MAPB.pins.map((p, i) => p.name ? `<div class="mlab" id="ml${i}" style="left:${p.lx}px;top:${p.ly}px"><b>${p.name}</b><i>${p.when}</i></div>` : '').join(''); }
+
+let lastChat = '';
+window.render = function (t, pass) {
+  document.body.classList.toggle('pass-ui', pass === 'ui');
+  document.body.classList.toggle('pass-art', pass === 'art');
+  const A = app();
+  $('grain').style.backgroundPosition = `${(Math.floor(t * 12) * 37) % 200}px ${(Math.floor(t * 12) * 91) % 200}px`;
+  const b = B.find((x) => t >= x.t0 && t < x.t1) || B[B.length - 1];
+  /* a rig shot: one PNG per frame at 24 a second */
+  let wait = true; const im = $('plate');
+  if (b.kind === 'shot') {
+    const f = Math.min(b.frames - 1, (b.f0 || 0) + Math.floor((t - b.t0) * 24)), src = `plates/${b.name}/f${String(f).padStart(4, '0')}.png`;
+    im.style.display = 'block'; im.style.transformOrigin = b.zoom ? `${b.zoom[1]}px ${b.zoom[2]}px` : '50% 50%'; im.style.transform = b.zoom ? `scale(${b.zoom[0]})` : 'none';
+    if (im.dataset.src !== src) { im.dataset.src = src; im.src = src; wait = im.decode().then(() => true, () => true); }
+  } else im.style.display = 'none';
+  const flick = b.kind === 'flick';
+  const phone = b.kind === 'card' || b.kind === 'chat' || b.kind === 'list' || flick;
+  $('grain').style.display = 'none'; // nothing is laid over an app screen, and a plate carries its own grain
+  $('art').style.background = phone ? '#000' : '#1d1820';
+  $('map').style.display = b.kind === 'map' ? 'block' : 'none';
+  $('pwrap').style.visibility = phone ? '' : 'hidden'; // hidden, never removed: the app screens keep their measures
+  $('disc').style.display = b.kind === 'card' || flick ? '' : 'none';
+  if (LISTB) { const L = $('lst'); L.style.visibility = b.kind === 'list' ? '' : 'hidden';
+    if (b.kind === 'list') { $('pwrap').style.transform = cam(CF); const w = L.contentWindow, y = w.rowY(b.id); // the list comes to rest on the pick, as a thumb would leave it
+      w.scrollList(y - (b.hold ? 0 : 260 * (1 - eOut(pr(t, b.t0, 0.7))))); w.press(b.id, b.on != null ? Math.sin(Math.PI * pr(t, b.on, 0.3)) : 0); } }
+  if (flick) { // a real swipe, card after card from the first pick, each one landing on the app's own spring
+    const n = b.n || PICKS.length, sl = (b.t1 - b.t0) / n, k = Math.min(n - 1, Math.floor((t - b.t0) / sl)), into = t - b.t0 - k * sl;
+    A.disc(0); A.swipe(PICKS[0] + k - 1, k === 0 ? 1 : A.spring('snap', into));
+    $('pwrap').style.transform = cam(CF); }
+  $('chat').style.display = b.kind === 'chat' ? 'block' : 'none';
+  if (b.kind === 'card') {
+    $('pwrap').style.transform = cam(CF);
+    const out = b.hold ? 9 : Math.max(0, t - b.t0 - POP); // "hold": the same card as the beat before, its record already out
+    A.swipe(PICKS[b.card], 0); A.disc(A.spring('disc', out)); A.spin(out * 40); // VinylDisc turns once in nine seconds
+  }
+  if (b.kind === 'chat') {
+    $('pwrap').style.transform = cam(CW);
+    const shown = b.msgs.filter((m) => t >= m.t), key = b.name + shown.length;
+    if (key !== lastChat) { lastChat = key; $('chav').textContent = b.name[0].toUpperCase(); $('chnm').textContent = b.name;
+      $('list').innerHTML = shown.map((m) => `<div class="b ${m.me ? 'me' : ''}">${m.txt}</div>`).join(''); }
+    const kids = $('list').querySelectorAll('.b');
+    shown.forEach((m, i) => { const p = m.t <= b.t0 ? 1 : pr(t, m.t, 0.25); kids[i].style.transform = `translateY(${(1 - eBack(p)) * 36}px) scale(${lerp(.6, 1, eBack(p))})`; kids[i].style.opacity = clamp(p * 3); });
+  }
+  { const L = $('lab'), on = b.kind === 'shot' && b.label; if (on) { L.querySelector('b').textContent = b.label[0]; L.querySelector('i').textContent = b.label[1]; }
+    const p = on ? eOut(pr(t, b.t0 + 0.1, 0.25)) : 0; L.style.opacity = p; L.style.transform = `translateY(${(1 - p) * 20}px)`; }
+  { const R = $('ringp'); let d = '', p = 0; // the circle round the price, drawn on its word; it lands with a small pop
+    if (b.kind === 'card' && b.on != null && t >= b.on) { const lab = [...$('disc').contentDocument.querySelectorAll('.lab2')].filter((e) => /^\s*price\s*$/i.test(e.textContent)).map((e) => [e, e.parentElement.getBoundingClientRect()]).filter(([e, r]) => r.left >= 0 && r.right <= 390 && r.top > 300 && r.width > 0).map(([e]) => e)[0]; // the centred card's own price
+      if (lab) { const [x, y, w, h] = toFrame(lab.parentElement.getBoundingClientRect()); const tw = Math.max(150, Math.min(w, 60 + 26 * lab.parentElement.textContent.replace(/price/i, '').length)); d = loop(x - 8, y, tw, h); p = eOut(pr(t, b.on, 0.32)); } }
+    if (b.kind === 'list' && b.on != null && t >= b.on) { const row = $('lst').contentDocument.querySelector(`.row[data-id="${b.id}"]`), el = row && (row.querySelector('.pr') || row.querySelector('.top'));
+      if (el) { const [x, y, w, h] = toFrame(el.getBoundingClientRect()); d = loop(x, y, w, h); p = eOut(pr(t, b.on, 0.32)); } }
+    R.setAttribute('d', d); if (d) { const L = R.getTotalLength(); R.style.strokeDasharray = L; R.style.strokeDashoffset = L * (1 - p); const k = 1 + 0.07 * Math.sin(Math.PI * pr(t, b.on + 0.3, 0.22)); const bb = R.getBBox(); R.style.transformOrigin = `${bb.x + bb.width / 2}px ${bb.y + bb.height / 2}px`; R.style.transform = `scale(${k})`; } }
+  if (MAPB) MAPB.pins.forEach((pn, i) => { const on = b.kind === 'map', p = on ? eBack(pr(t, pn.t, 0.3)) : 0, g = $('pin' + i); g.setAttribute('transform', `scale(${p})`);
+    const L = $('ml' + i); if (L) { const q = on ? eOut(pr(t, pn.t + 0.12, 0.22)) : 0; L.style.opacity = q; L.style.transform = `translateY(${(1 - q) * 14}px)`; } });
+  /* the end card and the captions */
+  const end = B.find((x) => x.kind === 'end'), te = end ? end.t0 : 1e9;
+  $('end').style.opacity = t >= te ? 1 : 0; // whole on its first frame: a fade from black reads as the video being over
+  document.querySelector('#end .icon').style.transform = `scale(${lerp(0.9, 1, eBack(pr(t, te, 0.25)))})`;
+  const g = groups.find((x) => t >= x.s && t < x.e);
+  $('cap').style.top = (b.kind === 'card' || b.kind === 'flick' ? 1010 : b.kind === 'list' ? 1312 : 1160) + 'px'; // on a card the words sit on the poster, clear of the app's own text
+  $('cap').classList.toggle('onlist', b.kind === 'list'); $('cap').innerHTML = !g ? '' : g.words.map((w) => { const v = t >= w.s - 0.03; const p = eBack(pr(t, w.s - 0.03, 0.12)); return `<span class="${KEY.has((REEL.show[w.w] || w.w).toLowerCase()) ? 'k' : ''}" style="opacity:${v ? 1 : 0};transform:scale(${v ? lerp(.85, 1, p) : .85})">${show(w.w)}</span>`; }).join('');
+  return wait;
+};
+// The app screen is ready when it says so (its fonts are in and its words are fitted); then every card's pictures are decoded.
+window.ready = async () => {
+  const f = $('disc');
+  await new Promise((res) => { const ok = () => f.contentDocument && f.contentDocument.body && f.contentDocument.body.dataset.ready === '1'; const tick = () => (ok() ? res() : setTimeout(tick, 50)); tick(); });
+  await document.fonts.ready;
+  for (const b of B) { if (b.kind !== 'card' && b.kind !== 'chat' && b.kind !== 'flick') continue;
+    for (const t of b.kind === 'flick' ? Array.from({ length: b.n || PICKS.length }, (_, k) => b.t0 + (k + 0.9) * (b.t1 - b.t0) / (b.n || PICKS.length)) : [b.t0 + 0.6]) { window.render(t, 'all'); await new Promise((r) => setTimeout(r, 250)); } }
+  await Promise.all([...f.contentDocument.images].map((im) => im.decode().catch(() => {})));
+  if (LISTB) { const l = $('lst'); await new Promise((res) => { const tick = () => (l.contentDocument && l.contentDocument.body && l.contentDocument.body.dataset.ready === '1' ? res() : setTimeout(tick, 50)); tick(); });
+    window.render(LISTB.t0 + 1, 'all'); await new Promise((r) => setTimeout(r, 300)); await Promise.all([...l.contentDocument.images].map((im) => im.decode().catch(() => {}))); }
+  await document.fonts.ready;
+};
+</script>
+</body></html>

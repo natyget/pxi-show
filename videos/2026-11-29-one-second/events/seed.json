@@ -1,461 +1,61 @@
 {
- "clock": "4:30",
+ "clock": "7:30",
  "when": "This weekend",
  "city": "Los Angeles",
  "me": "assets/me-nio.png",
  "second": "Map",
  "cards": [
   {
-   "id": "bfa47da2-61dc-42b9-a3f2-70365b1ace2e",
-   "external": true,
-   "name": "Time Warp Los Angeles",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/bfa47da2-61dc-42b9-a3f2-70365b1ace2e.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/covers/bfa47da2-61dc-42b9-a3f2-70365b1ace2e.jpg",
-   "labelFallback": true,
-   "record": [
-    "TECHNO",
-    "FEMME"
-   ],
-   "day": "Today",
-   "clock": "2 PM",
-   "location": "ACE*MISSION STUDIOS",
-   "price": "$125.17",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/bfa47da2-61dc-42b9-a3f2-70365b1ace2e.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "4ace576e-4efe-4460-a09e-72118e5d0d9a",
-   "external": true,
-   "name": "A Real Nigga Holiday",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/4ace576e-4efe-4460-a09e-72118e5d0d9a.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-4ace576e-4efe-4460-a09e-72118e5d0d9a.jpg",
-   "labelFallback": false,
-   "record": [
-    "LIL BEAN",
-    "REAL NIGGA HOLIDAY"
-   ],
-   "day": "Tonight",
-   "clock": "6 PM",
-   "location": "3846 WELLINGTON RD",
-   "price": "FREE",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/4ace576e-4efe-4460-a09e-72118e5d0d9a.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "27294deb-b318-4e6b-a6ab-b085aee4f51e",
-   "external": true,
-   "name": "Whenimondamic w/ Blu + Sndtrak live!",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/27294deb-b318-4e6b-a6ab-b085aee4f51e.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-27294deb-b318-4e6b-a6ab-b085aee4f51e.jpg",
-   "labelFallback": false,
-   "record": [
-    "HIP-HOP",
-    "LA"
-   ],
-   "day": "Tonight",
-   "clock": "8 PM",
-   "location": "HELLO STRANGER",
-   "price": "$24.19",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/27294deb-b318-4e6b-a6ab-b085aee4f51e.svg",
-    "w": 98.10000000000001,
-    "h": 98.10000000000001
-   }
-  },
-  {
-   "id": "3b7e9875-fb19-4bfc-9c9f-a5b77180e8f7",
-   "external": true,
-   "name": "SWEET TALK - THANKFUL FOR R&B",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/3b7e9875-fb19-4bfc-9c9f-a5b77180e8f7.png",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-3b7e9875-fb19-4bfc-9c9f-a5b77180e8f7.jpg",
-   "labelFallback": false,
-   "record": [
-    "R-AND-B",
-    "BE WITHOUT YOU"
-   ],
-   "day": "Tonight",
-   "clock": "9 PM",
-   "location": "CHINATOWN",
-   "price": "TBA",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/3b7e9875-fb19-4bfc-9c9f-a5b77180e8f7.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "351b05f3-10f3-4281-a0c6-e5e1526ef688",
-   "external": true,
-   "name": "Night Tales",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/351b05f3-10f3-4281-a0c6-e5e1526ef688.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-351b05f3-10f3-4281-a0c6-e5e1526ef688.jpg",
-   "labelFallback": false,
-   "record": [
-    "NIGHT TALES",
-    "BELIEVE"
-   ],
-   "day": "Tonight",
-   "clock": "10 PM",
-   "location": "THE SPOTLIGHT",
-   "price": "$24.93",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/351b05f3-10f3-4281-a0c6-e5e1526ef688.svg",
-    "w": 98.10000000000001,
-    "h": 98.10000000000001
-   }
-  },
-  {
-   "id": "f3050c6c-6899-4652-b04a-c4eefac67247",
-   "external": true,
-   "name": "AFTERS 11-27 ( FRIDAY )",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/f3050c6c-6899-4652-b04a-c4eefac67247.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-f3050c6c-6899-4652-b04a-c4eefac67247.jpg",
-   "labelFallback": false,
-   "record": [
-    "HOUSE",
-    "LITTLE STORY"
-   ],
-   "day": "Tonight",
-   "clock": "11 PM",
-   "location": "129 E 3RD ST",
-   "price": "TBA",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/f3050c6c-6899-4652-b04a-c4eefac67247.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "dbd1b910-f981-4ccb-a921-03db0a29bb06",
-   "external": true,
-   "name": "MASC TAKEOVER | Sapphic Saturdays",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/dbd1b910-f981-4ccb-a921-03db0a29bb06.png",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-dbd1b910-f981-4ccb-a921-03db0a29bb06.jpg",
-   "labelFallback": false,
-   "record": [
-    "LAH PAT",
-    "RODEO (REMIX)"
-   ],
-   "day": "SAT",
-   "clock": "4 PM",
-   "location": "BEACHES TROPICANA",
-   "price": "$11.99",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/dbd1b910-f981-4ccb-a921-03db0a29bb06.svg",
-    "w": 98.10000000000001,
-    "h": 98.10000000000001
-   }
-  },
-  {
-   "id": "ab651338-5294-45b8-aebb-e861eb1af50c",
-   "external": true,
-   "name": "Solomun",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/ab651338-5294-45b8-aebb-e861eb1af50c.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-ab651338-5294-45b8-aebb-e861eb1af50c.jpg",
-   "labelFallback": false,
-   "record": [
-    "SOLOMUN",
-    "SOMETHING WE ALL ADORE"
-   ],
-   "day": "SAT",
-   "clock": "6 PM",
-   "location": "REFRAME STUDIOS OUTDOORS",
-   "price": "$118.59",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/ab651338-5294-45b8-aebb-e861eb1af50c.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "f90cec5c-300d-459d-a8de-47c78207f84e",
-   "external": true,
-   "name": "Art & Vibrations: Edible Archive Art, Flavor & Ancestral Memory",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/f90cec5c-300d-459d-a8de-47c78207f84e.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-f90cec5c-300d-459d-a8de-47c78207f84e.jpg",
-   "labelFallback": false,
-   "record": [
-    "CLEO SOL",
-    "WHEN I'M IN YOUR ARMS"
-   ],
-   "day": "SAT",
-   "clock": "6 PM",
-   "location": "4065 KENWAY AVE",
-   "price": "$50.49",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/f90cec5c-300d-459d-a8de-47c78207f84e.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "97480442-6379-4e95-be18-071c86d86bfa",
-   "external": true,
-   "name": "SATURDAY NIGHT IN LITTLE TOKYO",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/97480442-6379-4e95-be18-071c86d86bfa.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-97480442-6379-4e95-be18-071c86d86bfa.jpg",
-   "labelFallback": false,
-   "record": [
-    "BABY KEEM",
-    "BIRDS & THE BEES"
-   ],
-   "day": "SAT",
-   "clock": "9 PM",
-   "location": "KODAMA LOUNGE | LITTLE TOKYO",
-   "price": "FREE",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/97480442-6379-4e95-be18-071c86d86bfa.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "325f9f13-00e7-4f80-b5ea-87b789c9d105",
-   "external": true,
-   "name": "WETHEDREAMENT PRESENTS: USC VS UCLA AFTER PARTY",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/325f9f13-00e7-4f80-b5ea-87b789c9d105.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-325f9f13-00e7-4f80-b5ea-87b789c9d105.jpg",
-   "labelFallback": false,
-   "record": [
-    "DJ WESTCOAST",
-    "FUCK IT UP"
-   ],
-   "day": "SAT",
-   "clock": "9 PM",
-   "location": "1465 HOOPER AVE.",
-   "price": "TBA",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/325f9f13-00e7-4f80-b5ea-87b789c9d105.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "2e94df2e-67e6-411b-944e-3d0c98bc9435",
-   "external": true,
-   "name": "Cumbias En El Club (SAT NOV 28 | SAB 28 DE NOV)",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/2e94df2e-67e6-411b-944e-3d0c98bc9435.png",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-2e94df2e-67e6-411b-944e-3d0c98bc9435.jpg",
-   "labelFallback": false,
-   "record": [
-    "LATIN",
-    "CUMBIA SUAVE"
-   ],
-   "day": "SAT",
-   "clock": "10 PM",
-   "location": "HELLO STRANGER LITTLE TOKYO",
-   "price": "TBA",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/2e94df2e-67e6-411b-944e-3d0c98bc9435.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "021656c3-18f6-49ee-8064-1338ca047c24",
-   "external": true,
-   "name": "BRAINCELL LASERTAG",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/021656c3-18f6-49ee-8064-1338ca047c24.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-021656c3-18f6-49ee-8064-1338ca047c24.jpg",
-   "labelFallback": false,
-   "record": [
-    "NIKKI NAIR",
-    "STARTRACK"
-   ],
-   "day": "SAT",
-   "clock": "10 PM",
-   "location": "DTLA, LOCATION TBA",
-   "price": "$31.73",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/021656c3-18f6-49ee-8064-1338ca047c24.svg",
-    "w": 98.10000000000001,
-    "h": 98.10000000000001
-   }
-  },
-  {
-   "id": "5b900c07-de2f-4ecd-9d37-c829145384c2",
-   "external": true,
-   "name": "AFTERS 11-28 ( SATURDAY )",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/5b900c07-de2f-4ecd-9d37-c829145384c2.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-5b900c07-de2f-4ecd-9d37-c829145384c2.jpg",
-   "labelFallback": false,
-   "record": [
-    "HOUSE",
-    "HYPED IN LA"
-   ],
-   "day": "SAT",
-   "clock": "11 PM",
-   "location": "129 E 3RD ST",
-   "price": "TBA",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/5b900c07-de2f-4ecd-9d37-c829145384c2.svg",
-    "w": 80.66,
-    "h": 80.66
-   }
-  },
-  {
-   "id": "f05cb42a-e01f-4eea-8dc6-85fb229ec2f7",
-   "external": true,
-   "name": "Midnight Lovers with Demi Riquísimo",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.jpg",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.jpg",
-   "labelFallback": false,
-   "record": [
-    "HOUSE",
-    "NEVER SEEN YOU DANCE (DEMI RIQUÍSIMO REMIX)"
-   ],
-   "day": "SAT",
-   "clock": "11:45 PM",
-   "location": "LOCATION TBA, LOS ANGELES",
-   "price": "$35.02",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.svg",
-    "w": 98.10000000000001,
-    "h": 98.10000000000001
-   }
-  },
-  {
-   "id": "b269ad8e-8428-42e5-b10f-36c586b01d05",
-   "external": true,
-   "name": "Rhythm & Brewed - R&B Cafe Experience",
-   "hideName": true,
-   "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/b269ad8e-8428-42e5-b10f-36c586b01d05.png",
-   "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-b269ad8e-8428-42e5-b10f-36c586b01d05.jpg",
-   "labelFallback": false,
-   "record": [
-    "R-AND-B",
-    "FAMILY REUNION"
-   ],
-   "day": "SUN",
-   "clock": "3 PM",
-   "location": "ORA CAFE",
-   "price": "$23.39",
-   "match": null,
-   "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/b269ad8e-8428-42e5-b10f-36c586b01d05.svg",
-    "w": 98.10000000000001,
-    "h": 98.10000000000001
-   }
-  },
-  {
    "id": "ed68ff9c-522c-41c0-9b69-59b8877c7adc",
    "external": true,
    "name": "Sunday Funday LA 18+ Hosted By DJ SMOKE ONE",
    "hideName": true,
    "host": "",
-   "cover": "/videos/2026-11-27-strangers/events/la/covers/ed68ff9c-522c-41c0-9b69-59b8877c7adc.png",
+   "cover": "/videos/2026-11-29-one-second/events/la/covers/ed68ff9c-522c-41c0-9b69-59b8877c7adc.png",
    "poster": null,
-   "label": "/videos/2026-11-27-strangers/events/la/art/art-ed68ff9c-522c-41c0-9b69-59b8877c7adc.jpg",
+   "label": "/videos/2026-11-29-one-second/events/la/art/art-ed68ff9c-522c-41c0-9b69-59b8877c7adc.jpg",
    "labelFallback": false,
    "record": [
     "FUTURE",
     "YA HIT (FEAT. DRAKE, TRAVIS SCOTT & LOE SHIMMY)"
    ],
-   "day": "SUN",
+   "day": "Tonight",
    "clock": "10 PM",
    "location": "LOS GLOBOS",
    "price": "TBA",
    "match": null,
    "stamp": {
-    "img": "/videos/2026-11-27-strangers/events/la/stamps/ed68ff9c-522c-41c0-9b69-59b8877c7adc.svg",
+    "img": "/videos/2026-11-29-one-second/events/la/stamps/ed68ff9c-522c-41c0-9b69-59b8877c7adc.svg",
     "w": 80.66,
     "h": 80.66
    }
   },
   {
    "doorway": true,
-   "count": 104,
+   "count": 24,
    "windowLabel": "THIS WEEKEND",
-   "from": "From Eventbrite, RA, Ticketmaster, DICE and Partiful",
+   "from": "From Eventbrite, RA, Ticketmaster and DICE",
    "picks": [
     {
-     "id": "b34fd766-14e0-4603-914d-dedb5e43d092",
+     "id": "2219b227-3035-41fd-a2b5-b58e0705919e",
      "title": "Foodies + New Friends Echo Park: Dinner with Strangers",
      "time": "7 PM",
      "poster": null,
-     "cover": "/videos/2026-11-27-strangers/events/la/covers/b34fd766-14e0-4603-914d-dedb5e43d092.jpg"
+     "cover": "/videos/2026-11-29-one-second/events/la/covers/2219b227-3035-41fd-a2b5-b58e0705919e.jpg"
     },
     {
-     "id": "525cfc77-923b-4b53-a0a8-c680a9f168f6",
-     "title": "Hollywood Palladium Pregame & After‑Show at Sunset Rooftop — 2 Minute Walk",
-     "time": "5 PM",
-     "poster": null,
-     "cover": "/videos/2026-11-27-strangers/events/la/covers/525cfc77-923b-4b53-a0a8-c680a9f168f6.jpg"
-    },
-    {
-     "id": "24fa8fd3-57fc-40b3-901f-e3e5a396d2c1",
+     "id": "35d070f9-1c5b-44c1-85c4-cfbb66bb2c98",
      "title": "Sip Smoke And Paint - Dj Pony Boy",
      "time": "5:30 PM",
      "poster": null,
-     "cover": "/videos/2026-11-27-strangers/events/la/covers/24fa8fd3-57fc-40b3-901f-e3e5a396d2c1.jpg"
+     "cover": "/videos/2026-11-29-one-second/events/la/covers/35d070f9-1c5b-44c1-85c4-cfbb66bb2c98.jpg"
+    },
+    {
+     "id": "80b1b81b-c673-4f02-8a06-9ea96a99c9ef",
+     "title": "NIGHTSHIFT AFTER HOURS",
+     "time": "11 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-29-one-second/events/la/covers/80b1b81b-c673-4f02-8a06-9ea96a99c9ef.jpg"
     }
    ]
   }

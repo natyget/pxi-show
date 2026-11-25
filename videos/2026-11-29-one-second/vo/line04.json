@@ -1,11 +1,11 @@
 {
   "key": "line04",
   "character": "maya",
-  "line": "You fell asleep at your own birthday party.",
-  "note": "Quick and dry, not letting it go.",
-  "text_sent": "You fell asleep at your own birthday party.",
+  "line": "You fell asleep at ten, and we drew a moustache on you.",
+  "note": "Quick and dry, enjoying it.",
+  "text_sent": "You fell asleep at ten, and we drew a moustache on you.",
   "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
   "seed": 7,
-  "dur": 2.33,
-  "wav_sha256": "92e8a28427ec3995e1deee15064b3e58f5816498bde6d1ad3a540589f9cf1a11"
+  "dur": 2.93,
+  "wav_sha256": "93afd362a925f815c04dddbafb5cfd4a176312739afedb06d98f7cd9dcfa1781"
 }

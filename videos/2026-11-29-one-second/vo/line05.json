@@ -1,0 +1,11 @@
+{
+  "key": "line05",
+  "character": "nio",
+  "line": "That was a nap, and tonight I am locked in.",
+  "note": "Quick, defensive, very sure of himself.",
+  "text_sent": "That was a nap, and tonight I am locked in.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.27,
+  "wav_sha256": "9049e2c130d43946593b99cc2d344501e24c38fe2381d15e7b0f207cb5ccb671"
+}

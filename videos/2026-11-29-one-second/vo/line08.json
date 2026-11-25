@@ -1,0 +1,11 @@
+{
+  "key": "line08",
+  "character": "maya",
+  "line": "Somebody hand me the marker again.",
+  "note": "A quiet, pleased whisper, already plotting.",
+  "text_sent": "Somebody hand me the marker again.",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "seed": 7,
+  "dur": 2.05,
+  "wav_sha256": "f60f576054a2310fab894170cfbd595f9cd07cccc33596db815a4576033cad1f"
+}

@@ -1,0 +1,123 @@
+{
+ "city": "la",
+ "now": "2026-11-29 19:30",
+ "cards": [],
+ "beats": [
+  {
+   "line": 0,
+   "shot": "dance0"
+  },
+  {
+   "line": 0,
+   "at": "on",
+   "shot": "m0",
+   "zoom": [
+    1.6,
+    640,
+    760
+   ]
+  },
+  {
+   "line": 1,
+   "shot": "nio1"
+  },
+  {
+   "line": 1,
+   "at": "and",
+   "list": "80b1b81b-c673-4f02-8a06-9ea96a99c9ef",
+   "on": "free"
+  },
+  {
+   "line": 2,
+   "shot": "m2",
+   "zoom": [
+    1.95,
+    640,
+    740
+   ]
+  },
+  {
+   "line": 3,
+   "shot": "nio3"
+  },
+  {
+   "line": 4,
+   "shot": "m4",
+   "zoom": [
+    1.6,
+    640,
+    760
+   ]
+  },
+  {
+   "line": 4,
+   "at": "and",
+   "shot": "m4",
+   "zoom": [
+    1.95,
+    640,
+    740
+   ]
+  },
+  {
+   "line": 5,
+   "shot": "nio5"
+  },
+  {
+   "line": 6,
+   "shot": "sit6"
+  },
+  {
+   "line": 7,
+   "shot": "sleep7"
+  },
+  {
+   "line": 7,
+   "at": "That's",
+   "shot": "m7",
+   "zoom": [
+    1.6,
+    640,
+    760
+   ]
+  },
+  {
+   "line": 8,
+   "shot": "m8",
+   "zoom": [
+    1.95,
+    640,
+    740
+   ]
+  },
+  {
+   "line": 8,
+   "after": 0.2,
+   "shot": "sleep9"
+  },
+  {
+   "line": 8,
+   "after": 2.8,
+   "end": true
+  }
+ ],
+ "show": {},
+ "proper": [
+  "I",
+  "I'm",
+  "Sunday",
+  "New",
+  "Year's",
+  "Eve"
+ ],
+ "key": [
+  "Sunday",
+  "eleven",
+  "free",
+  "moustache",
+  "nap",
+  "second",
+  "record",
+  "marker"
+ ]
+}

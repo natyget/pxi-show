@@ -1,11 +1,11 @@
 {
   "key": "line03",
   "character": "nio",
-  "line": "It's free, Maya. Look at that. Free.",
-  "note": "Quick, like that settles it, holding up his phone.",
-  "text_sent": "It's free, Maya. Look at that. Free.",
+  "line": "I stayed up until two on New Year's Eve.",
+  "note": "Quick, proud, like that wins the argument.",
+  "text_sent": "I stayed up until two on New Year's Eve.",
   "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
   "seed": 7,
-  "dur": 3.16,
-  "wav_sha256": "468df086efbec0516fa5315b502fac000005cdb76dfacdaa88f93b7afe845613"
+  "dur": 2.19,
+  "wav_sha256": "3bd64e0030a956a9dc7b6750f2553bf3e950b6694af9170fe38b4fe0a6f63fe3"
 }
