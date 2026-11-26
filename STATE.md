@@ -8,7 +8,7 @@ York "One night" shorts.
 
 ## Where things stand (Nov 24, 2026)
 
-- **Stills (scheduler thread, until Monday):** Nov 25: LA tonight carousel (2 slides) IG+FB 7:45 PM, TikTok 7:50 PM Chicago; passed the fresh reviewer on the second cut (`videos/2026-11-25-la-stills/`, composer `studio/still.cjs`). Nov 26 (Thanksgiving): free tonight, NYC IG+FB 3:00 / TikTok 3:05 PM, LA IG+FB 6:30 / TikTok 6:35 PM Chicago; NYC passed on its second cut (the Delancey listing still wears a Halloween flyer: dropped). Thanksgiving LA carousel (intro, seven cards Thu to Sat, the app's map with the logo): IG+FB 1:00 PM Chicago; the TikTok version (9:16) the founder posts by hand with their sound (`videos/2026-11-26-la-tiktok/`).
+- **Stills (scheduler thread, until Monday):** Nov 25: LA tonight carousel (2 slides) IG+FB 7:45 PM, TikTok 7:50 PM Chicago; passed the fresh reviewer on the second cut (`videos/2026-11-25-la-stills/`, composer `studio/still.cjs`). Nov 26 (Thanksgiving): free tonight, NYC IG+FB 3:00 / TikTok 3:05 PM, LA IG+FB 6:30 / TikTok 6:35 PM Chicago; NYC passed on its second cut (the Delancey listing still wears a Halloween flyer: dropped). Thanksgiving LA carousel (intro, seven cards Thu to Sat, the app's map with the logo): IG+FB carousel 1:00 PM Chicago; the 6:30/6:35 PM single LA posts set to draft on the founder's word (duplicates); the TikTok version (9:16) the founder posts by hand with their sound (`videos/2026-11-26-la-tiktok/`).
 - **Scheduled (not drafts, read back):** LA weekend Wed Nov 25 8:30/8:35/8:40 PM; NYC nights Thu Nov 26 5:30/5:35/
   5:40 PM; Nio LA Thu Nov 26 8:30/8:35/8:40 PM (Chicago; IG+FB reel, TikTok, YouTube Short). Listings re-fetched first: all stand.
 - **City weekend reels (maker thread, Nov 24):** the weekend told as nights out, one scene for every city and week:
@@ -89,6 +89,8 @@ York "One night" shorts.
 - (none)
 
 ## Founder notes (newest first, word for word)
+
+- **Nov 26, early morning (scheduler thread):** "no isntagram should be carousel as well why video? and when i meant tomorrow i meant like in the morning but still thursday or now at 4 almost. why not now and then just give verdict short tbh. no need for reel and why cant you add music to carousels? pull that post and for future ones to pull them and ensure like this one there is more vents on the post and entry+exit cards". (Done: Instagram back to the carousel, the two single LA posts for tonight set to draft; the rule is in growth.md's Weekend carousel row.)
 
 - **Nov 26, on the Thanksgiving carousel (scheduler thread):** "maybe more on the things to do it will be nice and maybe the cta being our map to show that all event in one place get pxi would be better dot you think". "ok you arent using our actual maps and how it looks and our logo isnt there on the last cta and we dont really need the list view im just saying more suggestions like the 2 you gave". "maybe 4 or so suggestion one more wont really do it". "why do you say this weekend after la, just saying in la is enough". (Done: cards only, about seven picks, the closing slide is the app's own map with the logo, `studio/map.cjs`; the cover says "tryna find things to do in LA?".)
 
