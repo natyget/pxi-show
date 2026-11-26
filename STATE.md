@@ -8,7 +8,7 @@ York "One night" shorts.
 
 ## Where things stand (Nov 24, 2026)
 
-- **Stills (scheduler thread, until Monday):** Nov 25: LA tonight carousel (2 slides) IG+FB 7:45 PM, TikTok 7:50 PM Chicago; passed the fresh reviewer on the second cut (`videos/2026-11-25-la-stills/`, composer `studio/still.cjs`). Nov 26 (Thanksgiving): free tonight, NYC IG+FB 3:00 / TikTok 3:05 PM, LA IG+FB 6:30 / TikTok 6:35 PM Chicago; NYC passed on its second cut (the Delancey listing still wears a Halloween flyer: dropped).
+- **Stills (scheduler thread, until Monday):** Nov 25: LA tonight carousel (2 slides) IG+FB 7:45 PM, TikTok 7:50 PM Chicago; passed the fresh reviewer on the second cut (`videos/2026-11-25-la-stills/`, composer `studio/still.cjs`). Nov 26 (Thanksgiving): free tonight, NYC IG+FB 3:00 / TikTok 3:05 PM, LA IG+FB 6:30 / TikTok 6:35 PM Chicago; NYC passed on its second cut (the Delancey listing still wears a Halloween flyer: dropped). Thanksgiving LA carousel (intro, two cards, download): IG+FB 1:00 PM Chicago; the TikTok version (9:16) the founder posts by hand with their sound (`videos/2026-11-26-la-tiktok/`).
 - **Scheduled (not drafts, read back):** LA weekend Wed Nov 25 8:30/8:35/8:40 PM; NYC nights Thu Nov 26 5:30/5:35/
   5:40 PM; Nio LA Thu Nov 26 8:30/8:35/8:40 PM (Chicago; IG+FB reel, TikTok, YouTube Short). Listings re-fetched first: all stand.
 - **City weekend reels (maker thread, Nov 24):** the weekend told as nights out, one scene for every city and week:
