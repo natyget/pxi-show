@@ -1,10 +1,10 @@
 {
- "clock": "3:00",
+ "clock": "4:30",
  "when": "This week",
  "city": "Los Angeles",
  "me": "assets/me-nio.png",
  "sortDotted": false,
- "scrollY": 96,
+ "scrollY": 0,
  "maxScroll": 4533,
  "open": "1137d493-e267-4571-b5d8-67994b10040b",
  "height": 5056,
@@ -12,26 +12,12 @@
   {
    "night": "2026-11-26",
    "title": "Tonight",
-   "count": 37,
+   "count": 33,
    "top": 0,
    "rows": [
     {
      "kind": "listing",
      "top": 56,
-     "id": "11fb5b0c-f005-449d-a203-18a863ac316a",
-     "title": "Kids' Pottery+Painting Party - Downtown LA",
-     "venue": "316 W 2nd St ste 112",
-     "time": "1 PM to 3 PM",
-     "series": "",
-     "price": "$140.56",
-     "tag": "EVENTBRITE",
-     "play": false,
-     "poster": null,
-     "cover": "/videos/2026-11-26-la-stills/events/la/covers/11fb5b0c-f005-449d-a203-18a863ac316a.jpg"
-    },
-    {
-     "kind": "listing",
-     "top": 152,
      "id": "5cea80b9-d827-4f03-8ba9-fa6d7aad0b35",
      "title": "JERK HOLLYWOOD",
      "venue": "Taste of The Caribbean",
@@ -45,7 +31,7 @@
     },
     {
      "kind": "listing",
-     "top": 248,
+     "top": 152,
      "id": "1137d493-e267-4571-b5d8-67994b10040b",
      "title": "Lost Without R&B🍹",
      "venue": "Lost But Found",
@@ -59,7 +45,7 @@
     },
     {
      "kind": "listing",
-     "top": 344,
+     "top": 248,
      "id": "bf576de8-07d5-4509-afaf-88f76848bee3",
      "title": "Foodies + New Friends Echo Park: Dinner with Strangers",
      "venue": "Restaurant of the Night",
@@ -73,7 +59,7 @@
     },
     {
      "kind": "listing",
-     "top": 440,
+     "top": 344,
      "id": "61169874-1de8-437a-82f3-5fe1c93e24ca",
      "title": "Hollywood Palladium Pregame & After‑Show at Sunset Rooftop — 2 Minute Walk",
      "venue": "SUNSET ROOFTOP",
@@ -87,7 +73,7 @@
     },
     {
      "kind": "listing",
-     "top": 536,
+     "top": 440,
      "id": "72c8092b-e57f-4cd5-9cf4-3e33ecde745c",
      "title": "Sip Smoke And Paint - Dj Pony Boy",
      "venue": "Sunset Rooftop",
@@ -101,7 +87,7 @@
     },
     {
      "kind": "listing",
-     "top": 632,
+     "top": 536,
      "id": "e969cd80-2730-4e80-8324-35bc5456a440",
      "title": "Dinner with Creatives: LA | Benefits for DreamCatchers",
      "venue": "Manuela",
@@ -115,7 +101,7 @@
     },
     {
      "kind": "listing",
-     "top": 728,
+     "top": 632,
      "id": "f8460e37-9936-46e5-8251-5a9e55617e8f",
      "title": "Foodies + Fears: LA | Dinner with Paranormies 2026 Club",
      "venue": "Restaurant of the Week",
@@ -129,7 +115,7 @@
     },
     {
      "kind": "listing",
-     "top": 824,
+     "top": 728,
      "id": "e7ef28b3-b701-4fda-ae46-aa778ab98545",
      "title": "AFTERS 11-26 ( THURSDAY )",
      "venue": "129 E 3rd St",
@@ -143,7 +129,7 @@
     },
     {
      "kind": "listing",
-     "top": 920,
+     "top": 824,
      "id": "4f756e71-49ba-4d5b-860e-a21cb85490ac",
      "title": "NIGHTSHIFT AFTER HOURS",
      "venue": "The Lexington",
@@ -157,7 +143,7 @@
     },
     {
      "kind": "listing",
-     "top": 1016,
+     "top": 920,
      "id": "b17fcef0-7514-4020-a8a5-12b46754fbaa",
      "title": "Foodies + New Friends: LA | Wrestling Fans Edition",
      "venue": "Restaurant of the Week",
@@ -171,7 +157,7 @@
     },
     {
      "kind": "listing",
-     "top": 1112,
+     "top": 1016,
      "id": "c2e50ae4-f824-4166-a4b9-fc7d52f9d87c",
      "title": "Sip, Smoke, Candle",
      "venue": "SUNSET ROOFTOP",
@@ -184,10 +170,24 @@
      "cover": "/videos/2026-11-26-la-stills/events/la/covers/c2e50ae4-f824-4166-a4b9-fc7d52f9d87c.jpg"
     },
     {
+     "kind": "listing",
+     "top": 1112,
+     "id": "f854cc5e-e6ff-477c-950a-eb874d1f6c8f",
+     "title": "througback thursdays",
+     "venue": "SUNSET ROOFTOP",
+     "time": "8 PM to 4 AM",
+     "series": "",
+     "price": "Free",
+     "tag": "EVENTBRITE",
+     "play": false,
+     "poster": null,
+     "cover": "/videos/2026-11-26-la-stills/events/la/covers/f854cc5e-e6ff-477c-950a-eb874d1f6c8f.jpg"
+    },
+    {
      "kind": "more",
      "top": 1208,
-     "label": "25 more tonight",
-     "remaining": 25
+     "label": "21 more tonight",
+     "remaining": 21
     }
    ]
   },

@@ -3,13 +3,13 @@
 **The founder's yes for still posts until Monday** (first note in `STATE.md`, word for word there).
 
 Listings fetched Nov 25, 4:45 PM in LA (`events/la`). Screen: `studio/list.py --open "Lost Without R&B" --now
-"2026-11-26 15:00"`, `studio/screen.cjs`, still `studio/still.cjs` (1080x1350).
+"2026-11-26 16:30"`, `studio/screen.cjs`, still `studio/still.cjs` (1080x1350).
 
 ## 1. Free tonight (single image)
 
 Search phrase: free things to do in la
 
-`tonight.jpg`, line: "free things to do in LA tonight: JERK HOLLYWOOD from 5, R&B downtown till 2". The All events
+`tonight.jpg`, line: "free things to do in LA tonight: JERK HOLLYWOOD from 5, Lost Without R&B till 2" (clock 4:30, after the reviewer). The All events
 list, Tonight, opens on JERK HOLLYWOOD (Taste of The Caribbean, 5920 Santa Monica Blvd, 5 PM to 12 AM, free, POSH)
 and Lost Without R&B (Lost But Found, 656 Main St, 9 PM to 2 AM, free, POSH).
 
