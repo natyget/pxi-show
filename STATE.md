@@ -90,6 +90,8 @@ York "One night" shorts.
 
 ## Founder notes (newest first, word for word)
 
+- **Nov 25, on carousels (to the scheduler thread; for the stronger-model thread when it checks on Monday after 8 PM):** "i need you from now on to make a nice intro carousel with big text like "trynna finid things to do this weekend" just one headline and an arrow to sipw with swipe text under it or over whatever nothing more. generate me that image and also please make me a last cta slide to at all time so that we can see download pxi cta. make sure to report this to fable next time it checks on you monday after 8 pm".
+
 - **On usage and who works until Monday:** "ok we only have 4% of fable left so go ahead and lets prepare to make those
   content when its monday after tokens reset since you make the script and all as you said. so for now lets do
   simpler stuff like still iamge posts and ahve opus do it all and revise (checker) and schedule till moday because

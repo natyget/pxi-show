@@ -40,7 +40,7 @@ for being followed.
 | Side quest | A real dark street map, a pin, a mission card with one of our cast ("Maya will appreciate this") | Still 4:5, story 9:16 | Saves, local reach |
 | Real-photo post | Openly licensed photos (Unsplash, Pexels, Wikimedia Commons), one line of text. Licence and credit saved in `sources.md` | Still or carousel | Reach without animation |
 | One moving thing | A still frame where only one thing moves: the notification, the record, the caption | 6 to 12 s loop | Cheap volume |
-| Weekend carousel | Cover with the hook, one real event per slide, last slide asks which one | 6 to 10 slides, 1080x1350 | Saves, sends |
+| Weekend carousel | First slide: one big headline with the search phrase ("tryna find things to do in LA this weekend?"), an arrow and "swipe" under it, nothing more (`studio/slide.cjs intro`). One real event per slide. Last slide, on every carousel: download PXI, free, the two store badges (`studio/slide.cjs end`, `look/slides/end.jpg`). Founder, Nov 25 | 4 to 10 slides, 1080x1350 | Saves, sends |
 | Stories | Stills, 5 s clips, polls | 3 to 10 a day | Keep followers |
 | Organizer post | For LinkedIn: one thing a host gets, shown on the real host screen, or a short note from Nio on what he is building for organizers | Still, carousel, or 20 to 40 s | Do organizers reply |
 | Episode | A whole Nio World story for YouTube, wide: the cast, a night that goes somewhere, PXI used the way people use it. Each scene is also cut as a short | 3 to 8 min, 16:9 | Subscribers, watch time. Talking works (`look/rig.md`); the wide frame and a first script are next |

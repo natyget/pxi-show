@@ -8,7 +8,7 @@ const [screen, line, out, ...rest] = process.argv.slice(2);
 if (!screen || !line || !out) { console.error('usage: node studio/still.cjs <screen.png> "<line>" <out.png> [--size WxH]'); process.exit(1); }
 const si = rest.indexOf('--size'); const [W, H] = (si >= 0 ? rest[si + 1] : '1080x1350').split('x').map(Number);
 const root = path.resolve(__dirname, '..');
-const font = 'file://' + path.join(root, 'look/fonts/inter.woff2');
+const font = 'data:font/woff2;base64,' + fs.readFileSync(path.join(root, 'look/fonts/inter.woff2')).toString('base64');
 const img = 'data:image/png;base64,' + fs.readFileSync(screen).toString('base64');
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const html = `<!doctype html><html><head><style>
