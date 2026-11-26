@@ -7,6 +7,8 @@ Listings fetched Nov 25, 4:45 PM in LA (`events/la`). Screen: `studio/list.py --
 
 ## 1. Free tonight (single image)
 
+**Scheduled, read back (Metricool, PXI LABS):** Instagram + Facebook post Thu Nov 26 6:30 PM Chicago (4:30 PM in LA); TikTok photo post with auto music 6:35 PM. Not drafts. Image hosted on this repo at commit 36da6db.
+
 Search phrase: free things to do in la
 
 `tonight.jpg`, line: "free things to do in LA tonight: JERK HOLLYWOOD from 5, Lost Without R&B till 2" (clock 4:30, after the reviewer). The All events

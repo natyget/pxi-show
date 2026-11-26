@@ -8,6 +8,8 @@ Listings fetched Nov 25, 7:50 PM in New York (`events/nyc`). Screen: `studio/lis
 
 ## 1. Free tonight (single image)
 
+**Scheduled, read back (Metricool, PXI LABS):** Instagram + Facebook post Thu Nov 26 3:00 PM Chicago (4 PM in New York); TikTok photo post with auto music 3:05 PM. Not drafts. Image hosted on this repo at commit 36da6db.
+
 Search phrase: free things to do in nyc
 
 `tonight.jpg`, line: "free things to do in NYC tonight: a Colombian party in Astoria, the Cafe Wha? house band at 9".
