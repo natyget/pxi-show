@@ -32,7 +32,7 @@ const html = `<!doctype html><html><head><style>
 @font-face{font-family:DMMono;src:url(${data('look/fonts/dm-mono-500.woff2', 'font/woff2')}) format('woff2')}
 html,body{margin:0;width:${W}px;height:${H}px;background:#050505;overflow:hidden;color:#fff}
 b{color:#C26BFF;font-weight:900}
-.intro{position:absolute;inset:0;padding:0 90px;display:flex;flex-direction:column;justify-content:center}
+.intro{position:absolute;inset:0;padding:0 90px 120px;display:flex;flex-direction:column;justify-content:center}
 h1{margin:0;font:900 128px/1.0 Inter;letter-spacing:-3px}
 .go{margin-top:90px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .swipe{font:500 40px DMMono;letter-spacing:2px;color:#fff;opacity:.85}
