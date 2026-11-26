@@ -22,6 +22,9 @@ img{position:absolute;left:50%;top:200px;height:${H - 230}px;transform:translate
 (async () => {
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: W, height: H } });
   await p.setContent(html); await p.evaluate(() => document.fonts.ready);
+  // two lines at most: shrink the type until the line fits
+  await p.evaluate(() => { const s = document.querySelector('.line span'), d = s.parentElement; let f = 60;
+    while (s.getBoundingClientRect().height > f * 1.08 * 2 + 2 && f > 40) { f -= 2; d.style.fontSize = f + 'px'; } });
   await p.screenshot({ path: out, type: out.endsWith('.jpg') ? 'jpeg' : 'png', ...(out.endsWith('.jpg') ? { quality: 92 } : {}) });
   await b.close(); console.log('wrote', out);
 })();
