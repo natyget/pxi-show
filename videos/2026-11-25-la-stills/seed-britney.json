@@ -1,0 +1,891 @@
+{
+ "clock": "6:00",
+ "when": "This week",
+ "city": "Los Angeles",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "d60b0c7b-2264-4de6-a128-363555e8db5a",
+   "external": true,
+   "name": "After Dark Karaoke Brunch",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/d60b0c7b-2264-4de6-a128-363555e8db5a.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-d60b0c7b-2264-4de6-a128-363555e8db5a.jpg",
+   "labelFallback": false,
+   "record": [
+    "LATTO",
+    "SHRIMP & GRITS (FEAT. YOUNG NUDY)"
+   ],
+   "day": "Tonight",
+   "clock": "6 PM",
+   "location": "GRITZ N WAFFLEZ",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/d60b0c7b-2264-4de6-a128-363555e8db5a.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "5136cfe2-2088-476e-94e6-f5b1bd1c4b2d",
+   "external": true,
+   "name": "Black Wednesday @ Los Globos",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/5136cfe2-2088-476e-94e6-f5b1bd1c4b2d.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/covers/5136cfe2-2088-476e-94e6-f5b1bd1c4b2d.jpg",
+   "labelFallback": true,
+   "record": [
+    "HIP-HOP",
+    "MIKE SHERM - ASSHOLE"
+   ],
+   "day": "Tonight",
+   "clock": "9 PM",
+   "location": "LOS GLOBOS",
+   "price": "$7.47",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/5136cfe2-2088-476e-94e6-f5b1bd1c4b2d.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "c5db0f1a-9335-4661-97a0-f0225207947c",
+   "external": true,
+   "name": "Cumbias Del Pavo : 2YR ANNIVERSARY | WED NOV 25",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/c5db0f1a-9335-4661-97a0-f0225207947c.png",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-c5db0f1a-9335-4661-97a0-f0225207947c.jpg",
+   "labelFallback": false,
+   "record": [
+    "GRUPO JALADO",
+    "QUE TE VAYA BIEN"
+   ],
+   "day": "Tonight",
+   "clock": "9 PM",
+   "location": "HELLO STRANGER LITTLE TOKYO",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/c5db0f1a-9335-4661-97a0-f0225207947c.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "ec83e38f-06c9-4ac5-b4d3-6861f76df289",
+   "external": true,
+   "name": "9PM SHARP • D. Sharp's Birthday and YearbookParty",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/ec83e38f-06c9-4ac5-b4d3-6861f76df289.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-ec83e38f-06c9-4ac5-b4d3-6861f76df289.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "ON UR TIME"
+   ],
+   "day": "Tonight",
+   "clock": "9 PM",
+   "location": "MATRIARCH LA",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/ec83e38f-06c9-4ac5-b4d3-6861f76df289.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "0a8f6755-3a0d-4b89-9acd-f5439c818656",
+   "external": true,
+   "name": "SLAMM",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/0a8f6755-3a0d-4b89-9acd-f5439c818656.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-0a8f6755-3a0d-4b89-9acd-f5439c818656.jpg",
+   "labelFallback": false,
+   "record": [
+    "SLAMM",
+    "BROKEN"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "SOUND NIGHTCLUB",
+   "price": "$36.26",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/0a8f6755-3a0d-4b89-9acd-f5439c818656.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "d20d2171-69b4-4ce4-ad40-5b3c28c35341",
+   "external": true,
+   "name": "Blackout Britney Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/d20d2171-69b4-4ce4-ad40-5b3c28c35341.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/covers/d20d2171-69b4-4ce4-ad40-5b3c28c35341.jpg",
+   "labelFallback": true,
+   "record": [
+    "BRITNEY SPEARS",
+    "BREAK THE ICE"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "EL CID",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/d20d2171-69b4-4ce4-ad40-5b3c28c35341.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "3ba992d5-2ede-4da9-bb4d-48c73223f78d",
+   "external": true,
+   "name": "Hollywood Wild N Out Wednesdays",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/3ba992d5-2ede-4da9-bb4d-48c73223f78d.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-3ba992d5-2ede-4da9-bb4d-48c73223f78d.jpg",
+   "labelFallback": false,
+   "record": [
+    "LATIN",
+    "POP DAT THANG"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "THE SUNSET ROOFTOP",
+   "price": "$10",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/3ba992d5-2ede-4da9-bb4d-48c73223f78d.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "60373564-0c45-46d4-abd7-4e59480fcbbc",
+   "external": true,
+   "name": "Rooftop Reggaeton Wednesdays",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/60373564-0c45-46d4-abd7-4e59480fcbbc.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-60373564-0c45-46d4-abd7-4e59480fcbbc.jpg",
+   "labelFallback": false,
+   "record": [
+    "LATIN",
+    "REGGAETÓN LENTO (BAILEMOS)"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "SUNSET ROOFTOP HOLLYWOOD",
+   "price": "$10",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/60373564-0c45-46d4-abd7-4e59480fcbbc.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "778ef05d-5a08-4a93-83a9-0becfccb473d",
+   "external": true,
+   "name": "AFTERS 11-25 ( WEDNESDAY )",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/778ef05d-5a08-4a93-83a9-0becfccb473d.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-778ef05d-5a08-4a93-83a9-0becfccb473d.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "DESIRE"
+   ],
+   "day": "Tonight",
+   "clock": "11 PM",
+   "location": "129 E 3RD ST",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/778ef05d-5a08-4a93-83a9-0becfccb473d.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "5cea80b9-d827-4f03-8ba9-fa6d7aad0b35",
+   "external": true,
+   "name": "JERK HOLLYWOOD",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/5cea80b9-d827-4f03-8ba9-fa6d7aad0b35.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-5cea80b9-d827-4f03-8ba9-fa6d7aad0b35.jpg",
+   "labelFallback": false,
+   "record": [
+    "VICTONY",
+    "SLICK"
+   ],
+   "day": "THU",
+   "clock": "5 PM",
+   "location": "TASTE OF THE CARIBBEAN",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/5cea80b9-d827-4f03-8ba9-fa6d7aad0b35.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "1137d493-e267-4571-b5d8-67994b10040b",
+   "external": true,
+   "name": "Lost Without R&B🍹",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/1137d493-e267-4571-b5d8-67994b10040b.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-1137d493-e267-4571-b5d8-67994b10040b.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "TONIGHT"
+   ],
+   "day": "THU",
+   "clock": "9 PM",
+   "location": "LOST BUT FOUND",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/1137d493-e267-4571-b5d8-67994b10040b.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "e7ef28b3-b701-4fda-ae46-aa778ab98545",
+   "external": true,
+   "name": "AFTERS 11-26 ( THURSDAY )",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/e7ef28b3-b701-4fda-ae46-aa778ab98545.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-e7ef28b3-b701-4fda-ae46-aa778ab98545.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "VELVET AVENUE"
+   ],
+   "day": "THU",
+   "clock": "11 PM",
+   "location": "129 E 3RD ST",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/e7ef28b3-b701-4fda-ae46-aa778ab98545.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "bd7b74f6-1709-4ba9-a75a-01811751740b",
+   "external": true,
+   "name": "RECOLLECT UNDERGROUND",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/bd7b74f6-1709-4ba9-a75a-01811751740b.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-bd7b74f6-1709-4ba9-a75a-01811751740b.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "BREATHER"
+   ],
+   "day": "THU",
+   "clock": "11 PM",
+   "location": "LOS ANGELES",
+   "price": "$10",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/bd7b74f6-1709-4ba9-a75a-01811751740b.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "bfa47da2-61dc-42b9-a3f2-70365b1ace2e",
+   "external": true,
+   "name": "Time Warp Los Angeles",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/bfa47da2-61dc-42b9-a3f2-70365b1ace2e.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/covers/bfa47da2-61dc-42b9-a3f2-70365b1ace2e.jpg",
+   "labelFallback": true,
+   "record": [
+    "TECHNO",
+    "FEMME"
+   ],
+   "day": "FRI",
+   "clock": "2 PM",
+   "location": "ACE*MISSION STUDIOS",
+   "price": "$125.17",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/bfa47da2-61dc-42b9-a3f2-70365b1ace2e.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "4ace576e-4efe-4460-a09e-72118e5d0d9a",
+   "external": true,
+   "name": "A Real Nigga Holiday",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/4ace576e-4efe-4460-a09e-72118e5d0d9a.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-4ace576e-4efe-4460-a09e-72118e5d0d9a.jpg",
+   "labelFallback": false,
+   "record": [
+    "LIL BEAN",
+    "REAL NIGGA HOLIDAY"
+   ],
+   "day": "FRI",
+   "clock": "6 PM",
+   "location": "3846 WELLINGTON RD",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/4ace576e-4efe-4460-a09e-72118e5d0d9a.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "fabbe0d9-270b-4373-b6f7-9c0067680e54",
+   "external": true,
+   "name": "Alexandra Savior (Night 1)",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/fabbe0d9-270b-4373-b6f7-9c0067680e54.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/covers/fabbe0d9-270b-4373-b6f7-9c0067680e54.jpg",
+   "labelFallback": true,
+   "record": [
+    "GIRLIE",
+    "NOV 27"
+   ],
+   "day": "FRI",
+   "clock": "8 PM",
+   "location": "SCRIBBLE",
+   "price": "$39.25",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/fabbe0d9-270b-4373-b6f7-9c0067680e54.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "27294deb-b318-4e6b-a6ab-b085aee4f51e",
+   "external": true,
+   "name": "Whenimondamic w/ Blu + Sndtrak live!",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/27294deb-b318-4e6b-a6ab-b085aee4f51e.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-27294deb-b318-4e6b-a6ab-b085aee4f51e.jpg",
+   "labelFallback": false,
+   "record": [
+    "HIP-HOP",
+    "LA"
+   ],
+   "day": "FRI",
+   "clock": "8 PM",
+   "location": "HELLO STRANGER",
+   "price": "$24.19",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/27294deb-b318-4e6b-a6ab-b085aee4f51e.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "3b7e9875-fb19-4bfc-9c9f-a5b77180e8f7",
+   "external": true,
+   "name": "SWEET TALK - THANKFUL FOR R&B",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/3b7e9875-fb19-4bfc-9c9f-a5b77180e8f7.png",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-3b7e9875-fb19-4bfc-9c9f-a5b77180e8f7.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "BE WITHOUT YOU"
+   ],
+   "day": "FRI",
+   "clock": "9 PM",
+   "location": "CHINATOWN",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/3b7e9875-fb19-4bfc-9c9f-a5b77180e8f7.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "1f873645-547c-425d-ab74-172c8882541e",
+   "external": true,
+   "name": "Club Underground Dance Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/1f873645-547c-425d-ab74-172c8882541e.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/covers/1f873645-547c-425d-ab74-172c8882541e.jpg",
+   "labelFallback": true,
+   "record": [
+    "FRANZ FERDINAND",
+    "TAKE ME OUT"
+   ],
+   "day": "FRI",
+   "clock": "9:30 PM",
+   "location": "GRAND STAR JAZZ CLUB",
+   "price": "$11.33",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/1f873645-547c-425d-ab74-172c8882541e.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "351b05f3-10f3-4281-a0c6-e5e1526ef688",
+   "external": true,
+   "name": "Night Tales",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/351b05f3-10f3-4281-a0c6-e5e1526ef688.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-351b05f3-10f3-4281-a0c6-e5e1526ef688.jpg",
+   "labelFallback": false,
+   "record": [
+    "NIGHT TALES",
+    "BELIEVE"
+   ],
+   "day": "FRI",
+   "clock": "10 PM",
+   "location": "THE SPOTLIGHT",
+   "price": "$24.93",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/351b05f3-10f3-4281-a0c6-e5e1526ef688.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "f3050c6c-6899-4652-b04a-c4eefac67247",
+   "external": true,
+   "name": "AFTERS 11-27 ( FRIDAY )",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/f3050c6c-6899-4652-b04a-c4eefac67247.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-f3050c6c-6899-4652-b04a-c4eefac67247.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "LITTLE STORY"
+   ],
+   "day": "FRI",
+   "clock": "11 PM",
+   "location": "129 E 3RD ST",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/f3050c6c-6899-4652-b04a-c4eefac67247.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "dbd1b910-f981-4ccb-a921-03db0a29bb06",
+   "external": true,
+   "name": "MASC TAKEOVER | Sapphic Saturdays",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/dbd1b910-f981-4ccb-a921-03db0a29bb06.png",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-dbd1b910-f981-4ccb-a921-03db0a29bb06.jpg",
+   "labelFallback": false,
+   "record": [
+    "LAH PAT",
+    "RODEO (REMIX)"
+   ],
+   "day": "SAT",
+   "clock": "4 PM",
+   "location": "BEACHES TROPICANA",
+   "price": "$11.99",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/dbd1b910-f981-4ccb-a921-03db0a29bb06.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "ab651338-5294-45b8-aebb-e861eb1af50c",
+   "external": true,
+   "name": "Solomun",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/ab651338-5294-45b8-aebb-e861eb1af50c.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-ab651338-5294-45b8-aebb-e861eb1af50c.jpg",
+   "labelFallback": false,
+   "record": [
+    "SOLOMUN",
+    "SOMETHING WE ALL ADORE"
+   ],
+   "day": "SAT",
+   "clock": "6 PM",
+   "location": "REFRAME STUDIOS OUTDOORS",
+   "price": "$118.59",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/ab651338-5294-45b8-aebb-e861eb1af50c.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "f90cec5c-300d-459d-a8de-47c78207f84e",
+   "external": true,
+   "name": "Art & Vibrations: Edible Archive Art, Flavor & Ancestral Memory",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/f90cec5c-300d-459d-a8de-47c78207f84e.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-f90cec5c-300d-459d-a8de-47c78207f84e.jpg",
+   "labelFallback": false,
+   "record": [
+    "CLEO SOL",
+    "WHEN I'M IN YOUR ARMS"
+   ],
+   "day": "SAT",
+   "clock": "6 PM",
+   "location": "4065 KENWAY AVE",
+   "price": "$50.49",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/f90cec5c-300d-459d-a8de-47c78207f84e.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "97480442-6379-4e95-be18-071c86d86bfa",
+   "external": true,
+   "name": "SATURDAY NIGHT IN LITTLE TOKYO",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/97480442-6379-4e95-be18-071c86d86bfa.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-97480442-6379-4e95-be18-071c86d86bfa.jpg",
+   "labelFallback": false,
+   "record": [
+    "BABY KEEM",
+    "BIRDS & THE BEES"
+   ],
+   "day": "SAT",
+   "clock": "9 PM",
+   "location": "KODAMA LOUNGE | LITTLE TOKYO",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/97480442-6379-4e95-be18-071c86d86bfa.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "325f9f13-00e7-4f80-b5ea-87b789c9d105",
+   "external": true,
+   "name": "WETHEDREAMENT PRESENTS: USC VS UCLA AFTER PARTY",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/325f9f13-00e7-4f80-b5ea-87b789c9d105.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-325f9f13-00e7-4f80-b5ea-87b789c9d105.jpg",
+   "labelFallback": false,
+   "record": [
+    "DJ WESTCOAST",
+    "FUCK IT UP"
+   ],
+   "day": "SAT",
+   "clock": "9 PM",
+   "location": "1465 HOOPER AVE.",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/325f9f13-00e7-4f80-b5ea-87b789c9d105.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "2e94df2e-67e6-411b-944e-3d0c98bc9435",
+   "external": true,
+   "name": "Cumbias En El Club (SAT NOV 28 | SAB 28 DE NOV)",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/2e94df2e-67e6-411b-944e-3d0c98bc9435.png",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-2e94df2e-67e6-411b-944e-3d0c98bc9435.jpg",
+   "labelFallback": false,
+   "record": [
+    "LATIN",
+    "CUMBIA SUAVE"
+   ],
+   "day": "SAT",
+   "clock": "10 PM",
+   "location": "HELLO STRANGER LITTLE TOKYO",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/2e94df2e-67e6-411b-944e-3d0c98bc9435.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "f61bc63b-6335-472c-a57d-9438862efa31",
+   "external": true,
+   "name": "Recession Indicator: 2010s Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/f61bc63b-6335-472c-a57d-9438862efa31.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-f61bc63b-6335-472c-a57d-9438862efa31.jpg",
+   "labelFallback": false,
+   "record": [
+    "KATY PERRY",
+    "CALIFORNIA GURLS"
+   ],
+   "day": "SAT",
+   "clock": "10 PM",
+   "location": "THE CONTINENTAL CLUB",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/f61bc63b-6335-472c-a57d-9438862efa31.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "021656c3-18f6-49ee-8064-1338ca047c24",
+   "external": true,
+   "name": "BRAINCELL LASERTAG",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/021656c3-18f6-49ee-8064-1338ca047c24.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-021656c3-18f6-49ee-8064-1338ca047c24.jpg",
+   "labelFallback": false,
+   "record": [
+    "NIKKI NAIR",
+    "STARTRACK"
+   ],
+   "day": "SAT",
+   "clock": "10 PM",
+   "location": "DTLA, LOCATION TBA",
+   "price": "$31.73",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/021656c3-18f6-49ee-8064-1338ca047c24.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "5b900c07-de2f-4ecd-9d37-c829145384c2",
+   "external": true,
+   "name": "AFTERS 11-28 ( SATURDAY )",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/5b900c07-de2f-4ecd-9d37-c829145384c2.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-5b900c07-de2f-4ecd-9d37-c829145384c2.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "HYPED IN LA"
+   ],
+   "day": "SAT",
+   "clock": "11 PM",
+   "location": "129 E 3RD ST",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/5b900c07-de2f-4ecd-9d37-c829145384c2.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "f05cb42a-e01f-4eea-8dc6-85fb229ec2f7",
+   "external": true,
+   "name": "Midnight Lovers with Demi Riquísimo",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "NEVER SEEN YOU DANCE (DEMI RIQUÍSIMO REMIX)"
+   ],
+   "day": "SAT",
+   "clock": "11:45 PM",
+   "location": "LOCATION TBA, LOS ANGELES",
+   "price": "$35.02",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "6bc8918a-0898-4db3-8042-bb3598b60fbe",
+   "external": true,
+   "name": "Lost In Decay",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/6bc8918a-0898-4db3-8042-bb3598b60fbe.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/covers/6bc8918a-0898-4db3-8042-bb3598b60fbe.jpg",
+   "labelFallback": true,
+   "record": [
+    "A BLOODBATH IN BOSTON - CORRECT ME IF I'M WRONG",
+    "NOV 29"
+   ],
+   "day": "SUN",
+   "clock": "2 PM",
+   "location": "1720",
+   "price": "$27.81",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/6bc8918a-0898-4db3-8042-bb3598b60fbe.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "b269ad8e-8428-42e5-b10f-36c586b01d05",
+   "external": true,
+   "name": "Rhythm & Brewed - R&B Cafe Experience",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/b269ad8e-8428-42e5-b10f-36c586b01d05.png",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-b269ad8e-8428-42e5-b10f-36c586b01d05.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "FAMILY REUNION"
+   ],
+   "day": "SUN",
+   "clock": "3 PM",
+   "location": "ORA CAFE",
+   "price": "$23.39",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/b269ad8e-8428-42e5-b10f-36c586b01d05.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "ed68ff9c-522c-41c0-9b69-59b8877c7adc",
+   "external": true,
+   "name": "Sunday Funday LA 18+ Hosted By DJ SMOKE ONE",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-25-la-stills/events/la/covers/ed68ff9c-522c-41c0-9b69-59b8877c7adc.png",
+   "poster": null,
+   "label": "/videos/2026-11-25-la-stills/events/la/art/art-ed68ff9c-522c-41c0-9b69-59b8877c7adc.jpg",
+   "labelFallback": false,
+   "record": [
+    "FUTURE",
+    "YA HIT (FEAT. DRAKE, TRAVIS SCOTT & LOE SHIMMY)"
+   ],
+   "day": "SUN",
+   "clock": "10 PM",
+   "location": "LOS GLOBOS",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-25-la-stills/events/la/stamps/ed68ff9c-522c-41c0-9b69-59b8877c7adc.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "doorway": true,
+   "count": 181,
+   "windowLabel": "THIS WEEK",
+   "from": "From Eventbrite, DICE, RA, Ticketmaster and Posh",
+   "picks": [
+    {
+     "id": "b40025bb-c881-4080-ae40-77cffb4fcbf9",
+     "title": "Cocktails 4 Creatives: LA Film + TV (Giving Back Edition)",
+     "time": "7 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-25-la-stills/events/la/covers/b40025bb-c881-4080-ae40-77cffb4fcbf9.jpg"
+    },
+    {
+     "id": "025b8781-d3a9-4d95-b2b9-7cd06258b85a",
+     "title": "Foodies + New Friends Echo Park: Dinner with Strangers",
+     "time": "7 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-25-la-stills/events/la/covers/025b8781-d3a9-4d95-b2b9-7cd06258b85a.jpg"
+    },
+    {
+     "id": "4b96cf47-beb4-48f6-9d27-d6cc809b5017",
+     "title": "Hollywood Palladium Pregame & After‑Show at Sunset Rooftop — 2 Minute Walk",
+     "time": "5 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-25-la-stills/events/la/covers/4b96cf47-beb4-48f6-9d27-d6cc809b5017.jpg"
+    }
+   ]
+  }
+ ],
+ "at": 5,
+ "discOpen": false,
+ "joined": false
+}
