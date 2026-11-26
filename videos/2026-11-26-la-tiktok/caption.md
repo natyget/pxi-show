@@ -10,6 +10,6 @@ tonight: JERK HOLLYWOOD at Taste of The Caribbean from 5 (free), Lost Without R&
 Friday: Club Underground at the Grand Star Jazz Club at 9:30 (about $11), Night Tales at The Spotlight at 10 (about $25).
 Saturday: Saturday Night in Little Tokyo at Kodama Lounge at 9 (free), Midnight Lovers at a location still secret at 11:45 (about $35).
 
-pxi is a free app to find things to do near you: every event in Los Angeles this weekend on one map, with its poster, place and price.
+pxi is a free app to find things to do near you: every event in Los Angeles on one map, with its poster, place and price.
 
 #thingstodoinla #thingstodoinlosangeles #thanksgivinginla #losangeles #pxi
