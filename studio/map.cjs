@@ -2,7 +2,7 @@
 // (pxi-mobile-app src/components/discover/map/mapStyle.ts, OpenFreeMap tiles), a record for every venue with a listing
 // that night (MapPin.tsx: the black disc, its grooves, the white label, the count when a venue has more than one), then
 // the app icon, "get PXI", free, and the two store badges.
-//   node studio/map.cjs <events/<city>/app.json> <YYYY-MM-DD night> "<headline, [purple]>" <out.jpg> [--size 1080x1350] [--tz America/Los_Angeles]
+//   node studio/map.cjs <events/<city>/app.json> <YYYY-MM-DD night, or first..last> "<headline, [purple]>" <out.jpg> [--size 1080x1350] [--tz America/Los_Angeles]
 // The map's own credit line (MAP_ATTRIBUTION) stays on it, as the app draws it. Not drawn: the app's clustering of
 // venues into stacks when zoomed out (clustering.ts); every venue is its own record here.
 const { chromium } = require('playwright');
@@ -21,7 +21,8 @@ const look = JSON.parse(execFileSync('node', ['--experimental-strip-types', '--n
   "import('./src/components/discover/map/mapStyle.ts').then(m=>process.stdout.write(JSON.stringify({style:m.MAP_STYLE,credit:m.MAP_ATTRIBUTION})))"], { cwd: app }).toString());
 const data = (f, t) => `data:${t};base64,` + fs.readFileSync(path.join(root, f)).toString('base64');
 const localDay = iso => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(iso));
-const ev = JSON.parse(fs.readFileSync(appjson, 'utf8')).events.filter(e => e.lat && e.lng && localDay(e.startsAt) === night);
+const [from, to] = night.includes('..') ? night.split('..') : [night, night]; // one night, or a run of them: 2026-11-26..2026-11-29
+const ev = JSON.parse(fs.readFileSync(appjson, 'utf8')).events.filter(e => e.lat && e.lng && localDay(e.startsAt) >= from && localDay(e.startsAt) <= to);
 if (!ev.length) { console.error('no listings with a place on', night); process.exit(1); }
 const venues = {}; for (const e of ev) { const k = e.lat.toFixed(4) + ',' + e.lng.toFixed(4); (venues[k] ||= { lat: e.lat, lng: e.lng, n: 0 }).n++; }
 const q = (arr, p) => { const s = [...arr].sort((x, y) => x - y); return s[Math.round(p * (s.length - 1))]; };
@@ -62,7 +63,7 @@ h2{margin:0;font:900 ${tall ? 118 : 104}px/1 Inter;letter-spacing:-3px}
 <div class="badges"><img src="${data('look/brand/app-store-badge.svg', 'image/svg+xml')}"><img src="${data('look/brand/google-play-badge.png', 'image/png')}"></div></div>
 <script>
 const map = new maplibregl.Map({ container: 'map', style: ${JSON.stringify(look.style)}, bounds: ${JSON.stringify(bounds)},
-  fitBoundsOptions: { padding: 70 }, interactive: false, attributionControl: false, fadeDuration: 0, preserveDrawingBuffer: true });
+  fitBoundsOptions: { padding: { top: 120, bottom: 80, left: 70, right: 70 } }, interactive: false, attributionControl: false, fadeDuration: 0, preserveDrawingBuffer: true });
 for (const v of ${JSON.stringify(Object.values(venues))}) {
   const el = document.createElement('div'); el.className = 'rec'; const big = v.n > 1;
   el.innerHTML = '<div class="g g1"></div>' + (big ? '' : '<div class="g g2"></div>') + '<div class="l" style="width:' + (big ? 41 : 28) + 'px;height:' + (big ? 41 : 28) + 'px">' + (big ? (v.n > 99 ? '99+' : v.n) : '') + '</div>';
