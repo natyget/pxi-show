@@ -1,12 +1,10 @@
 # State
 
-next: two episodes of the series this week (`series.md`: Nio's world, funny, fast, the app used inside the story),
-made by the "PXI maker 2" thread, which already has the cast's voices set up; then learn from the numbers for the
-rest of the week. Monday's heavy run reassesses and makes next week. Out: "idk to omw" (Nov 24). Scheduled: Los
-Angeles this weekend (Wed Nov 25, 8:30 PM Chicago), New York this weekend (Thu Nov 26, 5:30 PM), Nio to camera
-(Thu Nov 26, 8:30 PM). Waiting for the founder's yes: three New York "One night" shorts. Parked until the founder
-says go: daily stories (`studio/daily.py`, not built). Usage: half the week's allowance of the stronger model was
-gone by Tuesday night, so nothing runs that the founder did not ask for.
+next: until Monday the scheduler thread (the cheaper model) does everything: still image posts from the real app
+screens and real listings, a fresh check of each, scheduling, and a phone notification of what it scheduled (the
+founder's words are the first note below). No thread on the stronger model works until the weekly reset on Monday
+8 PM Chicago: the two episodes of the series (`series.md`) are made then. Waiting for the founder's yes: three New
+York "One night" shorts.
 
 ## Where things stand (Nov 24, 2026)
 
@@ -90,6 +88,12 @@ gone by Tuesday night, so nothing runs that the founder did not ask for.
 - (none)
 
 ## Founder notes (newest first, word for word)
+
+- **On usage and who works until Monday:** "ok we only have 4% of fable left so go ahead and lets prepare to make those
+  content when its monday after tokens reset since you make the script and all as you said. so for now lets do
+  simpler stuff like still iamge posts and ahve opus do it all and revise (checker) and schedule till moday because
+  we posted nothing today literally loosing opportunity so lets have opus do all that till monday until you
+  replensih tokens as fable".
 
 - **Nov 24, night, on pace, retention and the series:** "ok but to be honest we can start making this weeks content now
   and wait for monday for next week because its only tuesday we got no posts today and we should build so our what
