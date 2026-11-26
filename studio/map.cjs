@@ -42,7 +42,7 @@ b{color:#C26BFF;font-weight:900}
 h1{position:absolute;left:70px;right:70px;top:${mapTop - 210}px;height:190px;margin:0;display:flex;align-items:flex-end;justify-content:center;text-align:center;font:900 70px/1.05 Inter;letter-spacing:-1.5px}
 #map{position:absolute;left:0;top:${mapTop}px;width:${W}px;height:${mapH}px}
 .fade{position:absolute;left:0;top:${mapTop}px;width:${W}px;height:${mapH}px;pointer-events:none;box-shadow:inset 0 0 80px 36px #000}
-.credit{position:absolute;right:18px;top:${mapTop + mapH - 30}px;font:500 15px DMMono;color:#6a6a70}
+.credit{position:absolute;z-index:5;background:#000;padding:2px 6px;right:18px;top:${mapTop + mapH - 30}px;font:500 15px DMMono;color:#6a6a70}
 /* MapPin.tsx at 2.3x: DISC 30, grooves 25 and 20, label 12 (18 with a count), D.hairline, DISC_BLACK */
 .rec{width:69px;height:69px;border-radius:50%;background:#111;border:2.3px solid rgba(255,255,255,.14);box-sizing:border-box;position:relative;display:flex;align-items:center;justify-content:center}
 .rec .g{position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.08)}

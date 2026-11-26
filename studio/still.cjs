@@ -12,7 +12,7 @@ const font = 'data:font/woff2;base64,' + fs.readFileSync(path.join(root, 'look/f
 const img = 'data:image/png;base64,' + fs.readFileSync(screen).toString('base64');
 // 9:16 (a TikTok photo or a story): the line and the screen sit inside the safe zone, clear of the app's own overlays
 const tall = H / W > 1.6, top = tall ? 300 : 0, bottom = tall ? 300 : 30;
-const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/(\d) (AM|PM)/g, '$1\u00a0$2'); // a time never breaks before AM or PM
 const html = `<!doctype html><html><head><style>
 @font-face{font-family:Inter;src:url(${font}) format('woff2');font-weight:100 900}
 html,body{margin:0;width:${W}px;height:${H}px;background:#050505;overflow:hidden}

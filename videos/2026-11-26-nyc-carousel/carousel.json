@@ -1,0 +1,40 @@
+{
+ "events": "videos/2026-11-26-nyc-carousel/events/nyc",
+ "now": "2026-11-26 15:00",
+ "tz": "America/New_York",
+ "intro": "tryna find things to do in [NYC this Thanksgiving weekend]?",
+ "picks": [
+  {
+   "match": "Eli Fola",
+   "line": "Eli Fola & Hyenah in the Onyx Room, Fri 10 PM, [about $11]"
+  },
+  {
+   "match": "wavcrash",
+   "line": "wavcrash: FLOWSTATE on the NIKU X Rooftop, Fri 10 PM"
+  },
+  {
+   "match": "Black Friday \u2014 Reggaeton",
+   "line": "Black Friday reggaeton at Sea Wolf in Bushwick, Fri 11 PM, [about $2]"
+  },
+  {
+   "match": "Zack Martino",
+   "line": "Zack Martino at Nebula, Fri 11 PM, [about $28]"
+  },
+  {
+   "match": "Darryl DMC",
+   "line": "DMC of Run-DMC signing his album at Rough Trade, Sat 2 PM, [$26]"
+  },
+  {
+   "match": "Integrity, Indecision",
+   "line": "Integrity, Indecision and Deadguy at Saint Vitus, Sat 6 PM, [about $55]"
+  },
+  {
+   "match": "Downtown Boys",
+   "line": "Downtown Boys live at The Sultan Room, Sat 7 PM, [about $26]"
+  }
+ ],
+ "map": {
+  "nights": "2026-11-26..2026-11-29",
+  "line": "every event in [NYC], in one place"
+ }
+}

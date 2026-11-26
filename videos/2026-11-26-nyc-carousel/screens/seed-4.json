@@ -1,0 +1,916 @@
+{
+ "clock": "3:00",
+ "when": "This week",
+ "city": "New York",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "6eb867bd-98a3-40ec-99d6-8d7efe23fdcc",
+   "external": true,
+   "name": "CALETA",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/6eb867bd-98a3-40ec-99d6-8d7efe23fdcc.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-6eb867bd-98a3-40ec-99d6-8d7efe23fdcc.jpg",
+   "labelFallback": false,
+   "record": [
+    "LATIN",
+    "PA QUE LA PASES BIEN"
+   ],
+   "day": "Tonight",
+   "clock": "11 PM",
+   "location": "19 WYCKOFF ST",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/6eb867bd-98a3-40ec-99d6-8d7efe23fdcc.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "362b2bc3-a823-46e9-8c32-bd7b8e44ecb9",
+   "external": true,
+   "name": "Prep Alums @ Honey’s | Black Friday Fete",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/362b2bc3-a823-46e9-8c32-bd7b8e44ecb9.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-362b2bc3-a823-46e9-8c32-bd7b8e44ecb9.jpg",
+   "labelFallback": false,
+   "record": [
+    "ANGEL + DREN",
+    "B4U"
+   ],
+   "day": "FRI",
+   "clock": "6 PM",
+   "location": "HONEY’S",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/362b2bc3-a823-46e9-8c32-bd7b8e44ecb9.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "56c4a05d-d5c5-4198-b810-b0427bc80d24",
+   "external": true,
+   "name": "Minty Boi Presents: Boy2000 with Tlim Shug",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/56c4a05d-d5c5-4198-b810-b0427bc80d24.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/56c4a05d-d5c5-4198-b810-b0427bc80d24.jpg",
+   "labelFallback": true,
+   "record": [
+    "BOY 2000",
+    "SAVESTATE"
+   ],
+   "day": "FRI",
+   "clock": "7 PM",
+   "location": "TRANS-PECOS",
+   "price": "$29.45",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/56c4a05d-d5c5-4198-b810-b0427bc80d24.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "39389663-0458-4231-b212-78ef990c5691",
+   "external": true,
+   "name": "Tempo Theory",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/39389663-0458-4231-b212-78ef990c5691.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/39389663-0458-4231-b212-78ef990c5691.jpg",
+   "labelFallback": true,
+   "record": [
+    "BRUKSHOT - ARIES & KELVIN 373 REMIX",
+    "NOV 27"
+   ],
+   "day": "FRI",
+   "clock": "8 PM",
+   "location": "ALTHEA'S HIDEAWAY NYC",
+   "price": "$22.66",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/39389663-0458-4231-b212-78ef990c5691.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "b0d96530-1e77-486e-8ed2-2f352d67f468",
+   "external": true,
+   "name": "Serena Smart",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/b0d96530-1e77-486e-8ed2-2f352d67f468.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-b0d96530-1e77-486e-8ed2-2f352d67f468.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "DECISIONS"
+   ],
+   "day": "FRI",
+   "clock": "8 PM",
+   "location": "THE DELANCEY ROOFTOP",
+   "price": "$20",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/b0d96530-1e77-486e-8ed2-2f352d67f468.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "a4e7e562-25a2-4092-acac-4e012eb5f598",
+   "external": true,
+   "name": "Ménage Noire Blacked Friday Affair",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/a4e7e562-25a2-4092-acac-4e012eb5f598.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-a4e7e562-25a2-4092-acac-4e012eb5f598.jpg",
+   "labelFallback": false,
+   "record": [
+    "SZA",
+    "THE WEEKEND"
+   ],
+   "day": "FRI",
+   "clock": "8 PM",
+   "location": "PRIVACY",
+   "price": "$85",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/a4e7e562-25a2-4092-acac-4e012eb5f598.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "a73e58df-fb68-48aa-9202-ecfb9a7f1542",
+   "external": true,
+   "name": "RNB ZOO BLACK FRIDAY",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/a73e58df-fb68-48aa-9202-ecfb9a7f1542.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-a73e58df-fb68-48aa-9202-ecfb9a7f1542.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "BED"
+   ],
+   "day": "FRI",
+   "clock": "9 PM",
+   "location": "THE MATRIARCH",
+   "price": "$17.34",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/a73e58df-fb68-48aa-9202-ecfb9a7f1542.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "1c461bc8-df7d-4a0d-ab22-8804cd3e671c",
+   "external": true,
+   "name": "Marco Lys at Public Hotel",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.jpg",
+   "labelFallback": true,
+   "record": [
+    "HOUSE",
+    "CAJMERE - BRIGHTER DAYS - MARCO LYS REMIX"
+   ],
+   "day": "FRI",
+   "clock": "10 PM",
+   "location": "ARTSPACE",
+   "price": "$20",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/1c461bc8-df7d-4a0d-ab22-8804cd3e671c.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "97974a72-cb73-423a-b638-0e8efb9e3104",
+   "external": true,
+   "name": "Eli Fola & Hyenah in the Onyx Room",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/97974a72-cb73-423a-b638-0e8efb9e3104.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/97974a72-cb73-423a-b638-0e8efb9e3104.jpg",
+   "labelFallback": true,
+   "record": [
+    "HOUSE",
+    "HAAA!"
+   ],
+   "day": "FRI",
+   "clock": "10 PM",
+   "location": "THE ONYX ROOM AT HOUSE OF YES",
+   "price": "$10.82",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/97974a72-cb73-423a-b638-0e8efb9e3104.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "7abfd204-78fc-4ff3-a52d-0a3e9279b11d",
+   "external": true,
+   "name": "wavcrash: FLOWSTATE at NIKU X Rooftop",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/7abfd204-78fc-4ff3-a52d-0a3e9279b11d.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-7abfd204-78fc-4ff3-a52d-0a3e9279b11d.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "MELTED"
+   ],
+   "day": "FRI",
+   "clock": "10 PM",
+   "location": "NIKU X ROOFTOP",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/7abfd204-78fc-4ff3-a52d-0a3e9279b11d.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "70dd6113-e959-43dd-af0f-83acb3df1076",
+   "external": true,
+   "name": "Black Friday — Reggaeton Edition",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/70dd6113-e959-43dd-af0f-83acb3df1076.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/70dd6113-e959-43dd-af0f-83acb3df1076.jpg",
+   "labelFallback": true,
+   "record": [
+    "LATIN",
+    "NUEVAYOL"
+   ],
+   "day": "FRI",
+   "clock": "11 PM",
+   "location": "SEA WOLF BUSHWICK",
+   "price": "$2.26",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/70dd6113-e959-43dd-af0f-83acb3df1076.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "0a645e51-7423-41e6-bae0-1e8992b3d279",
+   "external": true,
+   "name": "Zack Martino",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/0a645e51-7423-41e6-bae0-1e8992b3d279.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-0a645e51-7423-41e6-bae0-1e8992b3d279.jpg",
+   "labelFallback": false,
+   "record": [
+    "BORGEOUS & ZACK MARTINO",
+    "MAKE ME YOURS"
+   ],
+   "day": "FRI",
+   "clock": "11 PM",
+   "location": "NEBULA",
+   "price": "$27.56",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/0a645e51-7423-41e6-bae0-1e8992b3d279.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "08a60df6-21e7-439d-ae86-a04c3893b6a6",
+   "external": true,
+   "name": "Miles for our people",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/08a60df6-21e7-439d-ae86-a04c3893b6a6.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-08a60df6-21e7-439d-ae86-a04c3893b6a6.jpg",
+   "labelFallback": false,
+   "record": [
+    "WIZ KHALIFA",
+    "SEE YOU AGAIN (FEAT. CHARLIE PUTH)"
+   ],
+   "day": "SAT",
+   "clock": "9 AM",
+   "location": "CAFÉ COLMADO",
+   "price": "$10",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/08a60df6-21e7-439d-ae86-a04c3893b6a6.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "8a094ffe-42f5-415a-96d2-0828954a08f8",
+   "external": true,
+   "name": "Michigan vs Ohio State Watch Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/8a094ffe-42f5-415a-96d2-0828954a08f8.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-8a094ffe-42f5-415a-96d2-0828954a08f8.jpg",
+   "labelFallback": false,
+   "record": [
+    "FUTURE",
+    "NEVER GON LOSE"
+   ],
+   "day": "SAT",
+   "clock": "11:30 AM",
+   "location": "UNCLE ROGER’S",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/8a094ffe-42f5-415a-96d2-0828954a08f8.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "0d31a7cd-49d3-4ef9-b789-1c8dc25dadfa",
+   "external": true,
+   "name": "The Altiverse Brunch",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/0d31a7cd-49d3-4ef9-b789-1c8dc25dadfa.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-0d31a7cd-49d3-4ef9-b789-1c8dc25dadfa.jpg",
+   "labelFallback": false,
+   "record": [
+    "SNOH AALEGRA",
+    "SUPERNOVA"
+   ],
+   "day": "SAT",
+   "clock": "1:30 PM",
+   "location": "SANGER HALL",
+   "price": "$11.99",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/0d31a7cd-49d3-4ef9-b789-1c8dc25dadfa.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "5d47c18e-0895-43bb-8312-a13434ee8cfb",
+   "external": true,
+   "name": "Darryl DMC McDaniels Album Signing",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/5d47c18e-0895-43bb-8312-a13434ee8cfb.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/5d47c18e-0895-43bb-8312-a13434ee8cfb.jpg",
+   "labelFallback": true,
+   "record": [
+    "RUN-DMC",
+    "BEATS TO THE RHYME"
+   ],
+   "day": "SAT",
+   "clock": "2 PM",
+   "location": "ROUGH TRADE BELOW",
+   "price": "$26",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/5d47c18e-0895-43bb-8312-a13434ee8cfb.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "3902f140-f628-4e91-a86e-a19d44bf7a7b",
+   "external": true,
+   "name": "Integrity, Indecision, Deadguy, Neolithic",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/3902f140-f628-4e91-a86e-a19d44bf7a7b.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/3902f140-f628-4e91-a86e-a19d44bf7a7b.jpg",
+   "labelFallback": true,
+   "record": [
+    "THOSE WHO FEAR TOMORROW",
+    "NOV 28"
+   ],
+   "day": "SAT",
+   "clock": "6 PM",
+   "location": "SAINT VITUS",
+   "price": "$55.17",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/3902f140-f628-4e91-a86e-a19d44bf7a7b.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "9ac77bfd-9ff4-4425-9cf9-08d6c105227b",
+   "external": true,
+   "name": "\"Xanadu 54\" starring Rich Medina, Kels, Varunisme (skate all night)",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/9ac77bfd-9ff4-4425-9cf9-08d6c105227b.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/9ac77bfd-9ff4-4425-9cf9-08d6c105227b.jpg",
+   "labelFallback": true,
+   "record": [
+    "HOUSE",
+    "RICH MEDINA, SY SMITH, PLATINUM PIED PIPERS - CAN'T HOLD BACK (PLATINUM PIED PIPERS REMIX)"
+   ],
+   "day": "SAT",
+   "clock": "7 PM",
+   "location": "XANADU",
+   "price": "$25",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/9ac77bfd-9ff4-4425-9cf9-08d6c105227b.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "a7d19976-5bfd-4d39-a7f1-09a868da85e0",
+   "external": true,
+   "name": "Downtown Boys, Pop Music Fever Dream, NYSA, Frida Kill",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/a7d19976-5bfd-4d39-a7f1-09a868da85e0.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/a7d19976-5bfd-4d39-a7f1-09a868da85e0.jpg",
+   "labelFallback": true,
+   "record": [
+    "POP",
+    "DANCING IN THE DARK"
+   ],
+   "day": "SAT",
+   "clock": "7 PM",
+   "location": "THE SULTAN ROOM",
+   "price": "$25.65",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/a7d19976-5bfd-4d39-a7f1-09a868da85e0.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "999bcbf5-87e5-48d7-ab43-b6f55e9390b6",
+   "external": true,
+   "name": "A MORE THAN AVERAGE CONCERT",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/999bcbf5-87e5-48d7-ab43-b6f55e9390b6.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/999bcbf5-87e5-48d7-ab43-b6f55e9390b6.jpg",
+   "labelFallback": true,
+   "record": [
+    "BRENDEN & MANKIIND",
+    "ANOTHER DAY"
+   ],
+   "day": "SAT",
+   "clock": "7 PM",
+   "location": "STARR BAR",
+   "price": "$11.33",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/999bcbf5-87e5-48d7-ab43-b6f55e9390b6.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "37469fc6-ae40-461f-8249-ec604a0d9058",
+   "external": true,
+   "name": "RnB In The City Saturdays",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/37469fc6-ae40-461f-8249-ec604a0d9058.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-37469fc6-ae40-461f-8249-ec604a0d9058.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "FAMILY AFFAIR"
+   ],
+   "day": "SAT",
+   "clock": "8 PM",
+   "location": "BLISS TERASU",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/37469fc6-ae40-461f-8249-ec604a0d9058.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "6280abb5-e3f0-464e-989c-18d9da1e143e",
+   "external": true,
+   "name": "THE KAGE: Fight Meets Music, Mont Rouge, Myles O'Neal, and Massuma",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/6280abb5-e3f0-464e-989c-18d9da1e143e.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-6280abb5-e3f0-464e-989c-18d9da1e143e.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "WAVES OF LUV"
+   ],
+   "day": "SAT",
+   "clock": "8 PM",
+   "location": "CAPITALE",
+   "price": "$37.39",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/6280abb5-e3f0-464e-989c-18d9da1e143e.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "c7c85a04-719e-4c3b-b41d-9ccd17969988",
+   "external": true,
+   "name": "GOOD TING: The Art of the Dance",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/c7c85a04-719e-4c3b-b41d-9ccd17969988.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-c7c85a04-719e-4c3b-b41d-9ccd17969988.jpg",
+   "labelFallback": false,
+   "record": [
+    "OTHER",
+    "WYFL RIDDIM"
+   ],
+   "day": "SAT",
+   "clock": "8 PM",
+   "location": "FRIDMAN GALLERY",
+   "price": "$20",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/c7c85a04-719e-4c3b-b41d-9ccd17969988.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "818eae62-f0a6-456b-9596-ca20130899b2",
+   "external": true,
+   "name": "Sounds So Dangerous (Free Rave and Arcade Pop Up)",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/818eae62-f0a6-456b-9596-ca20130899b2.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/818eae62-f0a6-456b-9596-ca20130899b2.jpg",
+   "labelFallback": true,
+   "record": [
+    "TECHNO",
+    "BEAT KEEP ROCKIN'"
+   ],
+   "day": "SAT",
+   "clock": "9 PM",
+   "location": "DANGER DANGER",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/818eae62-f0a6-456b-9596-ca20130899b2.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "8a2eea78-47ed-4dc1-9667-1dda20da9cce",
+   "external": true,
+   "name": "Smacks Presents: Friendsgiving!",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/8a2eea78-47ed-4dc1-9667-1dda20da9cce.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/8a2eea78-47ed-4dc1-9667-1dda20da9cce.jpg",
+   "labelFallback": true,
+   "record": [
+    "R-AND-B",
+    "BEST FRIEND"
+   ],
+   "day": "SAT",
+   "clock": "10 PM",
+   "location": "BABY'S ALL RIGHT",
+   "price": "$18.13",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/8a2eea78-47ed-4dc1-9667-1dda20da9cce.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "1368c70d-6373-4e46-a81a-fb9f36043b66",
+   "external": true,
+   "name": "Curiouser & Curiouser: Felix Da Housecat, L3ni, Peter Napoli",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/1368c70d-6373-4e46-a81a-fb9f36043b66.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/1368c70d-6373-4e46-a81a-fb9f36043b66.jpg",
+   "labelFallback": true,
+   "record": [
+    "BERLIN SANFRANDISCO",
+    "NOV 28"
+   ],
+   "day": "SAT",
+   "clock": "10 PM",
+   "location": "HOUSE OF YES",
+   "price": "$14.28",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/1368c70d-6373-4e46-a81a-fb9f36043b66.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "f4b26047-d2cf-42ae-8159-c595adda8e57",
+   "external": true,
+   "name": "Premiere Saturdays",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/f4b26047-d2cf-42ae-8159-c595adda8e57.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-f4b26047-d2cf-42ae-8159-c595adda8e57.jpg",
+   "labelFallback": false,
+   "record": [
+    "HIP-HOP",
+    "AH HA"
+   ],
+   "day": "SAT",
+   "clock": "10 PM",
+   "location": "AGENDA RESTAURANT",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/f4b26047-d2cf-42ae-8159-c595adda8e57.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "4958cad8-76bb-43eb-a32b-1f6177f0fd6b",
+   "external": true,
+   "name": "Suck My Disco!",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/4958cad8-76bb-43eb-a32b-1f6177f0fd6b.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-4958cad8-76bb-43eb-a32b-1f6177f0fd6b.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "SUCK MY DISCO (DJ MINX REMIX)"
+   ],
+   "day": "SAT",
+   "clock": "10:30 PM",
+   "location": "C'MON EVERYBODY",
+   "price": "$11.50",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/4958cad8-76bb-43eb-a32b-1f6177f0fd6b.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "50bd677d-19e9-477a-a09b-9859dd3641d8",
+   "external": true,
+   "name": "Third Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/50bd677d-19e9-477a-a09b-9859dd3641d8.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-50bd677d-19e9-477a-a09b-9859dd3641d8.jpg",
+   "labelFallback": false,
+   "record": [
+    "HALŌ, THIRD ≡ PARTY, DUBVISION & MATISSE & SADKO",
+    "LIVE AGAIN"
+   ],
+   "day": "SAT",
+   "clock": "11 PM",
+   "location": "NEBULA",
+   "price": "$33.07",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/50bd677d-19e9-477a-a09b-9859dd3641d8.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "38927dff-afb2-4f37-aa84-262dd6a19421",
+   "external": true,
+   "name": "MONSTERA x SEA WOLF REGGAETON | SATURDAY",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/38927dff-afb2-4f37-aa84-262dd6a19421.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/38927dff-afb2-4f37-aa84-262dd6a19421.jpg",
+   "labelFallback": true,
+   "record": [
+    "LATIN",
+    "NUEVAYOL"
+   ],
+   "day": "SAT",
+   "clock": "11 PM",
+   "location": "SEA WOLF BUSHWICK",
+   "price": "$2.26",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/38927dff-afb2-4f37-aa84-262dd6a19421.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "2cb80c3b-6e41-45c6-873a-c59dd90b8c9c",
+   "external": true,
+   "name": "Haus of Joon: Ardeshir and Esmera",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/2cb80c3b-6e41-45c6-873a-c59dd90b8c9c.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/2cb80c3b-6e41-45c6-873a-c59dd90b8c9c.jpg",
+   "labelFallback": true,
+   "record": [
+    "PERSIAN FLOWER",
+    "NOV 28"
+   ],
+   "day": "SAT",
+   "clock": "11 PM",
+   "location": "SOMEWHERE NOWHERE NYC",
+   "price": "$39.84",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/2cb80c3b-6e41-45c6-873a-c59dd90b8c9c.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "36523aa1-1eec-4ddc-9566-268454d2ea87",
+   "external": true,
+   "name": "Second Spin: YS Reunion and Welcome Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/36523aa1-1eec-4ddc-9566-268454d2ea87.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-36523aa1-1eec-4ddc-9566-268454d2ea87.jpg",
+   "labelFallback": false,
+   "record": [
+    "FLO RIDA",
+    "RIGHT ROUND"
+   ],
+   "day": "SUN",
+   "clock": "5 PM",
+   "location": "HIGHWATER ROOFTOP",
+   "price": "$11.99",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/36523aa1-1eec-4ddc-9566-268454d2ea87.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "e96fca71-cead-493f-800e-034bf5699cea",
+   "external": true,
+   "name": "Integrity, Most Precious Blood, Inclination, Ferment",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/e96fca71-cead-493f-800e-034bf5699cea.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/e96fca71-cead-493f-800e-034bf5699cea.jpg",
+   "labelFallback": true,
+   "record": [
+    "THOSE WHO FEAR TOMORROW",
+    "NOV 29"
+   ],
+   "day": "SUN",
+   "clock": "6 PM",
+   "location": "SAINT VITUS",
+   "price": "$55.17",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/e96fca71-cead-493f-800e-034bf5699cea.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "e3fa3e74-3ead-4db9-b181-d86b90248438",
+   "external": true,
+   "name": "The Art of Muzic Winter Coat Drive",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/e3fa3e74-3ead-4db9-b181-d86b90248438.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-e3fa3e74-3ead-4db9-b181-d86b90248438.jpg",
+   "labelFallback": false,
+   "record": [
+    "HIP-HOP",
+    "WHAT THE DEAL IS"
+   ],
+   "day": "SUN",
+   "clock": "6 PM",
+   "location": "SOUNDS OF BRAZIL",
+   "price": "$30",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/e3fa3e74-3ead-4db9-b181-d86b90248438.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "e8095642-85f1-4178-a17c-e18c1ffdfaee",
+   "external": true,
+   "name": "Cumbia Gala",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/e8095642-85f1-4178-a17c-e18c1ffdfaee.png",
+   "poster": null,
+   "label": "/videos/2026-11-26-nyc-carousel/events/nyc/art/art-e8095642-85f1-4178-a17c-e18c1ffdfaee.jpg",
+   "labelFallback": false,
+   "record": [
+    "LATIN",
+    "EL AMOR DE LA NENA"
+   ],
+   "day": "SUN",
+   "clock": "6:30 PM",
+   "location": "THE MARQUEE ASTORIA",
+   "price": "$22.99",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-26-nyc-carousel/events/nyc/stamps/e8095642-85f1-4178-a17c-e18c1ffdfaee.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "doorway": true,
+   "count": 154,
+   "windowLabel": "THIS WEEK",
+   "from": "From Eventbrite, RA, Ticketmaster, DICE, Posh and Partiful",
+   "picks": [
+    {
+     "id": "b938be2e-8d80-4a9b-ab7a-34c13e47b6b1",
+     "title": "Reggaeton on Houston - Latin & Reggaeton Party NYC",
+     "time": "5 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/b938be2e-8d80-4a9b-ab7a-34c13e47b6b1.jpg"
+    },
+    {
+     "id": "b36f0124-9454-45b5-9f5a-e6f1d494ddbb",
+     "title": "Discover Fitness Classes at the Taylor Center for Dance Education This Fall",
+     "time": "9:30 AM",
+     "poster": null,
+     "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/b36f0124-9454-45b5-9f5a-e6f1d494ddbb.jpg"
+    },
+    {
+     "id": "3c4bd648-7446-4c45-a798-540ed669de8a",
+     "title": "Ritmos: Parchados En Provenza - Colombian Salsa, Vallenato Reggaeton Party",
+     "time": "5 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-26-nyc-carousel/events/nyc/covers/3c4bd648-7446-4c45-a798-540ed669de8a.jpg"
+    }
+   ]
+  }
+ ],
+ "at": 11,
+ "discOpen": false,
+ "joined": false
+}
