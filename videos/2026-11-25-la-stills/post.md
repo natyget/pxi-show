@@ -10,6 +10,8 @@ centred on black, one line above).
 
 ## 1. Tonight (carousel, 2 slides)
 
+**Scheduled, read back (Metricool, PXI LABS):** Instagram + Facebook carousel Wed Nov 25 7:45 PM Chicago (5:45 PM in LA); TikTok photo post with auto music 7:50 PM. Not drafts. Images hosted on this repo (raw.githubusercontent.com, this branch).
+
 Search phrase: things to do in la tonight
 
 | Slide | Line | Screen | Listings |
