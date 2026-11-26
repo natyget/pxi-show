@@ -8,7 +8,7 @@ York "One night" shorts.
 
 ## Where things stand (Nov 24, 2026)
 
-- **Stills (scheduler thread, until Monday):** Nov 25: LA tonight carousel (2 slides) IG+FB 7:45 PM, TikTok 7:50 PM Chicago; passed the fresh reviewer on the second cut (`videos/2026-11-25-la-stills/`, composer `studio/still.cjs`). Nov 26 (Thanksgiving): free tonight, NYC IG+FB 3:00 / TikTok 3:05 PM, LA IG+FB 6:30 / TikTok 6:35 PM Chicago; NYC passed on its second cut (the Delancey listing still wears a Halloween flyer: dropped). Thanksgiving LA carousel (intro, two cards, download): IG+FB 1:00 PM Chicago; the TikTok version (9:16) the founder posts by hand with their sound (`videos/2026-11-26-la-tiktok/`).
+- **Stills (scheduler thread, until Monday):** Nov 25: LA tonight carousel (2 slides) IG+FB 7:45 PM, TikTok 7:50 PM Chicago; passed the fresh reviewer on the second cut (`videos/2026-11-25-la-stills/`, composer `studio/still.cjs`). Nov 26 (Thanksgiving): free tonight, NYC IG+FB 3:00 / TikTok 3:05 PM, LA IG+FB 6:30 / TikTok 6:35 PM Chicago; NYC passed on its second cut (the Delancey listing still wears a Halloween flyer: dropped). Thanksgiving LA carousel (intro, seven cards Thu to Sat, the app's map with the logo): IG+FB 1:00 PM Chicago; the TikTok version (9:16) the founder posts by hand with their sound (`videos/2026-11-26-la-tiktok/`).
 - **Scheduled (not drafts, read back):** LA weekend Wed Nov 25 8:30/8:35/8:40 PM; NYC nights Thu Nov 26 5:30/5:35/
   5:40 PM; Nio LA Thu Nov 26 8:30/8:35/8:40 PM (Chicago; IG+FB reel, TikTok, YouTube Short). Listings re-fetched first: all stand.
 - **City weekend reels (maker thread, Nov 24):** the weekend told as nights out, one scene for every city and week:
@@ -89,6 +89,8 @@ York "One night" shorts.
 - (none)
 
 ## Founder notes (newest first, word for word)
+
+- **Nov 26, on the Thanksgiving carousel (scheduler thread):** "maybe more on the things to do it will be nice and maybe the cta being our map to show that all event in one place get pxi would be better dot you think". "ok you arent using our actual maps and how it looks and our logo isnt there on the last cta and we dont really need the list view im just saying more suggestions like the 2 you gave". "maybe 4 or so suggestion one more wont really do it". "why do you say this weekend after la, just saying in la is enough". (Done: cards only, about seven picks, the closing slide is the app's own map with the logo, `studio/map.cjs`; the cover says "tryna find things to do in LA?".)
 
 - **Nov 25, on carousels (to the scheduler thread; for the stronger-model thread when it checks on Monday after 8 PM):** "i need you from now on to make a nice intro carousel with big text like "trynna finid things to do this weekend" just one headline and an arrow to sipw with swipe text under it or over whatever nothing more. generate me that image and also please make me a last cta slide to at all time so that we can see download pxi cta. make sure to report this to fable next time it checks on you monday after 8 pm".
 
