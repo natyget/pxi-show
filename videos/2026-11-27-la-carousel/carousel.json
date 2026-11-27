@@ -1,0 +1,11 @@
+{"events": "videos/2026-11-27-la-carousel/events/la", "now": "2026-11-27 10:00", "tz": "America/Los_Angeles",
+ "intro": "tryna find things to do in [LA this weekend]?",
+ "picks": [
+  {"match": "Whenimondamic", "line": "Whenimondamic live at Hello Stranger, Fri 8 PM, [about $24]"},
+  {"match": "SWEET TALK", "line": "Sweet Talk: an R&B night in Chinatown, Fri 9 PM"},
+  {"match": "Scenarios", "line": "Scenarios at Sound Nightclub, Fri 10 PM, [about $25]"},
+  {"match": "PCS w/", "line": "PCS live at The Airliner, Sat 7 PM, [about $11]"},
+  {"match": "DND & FRIENDS", "line": "DND & Friends on a rooftop, Sat 10 PM, [$17]"},
+  {"match": "Rhythm & Brewed", "line": "an R&B cafe afternoon at ORA Cafe, Sun 3 PM, [about $23]"},
+  {"match": "Jeremiah Chiu", "line": "Jeremiah Chiu's album release at Zebulon, Sun 8 PM, [about $27]"}],
+ "map": {"nights": "2026-11-27..2026-11-29", "line": "every event in [LA], in one place"}}
