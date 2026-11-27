@@ -29,7 +29,7 @@ const q = (arr, p) => { const s = [...arr].sort((x, y) => x - y); return s[Math.
 const lats = ev.map(e => e.lat), lngs = ev.map(e => e.lng);
 const bounds = [[q(lngs, .05), q(lats, .05)], [q(lngs, .95), q(lats, .95)]];
 const tall = H / W > 1.6;
-const mapTop = tall ? 470 : 240, mapH = tall ? 860 : 600;
+const mapTop = tall ? 470 : 240, mapH = tall ? 700 : 600; // 9:16: the CTA ends above the bottom 350px TikTok covers
 const ctaTop = mapTop + mapH + (tall ? 40 : 24);
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const html = `<!doctype html><html><head>

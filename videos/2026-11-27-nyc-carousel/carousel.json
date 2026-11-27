@@ -1,11 +1,40 @@
-{"events": "videos/2026-11-27-nyc-carousel/events/nyc", "now": "2026-11-27 10:00", "tz": "America/New_York",
+{
+ "events": "videos/2026-11-27-nyc-carousel/events/nyc",
+ "now": "2026-11-27 10:00",
+ "tz": "America/New_York",
  "intro": "tryna find things to do in [NYC this weekend]?",
  "picks": [
-  {"match": "A MORE THAN AVERAGE", "line": "A More Than Average Concert at Starr Bar, Sat 7 PM, [about $11]"},
-  {"match": "Smacks Presents", "line": "Friendsgiving at Baby's All Right, Sat 10 PM, [about $18]"},
-  {"match": "MONSTERA x SEA WOLF", "line": "reggaeton Saturday at Sea Wolf in Bushwick, Sat 11 PM, [about $2]"},
-  {"match": "Souled Out Sunday", "line": "Souled Out Sunday: brunch and a day party, Sun 2 PM"},
-  {"match": "Lew Tabackin", "line": "Lew Tabackin's jazz trio in Midtown, Sun 3 PM, [$14]"},
-  {"match": "BUCKAROO", "line": "BUCKAROO at Desert 5 Spot, Sun 5 PM, [about $13]"},
-  {"match": "Frank Hurricane", "line": "Frank Hurricane live at Union Pool, Sun 7 PM, [about $19]"}],
- "map": {"nights": "2026-11-27..2026-11-29", "line": "every event in [NYC], in one place"}}
+  {
+   "match": "Smacks Presents",
+   "line": "Friendsgiving at Baby's All Right, Sat 10 PM, [about $18]"
+  },
+  {
+   "match": "MONSTERA x SEA WOLF",
+   "line": "reggaeton night at Sea Wolf in Bushwick, Sat 11 PM, [about $2]"
+  },
+  {
+   "match": "Souled Out Sunday",
+   "line": "Souled Out Sunday: brunch and a day party at 333 Lounge, Sun 2 PM"
+  },
+  {
+   "match": "Lew Tabackin",
+   "line": "Lew Tabackin's jazz trio at Michiko Studios, Sun 3 PM, [$14]"
+  },
+  {
+   "match": "BUCKAROO",
+   "line": "BUCKAROO at Desert 5 Spot, Sun 5 PM, [about $13]"
+  },
+  {
+   "match": "Second Spin",
+   "line": "Second Spin at Highwater Rooftop, Sun 5 PM, [about $12]"
+  },
+  {
+   "match": "Integrity, Most Precious Blood",
+   "line": "Integrity and Most Precious Blood at Saint Vitus, Sun 6 PM, [about $55]"
+  }
+ ],
+ "map": {
+  "nights": "2026-11-27..2026-11-29",
+  "line": "every event in [NYC], in one place"
+ }
+}
