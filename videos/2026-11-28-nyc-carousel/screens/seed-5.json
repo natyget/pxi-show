@@ -1,91 +1,116 @@
 {
  "clock": "10:00",
- "when": "Wed 2",
+ "when": "Thu 3",
  "city": "New York",
  "me": "assets/me-nio.png",
  "second": "Map",
  "cards": [
   {
-   "id": "c0e9d021-1e77-4576-b05f-781f94f2e018",
+   "id": "219592be-82cd-45f9-90eb-76cdb1efed49",
    "external": true,
-   "name": "GIFT, Evolfo, Aubrey Haddard, DJ Arthur Moon",
+   "name": "Caspian, Industries of the Blind, The Infinity Ring",
    "hideName": true,
    "host": "",
-   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/c0e9d021-1e77-4576-b05f-781f94f2e018.jpg",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/219592be-82cd-45f9-90eb-76cdb1efed49.jpg",
    "poster": null,
-   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/c0e9d021-1e77-4576-b05f-781f94f2e018.jpg",
-   "labelFallback": true,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/art/art-219592be-82cd-45f9-90eb-76cdb1efed49.jpg",
+   "labelFallback": false,
    "record": [
-    "GOING IN CIRCLES",
-    "DEC 2"
+    "CASPIAN",
+    "HYMN FOR THE GREATEST GENERATION"
    ],
-   "day": "WED",
-   "clock": "7 PM",
-   "location": "ALPHAVILLE",
-   "price": "TBA",
+   "day": "THU",
+   "clock": "6 PM",
+   "location": "SAINT VITUS",
+   "price": "$35.47",
    "match": null,
    "stamp": {
-    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/c0e9d021-1e77-4576-b05f-781f94f2e018.svg",
-    "w": 80.66,
-    "h": 80.66
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/219592be-82cd-45f9-90eb-76cdb1efed49.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
    }
   },
   {
-   "id": "c8de184c-b2c8-4191-b45a-f7d0ddc28be2",
+   "id": "97383311-ef4a-44d4-b754-7110f8a8690c",
    "external": true,
-   "name": "House Of Nuisance: Birthday Edition",
+   "name": "Cafuné + Friends Holiday Show",
    "hideName": true,
    "host": "",
-   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/c8de184c-b2c8-4191-b45a-f7d0ddc28be2.jpg",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/97383311-ef4a-44d4-b754-7110f8a8690c.jpg",
    "poster": null,
-   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/art/art-c8de184c-b2c8-4191-b45a-f7d0ddc28be2.jpg",
-   "labelFallback": false,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/97383311-ef4a-44d4-b754-7110f8a8690c.jpg",
+   "labelFallback": true,
    "record": [
-    "HOUSE",
-    "RUN DA RECORD"
+    "CAFUNÉ - TALK",
+    "DEC 3"
    ],
-   "day": "WED",
-   "clock": "9 PM",
-   "location": "KEYBAR",
-   "price": "FREE",
+   "day": "THU",
+   "clock": "7 PM",
+   "location": "THE SULTAN ROOM",
+   "price": "$31.68",
    "match": null,
    "stamp": {
-    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/c8de184c-b2c8-4191-b45a-f7d0ddc28be2.svg",
-    "w": 80.66,
-    "h": 80.66
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/97383311-ef4a-44d4-b754-7110f8a8690c.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "bbf1be51-a932-42bd-8a65-fd7b815941fc",
+   "external": true,
+   "name": "Net Loss (Album Release), PFFU",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/bbf1be51-a932-42bd-8a65-fd7b815941fc.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/bbf1be51-a932-42bd-8a65-fd7b815941fc.jpg",
+   "labelFallback": true,
+   "record": [
+    "CENTRAL HIGH",
+    "DEC 3"
+   ],
+   "day": "THU",
+   "clock": "7 PM",
+   "location": "ALPHAVILLE",
+   "price": "$13.06",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/bbf1be51-a932-42bd-8a65-fd7b815941fc.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
    }
   },
   {
    "doorway": true,
-   "count": 41,
-   "windowLabel": "WED 2",
-   "from": "From Eventbrite, Ticketmaster, DICE and RA",
+   "count": 40,
+   "windowLabel": "THU 3",
+   "from": "From Eventbrite, RA, Ticketmaster, DICE, Luma, Partiful and Posh",
    "picks": [
     {
-     "id": "1aae0b85-458f-408e-befa-0a0294a417eb",
-     "title": "Discover Fitness Classes at the Taylor Center for Dance Education This Fall",
-     "time": "Wed 9:30 AM",
+     "id": "0fd97632-274f-4e75-be5f-baa5d8cd5d04",
+     "title": "Reggaeton on Houston - Latin & Reggaeton Party NYC",
+     "time": "Thu 5 PM",
      "poster": null,
-     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/1aae0b85-458f-408e-befa-0a0294a417eb.jpg"
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/0fd97632-274f-4e75-be5f-baa5d8cd5d04.jpg"
     },
     {
-     "id": "46398106-bdc0-480c-a410-dfc9f0de8f23",
-     "title": "Discover Fitness Classes at the Taylor Center for Dance Education This Fall",
-     "time": "Wed 9:30 AM",
+     "id": "f36de291-508f-44e6-8b42-9d58d588b9c7",
+     "title": "Leg Room (Joe) B2B Seth Hosko All-Night-Long",
+     "time": "Thu 9 PM",
      "poster": null,
-     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/46398106-bdc0-480c-a410-dfc9f0de8f23.jpg"
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/f36de291-508f-44e6-8b42-9d58d588b9c7.png"
     },
     {
-     "id": "426379e7-140c-45b1-813e-b7510786de5f",
-     "title": "NYC: Unlimited Prosecco Cruise (Lady M)",
-     "time": "Wed 11 AM",
+     "id": "4ee38159-0e41-4d03-9630-c27024e674c5",
+     "title": "NYC Bachelorette Party & Bachelor Party Bar Crawl-Bach Bar Crawl NYC",
+     "time": "Thu 4 PM",
      "poster": null,
-     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/426379e7-140c-45b1-813e-b7510786de5f.jpg"
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/4ee38159-0e41-4d03-9630-c27024e674c5.jpg"
     }
    ]
   }
  ],
- "at": 1,
+ "at": 0,
  "discOpen": false,
  "joined": false
 }

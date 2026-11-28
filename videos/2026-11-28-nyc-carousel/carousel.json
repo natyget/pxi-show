@@ -2,11 +2,11 @@
  "events": "videos/2026-11-28-nyc-carousel/events/nyc",
  "now": "2026-11-28 10:00",
  "tz": "America/New_York",
- "intro": "tryna find things to do in [NYC this week]?",
+ "intro": "tryna find things to do in [NYC next week]?",
  "picks": [
   {
    "match": "Jason Mraz",
-   "line": "Jason Mraz live and signing at Rough Trade, Tue 6 PM, [$25]",
+   "line": "Jason Mraz live and signing at Rough Trade Below, Tue 6 PM, [$25]",
    "when": "2026-12-01"
   },
   {
@@ -25,11 +25,6 @@
    "when": "2026-12-01"
   },
   {
-   "match": "House Of Nuisance",
-   "line": "House Of Nuisance at Keybar, Wed 9 PM, [free]",
-   "when": "2026-12-02"
-  },
-  {
    "match": "Caspian",
    "line": "Caspian at Saint Vitus, Thu 6 PM, [about $35]",
    "when": "2026-12-03"
@@ -41,7 +36,7 @@
   }
  ],
  "map": {
-  "nights": "2026-11-28..2026-12-03",
+  "nights": "2026-12-01..2026-12-03",
   "line": "every event in [NYC], in one place"
  }
 }

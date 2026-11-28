@@ -1,56 +1,56 @@
 {
  "clock": "10:00",
- "when": "Mon 30",
+ "when": "Wed 2",
  "city": "Los Angeles",
  "me": "assets/me-nio.png",
  "second": "Map",
  "cards": [
   {
-   "id": "ccfdb6e0-c5f9-45fb-a570-1b1662080bbc",
+   "id": "35a763a5-afc3-4081-b7dd-0064ccc38d60",
    "external": true,
-   "name": "mmm… Collection 3 Runway",
+   "name": "Popular Kids Club Comedy Show",
    "hideName": true,
    "host": "",
-   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/ccfdb6e0-c5f9-45fb-a570-1b1662080bbc.jpg",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/35a763a5-afc3-4081-b7dd-0064ccc38d60.jpg",
    "poster": null,
-   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-ccfdb6e0-c5f9-45fb-a570-1b1662080bbc.jpg",
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-35a763a5-afc3-4081-b7dd-0064ccc38d60.jpg",
    "labelFallback": false,
    "record": [
-    "KEN CARSON",
-    "FIGHTING MY DEMONS"
+    "COMEDY",
+    "RUDE AND SEXY"
    ],
-   "day": "MON",
+   "day": "WED",
    "clock": "8 PM",
-   "location": "1148 S BROADWAY",
-   "price": "$12",
+   "location": "PERMANENT RECORDS ROADHOUSE",
+   "price": "$15.45",
    "match": null,
    "stamp": {
-    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/ccfdb6e0-c5f9-45fb-a570-1b1662080bbc.svg",
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/35a763a5-afc3-4081-b7dd-0064ccc38d60.svg",
     "w": 98.10000000000001,
     "h": 98.10000000000001
    }
   },
   {
-   "id": "9d11f0ac-7055-4e92-a2ca-77dee6e2d8fe",
+   "id": "96b8c2e6-4ea0-40f5-ad10-762c399f0eb9",
    "external": true,
-   "name": "AFTERS 11- 30 ( MONDAY )",
+   "name": "AFTERS 12-02 ( WEDNESDAY )",
    "hideName": true,
    "host": "",
-   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/9d11f0ac-7055-4e92-a2ca-77dee6e2d8fe.jpg",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/96b8c2e6-4ea0-40f5-ad10-762c399f0eb9.jpg",
    "poster": null,
-   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-9d11f0ac-7055-4e92-a2ca-77dee6e2d8fe.jpg",
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-96b8c2e6-4ea0-40f5-ad10-762c399f0eb9.jpg",
    "labelFallback": false,
    "record": [
     "HOUSE",
-    "HEY EVERYBODY"
+    "DESIRE"
    ],
-   "day": "MON",
+   "day": "WED",
    "clock": "11 PM",
    "location": "129 E 3RD ST",
    "price": "TBA",
    "match": null,
    "stamp": {
-    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/9d11f0ac-7055-4e92-a2ca-77dee6e2d8fe.svg",
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/96b8c2e6-4ea0-40f5-ad10-762c399f0eb9.svg",
     "w": 80.66,
     "h": 80.66
    }
@@ -58,29 +58,29 @@
   {
    "doorway": true,
    "count": 46,
-   "windowLabel": "MON 30",
-   "from": "From Eventbrite, Ticketmaster, Posh, DICE, Partiful and RA",
+   "windowLabel": "WED 2",
+   "from": "From Eventbrite, Ticketmaster, DICE, Partiful, RA and Posh",
    "picks": [
     {
-     "id": "28cc0049-4eb7-47d0-8f33-6a4fa32cf289",
-     "title": "Kids' Pottery+Painting Party - Downtown LA",
-     "time": "Mon 1 PM",
+     "id": "cabe7c1c-2086-4464-b44f-5201669768f5",
+     "title": "Foodies + New Friends Echo Park: Dinner with Strangers",
+     "time": "Wed 7 PM",
      "poster": null,
-     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/28cc0049-4eb7-47d0-8f33-6a4fa32cf289.jpg"
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/cabe7c1c-2086-4464-b44f-5201669768f5.jpg"
     },
     {
-     "id": "44b3fa31-eaab-48e1-8093-325341c816a8",
+     "id": "f5e1fcc6-654c-43aa-bafa-c43d930dd00e",
+     "title": "sax on sunset",
+     "time": "Wed 7 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/f5e1fcc6-654c-43aa-bafa-c43d930dd00e.jpg"
+    },
+    {
+     "id": "af991ee8-1cf5-49b9-9045-9aae5731aa9d",
      "title": "NIGHTSHIFT AFTER HOURS",
-     "time": "Mon 11 PM",
+     "time": "Wed 11 PM",
      "poster": null,
-     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/44b3fa31-eaab-48e1-8093-325341c816a8.jpg"
-    },
-    {
-     "id": "2e1dc2ab-cbe2-4482-8e06-5334296d439b",
-     "title": "Birthday Celebration Packages",
-     "time": "Mon 8 PM",
-     "poster": null,
-     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/2e1dc2ab-cbe2-4482-8e06-5334296d439b.jpg"
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/af991ee8-1cf5-49b9-9045-9aae5731aa9d.jpg"
     }
    ]
   }

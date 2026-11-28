@@ -5,39 +5,26 @@
  "intro": "tryna find things to do in [LA this week]?",
  "picks": [
   {
-   "match": "MASC TAKEOVER",
-   "line": "Sapphic Saturdays at Beaches Tropicana, Sat 4 PM, [about $6]"
-  },
-  {
    "match": "Blond In Car",
    "line": "Blond In Car live at Zebulon, Sat 7 PM, [about $27]"
-  },
-  {
-   "match": "Alexandra Savior (Night 2)",
-   "line": "Alexandra Savior, night two at Scribble, Sat 8 PM, [about $41]"
   },
   {
    "match": "Mishell",
    "line": "Mishell at The Spotlight, Sat 10 PM, [about $31]"
   },
   {
-   "match": "mmm",
-   "line": "a runway show downtown, mmm\u2026 Collection 3, Mon 8 PM, [$12]",
-   "when": "2026-11-30"
-  },
-  {
    "match": "Recall: MoRuf",
-   "line": "Recall: MoRuf, Devin Tracy and Silas Short at Gold-Diggers, Tue 7 PM, [about $20]",
+   "line": "Recall: a night with MoRuf, Devin Tracy and Silas Short at Gold-Diggers, Tue 7 PM, [about $20]",
    "when": "2026-12-01"
   },
   {
    "match": "The Scratch Pad",
-   "line": "The Scratch Pad comedy with Jonah Ray at Scribble, Tue 7:30 PM, [about $14]",
+   "line": "The Scratch Pad: stand-up with Jonah Ray and friends at Scribble, Tue 7:30 PM, [about $14]",
    "when": "2026-12-01"
   }
  ],
  "map": {
-  "nights": "2026-11-28..2026-12-03",
+  "nights": "2026-11-28..2026-12-01",
   "line": "every event in [LA], in one place"
  }
 }
