@@ -1,0 +1,141 @@
+{
+ "clock": "10:00",
+ "when": "Tue 1",
+ "city": "New York",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "68748d8e-2ee1-4b30-8cff-5c3908d1af45",
+   "external": true,
+   "name": "Jason Mraz Live + Signing",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/68748d8e-2ee1-4b30-8cff-5c3908d1af45.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/art/art-68748d8e-2ee1-4b30-8cff-5c3908d1af45.jpg",
+   "labelFallback": false,
+   "record": [
+    "JASON MRAZ",
+    "I'M YOURS"
+   ],
+   "day": "TUE",
+   "clock": "6 PM",
+   "location": "ROUGH TRADE BELOW",
+   "price": "$25",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/68748d8e-2ee1-4b30-8cff-5c3908d1af45.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "b380abaf-ea28-4f27-8013-7035f0b29350",
+   "external": true,
+   "name": "Norell, Judette Elliston, SQORE",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/b380abaf-ea28-4f27-8013-7035f0b29350.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/b380abaf-ea28-4f27-8013-7035f0b29350.jpg",
+   "labelFallback": true,
+   "record": [
+    "R-AND-B",
+    "EVERYTHING'S IN MOTION"
+   ],
+   "day": "TUE",
+   "clock": "6 PM",
+   "location": "SLEEPWALK",
+   "price": "$14.73",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/b380abaf-ea28-4f27-8013-7035f0b29350.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "6abfbffd-effa-4ad1-ab9d-2a649c8e6024",
+   "external": true,
+   "name": "Navy Blue | Knight Vision 2026",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/6abfbffd-effa-4ad1-ab9d-2a649c8e6024.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/6abfbffd-effa-4ad1-ab9d-2a649c8e6024.jpg",
+   "labelFallback": true,
+   "record": [
+    "HIP-HOP",
+    "NAVY BLUE - HIGHER SELF"
+   ],
+   "day": "TUE",
+   "clock": "7 PM",
+   "location": "ST. ANN & THE HOLY TRINITY",
+   "price": "$46.66",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/6abfbffd-effa-4ad1-ab9d-2a649c8e6024.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "bfb8c563-7943-4d40-93a1-59e96a4e3082",
+   "external": true,
+   "name": "Holly Horan, Ben Higginbotham, Avangelia",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/bfb8c563-7943-4d40-93a1-59e96a4e3082.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/bfb8c563-7943-4d40-93a1-59e96a4e3082.jpg",
+   "labelFallback": true,
+   "record": [
+    "R-AND-B",
+    "WILDFLOWER"
+   ],
+   "day": "TUE",
+   "clock": "9 PM",
+   "location": "SLEEPWALK",
+   "price": "$17",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/bfb8c563-7943-4d40-93a1-59e96a4e3082.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "doorway": true,
+   "count": 39,
+   "windowLabel": "TUE 1",
+   "from": "From Eventbrite, Ticketmaster, RA, Partiful, DICE and Posh",
+   "picks": [
+    {
+     "id": "9985311a-dc2f-458b-8cb0-d2166fbe61de",
+     "title": "Discover Fitness Classes at the Taylor Center for Dance Education This Fall",
+     "time": "Tue 9:30 AM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/9985311a-dc2f-458b-8cb0-d2166fbe61de.jpg"
+    },
+    {
+     "id": "55cde344-e628-44d6-9bb1-777ca4c36290",
+     "title": "Discover Fitness Classes at the Taylor Center for Dance Education This Fall",
+     "time": "Tue 9:30 AM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/55cde344-e628-44d6-9bb1-777ca4c36290.jpg"
+    },
+    {
+     "id": "9e9b0b0a-d493-410b-a286-859cfec0cd36",
+     "title": "NYC: Unlimited Prosecco Cruise (Lady M)",
+     "time": "Tue 11 AM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/9e9b0b0a-d493-410b-a286-859cfec0cd36.jpg"
+    }
+   ]
+  }
+ ],
+ "at": 1,
+ "discOpen": false,
+ "joined": false
+}

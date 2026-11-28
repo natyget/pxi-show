@@ -1,0 +1,141 @@
+{
+ "clock": "10:00",
+ "when": "Tue 1",
+ "city": "Los Angeles",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "c03d88b9-b60d-48e9-bc18-d2b607a34551",
+   "external": true,
+   "name": "High Impact Awards - December 1st - GALA",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/c03d88b9-b60d-48e9-bc18-d2b607a34551.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-c03d88b9-b60d-48e9-bc18-d2b607a34551.jpg",
+   "labelFallback": false,
+   "record": [
+    "CHASE BELL",
+    "CHASING YOUR DREAM"
+   ],
+   "day": "TUE",
+   "clock": "6 PM",
+   "location": "SUNSET ROOM HOLLYWOOD",
+   "price": "$40",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/c03d88b9-b60d-48e9-bc18-d2b607a34551.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "b2223f0b-ad47-484b-91c9-53cbd39e783f",
+   "external": true,
+   "name": "Recall: MoRuf, Devin Tracy, Silas Short",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/b2223f0b-ad47-484b-91c9-53cbd39e783f.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/covers/b2223f0b-ad47-484b-91c9-53cbd39e783f.jpg",
+   "labelFallback": true,
+   "record": [
+    "R-AND-B",
+    "FAVORITE LOVER"
+   ],
+   "day": "TUE",
+   "clock": "7 PM",
+   "location": "GOLD-DIGGERS",
+   "price": "$19.57",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/b2223f0b-ad47-484b-91c9-53cbd39e783f.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "e300300b-8058-438c-92bd-37272a05b6ac",
+   "external": true,
+   "name": "The Scratch Pad w/ Jonah Ray",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/e300300b-8058-438c-92bd-37272a05b6ac.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/covers/e300300b-8058-438c-92bd-37272a05b6ac.jpg",
+   "labelFallback": true,
+   "record": [
+    "MARRY ME",
+    "DEC 1"
+   ],
+   "day": "TUE",
+   "clock": "7:30 PM",
+   "location": "SCRIBBLE",
+   "price": "$13.60",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/e300300b-8058-438c-92bd-37272a05b6ac.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "45d40639-7432-41ca-ba7b-f291915d720e",
+   "external": true,
+   "name": "AFTERS 12-01 ( TUESDAY )",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/45d40639-7432-41ca-ba7b-f291915d720e.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-45d40639-7432-41ca-ba7b-f291915d720e.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "LOVELEE DAE - RADIO EDIT"
+   ],
+   "day": "TUE",
+   "clock": "11 PM",
+   "location": "129 E 3RD ST",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/45d40639-7432-41ca-ba7b-f291915d720e.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "doorway": true,
+   "count": 44,
+   "windowLabel": "TUE 1",
+   "from": "From Eventbrite, Ticketmaster, DICE, Posh and RA",
+   "picks": [
+    {
+     "id": "26b25cc5-a8d9-4e88-9328-c9880570da8d",
+     "title": "Kids' Pottery+Painting Party - Downtown LA",
+     "time": "Tue 1 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/26b25cc5-a8d9-4e88-9328-c9880570da8d.jpg"
+    },
+    {
+     "id": "e5389008-9756-4575-aa1f-867ab23447e9",
+     "title": "Foodies + New Friends Echo Park: Dinner with Strangers",
+     "time": "Tue 7 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/e5389008-9756-4575-aa1f-867ab23447e9.jpg"
+    },
+    {
+     "id": "3603e93d-835c-4c65-af1a-09edb36bca23",
+     "title": "Sip Smoke And Paint - Dj Pony Boy",
+     "time": "Tue 5:30 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/3603e93d-835c-4c65-af1a-09edb36bca23.jpg"
+    }
+   ]
+  }
+ ],
+ "at": 2,
+ "discOpen": false,
+ "joined": false
+}

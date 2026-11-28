@@ -1,0 +1,91 @@
+{
+ "clock": "10:00",
+ "when": "Wed 2",
+ "city": "New York",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "c0e9d021-1e77-4576-b05f-781f94f2e018",
+   "external": true,
+   "name": "GIFT, Evolfo, Aubrey Haddard, DJ Arthur Moon",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/c0e9d021-1e77-4576-b05f-781f94f2e018.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/c0e9d021-1e77-4576-b05f-781f94f2e018.jpg",
+   "labelFallback": true,
+   "record": [
+    "GOING IN CIRCLES",
+    "DEC 2"
+   ],
+   "day": "WED",
+   "clock": "7 PM",
+   "location": "ALPHAVILLE",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/c0e9d021-1e77-4576-b05f-781f94f2e018.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "c8de184c-b2c8-4191-b45a-f7d0ddc28be2",
+   "external": true,
+   "name": "House Of Nuisance: Birthday Edition",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/c8de184c-b2c8-4191-b45a-f7d0ddc28be2.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/art/art-c8de184c-b2c8-4191-b45a-f7d0ddc28be2.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "RUN DA RECORD"
+   ],
+   "day": "WED",
+   "clock": "9 PM",
+   "location": "KEYBAR",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/c8de184c-b2c8-4191-b45a-f7d0ddc28be2.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "doorway": true,
+   "count": 41,
+   "windowLabel": "WED 2",
+   "from": "From Eventbrite, Ticketmaster, DICE and RA",
+   "picks": [
+    {
+     "id": "1aae0b85-458f-408e-befa-0a0294a417eb",
+     "title": "Discover Fitness Classes at the Taylor Center for Dance Education This Fall",
+     "time": "Wed 9:30 AM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/1aae0b85-458f-408e-befa-0a0294a417eb.jpg"
+    },
+    {
+     "id": "46398106-bdc0-480c-a410-dfc9f0de8f23",
+     "title": "Discover Fitness Classes at the Taylor Center for Dance Education This Fall",
+     "time": "Wed 9:30 AM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/46398106-bdc0-480c-a410-dfc9f0de8f23.jpg"
+    },
+    {
+     "id": "426379e7-140c-45b1-813e-b7510786de5f",
+     "title": "NYC: Unlimited Prosecco Cruise (Lady M)",
+     "time": "Wed 11 AM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/426379e7-140c-45b1-813e-b7510786de5f.jpg"
+    }
+   ]
+  }
+ ],
+ "at": 1,
+ "discOpen": false,
+ "joined": false
+}

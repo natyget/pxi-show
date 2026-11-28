@@ -1,0 +1,116 @@
+{
+ "clock": "10:00",
+ "when": "Thu 3",
+ "city": "New York",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "219592be-82cd-45f9-90eb-76cdb1efed49",
+   "external": true,
+   "name": "Caspian, Industries of the Blind, The Infinity Ring",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/219592be-82cd-45f9-90eb-76cdb1efed49.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/art/art-219592be-82cd-45f9-90eb-76cdb1efed49.jpg",
+   "labelFallback": false,
+   "record": [
+    "CASPIAN",
+    "HYMN FOR THE GREATEST GENERATION"
+   ],
+   "day": "THU",
+   "clock": "6 PM",
+   "location": "SAINT VITUS",
+   "price": "$35.47",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/219592be-82cd-45f9-90eb-76cdb1efed49.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "97383311-ef4a-44d4-b754-7110f8a8690c",
+   "external": true,
+   "name": "Cafuné + Friends Holiday Show",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/97383311-ef4a-44d4-b754-7110f8a8690c.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/97383311-ef4a-44d4-b754-7110f8a8690c.jpg",
+   "labelFallback": true,
+   "record": [
+    "CAFUNÉ - TALK",
+    "DEC 3"
+   ],
+   "day": "THU",
+   "clock": "7 PM",
+   "location": "THE SULTAN ROOM",
+   "price": "$31.68",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/97383311-ef4a-44d4-b754-7110f8a8690c.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "bbf1be51-a932-42bd-8a65-fd7b815941fc",
+   "external": true,
+   "name": "Net Loss (Album Release), PFFU",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/bbf1be51-a932-42bd-8a65-fd7b815941fc.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/bbf1be51-a932-42bd-8a65-fd7b815941fc.jpg",
+   "labelFallback": true,
+   "record": [
+    "CENTRAL HIGH",
+    "DEC 3"
+   ],
+   "day": "THU",
+   "clock": "7 PM",
+   "location": "ALPHAVILLE",
+   "price": "$13.06",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-nyc-carousel/events/nyc/stamps/bbf1be51-a932-42bd-8a65-fd7b815941fc.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "doorway": true,
+   "count": 40,
+   "windowLabel": "THU 3",
+   "from": "From Eventbrite, RA, Ticketmaster, DICE, Luma, Partiful and Posh",
+   "picks": [
+    {
+     "id": "0fd97632-274f-4e75-be5f-baa5d8cd5d04",
+     "title": "Reggaeton on Houston - Latin & Reggaeton Party NYC",
+     "time": "Thu 5 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/0fd97632-274f-4e75-be5f-baa5d8cd5d04.jpg"
+    },
+    {
+     "id": "f36de291-508f-44e6-8b42-9d58d588b9c7",
+     "title": "Leg Room (Joe) B2B Seth Hosko All-Night-Long",
+     "time": "Thu 9 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/f36de291-508f-44e6-8b42-9d58d588b9c7.png"
+    },
+    {
+     "id": "4ee38159-0e41-4d03-9630-c27024e674c5",
+     "title": "NYC Bachelorette Party & Bachelor Party Bar Crawl-Bach Bar Crawl NYC",
+     "time": "Thu 4 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-nyc-carousel/events/nyc/covers/4ee38159-0e41-4d03-9630-c27024e674c5.jpg"
+    }
+   ]
+  }
+ ],
+ "at": 0,
+ "discOpen": false,
+ "joined": false
+}

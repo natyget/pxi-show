@@ -5,6 +5,7 @@ The spec (growth.md, "Weekend carousel"):
   {"events": "videos/<slug>/events/la", "now": "2026-11-26 16:00", "tz": "America/Los_Angeles",
    "intro": "tryna find things to do in [LA this Thanksgiving]?",
    "picks": [{"match": "JERK HOLLYWOOD", "line": "JERK HOLLYWOOD at Taste of The Caribbean, tonight 5 PM, [free]"}, ...],
+   (a pick may carry "when": its night as YYYY-MM-DD, for a card past Sunday; the filter bar then reads that night)
    "map": {"nights": "2026-11-26..2026-11-29", "line": "every event in [LA], in one place"}}
 Writes <folder>/tiktok/1.jpg.. (1080x1920) and <folder>/ig/1.jpg.. (1080x1350), the screens and seeds, and
 <folder>/sheet.jpg (every slide small, to look at every frame before the fresh reviewer does).
@@ -16,7 +17,9 @@ spec_path = sys.argv[1]; d = os.path.dirname(spec_path); s = json.load(open(spec
 run = lambda *a: subprocess.run(a, check=True, stdout=subprocess.DEVNULL)
 os.makedirs(f"{d}/screens", exist_ok=True)
 for i, p in enumerate(s["picks"], 1):
-    run("python3", "studio/card.py", s["events"], p["match"], "--now", s["now"], "--out", f"{d}/screens/seed-{i}.json")
+    # a pick past Sunday is outside the app's "This week" (tonight to Sunday): "when": "2026-12-01" sets the When to its night
+    run("python3", "studio/card.py", s["events"], p["match"], "--now", s["now"], "--when", p.get("when", s.get("when", "week")),
+        "--out", f"{d}/screens/seed-{i}.json")
     run("node", "studio/screen.cjs", "look/app-screens/discover.html", f"{d}/screens/seed-{i}.json", f"{d}/screens/{i}.png")
 n = len(s["picks"]) + 2
 for size, sub in (("1080x1920", "tiktok"), ("1080x1350", "ig")):

@@ -1,0 +1,47 @@
+{
+ "events": "videos/2026-11-28-nyc-carousel/events/nyc",
+ "now": "2026-11-28 10:00",
+ "tz": "America/New_York",
+ "intro": "tryna find things to do in [NYC this week]?",
+ "picks": [
+  {
+   "match": "Jason Mraz",
+   "line": "Jason Mraz live and signing at Rough Trade, Tue 6 PM, [$25]",
+   "when": "2026-12-01"
+  },
+  {
+   "match": "Norell",
+   "line": "Norell, Judette Elliston and SQORE at Sleepwalk, Tue 6 PM, [about $15]",
+   "when": "2026-12-01"
+  },
+  {
+   "match": "Navy Blue",
+   "line": "Navy Blue at St. Ann & The Holy Trinity, Tue 7 PM, [about $47]",
+   "when": "2026-12-01"
+  },
+  {
+   "match": "Holly Horan",
+   "line": "Holly Horan at Sleepwalk, Tue 9 PM, [$17]",
+   "when": "2026-12-01"
+  },
+  {
+   "match": "House Of Nuisance",
+   "line": "House Of Nuisance at Keybar, Wed 9 PM, [free]",
+   "when": "2026-12-02"
+  },
+  {
+   "match": "Caspian",
+   "line": "Caspian at Saint Vitus, Thu 6 PM, [about $35]",
+   "when": "2026-12-03"
+  },
+  {
+   "match": "Net Loss",
+   "line": "Net Loss's album release at Alphaville, Thu 7 PM, [about $13]",
+   "when": "2026-12-03"
+  }
+ ],
+ "map": {
+  "nights": "2026-11-28..2026-12-03",
+  "line": "every event in [NYC], in one place"
+ }
+}

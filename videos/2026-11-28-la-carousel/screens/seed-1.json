@@ -1,0 +1,566 @@
+{
+ "clock": "10:00",
+ "when": "This week",
+ "city": "Los Angeles",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "dbd1b910-f981-4ccb-a921-03db0a29bb06",
+   "external": true,
+   "name": "MASC TAKEOVER | Sapphic Saturdays",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/dbd1b910-f981-4ccb-a921-03db0a29bb06.png",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-dbd1b910-f981-4ccb-a921-03db0a29bb06.jpg",
+   "labelFallback": false,
+   "record": [
+    "LAH PAT",
+    "RODEO (REMIX)"
+   ],
+   "day": "Today",
+   "clock": "4 PM",
+   "location": "BEACHES TROPICANA",
+   "price": "$6.49",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/dbd1b910-f981-4ccb-a921-03db0a29bb06.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "45ec5196-19b6-4c0e-95bb-171e05f5203f",
+   "external": true,
+   "name": "Leftover Crack + Dwarves",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/45ec5196-19b6-4c0e-95bb-171e05f5203f.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-45ec5196-19b6-4c0e-95bb-171e05f5203f.jpg",
+   "labelFallback": false,
+   "record": [
+    "LEFTÖVER CRACK",
+    "BORN TO DIE"
+   ],
+   "day": "Tonight",
+   "clock": "6 PM",
+   "location": "ALEX'S BAR",
+   "price": "$30.90",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/45ec5196-19b6-4c0e-95bb-171e05f5203f.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "ab651338-5294-45b8-aebb-e861eb1af50c",
+   "external": true,
+   "name": "Solomun",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/ab651338-5294-45b8-aebb-e861eb1af50c.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-ab651338-5294-45b8-aebb-e861eb1af50c.jpg",
+   "labelFallback": false,
+   "record": [
+    "SOLOMUN",
+    "SOMETHING WE ALL ADORE"
+   ],
+   "day": "Tonight",
+   "clock": "6 PM",
+   "location": "REFRAME STUDIOS OUTDOORS",
+   "price": "$130.45",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/ab651338-5294-45b8-aebb-e861eb1af50c.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "d49451d5-1ec8-46fc-a66b-7b906f98cc6a",
+   "external": true,
+   "name": "PCS w/ Echo Huang • Paolo Sandejas • Nanamé",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/d49451d5-1ec8-46fc-a66b-7b906f98cc6a.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-d49451d5-1ec8-46fc-a66b-7b906f98cc6a.jpg",
+   "labelFallback": false,
+   "record": [
+    "ECHO HUANG",
+    "OH NO"
+   ],
+   "day": "Tonight",
+   "clock": "7 PM",
+   "location": "THE AIRLINER",
+   "price": "$11.33",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/d49451d5-1ec8-46fc-a66b-7b906f98cc6a.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "6b68c0da-93f2-4e76-9a25-d1e32712dce1",
+   "external": true,
+   "name": "Blond In Car",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/6b68c0da-93f2-4e76-9a25-d1e32712dce1.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/covers/6b68c0da-93f2-4e76-9a25-d1e32712dce1.jpg",
+   "labelFallback": true,
+   "record": [
+    "POP",
+    "BLOND IN CAR - BAD DAD"
+   ],
+   "day": "Tonight",
+   "clock": "7 PM",
+   "location": "ZEBULON",
+   "price": "$26.78",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/6b68c0da-93f2-4e76-9a25-d1e32712dce1.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "df127185-f450-4e95-8c25-2ef80a1365da",
+   "external": true,
+   "name": "Alexandra Savior (Night 2)",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/df127185-f450-4e95-8c25-2ef80a1365da.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/covers/df127185-f450-4e95-8c25-2ef80a1365da.jpg",
+   "labelFallback": true,
+   "record": [
+    "GIRLIE",
+    "NOV 28"
+   ],
+   "day": "Tonight",
+   "clock": "8 PM",
+   "location": "SCRIBBLE",
+   "price": "$41.31",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/df127185-f450-4e95-8c25-2ef80a1365da.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "325f9f13-00e7-4f80-b5ea-87b789c9d105",
+   "external": true,
+   "name": "WETHEDREAMENT PRESENTS: USC VS UCLA AFTER PARTY",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/325f9f13-00e7-4f80-b5ea-87b789c9d105.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-325f9f13-00e7-4f80-b5ea-87b789c9d105.jpg",
+   "labelFallback": false,
+   "record": [
+    "DJ WESTCOAST",
+    "FUCK IT UP"
+   ],
+   "day": "Tonight",
+   "clock": "9 PM",
+   "location": "1465 HOOPER AVE.",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/325f9f13-00e7-4f80-b5ea-87b789c9d105.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "72923adc-dac9-49a8-aa91-9e03300aba46",
+   "external": true,
+   "name": "DND & FRIENDS: LA TAKEOVER",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/72923adc-dac9-49a8-aa91-9e03300aba46.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/covers/72923adc-dac9-49a8-aa91-9e03300aba46.jpg",
+   "labelFallback": true,
+   "record": [
+    "LATIN",
+    "DAT THANG"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "SOMEWHERE SPECIAL ROOFTOP AT THE STILE HOTEL",
+   "price": "$17",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/72923adc-dac9-49a8-aa91-9e03300aba46.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "2e7c4bc9-4ec8-4771-b929-aa5da2996286",
+   "external": true,
+   "name": "Mishell",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/2e7c4bc9-4ec8-4771-b929-aa5da2996286.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/covers/2e7c4bc9-4ec8-4771-b929-aa5da2996286.jpg",
+   "labelFallback": true,
+   "record": [
+    "MISHELL & OI",
+    "RIOT"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "THE SPOTLIGHT",
+   "price": "$30.60",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/2e7c4bc9-4ec8-4771-b929-aa5da2996286.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "2e94df2e-67e6-411b-944e-3d0c98bc9435",
+   "external": true,
+   "name": "Cumbias En El Club (SAT NOV 28 | SAB 28 DE NOV)",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/2e94df2e-67e6-411b-944e-3d0c98bc9435.png",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-2e94df2e-67e6-411b-944e-3d0c98bc9435.jpg",
+   "labelFallback": false,
+   "record": [
+    "LATIN",
+    "CUMBIA SUAVE"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "HELLO STRANGER LITTLE TOKYO",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/2e94df2e-67e6-411b-944e-3d0c98bc9435.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "f61bc63b-6335-472c-a57d-9438862efa31",
+   "external": true,
+   "name": "Recession Indicator: 2010s Party",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/f61bc63b-6335-472c-a57d-9438862efa31.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-f61bc63b-6335-472c-a57d-9438862efa31.jpg",
+   "labelFallback": false,
+   "record": [
+    "KATY PERRY",
+    "CALIFORNIA GURLS"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "THE CONTINENTAL CLUB",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/f61bc63b-6335-472c-a57d-9438862efa31.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "97480442-6379-4e95-be18-071c86d86bfa",
+   "external": true,
+   "name": "SATURDAY NIGHT IN LITTLE TOKYO",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/97480442-6379-4e95-be18-071c86d86bfa.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-97480442-6379-4e95-be18-071c86d86bfa.jpg",
+   "labelFallback": false,
+   "record": [
+    "BABY KEEM",
+    "BIRDS & THE BEES"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "KODAMA LOUNGE | LITTLE TOKYO",
+   "price": "FREE",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/97480442-6379-4e95-be18-071c86d86bfa.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "021656c3-18f6-49ee-8064-1338ca047c24",
+   "external": true,
+   "name": "BRAINCELL LASERTAG",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/021656c3-18f6-49ee-8064-1338ca047c24.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-021656c3-18f6-49ee-8064-1338ca047c24.jpg",
+   "labelFallback": false,
+   "record": [
+    "NIKKI NAIR",
+    "STARTRACK"
+   ],
+   "day": "Tonight",
+   "clock": "10 PM",
+   "location": "DTLA, LOCATION TBA",
+   "price": "$39.66",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/021656c3-18f6-49ee-8064-1338ca047c24.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "5b900c07-de2f-4ecd-9d37-c829145384c2",
+   "external": true,
+   "name": "AFTERS 11-28 ( SATURDAY )",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/5b900c07-de2f-4ecd-9d37-c829145384c2.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-5b900c07-de2f-4ecd-9d37-c829145384c2.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "HYPED IN LA"
+   ],
+   "day": "Tonight",
+   "clock": "11 PM",
+   "location": "129 E 3RD ST",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/5b900c07-de2f-4ecd-9d37-c829145384c2.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "f05cb42a-e01f-4eea-8dc6-85fb229ec2f7",
+   "external": true,
+   "name": "Midnight Lovers with Demi Riquísimo",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "NEVER SEEN YOU DANCE (DEMI RIQUÍSIMO REMIX)"
+   ],
+   "day": "Tonight",
+   "clock": "11:45 PM",
+   "location": "LOCATION TBA, LOS ANGELES",
+   "price": "$35.02",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/f05cb42a-e01f-4eea-8dc6-85fb229ec2f7.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "6bc8918a-0898-4db3-8042-bb3598b60fbe",
+   "external": true,
+   "name": "Lost In Decay",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/6bc8918a-0898-4db3-8042-bb3598b60fbe.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/covers/6bc8918a-0898-4db3-8042-bb3598b60fbe.jpg",
+   "labelFallback": true,
+   "record": [
+    "A BLOODBATH IN BOSTON - CORRECT ME IF I'M WRONG",
+    "NOV 29"
+   ],
+   "day": "SUN",
+   "clock": "2 PM",
+   "location": "1720",
+   "price": "$27.81",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/6bc8918a-0898-4db3-8042-bb3598b60fbe.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "b269ad8e-8428-42e5-b10f-36c586b01d05",
+   "external": true,
+   "name": "Rhythm & Brewed - R&B Cafe Experience",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/b269ad8e-8428-42e5-b10f-36c586b01d05.png",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-b269ad8e-8428-42e5-b10f-36c586b01d05.jpg",
+   "labelFallback": false,
+   "record": [
+    "R-AND-B",
+    "FAMILY REUNION"
+   ],
+   "day": "SUN",
+   "clock": "3 PM",
+   "location": "ORA CAFE",
+   "price": "$23.39",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/b269ad8e-8428-42e5-b10f-36c586b01d05.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "34acd764-1618-48cb-a427-5512525bdebc",
+   "external": true,
+   "name": "Jeremiah Chiu 'Edge Conditions' Album Release w/ Maral",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/34acd764-1618-48cb-a427-5512525bdebc.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/covers/34acd764-1618-48cb-a427-5512525bdebc.jpg",
+   "labelFallback": true,
+   "record": [
+    "IN ÅLAND AIR",
+    "NOV 29"
+   ],
+   "day": "SUN",
+   "clock": "8 PM",
+   "location": "ZEBULON",
+   "price": "$26.78",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/34acd764-1618-48cb-a427-5512525bdebc.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "ed68ff9c-522c-41c0-9b69-59b8877c7adc",
+   "external": true,
+   "name": "Sunday Funday LA 18+ Hosted By DJ SMOKE ONE",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/ed68ff9c-522c-41c0-9b69-59b8877c7adc.png",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-ed68ff9c-522c-41c0-9b69-59b8877c7adc.jpg",
+   "labelFallback": false,
+   "record": [
+    "FUTURE",
+    "YA HIT (FEAT. DRAKE, TRAVIS SCOTT & LOE SHIMMY)"
+   ],
+   "day": "SUN",
+   "clock": "10 PM",
+   "location": "LOS GLOBOS",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/ed68ff9c-522c-41c0-9b69-59b8877c7adc.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "cc86db38-2b58-4c62-a342-527feef212a2",
+   "external": true,
+   "name": "AFTERS 11-29 ( SUNDAY )",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/cc86db38-2b58-4c62-a342-527feef212a2.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-cc86db38-2b58-4c62-a342-527feef212a2.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "KEEP PUSHING"
+   ],
+   "day": "SUN",
+   "clock": "11 PM",
+   "location": "129 E 3RD ST",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/cc86db38-2b58-4c62-a342-527feef212a2.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "id": "d6601a33-ce67-4ab3-bc4d-ffc1baa11027",
+   "external": true,
+   "name": "DAYSHIFT",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/d6601a33-ce67-4ab3-bc4d-ffc1baa11027.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-d6601a33-ce67-4ab3-bc4d-ffc1baa11027.jpg",
+   "labelFallback": false,
+   "record": [
+    "PLASTIKMAN",
+    "CONSUMED"
+   ],
+   "day": "SUN",
+   "clock": "11 PM",
+   "location": "LOS ANGELES",
+   "price": "$10",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/d6601a33-ce67-4ab3-bc4d-ffc1baa11027.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "doorway": true,
+   "count": 75,
+   "windowLabel": "THIS WEEK",
+   "from": "From Eventbrite, DICE, RA, Posh and Ticketmaster",
+   "picks": [
+    {
+     "id": "ed6e1c40-b9be-48e5-986a-55f53b3619fa",
+     "title": "Kids' Pottery+Painting Party - Downtown LA",
+     "time": "10 AM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/ed6e1c40-b9be-48e5-986a-55f53b3619fa.jpg"
+    },
+    {
+     "id": "eb36aa6b-eead-4d92-9ccf-965f9bd80e4b",
+     "title": "Cocktails 4 Creatives: LA Film + TV (Giving Back Edition)",
+     "time": "7 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/eb36aa6b-eead-4d92-9ccf-965f9bd80e4b.jpg"
+    },
+    {
+     "id": "0aba5c46-56ec-4436-8e60-e53ca40beff4",
+     "title": "Foodies + New Friends Echo Park: Dinner with Strangers",
+     "time": "7 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/0aba5c46-56ec-4436-8e60-e53ca40beff4.jpg"
+    }
+   ]
+  }
+ ],
+ "at": 0,
+ "discOpen": false,
+ "joined": false
+}

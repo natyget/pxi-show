@@ -1,0 +1,91 @@
+{
+ "clock": "10:00",
+ "when": "Mon 30",
+ "city": "Los Angeles",
+ "me": "assets/me-nio.png",
+ "second": "Map",
+ "cards": [
+  {
+   "id": "ccfdb6e0-c5f9-45fb-a570-1b1662080bbc",
+   "external": true,
+   "name": "mmm… Collection 3 Runway",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/ccfdb6e0-c5f9-45fb-a570-1b1662080bbc.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-ccfdb6e0-c5f9-45fb-a570-1b1662080bbc.jpg",
+   "labelFallback": false,
+   "record": [
+    "KEN CARSON",
+    "FIGHTING MY DEMONS"
+   ],
+   "day": "MON",
+   "clock": "8 PM",
+   "location": "1148 S BROADWAY",
+   "price": "$12",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/ccfdb6e0-c5f9-45fb-a570-1b1662080bbc.svg",
+    "w": 98.10000000000001,
+    "h": 98.10000000000001
+   }
+  },
+  {
+   "id": "9d11f0ac-7055-4e92-a2ca-77dee6e2d8fe",
+   "external": true,
+   "name": "AFTERS 11- 30 ( MONDAY )",
+   "hideName": true,
+   "host": "",
+   "cover": "/videos/2026-11-28-la-carousel/events/la/covers/9d11f0ac-7055-4e92-a2ca-77dee6e2d8fe.jpg",
+   "poster": null,
+   "label": "/videos/2026-11-28-la-carousel/events/la/art/art-9d11f0ac-7055-4e92-a2ca-77dee6e2d8fe.jpg",
+   "labelFallback": false,
+   "record": [
+    "HOUSE",
+    "HEY EVERYBODY"
+   ],
+   "day": "MON",
+   "clock": "11 PM",
+   "location": "129 E 3RD ST",
+   "price": "TBA",
+   "match": null,
+   "stamp": {
+    "img": "/videos/2026-11-28-la-carousel/events/la/stamps/9d11f0ac-7055-4e92-a2ca-77dee6e2d8fe.svg",
+    "w": 80.66,
+    "h": 80.66
+   }
+  },
+  {
+   "doorway": true,
+   "count": 46,
+   "windowLabel": "MON 30",
+   "from": "From Eventbrite, Ticketmaster, Posh, DICE, Partiful and RA",
+   "picks": [
+    {
+     "id": "28cc0049-4eb7-47d0-8f33-6a4fa32cf289",
+     "title": "Kids' Pottery+Painting Party - Downtown LA",
+     "time": "Mon 1 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/28cc0049-4eb7-47d0-8f33-6a4fa32cf289.jpg"
+    },
+    {
+     "id": "44b3fa31-eaab-48e1-8093-325341c816a8",
+     "title": "NIGHTSHIFT AFTER HOURS",
+     "time": "Mon 11 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/44b3fa31-eaab-48e1-8093-325341c816a8.jpg"
+    },
+    {
+     "id": "2e1dc2ab-cbe2-4482-8e06-5334296d439b",
+     "title": "Birthday Celebration Packages",
+     "time": "Mon 8 PM",
+     "poster": null,
+     "cover": "/videos/2026-11-28-la-carousel/events/la/covers/2e1dc2ab-cbe2-4482-8e06-5334296d439b.jpg"
+    }
+   ]
+  }
+ ],
+ "at": 0,
+ "discOpen": false,
+ "joined": false
+}
